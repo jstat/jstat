@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<title>QUnit Tests</title>
+	<link type="text/css" rel="stylesheet" charset="utf-8" href="qunit.css" />
+	<script type="text/javascript" charset="utf-8" src="jquery.js"></script>
+	<script type="text/javascript" charset="utf-8" src="qunit.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../src/jstat.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		
+		module('jStat()');
+		
+		test('Itterations 1000x',function(){
+			var startTime,
+				endTime;
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.sum([1,2,3,4,5,6]);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'sum([1,2,3,4,5,6]): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.min([1,2,3,4,5,6]);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'min([1,2,3,4,5,6]): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.max([1,2,3,4,5,6]);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'max([1,2,3,4,5,6]): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.mean([1,2,3,4,5,6]);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'mean([1,2,3,4,5,6]): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.median([1,2,3,4,5,6]);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'median([1,2,3,4,5,6]): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.median([1,2,3,3,4,5,6]);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'median([1,2,3,3,4,5,6]): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.mode([1,2,3,4,5,6]);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'mode([1,2,3,4,5,6]): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.range([1,2,3,4,5,6]);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'range([1,2,3,4,5,6]): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.variance([1,2,3,4,5,6]);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'variance([1,2,3,4,5,6]): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.stdev([1,2,3,4,5,6]);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'stdev([1,2,3,4,5,6]): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.meandev([1,2,3,4,5,6]);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'meandev([1,2,3,4,5,6]): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.meddev([1,2,3,4,5,6]);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'meddev([1,2,3,4,5,6]): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.gamma(.5);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'gamma(.5): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.quartiles([1,2,3,6,9,3,1,2,5]);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'quartiles([1,2,3,6,9,3,1,2,5]): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.covariance([1,2,3,6,9,3,1,2,5],[2,3,5,2,5,7,8,9,6]);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'covariance([1,2,3,6,9,3,1,2,5],[2,3,5,2,5,7,8,9,6]): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.corr_coeff([1,2,3,6,9,3,1,2,5],[2,3,5,2,5,7,8,9,6]);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'corr_coeff([1,2,3,6,9,3,1,2,5],[2,3,5,2,5,7,8,9,6]): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.uniformcdf(0,2,.5);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'uniformcdf(0,2,.5): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.binomial(5,1/2,2);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'binomial(5,1/2,2): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.binomialcdf(5,1/2,2);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'binomialcdf(5,1/2,2): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.negbin(2,1/2,1);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'negbin(2,1/2,1): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.negbincdf(2,1/2,1);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'negbincdf(2,1/2,1): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.hypgeom(50,25,10,5);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'hypgeom(50,25,10,5): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.hypgeomcdf(50,25,10,5);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'hypgeomcdf(50,25,10,5): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.exponentialcdf(.5,2);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'exponentialcdf(.5,2): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.poisson(2,3);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'poisson(2,3): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.poissoncdf(2,3);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'poissoncdf(2,3): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.asr(function (x){return Math.sin(x*x)},0,5,15);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'asr(function (x){return Math.sin(x*x)},0,5,15): '+(endTime-startTime)+'ms');
+			
+			startTime = (new Date()).getTime();
+			for(var i = 0;i < 1000;i++){
+				jStat.fivept(function (x){return x*x*x-5},2,1e-3);
+			};
+			endTime = (new Date()).getTime();
+			ok(true,'fivept(function (x){return x*x*x-5},2,1e-3): '+(endTime-startTime)+'ms');
+			
+		});
+		
+		test('Check values generated',function(){
+			equals(jStat.sum([1,2,3,4,5,6]),21,'sum([1,2,3,4,5,6])');
+			
+			equals(jStat.min([1,2,3,4,5,6]),1,'min([1,2,3,4,5,6])');
+			
+			equals(jStat.max([1,2,3,4,5,6]),6,'max([1,2,3,4,5,6])');
+			
+			equals(jStat.mean([1,2,3,4,5,6]),3.5,'mean([1,2,3,4,5,6])');
+			
+			equals(jStat.median([1,2,3,3,4,5,6]),3,'median([1,2,3,3,4,5,6])');
+			equals(jStat.median([1,2,3,4,5,6]),3.5,'median([1,2,3,4,5,6])');
+			
+			equals(jStat.mode([1,2,3,3,4,5,6]),3,'mode([1,2,3,3,4,5,6])');
+			
+			equals(jStat.range([1,2,3,3,4,5,6]),5,'range([1,2,3,3,4,5,6])');
+			
+			equals(jStat.variance([1,2,3,4,5,6]),3.5,'variance([1,2,3,4,5,6])');
+			
+			equals(jStat.stdev([1,2,3,4,5,6]).toFixed(7),1.8708287,'stdev([1,2,3,4,5,6])');
+			
+			equals(jStat.meandev([2,2,3,4,14]),3.6,'meandev([2,2,3,4,14])');
+			
+			equals(jStat.meddev([2,2,3,4,14]),2.8,'meddev([2,2,3,4,14])');
+			
+			equals(jStat.combination(10,4),210,'combination(10,4)');
+			
+			equals(jStat.permutation(10,4),5040,'permutation(10,4)');
+			
+			equals(jStat.gamma(.5),1.7724538509055165,'gamma(.5)');
+			equals(jStat.gamma(15),87178291200,'gamma(5)');
+		});
+		
+	});
+	</script>
+</head>
+<body>
+	<h1 id="qunit-header">QUnit example</h1>
+	<h2 id="qunit-banner"></h2>
+	<h2 id="qunit-userAgent"></h2>
+	<ol id="qunit-tests"><li></li></ol>
+</body>
+</html>

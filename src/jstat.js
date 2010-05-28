@@ -369,7 +369,18 @@ var jStat = {
 	fivept: function(func, x, h){
 		return (-func(x + h * 2) + 8 * func(x + h) - 8 * func(x - h) + func(x - h * 2)) / h / 12;
 	}
+};
+
+// Testing for IE
+if(navigator.appName == 'Microsoft Internet Explorer'){
 	
+	// Changing functions to run quicker in IE
+	jStat.min = function(arr){
+		return Math.min.apply(Math,arr);
+	};
+	jStat.max = function(arr){
+		return Math.max.apply(Math,arr);
+	};
 };
 
 // Exposing jStat
