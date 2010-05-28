@@ -371,18 +371,6 @@ var jStat = {
 	}
 };
 
-// Testing for IE
-if(navigator.appName == 'Microsoft Internet Explorer'){
-	
-	// Changing functions to run quicker in IE
-	jStat.min = function(arr){
-		return Math.min.apply(Math,arr);
-	};
-	jStat.max = function(arr){
-		return Math.max.apply(Math,arr);
-	};
-};
-
 // Exposing jStat
 window.jStat = jStat;
 
