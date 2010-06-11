@@ -1,0 +1,9 @@
+jStat (http://github.com/trevnorris/jstat)
+============================================
+
+To-Do:
+- Finish the unit testing
+- Move performance testing out of QUnit
+- Finish simple script optimization
+- Begin per browser optimizations
+- Add cleanup to improve memory performance
