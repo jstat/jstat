@@ -16,7 +16,7 @@ var jStat = {
 // ### Want to add option for arbitrarily long numbers
 // ### Employ ability to create function based on js engine. (e.g. IE handles
 //  Math.min.apply(this,[]) much faster than for() loop. ###
-	
+
 	/**
 	 * Sum of an array
 	 * @example
@@ -30,9 +30,9 @@ var jStat = {
 		};
 		return sum;
 	},
-	
+
 	/**
-	 *  Minimum value of an array
+	 * Minimum value of an array
 	 * @example
 	 * jStat.min([1,2,3])
 	 */
@@ -46,7 +46,7 @@ var jStat = {
 		};
 		return min;
 	},
-	
+
 	/**
 	 * Maximum value of an array
 	 * @example
@@ -62,7 +62,7 @@ var jStat = {
 		};
 		return max;
 	},
-	
+
 	/**
 	 * Mean value of an array
 	 * @example
@@ -71,7 +71,7 @@ var jStat = {
 	mean: function(arr){
 		return jStat.sum(arr) / arr.length;
 	},
-	
+
 	/**
 	 * Median of an array
 	 * @example
@@ -88,57 +88,51 @@ var jStat = {
 		};
 		return median;
 	},
-	
+
 	/**
 	 * Mode of an array
 	 * @example
 	 * jStat.mode([1,2,2,3,3,3,3])
 	 */
-// ### Needs to be optimized and handle multiple/no modes of an array
-	mode: function(arr){		
-		var arrsort = arr.sort(function(a, b){return a - b;}),
-			arrlen = arr.length,
+	mode: function(arr){
+		var arrSort = arr.sort(function(a, b){return a - b;}),
+			arrLen = arr.length,
 			count = 1,
-			position = 0,
-			frequencies = [],
-			values = [],
-			frequenciesLen,
-			i,
-			max,
-			_vpos;
-		
-		// Create array with counts for each number in arr
-		for(i = 0; i < arrlen; i++){
-			if(arrsort[i] === arrsort[i + 1]){
+			maxCount = 0,
+			numMaxCount = 0,
+			maxNum,
+			i;
+
+		for(i = 0; i < arrLen; i++){
+			if(arrSort[i] === arrSort[i + 1]){
 				count++;
 			}else{
-				frequencies[position] = count;
-				values[position] = arrsort[i];
-				position++;
-				count = 1;
+				if(count > maxCount){
+					maxNum = arrSort[i];
+					maxCount = count;
+					count = 1;
+					numMaxCount = 0;
+				}else{
+					
+					// Are there multiple max counts
+					if(count === maxCount){
+						numMaxCount++;
+					
+					// Count is less than max count, so reset values
+					}else{
+						count = 1;
+					};
+				};
 			};
 		};
-		max = frequencies[0];
-		frequenciesLen = frequencies.length;
 		
-		// Find number with highest count
-		for(i = 0; i < frequenciesLen; i++){
-			if(frequencies[i] > max){
-				max = frequencies[i];
-				position = i;
-			};
+		if(numMaxCount === 0){
+			return maxNum;
+		}else{
+			return false;
 		};
-		
-		// Assigning array value
-		_vpos = values[position];
-		
-		// Cleanup
-// ### Still need to test if this helps
-		arr = arrsort = values = frequencies = arrlen = frequenciesLen = count = position = max = i = null;
-		
-		return _vpos;
 	},
-	
+
 	/**
 	 * Range of an array
 	 * @example
@@ -148,7 +142,7 @@ var jStat = {
 		var arrsort = arr.sort(function(a, b){return a - b;});
 		return arrsort[arrsort.length - 1] - arrsort[0];
 	},
-	
+
 	/**
 	 * Variance of an array
 	 * @example
@@ -163,7 +157,7 @@ var jStat = {
 		};
 		return stSum / (arr.length - 1);
 	},
-	
+
 	/**
 	 * Standard deviation of an array
 	 * @example
@@ -172,7 +166,7 @@ var jStat = {
 	stdev: function(arr){
 		return Math.sqrt(jStat.variance(arr));
 	},
-	
+
 	/**
 	 * Mean deviation (Mean Absolute Deviation) of an array
 	 * @example
@@ -187,7 +181,7 @@ var jStat = {
 		};
 		return devSum / arr.length;
 	},
-	
+
 	/**
 	 * Median deviation (Median Absolute Deviation) of an array
 	 * @example
@@ -202,7 +196,7 @@ var jStat = {
 		};
 		return devSum / arr.length;
 	},
-	
+
 	/**
 	 * Factoral of n
 	 * @example
@@ -215,7 +209,7 @@ var jStat = {
 		};
 		return fval;
 	},
-	
+
 	/**
 	 * Combinations of n,m
 	 * @example
@@ -224,7 +218,7 @@ var jStat = {
 	combination: function(n, k){
 		return (jStat.factorial(n) / jStat.factorial(k)) / jStat.factorial(n - k);
 	},
-	
+
 	/**
 	 * Permutations of n,m
 	 * @example
@@ -233,11 +227,11 @@ var jStat = {
 	permutation: function(n ,r){
 		return jStat.factorial(n) / jStat.factorial(n - r);
 	},
-	
+
 // ####################################################
 // ### Everything beyond this hasn't been optimized ###
 // ####################################################
-	
+
 	/**
 	 * Gamma of n
 	 * @example
@@ -256,7 +250,7 @@ var jStat = {
 			return jStat.factorial(x - 1);
 		};
 	},
-	
+
 	/**
 	 * Quartiles of an array
 	 * @example
@@ -266,7 +260,7 @@ var jStat = {
 		var arrsort = arr.sort(function sortNumber(a, b){return a - b;});
 		return [arrsort[Math.round((arrsort.length) / 4) - 1], arrsort[Math.round((arrsort.length) / 2) - 1], arrsort[Math.round((arrsort.length) * 3 / 4) - 1]];
 	},
-	
+
 	/**
 	 * Covariance of two arrays
 	 * @example
@@ -283,7 +277,7 @@ var jStat = {
 		};
 		return jStat.sum(sq_dev) / arr1Len;
 	},
-	
+
 	/**
 	 * Correlation coefficient of two arrays
 	 * @example
@@ -292,7 +286,7 @@ var jStat = {
 	corr_coeff: function(arr1, arr2){
 		return jStat.covariance(arr1,arr2) / jStat.stdev(arr1) / jStat.stdev(arr2);
 	},
-	
+
 	/**
 	 * Probability of (x<.5) of uniform distibution with parameters 0,2
 	 * @example
@@ -308,7 +302,7 @@ var jStat = {
 		};
 		return 1;
 	},
-	
+
 	/**
 	 * Probability of (x=2) of binomial distribution of 5 trials with probability 1/2
 	 * @example
@@ -317,7 +311,7 @@ var jStat = {
 	binomial: function(n, p, k){
 		return this.combination(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k);
 	},
-	
+
 	/**
 	 * Probability of (x<=2) of binomial distribution of 5 trials with probability 1/2
 	 * @example
@@ -340,7 +334,7 @@ var jStat = {
 		};
 		return 1;
 	},
-	
+
 	/**
 	 * Probability of exactly 1 success before 2nd failure of an event with probability 1/2
 	 * @example
@@ -356,7 +350,7 @@ var jStat = {
 			return this.combination(x + r - 1, r - 1) * Math.pow(p, r) * Math.pow(1 - p, x);
 		};
 	},
-	
+
 	/**
 	 * Probability of 1 success or less before 2nd failure of an event with probability 1/2
 	 * @example
@@ -372,7 +366,7 @@ var jStat = {
 		};
 		return sum;
 	},
-	
+
 	/**
 	 * Probability of selecting 5 items of a type from 50 items in 10 trials if 25 items are of the type
 	 * @example
@@ -388,7 +382,7 @@ var jStat = {
 			return this.combination(m, x) * this.combination((N - m), n - x) / this.combination(N, n);
 		};
 	},
-	
+
 	/**
 	 * Probability of selecting 5 or less items of a type from 50 items in 10 trials if 25 items are of the type
 	 * @example
@@ -404,7 +398,7 @@ var jStat = {
 		};
 		return sum;
 	},
-	
+
 	/**
 	 * Probability an exponentially distributed variable with parameter l=.5 is less than 2
 	 * @example
@@ -413,7 +407,7 @@ var jStat = {
 	exponentialcdf: function(l, x){
 		return 1 - Math.exp(-1 * x);
 	},
-	
+
 	/**
 	 * Probability a possion variable with parameter l=2 is less than or equal to 3
 	 * @example
@@ -422,7 +416,7 @@ var jStat = {
 	poisson: function(l, x){
 		return Math.pow(l, x) * Math.exp(-l) / this.factorial(x);
 	},
-	
+
 	/**
 	 * Calculate Poisson distribution cumulative probability with parameter l=2 is less than or equal to 3
 	 * @example
@@ -438,7 +432,7 @@ var jStat = {
 		};
 		return sum;
 	},
-	
+
 	/**
 	 * Find the numerical integral of sin(x^2) from 0,5 to 1e-15
 	 * @example
@@ -465,7 +459,7 @@ var jStat = {
 			};
 		return parseFloat((recursive_asr(f, a, b, c, eps, h * (fa + fb + 4 * fc), fa, fb, fc)).toFixed(eps));
 	},
-	
+
 	/**
 	 * Approximate the derivative of f(x)=x^3-5 at the point 2 using step size of 1e-3
 	 * @example
@@ -474,21 +468,21 @@ var jStat = {
 	fivept: function(func, x, h){
 		return (-func(x + h * 2) + 8 * func(x + h) - 8 * func(x - h) + func(x - h * 2)) / h / 12;
 	},
-	
-	
+
+
 // #####################################################
 // ### Things below this line haven't been completed ###
 // #####################################################
-	
+
 	/**
 	 * Reduct and array of length n to m, and generate a second array of stdev's for each interval with sig * sigma
 	 * @example
 	 * jStat.areduct([1,2,3,4,5,6,7,8],4,1)
 	 */
 	areduct: function(arr, len, sig){
-		
-		
-		
+
+
+
 	}
 };
 
