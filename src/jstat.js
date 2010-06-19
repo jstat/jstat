@@ -228,28 +228,29 @@ var jStat = {
 		return jStat.factorial(n) / jStat.factorial(n - r);
 	},
 
-// ####################################################
-// ### Everything beyond this hasn't been optimized ###
-// ####################################################
-
 	/**
-	 * Gamma of n
+	 * Gamma of x
 	 * @example
 	 * jStat.gamma(.5)
 	 */
 	gamma: function(x){
+		var v = 1,
+			w;
 		if(x != Math.floor(x)){
-			var v = 1;
 			while(x < 8){
 				v *= x;
 				x++;
 			};
-			var w = 1 / (x * x);
-			return Math.exp((((((((((-3617) / 122400) * w + 7 / 1092) * w - 691 / 360360) * w + 5 / 5940) * w - 1 / 1680)  * w + 1 / 1260) * w -1 / 360) * w + 1 / 12) / x + 0.5 * Math.log(2 * Math.PI) - Math.log(v) - x + (x - 0.5) * Math.log(x));
+			w = 1 / (x * x);
+			return Math.exp((((((((-3617 / 122400 * w + 7 / 1092) * w - 691 / 360360) * w + 5 / 5940) * w - 1 / 1680)  * w + 1 / 1260) * w - 1 / 360) * w + 1 / 12) / x + 0.5 * Math.log(2 * Math.PI) - Math.log(v) - x + (x - 0.5) * Math.log(x));
 		}else{
 			return jStat.factorial(x - 1);
 		};
 	},
+
+// #########################################
+// ### Beyond this hasn't been optimized ###
+// #########################################
 
 	/**
 	 * Quartiles of an array
@@ -257,7 +258,7 @@ var jStat = {
 	 * jStat.quartiles([1,2,3,6,9,3,1,2,5])
 	 */
 	quartiles: function(arr){
-		var arrsort = arr.sort(function sortNumber(a, b){return a - b;});
+		var arrsort = arr.sort(function(a, b){return a - b;});
 		return [arrsort[Math.round((arrsort.length) / 4) - 1], arrsort[Math.round((arrsort.length) / 2) - 1], arrsort[Math.round((arrsort.length) * 3 / 4) - 1]];
 	},
 
