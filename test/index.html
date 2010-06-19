@@ -11,36 +11,60 @@
 	<script type="text/javascript">
 	$(document).ready(function(){
 		
-		module('jStat()');
-		
-		test('Check values generated',function(){
+		test('sum',function(){
 			equals(jStat.sum([1,2,3,4,5,6]),21,'sum([1,2,3,4,5,6])');
-			
+		});
+		
+		test('min',function(){
 			equals(jStat.min([1,2,3,4,5,6]),1,'min([1,2,3,4,5,6])');
-			
+		});
+		
+		test('max',function(){
 			equals(jStat.max([1,2,3,4,5,6]),6,'max([1,2,3,4,5,6])');
-			
+		});
+		
+		test('mean',function(){
 			equals(jStat.mean([1,2,3,4,5,6]),3.5,'mean([1,2,3,4,5,6])');
-			
+		});
+		
+		test('median',function(){
 			equals(jStat.median([1,2,3,3,4,5,6]),3,'median([1,2,3,3,4,5,6])');
 			equals(jStat.median([1,2,3,4,5,6]),3.5,'median([1,2,3,4,5,6])');
-			
+		});
+		
+		test('mode',function(){
 			equals(jStat.mode([1,2,3,3,4,5,6]),3,'mode([1,2,3,3,4,5,6])');
-			
+		});
+		
+		test('range',function(){
 			equals(jStat.range([1,2,3,3,4,5,6]),5,'range([1,2,3,3,4,5,6])');
-			
+		});
+		
+		test('variance',function(){
 			equals(jStat.variance([1,2,3,4,5,6]),3.5,'variance([1,2,3,4,5,6])');
-			
+		});
+		
+		test('stdev',function(){
 			equals(jStat.stdev([1,2,3,4,5,6]).toFixed(7),1.8708287,'stdev([1,2,3,4,5,6])');
-			
+		});
+		
+		test('meandev',function(){
 			equals(jStat.meandev([2,2,3,4,14]),3.6,'meandev([2,2,3,4,14])');
-			
+		});
+		
+		test('meddev',function(){
 			equals(jStat.meddev([2,2,3,4,14]),2.8,'meddev([2,2,3,4,14])');
-			
+		});
+		
+		test('combination',function(){
 			equals(jStat.combination(10,4),210,'combination(10,4)');
-			
+		});
+		
+		test('permutation',function(){
 			equals(jStat.permutation(10,4),5040,'permutation(10,4)');
+		});
 			
+		test('gamma',function(){
 			equals(jStat.gamma(.5),1.7724538509055165,'gamma(.5)');
 			equals(jStat.gamma(15),87178291200,'gamma(5)');
 		});
