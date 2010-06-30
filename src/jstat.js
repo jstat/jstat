@@ -15,8 +15,6 @@
  */
 var jStat = {
 // ### Want to add option for arbitrarily long numbers
-// ### Employ ability to create function based on js engine. (e.g. IE handles
-//  Math.min.apply(this,[]) much faster than for() loop. ###
 
 	/**
 	 * Sum of an array
@@ -77,15 +75,10 @@ var jStat = {
 	median: function(arr){
 		var arrsort = arr.sort(function(a, b){return a - b;}),
 			arrlen = arr.length;
-		
-		// Check if array length is even
-		if(!(arrlen & 1) === true){
-			return (arrsort[(arrlen / 2) - 1] + arrsort[(arrlen / 2)]) / 2;
-		
-		// Is odd length array
-		}else{
-			return arrsort[Math.floor(arrlen / 2)];
-		};
+
+		// Check if array is even or odd, then return the appropriate
+		return !(arrlen & 1) ? (arrsort[(arrlen / 2) - 1] + arrsort[(arrlen / 2)]) / 2 : arrsort[Math.floor(arrlen / 2)];
+
 	},
 
 	/**
@@ -114,11 +107,11 @@ var jStat = {
 					count = 1;
 					numMaxCount = 0;
 				}else{
-					
+
 					// Are there multiple max counts
 					if(count === maxCount){
 						numMaxCount++;
-					
+
 					// Count is less than max count, so reset values
 					}else{
 						count = 1;
@@ -126,12 +119,8 @@ var jStat = {
 				};
 			};
 		};
-		
-		if(numMaxCount === 0){
-			return maxNum;
-		}else{
-			return false;
-		};
+
+		return (numMaxCount === 0) ? maxNum : false;
 	},
 
 	/**
@@ -267,10 +256,6 @@ var jStat = {
 		};
 	},
 
-// #########################################
-// ### Beyond this hasn't been optimized ###
-// #########################################
-
 	/**
 	 * Quartiles of an array
 	 * @return {Array}
@@ -279,8 +264,9 @@ var jStat = {
 	 * jStat.quartiles([1,2,3,6,9,3,1,2,5])
 	 */
 	quartiles: function(arr){
-		var arrsort = arr.sort(function(a, b){return a - b;});
-		return [arrsort[Math.round((arrsort.length) / 4) - 1], arrsort[Math.round((arrsort.length) / 2) - 1], arrsort[Math.round((arrsort.length) * 3 / 4) - 1]];
+		var arrsort = arr.sort(function(a, b){return a - b;}),
+			arrlen = arrsort.length;
+		return [arrsort[Math.round((arrlen) / 4) - 1], arrsort[Math.round((arrlen) / 2) - 1], arrsort[Math.round((arrlen) * 3 / 4) - 1]];
 	},
 
 	/**
@@ -296,8 +282,8 @@ var jStat = {
 			v = jStat.mean(arr2),
 			sq_dev = [],
 			arr1Len = arr1.length,
-			i;
-		for(i = 0; i < arr1Len; i++){
+			i = 0;
+		for(; i < arr1Len; i++){
 			sq_dev[i] = (arr1[i] - u) * (arr2[i] - v);
 		};
 		return jStat.sum(sq_dev) / arr1Len;
@@ -345,7 +331,7 @@ var jStat = {
 	 * jStat.binomial(5, 1/2, 2)
 	 */
 	binomial: function(n, p, k){
-		return this.combination(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k);
+		return jStat.combination(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k);
 	},
 
 	/**
@@ -358,16 +344,18 @@ var jStat = {
 	 * jStat.binomialcdf(5, 1/2, 2)
 	 */
 	binomialcdf: function(n, p, x){
+		var binomarr = [],
+			k = 0,
+			i = 0,
+			sum = 0;
 		if(x < 0){
 			return 0;
 		};
-		var binomarr = [];
-		for(var k=0; k < n; k++){
-			binomarr[k] = this.binomial(n, p, k);
+		for(; k < n; k++){
+			binomarr[k] = jStat.binomial(n, p, k);
 		};
 		if(x < n){
-			var sum = 0;
-			for(var i = 0; i <= x; i++){
+			for(; i <= x; i++){
 				sum += binomarr[i];
 			};
 			return sum;
@@ -391,7 +379,7 @@ var jStat = {
 		if(x < 0){
 			return 0;
 		}else{
-			return this.combination(x + r - 1, r - 1) * Math.pow(p, r) * Math.pow(1 - p, x);
+			return jStat.combination(x + r - 1, r - 1) * Math.pow(p, r) * Math.pow(1 - p, x);
 		};
 	},
 
@@ -405,12 +393,13 @@ var jStat = {
 	 * jStat.negbincdf(2, 1/2, 1)
 	 */
 	negbincdf: function(n, p, x){
+		var sum = 0,
+			k = 0;
 		if(x < 0){
 			return 0;
 		};
-		var sum = 0;
-		for(var k = 0; k <= x; k++){
-			sum += this.negbin(n, p, k);
+		for(; k <= x; k++){
+			sum += jStat.negbin(n, p, k);
 		};
 		return sum;
 	},
@@ -429,11 +418,8 @@ var jStat = {
 		if(x != Math.floor(x)){
 			return false;
 		};
-		if(x < 0){
-			return 0;
-		}else{
-			return this.combination(m, x) * this.combination((N - m), n - x) / this.combination(N, n);
-		};
+		return (x < 0) ? 0 : jStat.combination(m, x) * jStat.combination((N - m), n - x) / jStat.combination(N, n);
+		
 	},
 
 	/**
@@ -453,7 +439,7 @@ var jStat = {
 			return 0;
 		};
 		for(k = 0; k <= x; k++){
-			sum += this.hypgeom(N, m, n, k);
+			sum += jStat.hypgeom(N, m, n, k);
 		};
 		return sum;
 	},
@@ -479,7 +465,7 @@ var jStat = {
 	 * jStat.poisson(2, 3)
 	 */
 	poisson: function(l, x){
-		return Math.pow(l, x) * Math.exp(-l) / this.factorial(x);
+		return Math.pow(l, x) * Math.exp(-l) / jStat.factorial(x);
 	},
 
 	/**
@@ -491,12 +477,13 @@ var jStat = {
 	 * jStat.poissoncdf(2, 3)
 	 */
 	poissoncdf: function(l, x){
+		var sum = 0,
+			k = 0;
 		if(x < 0){
 			return 0;
 		};
-		var sum = 0;
-		for(var k = 0; k <= x; k++){
-			sum += this.poisson(l, k);
+		for(; k <= x; k++){
+			sum += jStat.poisson(l, k);
 		};
 		return sum;
 	},
@@ -517,7 +504,7 @@ var jStat = {
 			fa = f(a),
 			fb = f(b),
 			fc = f(c),
-			recursive_asr = function(f, a, b, c, eps, sum, fa, fb, fc){
+			recursive_asr = function recFunc(f, a, b, c, eps, sum, fa, fb, fc){
 				var cl = (a+c)/2,
 					cr = (c+b)/2,
 					h = (c-a)/6,
@@ -528,7 +515,7 @@ var jStat = {
 				if(Math.abs(left + right - sum) <= 15 * eps){
 					return left + right + (left + right - sum) / 15;
 				};
-				return arguments.callee(f, a, c, cl, eps/2, left, fa, fc, fcl) + arguments.callee(f, c, b, cr, eps/2, right, fc, fb, fcr);
+				return recFunc(f, a, c, cl, eps/2, left, fa, fc, fcl) + recFunc(f, c, b, cr, eps/2, right, fc, fb, fcr);
 			};
 		return parseFloat((recursive_asr(f, a, b, c, eps, h * (fa + fb + 4 * fc), fa, fb, fc)).toFixed(eps));
 	},
