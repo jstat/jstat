@@ -6,11 +6,12 @@
  * MIT License: http://www.opensource.org/licenses/mit-license.php
  * @author Trevor Norris, trev.norris@gmail.com
  */
-(function(){
+(function(window,document,undefined){
 
 /**
  * Javascript Statistical Package
  * @namespace JavaScript Statistical Analysis Package
+ * @version 0.2 beta release
  */
 var jStat = {
 // ### Want to add option for arbitrarily long numbers
@@ -19,6 +20,8 @@ var jStat = {
 
 	/**
 	 * Sum of an array
+	 * @return {Number}
+	 * @param {Array} arr
 	 * @example
 	 * jStat.sum([1,2,3])
 	 */
@@ -33,38 +36,30 @@ var jStat = {
 
 	/**
 	 * Minimum value of an array
+	 * @return {Number}
+	 * @param {Array} arr
 	 * @example
 	 * jStat.min([1,2,3])
 	 */
 	min: function(arr){
-		var min = arr[0],
-			i = arr.length - 1;
-		for(i; i >= 0; i--){
-			if(arr[i] < min){
-				min = arr[i];
-			};
-		};
-		return min;
+		return Math.min.apply(Math,arr);
 	},
 
 	/**
 	 * Maximum value of an array
+	 * @return {Number}
+	 * @param {Array} arr
 	 * @example
 	 * jStat.max([1,2,3])
 	 */
 	max: function(arr){
-		var max = arr[0],
-			i = arr.length - 1;
-		for(i; i >= 0; i--){
-			if(arr[i] > max){
-				max = arr[i];
-			};
-		};
-		return max;
+		return Math.max.apply(Math,arr);
 	},
 
 	/**
 	 * Mean value of an array
+	 * @return {Number}
+	 * @param {Array} arr
 	 * @example
 	 * jStat.mean([1,2,3])
 	 */
@@ -74,23 +69,29 @@ var jStat = {
 
 	/**
 	 * Median of an array
+	 * @return {Number}
+	 * @param {Array} arr
 	 * @example
 	 * jStat.median([1,2,3,4,5,6])
 	 */
 	median: function(arr){
 		var arrsort = arr.sort(function(a, b){return a - b;}),
-			arrlen = arr.length,
-			median;
-		if(arrlen % 2 === 0){
-			median = (arrsort[(arrlen / 2) - 1] + arrsort[(arrlen / 2)]) / 2;
+			arrlen = arr.length;
+		
+		// Check if array length is even
+		if(!(arrlen & 1) === true){
+			return (arrsort[(arrlen / 2) - 1] + arrsort[(arrlen / 2)]) / 2;
+		
+		// Is odd length array
 		}else{
-			median = arrsort[Math.floor(arrlen / 2)];
+			return arrsort[Math.floor(arrlen / 2)];
 		};
-		return median;
 	},
 
 	/**
 	 * Mode of an array
+	 * @return {Number}
+	 * @param {Array} arr
 	 * @example
 	 * jStat.mode([1,2,2,3,3,3,3])
 	 */
@@ -135,6 +136,8 @@ var jStat = {
 
 	/**
 	 * Range of an array
+	 * @return {Number}
+	 * @param {Array} arr
 	 * @example
 	 * jStat.range([1,6,5,3,8,6])
 	 */
@@ -145,6 +148,8 @@ var jStat = {
 
 	/**
 	 * Variance of an array
+	 * @return {Number}
+	 * @param {Array} arr
 	 * @example
 	 * jStat.variance([1,6,8,5,4,9,5,3])
 	 */
@@ -160,6 +165,8 @@ var jStat = {
 
 	/**
 	 * Standard deviation of an array
+	 * @return {Number}
+	 * @param {Array} arr
 	 * @example
 	 * jStat.stdev([4,5,9,7,5,3,4])
 	 */
@@ -169,6 +176,8 @@ var jStat = {
 
 	/**
 	 * Mean deviation (Mean Absolute Deviation) of an array
+	 * @return {Number}
+	 * @param {Array} arr
 	 * @example
 	 * jStat.meandev([4,9,8,6,5,3,7,5])
 	 */
@@ -184,6 +193,8 @@ var jStat = {
 
 	/**
 	 * Median deviation (Median Absolute Deviation) of an array
+	 * @return {Number}
+	 * @param {Array} arr
 	 * @example
 	 * jStat.meddev([4,9,8,6,5,3,7,5])
 	 */
@@ -199,6 +210,8 @@ var jStat = {
 
 	/**
 	 * Factoral of n
+	 * @return {Number}
+	 * @param {Number} n
 	 * @example
 	 * jStat.factorial(5)
 	 */
@@ -212,6 +225,9 @@ var jStat = {
 
 	/**
 	 * Combinations of n,m
+	 * @return {Number}
+	 * @param {Number} n
+	 * @param {Number} m
 	 * @example
 	 * jStat.combination(10,4)
 	 */
@@ -221,6 +237,7 @@ var jStat = {
 
 	/**
 	 * Permutations of n,m
+	 * @return {Number}
 	 * @example
 	 * jStat.permutation(10,4)
 	 */
@@ -230,6 +247,8 @@ var jStat = {
 
 	/**
 	 * Gamma of x
+	 * @return {Number}
+	 * @param {Number} x
 	 * @example
 	 * jStat.gamma(.5)
 	 */
@@ -254,6 +273,8 @@ var jStat = {
 
 	/**
 	 * Quartiles of an array
+	 * @return {Array}
+	 * @param {Array} arr
 	 * @example
 	 * jStat.quartiles([1,2,3,6,9,3,1,2,5])
 	 */
@@ -264,6 +285,9 @@ var jStat = {
 
 	/**
 	 * Covariance of two arrays
+	 * @return {Number}
+	 * @param {Array} arr1
+	 * @param {Array} arr2
 	 * @example
 	 * jStat.covariance([1,2,3,6,9,3,1,2,5],[2,3,5,2,5,7,8,9,6])
 	 */
@@ -281,17 +305,24 @@ var jStat = {
 
 	/**
 	 * Correlation coefficient of two arrays
+	 * @return {Number}
+	 * @param {Array} arr1
+	 * @param {Array} arr2
 	 * @example
-	 * jStat.corr_coeff([1,2,3,6,9,3,1,2,5],[2,3,5,2,5,7,8,9,6])
+	 * jStat.corr_coeff([1,2,3,6,9,3,1,2,5], [2,3,5,2,5,7,8,9,6])
 	 */
 	corr_coeff: function(arr1, arr2){
 		return jStat.covariance(arr1,arr2) / jStat.stdev(arr1) / jStat.stdev(arr2);
 	},
 
 	/**
-	 * Probability of (x<.5) of uniform distibution with parameters 0,2
+	 * Probability of (x < .5) of uniform distibution with parameters 0, 2
+	 * @return {Number}
+	 * @param {Number} a
+	 * @param {Number} b
+	 * @param {Number} x
 	 * @example
-	 * jStat.uniformcdf(0,2,.5)
+	 * jStat.uniformcdf(0, 2, .5)
 	 */
 	uniformcdf: function(a, b, x){
 		if(x < a){
@@ -305,18 +336,26 @@ var jStat = {
 	},
 
 	/**
-	 * Probability of (x=2) of binomial distribution of 5 trials with probability 1/2
+	 * Probability of (x = 2) of binomial distribution of 5 trials with probability 1/2
+	 * @return {Number}
+	 * @param {Number} n
+	 * @param {Number} p
+	 * @param {Number} k
 	 * @example
-	 * jStat.binomial(5,1/2,2)
+	 * jStat.binomial(5, 1/2, 2)
 	 */
 	binomial: function(n, p, k){
 		return this.combination(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k);
 	},
 
 	/**
-	 * Probability of (x<=2) of binomial distribution of 5 trials with probability 1/2
+	 * Probability of (x <= 2) of binomial distribution of 5 trials with probability 1/2
+	 * @return {Number}
+	 * @param {Number} n
+	 * @param {Number} p
+	 * @param {Number} x
 	 * @example
-	 * jStat.binomialcdf(5,1/2,2)
+	 * jStat.binomialcdf(5, 1/2, 2)
 	 */
 	binomialcdf: function(n, p, x){
 		if(x < 0){
@@ -338,8 +377,12 @@ var jStat = {
 
 	/**
 	 * Probability of exactly 1 success before 2nd failure of an event with probability 1/2
+	 * @return {Number}
+	 * @param {Number} r
+	 * @param {Number} p
+	 * @param {Number} x
 	 * @example
-	 * jStat.negbin(2,1/2,1)
+	 * jStat.negbin(2, 1/2, 1)
 	 */
 	negbin: function(r, p, x){
 		if(x != Math.floor(x)){
@@ -354,8 +397,12 @@ var jStat = {
 
 	/**
 	 * Probability of 1 success or less before 2nd failure of an event with probability 1/2
+	 * @return {Number}
+	 * @param {Number} n
+	 * @param {Number} p
+	 * @param {Number} x
 	 * @example
-	 * jStat.negbincdf(2,1/2,1)
+	 * jStat.negbincdf(2, 1/2, 1)
 	 */
 	negbincdf: function(n, p, x){
 		if(x < 0){
@@ -370,8 +417,13 @@ var jStat = {
 
 	/**
 	 * Probability of selecting 5 items of a type from 50 items in 10 trials if 25 items are of the type
+	 * @return {Number}
+	 * @param {Number} N Number of total items
+	 * @param {Number} m Number of specific item type
+	 * @param {Number} n Number of trials
+	 * @param {Number} x Number of items selected
 	 * @example
-	 * jStat.hypgeom(50,25,10,5)
+	 * jStat.hypgeom(50, 25, 10, 5)
 	 */
 	hypgeom: function(N, m, n, x){
 		if(x != Math.floor(x)){
@@ -386,42 +438,57 @@ var jStat = {
 
 	/**
 	 * Probability of selecting 5 or less items of a type from 50 items in 10 trials if 25 items are of the type
+	 * @return {Number}
+	 * @param {Number} N Number of total items
+	 * @param {Number} m Number of specific item type
+	 * @param {Number} n Number of trials
+	 * @param {Number} x Number of items selected
 	 * @example
-	 * jStat.hypgeomcdf(50,25,10,5)
+	 * jStat.hypgeomcdf(50, 25, 10, 5)
 	 */
 	hypgeomcdf: function(N, m, n, x){
+		var sum = 0,
+			k;
 		if(x < 0){
 			return 0;
 		};
-		var sum = 0;
-		for(var k = 0; k <= x; k++){
+		for(k = 0; k <= x; k++){
 			sum += this.hypgeom(N, m, n, k);
 		};
 		return sum;
 	},
 
 	/**
-	 * Probability an exponentially distributed variable with parameter l=.5 is less than 2
+	 * Probability an exponentially distributed variable with parameter (l = .5) is less than 2
+	 * @return {Number}
+	 * @param {Number} l
+	 * @param {Number} x
 	 * @example
-	 * jStat.exponentialcdf(.5,2)
+	 * jStat.exponentialcdf(.5, 2)
 	 */
 	exponentialcdf: function(l, x){
 		return 1 - Math.exp(-1 * x);
 	},
 
 	/**
-	 * Probability a possion variable with parameter l=2 is less than or equal to 3
+	 * Probability a possion variable with parameter (l = 2) is less than or equal to 3
+	 * @return {Number}
+	 * @param {Number} l
+	 * @param {Number} x
 	 * @example
-	 * jStat.poisson(2,3)
+	 * jStat.poisson(2, 3)
 	 */
 	poisson: function(l, x){
 		return Math.pow(l, x) * Math.exp(-l) / this.factorial(x);
 	},
 
 	/**
-	 * Calculate Poisson distribution cumulative probability with parameter l=2 is less than or equal to 3
+	 * Calculate Poisson distribution cumulative probability with parameter (l = 2) is less than or equal to 3
+	 * @return {Number}
+	 * @param {Number} l
+	 * @param {Number} x
 	 * @example
-	 * jStat.poissoncdf(2,3)
+	 * jStat.poissoncdf(2, 3)
 	 */
 	poissoncdf: function(l, x){
 		if(x < 0){
@@ -436,8 +503,13 @@ var jStat = {
 
 	/**
 	 * Find the numerical integral of sin(x^2) from 0,5 to 1e-15
+	 * @return {Number}
+	 * @param {Function} f
+	 * @param {Number} a
+	 * @param {Number} b
+	 * @param {Number} eps
 	 * @example
-	 * jStat.asr(function (x){return Math.sin(x*x)},0,5,15)
+	 * jStat.asr(function (x){return Math.sin(x*x)}, 0, 5, 15)
 	 */
 	asr: function(f, a, b, eps){
 		var c = (a+b)/2,
@@ -463,8 +535,12 @@ var jStat = {
 
 	/**
 	 * Approximate the derivative of f(x)=x^3-5 at the point 2 using step size of 1e-3
+	 * @return {Number}
+	 * @param {Function} func
+	 * @param {Number} x
+	 * @param {Number} h
 	 * @example
-	 * jStat.fivept(function (x){return x*x*x-5},2,1e-3)
+	 * jStat.fivept(function (x){return x*x*x-5}, 2, 1e-3)
 	 */
 	fivept: function(func, x, h){
 		return (-func(x + h * 2) + 8 * func(x + h) - 8 * func(x - h) + func(x - h * 2)) / h / 12;
@@ -477,8 +553,12 @@ var jStat = {
 
 	/**
 	 * Reduct and array of length n to m, and generate a second array of stdev's for each interval with sig * sigma
+	 * @return {Array}
+	 * @param {Array} arr
+	 * @param {Number} len
+	 * @param {Number} sig
 	 * @example
-	 * jStat.areduct([1,2,3,4,5,6,7,8],4,1)
+	 * jStat.areduct([1,2,3,4,5,6,7,8], 4, 1)
 	 */
 	areduct: function(arr, len, sig){
 
@@ -490,4 +570,4 @@ var jStat = {
 // Exposing jStat
 window.jStat = jStat;
 
-})(window);
+})(this,this.document);
