@@ -26,7 +26,7 @@ var jStat = {
 	sum: function(arr){
 		var sum = 0,
 			i = arr.length - 1;
-		for(i; i >= 0; i--){
+		for(; i >= 0; i--){
 			sum += arr[i];
 		};
 		return sum;
@@ -73,12 +73,11 @@ var jStat = {
 	 * jStat.median([1,2,3,4,5,6])
 	 */
 	median: function(arr){
-		var arrsort = arr.sort(function(a, b){return a - b;}),
-			arrlen = arr.length;
+		var arrlen = arr.length;
+		arr.sort(function(a, b){return a - b;});
 
 		// Check if array is even or odd, then return the appropriate
-		return !(arrlen & 1) ? (arrsort[(arrlen / 2) - 1] + arrsort[(arrlen / 2)]) / 2 : arrsort[Math.floor(arrlen / 2)];
-
+		return !(arrlen & 1) ? (arr[(arrlen / 2) - 1] + arr[(arrlen / 2)]) / 2 : arr[Math.floor(arrlen / 2)];
 	},
 
 	/**
@@ -89,20 +88,19 @@ var jStat = {
 	 * jStat.mode([1,2,2,3,3,3,3])
 	 */
 	mode: function(arr){
-		var arrSort = arr.sort(function(a, b){return a - b;}),
-			arrLen = arr.length,
+		var arrLen = arr.length,
 			count = 1,
 			maxCount = 0,
 			numMaxCount = 0,
 			maxNum,
 			i;
-
+		arr.sort(function(a, b){return a - b;});
 		for(i = 0; i < arrLen; i++){
-			if(arrSort[i] === arrSort[i + 1]){
+			if(arr[i] === arr[i + 1]){
 				count++;
 			}else{
 				if(count > maxCount){
-					maxNum = arrSort[i];
+					maxNum = arr[i];
 					maxCount = count;
 					count = 1;
 					numMaxCount = 0;
@@ -119,7 +117,6 @@ var jStat = {
 				};
 			};
 		};
-
 		return (numMaxCount === 0) ? maxNum : false;
 	},
 
@@ -131,8 +128,8 @@ var jStat = {
 	 * jStat.range([1,6,5,3,8,6])
 	 */
 	range: function(arr){
-		var arrsort = arr.sort(function(a, b){return a - b;});
-		return arrsort[arrsort.length - 1] - arrsort[0];
+		arr.sort(function(a, b){return a - b;});
+		return arr[arr.length - 1] - arr[0];
 	},
 
 	/**
@@ -146,7 +143,7 @@ var jStat = {
 		var mean = jStat.mean(arr),
 			stSum = 0,
 			i = arr.length - 1;
-		for(i; i >= 0; i--){
+		for(; i >= 0; i--){
 			stSum += Math.pow((arr[i] - mean), 2);
 		};
 		return stSum / (arr.length - 1);
@@ -174,7 +171,7 @@ var jStat = {
 		var devSum = 0,
 			mean = jStat.mean(arr),
 			i = arr.length - 1;
-		for(i; i >= 0; i--){
+		for(; i >= 0; i--){
 			devSum += Math.abs(arr[i] - mean);
 		};
 		return devSum / arr.length;
@@ -191,7 +188,7 @@ var jStat = {
 		var devSum = 0,
 			median = jStat.median(arr),
 			i = arr.length - 1;
-		for(i; i >= 0; i--){
+		for(; i >= 0; i--){
 			devSum += Math.abs(arr[i] - median);
 		};
 		return devSum / arr.length;
@@ -206,7 +203,10 @@ var jStat = {
 	 */
 	factorial: function(n){
 		var fval = 1;
-		for(n; n > 0; n--){
+		if(n != Math.floor(n)){
+			return jStat.gamma(n + 1);
+		};
+		for(; n > 0; n--){
 			fval *= n;
 		};
 		return fval;
@@ -251,9 +251,8 @@ var jStat = {
 			};
 			w = 1 / (x * x);
 			return Math.exp((((((((-3617 / 122400 * w + 7 / 1092) * w - 691 / 360360) * w + 5 / 5940) * w - 1 / 1680)  * w + 1 / 1260) * w - 1 / 360) * w + 1 / 12) / x + 0.5 * Math.log(2 * Math.PI) - Math.log(v) - x + (x - 0.5) * Math.log(x));
-		}else{
-			return jStat.factorial(x - 1);
-		};
+		}
+		return jStat.factorial(x - 1);
 	},
 
 	/**
@@ -264,9 +263,9 @@ var jStat = {
 	 * jStat.quartiles([1,2,3,6,9,3,1,2,5])
 	 */
 	quartiles: function(arr){
-		var arrsort = arr.sort(function(a, b){return a - b;}),
-			arrlen = arrsort.length;
-		return [arrsort[Math.round((arrlen) / 4) - 1], arrsort[Math.round((arrlen) / 2) - 1], arrsort[Math.round((arrlen) * 3 / 4) - 1]];
+		var arrlen = arr.length;
+		arr.sort(function(a, b){return a - b;});
+		return [arr[Math.round((arrlen) / 4) - 1], arr[Math.round((arrlen) / 2) - 1], arr[Math.round((arrlen) * 3 / 4) - 1]];
 	},
 
 	/**
@@ -378,9 +377,8 @@ var jStat = {
 		};
 		if(x < 0){
 			return 0;
-		}else{
-			return jStat.combination(x + r - 1, r - 1) * Math.pow(p, r) * Math.pow(1 - p, x);
 		};
+		return jStat.combination(x + r - 1, r - 1) * Math.pow(p, r) * Math.pow(1 - p, x);
 	},
 
 	/**
@@ -415,11 +413,7 @@ var jStat = {
 	 * jStat.hypgeom(50, 25, 10, 5)
 	 */
 	hypgeom: function(N, m, n, x){
-		if(x != Math.floor(x)){
-			return false;
-		};
-		return (x < 0) ? 0 : jStat.combination(m, x) * jStat.combination((N - m), n - x) / jStat.combination(N, n);
-		
+		return (x != Math.floor(x)) ? false : (x < 0) ? 0 : jStat.combination(m, x) * jStat.combination((N - m), n - x) / jStat.combination(N, n);
 	},
 
 	/**
@@ -530,7 +524,7 @@ var jStat = {
 	 * jStat.fivept(function (x){return x*x*x-5}, 2, 1e-3)
 	 */
 	fivept: function(func, x, h){
-		return (-func(x + h * 2) + 8 * func(x + h) - 8 * func(x - h) + func(x - h * 2)) / h / 12;
+		return (-func(x + h * 2) + 8 * func(x + h) - 8 * func(x - h) + func(x - h * 2)) / (h * 12);
 	},
 
 
@@ -539,7 +533,7 @@ var jStat = {
 // #####################################################
 
 	/**
-	 * Reduct and array of length n to m, and generate a second array of stdev's for each interval with sig * sigma
+	 * Reduce an array of length n to m, and generate a second array of stdev's
 	 * @return {Array}
 	 * @param {Array} arr
 	 * @param {Number} len
