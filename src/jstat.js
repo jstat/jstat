@@ -74,8 +74,7 @@ var jStat = {
 	 */
 	median: function(arr){
 		var arrlen = arr.length,
-			_arr = arr;
-		_arr.sort(arrSortF);
+			_arr = arr.slice(0).sort(arrSortF);
 
 		// Check if array is even or odd, then return the appropriate
 		return !(arrlen & 1) ? (_arr[(arrlen / 2) - 1] + _arr[(arrlen / 2)]) / 2 : _arr[Math.floor(arrlen / 2)];
@@ -90,13 +89,12 @@ var jStat = {
 	 */
 	mode: function(arr){
 		var arrLen = arr.length,
-			_arr = arr,
+			_arr = arr.slice(0).sort(arrSortF),
 			count = 1,
 			maxCount = 0,
 			numMaxCount = 0,
 			maxNum,
 			i;
-		_arr.sort(arrSortF);
 		for(i = 0; i < arrLen; i++){
 			if(_arr[i] === _arr[i + 1]){
 				count++;
@@ -130,8 +128,7 @@ var jStat = {
 	 * jStat.range([1,6,5,3,8,6])
 	 */
 	range: function(arr){
-		var _arr = arr;
-		_arr.sort(arrSortF);
+		var _arr = arr.slice(0).sort(arrSortF);
 		return _arr[_arr.length - 1] - _arr[0];
 	},
 
@@ -267,8 +264,7 @@ var jStat = {
 	 */
 	quartiles: function(arr){
 		var arrlen = arr.length,
-			_arr = arr;
-		_arr.sort(arrSortF);
+			_arr = arr.slice(0).sort(arrSortF);
 		return [_arr[Math.round((arrlen) / 4) - 1], _arr[Math.round((arrlen) / 2) - 1], _arr[Math.round((arrlen) * 3 / 4) - 1]];
 	},
 
