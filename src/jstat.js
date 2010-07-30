@@ -1,6 +1,6 @@
 /**
  * @fileOverview
- * jStat - Statistical Package
+ * jStat - Statistical Library
  * Copyright (c) 2010, Trevor Norris
  * This document is licensed as free software under the terms of the
  * MIT License: http://www.opensource.org/licenses/mit-license.php
@@ -73,11 +73,12 @@ var jStat = {
 	 * jStat.median([1,2,3,4,5,6])
 	 */
 	median: function(arr){
-		var arrlen = arr.length;
-		arr.sort(function(a, b){return a - b;});
+		var arrlen = arr.length,
+			_arr = arr;
+		_arr.sort(arrSortF);
 
 		// Check if array is even or odd, then return the appropriate
-		return !(arrlen & 1) ? (arr[(arrlen / 2) - 1] + arr[(arrlen / 2)]) / 2 : arr[Math.floor(arrlen / 2)];
+		return !(arrlen & 1) ? (_arr[(arrlen / 2) - 1] + _arr[(arrlen / 2)]) / 2 : _arr[Math.floor(arrlen / 2)];
 	},
 
 	/**
@@ -89,18 +90,19 @@ var jStat = {
 	 */
 	mode: function(arr){
 		var arrLen = arr.length,
+			_arr = arr,
 			count = 1,
 			maxCount = 0,
 			numMaxCount = 0,
 			maxNum,
 			i;
-		arr.sort(function(a, b){return a - b;});
+		_arr.sort(arrSortF);
 		for(i = 0; i < arrLen; i++){
-			if(arr[i] === arr[i + 1]){
+			if(_arr[i] === _arr[i + 1]){
 				count++;
 			}else{
 				if(count > maxCount){
-					maxNum = arr[i];
+					maxNum = _arr[i];
 					maxCount = count;
 					count = 1;
 					numMaxCount = 0;
@@ -128,8 +130,9 @@ var jStat = {
 	 * jStat.range([1,6,5,3,8,6])
 	 */
 	range: function(arr){
-		arr.sort(function(a, b){return a - b;});
-		return arr[arr.length - 1] - arr[0];
+		var _arr = arr;
+		_arr.sort(arrSortF);
+		return _arr[_arr.length - 1] - _arr[0];
 	},
 
 	/**
@@ -263,9 +266,10 @@ var jStat = {
 	 * jStat.quartiles([1,2,3,6,9,3,1,2,5])
 	 */
 	quartiles: function(arr){
-		var arrlen = arr.length;
-		arr.sort(function(a, b){return a - b;});
-		return [arr[Math.round((arrlen) / 4) - 1], arr[Math.round((arrlen) / 2) - 1], arr[Math.round((arrlen) * 3 / 4) - 1]];
+		var arrlen = arr.length,
+			_arr = arr;
+		_arr.sort(arrSortF);
+		return [_arr[Math.round((arrlen) / 4) - 1], _arr[Math.round((arrlen) / 2) - 1], _arr[Math.round((arrlen) * 3 / 4) - 1]];
 	},
 
 	/**
@@ -294,9 +298,9 @@ var jStat = {
 	 * @param {Array} arr1
 	 * @param {Array} arr2
 	 * @example
-	 * jStat.corr_coeff([1,2,3,6,9,3,1,2,5], [2,3,5,2,5,7,8,9,6])
+	 * jStat.corrcoeff([1,2,3,6,9,3,1,2,5], [2,3,5,2,5,7,8,9,6])
 	 */
-	corr_coeff: function(arr1, arr2){
+	corrcoeff: function(arr1, arr2){
 		return jStat.covariance(arr1,arr2) / jStat.stdev(arr1) / jStat.stdev(arr2);
 	},
 
@@ -546,7 +550,10 @@ var jStat = {
 
 
 	}
-};
+},
+
+// Array sort; for compression
+arrSortF = function(a, b){ return a - b; };
 
 // Exposing jStat
 window.jStat = jStat;

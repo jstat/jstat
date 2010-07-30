@@ -34,10 +34,12 @@
 		
 		test('mode',function(){
 			equals(jStat.mode([1,2,3,3,4,5,6]),3,'mode([1,2,3,3,4,5,6])');
+			equals(jStat.mode([1,1,2,3,3,4,5,6]),false,'mode([1,1,2,3,3,4,5,6])');
 		});
 		
 		test('range',function(){
 			equals(jStat.range([1,2,3,3,4,5,6]),5,'range([1,2,3,3,4,5,6])');
+			equals(jStat.range([-3,-6,-4]),3,'range([-3,-6,-4])');
 		});
 		
 		test('variance',function(){
@@ -45,7 +47,8 @@
 		});
 		
 		test('stdev',function(){
-			equals(jStat.stdev([1,2,3,4,5,6]).toFixed(7),1.8708287,'stdev([1,2,3,4,5,6])');
+			equals(jStat.stdev([3,4,5]),1,'stdev([3,4,5])');
+			equals(jStat.stdev([-3,-4,-5]),1,'stdev([-3,-4,-5])');
 		});
 		
 		test('meandev',function(){
@@ -54,6 +57,11 @@
 		
 		test('meddev',function(){
 			equals(jStat.meddev([2,2,3,4,14]),2.8,'meddev([2,2,3,4,14])');
+		});
+		
+		test('factorial',function(){
+			equals(jStat.factorial(5),120,'factorial(5)');
+			equals(jStat.factorial(.5),0.8862269254527566,'factorial(.5)');
 		});
 		
 		test('combination',function(){
@@ -67,6 +75,26 @@
 		test('gamma',function(){
 			equals(jStat.gamma(.5),1.7724538509055165,'gamma(.5)');
 			equals(jStat.gamma(15),87178291200,'gamma(5)');
+		});
+		
+		test('quartiles',function(){
+			equals(jStat.quartiles([1,2,3,6,9,3,1,2,5]).toString(),'1,3,5','quartiles([1,2,3,6,9,3,1,2,5])');
+		});
+		
+		test('covariance',function(){
+			equals(jStat.covariance([1,2,3,6,9,3,1,2,5],[2,3,5,2,5,7,8,9,6]),-1.1234567901234565,'covariance([1,2,3,6,9,3,1,2,5],[2,3,5,2,5,7,8,9,6])');
+		});
+		
+		test('corrcoeff',function(){
+			equals(jStat.corrcoeff([1,2,3,6,9,3,1,2,5],[2,3,5,2,5,7,8,9,6]),-0.16693777514921238,'corrcoeff([1,2,3,6,9,3,1,2,5],[2,3,5,2,5,7,8,9,6])');
+		});
+		
+		test('uniformcdf',function(){
+			equals(jStat.uniformcdf(0, 2, 0.5),0.25,'uniformcdf(0, 2, 0.5)');
+		});
+		
+		test('binomial',function(){
+			equals(jStat.binomial(5, 1/2, 2),0.3125,'binomial(5, 1/2, 2)');
 		});
 		
 	});
