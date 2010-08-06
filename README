@@ -1,8 +1,37 @@
 jStat (http://github.com/trevnorris/jstat)
 ============================================
 
-To-Do:
-- Finish the unit testing
-- Finish simple script optimization
-- Begin per browser optimizations
-- Add cleanup to improve memory performance
+JavaScript Statistical Library
+
+Functions Include:
+
+sum():				Sum of an array
+min():				Minimum value of an array
+max():				Maximum value of an array
+mean():				Mean value of an array
+median():			Median of an array
+mode():				Mode of an array
+range():			Range of an array
+variance():			Variance of an array
+stdev():			Standard deviation of an array
+meandev():			Mean deviation (Mean Absolute Deviation) of an array
+meddev():			Median deviation (Median Absolute Deviation) of an array
+factorial():		Factorial of a number
+combination():		Combinations of two values
+permutation():		Permutations of two values
+gamma():			Gamma function
+quartiles():		Quartiles of an array
+covariance():		Covariance of two arrays
+corrcoeff():		Correlation coefficient of two arrays
+uniformcdf():		Probability of uniform distibution
+binomial():			Probability of binomial distribution
+binomialcdf():		Probability of binomial distribution
+negbin():			Probability of success
+negbincdf():		Probability of success
+hypgeom():			Probability of selecting an item
+hypgeomcdf():		Probability of selecting an item
+exponentialcdf():	Probability an exponentially distributed variable
+poisson():			Probability a possion variable
+poissoncdf():		Calculate Poisson distribution cumulative probability
+asr():				Find the numerical integral of f(x)
+fivept():			Approximate the derivative of f(x)

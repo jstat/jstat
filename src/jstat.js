@@ -195,7 +195,7 @@ var jStat = {
 	},
 
 	/**
-	 * Factoral of n
+	 * Factorial of n
 	 * @return {Number}
 	 * @param {Number} n
 	 * @example
