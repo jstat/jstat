@@ -6,7 +6,7 @@
  * MIT License: http://www.opensource.org/licenses/mit-license.php
  * @author Trevor Norris, trev.norris@gmail.com
  */
-(function(window,document,undefined){
+(function(Math,window){
 
 /**
  * Javascript Statistical Package
@@ -525,26 +525,6 @@ var jStat = {
 	 */
 	fivept: function(func, x, h){
 		return (-func(x + h * 2) + 8 * func(x + h) - 8 * func(x - h) + func(x - h * 2)) / (h * 12);
-	},
-
-
-// #####################################################
-// ### Things below this line haven't been completed ###
-// #####################################################
-
-	/**
-	 * Reduce an array of length n to m, and generate a second array of stdev's
-	 * @return {Array}
-	 * @param {Array} arr
-	 * @param {Number} len
-	 * @param {Number} sig
-	 * @example
-	 * jStat.areduct([1,2,3,4,5,6,7,8], 4, 1)
-	 */
-	areduct: function(arr, len, sig){
-
-
-
 	}
 },
 
@@ -554,4 +534,4 @@ arrSortF = function(a, b){ return a - b; };
 // Exposing jStat
 window.jStat = jStat;
 
-})(this,this.document);
+})(Math,window);
