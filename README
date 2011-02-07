@@ -33,5 +33,3 @@ hypgeomcdf():		Probability of selecting an item
 exponentialcdf():	Probability an exponentially distributed variable
 poisson():			Probability a possion variable
 poissoncdf():		Calculate Poisson distribution cumulative probability
-asr():				Find the numerical integral of f(x)
-fivept():			Approximate the derivative of f(x)
