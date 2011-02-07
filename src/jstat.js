@@ -295,7 +295,7 @@ var jStat = {
 	 * jStat.corrcoeff([1,2,3,6,9,3,1,2,5], [2,3,5,2,5,7,8,9,6])
 	 */
 	corrcoeff : function(arr1, arr2) {
-		return jStat.covariance(arr1,arr2) / jStat.stdev(arr1) / jStat.stdev(arr2);
+		return jStat.covariance(arr1, arr2) / jStat.stdev(arr1) / jStat.stdev(arr2);
 	},
 
 	/**
@@ -476,6 +476,24 @@ var jStat = {
 			sum += jStat.poisson(l, k);
 		};
 		return sum;
+	},
+	
+	/**
+	 * calcualte sum of f(x) from a to b
+	 * @return {Number}
+	 * @param {Function} func
+	 * @param {Number} a
+	 * @param {Number} b
+	 * @example
+	 * jStat.sumFunc(function(x) { return x; }, 0, 10);
+	 */
+	sumFunc : function(func, a, b) {
+		var val = 0;
+		while (a <= b) {
+			val += func(a);
+			a++;
+		};
+		return val;
 	}
 },
 

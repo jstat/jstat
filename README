@@ -5,31 +5,32 @@ JavaScript Statistical Library
 
 Functions Include:
 
-sum():				Sum of an array
-min():				Minimum value of an array
-max():				Maximum value of an array
-mean():				Mean value of an array
-median():			Median of an array
-mode():				Mode of an array
-range():			Range of an array
-variance():			Variance of an array
-stdev():			Standard deviation of an array
-meandev():			Mean deviation (Mean Absolute Deviation) of an array
-meddev():			Median deviation (Median Absolute Deviation) of an array
-factorial():		Factorial of a number
-combination():		Combinations of two values
-permutation():		Permutations of two values
-gamma():			Gamma function
-quartiles():		Quartiles of an array
-covariance():		Covariance of two arrays
-corrcoeff():		Correlation coefficient of two arrays
-uniformcdf():		Probability of uniform distibution
-binomial():			Probability of binomial distribution
-binomialcdf():		Probability of binomial distribution
-negbin():			Probability of success
-negbincdf():		Probability of success
-hypgeom():			Probability of selecting an item
-hypgeomcdf():		Probability of selecting an item
-exponentialcdf():	Probability an exponentially distributed variable
-poisson():			Probability a possion variable
-poissoncdf():		Calculate Poisson distribution cumulative probability
+sum():              sum of an array
+min():              minimum value of an array
+max():              maximum value of an array
+mean():             mean value of an array
+median():           median of an array
+mode():             mode of an array
+range():            range of an array
+variance():         variance of an array
+stdev():            standard deviation of an array
+meandev():          mean absolute deviation of an array
+meddev():           median absolute deviation of an array
+factorial():        factorial of a value
+combination():      combinations of two values
+permutation():      permutations of two values
+gamma():            gamma function
+quartiles():        quartiles of an array
+covariance():       covariance of two arrays
+corrcoeff():        correlation coefficient of two arrays
+uniformcdf():       cumulative distribution of the uniform distribution
+binomial():         binomial distribution
+binomialcdf():      cumulative binomial distribution
+negbin():           negative binomial distribution
+negbincdf():        cumulative negative binomial distribution
+hypgeom():          hypergeometric distribution
+hypgeomcdf():       cumulative hypergeometric distribution
+exponentialcdf():   exponential distribution
+poisson():          possion variable
+poissoncdf():       cumulative poisson distribution
+sumFunc():          sum of a function
