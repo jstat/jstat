@@ -10,10 +10,9 @@
 
 /**
  * javascript statistical package
- * @version 0.2 beta release
+ * @version 0.2
  */
 var jStat = {
-// ### Want to add option for arbitrarily long numbers
 
 	/**
 	 * sum of an array
@@ -201,9 +200,8 @@ var jStat = {
 	 */
 	factorial : function(n) {
 		var fval = 1;
-		if (n != Math.floor(n)) {
-			return jStat.gamma(n + 1);
-		};
+		if (n < 0) return NaN;
+		if (n != Math.floor(n)) return jStat.gamma(n + 1);
 		for(; n > 0; n--){
 			fval *= n;
 		};
@@ -242,15 +240,13 @@ var jStat = {
 	gamma : function(x) {
 		var v = 1,
 			w;
-		if (x != Math.floor(x)) {
-			while(x < 8){
-				v *= x;
-				x++;
-			};
-			w = 1 / (x * x);
-			return Math.exp((((((((-3617 / 122400 * w + 7 / 1092) * w - 691 / 360360) * w + 5 / 5940) * w - 1 / 1680)  * w + 1 / 1260) * w - 1 / 360) * w + 1 / 12) / x + 0.5 * Math.log(2 * Math.PI) - Math.log(v) - x + (x - 0.5) * Math.log(x));
+		if (x == Math.floor(x)) return jStat.factorial(x - 1);
+		while(x < 8){
+			v *= x;
+			x++;
 		};
-		return jStat.factorial(x - 1);
+		w = 1 / (x * x);
+		return Math.exp((((((((-3617 / 122400 * w + 7 / 1092) * w - 691 / 360360) * w + 5 / 5940) * w - 1 / 1680)  * w + 1 / 1260) * w - 1 / 360) * w + 1 / 12) / x + 0.5 * Math.log(2 * Math.PI) - Math.log(v) - x + (x - 0.5) * Math.log(x));
 	},
 
 	/**
@@ -485,15 +481,15 @@ var jStat = {
 	 * @param {Number} a
 	 * @param {Number} b
 	 * @example
-	 * jStat.sumFunc(function(x) { return x; }, 0, 10);
+	 * jStat.sumFunc(function(x) { return x; }, 0, 10)
 	 */
 	sumFunc : function(func, a, b) {
-		var val = 0;
+		var sum = 0;
 		while (a <= b) {
-			val += func(a);
+			sum += func(a);
 			a++;
 		};
-		return val;
+		return sum;
 	}
 },
 
@@ -503,4 +499,5 @@ arrSortF = function(a, b) { return a - b; };
 // exposing jStat
 window.jStat = jStat;
 
+// passing this for Node.js modules compatibility
 })(Math, this);
