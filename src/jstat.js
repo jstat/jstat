@@ -9,15 +9,14 @@
 (function(Math, window){
 
 /**
- * Javascript Statistical Package
- * @namespace JavaScript Statistical Analysis Package
+ * javascript statistical package
  * @version 0.2 beta release
  */
 var jStat = {
 // ### Want to add option for arbitrarily long numbers
 
 	/**
-	 * Sum of an array
+	 * sum of an array
 	 * @return {Number}
 	 * @param {Array} arr
 	 * @example
@@ -33,7 +32,7 @@ var jStat = {
 	},
 
 	/**
-	 * Minimum value of an array
+	 * minimum value of an array
 	 * @return {Number}
 	 * @param {Array} arr
 	 * @example
@@ -44,7 +43,7 @@ var jStat = {
 	},
 
 	/**
-	 * Maximum value of an array
+	 * maximum value of an array
 	 * @return {Number}
 	 * @param {Array} arr
 	 * @example
@@ -55,7 +54,7 @@ var jStat = {
 	},
 
 	/**
-	 * Mean value of an array
+	 * mean value of an array
 	 * @return {Number}
 	 * @param {Array} arr
 	 * @example
@@ -66,7 +65,7 @@ var jStat = {
 	},
 
 	/**
-	 * Median of an array
+	 * median of an array
 	 * @return {Number}
 	 * @param {Array} arr
 	 * @example
@@ -76,12 +75,12 @@ var jStat = {
 		var arrlen = arr.length,
 			_arr = arr.slice().sort(arrSortF);
 
-		// Check if array is even or odd, then return the appropriate
+		// check if array is even or odd, then return the appropriate
 		return !(arrlen & 1) ? (_arr[(arrlen / 2) - 1] + _arr[(arrlen / 2)]) / 2 : _arr[Math.floor(arrlen / 2)];
 	},
 
 	/**
-	 * Mode of an array
+	 * mode of an array
 	 * @return {Number}
 	 * @param {Array} arr
 	 * @example
@@ -105,10 +104,10 @@ var jStat = {
 					count = 1;
 					numMaxCount = 0;
 				} else {
-					// Are there multiple max counts
+					// are there multiple max counts
 					if (count === maxCount) {
 						numMaxCount++;
-					// Count is less than max count, so reset values
+					// count is less than max count, so reset values
 					} else {
 						count = 1;
 					};
@@ -120,7 +119,7 @@ var jStat = {
 	},
 
 	/**
-	 * Range of an array
+	 * range of an array
 	 * @return {Number}
 	 * @param {Array} arr
 	 * @example
@@ -132,7 +131,7 @@ var jStat = {
 	},
 
 	/**
-	 * Variance of an array
+	 * variance of an array
 	 * @return {Number}
 	 * @param {Array} arr
 	 * @example
@@ -149,7 +148,7 @@ var jStat = {
 	},
 
 	/**
-	 * Standard deviation of an array
+	 * standard deviation of an array
 	 * @return {Number}
 	 * @param {Array} arr
 	 * @example
@@ -160,7 +159,7 @@ var jStat = {
 	},
 
 	/**
-	 * Mean deviation (Mean Absolute Deviation) of an array
+	 * mean deviation (mean absolute deviation) of an array
 	 * @return {Number}
 	 * @param {Array} arr
 	 * @example
@@ -177,7 +176,7 @@ var jStat = {
 	},
 
 	/**
-	 * Median deviation (Median Absolute Deviation) of an array
+	 * median deviation (median absolute deviation) of an array
 	 * @return {Number}
 	 * @param {Array} arr
 	 * @example
@@ -194,7 +193,7 @@ var jStat = {
 	},
 
 	/**
-	 * Factorial of n
+	 * factorial of n
 	 * @return {Number}
 	 * @param {Number} n
 	 * @example
@@ -212,7 +211,7 @@ var jStat = {
 	},
 
 	/**
-	 * Combinations of n,m
+	 * combinations of n,m
 	 * @return {Number}
 	 * @param {Number} n
 	 * @param {Number} m
@@ -224,7 +223,7 @@ var jStat = {
 	},
 
 	/**
-	 * Permutations of n,m
+	 * permutations of n,m
 	 * @return {Number}
 	 * @example
 	 * jStat.permutation(10,4)
@@ -234,7 +233,7 @@ var jStat = {
 	},
 
 	/**
-	 * Gamma of x
+	 * gamma of x
 	 * @return {Number}
 	 * @param {Number} x
 	 * @example
@@ -255,7 +254,7 @@ var jStat = {
 	},
 
 	/**
-	 * Quartiles of an array
+	 * quartiles of an array
 	 * @return {Array}
 	 * @param {Array} arr
 	 * @example
@@ -268,7 +267,7 @@ var jStat = {
 	},
 
 	/**
-	 * Covariance of two arrays
+	 * covariance of two arrays
 	 * @return {Number}
 	 * @param {Array} arr1
 	 * @param {Array} arr2
@@ -288,7 +287,7 @@ var jStat = {
 	},
 
 	/**
-	 * Correlation coefficient of two arrays
+	 * correlation coefficient of two arrays
 	 * @return {Number}
 	 * @param {Array} arr1
 	 * @param {Array} arr2
@@ -300,7 +299,7 @@ var jStat = {
 	},
 
 	/**
-	 * Probability of (x < .5) of uniform distibution with parameters 0, 2
+	 * probability of (x < .5) of uniform distibution with parameters 0, 2
 	 * @return {Number}
 	 * @param {Number} a
 	 * @param {Number} b
@@ -318,7 +317,7 @@ var jStat = {
 	},
 
 	/**
-	 * Probability of (x = 2) of binomial distribution of 5 trials with probability 1/2
+	 * probability of (x = 2) of binomial distribution of 5 trials with probability 1/2
 	 * @return {Number}
 	 * @param {Number} n
 	 * @param {Number} p
@@ -331,7 +330,7 @@ var jStat = {
 	},
 
 	/**
-	 * Probability of (x <= 2) of binomial distribution of 5 trials with probability 1/2
+	 * probability of (x <= 2) of binomial distribution of 5 trials with probability 1/2
 	 * @return {Number}
 	 * @param {Number} n
 	 * @param {Number} p
@@ -360,7 +359,7 @@ var jStat = {
 	},
 
 	/**
-	 * Probability of exactly 1 success before 2nd failure of an event with probability 1/2
+	 * probability of exactly 1 success before 2nd failure of an event with probability 1/2
 	 * @return {Number}
 	 * @param {Number} r
 	 * @param {Number} p
@@ -379,7 +378,7 @@ var jStat = {
 	},
 
 	/**
-	 * Probability of 1 success or less before 2nd failure of an event with probability 1/2
+	 * probability of 1 success or less before 2nd failure of an event with probability 1/2
 	 * @return {Number}
 	 * @param {Number} n
 	 * @param {Number} p
@@ -400,7 +399,7 @@ var jStat = {
 	},
 
 	/**
-	 * Probability of selecting 5 items of a type from 50 items in 10 trials if 25 items are of the type
+	 * probability of selecting 5 items of a type from 50 items in 10 trials if 25 items are of the type
 	 * @return {Number}
 	 * @param {Number} N Number of total items
 	 * @param {Number} m Number of specific item type
@@ -414,7 +413,7 @@ var jStat = {
 	},
 
 	/**
-	 * Probability of selecting 5 or less items of a type from 50 items in 10 trials if 25 items are of the type
+	 * probability of selecting 5 or less items of a type from 50 items in 10 trials if 25 items are of the type
 	 * @return {Number}
 	 * @param {Number} N Number of total items
 	 * @param {Number} m Number of specific item type
@@ -436,7 +435,7 @@ var jStat = {
 	},
 
 	/**
-	 * Probability an exponentially distributed variable with parameter (l = .5) is less than 2
+	 * probability an exponentially distributed variable with parameter (l = .5) is less than 2
 	 * @return {Number}
 	 * @param {Number} l
 	 * @param {Number} x
@@ -448,7 +447,7 @@ var jStat = {
 	},
 
 	/**
-	 * Probability a possion variable with parameter (l = 2) is less than or equal to 3
+	 * probability a possion variable with parameter (l = 2) is less than or equal to 3
 	 * @return {Number}
 	 * @param {Number} l
 	 * @param {Number} x
@@ -460,7 +459,7 @@ var jStat = {
 	},
 
 	/**
-	 * Calculate Poisson distribution cumulative probability with parameter (l = 2) is less than or equal to 3
+	 * calculate cumulative poisson distribution cumulative probability with parameter (l = 2) is less than or equal to 3
 	 * @return {Number}
 	 * @param {Number} l
 	 * @param {Number} x
@@ -480,10 +479,10 @@ var jStat = {
 	}
 },
 
-// Array sort; for compression
+// array sort function
 arrSortF = function(a, b) { return a - b; };
 
-// Exposing jStat
+// exposing jStat
 window.jStat = jStat;
 
 })(Math, this);
