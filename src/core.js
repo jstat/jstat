@@ -6,7 +6,7 @@
  * MIT License: http://www.opensource.org/licenses/mit-license.php
  * @author Trevor Norris, trev.norris@gmail.com
  */
-(function(Math, window){
+(function(Math, window, undefined) {
 
 /**
  * javascript statistical package
