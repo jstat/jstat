@@ -1,10 +1,8 @@
 /**
  * @fileOverview
  * jStat - Statistical Library
- * Copyright (c) 2010, Trevor Norris
  * This document is licensed as free software under the terms of the
  * MIT License: http://www.opensource.org/licenses/mit-license.php
- * @author Trevor Norris, trev.norris@gmail.com
  */
 (function(Math, window, undefined) {
 
@@ -12,14 +10,14 @@
  * javascript statistical package
  * @version 0.2
  */
-var jStat = {
+var jstat = {
 
 	/**
 	 * sum of an array
 	 * @return {Number}
 	 * @param {Array} arr
 	 * @example
-	 * jStat.sum([1,2,3])
+	 * jstat.sum([1,2,3])
 	 */
 	sum : function(arr) {
 		var sum = 0,
@@ -35,7 +33,7 @@ var jStat = {
 	 * @return {Number}
 	 * @param {Array} arr
 	 * @example
-	 * jStat.min([1,2,3])
+	 * jstat.min([1,2,3])
 	 */
 	min : function(arr) {
 		return Math.min.apply(null, arr);
@@ -46,7 +44,7 @@ var jStat = {
 	 * @return {Number}
 	 * @param {Array} arr
 	 * @example
-	 * jStat.max([1,2,3])
+	 * jstat.max([1,2,3])
 	 */
 	max : function(arr) {
 		return Math.max.apply(null, arr);
@@ -57,10 +55,10 @@ var jStat = {
 	 * @return {Number}
 	 * @param {Array} arr
 	 * @example
-	 * jStat.mean([1,2,3])
+	 * jstat.mean([1,2,3])
 	 */
 	mean : function(arr) {
-		return jStat.sum(arr) / arr.length;
+		return jstat.sum(arr) / arr.length;
 	},
 
 	/**
@@ -68,7 +66,7 @@ var jStat = {
 	 * @return {Number}
 	 * @param {Array} arr
 	 * @example
-	 * jStat.median([1,2,3,4,5,6])
+	 * jstat.median([1,2,3,4,5,6])
 	 */
 	median : function(arr) {
 		var arrlen = arr.length,
@@ -83,7 +81,7 @@ var jStat = {
 	 * @return {Number}
 	 * @param {Array} arr
 	 * @example
-	 * jStat.mode([1,2,2,3,3,3,3])
+	 * jstat.mode([1,2,2,3,3,3,3])
 	 */
 	mode : function(arr) {
 		var arrLen = arr.length,
@@ -122,7 +120,7 @@ var jStat = {
 	 * @return {Number}
 	 * @param {Array} arr
 	 * @example
-	 * jStat.range([1,6,5,3,8,6])
+	 * jstat.range([1,6,5,3,8,6])
 	 */
 	range : function(arr) {
 		var _arr = arr.slice().sort(arrSortF);
@@ -134,10 +132,10 @@ var jStat = {
 	 * @return {Number}
 	 * @param {Array} arr
 	 * @example
-	 * jStat.variance([1,6,8,5,4,9,5,3])
+	 * jstat.variance([1,6,8,5,4,9,5,3])
 	 */
 	variance : function(arr) {
-		var mean = jStat.mean(arr),
+		var mean = jstat.mean(arr),
 			stSum = 0,
 			i = arr.length - 1;
 		for(; i >= 0; i--){
@@ -151,10 +149,10 @@ var jStat = {
 	 * @return {Number}
 	 * @param {Array} arr
 	 * @example
-	 * jStat.stdev([4,5,9,7,5,3,4])
+	 * jstat.stdev([4,5,9,7,5,3,4])
 	 */
 	stdev : function(arr) {
-		return Math.sqrt(jStat.variance(arr));
+		return Math.sqrt(jstat.variance(arr));
 	},
 
 	/**
@@ -162,11 +160,11 @@ var jStat = {
 	 * @return {Number}
 	 * @param {Array} arr
 	 * @example
-	 * jStat.meandev([4,9,8,6,5,3,7,5])
+	 * jstat.meandev([4,9,8,6,5,3,7,5])
 	 */
 	meandev : function(arr) {
 		var devSum = 0,
-			mean = jStat.mean(arr),
+			mean = jstat.mean(arr),
 			i = arr.length - 1;
 		for (; i >= 0; i--) {
 			devSum += Math.abs(arr[i] - mean);
@@ -179,11 +177,11 @@ var jStat = {
 	 * @return {Number}
 	 * @param {Array} arr
 	 * @example
-	 * jStat.meddev([4,9,8,6,5,3,7,5])
+	 * jstat.meddev([4,9,8,6,5,3,7,5])
 	 */
 	meddev : function(arr) {
 		var devSum = 0,
-			median = jStat.median(arr),
+			median = jstat.median(arr),
 			i = arr.length - 1;
 		for (; i >= 0; i--) {
 			devSum += Math.abs(arr[i] - median);
@@ -196,12 +194,12 @@ var jStat = {
 	 * @return {Number}
 	 * @param {Number} n
 	 * @example
-	 * jStat.factorial(5)
+	 * jstat.factorial(5)
 	 */
 	factorial : function(n) {
 		var fval = 1;
 		if (n < 0) return NaN;
-		if (n != Math.floor(n)) return jStat.gamma(n + 1);
+		if (n != Math.floor(n)) return jstat.gamma(n + 1);
 		for(; n > 0; n--){
 			fval *= n;
 		};
@@ -214,20 +212,20 @@ var jStat = {
 	 * @param {Number} n
 	 * @param {Number} m
 	 * @example
-	 * jStat.combination(10,4)
+	 * jstat.combination(10,4)
 	 */
 	combination : function(n, k) {
-		return (jStat.factorial(n) / jStat.factorial(k)) / jStat.factorial(n - k);
+		return (jstat.factorial(n) / jstat.factorial(k)) / jstat.factorial(n - k);
 	},
 
 	/**
 	 * permutations of n,m
 	 * @return {Number}
 	 * @example
-	 * jStat.permutation(10,4)
+	 * jstat.permutation(10,4)
 	 */
 	permutation : function(n ,r) {
-		return jStat.factorial(n) / jStat.factorial(n - r);
+		return jstat.factorial(n) / jstat.factorial(n - r);
 	},
 
 	/**
@@ -235,12 +233,12 @@ var jStat = {
 	 * @return {Number}
 	 * @param {Number} x
 	 * @example
-	 * jStat.gamma(.5)
+	 * jstat.gamma(.5)
 	 */
 	gamma : function(x) {
 		var v = 1,
 			w;
-		if (x == Math.floor(x)) return jStat.factorial(x - 1);
+		if (x == Math.floor(x)) return jstat.factorial(x - 1);
 		while(x < 8){
 			v *= x;
 			x++;
@@ -254,7 +252,7 @@ var jStat = {
 	 * @return {Array}
 	 * @param {Array} arr
 	 * @example
-	 * jStat.quartiles([1,2,3,6,9,3,1,2,5])
+	 * jstat.quartiles([1,2,3,6,9,3,1,2,5])
 	 */
 	quartiles : function(arr) {
 		var arrlen = arr.length,
@@ -268,18 +266,18 @@ var jStat = {
 	 * @param {Array} arr1
 	 * @param {Array} arr2
 	 * @example
-	 * jStat.covariance([1,2,3,6,9,3,1,2,5],[2,3,5,2,5,7,8,9,6])
+	 * jstat.covariance([1,2,3,6,9,3,1,2,5],[2,3,5,2,5,7,8,9,6])
 	 */
 	covariance : function(arr1, arr2) {
-		var u = jStat.mean(arr1),
-			v = jStat.mean(arr2),
+		var u = jstat.mean(arr1),
+			v = jstat.mean(arr2),
 			sq_dev = [],
 			arr1Len = arr1.length,
 			i = 0;
 		for (; i < arr1Len; i++) {
 			sq_dev[i] = (arr1[i] - u) * (arr2[i] - v);
 		};
-		return jStat.sum(sq_dev) / arr1Len;
+		return jstat.sum(sq_dev) / arr1Len;
 	},
 
 	/**
@@ -288,10 +286,10 @@ var jStat = {
 	 * @param {Array} arr1
 	 * @param {Array} arr2
 	 * @example
-	 * jStat.corrcoeff([1,2,3,6,9,3,1,2,5], [2,3,5,2,5,7,8,9,6])
+	 * jstat.corrcoeff([1,2,3,6,9,3,1,2,5], [2,3,5,2,5,7,8,9,6])
 	 */
 	corrcoeff : function(arr1, arr2) {
-		return jStat.covariance(arr1, arr2) / jStat.stdev(arr1) / jStat.stdev(arr2);
+		return jstat.covariance(arr1, arr2) / jstat.stdev(arr1) / jstat.stdev(arr2);
 	},
 
 	/**
@@ -301,7 +299,7 @@ var jStat = {
 	 * @param {Number} b
 	 * @param {Number} x
 	 * @example
-	 * jStat.uniformcdf(0, 2, .5)
+	 * jstat.uniformcdf(0, 2, .5)
 	 */
 	uniformcdf : function(a, b, x) {
 		if (x < a) {
@@ -319,10 +317,10 @@ var jStat = {
 	 * @param {Number} p
 	 * @param {Number} k
 	 * @example
-	 * jStat.binomial(5, 1/2, 2)
+	 * jstat.binomial(5, 1/2, 2)
 	 */
 	binomial : function(n, p, k) {
-		return jStat.combination(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k);
+		return jstat.combination(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k);
 	},
 
 	/**
@@ -332,7 +330,7 @@ var jStat = {
 	 * @param {Number} p
 	 * @param {Number} x
 	 * @example
-	 * jStat.binomialcdf(5, 1/2, 2)
+	 * jstat.binomialcdf(5, 1/2, 2)
 	 */
 	binomialcdf : function(n, p, x) {
 		var binomarr = [],
@@ -343,7 +341,7 @@ var jStat = {
 			return 0;
 		};
 		for (; k < n; k++) {
-			binomarr[k] = jStat.binomial(n, p, k);
+			binomarr[k] = jstat.binomial(n, p, k);
 		};
 		if (x < n) {
 			for (; i <= x; i++) {
@@ -361,7 +359,7 @@ var jStat = {
 	 * @param {Number} p
 	 * @param {Number} x
 	 * @example
-	 * jStat.negbin(2, 1/2, 1)
+	 * jstat.negbin(2, 1/2, 1)
 	 */
 	negbin : function(r, p, x) {
 		if (x != Math.floor(x)) {
@@ -370,7 +368,7 @@ var jStat = {
 		if (x < 0) {
 			return 0;
 		};
-		return jStat.combination(x + r - 1, r - 1) * Math.pow(p, r) * Math.pow(1 - p, x);
+		return jstat.combination(x + r - 1, r - 1) * Math.pow(p, r) * Math.pow(1 - p, x);
 	},
 
 	/**
@@ -380,7 +378,7 @@ var jStat = {
 	 * @param {Number} p
 	 * @param {Number} x
 	 * @example
-	 * jStat.negbincdf(2, 1/2, 1)
+	 * jstat.negbincdf(2, 1/2, 1)
 	 */
 	negbincdf : function(n, p, x) {
 		var sum = 0,
@@ -389,7 +387,7 @@ var jStat = {
 			return 0;
 		};
 		for (; k <= x; k++) {
-			sum += jStat.negbin(n, p, k);
+			sum += jstat.negbin(n, p, k);
 		};
 		return sum;
 	},
@@ -402,10 +400,10 @@ var jStat = {
 	 * @param {Number} n Number of trials
 	 * @param {Number} x Number of items selected
 	 * @example
-	 * jStat.hypgeom(50, 25, 10, 5)
+	 * jstat.hypgeom(50, 25, 10, 5)
 	 */
 	hypgeom : function(N, m, n, x){
-		return (x != Math.floor(x)) ? false : (x < 0) ? 0 : jStat.combination(m, x) * jStat.combination((N - m), n - x) / jStat.combination(N, n);
+		return (x != Math.floor(x)) ? false : (x < 0) ? 0 : jstat.combination(m, x) * jstat.combination((N - m), n - x) / jstat.combination(N, n);
 	},
 
 	/**
@@ -416,7 +414,7 @@ var jStat = {
 	 * @param {Number} n Number of trials
 	 * @param {Number} x Number of items selected
 	 * @example
-	 * jStat.hypgeomcdf(50, 25, 10, 5)
+	 * jstat.hypgeomcdf(50, 25, 10, 5)
 	 */
 	hypgeomcdf : function(N, m, n, x) {
 		var sum = 0,
@@ -425,7 +423,7 @@ var jStat = {
 			return 0;
 		};
 		for (; k <= x; k++) {
-			sum += jStat.hypgeom(N, m, n, k);
+			sum += jstat.hypgeom(N, m, n, k);
 		};
 		return sum;
 	},
@@ -436,7 +434,7 @@ var jStat = {
 	 * @param {Number} l
 	 * @param {Number} x
 	 * @example
-	 * jStat.exponentialcdf(.5, 2)
+	 * jstat.exponentialcdf(.5, 2)
 	 */
 	exponentialcdf : function(l, x) {
 		return 1 - Math.exp(-x);
@@ -448,10 +446,10 @@ var jStat = {
 	 * @param {Number} l
 	 * @param {Number} x
 	 * @example
-	 * jStat.poisson(2, 3)
+	 * jstat.poisson(2, 3)
 	 */
 	poisson : function(l, x) {
-		return Math.pow(l, x) * Math.exp(-l) / jStat.factorial(x);
+		return Math.pow(l, x) * Math.exp(-l) / jstat.factorial(x);
 	},
 
 	/**
@@ -460,7 +458,7 @@ var jStat = {
 	 * @param {Number} l
 	 * @param {Number} x
 	 * @example
-	 * jStat.poissoncdf(2, 3)
+	 * jstat.poissoncdf(2, 3)
 	 */
 	poissoncdf : function(l, x) {
 		var sum = 0,
@@ -469,7 +467,7 @@ var jStat = {
 			return 0;
 		};
 		for (; k <= x; k++) {
-			sum += jStat.poisson(l, k);
+			sum += jstat.poisson(l, k);
 		};
 		return sum;
 	},
@@ -481,7 +479,7 @@ var jStat = {
 	 * @param {Number} a
 	 * @param {Number} b
 	 * @example
-	 * jStat.sumFunc(function(x) { return x; }, 0, 10)
+	 * jstat.sumFunc(function(x) { return x; }, 0, 10)
 	 */
 	sumFunc : function(func, a, b) {
 		var sum = 0;
@@ -496,8 +494,8 @@ var jStat = {
 // array sort function
 arrSortF = function(a, b) { return a - b; };
 
-// exposing jStat
-window.jStat = jStat;
+// exposing jstat
+window.jstat = jstat;
 
 // passing this for Node.js modules compatibility
 })(Math, this);
