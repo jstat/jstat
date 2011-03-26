@@ -1,4 +1,4 @@
-/** Sublcassing function:
+/*** Sublcassing function:
  *  http://stackoverflow.com/questions/3817409/is-john-resigs-oo-javascript-implementation-production-safe
  */
 Function.prototype.makeSubclass= function() {
@@ -16,9 +16,7 @@ Function.prototype.makeSubclass= function() {
 };
 Function.prototype.makeSubclass.nonconstructor= function() {};
 
-
-
-/* 
+/*
  * Vector object
  */
 var Vector = Object.makeSubclass();
@@ -27,7 +25,7 @@ var Vector = Object.makeSubclass();
 Vector.prototype._init= function(arr) {
     if(arr instanceof Array) {
         // Array initialisation
-        this._data = arr; 
+        this._data = arr;
     } else {
         // Argument initialisation
         var len = arguments.length;
@@ -36,7 +34,7 @@ Vector.prototype._init= function(arr) {
             this._data[i] = arguments[i];
         }
     }
-    
+
 }
 
 /*** Instance methods ***/
@@ -52,11 +50,11 @@ Vector.prototype.add = function(k) {
         return this.map(function(x, i) {
             return x + V[i-1];
         });
-    } 
+    }
     // Scalar addition
     return this.map(function(x,i) {
-        return x + k; 
-    });  
+        return x + k;
+    });
 }
 
 // Divide this vector by a scalar or vector
@@ -73,7 +71,7 @@ Vector.prototype.divide = function(k) {
     }
     // Scalar division
     return this.map(function(x) {
-        return x / k; 
+        return x / k;
     });
 }
 
@@ -125,7 +123,7 @@ Vector.prototype.subtract = function(k) {
     return this.map(function(x) {
         return x - k;
     })
-    
+
 }
 
 // Return the element at a given index (Indexed from 1)
@@ -163,7 +161,7 @@ Vector.prototype.pow = function(k) {
 // Returns the absolute values of the vector
 Vector.prototype.abs = function() {
     return this.map(function(x) {
-        return Math.abs(x); 
+        return Math.abs(x);
     });
 }
 
@@ -246,6 +244,19 @@ Vector.prototype.mid = function(start, num) {
     return new Vector(this._data.slice(start - 1, num));
 }
 
+// Returns the transpose of the vector (as a 1 row Matrix)
+Vector.prototype.transpose = function() {
+    return new Matrix(this, true, 1);
+}
+
+// Returns a string representation of the vector
+Vector.prototype.toString = function() {
+    var str = "[" + this.length() + "] ";
+    this.each(function(x) {
+       str += x + " ";
+    });
+    return str.trim();
+}
 
 /*** Static methods (constructors mainly) ***/
 
