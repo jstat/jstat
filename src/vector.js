@@ -30,11 +30,7 @@ Vector.prototype._init= function(arr) {
         this._data = arr; 
     } else {
         // Argument initialisation
-        var len = arguments.length;
-        this._data = [];
-        for(var i = 0; i < len; i++) {
-            this._data[i] = arguments[i];
-        }
+		this._data = Array.prototype.slice.call(arguments);
     }
     
 }
