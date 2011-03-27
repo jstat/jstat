@@ -1,6 +1,7 @@
 (function(jstat) {
 
 // utility functions
+var slice = Array.prototype.slice;
 function asc(a, b) { return a - b; };
 function desc(a, b) { return b - a; };
 
@@ -8,7 +9,7 @@ function desc(a, b) { return b - a; };
  * Vector object
  */
 function Vector() {
-	var args = (arguments[0] instanceof Array) ? arguments[0] : Array.prototype.slice.call(arguments);
+	var args = (arguments[0] instanceof Array) ? arguments[0] : slice.call(arguments);
 	if (!(this instanceof Vector)) return new Vector(args);
 
 	this._data = (args[0] instanceof Array)
@@ -21,18 +22,18 @@ function Vector() {
 Vector.prototype = {
 	// Add a vector, or scalar, to this vector
 	add : function(k) {
-		if(k instanceof Vector) {
+		if (k instanceof Vector) {
 			// Vector addition
 			var V = k._data || k;
 			if (this._data.length != V.length) {
 				return null;	// TODO: what to do if different lenghts? Return null or throw exception?
 			}
 			return this.map(function(x, i) {
-				return x + V[i-1];
+				return x + V[i - 1];
 			});
 		} 
 		// Scalar addition
-		return this.map(function(x,i) {
+		return this.map(function(x, i) {
 			return x + k; 
 		});  
 	},
@@ -46,7 +47,7 @@ Vector.prototype = {
 				return null;
 			}
 			return this.map(function(x, i) {
-				return x / V[i-1];
+				return x / V[i - 1];
 			});
 		}
 		// Scalar division
@@ -66,19 +67,19 @@ Vector.prototype = {
 
 	// Multiply the vector by a scalar or vector
 	multiply : function(k) {
-		if(k instanceof Vector) {
+		if (k instanceof Vector) {
 			// vector multiplication
 			var V = k._data || k;
 			if (this._data.length != V.length) {
 				return null;
 			}
 			return this.map(function(x, i) {
-				return x * V[i-1];
+				return x * V[i - 1];
 			});
 		}
 		// Scalar multiplication
 		return this.map(function(x) {
-			return x*k;
+			return x * k;
 		});
 	},
 
@@ -89,7 +90,7 @@ Vector.prototype = {
 
 	// Subtract a vector or scalar from this vector
 	subtract : function(k) {
-		if(k instanceof Vector) {
+		if (k instanceof Vector) {
 			// Vector subtraction
 			var V = k._data || k;
 			if (this._data.length != V.length) {
@@ -107,7 +108,7 @@ Vector.prototype = {
 
 	// Return the element at a given index (Indexed from 1)
 	e : function(i) {
-		return (i < 1 || i > this._data.length) ? null : this._data[i-1];
+		return (i < 1 || i > this._data.length) ? null : this._data[i - 1];
 	},
 
 	// Calls the iterator for each element of the vector in turn
@@ -115,20 +116,20 @@ Vector.prototype = {
 		var n = this._data.length, k = n, i;
 		do {
 			i = k - n;
-			fn(this._data[i], i+1);
+			fn(this._data[i], i + 1);
 		} while (--n);
 	},
 
 	// Raises every element by a scalar, or vector
 	pow : function(k) {
-		if(k instanceof Vector) {
+		if (k instanceof Vector) {
 			// vector multiplication
 			var V = k._data || k;
 			if (this._data.length != V.length) {
 				return null;
 			}
 			return this.map(function(x, i) {
-				return Math.pow(x, V[i-1]);
+				return Math.pow(x, V[i - 1]);
 			});
 		}
 		// Scalar multiplication
@@ -175,7 +176,7 @@ Vector.prototype = {
 
 	// Computes the dot product
 	dot : function(k) {
-		if(k instanceof Vector) {
+		if (k instanceof Vector) {
 			return this.multiply(k).sum();
 		}
 		return null;
@@ -196,7 +197,7 @@ Vector.prototype = {
 
 	// Computes the angle between two vectors
 	angle : function(k) {
-		if(k instanceof Vector) {
+		if (k instanceof Vector) {
 			var theta = Math.acos(this.dot(k) / (this.norm() * k.norm()));
 			return theta;
 		}
@@ -206,16 +207,17 @@ Vector.prototype = {
 	// Sorts the vector into ascending order
 	sort : function(arg) {
 		this._data.sort((arg == 'desc') ? desc : asc);
+		return this;
 	},
 
 	// Selects a portion from the end of the vector
 	right : function(num) {
-		return new Vector(this._data.slice(0-num));
+		return new Vector(this._data.slice(0 - num));
 	},
 
 	// Selects a portion from the start of the vector
 	left : function(num) {
-		return new Vector(this._data.slice(0,num));
+		return new Vector(this._data.slice(0, num));
 	},
 
 	// Selects the middle portion of elements
@@ -241,7 +243,7 @@ Vector.prototype = {
 // Creates a vector of specified length, filled with a given number
 Vector.fill = function(value, num) {
 	var res = new Array(num);
-	while(--num >= 0) {
+	while (--num >= 0) {
 		res[num] = value;
 	}
 	return new Vector(res);
