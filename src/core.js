@@ -469,7 +469,7 @@ var jstat = {
 	 * jstat.exponentialcdf(.5, 2)
 	 */
 	exponentialcdf : function(l, x) {
-		return 1 - Math.exp(-x);
+		return 1 - Math.exp(-l*x);
 	},
 
 	/**
