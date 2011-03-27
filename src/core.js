@@ -381,7 +381,7 @@ var jstat = {
         if (x < 0) {
             return 0;
         };
-        return 1 - Math.exp(Math.pow(-(x/b),b));
+        return 1 - Math.exp(Math.pow(-(x/b),a));
     },
 
 	/**
