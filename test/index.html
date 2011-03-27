@@ -100,6 +100,15 @@
 			equals(jstat.binomial(5, 1/2, 2),0.3125,'binomial(5, 1/2, 2)');
 		});
 		
+		test('weibull',function(){
+			equals(jstat.weibull(1,1,1),0.36787944117144233,'weibull(1,1,1)');
+			equals(jstat.weibull(2,1,2),0.18393972058572117,'weibull(2,1,2)');
+		});
+
+		test('weibullcdf',function(){
+			equals(jstat.weibullcdf(1,1,1),0.6321205588285577,'weibullcdf(1,1,1)');
+			equals(jstat.weibullcdf(2,1,2),-1.718281828459045,'weibullcdf(2,1,2)');
+		});
 	});
 	</script>
 </head>

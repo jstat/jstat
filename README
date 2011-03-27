@@ -24,6 +24,8 @@ corrcoeff():        correlation coefficient of two arrays
 uniformcdf():       cumulative distribution of the uniform distribution
 binomial():         binomial distribution
 binomialcdf():      cumulative binomial distribution
+wiebull():          wiebull distribution
+wiebullcdf():       cumulative wiebull distribution
 negbin():           negative binomial distribution
 negbincdf():        cumulative negative binomial distribution
 hypgeom():          hypergeometric distribution

@@ -352,6 +352,38 @@ var jstat = {
 		return 1;
 	},
 
+    /**
+     * weibull distribution of x
+     * @return {Number}
+     * @param {Number} x
+     * @param {Number} a
+     * @param {Number} b
+     * @example
+     * jstat.weibull(1,1,1)
+     */
+    weibull : function(x, a, b) {
+        if (x < 0) {
+            return 0;
+        };
+        return (a/b) * Math.pow((x/b),(a-1)) * Math.exp(-(Math.pow((x/b),a)));
+    },
+
+    /**
+     * cumulative probability of x for weibull distibution
+     * @return {Number}
+     * @param {Number} x
+     * @param {Number} a
+     * @param {Number} b
+     * @example
+     * jstat.weibullcdf(1,1,1)
+     */
+    weibullcdf : function(x, a, b) {
+        if (x < 0) {
+            return 0;
+        };
+        return 1 - Math.exp(Math.pow(-(x/b),b));
+    },
+
 	/**
 	 * probability of exactly 1 success before 2nd failure of an event with probability 1/2
 	 * @return {Number}
