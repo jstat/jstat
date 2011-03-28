@@ -149,7 +149,7 @@
 			if (i > this._data.length) {
 				return null;
 			}
-			return new Vector(this._data[i-1]);
+			return new jstat.Vector(this._data[i-1]);
 		},
 
 		// Returns column k of the matrix as a vector
@@ -162,7 +162,7 @@
 				i = k - n;
 				col.push(this._data[i][j-1]);
 			} while (--n);
-			return new Vector(col);
+			return new jstat.Vector(col);
 		}
 
 	};
