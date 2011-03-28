@@ -222,12 +222,12 @@ Vector.prototype = {
 
 	// Selects the middle portion of elements
 	mid : function(start, num) {
-		return new Vector(this._data.slice(start - 1, num));
+		return new Vector(this._data.slice(start - 1, start - 1 + num));
 	},
 
 	// Returns the transpose of the vector (as a 1 row Matrix)
 	transpose : function() {
-		return new Matrix(this, true, 1);
+		return jstat.Matrix(this, true, 1);
 	},
 
 	// Returns a string representation of the vector
