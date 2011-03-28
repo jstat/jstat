@@ -111,7 +111,7 @@ var jstat = {
 				};
 			};
 		};
-		
+
 		return (numMaxCount === 0) ? maxNum : false;
 	},
 
@@ -503,7 +503,7 @@ var jstat = {
 		};
 		return sum;
 	},
-	
+
 	/**
 	 * calcualte sum of f(x) from a to b
 	 * @return {Number}

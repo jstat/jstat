@@ -31,11 +31,11 @@ Vector.prototype = {
 			return this.map(function(x, i) {
 				return x + V[i - 1];
 			});
-		} 
+		}
 		// Scalar addition
 		return this.map(function(x, i) {
-			return x + k; 
-		});  
+			return x + k;
+		});
 	},
 
 	// Divide this vector by a scalar or vector
@@ -52,7 +52,7 @@ Vector.prototype = {
 		}
 		// Scalar division
 		return this.map(function(x) {
-			return x / k; 
+			return x / k;
 		});
 	},
 
@@ -141,7 +141,7 @@ Vector.prototype = {
 	// Returns the absolute values of the vector
 	abs : function() {
 		return this.map(function(x) {
-			return Math.abs(x); 
+			return Math.abs(x);
 		});
 	},
 
