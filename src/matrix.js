@@ -162,4 +162,5 @@
 
 	};
 
+
 })(this.jstat || this);
