@@ -1,11 +1,12 @@
 (function(jstat) {
 	// Constructor
 	function Matrix(vector, byrow, nrow) {
+		if (!(this instanceof Matrix)) return new Matrix(vector, byrow, nrow);
 		this._data = [];
 		if(byrow === undefined) byrow = false;  // default behaviour is column major
 		//
 		// Construct from a vector
-		if(vector instanceof Vector) {
+		if(vector instanceof jstat.Vector) {
 			if(nrow === undefined) nrow = Math.sqrt(vector.length()); // try to infer number of cols
 			if(nrow !== Math.floor(nrow)) {
 				// not square
@@ -19,16 +20,16 @@
 			var i = 0, j = 1;
 			if(byrow) {
 				// row major
-				for(; i < nrow; i++) {
+				for(i = 0; i < nrow; i++) {
 					this._data[i] = [];
-					for(; j <= ncol; j++) {
+					for(j = 0; j <= ncol; j++) {
 						// Vectors are indexed from 1
 						this._data[i][j - 1] = vector.e(i*ncol + j);
 					}
 				}
 			} else {
 				// column major
-				for(; i < nrow; i++) {
+				for(i = 0; i < nrow; i++) {
 					this._data[i] = [];
 					for(j = 0; j < ncol; j++) {
 						// Vectors are indexed from 1
@@ -55,6 +56,7 @@
 				}
 			}
 		}
+		return this;
 	};
 
 	Matrix.prototype = {
@@ -63,9 +65,11 @@
 			var nrow = this._data.length, ncol = this._data[0].length;
 			var res;
 			if(k instanceof Matrix) {
-				// Matrix x Matrix multiplication
 				if(this.cols() !== k.rows()) throw "non-conformable matrices";	// cant multiply
-				var ni = this._data.length, ki = ni, i, nj, kj = M[0].length, j;
+
+				k = k._data;
+				// Matrix x Matrix multiplication
+				var ni = this._data.length, ki = ni, i, nj, kj = k[0].length, j;
 				var cols = this._data[0].length, elements = [], sum, nc, c;
 				do {
 					i = ki - ni;
@@ -77,12 +81,13 @@
 						nc = cols;
 						do {
 							c = cols - nc;
-							sum += this._data[i][c] * M[c][j];
+							sum += this._data[i][c] * k[c][j];
 						} while (--nc);
 						elements[i][j] = sum;
 					} while (--nj);
 				} while (--ni);
-			} else if(k instanceof Vector) {
+				return new Matrix(elements);
+			} else if(k instanceof jstat.Vector) {
 				// Vector x Matrix multiplication
 				res = [];
 				for(i = 0; i < nrow; i++) {
@@ -162,5 +167,6 @@
 
 	};
 
+jstat.Matrix = Matrix;
 
 })(this.jstat || this);
