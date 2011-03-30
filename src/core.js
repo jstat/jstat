@@ -4,7 +4,14 @@
  * This document is licensed as free software under the terms of the
  * MIT License: http://www.opensource.org/licenses/mit-license.php */
 (function( Math, _this, undefined ) {
-	var slice = Array.prototype.slice,
+
+	// global function
+	var jstat = function() {
+			return new jstat.fn.init( slice.call( arguments ));
+		},
+
+		// for quick reference
+		slice = Array.prototype.slice,
 		toString = Object.prototype.toString,
 
 		// ascending/descending functions for sort
@@ -27,10 +34,6 @@
 				func.apply( context, values );
 			}, 10 );
 		};
-
-	function jstat() {
-		return new jstat.fn.init( slice.call( arguments ) );
-	};
 
 	jstat.fn = jstat.prototype = {
 		constructor : jstat,
