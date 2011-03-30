@@ -100,6 +100,61 @@ jstat.fn.extend({
 	seq : function( start, count, func ) {
 		this.push( jstat.seq( start, count, func ));
 		return this;
+	},
+
+	// add a vector or scalar to the vector
+	add : function( k ) {
+
+	},
+
+	// divide the vector by a scalar or vector
+	divide : function( k ) {
+
+	},
+
+	// multiply the vector by a scalar or vector
+	multiply : function( k ) {
+
+	},
+
+	// subtract a vector or scalar from the vector
+	subtract : function( k ) {
+
+	},
+
+	// itterate over each object in the stack
+	each : function( fn ) {
+
+	},
+
+	// raise every element by a scalar or vector
+	pow : function( k ) {
+
+	},
+
+	// generate the absolute values of the vector
+	abs : function() {
+
+	},
+
+	// computes the dot product
+	dot : function( k ) {
+
+	},
+
+	// set all values to zero
+	clear : function() {
+
+	},
+
+	// computes the norm of the vector
+	norm : function() {
+
+	},
+
+	// computes the angle between two vectors
+	angle : function( k ) {
+
 	}
 });
 
