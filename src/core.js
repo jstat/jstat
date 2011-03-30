@@ -16,6 +16,11 @@
 			return toString.call( arg ) === "[object Array]";
 		},
 
+		// test if function
+		isFunction = function( arg ) {
+			return toString.call( arg ) === "[object Function]";
+		},
+
 		// simple method to run functions in setTimeout
 		callLater = function( func, context, values ) {
 			setTimeout( function() {
@@ -81,18 +86,17 @@
 
 	// extend jstat
 	jstat.fn.extend({
-		seq : function( start, count ) {
-			this.push( jstat.seq( start, count ));
+		seq : function( start, count, func ) {
+			this.push( jstat.seq( start, count, func ));
 			return this;
 		}
 	});
 
-	// TODO: allow for sequence creation based on a function
 	// generate sequence
-	jstat.seq = function( start, count ) {
+	jstat.seq = function( start, count, func ) {
 		var arr = [], i = 0;
 		if ( count > 0 ) {
-			for ( ; i < count; i++ ) arr.push( start++ );
+			for ( ; i < count; i++ ) arr.push( func ? func.call( this, start++ ) : start++ );
 		} else {
 			for ( ; i > count; i-- ) arr.push( start-- );
 		};
