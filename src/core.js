@@ -37,14 +37,13 @@ var jstat = function() {
 
 jstat.fn = jstat.prototype = {
 	constructor : jstat,
+	// TODO: if it is a single row vector we need to wrap it into a 2D array
 	init : function( args ) {
-
 		// if first argument is an array, must be vector or matrix
 		if ( isArray( args[0] )) {
 			for ( var i = 0; i < args.length; i++ ) {
 				this.push( args[i] );
 			};
-
 		// if first argument is number, assume creation of sequence
 		} else if ( !isNaN( args[0] )) {
 			this.push( jstat.seq.apply( this, args ));
@@ -101,7 +100,18 @@ jstat.fn.extend({
 		this.push( jstat.seq( start, count, func ));
 		return this;
 	},
-
+	// transpose the matrix
+	transpose : function() {
+		var nrow = this.rows(), ncol = this.cols(), res = [], ni = ncol, i, nj, j;
+		do { i = ncol - ni;
+			res[i] = [];
+			nj = nrow;
+			do { j = nrow - nj;
+				res[i][j] = this[0][j][i];
+			} while (--nj);
+		} while (--ni);
+		return jstat(res);
+	},
 	// add a vector or scalar to the vector
 	add : function( k ) {
 
@@ -155,6 +165,14 @@ jstat.fn.extend({
 	// computes the angle between two vectors
 	angle : function( k ) {
 
+	},
+
+	rows: function() {
+		return this[0].length || 1;
+	},
+
+	cols: function() {
+		return this[0][0].length || 1;
 	}
 });
 
