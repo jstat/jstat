@@ -163,10 +163,10 @@ jstat.fn.extend({
 
 // generate sequence
 jstat.seq = function( min, max, length, func ) {
-	var arr = [], i = 0;
-        var step = (max-min)/(length-1);    // minus 1 as started at min
-        var x = min - step;
-        for ( ; i < length; i++ ) arr.push( func ? func.call( this, x+=step ) : x+=step);
+	var arr = [];
+        var step = (max-min)/(length-1);    
+        var i = min; // start at x - step as loop always increments by step;
+        for ( ; i <= max; i+=step ) arr.push( func ? func.call( this, +(i).toFixed(6) ) : +(i).toFixed(6));
         return arr;
 };
 
