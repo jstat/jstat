@@ -32,13 +32,12 @@
 		init : function( args ) {
 			// if first argument is an array, must be vector or matrix
 			if ( isArray( args[0] )) {
-				//this[0] = args;
 				for ( var i = 0; i < args.length; i++ ) {
 					this.push( args[i] );
 				};
 			// if first argument is number, assume creation of sequence
 			} else if ( !isNaN( args[0] )) {
-				this.push( jstat.seq( args ));
+				this.push( jstat.seq.apply( this, args ));
 			};
 			return this;
 		},
@@ -52,19 +51,53 @@
 	};
 	jstat.fn.init.prototype = jstat.fn;
 
+	// TODO: there's got to be an easy way to combine these two
+	// create method for easy extension
+	jstat.extend = function( obj ) {
+		for ( var i in obj ) {
+			jstat[i] = obj[i];
+		};
+		return this;
+	};
+	jstat.fn.extend = function( obj ) {
+		for ( var i in obj ) {
+			jstat.fn[i] = obj[i];
+		};
+		return this;
+	};
+
 	// cast applicable array operations to the prototype
 	(function( funcs ) {
 		funcs = funcs.split( ' ' );
-		for ( var i = 0; i < funcs.length; i++ ) {
+		for ( var i = 0; i < funcs.length; i++ ) (function( passfunc ) {
 			jstat.fn[ funcs[i] ] = function( func ) {
 				for ( var i = 0; i < this.length; i++ ) {
-					callLater( func, jstat( this[i] ), [ jstat[ funcs[i] ]( this[i] )]);
-				}
+					callLater( func, jstat( this[i] ), [ jstat[ passfunc ]( this[i] )]);
+				};
 				return this;
 			};
-		}
+		})( funcs[i] );
 	})( 'sum min max mean median mode range variance stdev meandev meddev quartiles' );	
 
+	// extend jstat
+	jstat.fn.extend({
+		seq : function( upper, lower, range ) {
+			this.push( jstat.seq( upper, lower, range ));
+			return this;
+		}
+	});
+
+	// generate sequence
+	jstat.seq = function( lower, upper, range ) {
+		var arr = [];
+			upper += lower;
+
+		for ( ; range > 0; range-- ) {
+			arr.push( ( Math.random() * upper ) - lower );
+		}
+
+		return arr;
+	};
 	// sum of an array
 	jstat.sum = function( arr ) {
 		var sum = 0,
