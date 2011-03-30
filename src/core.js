@@ -38,21 +38,29 @@
 	jstat.fn = jstat.prototype = {
 		constructor : jstat,
 		init : function( args ) {
+
 			// if first argument is an array, must be vector or matrix
 			if ( isArray( args[0] )) {
 				for ( var i = 0; i < args.length; i++ ) {
 					this.push( args[i] );
 				};
+
 			// if first argument is number, assume creation of sequence
 			} else if ( !isNaN( args[0] )) {
 				this.push( jstat.seq.apply( this, args ));
 			};
 			return this;
 		},
+
+		// default length
 		length : 0,
+
+		// return clean array
 		toArray : function() {
 			return slice.call( this, 0 );
 		},
+
+		// only to be used internally
 		push : Array.prototype.push,
 		sort : [].sort,
 		splice : [].splice
@@ -74,7 +82,7 @@
 		return this;
 	};
 
-	// cast applicable array operations to the prototype
+	// extend jstat.fn with applicable static methods
 	(function( funcs ) {
 		funcs = funcs.split( ' ' );
 		for ( var i = 0; i < funcs.length; i++ ) (function( passfunc ) {
@@ -87,7 +95,7 @@
 		})( funcs[i] );
 	})( 'sum min max mean median mode range variance stdev meandev meddev quartiles' );	
 
-	// extend jstat
+	// extend jstat.fn
 	jstat.fn.extend({
 		seq : function( start, count, func ) {
 			this.push( jstat.seq( start, count, func ));
@@ -105,6 +113,7 @@
 		};
 		return arr;
 	};
+
 	// sum of an array
 	jstat.sum = function( arr ) {
 		var sum = 0,
@@ -158,9 +167,11 @@
 					count = 1;
 					numMaxCount = 0;
 				} else {
+
 					// are there multiple max counts
 					if ( count === maxCount ) {
 						numMaxCount++;
+
 					// count is less than max count, so reset values
 					} else {
 						count = 1;
@@ -330,7 +341,7 @@
 		: jstat.combination( x + r - 1, r - 1 ) * Math.pow( p, r ) * Math.pow( 1 - p, x );
 	};
 
-	// probability success or less
+	// probability of cdf success
 	jstat.negbincdf = function( n, p, x ) {
 		var sum = 0,
 			k = 0;
@@ -341,7 +352,7 @@
 		return sum;
 	};
 
-	// probability of selecting 5 items of a type from 50 items in 10 trials if 25 items are of the type
+	// probability of selection
 	jstat.hypgeom = function( N, m, n, x ) {
 		return x !== Math.floor( x )
 			? false
@@ -350,7 +361,7 @@
 		: jstat.combination( m, x ) * jstat.combination(( N - m ), n - x ) / jstat.combination( N, n );
 	};
 
-	//  probability of selecting 5 or less items of a type from 50 items in 10 trials if 25 items are of the type
+	// probability of cdf selection
 	jstat.hypgeomcdf = function( N, m, n, x ) {
 		var sum = 0,
 			k = 0;
@@ -361,17 +372,17 @@
 		return sum;
 	};
 
-	// probability an exponentially distributed variable with parameter (l = .5) is less than 2
+	// probability an exponentially distributed variable with parameter
 	jstat.exponentialcdf = function( l, x ) {
 		return 1 - Math.exp( -l * x );
 	};
 
-	// probability a possion variable with parameter (l = 2) is less than or equal to 3
+	// probability a possion variable with parameter
 	jstat.poisson = function( l, x ) {
 		return Math.pow( l, x ) * Math.exp( -l ) / jstat.factorial( x );
 	};
 
-	// calculate cumulative poisson distribution cumulative probability with parameter (l = 2) is less than or equal to 3
+	// calculate cumulative poisson distribution cumulative probability with parameter
 	jstat.poissoncdf = function( l, x ) {
 		var sum = 0,
 			k = 0;
@@ -383,11 +394,10 @@
 	};
 
 	// calcualte sum of f(x) from a to b
-	jstat.sumFunc = function( func, a, b ) {
+	jstat.sumFunc = function( a, b, func ) {
 		var sum = 0;
 		while ( a <= b ) {
-			sum += func(a);
-			a++;
+			sum += func( a++ );
 		};
 		return sum;
 	}
