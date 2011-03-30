@@ -162,14 +162,12 @@ jstat.fn.extend({
 // static methods are beyone this line //
 
 // generate sequence
-jstat.seq = function( start, count, func ) {
+jstat.seq = function( min, max, length, func ) {
 	var arr = [], i = 0;
-	if ( count > 0 ) {
-		for ( ; i < count; i++ ) arr.push( func ? func.call( this, start++ ) : start++ );
-	} else {
-		for ( ; i > count; i-- ) arr.push( start-- );
-	};
-	return arr;
+        var step = (max-min)/(length-1);    // minus 1 as started at min
+        var x = min - step;
+        for ( ; i < length; i++ ) arr.push( func ? func.call( this, x+=step ) : x+=step);
+        return arr;
 };
 
 // sum of an array
