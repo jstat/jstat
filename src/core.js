@@ -4,14 +4,24 @@
  * This document is licensed as free software under the terms of the
  * MIT License: http://www.opensource.org/licenses/mit-license.php */
 (function( Math, _this, undefined ) {
-	var slice = Array.prototype.slice;
-	var arrSortF = function(a, b) { return a - b; };
+	var slice = Array.prototype.slice,
+		toString = Object.prototype.toString,
 
-	function callLater( func, context, values ) {
-		setTimeout( function() {
-			func.apply( context, values );
-		}, 10 );
-	};
+		// ascending/descending functions for sort
+		ascNum = function( a, b ) { return a - b; },
+		descNum = function( a, b ) { return b - a; },
+
+		// test if array
+		isArray = function( arg ) {
+			return toString.call( arg ) === "[object Array]";
+		},
+
+		// simple method to run functions in setTimeout
+		callLater = function( func, context, values ) {
+			setTimeout( function() {
+				func.apply( context, values );
+			}, 10 );
+		};
 
 	function jstat() {
 		return new jstat.fn.init( slice.call( arguments ) );
@@ -20,13 +30,40 @@
 	jstat.fn = jstat.prototype = {
 		constructor : jstat,
 		init : function( args ) {
-
+			// if first argument is an array, must be vector or matrix
+			if ( isArray( args[0] )) {
+				//this[0] = args;
+				for ( var i = 0; i < args.length; i++ ) {
+					this.push( args[i] );
+				};
+			// if first argument is number, assume creation of sequence
+			} else if ( !isNaN( args[0] )) {
+				this.push( jstat.seq( args ));
+			};
+			return this;
 		},
 		length : 0,
+		toArray : function() {
+			return slice.call( this, 0 );
+		},
+		push : Array.prototype.push,
 		sort : [].sort,
 		splice : [].splice
 	};
 	jstat.fn.init.prototype = jstat.fn;
+
+	// cast applicable array operations to the prototype
+	(function( funcs ) {
+		funcs = funcs.split( ' ' );
+		for ( var i = 0; i < funcs.length; i++ ) {
+			jstat.fn[ funcs[i] ] = function( func ) {
+				for ( var i = 0; i < this.length; i++ ) {
+					callLater( func, jstat( this[i] ), [ jstat[ funcs[i] ]( this[i] )]);
+				}
+				return this;
+			};
+		}
+	})( 'sum min max mean median mode range variance stdev meandev meddev quartiles' );	
 
 	// sum of an array
 	jstat.sum = function( arr ) {
@@ -56,7 +93,7 @@
 	// median of an array
 	jstat.median = function( arr ) {
 		var arrlen = arr.length,
-			_arr = arr.slice().sort( arrSortF );
+			_arr = arr.slice().sort( ascNum );
 
 		// check if array is even or odd, then return the appropriate
 		return !( arrlen & 1 ) ? ( _arr[ ( arrlen / 2 ) - 1 ] + _arr[ ( arrlen / 2 ) ] ) / 2 : _arr[ Math.floor( arrlen / 2 ) ];
@@ -65,7 +102,7 @@
 	// mode of an array
 	jstat.mode = function( arr ) {
 		var arrLen = arr.length,
-			_arr = arr.slice().sort( arrSortF ),
+			_arr = arr.slice().sort( ascNum ),
 			count = 1,
 			maxCount = 0,
 			numMaxCount = 0,
@@ -97,7 +134,7 @@
 
 	// range of an array
 	jstat.range = function( arr ) {
-		var _arr = arr.slice().sort( arrSortF );
+		var _arr = arr.slice().sort( ascNum );
 		return _arr[ _arr.length - 1 ] - _arr[0];
 	};
 
@@ -176,7 +213,7 @@
 	// quartiles of an array
 	jstat.quartiles = function( arr ) {
 		var arrlen = arr.length,
-			_arr = arr.slice().sort( arrSortF );
+			_arr = arr.slice().sort( ascNum );
 		return [ _arr[ Math.round( ( arrlen ) / 4 ) - 1 ], _arr[ Math.round( ( arrlen ) / 2 ) - 1 ], _arr[ Math.round( ( arrlen ) * 3 / 4 ) - 1 ] ];
 	};
 
