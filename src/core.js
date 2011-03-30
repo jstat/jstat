@@ -81,21 +81,21 @@
 
 	// extend jstat
 	jstat.fn.extend({
-		seq : function( upper, lower, range ) {
-			this.push( jstat.seq( upper, lower, range ));
+		seq : function( start, count ) {
+			this.push( jstat.seq( start, count ));
 			return this;
 		}
 	});
 
+	// TODO: allow for sequence creation based on a function
 	// generate sequence
-	jstat.seq = function( lower, upper, range ) {
-		var arr = [];
-			upper += lower;
-
-		for ( ; range > 0; range-- ) {
-			arr.push( ( Math.random() * upper ) - lower );
-		}
-
+	jstat.seq = function( start, count ) {
+		var arr = [], i = 0;
+		if ( count > 0 ) {
+			for ( ; i < count; i++ ) arr.push( start++ );
+		} else {
+			for ( ; i > count; i-- ) arr.push( start-- );
+		};
 		return arr;
 	};
 	// sum of an array
