@@ -163,11 +163,11 @@ jstat.fn.extend({
 
 // generate sequence
 jstat.seq = function( min, max, length, func ) {
-	var arr = [];
-        var step = (max-min)/(length-1);    
-        var i = min; // start at x - step as loop always increments by step;
-        for ( ; i <= max; i+=step ) arr.push( func ? func.call( this, +(i).toFixed(6) ) : +(i).toFixed(6));
-        return arr;
+	var arr = [],
+		step = (max-min)/(length-1);
+	// TODO: replace magic number with constant.
+	for ( ; min <= max; min+=step ) arr.push(+( func ? func.call( this, min ) : min ).toFixed(6));
+	return arr;
 };
 
 // sum of an array
