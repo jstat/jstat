@@ -3,7 +3,7 @@
  * Copyright (c) 2011
  * This document is licensed as free software under the terms of the
  * MIT License: http://www.opensource.org/licenses/mit-license.php */
-(function( Math, _this, undefined ) {
+this.jstat = (function( Math, undefined ) {
 
 // global function
 var jstat = function() {
@@ -494,7 +494,7 @@ jstat.extend({
 });
 
 // exposing jstat
-_this.jstat = jstat;
+return jstat;
 
 // passing this for Node.js modules compatibility
-})( Math, this );
+})( Math );
