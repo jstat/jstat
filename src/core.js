@@ -42,7 +42,7 @@ jstat.fn = jstat.prototype = {
 		// if first argument is an array, must be vector or matrix
 		if ( isArray( args[0] )) {
 			for ( var i = 0; i < args.length; i++ ) {
-				this.push( args[i] );
+				this.push( isArray( args[i][0] ) ? args[i] : [ args[i] ] );
 			};
 		// if first argument is number, assume creation of sequence
 		} else if ( !isNaN( args[0] )) {
@@ -100,18 +100,12 @@ jstat.fn.extend({
 		this.push( jstat.seq( start, count, func ));
 		return this;
 	},
+
 	// transpose the matrix
 	transpose : function() {
-		var nrow = this.rows(), ncol = this.cols(), res = [], ni = ncol, i, nj, j;
-		do { i = ncol - ni;
-			res[i] = [];
-			nj = nrow;
-			do { j = nrow - nj;
-				res[i][j] = this[0][j][i];
-			} while (--nj);
-		} while (--ni);
-		return jstat(res);
+
 	},
+
 	// add a vector or scalar to the vector
 	add : function( k ) {
 
@@ -186,6 +180,24 @@ jstat.seq = function( min, max, length, func ) {
 	// TODO: replace magic number with constant.
 	for ( ; min <= max; min+=step ) arr.push(+( func ? func.call( this, min ) : min ).toFixed(6));
 	return arr;
+};
+
+// transpose vector or matrix
+jstat.transpose = function( arr ) {
+	if ( !isArray( arr[0] )) arr = slice.call( arguments );
+	var ncol = arr.length,
+		nrow = arr[0].length,
+		t = [],
+		i = -1, j;
+	if ( nrow === 0 ) return t;
+	while ( ++i < nrow ) {
+		t[ i ] = [];
+		j = -1;
+		while ( ++j < ncol ) {
+			t[ i ][ j ] = arr[ j ][ i ];
+		};
+	};
+	return t.length === 1 ? t[0] : t;
 };
 
 // sum of an array
