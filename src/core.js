@@ -175,320 +175,323 @@ jstat.fn.extend({
 
 // static methods are beyone this line //
 
-// generate sequence
-jstat.seq = function( min, max, length, func ) {
-	var arr = [],
-		step = (max-min)/(length-1);
-	// TODO: replace magic number with constant.
-	for ( ; min <= max; min+=step ) arr.push(+( func ? func.call( this, min ) : min ).toFixed(6));
-	return arr;
-};
+jstat.extend({
 
-// transpose vector or matrix
-jstat.transpose = function( arr ) {
-	if ( !isArray( arr[0] )) arr = slice.call( arguments );
-	var ncol = arr.length,
-		nrow = arr[0].length,
-		t = [],
-		i = -1, j;
-	if ( nrow === 0 ) return t;
-	while ( ++i < nrow ) {
-		t[ i ] = [];
-		j = -1;
-		while ( ++j < ncol ) {
-			t[ i ][ j ] = arr[ j ][ i ];
+	// generate sequence
+	seq : function( min, max, length, func ) {
+		var arr = [],
+			step = (max-min)/(length-1);
+		// TODO: replace magic number with constant.
+		for ( ; min <= max; min+=step ) arr.push(+( func ? func.call( this, min ) : min ).toFixed(6));
+		return arr;
+	},
+
+	// transpose vector or matrix
+	transpose : function( arr ) {
+		if ( !isArray( arr[0] )) arr = slice.call( arguments );
+		var ncol = arr.length,
+			nrow = arr[0].length,
+			t = [],
+			i = -1, j;
+		if ( nrow === 0 ) return t;
+		while ( ++i < nrow ) {
+			t[ i ] = [];
+			j = -1;
+			while ( ++j < ncol ) {
+				t[ i ][ j ] = arr[ j ][ i ];
+			};
 		};
-	};
-	return t.length === 1 ? t[0] : t;
-};
+		return t.length === 1 ? t[0] : t;
+	},
 
-// sum of an array
-jstat.sum = function( arr ) {
-	var sum = 0,
-		i = arr.length;
-	while ( --i >= 0 ) {
-		sum += arr[i];
-	};
-	return sum;
-};
+	// sum of an array
+	sum : function( arr ) {
+		var sum = 0,
+			i = arr.length;
+		while ( --i >= 0 ) {
+			sum += arr[i];
+		};
+		return sum;
+	},
 
-// minimum value of an array
-jstat.min = function( arr ) {
-	return Math.min.apply( null, arr );
-};
+	// minimum value of an array
+	min : function( arr ) {
+		return Math.min.apply( null, arr );
+	},
 
-// maximum value of an array
-jstat.max = function( arr ) {
-	return Math.max.apply( null, arr );
-};
+	// maximum value of an array
+	max : function( arr ) {
+		return Math.max.apply( null, arr );
+	},
 
-// mean value of an array
-jstat.mean = function( arr ) {
-	return jstat.sum( arr ) / arr.length;
-};
+	// mean value of an array
+	mean : function( arr ) {
+		return jstat.sum( arr ) / arr.length;
+	},
 
-// median of an array
-jstat.median = function( arr ) {
-	var arrlen = arr.length,
-		_arr = arr.slice().sort( ascNum );
+	// median of an array
+	median : function( arr ) {
+		var arrlen = arr.length,
+			_arr = arr.slice().sort( ascNum );
 
-	// check if array is even or odd, then return the appropriate
-	return !( arrlen & 1 ) ? ( _arr[ ( arrlen / 2 ) - 1 ] + _arr[ ( arrlen / 2 ) ] ) / 2 : _arr[ Math.floor( arrlen / 2 ) ];
-};
+		// check if array is even or odd, then return the appropriate
+		return !( arrlen & 1 ) ? ( _arr[ ( arrlen / 2 ) - 1 ] + _arr[ ( arrlen / 2 ) ] ) / 2 : _arr[ Math.floor( arrlen / 2 ) ];
+	},
 
-// mode of an array
-jstat.mode = function( arr ) {
-	var arrLen = arr.length,
-		_arr = arr.slice().sort( ascNum ),
-		count = 1,
-		maxCount = 0,
-		numMaxCount = 0,
-		i = 0,
-		maxNum;
-	for ( ; i < arrLen; i++ ) {
-		if ( _arr[ i ] === _arr[ i + 1 ] ) {
-			count++;
-		} else {
-			if ( count > maxCount ) {
-				maxNum = _arr[i];
-				maxCount = count;
-				count = 1;
-				numMaxCount = 0;
+	// mode of an array
+	mode : function( arr ) {
+		var arrLen = arr.length,
+			_arr = arr.slice().sort( ascNum ),
+			count = 1,
+			maxCount = 0,
+			numMaxCount = 0,
+			i = 0,
+			maxNum;
+		for ( ; i < arrLen; i++ ) {
+			if ( _arr[ i ] === _arr[ i + 1 ] ) {
+				count++;
 			} else {
-
-				// are there multiple max counts
-				if ( count === maxCount ) {
-					numMaxCount++;
-
-				// count is less than max count, so reset values
-				} else {
+				if ( count > maxCount ) {
+					maxNum = _arr[i];
+					maxCount = count;
 					count = 1;
+					numMaxCount = 0;
+				} else {
+
+					// are there multiple max counts
+					if ( count === maxCount ) {
+						numMaxCount++;
+
+					// count is less than max count, so reset values
+					} else {
+						count = 1;
+					};
 				};
 			};
 		};
-	};
 
-	return ( numMaxCount === 0 ) ? maxNum : false;
-};
+		return ( numMaxCount === 0 ) ? maxNum : false;
+	},
 
-// range of an array
-jstat.range = function( arr ) {
-	var _arr = arr.slice().sort( ascNum );
-	return _arr[ _arr.length - 1 ] - _arr[0];
-};
+	// range of an array
+	range : function( arr ) {
+		var _arr = arr.slice().sort( ascNum );
+		return _arr[ _arr.length - 1 ] - _arr[0];
+	},
 
-// variance of an array
-jstat.variance = function( arr ) {
-	var mean = jstat.mean( arr ),
-		stSum = 0,
-		i = arr.length - 1;
-	for( ; i >= 0; i-- ) {
-		stSum += Math.pow( ( arr[i] - mean ), 2 );
-	};
-	return stSum / ( arr.length - 1 );
-};
+	// variance of an array
+	variance : function( arr ) {
+		var mean = jstat.mean( arr ),
+			stSum = 0,
+			i = arr.length - 1;
+		for( ; i >= 0; i-- ) {
+			stSum += Math.pow( ( arr[i] - mean ), 2 );
+		};
+		return stSum / ( arr.length - 1 );
+	},
 
-// standard deviation of an array
-jstat.stdev = function( arr ) {
-	return Math.sqrt( jstat.variance( arr ) );
-};
+	// standard deviation of an array
+	stdev : function( arr ) {
+		return Math.sqrt( jstat.variance( arr ) );
+	},
 
-// mean deviation (mean absolute deviation) of an array
-jstat.meandev = function( arr ) {
-	var devSum = 0,
-		mean = jstat.mean( arr ),
-		i = arr.length - 1;
-	for ( ; i >= 0; i-- ) {
-		devSum += Math.abs( arr[ i ] - mean );
-	};
-	return devSum / arr.length;
-};
+	// mean deviation (mean absolute deviation) of an array
+	meandev : function( arr ) {
+		var devSum = 0,
+			mean = jstat.mean( arr ),
+			i = arr.length - 1;
+		for ( ; i >= 0; i-- ) {
+			devSum += Math.abs( arr[ i ] - mean );
+		};
+		return devSum / arr.length;
+	},
 
-// median deviation (median absolute deviation) of an array
-jstat.meddev = function( arr ) {
-	var devSum = 0,
-		median = jstat.median( arr ),
-		i = arr.length - 1;
-	for ( ; i >= 0; i-- ) {
-		devSum += Math.abs( arr[ i ] - median );
-	};
-	return devSum / arr.length;
-};
+	// median deviation (median absolute deviation) of an array
+	meddev : function( arr ) {
+		var devSum = 0,
+			median = jstat.median( arr ),
+			i = arr.length - 1;
+		for ( ; i >= 0; i-- ) {
+			devSum += Math.abs( arr[ i ] - median );
+		};
+		return devSum / arr.length;
+	},
 
-// factorial of n
-jstat.factorial = function( n ) {
-	var fval = 1;
-	if ( n < 0 ) return NaN;
-	if ( n != Math.floor( n ) ) return jstat.gamma( n + 1 );
-	for( ; n > 0; n-- ) {
-		fval *= n;
-	};
-	return fval;
-};
+	// factorial of n
+	factorial : function( n ) {
+		var fval = 1;
+		if ( n < 0 ) return NaN;
+		if ( n != Math.floor( n ) ) return jstat.gamma( n + 1 );
+		for( ; n > 0; n-- ) {
+			fval *= n;
+		};
+		return fval;
+	},
 
-// combinations of n, m
-jstat.combination = function( n, m ) {
-	return ( jstat.factorial( n ) / jstat.factorial( m ) ) / jstat.factorial( n - m );
-};
+	// combinations of n, m
+	combination : function( n, m ) {
+		return ( jstat.factorial( n ) / jstat.factorial( m ) ) / jstat.factorial( n - m );
+	},
 
-// permutations of n, m
-jstat.permutation = function( n, m ) {
-	return jstat.factorial( n ) / jstat.factorial( n - m );
-};
+	// permutations of n, m
+	permutation : function( n, m ) {
+		return jstat.factorial( n ) / jstat.factorial( n - m );
+	},
 
-// gamma of x
-jstat.gamma = function( x ) {
-	var v = 1,
-		w;
-	if ( x == Math.floor( x ) ) return jstat.factorial( x - 1 );
-	while ( x < 8 ) {
-		v *= x;
-		x++;
-	};
-	w = 1 / (x * x);
-	return Math.exp((((((((-3617 / 122400 * w + 7 / 1092) * w - 691 / 360360) * w + 5 / 5940) * w - 1 / 1680)  * w + 1 / 1260) * w - 1 / 360) * w + 1 / 12) / x + 0.5 * Math.log(2 * Math.PI) - Math.log(v) - x + (x - 0.5) * Math.log(x));
-};
+	// gamma of x
+	gamma : function( x ) {
+		var v = 1,
+			w;
+		if ( x == Math.floor( x ) ) return jstat.factorial( x - 1 );
+		while ( x < 8 ) {
+			v *= x;
+			x++;
+		};
+		w = 1 / (x * x);
+		return Math.exp((((((((-3617 / 122400 * w + 7 / 1092) * w - 691 / 360360) * w + 5 / 5940) * w - 1 / 1680)  * w + 1 / 1260) * w - 1 / 360) * w + 1 / 12) / x + 0.5 * Math.log(2 * Math.PI) - Math.log(v) - x + (x - 0.5) * Math.log(x));
+	},
 
-// quartiles of an array
-jstat.quartiles = function( arr ) {
-	var arrlen = arr.length,
-		_arr = arr.slice().sort( ascNum );
-	return [ _arr[ Math.round( ( arrlen ) / 4 ) - 1 ], _arr[ Math.round( ( arrlen ) / 2 ) - 1 ], _arr[ Math.round( ( arrlen ) * 3 / 4 ) - 1 ] ];
-};
+	// quartiles of an array
+	quartiles : function( arr ) {
+		var arrlen = arr.length,
+			_arr = arr.slice().sort( ascNum );
+		return [ _arr[ Math.round( ( arrlen ) / 4 ) - 1 ], _arr[ Math.round( ( arrlen ) / 2 ) - 1 ], _arr[ Math.round( ( arrlen ) * 3 / 4 ) - 1 ] ];
+	},
 
-// covariance of two arrays
-jstat.covariance = function( arr1, arr2 ) {
-	var u = jstat.mean( arr1 ),
-		v = jstat.mean( arr2 ),
-		sq_dev = [],
-		arr1Len = arr1.length,
-		i = 0;
-	for ( ; i < arr1Len; i++ ) {
-		sq_dev[ i ] = ( arr1[ i ] - u ) * ( arr2[ i ] - v );
-	};
-	return jstat.sum( sq_dev ) / arr1Len;
-};
+	// covariance of two arrays
+	covariance : function( arr1, arr2 ) {
+		var u = jstat.mean( arr1 ),
+			v = jstat.mean( arr2 ),
+			sq_dev = [],
+			arr1Len = arr1.length,
+			i = 0;
+		for ( ; i < arr1Len; i++ ) {
+			sq_dev[ i ] = ( arr1[ i ] - u ) * ( arr2[ i ] - v );
+		};
+		return jstat.sum( sq_dev ) / arr1Len;
+	},
 
-// correlation coefficient of two arrays
-jstat.corrcoeff = function( arr1, arr2 ) {
-	return jstat.covariance( arr1, arr2 ) / jstat.stdev( arr1 ) / jstat.stdev( arr2 );
-};
+	// correlation coefficient of two arrays
+	corrcoeff : function( arr1, arr2 ) {
+		return jstat.covariance( arr1, arr2 ) / jstat.stdev( arr1 ) / jstat.stdev( arr2 );
+	},
 
-// probability of uniform distibution
-jstat.uniformcdf = function( a, b, x ) {
-	if ( x < a ) {
-		return 0;
-	} else if ( x < b ) {
-		return ( x - a ) / ( b - a );
-	};
-	return 1;
-};
+	// probability of uniform distibution
+	uniformcdf : function( a, b, x ) {
+		if ( x < a ) {
+			return 0;
+		} else if ( x < b ) {
+			return ( x - a ) / ( b - a );
+		};
+		return 1;
+	},
 
-// probability of binomial distribution
-jstat.binomial = function( n, p, k ) {
-	return jstat.combination( n, k ) * Math.pow( p, k ) * Math.pow( 1 - p, n - k );
-};
+	// probability of binomial distribution
+	binomial : function( n, p, k ) {
+		return jstat.combination( n, k ) * Math.pow( p, k ) * Math.pow( 1 - p, n - k );
+	},
 
-// probability of binomial cdf distribution
-jstat.binomialcdf = function( n, p, x ) {
-	var binomarr = [],
-		k = 0,
-		i = 0,
-		sum = 0;
-	if ( x < 0 ) {
-		return 0;
-	};
-	for ( ; k < n; k++ ) {
-		binomarr[k] = jstat.binomial(n, p, k);
-	};
-	if ( x < n ) {
-		for ( ; i <= x; i++ ) {
-			sum += binomarr[ i ];
+	// probability of binomial cdf distribution
+	binomialcdf : function( n, p, x ) {
+		var binomarr = [],
+			k = 0,
+			i = 0,
+			sum = 0;
+		if ( x < 0 ) {
+			return 0;
+		};
+		for ( ; k < n; k++ ) {
+			binomarr[k] = jstat.binomial(n, p, k);
+		};
+		if ( x < n ) {
+			for ( ; i <= x; i++ ) {
+				sum += binomarr[ i ];
+			};
+			return sum;
+		};
+		return 1;
+	},
+
+	// weibull distribution of x
+	weibull : function( x, a, b ) {
+		return x < 0 ? 0 : ( a / b ) * Math.pow(( x / b ),( a - 1 )) * Math.exp(-( Math.pow(( x / b ), a )));
+	},
+
+	// cumulative probability of x for weibull distibution
+	weibullcdf : function( x, a, b ) {
+		return x < 0 ? 0 : 1 - Math.exp( Math.pow(-( x / b ), a ));
+	},
+
+	// probability of exact success
+	negbin : function( r, p, x ) {
+		return x !== Math.floor( x )
+			? false
+		: x < 0
+			? 0
+		: jstat.combination( x + r - 1, r - 1 ) * Math.pow( p, r ) * Math.pow( 1 - p, x );
+	},
+
+	// probability of cdf success
+	negbincdf : function( n, p, x ) {
+		var sum = 0,
+			k = 0;
+		if ( x < 0 ) return 0;
+		for ( ; k <= x; k++ ) {
+			sum += jstat.negbin( n, p, k );
 		};
 		return sum;
-	};
-	return 1;
-};
+	},
 
-// weibull distribution of x
-jstat.weibull = function( x, a, b ) {
-	return x < 0 ? 0 : ( a / b ) * Math.pow(( x / b ),( a - 1 )) * Math.exp(-( Math.pow(( x / b ), a )));
-};
+	// probability of selection
+	hypgeom : function( N, m, n, x ) {
+		return x !== Math.floor( x )
+			? false
+		: ( x < 0)
+			? 0
+		: jstat.combination( m, x ) * jstat.combination(( N - m ), n - x ) / jstat.combination( N, n );
+	},
 
-// cumulative probability of x for weibull distibution
-jstat.weibullcdf = function( x, a, b ) {
-	return x < 0 ? 0 : 1 - Math.exp( Math.pow(-( x / b ), a ));
-};
+	// probability of cdf selection
+	hypgeomcdf : function( N, m, n, x ) {
+		var sum = 0,
+			k = 0;
+		if ( x < 0 ) return 0;
+		for ( ; k <= x; k++ ) {
+			sum += jstat.hypgeom( N, m, n, k );
+		};
+		return sum;
+	},
 
-// probability of exact success
-jstat.negbin = function( r, p, x ) {
-	return x !== Math.floor( x )
-		? false
-	: x < 0
-		? 0
-	: jstat.combination( x + r - 1, r - 1 ) * Math.pow( p, r ) * Math.pow( 1 - p, x );
-};
+	// probability an exponentially distributed variable with parameter
+	exponentialcdf : function( l, x ) {
+		return 1 - Math.exp( -l * x );
+	},
 
-// probability of cdf success
-jstat.negbincdf = function( n, p, x ) {
-	var sum = 0,
-		k = 0;
-	if ( x < 0 ) return 0;
-	for ( ; k <= x; k++ ) {
-		sum += jstat.negbin( n, p, k );
-	};
-	return sum;
-};
+	// probability a possion variable with parameter
+	poisson : function( l, x ) {
+		return Math.pow( l, x ) * Math.exp( -l ) / jstat.factorial( x );
+	},
 
-// probability of selection
-jstat.hypgeom = function( N, m, n, x ) {
-	return x !== Math.floor( x )
-		? false
-	: ( x < 0)
-		? 0
-	: jstat.combination( m, x ) * jstat.combination(( N - m ), n - x ) / jstat.combination( N, n );
-};
+	// calculate cumulative poisson distribution cumulative probability with parameter
+	poissoncdf : function( l, x ) {
+		var sum = 0,
+			k = 0;
+		if ( x < 0 ) return 0;
+		for ( ; k <= x; k++ ) {
+			sum += jstat.poisson( l, k );
+		};
+		return sum;
+	},
 
-// probability of cdf selection
-jstat.hypgeomcdf = function( N, m, n, x ) {
-	var sum = 0,
-		k = 0;
-	if ( x < 0 ) return 0;
-	for ( ; k <= x; k++ ) {
-		sum += jstat.hypgeom( N, m, n, k );
-	};
-	return sum;
-};
-
-// probability an exponentially distributed variable with parameter
-jstat.exponentialcdf = function( l, x ) {
-	return 1 - Math.exp( -l * x );
-};
-
-// probability a possion variable with parameter
-jstat.poisson = function( l, x ) {
-	return Math.pow( l, x ) * Math.exp( -l ) / jstat.factorial( x );
-};
-
-// calculate cumulative poisson distribution cumulative probability with parameter
-jstat.poissoncdf = function( l, x ) {
-	var sum = 0,
-		k = 0;
-	if ( x < 0 ) return 0;
-	for ( ; k <= x; k++ ) {
-		sum += jstat.poisson( l, k );
-	};
-	return sum;
-};
-
-// calcualte sum of f(x) from a to b
-jstat.sumFunc = function( a, b, func ) {
-	var sum = 0;
-	while ( a <= b ) {
-		sum += func( a++ );
-	};
-	return sum;
-}
+	// calcualte sum of f(x) from a to b
+	sumFunc : function( a, b, func ) {
+		var sum = 0;
+		while ( a <= b ) {
+			sum += func( a++ );
+		};
+		return sum;
+	}
+});
 
 // exposing jstat
 _this.jstat = jstat;
