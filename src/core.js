@@ -28,6 +28,11 @@ var jstat = function() {
 		return toString.call( arg ) === "[object Function]";
 	},
 
+	// test if object
+	isObject = function( arg ) {
+		return toString.call( arg ) === "[object Object]";
+	},
+
 	// simple method to run functions in setTimeout
 	callLater = function( func, context, values ) {
 		setTimeout( function() {
@@ -80,7 +85,7 @@ jstat.fn.extend = function( obj ) {
 	return this;
 };
 
-// extend jstat.fn with applicable static methods
+// extend jstat.fn with single single parameter static methods
 (function( funcs ) {
 	funcs = funcs.split( ' ' );
 	for ( var i = 0; i < funcs.length; i++ ) (function( passfunc ) {
@@ -95,7 +100,7 @@ jstat.fn.extend = function( obj ) {
 				for ( ; i < this.length; i++ ) {
 					arr.push( jstat[ passfunc ]( this[i] ));
 				};
-				return arr.length === 1 ? arr[0] : arr;
+				return arr.length === 1 ? arr[0] : jstat( arr );
 			};
 		};
 	})( funcs[i] );
@@ -180,9 +185,9 @@ jstat.extend({
 	// generate sequence
 	seq : function( min, max, length, func ) {
 		var arr = [],
-			step = (max-min)/(length-1);
+			step = ( max - min ) / ( length - 1 );
 		// TODO: replace magic number with constant.
-		for ( ; min <= max; min+=step ) arr.push(+( func ? func.call( this, min ) : min ).toFixed(6));
+		for ( ; min <= max; min += step ) arr.push(+( func ? func.call( this, min ) : min ).toFixed(6));
 		return arr;
 	},
 
