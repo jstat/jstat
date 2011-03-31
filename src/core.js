@@ -37,7 +37,6 @@ var jstat = function() {
 
 jstat.fn = jstat.prototype = {
 	constructor : jstat,
-	// TODO: if it is a single row vector we need to wrap it into a 2D array
 	init : function( args ) {
 		// if first argument is an array, must be vector or matrix
 		if ( isArray( args[0] )) {
@@ -86,24 +85,27 @@ jstat.fn.extend = function( obj ) {
 	funcs = funcs.split( ' ' );
 	for ( var i = 0; i < funcs.length; i++ ) (function( passfunc ) {
 		jstat.fn[ funcs[i] ] = function( func ) {
-			for ( var i = 0; i < this.length; i++ ) {
-				callLater( func, jstat( this[i] ), [ jstat[ passfunc ]( this[i] )]);
+			var arr = [], i = 0;
+			if ( isFunction( func )) {
+				for ( ; i < this.length; i++ ) {
+					callLater( func, jstat( this[i] ), [ jstat[ passfunc ]( this[i] )]);
+				};
+				return this;
+			} else {
+				for ( ; i < this.length; i++ ) {
+					arr.push( jstat[ passfunc ]( this[i] ));
+				};
+				return arr.length === 1 ? arr[0] : arr;
 			};
-			return this;
 		};
 	})( funcs[i] );
-})( 'sum min max mean median mode range variance stdev meandev meddev quartiles' );	
+})( 'transpose sum min max mean median mode range variance stdev meandev meddev quartiles' );	
 
 // extend jstat.fn
 jstat.fn.extend({
 	seq : function( start, count, func ) {
 		this.push( jstat.seq( start, count, func ));
 		return this;
-	},
-
-	// transpose the matrix
-	transpose : function() {
-
 	},
 
 	// add a vector or scalar to the vector
