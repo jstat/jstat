@@ -113,6 +113,17 @@ jstat.fn.extend({
 		return this;
 	},
 
+	// itterate over each object in the stack
+	each : function( func ) {
+		jstat.each( this, func );
+		return this;
+	},
+
+	// map one vector to another
+	map : function( vect ) {
+
+	},
+
 	// add a vector or scalar to the vector
 	add : function( k ) {
 
@@ -130,11 +141,6 @@ jstat.fn.extend({
 
 	// subtract a vector or scalar from the vector
 	subtract : function( k ) {
-
-	},
-
-	// itterate over each object in the stack
-	each : function( fn ) {
 
 	},
 
@@ -189,6 +195,22 @@ jstat.extend({
 		// TODO: replace magic number with constant.
 		for ( ; min <= max; min += step ) arr.push(+( func ? func.call( this, min ) : min ).toFixed(6));
 		return arr;
+	},
+
+	// itterate over every element in a set
+	each : function( items, func ) {
+		for ( var i = 0; i < items.length; i++ ) {
+			if ( isArray( items[i] )) {
+				jstat.each( items[i], func );
+			} else {
+				func.call( null, items[i] );
+			};
+		};
+	},
+
+	// map one object to another
+	map : function() {
+
 	},
 
 	// transpose vector or matrix
