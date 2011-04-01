@@ -87,30 +87,38 @@ jstat.fn.extend = function( obj ) {
 
 // extend jstat.fn with single single parameter static methods
 (function( funcs ) {
-	funcs = funcs.split( ' ' );
 	for ( var i = 0; i < funcs.length; i++ ) (function( passfunc ) {
-		jstat.fn[ funcs[i] ] = function( func ) {
-			var arr = [], i = 0;
+		jstat.fn[ passfunc ] = function( func ) {
+			var arr = [], j = 0;
 			if ( isFunction( func )) {
-				for ( ; i < this.length; i++ ) {
-					callLater( func, jstat( this[i] ), [ jstat[ passfunc ]( this[i][0] )]);
+				for ( ; j < this.length; j++ ) {
+					callLater( func, jstat( this[j] ), [ jstat[ passfunc ]( this[j][0] )]);
 				};
 				return this;
 			} else {
-				for ( ; i < this.length; i++ ) {
-					arr.push( jstat[ passfunc ]( this[i][0] ));
+				for ( ; j < this.length; j++ ) {
+					arr.push( jstat[ passfunc ]( this[j][0] ));
 				};
-				return arr.length === 1 ? arr[0] : jstat( arr );
+				return arr.length === 1 && !isArray( arr[0] ) ? arr[0] : jstat( arr );
 			};
 		};
 	})( funcs[i] );
-})( 'transpose sum min max mean median mode range variance stdev meandev meddev quartiles' );	
+})( 'sum min max mean median mode range variance stdev meandev meddev quartiles'.split(' '));
 
 // extend jstat.fn
 jstat.fn.extend({
 	seq : function( start, count, func ) {
 		this.push( jstat.seq( start, count, func ));
 		return this;
+	},
+
+	// transpose a vector or matrix
+	transpose : function() {
+		var newObj = jstat();
+		for ( var i = 0; i < this.length; i++) {
+			newObj.push( jstat.transpose( this[i] ));
+		};
+		return newObj;
 	},
 
 	// itterate over each object in the stack
@@ -184,7 +192,7 @@ jstat.fn.extend({
 });
 
 
-// static methods are beyone this line //
+// static methods //
 
 jstat.extend({
 
@@ -192,12 +200,12 @@ jstat.extend({
 	seq : function( min, max, length, func ) {
 		var arr = [],
 			step = ( max - min ) / ( length - 1 );
-		// TODO: replace magic number with constant.
-		for ( ; min <= max; min += step ) arr.push(+( func ? func.call( this, min ) : min ).toFixed(6));
+		// TODO: replace toFixed value to user configurable parameter
+		for ( ; min <= max; min += step ) arr.push(+( func ? func.call( null, min ) : min ).toFixed(6));
 		return arr;
 	},
 
-	// itterate over every element in a set
+	// deep itterate over every element in a set
 	each : function( items, func ) {
 		for ( var i = 0; i < items.length; i++ ) {
 			if ( isArray( items[i] )) {
