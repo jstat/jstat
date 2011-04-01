@@ -93,12 +93,12 @@ jstat.fn.extend = function( obj ) {
 			var arr = [], i = 0;
 			if ( isFunction( func )) {
 				for ( ; i < this.length; i++ ) {
-					callLater( func, jstat( this[i] ), [ jstat[ passfunc ]( this[i] )]);
+					callLater( func, jstat( this[i] ), [ jstat[ passfunc ]( this[i][0] )]);
 				};
 				return this;
 			} else {
 				for ( ; i < this.length; i++ ) {
-					arr.push( jstat[ passfunc ]( this[i] ));
+					arr.push( jstat[ passfunc ]( this[i][0] ));
 				};
 				return arr.length === 1 ? arr[0] : jstat( arr );
 			};
