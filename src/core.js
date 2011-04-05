@@ -117,11 +117,16 @@ jstat.fn.extend({
 
 	// transpose a vector or matrix
 	transpose : function() {
-		var newObj = jstat();
-		for ( var i = 0; i < this.length; i++) {
-			newObj.push( jstat.transpose( this[i] ));
-		};
-		return newObj;
+		var rows = this.rows(), cols = this.cols(),
+			elements = [], ni = cols, i, nj, j;
+		do { i = cols - ni;
+			elements[i] = [];
+			nj = rows;
+			do { j = rows - nj;
+				elements[i][j] = this[0][j][i];
+			} while (--nj);
+		} while (--ni);
+		return jstat( elements );
 	},
 
 	// map one matrix to another
@@ -183,7 +188,7 @@ jstat.fn.extend({
 					res[row][rescols] = sum;
 				}
 			}
-			return jstat( res );
+			return ( nrow == 1 && rescols == 1 ) ? res[0][0] : jstat( res );
 		} else {
 			return this.map( function ( value ) { return value * k; } );
 		}
@@ -214,15 +219,17 @@ jstat.fn.extend({
 		return this.apply( function( value ) { return 0; } );
 	},
 
+	// TODO: implement for matrices
 	// computes the norm of the vector
 	norm : function() {
-		var dot = this.multiply(this.transpose());
-		return Math.sqrt(dot[0]);
+		var dot = ( this[0].length > 1 ) ? this.transpose().multiply( this ) : this.multiply( this.transpose() );
+		return Math.sqrt(dot);
 	},
 
 	// computes the angle between two vectors
 	angle : function( k ) {
-
+		var theta = Math.acos(this.multiply( k ) / (this.norm() * k.norm()));
+		return theta;
 	},
 
 	rows: function() {
@@ -339,24 +346,6 @@ jstat.extend({
 	},
 
 	// vector/matrix specific functionality //
-
-	// transpose vector or matrix
-	transpose : function( arr ) {
-		if ( !isArray( arr[0] )) arr = slice.call( arguments );
-		var ncol = arr.length,
-			nrow = arr[0].length,
-			t = [],
-			i = -1, j;
-		if ( nrow === 0 ) return t;
-		while ( ++i < nrow ) {
-			t[ i ] = [];
-			j = -1;
-			while ( ++j < ncol ) {
-				t[ i ][ j ] = arr[ j ][ i ];
-			};
-		};
-		return t.length === 1 ? t[0] : t;
-	},
 
 	// sum of an array
 	sum : function( arr ) {
