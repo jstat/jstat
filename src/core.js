@@ -73,10 +73,17 @@ jstat.fn.init.prototype = jstat.fn;
 // TODO: there's got to be an easy way to combine these two
 // create method for easy extension
 jstat.extend = function( obj ) {
-	for ( var i in obj ) {
-		jstat[i] = obj[i];
+	var args = slice.call( arguments ), i = 1, j;
+	if ( args.length === 1 ) {
+		for ( var i in obj ) {
+			jstat[i] = obj[i];
+		};
+		return this;
 	};
-	return this;
+	for ( ; i < args.length; i++ ) {
+		for ( j in args[i] ) obj[j] = args[i][j];
+	};
+	return obj;
 };
 jstat.fn.extend = function( obj ) {
 	for ( var i in obj ) {
@@ -196,6 +203,51 @@ jstat.fn.extend({
 
 jstat.extend({
 
+	// general mathematical calculations //
+
+	// factorial of n
+	factorial : function( n ) {
+		var fval = 1;
+		if ( n < 0 ) return NaN;
+		if ( n != Math.floor( n ) ) return jstat.gamma( n + 1 );
+		for( ; n > 0; n-- ) {
+			fval *= n;
+		};
+		return fval;
+	},
+
+	// combinations of n, m
+	combination : function( n, m ) {
+		return ( jstat.factorial( n ) / jstat.factorial( m ) ) / jstat.factorial( n - m );
+	},
+
+	// permutations of n, m
+	permutation : function( n, m ) {
+		return jstat.factorial( n ) / jstat.factorial( n - m );
+	},
+
+	// gamma of x
+	gamma : function( x ) {
+		var v = 1,
+			w;
+		if ( x == Math.floor( x ) ) return jstat.factorial( x - 1 );
+		while ( x < 8 ) {
+			v *= x;
+			x++;
+		};
+		w = 1 / (x * x);
+		return Math.exp((((((((-3617 / 122400 * w + 7 / 1092) * w - 691 / 360360) * w + 5 / 5940) * w - 1 / 1680)  * w + 1 / 1260) * w - 1 / 360) * w + 1 / 12) / x + 0.5 * Math.log(2 * Math.PI) - Math.log(v) - x + (x - 0.5) * Math.log(x));
+	},
+
+	// calcualte sum of f(x) from a to b
+	sumFunc : function( a, b, func ) {
+		var sum = 0;
+		while ( a <= b ) {
+			sum += func( a++ );
+		};
+		return sum;
+	},
+
 	// generate sequence
 	seq : function( min, max, length, func ) {
 		var arr = [],
@@ -216,7 +268,7 @@ jstat.extend({
 		};
 	},
 
-	// VECTOR/MATRIX SPECIFIC FUNCTIONALITY //
+	// vector/matrix specific functionality //
 
 	// map one object to another
 	map : function() {
@@ -379,52 +431,39 @@ jstat.extend({
 		return jstat.covariance( arr1, arr2 ) / jstat.stdev( arr1 ) / jstat.stdev( arr2 );
 	},
 
-	// GENERAL MATHEMATICAL CALCULATIONS //
 
-	// factorial of n
-	factorial : function( n ) {
-		var fval = 1;
-		if ( n < 0 ) return NaN;
-		if ( n != Math.floor( n ) ) return jstat.gamma( n + 1 );
-		for( ; n > 0; n-- ) {
-			fval *= n;
+	// statistical distribution calculations //
+
+	// beta distribution
+	beta : function( x, a, b ) {
+		return jstat.gamma( a + b ) / ( jstat.gamma( a ) * jstat.gamma( b )) * Math.pow( x, a - 1 ) * Math.pow( 1 - x, b - 1 );
+	},
+
+	// cumulative beta distribution
+	// BUG: this fails when beta() returns Infinity
+	betacdf : function( x, a, b, dt ) {
+		var ab1 = a + b - 1,
+			fact = jstat.factorial,
+			gamma = jstat.gamma,
+			ab1fact = fact( ab1 ),
+			j = a,
+			sum = 0;
+
+		// quick calculation if a and b are integers
+		if ( a === Math.floor( a ) && b === Math.floor( b )) {
+			for ( ; j <= ab1; j++ ) {
+				sum += ab1fact / ( fact( j ) * fact( ab1 - j )) * Math.pow( x, j ) * Math.pow( 1 - x, ab1 - j );
+			};
+			return sum;
 		};
-		return fval;
-	},
 
-	// combinations of n, m
-	combination : function( n, m ) {
-		return ( jstat.factorial( n ) / jstat.factorial( m ) ) / jstat.factorial( n - m );
-	},
-
-	// permutations of n, m
-	permutation : function( n, m ) {
-		return jstat.factorial( n ) / jstat.factorial( n - m );
-	},
-
-	// gamma of x
-	gamma : function( x ) {
-		var v = 1,
-			w;
-		if ( x == Math.floor( x ) ) return jstat.factorial( x - 1 );
-		while ( x < 8 ) {
-			v *= x;
-			x++;
-		};
-		w = 1 / (x * x);
-		return Math.exp((((((((-3617 / 122400 * w + 7 / 1092) * w - 691 / 360360) * w + 5 / 5940) * w - 1 / 1680)  * w + 1 / 1260) * w - 1 / 360) * w + 1 / 12) / x + 0.5 * Math.log(2 * Math.PI) - Math.log(v) - x + (x - 0.5) * Math.log(x));
-	},
-
-	// calcualte sum of f(x) from a to b
-	sumFunc : function( a, b, func ) {
-		var sum = 0;
-		while ( a <= b ) {
-			sum += func( a++ );
+		// otherwise will have to integrate
+		dt = dt || 0.1;
+		for ( j = 0.1; j <= x; j += dt ) {
+			sum += jstat.beta( j, a, b ) * dt;
 		};
 		return sum;
 	},
-
-	// STATISTICAL DISTRIBUTION CALCULATIONS //
 
 	// uniform distribution - probability density
 	uniform : function( x, a, b ) {
