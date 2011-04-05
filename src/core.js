@@ -114,10 +114,6 @@ jstat.fn.extend = function( obj ) {
 
 // extend jstat.fn
 jstat.fn.extend({
-	seq : function( start, count, func ) {
-		this.push( jstat.seq( start, count, func ));
-		return this;
-	},
 
 	// transpose a vector or matrix
 	transpose : function() {
@@ -128,55 +124,94 @@ jstat.fn.extend({
 		return newObj;
 	},
 
-	// itterate over each object in the stack
-	each : function( func ) {
-		jstat.each( this, func );
-		return this;
+	// map one matrix to another
+	map : function( func ) {
+		var row = 0, nrow = this.rows(), col, ncol = this.cols(), res = [];
+		for( ; row < nrow; row ++) {
+			res[row] = []
+			for( col = 0; col < ncol; col++ ) {
+				res[row][col] = func( this[0][row][col] );
+			}
+		}
+		return jstat(res);
 	},
 
-	// map one vector to another
-	map : function( vect ) {
-
+	// apply a function to each element in the matrix
+	apply : function( func ) {
+		var row = 0, nrow = this.rows(), col, ncol = this.cols();
+		for( ; row < nrow; row ++) {
+			for( col = 0; col < ncol; col++ ) {
+				this[0][row][col] = func( this[0][row][col] );
+			}
+		}
+		return this;
 	},
 
 	// add a vector or scalar to the vector
 	add : function( k ) {
-
+		if( isObject( k ) ) {
+			// unsupported operation
+		} else {
+			return this.map( function ( value ) { return value + k; } );
+		}
 	},
 
-	// divide the vector by a scalar or vector
+	// matrix division
 	divide : function( k ) {
-
+		if( isObject( k ) ) {
+			// unsupported operation
+		} else {
+			return this.map( function ( value ) { return value / k; } );
+		}
 	},
 
-	// multiply the vector by a scalar or vector
+	// matrix multiplication
 	multiply : function( k ) {
+		var row,col,nrescols,nrow=this.rows(),ncol = this.cols(), sum = 0,
+		res = jstat.zeros(nrow, nrescols = ( isArray( k ) ) ? k.cols() : ncol),
+		rescols = 0;
 
+		res = res[0];
+		if( isObject(k) ) {
+			for( rescols = 0; rescols < nrescols; rescols++ ) {
+				for( row = 0; row < nrow; row++ ) {
+					// TODO: is there a better way to initialise the array
+					sum = 0;
+					for( col = 0; col < ncol; col++ ) {
+						sum += this[0][row][col] * k[0][col][rescols];
+					}
+					res[row][rescols] = sum;
+				}
+			}
+			return jstat( res );
+		} else {
+			return this.map( function ( value ) { return value * k; } );
+		}
+		
 	},
 
 	// subtract a vector or scalar from the vector
 	subtract : function( k ) {
-
+		if( isObject( k ) ) {
+			// unsupported operation
+		} else {
+			return this.map( function ( value ) { return value + k; } );
+		}
 	},
 
 	// raise every element by a scalar or vector
 	pow : function( k ) {
-
+		return this.map( function( value ) { return Math.pow( value, k ); } );
 	},
 
 	// generate the absolute values of the vector
 	abs : function() {
-
-	},
-
-	// computes the dot product
-	dot : function( k ) {
-
+		return this.map( function( value ) { return Math.abs( value ); } );
 	},
 
 	// set all values to zero
 	clear : function() {
-
+		return this.apply( function( value ) { return 0; } );
 	},
 
 	// computes the norm of the vector
@@ -195,6 +230,18 @@ jstat.fn.extend({
 
 	cols: function() {
 		return this[0][0].length || 1;
+	},
+
+	row: function( index ) {
+	    return jstat(this[0][index]);
+	},
+
+	col: function( index ) {
+	    var column = [], i = 0;
+	    for( ; i < this[0].length; i ++) {
+		column[i] = [this[0][i][index]];
+	    }
+	    return jstat(column);
 	}
 });
 
@@ -204,6 +251,28 @@ jstat.fn.extend({
 jstat.extend({
 
 	// general mathematical calculations //
+
+	// creates a rows x cols matrix of zeros
+	zeros : function( rows, cols ) {
+		return jstat.create( rows, cols, function() { return 0; } );
+	},
+
+	// creates a rows x cols matrix of ones
+	ones: function( rows, cols ) {
+		return jstat.create( rows, cols, function() { return 1; } );
+	},
+
+	// creates a rows x cols matrix according to the supplied function
+	create: function ( rows, cols, func ) {
+		var i, j, res = [];
+		for( i = 0; i < rows; i++ ) {
+			res[i]  = [];
+			for( j = 0; j < cols; j++ ) {
+				res[i][j] = func( i, j );
+			}
+		}
+		return jstat( res );
+	},
 
 	// factorial of n
 	factorial : function( n ) {
@@ -268,23 +337,7 @@ jstat.extend({
 		return arr;
 	},
 
-	// deep itterate over every element in a set
-	each : function( items, func ) {
-		for ( var i = 0; i < items.length; i++ ) {
-			if ( isArray( items[i] )) {
-				jstat.each( items[i], func );
-			} else {
-				func.call( null, items[i] );
-			};
-		};
-	},
-
 	// vector/matrix specific functionality //
-
-	// map one object to another
-	map : function() {
-
-	},
 
 	// transpose vector or matrix
 	transpose : function( arr ) {
