@@ -440,7 +440,7 @@ jstat.extend({
 	},
 
 	// cumulative beta distribution
-	// BUG: this fails when beta() returns Infinity
+	// BUG: returns Infinity when a < 1
 	betacdf : function( x, a, b, dt ) {
 		var ab1 = a + b - 1,
 			fact = jstat.factorial,
@@ -465,12 +465,22 @@ jstat.extend({
 		return sum;
 	},
 
-	// uniform distribution - probability density
+	// cauchy distribution
+	cauchy : function( x, xn, l ) {
+		return ( l / ( Math.pow( x - xn, 2) + Math.pow( l, 2 ))) / Math.PI;
+	},
+
+	// cumulative probability for cauchy distribution
+	cauchycdf : function( x, xn, l ) {
+		return Math.atan(( x - xn) / l ) / Math.PI + 0.5;
+	},
+
+	// uniform distribution
 	uniform : function( x, a, b ) {
 		return ( x < a || x > b ) ? 0 : 1 / ( b - a );
 	},
 
-	// uniform distribution in terms of mean and standard dev - probability density
+	// uniform distribution in terms of mean and standard dev
 	uniformmv : function( x, m, s ) {
 		var sqrtt = Math.sqrt( -3 );
 		return ( -s * sqrtt <= x - m || x - m <= s * sqrtt )
@@ -524,7 +534,7 @@ jstat.extend({
 		return 1;
 	},
 
-	// weibull distribution of x - probability density
+	// weibull distribution of x
 	weibull : function( x, a, b ) {
 		return x < 0 ? 0 : ( a / b ) * Math.pow(( x / b ),( a - 1 )) * Math.exp(-( Math.pow(( x / b ), a )));
 	},
@@ -534,7 +544,7 @@ jstat.extend({
 		return x < 0 ? 0 : 1 - Math.exp( Math.pow(-( x / b ), a ));
 	},
 
-	// negative binomial distribution - probability mass
+	// negative binomial distribution
 	negbin : function( k, r, p ) {
 		return k !== Math.floor( k )
 			? false
@@ -574,7 +584,7 @@ jstat.extend({
 		return sum;
 	},
 
-	// exponential distribution - probability density
+	// exponential distribution
 	exponential : function( x, l ) {
 		return x < 0 ? 0 : l * Math.exp( -l * x );
 	},
