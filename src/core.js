@@ -239,6 +239,17 @@ jstat.extend({
 		return Math.exp((((((((-3617 / 122400 * w + 7 / 1092) * w - 691 / 360360) * w + 5 / 5940) * w - 1 / 1680)  * w + 1 / 1260) * w - 1 / 360) * w + 1 / 12) / x + 0.5 * Math.log(2 * Math.PI) - Math.log(v) - x + (x - 0.5) * Math.log(x));
 	},
 
+	// lower incomplete gamma function
+	lgamma : function( x, s, dt ) {
+		dt = dt || 0.1;
+		var sum = 0,
+			i = 0;
+		for ( ; i <= x; i += dt ) {
+			sum += Math.pow( i, s - 1 ) * Math.exp( -i ) * dt;
+		};
+		return sum;
+	},
+
 	// calcualte sum of f(x) from a to b
 	sumFunc : function( a, b, func ) {
 		var sum = 0;
@@ -473,6 +484,16 @@ jstat.extend({
 	// cumulative probability for cauchy distribution
 	cauchycdf : function( x, xn, l ) {
 		return Math.atan(( x - xn) / l ) / Math.PI + 0.5;
+	},
+
+	// chi-square distribution
+	chisquare : function( x, k ) {
+		return (Math.pow( x, k / 2 - 1) * Math.exp( -x / 2 )) / ( Math.pow( 2, k / 2) * jstat.gamma( k / 2 ));
+	},
+
+	// cumulative uniform distribution
+	chisquarecdf : function( x, k ) {
+		return jstat.lgamma( x / 2, k / 2 ) / jstat.gamma( k / 2 );
 	},
 
 	// uniform distribution
