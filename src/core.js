@@ -216,6 +216,8 @@ jstat.extend({
 		};
 	},
 
+	// VECTOR/MATRIX SPECIFIC FUNCTIONALITY //
+
 	// map one object to another
 	map : function() {
 
@@ -352,6 +354,33 @@ jstat.extend({
 		return devSum / arr.length;
 	},
 
+	// quartiles of an array
+	quartiles : function( arr ) {
+		var arrlen = arr.length,
+			_arr = arr.slice().sort( ascNum );
+		return [ _arr[ Math.round( ( arrlen ) / 4 ) - 1 ], _arr[ Math.round( ( arrlen ) / 2 ) - 1 ], _arr[ Math.round( ( arrlen ) * 3 / 4 ) - 1 ] ];
+	},
+
+	// covariance of two arrays
+	covariance : function( arr1, arr2 ) {
+		var u = jstat.mean( arr1 ),
+			v = jstat.mean( arr2 ),
+			sq_dev = [],
+			arr1Len = arr1.length,
+			i = 0;
+		for ( ; i < arr1Len; i++ ) {
+			sq_dev[ i ] = ( arr1[ i ] - u ) * ( arr2[ i ] - v );
+		};
+		return jstat.sum( sq_dev ) / arr1Len;
+	},
+
+	// correlation coefficient of two arrays
+	corrcoeff : function( arr1, arr2 ) {
+		return jstat.covariance( arr1, arr2 ) / jstat.stdev( arr1 ) / jstat.stdev( arr2 );
+	},
+
+	// GENERAL MATHEMATICAL CALCULATIONS //
+
 	// factorial of n
 	factorial : function( n ) {
 		var fval = 1;
@@ -386,33 +415,32 @@ jstat.extend({
 		return Math.exp((((((((-3617 / 122400 * w + 7 / 1092) * w - 691 / 360360) * w + 5 / 5940) * w - 1 / 1680)  * w + 1 / 1260) * w - 1 / 360) * w + 1 / 12) / x + 0.5 * Math.log(2 * Math.PI) - Math.log(v) - x + (x - 0.5) * Math.log(x));
 	},
 
-	// quartiles of an array
-	quartiles : function( arr ) {
-		var arrlen = arr.length,
-			_arr = arr.slice().sort( ascNum );
-		return [ _arr[ Math.round( ( arrlen ) / 4 ) - 1 ], _arr[ Math.round( ( arrlen ) / 2 ) - 1 ], _arr[ Math.round( ( arrlen ) * 3 / 4 ) - 1 ] ];
-	},
-
-	// covariance of two arrays
-	covariance : function( arr1, arr2 ) {
-		var u = jstat.mean( arr1 ),
-			v = jstat.mean( arr2 ),
-			sq_dev = [],
-			arr1Len = arr1.length,
-			i = 0;
-		for ( ; i < arr1Len; i++ ) {
-			sq_dev[ i ] = ( arr1[ i ] - u ) * ( arr2[ i ] - v );
+	// calcualte sum of f(x) from a to b
+	sumFunc : function( a, b, func ) {
+		var sum = 0;
+		while ( a <= b ) {
+			sum += func( a++ );
 		};
-		return jstat.sum( sq_dev ) / arr1Len;
+		return sum;
 	},
 
-	// correlation coefficient of two arrays
-	corrcoeff : function( arr1, arr2 ) {
-		return jstat.covariance( arr1, arr2 ) / jstat.stdev( arr1 ) / jstat.stdev( arr2 );
+	// STATISTICAL DISTRIBUTION CALCULATIONS //
+
+	// uniform distribution - probability density
+	uniform : function( x, a, b ) {
+		return ( x < a || x > b ) ? 0 : 1 / ( b - a );
 	},
 
-	// probability of uniform distibution
-	uniformcdf : function( a, b, x ) {
+	// uniform distribution in terms of mean and standard dev - probability density
+	uniformmv : function( x, m, s ) {
+		var sqrtt = Math.sqrt( -3 );
+		return ( -s * sqrtt <= x - m || x - m <= s * sqrtt )
+			? 1 / ( 2 * s * sqrtt )
+		: 0;
+	},
+
+	// cumulative uniform distribution
+	uniformcdf : function( x, a, b ) {
 		if ( x < a ) {
 			return 0;
 		} else if ( x < b ) {
@@ -421,13 +449,23 @@ jstat.extend({
 		return 1;
 	},
 
-	// probability of binomial distribution
-	binomial : function( n, p, k ) {
+	// cumulative uniform distribution in terms of mean and standard dev
+	uniformdcdfmv : function( x, m, s ) {
+		var sqrtt = Math.sqrt( -3 );
+		return ( x - m < -s * sqrtt )
+			? 0
+		: ( x - m >= s * sqrtt )
+			? 1
+		: 0.5 * (( x - m ) / ( s * sqrtt ) + 1 );
+	},
+
+	// binomial distribution - probability mass
+	binomial : function( k, n, p ) {
 		return jstat.combination( n, k ) * Math.pow( p, k ) * Math.pow( 1 - p, n - k );
 	},
 
-	// probability of binomial cdf distribution
-	binomialcdf : function( n, p, x ) {
+	// cumulative binomial distribution
+	binomialcdf : function( x, n, p ) {
 		var binomarr = [],
 			k = 0,
 			i = 0,
@@ -435,10 +473,10 @@ jstat.extend({
 		if ( x < 0 ) {
 			return 0;
 		};
-		for ( ; k < n; k++ ) {
-			binomarr[k] = jstat.binomial(n, p, k);
-		};
 		if ( x < n ) {
+			for ( ; k < n; k++ ) {
+				binomarr[ k ] = jstat.binomial( k, n, p );
+			};
 			for ( ; i <= x; i++ ) {
 				sum += binomarr[ i ];
 			};
@@ -447,7 +485,7 @@ jstat.extend({
 		return 1;
 	},
 
-	// weibull distribution of x
+	// weibull distribution of x - probability density
 	weibull : function( x, a, b ) {
 		return x < 0 ? 0 : ( a / b ) * Math.pow(( x / b ),( a - 1 )) * Math.exp(-( Math.pow(( x / b ), a )));
 	},
@@ -457,72 +495,68 @@ jstat.extend({
 		return x < 0 ? 0 : 1 - Math.exp( Math.pow(-( x / b ), a ));
 	},
 
-	// probability of exact success
-	negbin : function( r, p, x ) {
-		return x !== Math.floor( x )
+	// negative binomial distribution - probability mass
+	negbin : function( k, r, p ) {
+		return k !== Math.floor( k )
 			? false
-		: x < 0
+		: k < 0
 			? 0
-		: jstat.combination( x + r - 1, r - 1 ) * Math.pow( p, r ) * Math.pow( 1 - p, x );
+		: jstat.combination( k + r - 1, k ) * Math.pow( 1 - p, r ) * Math.pow( p, k );
 	},
 
-	// probability of cdf success
-	negbincdf : function( n, p, x ) {
+	// cumulative probability for negative binomial distribution
+	negbincdf : function( x, r, p ) {
 		var sum = 0,
 			k = 0;
 		if ( x < 0 ) return 0;
 		for ( ; k <= x; k++ ) {
-			sum += jstat.negbin( n, p, k );
+			sum += jstat.negbin( k, r, p );
 		};
 		return sum;
 	},
 
-	// probability of selection
-	hypgeom : function( N, m, n, x ) {
+	// hypogeometric distribution
+	hypgeom : function( k, N, m, n ) {
 		return x !== Math.floor( x )
 			? false
 		: ( x < 0)
 			? 0
-		: jstat.combination( m, x ) * jstat.combination(( N - m ), n - x ) / jstat.combination( N, n );
+		: jstat.combination( m, k ) * jstat.combination( N - m , n - k ) / jstat.combination( N, n );
 	},
 
-	// probability of cdf selection
-	hypgeomcdf : function( N, m, n, x ) {
+	// cumulative probability for hypogeometric distribution
+	hypgeomcdf : function( x, N, m, n ) {
 		var sum = 0,
 			k = 0;
 		if ( x < 0 ) return 0;
 		for ( ; k <= x; k++ ) {
-			sum += jstat.hypgeom( N, m, n, k );
+			sum += jstat.hypgeom( k, N, m, n );
 		};
 		return sum;
 	},
 
-	// probability an exponentially distributed variable with parameter
-	exponentialcdf : function( l, x ) {
-		return 1 - Math.exp( -l * x );
+	// exponential distribution - probability density
+	exponential : function( x, l ) {
+		return x < 0 ? 0 : l * Math.exp( -l * x );
 	},
 
-	// probability a possion variable with parameter
-	poisson : function( l, x ) {
-		return Math.pow( l, x ) * Math.exp( -l ) / jstat.factorial( x );
+	// cumulative probability for exponential distribution
+	exponentialcdf : function( x, l ) {
+		return x < 0 ? 0 : 1 - Math.exp( -l * x );
 	},
 
-	// calculate cumulative poisson distribution cumulative probability with parameter
-	poissoncdf : function( l, x ) {
+	// poisson distribution
+	poisson : function( k, l ) {
+		return Math.pow( l, k ) * Math.exp( -l ) / jstat.factorial( k );
+	},
+
+	// cumulative probability for poisson distribution
+	poissoncdf : function( x, l ) {
 		var sum = 0,
 			k = 0;
 		if ( x < 0 ) return 0;
 		for ( ; k <= x; k++ ) {
-			sum += jstat.poisson( l, k );
-		};
-		return sum;
-	},
-
-	// calcualte sum of f(x) from a to b
-	sumFunc : function( a, b, func ) {
-		var sum = 0;
-		while ( a <= b ) {
-			sum += func( a++ );
+			sum += jstat.poisson( k, l );
 		};
 		return sum;
 	}
@@ -531,5 +565,4 @@ jstat.extend({
 // exposing jstat
 return jstat;
 
-// passing this for Node.js modules compatibility
 })( Math );
