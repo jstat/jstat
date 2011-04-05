@@ -149,7 +149,7 @@ jstat.fn.extend({
 
 	// add a vector or scalar to the vector
 	add : function( k ) {
-		if( isObject( k ) ) {
+		if( isNaN( k ) ) {
 			// unsupported operation
 		} else {
 			return this.map( function ( value ) { return value + k; } );
@@ -158,7 +158,7 @@ jstat.fn.extend({
 
 	// matrix division
 	divide : function( k ) {
-		if( isObject( k ) ) {
+		if( isNaN( k ) ) {
 			// unsupported operation
 		} else {
 			return this.map( function ( value ) { return value / k; } );
@@ -168,12 +168,12 @@ jstat.fn.extend({
 	// matrix multiplication
 	multiply : function( k ) {
 		var row,col,nrescols,nrow=this.rows(),ncol = this.cols(), sum = 0,
-		res = jstat.zeros(nrow, nrescols = ( isArray( k ) ) ? k.cols() : ncol),
+		res = jstat.zeros(nrow, nrescols = ( isNaN( k ) ) ? k.cols() : ncol),
 		rescols = 0;
 
 		res = res[0];
-		if( isObject(k) ) {
-			for( rescols = 0; rescols < nrescols; rescols++ ) {
+		if( isNaN(k) ) {
+			for( ; rescols < nrescols; rescols++ ) {
 				for( row = 0; row < nrow; row++ ) {
 					// TODO: is there a better way to initialise the array
 					sum = 0;
@@ -192,7 +192,7 @@ jstat.fn.extend({
 
 	// subtract a vector or scalar from the vector
 	subtract : function( k ) {
-		if( isObject( k ) ) {
+		if( isNaN( k ) ) {
 			// unsupported operation
 		} else {
 			return this.map( function ( value ) { return value + k; } );
@@ -216,7 +216,8 @@ jstat.fn.extend({
 
 	// computes the norm of the vector
 	norm : function() {
-
+		var dot = this.multiply(this.transpose());
+		return Math.sqrt(dot[0]);
 	},
 
 	// computes the angle between two vectors
