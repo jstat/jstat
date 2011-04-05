@@ -226,6 +226,7 @@ jstat.fn.extend({
 		return Math.sqrt(dot);
 	},
 
+	// BUG: Does not work in all cases
 	// computes the angle between two vectors
 	angle : function( k ) {
 		var theta = Math.acos(this.multiply( k ) / (this.norm() * k.norm()));
