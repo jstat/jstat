@@ -318,7 +318,11 @@ jstat.fn.extend({
 	// BUG: Does not work in all cases
 	// computes the angle between two vectors
 	angle : function( k ) {
-		return Math.acos( this.dot( k ) / ( this.norm() * k.norm() ) );
+		var  col = 0, ncol = this.cols(), res = [ncol], tNorm = this.norm(), kNorm = k.norm();
+		for( ; col < ncol; col++ ) {
+			res[col] = Math.acos( this.col( col ).dot( k.col( col ) ) / ( tNorm * kNorm ) );
+		}
+		return jstat( res );
 	},
 
 	// Returns the number of rows in the matrix
@@ -384,6 +388,11 @@ jstat.extend({
 	// Creates a rows x cols matrix of uniformly random numbers
 	rand: function( rows, cols ) {
 		return jstat.create( rows, cols, function() { return Math.random(); } );
+	},
+
+	// Creates an identity matrix of size row x cols
+	identity : function( rows, cols ) {
+		return jstat.create( rows, cols, function( i, j ) { return ( i === j ) ? 1 : 0; } );
 	},
 
 	// creates a rows x cols matrix according to the supplied function
