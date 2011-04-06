@@ -63,8 +63,8 @@ $(function() {
 	});
 
 	test('gamma',function(){
-		equals(jstat.gamma(.5),1.7724538509055165,'gamma(.5)');
-		equals(jstat.gamma(15),87178291200,'gamma(5)');
+		equals(jstat.gammafn(.5),1.7724538509055165,'gamma(.5)');
+		equals(jstat.gammafn(15),87178291200,'gamma(5)');
 	});
 
 	module('distribution');
