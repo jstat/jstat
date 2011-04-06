@@ -896,7 +896,16 @@ jstat.extend({
 		},
 
 		mean : function( shape, scale ) {
+			return shape * scale;
+		},
 
+		mode : function( shape, scale ) {
+			if( shape > 1 ) return ( k - 1 ) * scale;
+			return undefined;
+		},
+
+		variance: function( shape, scale ) {
+			return shape * scale * scale;
 		}
 	},
 
