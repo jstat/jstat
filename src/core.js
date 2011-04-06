@@ -502,9 +502,9 @@ jstat.extend({
 
 	// statistical distribution calculations //
 
+	// beta distribution
 	beta : {
 
-		// beta distribution
 		pdf : function( x, alpha, beta ) {
 			return jstat.gamma( alpha + beta ) / ( jstat.gamma( alpha ) * jstat.gamma( beta )) * Math.pow( x, alpha - 1 ) * Math.pow( 1 - x, beta - 1 );
 		},
@@ -549,23 +549,29 @@ jstat.extend({
 	},
 
 	// cauchy distribution
-	cauchy : function( x, xn, l ) {
-		return ( l / ( Math.pow( x - xn, 2) + Math.pow( l, 2 ))) / Math.PI;
-	},
+	cauchy : {
 
-	// cumulative probability for cauchy distribution
-	cauchycdf : function( x, xn, l ) {
-		return Math.atan(( x - xn) / l ) / Math.PI + 0.5;
+		pdf : function( x, xn, l ) {
+			return ( l / ( Math.pow( x - xn, 2) + Math.pow( l, 2 ))) / Math.PI;
+		},
+
+		// cumulative probability for cauchy distribution
+		cdf : function( x, xn, l ) {
+			return Math.atan(( x - xn) / l ) / Math.PI + 0.5;
+		}
 	},
 
 	// chi-square distribution
-	chisquare : function( x, k ) {
-		return (Math.pow( x, k / 2 - 1) * Math.exp( -x / 2 )) / ( Math.pow( 2, k / 2) * jstat.gamma( k / 2 ));
-	},
+	chisquare : {
+		
+		pdf : function( x, k ) {
+			return (Math.pow( x, k / 2 - 1) * Math.exp( -x / 2 )) / ( Math.pow( 2, k / 2) * jstat.gamma( k / 2 ));
+		},
 
-	// cumulative uniform distribution
-	chisquarecdf : function( x, k ) {
-		return jstat.lgamma( x / 2, k / 2 ) / jstat.gamma( k / 2 );
+		// cumulative uniform distribution
+		cdf : function( x, k ) {
+			return jstat.lgamma( x / 2, k / 2 ) / jstat.gamma( k / 2 );
+		}
 	},
 
 	// uniform distribution
