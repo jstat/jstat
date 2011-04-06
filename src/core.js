@@ -892,7 +892,7 @@ jstat.extend({
 		},
 
 		cdf : function( x, shape, scale ) {
-			return  jstat.gammap( x / scale, shape );
+			return jstat.gammap( x / scale, shape );
 		},
 
 		mean : function( shape, scale ) {
@@ -906,6 +906,32 @@ jstat.extend({
 
 		variance: function( shape, scale ) {
 			return shape * scale * scale;
+		}
+	},
+
+	lognormal : {
+		pdf : function( x, mu, sigma ) {
+			return ( 1 / ( x * sigma * Math.sqrt( 2 * Math.PI ) ) ) * Math.exp( -Math.pow( Math.log( x ) - mu, 2) / ( 2 * sigma*sigma ) );
+		},
+
+		cdf : function( x, mu, sigma ) {
+			return 0.5 + ( 0.5 * jstat.erf( ( Math.log( x ) - mu ) / Math.sqrt( 2 * sigma*sigma ) ) );
+		},
+
+		mean : function( mu, sigma ) {
+			return Math.exp( mu + sigma*sigma / 2);
+		},
+
+		median : function( mu, sigma ) {
+			return Math.exp(mu);
+		},
+
+		mode : function( mu, sigma ) {
+			return Math.exp( mu - sigma*sigma );
+		},
+
+		variance : function( mu, sigma ) {
+			return ( Math.exp( sigma*sigma ) - 1 ) * Math.exp( 2 * mu + sigma*sigma );
 		}
 	},
 
