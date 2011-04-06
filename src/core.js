@@ -148,7 +148,7 @@ jstat.fn.extend({
 		for( ; row < nrow; row ++) {
 			res[row] = []
 			for( col = 0; col < ncol; col++ ) {
-				res[row][col] = func( this[row][col] );
+				res[row][col] = func( this[row][col], row, col );
 			}
 		}
 		return jstat(res);
@@ -159,7 +159,7 @@ jstat.fn.extend({
 		var row = 0, nrow = this.rows(), col, ncol = this.cols();
 		for( ; row < nrow; row ++) {
 			for( col = 0; col < ncol; col++ ) {
-				this[row][col] = func( this[row][col] );
+				this[row][col] = func( this[row][col], row, col );
 			}
 		}
 		return this;
@@ -168,12 +168,13 @@ jstat.fn.extend({
 	// add a vector or scalar to the vector
 	add : function( k ) {
 		if( isNaN( k ) ) {
-			// unsupported operation
+			return this.map( function( value, row, col ) { return value + k[row][col] })
 		} else {
 			return this.map( function ( value ) { return value + k; } );
 		}
 	},
 
+	// TODO: Implement matrix division
 	// matrix division
 	divide : function( k ) {
 		if( isNaN( k ) ) {
@@ -189,11 +190,9 @@ jstat.fn.extend({
 		res = jstat.zeros(nrow, nrescols = ( isNaN( k ) ) ? k.cols() : ncol),
 		rescols = 0;
 
-		res = res[0];
 		if( isNaN(k) ) {
 			for( ; rescols < nrescols; rescols++ ) {
 				for( row = 0; row < nrow; row++ ) {
-					// TODO: is there a better way to initialise the array
 					sum = 0;
 					for( col = 0; col < ncol; col++ ) {
 						sum += this[row][col] * k[col][rescols];
@@ -201,7 +200,7 @@ jstat.fn.extend({
 					res[row][rescols] = sum;
 				}
 			}
-			return ( nrow == 1 && rescols == 1 ) ? res[0] : jstat( res );
+			return ( nrow == 1 && rescols == 1 ) ? res[0][0] : res;
 		} else {
 			return this.map( function ( value ) { return value * k; } );
 		}
@@ -211,10 +210,28 @@ jstat.fn.extend({
 	// subtract a vector or scalar from the vector
 	subtract : function( k ) {
 		if( isNaN( k ) ) {
-			// unsupported operation
+			return this.map( function( value, row, col ) { return value - k[row][col] })
 		} else {
-			return this.map( function ( value ) { return value + k; } );
+			return this.map( function ( value ) { return value - k; } );
 		}
+	},
+
+	// Returns the dot product of two matricies
+	dot : function( k ) {
+		// convert column to row vector
+		var left = ( this.cols() === 1 && this.rows() !== 1 ) ? this.transpose() : this,
+			right = ( k.cols() === 1 && k.rows() !== 1 ) ? k.transpose() : k,
+			sum, res = [], row = 0, col, nrow = left.rows(), ncol = left.cols();
+		
+		for( ; row < nrow; row++ ) {
+			res[row] = [];
+			sum = 0;
+			for( col = 0; col < ncol; col++ ) {
+				sum += left[row][col] * right[row][col];
+			}
+			res[row] = sum;
+		}
+		return ( res.length === 1 ) ? res[0] : jstat(res);
 	},
 
 	// raise every element by a scalar or vector
@@ -229,41 +246,121 @@ jstat.fn.extend({
 
 	// set all values to zero
 	clear : function() {
-		return this.apply( function( value ) { return 0; } );
+		return this.apply( function() { return 0; } );
 	},
 
-	// TODO: implement for matrices
+	// Returns the dimensions of the object { rows: i, cols: j }
+	dimensions : function() {
+		return { rows: this.rows(), cols: this.cols() };
+	},
+
+	// Returns the largest value of the matrix
+	max : function() {
+		var row = 0, nrow = this.rows(), max = -Infinity, tMax;
+		for( ; row < nrow; row++ ) {
+			tMax = jstat.max( this[row] )
+			if( tMax > max ) max = tMax;
+		}
+		return max;
+	},
+
+	// Returns the smallest value of the matrix
+	min : function() {
+		var row = 0, nrow = this.rows(), min = Infinity, tMin;
+		for( ; row < nrow; row++ ) {
+			tMin = jstat.min( this[row] )
+			if( tMin < min ) min = tMin;
+		}
+		return min;
+	},
+
+	// Returns the sum of each column in the matrix
+	sum : function() {
+		var  col = 0, ncol = this.cols(), res = [ncol];
+		for( ; col < ncol; col++ ) {
+			res[col] = +jstat.sum( this.col(col) )
+		}
+		return jstat( res );
+	},
+
+	// Returns the mean of each column in the matrix
+	mean : function() {
+		var  col = 0, ncol = this.cols(), res = [ncol];
+		for( ; col < ncol; col++ ) {
+			res[col] = +jstat.mean( this.col(col) )
+		}
+		return jstat( res );
+	},
+
+	// Returns the standard deviation of each column in the matrix
+	std : function() {
+		var  col = 0, ncol = this.cols(), res = [ncol];
+		for( ; col < ncol; col++ ) {
+			res[col] = +jstat.stdev( this.col(col) )
+		}
+		return jstat( res );
+	},
+
+	// Returns the variance of each column in the matrix
+	variance : function() {
+		var  col = 0, ncol = this.cols(), res = [ncol];
+		for( ; col < ncol; col++ ) {
+			res[col] = +jstat.variance( this.col(col) )
+		}
+		return jstat( res );
+	},
+
 	// computes the norm of the vector
 	norm : function() {
-		var dot = ( this.length > 1 ) ? this.transpose().multiply( this ) : this.multiply( this.transpose() );
-		return Math.sqrt(dot);
+		return Math.sqrt( this.dot( this ) );
 	},
 
 	// BUG: Does not work in all cases
 	// computes the angle between two vectors
 	angle : function( k ) {
-		var theta = Math.acos(this.multiply( k ) / (this.norm() * k.norm()));
-		return theta;
+		return Math.acos( this.dot( k ) / ( this.norm() * k.norm() ) );
 	},
 
+	// Returns the number of rows in the matrix
 	rows: function() {
 		return this.length || 1;
 	},
 
+	// Returns the number of columns in the matrix
 	cols: function() {
 		return this[0].length || 1;
 	},
 
+	// Returns a specified row as a vector
 	row: function( index ) {
 	    return jstat( this[index] );
 	},
 
+	// Returns the specified column as a vector
 	col: function( index ) {
 	    var column = [], i = 0;
 	    for( ; i < this.length; i ++) {
 		column[i] = [this[i][index]];
 	    }
 	    return jstat(column);
+	},
+
+	// Returns the diagonal of the matrix
+	diag : function() {
+		var row = 0, nrow = this.rows(), res = [];
+		for( ; row < nrow; row ++ ) {
+			res[row] = [this[row][row]];
+		}
+		return jstat( res );
+	},
+
+	// Returns the anti-diagonal of the matrix
+	antidiag : function() {
+		var nrow = this.rows()  -1, res = [], i = 0;
+		for( ; nrow >= 0; nrow--,i++ ) {
+			res[i] = [this[i][nrow]];
+		}
+		return jstat( res );
 	}
 });
 
@@ -282,6 +379,11 @@ jstat.extend({
 	// creates a rows x cols matrix of ones
 	ones: function( rows, cols ) {
 		return jstat.create( rows, cols, function() { return 1; } );
+	},
+
+	// Creates a rows x cols matrix of uniformly random numbers
+	rand: function( rows, cols ) {
+		return jstat.create( rows, cols, function() { return Math.random(); } );
 	},
 
 	// creates a rows x cols matrix according to the supplied function
@@ -366,7 +468,7 @@ jstat.extend({
 		var sum = 0,
 			i = arr.length;
 		while ( --i >= 0 ) {
-			sum += arr[i];
+			sum += +arr[i];
 		};
 		return sum;
 	},
