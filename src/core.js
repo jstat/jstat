@@ -116,7 +116,10 @@ jstat.fn.extend = function( obj ) {
 	})( funcs[i] );
 })( 'sum min max mean median mode range variance stdev meandev meddev quartiles'.split(' '));
 
-// private static methods //
+// error function
+function xerror() {
+	throw new Error( arguments.callee.caller );
+};
 
 // TODO: evaluate whether these functions should be public
 // Returns the incomplete gamma function Q(a,x) evaluated by its
