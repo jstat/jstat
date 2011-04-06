@@ -890,9 +890,13 @@ jstat.extend({
 		pdf : function( x, shape, scale ) {
 			return Math.pow( x, shape - 1 ) * ( Math.exp( -x / scale ) / ( jstat.gammafn( shape ) * Math.pow( scale, shape ) ) );
 		},
+
 		cdf : function( x, shape, scale ) {
-			var gamShape = jstat.gammafn( shape );
-			return ( jstat.gammap( x / scale, shape ) * gamShape ) / gamShape;
+			return  jstat.gammap( x / scale, shape );
+		},
+
+		mean : function( shape, scale ) {
+
 		}
 	},
 
