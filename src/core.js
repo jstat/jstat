@@ -587,6 +587,16 @@ jstat.extend({
 		}
 	},
 
+	// Returns the error function erf(x)
+	erf : function( x ) {
+		if( isNaN( x ) ) {
+			// run for all values in matrix
+			return x.map( function( value ) { return jstat.erf( value ) } );
+		}
+
+		return ( x < 0.0 ) ? -jstat.gammap( x*x, 0.5 ) : jstat.gammap( x*x, 0.5 );
+	},
+
 	// calcualte sum of f(x) from a to b
 	sumFunc : function( a, b, func ) {
 		var sum = 0;
