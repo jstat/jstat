@@ -764,6 +764,10 @@ jstat.extend({
 
 		mode : function( alpha, beta ) {
 			return ( alpha * beta ) / ( Math.pow( alpha + beta, 2 ) * ( alpha + beta + 1 ));
+		},
+
+		variance : function( alpha, beta ) {
+			return ( alpha * beta ) / ( Math.pow( alpha + beta, 2 ) * ( alpha + beta + 1 ) );
 		}
 	},
 
