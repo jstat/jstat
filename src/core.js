@@ -116,6 +116,63 @@ jstat.fn.extend = function( obj ) {
 	})( funcs[i] );
 })( 'sum min max mean median mode range variance stdev meandev meddev quartiles'.split(' '));
 
+// private static methods //
+
+// TODO: evaluate whether these functions should be public
+// Returns the incomplete gamma function Q(a,x) evaluated by its
+// continued fraction representation as gammacf
+function gcf( x, a, gln ) {
+	var i = 1, an, b, c, d, del, h, gln, fpmin = 1e-30;
+
+	gln = jstat.gammaln( a );
+	b = x + 1 - a;
+	c = 1 / fpmin;
+	d = 1 / b;
+	h = d;
+	for( ; i <= 100; i++ ) {
+		an = -i * ( i - a );
+		b += 2;
+		d = an * d + b;
+		if( Math.abs( d ) < fpmin ) d = fpmin;
+
+		c = b + an / c;
+
+		if( Math.abs( c ) < fpmin ) c = fpmin;
+
+		d = 1 / d;
+		del = d * c;
+		h *= del
+
+		if( Math.abs( del - 1 ) < 3e-7 ) break;
+	}
+	return Math.exp( -x + a * Math.log( x ) - ( gln ) ) * h;
+};
+
+// Returns the incomplete gamma function P(a,x) evaluated by its
+// series representation as gamser
+function gser( x, a, gln ) {
+	var n = 1, sum, del, ap, gln;
+
+	gln = jstat.gammaln( a );
+
+	if( x <= 0 ) {
+		return 0;
+	} else {
+		ap = a;
+		del = sum = 1 / a;
+		// TODO: replace 100 with constant
+		for ( ; n <= 100; n++ ) {
+			++ap;
+			del *= x / ap;
+			sum += del;
+			if( Math.abs( del ) < Math.abs( sum ) * 3.0e-7 ) {
+				return sum * Math.exp( -x + a * Math.log( x ) - ( gln ));
+			}
+		}
+		return;
+	}
+}
+
 // extend jstat.fn
 jstat.fn.extend({
 
@@ -518,63 +575,11 @@ jstat.extend({
 			// run for all values in matrix
 			return x.map( function( value ) { return jstat.gammap( value, a ) } );
 		}
+		
+		gln = jstat.gammaln( a );
+		gammcf = gcf( x, a, gln );
+		gamser = gser( x, a, gln );
 
-		// TODO: evaluate whether these functions should be public
-		// Returns the incomplete gamma function Q(a,x) evaluated by its
-		// continued fraction representation as gammacf
-		function gcf( x, a ) {
-			var i = 1, an, b, c, d, del, h, fpmin = 1e-30;
-
-			gln = jstat.gammaln( a );
-			b = x + 1 - a;
-			c = 1 / fpmin;
-			d = 1 / b;
-			h = d;
-			for( ; i <= 100; i++ ) {
-				an = -i * ( i - a );
-				b += 2;
-				d = an * d + b;
-				if( Math.abs( d ) < fpmin ) d = fpmin;
-
-				c = b + an / c;
-
-				if( Math.abs( c ) < fpmin ) c = fpmin;
-
-				d = 1 / d;
-				del = d * c;
-				h *= del
-
-				if( Math.abs( del - 1 ) < 3e-7 ) break;
-			}
-			gammcf = Math.exp( -x + a * Math.log( x ) - ( gln ) ) * h;
-		}
-
-		// Returns the incomplete gamma function P(a,x) evaluated by its
-		// series representation as gamser
-		function gser( x, a ) {
-			var n = 1, sum, del, ap;
-
-			gln = jstat.gammaln( a );
-
-			if( x <= 0 ) {
-				gamser = 0;
-				return;
-			} else {
-				ap = a;
-				del = sum = 1 / a;
-				// TODO: replace 100 with constant
-				for ( ; n <= 100; n++ ) {
-					++ap;
-					del *= x / ap;
-					sum += del;
-					if( Math.abs( del ) < Math.abs( sum ) * 3.0e-7 ) {
-						gamser = sum * Math.exp( -x + a * Math.log( x ) - ( gln ));
-						return;
-					}
-				}
-				return;
-			}
-		}
 		
 		if( x < ( a + 1 ) ) {
 			// use series representation
@@ -821,14 +826,11 @@ jstat.extend({
 
 	// statistical distribution calculations //
 
-	// beta distribution
 	beta : {
-
 		pdf : function( x, alpha, beta ) {
 			return jstat.gammafn( alpha + beta ) / ( jstat.gammafn( alpha ) * jstat.gammafn( beta )) * Math.pow( x, alpha - 1 ) * Math.pow( 1 - x, beta - 1 );
 		},
 
-		// cumulative beta distribution
 		cdf : function( x, alpha, beta ) {
 			return jstat.incompleteBeta( x, alpha, beta );
 		},
@@ -850,27 +852,21 @@ jstat.extend({
 		}
 	},
 
-	// cauchy distribution
 	cauchy : {
-
 		pdf : function( x, xn, l ) {
 			return ( l / ( Math.pow( x - xn, 2) + Math.pow( l, 2 ))) / Math.PI;
 		},
 
-		// cumulative probability for cauchy distribution
 		cdf : function( x, xn, l ) {
 			return Math.atan(( x - xn) / l ) / Math.PI + 0.5;
 		}
 	},
 
-	// chi-square distribution
 	chisquare : {
-		
 		pdf : function( x, k ) {
 			return (Math.pow( x, k / 2 - 1) * Math.exp( -x / 2 )) / ( Math.pow( 2, k / 2) * jstat.gammafn( k / 2 ));
 		},
 
-		// cumulative uniform distribution
 		cdf : function( x, k ) {
 			return jstat.lgamma( x / 2, k / 2 ) / jstat.gammafn( k / 2 );
 		}
@@ -951,7 +947,6 @@ jstat.extend({
 		}
 	},
 
-	// Normal distribution
 	normal : {
 		pdf : function( x, mean, std ) {
 			return ( 1 / ( Math.sqrt( 2 * Math.PI * std * std))) * Math.exp( -( Math.pow( x - mean, 2 ) / 2 * std * std ) );
@@ -996,126 +991,128 @@ jstat.extend({
 		},
 
 		mode : function( scale, shape ) {
-			return ( shape > 1 ) ? scale * Math.pow( ( shape - 1 ) / shape, 1 / shape ) : undefined;
+			return ( shape > 1 ) ? scale * Math.pow(( shape - 1 ) / shape, 1 / shape ) : undefined;
 		},
 
 		variance : function( scale, shape ) {
-			return scale*scale * jstat.gammafn( 1 + 2 / shape) - Math.pow( this.mean( scale, shape ), 2 );
+			return scale * scale * jstat.gammafn( 1 + 2 / shape ) - Math.pow( this.mean( scale, shape ), 2 );
 		}
 	},
-	// uniform distribution
-	uniform : function( x, a, b ) {
-		return ( x < a || x > b ) ? 0 : 1 / ( b - a );
+
+	uniform : {
+		pdf : function( x, a, b ) {
+			return ( x < a || x > b ) ? 0 : 1 / ( b - a );
+		},
+
+		cdf : function( x, a, b ) {
+			if ( x < a ) {
+				return 0;
+			} else if ( x < b ) {
+				return ( x - a ) / ( b - a );
+			};
+			return 1;
+		}
 	},
 
 	// uniform distribution in terms of mean and standard dev
-	uniformmv : function( x, m, s ) {
-		var sqrtt = Math.sqrt( -3 );
-		return ( -s * sqrtt <= x - m || x - m <= s * sqrtt )
-			? 1 / ( 2 * s * sqrtt )
-		: 0;
+	uniformmv : {
+		pdf : function( x, m, s ) {
+			var sqrtt = Math.sqrt( -3 );
+			return ( -s * sqrtt <= x - m || x - m <= s * sqrtt )
+				? 1 / ( 2 * s * sqrtt )
+			: 0;
+		},
+
+		cdf : function( x, m, s ) {
+			var sqrtt = Math.sqrt( -3 );
+			return ( x - m < -s * sqrtt )
+				? 0
+			: ( x - m >= s * sqrtt )
+				? 1
+			: 0.5 * (( x - m ) / ( s * sqrtt ) + 1 );
+		}
 	},
 
-	// cumulative uniform distribution
-	uniformcdf : function( x, a, b ) {
-		if ( x < a ) {
-			return 0;
-		} else if ( x < b ) {
-			return ( x - a ) / ( b - a );
-		};
-		return 1;
-	},
+	binomial : {
+		pdf : function( k, n, p ) {
+			return jstat.combination( n, k ) * Math.pow( p, k ) * Math.pow( 1 - p, n - k );
+		},
 
-	// cumulative uniform distribution in terms of mean and standard dev
-	uniformdcdfmv : function( x, m, s ) {
-		var sqrtt = Math.sqrt( -3 );
-		return ( x - m < -s * sqrtt )
-			? 0
-		: ( x - m >= s * sqrtt )
-			? 1
-		: 0.5 * (( x - m ) / ( s * sqrtt ) + 1 );
-	},
-
-	// binomial distribution - probability mass
-	binomial : function( k, n, p ) {
-		return jstat.combination( n, k ) * Math.pow( p, k ) * Math.pow( 1 - p, n - k );
-	},
-
-	// cumulative binomial distribution
-	binomialcdf : function( x, n, p ) {
-		var binomarr = [],
-			k = 0,
-			i = 0,
-			sum = 0;
-		if ( x < 0 ) {
-			return 0;
-		};
-		if ( x < n ) {
-			for ( ; k < n; k++ ) {
-				binomarr[ k ] = jstat.binomial( k, n, p );
+		cdf : function( x, n, p ) {
+			var binomarr = [],
+				k = 0,
+				i = 0,
+				sum = 0;
+			if ( x < 0 ) {
+				return 0;
 			};
-			for ( ; i <= x; i++ ) {
-				sum += binomarr[ i ];
+			if ( x < n ) {
+				for ( ; k < n; k++ ) {
+					binomarr[ k ] = jstat.binomial( k, n, p );
+				};
+				for ( ; i <= x; i++ ) {
+					sum += binomarr[ i ];
+				};
+				return sum;
+			};
+			return 1;
+		}
+	},
+
+	negbin : {
+		pdf : function( k, r, p ) {
+			return k !== Math.floor( k )
+				? false
+			: k < 0
+				? 0
+			: jstat.combination( k + r - 1, k ) * Math.pow( 1 - p, r ) * Math.pow( p, k );
+		},
+
+		cdf : function( x, r, p ) {
+			var sum = 0,
+				k = 0;
+			if ( x < 0 ) return 0;
+			for ( ; k <= x; k++ ) {
+				sum += jstat.negbin( k, r, p );
 			};
 			return sum;
-		};
-		return 1;
+		}
 	},
 
-	// negative binomial distribution
-	negbin : function( k, r, p ) {
-		return k !== Math.floor( k )
-			? false
-		: k < 0
-			? 0
-		: jstat.combination( k + r - 1, k ) * Math.pow( 1 - p, r ) * Math.pow( p, k );
+	hypgeom : {
+		pdf : function( k, N, m, n ) {
+			return x !== Math.floor( x )
+				? false
+			: ( x < 0)
+				? 0
+			: jstat.combination( m, k ) * jstat.combination( N - m , n - k ) / jstat.combination( N, n );
+		},
+
+		cdf : function( x, N, m, n ) {
+			var sum = 0,
+				k = 0;
+			if ( x < 0 ) return 0;
+			for ( ; k <= x; k++ ) {
+				sum += jstat.hypgeom( k, N, m, n );
+			};
+			return sum;
+		}
 	},
 
-	// cumulative probability for negative binomial distribution
-	negbincdf : function( x, r, p ) {
-		var sum = 0,
-			k = 0;
-		if ( x < 0 ) return 0;
-		for ( ; k <= x; k++ ) {
-			sum += jstat.negbin( k, r, p );
-		};
-		return sum;
-	},
+	poisson : {
+		pdf : function( k, l ) {
+			return Math.pow( l, k ) * Math.exp( -l ) / jstat.factorial( k );
+		},
 
-	// hypogeometric distribution
-	hypgeom : function( k, N, m, n ) {
-		return x !== Math.floor( x )
-			? false
-		: ( x < 0)
-			? 0
-		: jstat.combination( m, k ) * jstat.combination( N - m , n - k ) / jstat.combination( N, n );
-	},
-
-	// cumulative probability for hypogeometric distribution
-	hypgeomcdf : function( x, N, m, n ) {
-		var sum = 0,
-			k = 0;
-		if ( x < 0 ) return 0;
-		for ( ; k <= x; k++ ) {
-			sum += jstat.hypgeom( k, N, m, n );
-		};
-		return sum;
-	},
-
-	// poisson distribution
-	poisson : function( k, l ) {
-		return Math.pow( l, k ) * Math.exp( -l ) / jstat.factorial( k );
-	},
-
-	// cumulative probability for poisson distribution
-	poissoncdf : function( x, l ) {
-		var sum = 0,
-			k = 0;
-		if ( x < 0 ) return 0;
-		for ( ; k <= x; k++ ) {
-			sum += jstat.poisson( k, l );
-		};
-		return sum;
+		cdf : function( x, l ) {
+			var sum = 0,
+				k = 0;
+			if ( x < 0 ) return 0;
+			for ( ; k <= x; k++ ) {
+				sum += jstat.poisson( k, l );
+			};
+			return sum;
+		}
 	}
 });
 

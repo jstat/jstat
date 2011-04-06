@@ -82,21 +82,21 @@ $(function() {
 	});
 
 	test('uniformcdf',function(){
-		equals(jstat.uniformcdf(0.5, 0, 2),0.25,'uniformcdf(0, 2, 0.5)');
+		equals(jstat.uniform.cdf(0.5, 0, 2),0.25,'uniform.cdf(0, 2, 0.5)');
 	});
 
 	test('binomial',function(){
-		equals(jstat.binomial(2, 5, 0.5),0.3125,'binomial(5, 1/2, 2)');
+		equals(jstat.binomial.pdf(2, 5, 0.5),0.3125,'binomial.pdf(5, 1/2, 2)');
 	});
 
 	test('weibull',function(){
-		equals(jstat.weibull(1,1,1),0.36787944117144233,'weibull(1,1,1)');
-		equals(jstat.weibull(2,1,2),0.18393972058572117,'weibull(2,1,2)');
+		equals(jstat.weibull.pdf(1,1,1),0.36787944117144233,'weibull(1,1,1)');
+		equals(jstat.weibull.pdf(2,1,2),0.18393972058572117,'weibull(2,1,2)');
 	});
 
 	test('weibullcdf',function(){
-		equals(jstat.weibullcdf(1,1,1),0.6321205588285577,'weibullcdf(1,1,1)');
-		equals(jstat.weibullcdf(2,1,2),0.6321205588285577,'weibullcdf(2,1,2)');
+		equals(jstat.weibull.cdf(1,1,1),0.6321205588285577,'weibull.cdf(1,1,1)');
+		equals(jstat.weibull.cdf(2,1,2),0.6321205588285577,'weibull.cdf(2,1,2)');
 	});
 
 	module('vector');
