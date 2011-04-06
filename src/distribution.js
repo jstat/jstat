@@ -158,7 +158,7 @@ j$.extend( jDist, {
 		},
 
 		cdf : function( x, scale, shape ) {
-			return x < 0 ? 0 : 1 - Math.exp( Math.pow(-( x / scale ), shape ));
+			return x < 0 ? 0 : 1 - Math.exp( -Math.pow(( x / scale ), shape ));
 		},
 
 		mean : function( scale, shape ) {
