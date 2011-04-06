@@ -1,4 +1,4 @@
-(function(jstat) {
+(function(jStat) {
 
 // utility functions
 var slice = Array.prototype.slice;
@@ -227,7 +227,7 @@ Vector.prototype = {
 
 	// Returns the transpose of the vector (as a 1 row Matrix)
 	transpose : function() {
-		return jstat.Matrix(this, true, 1);
+		return jStat.Matrix(this, true, 1);
 	},
 
 	// Returns a string representation of the vector
@@ -259,6 +259,6 @@ Vector.ones = function(num) {
 	return Vector.fill(1, num);
 }
 
-jstat.Vector = Vector;
+jStat.Vector = Vector;
 
-})(this.jstat || this);
+})(this.jStat || this);

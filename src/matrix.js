@@ -1,4 +1,4 @@
-(function(jstat) {
+(function(jStat) {
 	// Constructor
 	function Matrix(vector, byrow, nrow) {
 		if (!(this instanceof Matrix)) return new Matrix(vector, byrow, nrow);
@@ -6,7 +6,7 @@
 		if(byrow === undefined) byrow = false;  // default behaviour is column major
 		//
 		// Construct from a vector
-		if(vector instanceof jstat.Vector) {
+		if(vector instanceof jStat.Vector) {
 			if(nrow === undefined) nrow = Math.sqrt(vector.length()); // try to infer number of cols
 			if(nrow !== Math.floor(nrow)) {
 				// not square
@@ -87,7 +87,7 @@
 					} while (--nj);
 				} while (--ni);
 				return new Matrix(elements);
-			} else if(k instanceof jstat.Vector) {
+			} else if(k instanceof jStat.Vector) {
 				// Vector x Matrix multiplication
 				res = [];
 				for(i = 0; i < nrow; i++) {
@@ -149,7 +149,7 @@
 			if (i > this._data.length) {
 				return null;
 			}
-			return new jstat.Vector(this._data[i-1]);
+			return new jStat.Vector(this._data[i-1]);
 		},
 
 		// Returns column k of the matrix as a vector
@@ -162,11 +162,11 @@
 				i = k - n;
 				col.push(this._data[i][j-1]);
 			} while (--n);
-			return new jstat.Vector(col);
+			return new jStat.Vector(col);
 		}
 
 	};
 
-jstat.Matrix = Matrix;
+jStat.Matrix = Matrix;
 
-})(this.jstat || this);
+})(this.jStat || this);

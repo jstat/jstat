@@ -3,11 +3,11 @@
  * Copyright (c) 2011
  * This document is licensed as free software under the terms of the
  * MIT License: http://www.opensource.org/licenses/mit-license.php */
-this.jstat = (function( Math, undefined ) {
+this.j$ = this.jStat = (function( Math, undefined ) {
 
 // global function
-var jstat = function() {
-		return new jstat.fn.init( slice.call( arguments ));
+var jStat = function() {
+		return new jStat.fn.init( slice.call( arguments ));
 	},
 
 	// for quick reference
@@ -40,8 +40,8 @@ var jstat = function() {
 		}, 10 );
 	};
 
-jstat.fn = jstat.prototype = {
-	constructor : jstat,
+jStat.fn = jStat.prototype = {
+	constructor : jStat,
 	init : function( args ) {
 		// if first argument is an array, must be vector or matrix
 		if ( isArray( args[0] )) {
@@ -54,7 +54,7 @@ jstat.fn = jstat.prototype = {
 			};
 		// if first argument is number, assume creation of sequence
 		} else if ( !isNaN( args[0] )) {
-			this.push( jstat.seq.apply( this, args ));
+			this.push( jStat.seq.apply( this, args ));
 		};
 		return this;
 	},
@@ -72,15 +72,15 @@ jstat.fn = jstat.prototype = {
 	sort : [].sort,
 	splice : [].splice
 };
-jstat.fn.init.prototype = jstat.fn;
+jStat.fn.init.prototype = jStat.fn;
 
 // TODO: there's got to be an easy way to combine these two
 // create method for easy extension
-jstat.extend = function( obj ) {
+jStat.extend = function( obj ) {
 	var args = slice.call( arguments ), i = 1, j;
 	if ( args.length === 1 ) {
 		for ( var i in obj ) {
-			jstat[i] = obj[i];
+			jStat[i] = obj[i];
 		};
 		return this;
 	};
@@ -89,28 +89,28 @@ jstat.extend = function( obj ) {
 	};
 	return obj;
 };
-jstat.fn.extend = function( obj ) {
+jStat.fn.extend = function( obj ) {
 	for ( var i in obj ) {
-		jstat.fn[i] = obj[i];
+		jStat.fn[i] = obj[i];
 	};
 	return this;
 };
 
-// extend jstat.fn with single single parameter static methods
+// extend jStat.fn with single single parameter static methods
 (function( funcs ) {
 	for ( var i = 0; i < funcs.length; i++ ) (function( passfunc ) {
-		jstat.fn[ passfunc ] = function( func ) {
+		jStat.fn[ passfunc ] = function( func ) {
 			var arr = [], j = 0;
 			if ( isFunction( func )) {
 				for ( ; j < this.length; j++ ) {
-					callLater( func, jstat( this[j] ), [ jstat[ passfunc ]( this[j][0] )]);
+					callLater( func, jStat( this[j] ), [ jStat[ passfunc ]( this[j][0] )]);
 				};
 				return this;
 			} else {
 				for ( ; j < this.length; j++ ) {
-					arr.push( jstat[ passfunc ]( this[j][0] ));
+					arr.push( jStat[ passfunc ]( this[j][0] ));
 				};
-				return arr.length === 1 && !isArray( arr[0] ) ? arr[0] : jstat( arr );
+				return arr.length === 1 && !isArray( arr[0] ) ? arr[0] : jStat( arr );
 			};
 		};
 	})( funcs[i] );
@@ -127,7 +127,7 @@ function xerror() {
 function gcf( x, a, gln ) {
 	var i = 1, an, b, c, d, del, h, gln, fpmin = 1e-30;
 
-	gln = jstat.gammaln( a );
+	gln = jStat.gammaln( a );
 	b = x + 1 - a;
 	c = 1 / fpmin;
 	d = 1 / b;
@@ -156,7 +156,7 @@ function gcf( x, a, gln ) {
 function gser( x, a, gln ) {
 	var n = 1, sum, del, ap, gln;
 
-	gln = jstat.gammaln( a );
+	gln = jStat.gammaln( a );
 
 	if( x <= 0 ) {
 		return 0;
@@ -176,8 +176,8 @@ function gser( x, a, gln ) {
 	}
 }
 
-// extend jstat.fn
-jstat.fn.extend({
+// extend jStat.fn
+jStat.fn.extend({
 
 	// transpose a vector or matrix
 	transpose : function() {
@@ -195,7 +195,7 @@ jstat.fn.extend({
 				elements[i][j] = this[j][i];
 			} while (--nj);
 		} while (--ni);
-		return jstat( elements );
+		return jStat( elements );
 	},
 
 	// map one matrix to another
@@ -211,7 +211,7 @@ jstat.fn.extend({
 				res[row][col] = func( this[row][col], row, col );
 			}
 		}
-		return jstat(res);
+		return jStat(res);
 	},
 
 	// apply a function to each element in the matrix
@@ -247,7 +247,7 @@ jstat.fn.extend({
 	// matrix multiplication
 	multiply : function( k ) {
 		var row,col,nrescols,nrow=this.rows(),ncol = this.cols(), sum = 0,
-		res = jstat.zeros(nrow, nrescols = ( isNaN( k ) ) ? k.cols() : ncol),
+		res = jStat.zeros(nrow, nrescols = ( isNaN( k ) ) ? k.cols() : ncol),
 		rescols = 0;
 
 		if( isNaN(k) ) {
@@ -291,7 +291,7 @@ jstat.fn.extend({
 			}
 			res[row] = sum;
 		}
-		return ( res.length === 1 ) ? res[0] : jstat(res);
+		return ( res.length === 1 ) ? res[0] : jStat(res);
 	},
 
 	// raise every element by a scalar or vector
@@ -318,7 +318,7 @@ jstat.fn.extend({
 	max : function() {
 		var row = 0, nrow = this.rows(), max = -Infinity, tMax;
 		for( ; row < nrow; row++ ) {
-			tMax = jstat.max( this[row] )
+			tMax = jStat.max( this[row] )
 			if( tMax > max ) max = tMax;
 		}
 		return max;
@@ -328,7 +328,7 @@ jstat.fn.extend({
 	min : function() {
 		var row = 0, nrow = this.rows(), min = Infinity, tMin;
 		for( ; row < nrow; row++ ) {
-			tMin = jstat.min( this[row] )
+			tMin = jStat.min( this[row] )
 			if( tMin < min ) min = tMin;
 		}
 		return min;
@@ -338,36 +338,36 @@ jstat.fn.extend({
 	sum : function() {
 		var  col = 0, ncol = this.cols(), res = [ncol];
 		for( ; col < ncol; col++ ) {
-			res[col] = +jstat.sum( this.col(col) )
+			res[col] = +jStat.sum( this.col(col) )
 		}
-		return jstat( res );
+		return jStat( res );
 	},
 
 	// Returns the mean of each column in the matrix
 	mean : function() {
 		var  col = 0, ncol = this.cols(), res = [ncol];
 		for( ; col < ncol; col++ ) {
-			res[col] = +jstat.mean( this.col(col) )
+			res[col] = +jStat.mean( this.col(col) )
 		}
-		return jstat( res );
+		return jStat( res );
 	},
 
 	// Returns the standard deviation of each column in the matrix
 	std : function() {
 		var  col = 0, ncol = this.cols(), res = [ncol];
 		for( ; col < ncol; col++ ) {
-			res[col] = +jstat.stdev( this.col(col) )
+			res[col] = +jStat.stdev( this.col(col) )
 		}
-		return jstat( res );
+		return jStat( res );
 	},
 
 	// Returns the variance of each column in the matrix
 	variance : function() {
 		var  col = 0, ncol = this.cols(), res = [ncol];
 		for( ; col < ncol; col++ ) {
-			res[col] = +jstat.variance( this.col(col) )
+			res[col] = +jStat.variance( this.col(col) )
 		}
-		return jstat( res );
+		return jStat( res );
 	},
 
 	// BUG: Does not work for matrices
@@ -411,7 +411,7 @@ jstat.fn.extend({
 
 	// Returns a specified row as a vector
 	row: function( index ) {
-	    return jstat( this[index] );
+	    return jStat( this[index] );
 	},
 
 	// Returns the specified column as a vector
@@ -420,7 +420,7 @@ jstat.fn.extend({
 	    for( ; i < this.length; i ++) {
 		column[i] = [this[i][index]];
 	    }
-	    return jstat(column);
+	    return jStat(column);
 	},
 
 	// Returns the diagonal of the matrix
@@ -429,7 +429,7 @@ jstat.fn.extend({
 		for( ; row < nrow; row ++ ) {
 			res[row] = [this[row][row]];
 		}
-		return jstat( res );
+		return jStat( res );
 	},
 
 	// Returns the anti-diagonal of the matrix
@@ -438,35 +438,35 @@ jstat.fn.extend({
 		for( ; nrow >= 0; nrow--,i++ ) {
 			res[i] = [this[i][nrow]];
 		}
-		return jstat( res );
+		return jStat( res );
 	}
 });
 
 
 // static methods //
 
-jstat.extend({
+jStat.extend({
 
 	// general mathematical calculations //
 
 	// creates a rows x cols matrix of zeros
 	zeros : function( rows, cols ) {
-		return jstat.create( rows, cols, function() { return 0; } );
+		return jStat.create( rows, cols, function() { return 0; } );
 	},
 
 	// creates a rows x cols matrix of ones
 	ones: function( rows, cols ) {
-		return jstat.create( rows, cols, function() { return 1; } );
+		return jStat.create( rows, cols, function() { return 1; } );
 	},
 
 	// Creates a rows x cols matrix of uniformly random numbers
 	rand: function( rows, cols ) {
-		return jstat.create( rows, cols, function() { return Math.random(); } );
+		return jStat.create( rows, cols, function() { return Math.random(); } );
 	},
 
 	// Creates an identity matrix of size row x cols
 	identity : function( rows, cols ) {
-		return jstat.create( rows, cols, function( i, j ) { return ( i === j ) ? 1 : 0; } );
+		return jStat.create( rows, cols, function( i, j ) { return ( i === j ) ? 1 : 0; } );
 	},
 
 	// creates a rows x cols matrix according to the supplied function
@@ -478,7 +478,7 @@ jstat.extend({
 				res[i][j] = func( i, j );
 			}
 		}
-		return jstat( res );
+		return jStat( res );
 	},
 
 	// generate sequence
@@ -487,14 +487,14 @@ jstat.extend({
 			step = ( max - min ) / ( length - 1 );
 		// TODO: replace toFixed value to user configurable parameter
 		for ( ; min <= max; min += step ) arr.push(+( func ? func.call( null, min ) : min ).toFixed(6));
-		return jstat( arr );
+		return jStat( arr );
 	},
 
 	// factorial of n
 	factorial : function( n ) {
 		var fval = 1;
 		if ( n < 0 ) return NaN;
-		if ( n != Math.floor( n ) ) return jstat.gammafn( n + 1 );
+		if ( n != Math.floor( n ) ) return jStat.gammafn( n + 1 );
 		for( ; n > 0; n-- ) {
 			fval *= n;
 		};
@@ -503,12 +503,12 @@ jstat.extend({
 
 	// combinations of n, m
 	combination : function( n, m ) {
-		return ( jstat.factorial( n ) / jstat.factorial( m ) ) / jstat.factorial( n - m );
+		return ( jStat.factorial( n ) / jStat.factorial( m ) ) / jStat.factorial( n - m );
 	},
 
 	// permutations of n, m
 	permutation : function( n, m ) {
-		return jstat.factorial( n ) / jstat.factorial( n - m );
+		return jStat.factorial( n ) / jStat.factorial( n - m );
 	},
 
 	// gamma of x
@@ -516,12 +516,12 @@ jstat.extend({
 
 		if( isNaN( x ) ) {
 			// run for all values in matrix
-			return x.map( function( value ) { return jstat.gammafn( value ) } );
+			return x.map( function( value ) { return jStat.gammafn( value ) } );
 		}
 
 		var v = 1,
 			w;
-		if ( x == Math.floor( x ) ) return jstat.factorial( x - 1 );
+		if ( x == Math.floor( x ) ) return jStat.factorial( x - 1 );
 		while ( x < 8 ) {
 			v *= x;
 			x++;
@@ -535,7 +535,7 @@ jstat.extend({
 
 		if( isNaN( x ) ) {
 			// run for all values in matrix
-			return x.map( function( value ) { return jstat.gammaln( value ) } );
+			return x.map( function( value ) { return jStat.gammaln( value ) } );
 		}
 
 		var xx, y, tmp, ser,j = 0,
@@ -556,7 +556,7 @@ jstat.extend({
 
 		if( isNaN( x ) ) {
 			// run for all values in matrix
-			return x.map( function( value ) { return jstat.lgamma( value, s, dt ) } );
+			return x.map( function( value ) { return jStat.lgamma( value, s, dt ) } );
 		}
 
 		dt = dt || 0.1;
@@ -576,10 +576,10 @@ jstat.extend({
 
 		if( isNaN( x ) ) {
 			// run for all values in matrix
-			return x.map( function( value ) { return jstat.gammap( value, a ) } );
+			return x.map( function( value ) { return jStat.gammap( value, a ) } );
 		}
 		
-		gln = jstat.gammaln( a );
+		gln = jStat.gammaln( a );
 		gammcf = gcf( x, a, gln );
 		gamser = gser( x, a, gln );
 
@@ -599,10 +599,10 @@ jstat.extend({
 	erf : function( x ) {
 		if( isNaN( x ) ) {
 			// run for all values in matrix
-			return x.map( function( value ) { return jstat.erf( value ) } );
+			return x.map( function( value ) { return jStat.erf( value ) } );
 		}
 
-		return ( x < 0.0 ) ? -jstat.gammap( x*x, 0.5 ) : jstat.gammap( x*x, 0.5 );
+		return ( x < 0.0 ) ? -jStat.gammap( x*x, 0.5 ) : jStat.gammap( x*x, 0.5 );
 	},
 
 
@@ -630,7 +630,7 @@ jstat.extend({
 
 	// mean value of an array
 	mean : function( arr ) {
-		return jstat.sum( arr ) / arr.length;
+		return jStat.sum( arr ) / arr.length;
 	},
 
 	// median of an array
@@ -685,7 +685,7 @@ jstat.extend({
 
 	// variance of an array
 	variance : function( arr ) {
-		var mean = jstat.mean( arr ),
+		var mean = jStat.mean( arr ),
 			stSum = 0,
 			i = arr.length - 1;
 		for( ; i >= 0; i-- ) {
@@ -696,13 +696,13 @@ jstat.extend({
 
 	// standard deviation of an array
 	stdev : function( arr ) {
-		return Math.sqrt( jstat.variance( arr ) );
+		return Math.sqrt( jStat.variance( arr ) );
 	},
 
 	// mean deviation (mean absolute deviation) of an array
 	meandev : function( arr ) {
 		var devSum = 0,
-			mean = jstat.mean( arr ),
+			mean = jStat.mean( arr ),
 			i = arr.length - 1;
 		for ( ; i >= 0; i-- ) {
 			devSum += Math.abs( arr[ i ] - mean );
@@ -713,7 +713,7 @@ jstat.extend({
 	// median deviation (median absolute deviation) of an array
 	meddev : function( arr ) {
 		var devSum = 0,
-			median = jstat.median( arr ),
+			median = jStat.median( arr ),
 			i = arr.length - 1;
 		for ( ; i >= 0; i-- ) {
 			devSum += Math.abs( arr[ i ] - median );
@@ -730,15 +730,15 @@ jstat.extend({
 
 	// covariance of two arrays
 	covariance : function( arr1, arr2 ) {
-		var u = jstat.mean( arr1 ),
-			v = jstat.mean( arr2 ),
+		var u = jStat.mean( arr1 ),
+			v = jStat.mean( arr2 ),
 			sq_dev = [],
 			arr1Len = arr1.length,
 			i = 0;
 		for ( ; i < arr1Len; i++ ) {
 			sq_dev[ i ] = ( arr1[ i ] - u ) * ( arr2[ i ] - v );
 		};
-		return jstat.sum( sq_dev ) / arr1Len;
+		return jStat.sum( sq_dev ) / arr1Len;
 	},
 
 	// Returns the incomplete beta function I_x(a,b)
@@ -746,7 +746,7 @@ jstat.extend({
 
 		if( isNaN( x ) ) {
 			// run for all values in matrix
-			return x.map( function( value ) { return jstat.incompleteBeta( value, a, b ) } );
+			return x.map( function( value ) { return jStat.incompleteBeta( value, a, b ) } );
 		}
 
 		// Evaluates the continued fraction for incomplete beta function
@@ -808,8 +808,8 @@ jstat.extend({
 		}
 
 		var bt = ( x === 0 || x === 1 ) ?  0 :
-			Math.exp(jstat.gammaln( a + b ) - jstat.gammaln( a ) -
-			jstat.gammaln( b ) + a * Math.log( x ) + b *
+			Math.exp(jStat.gammaln( a + b ) - jStat.gammaln( a ) -
+			jStat.gammaln( b ) + a * Math.log( x ) + b *
 			Math.log( 1 - x ));	// Factors in front of the continued fraction.
 
 		if( x < ( a + 1 ) / ( a + b + 2 ) )
@@ -823,303 +823,12 @@ jstat.extend({
 
 	// correlation coefficient of two arrays
 	corrcoeff : function( arr1, arr2 ) {
-		return jstat.covariance( arr1, arr2 ) / jstat.stdev( arr1 ) / jstat.stdev( arr2 );
-	},
-
-
-	// statistical distribution calculations //
-
-	beta : {
-		pdf : function( x, alpha, beta ) {
-			return jstat.gammafn( alpha + beta ) / ( jstat.gammafn( alpha ) * jstat.gammafn( beta )) * Math.pow( x, alpha - 1 ) * Math.pow( 1 - x, beta - 1 );
-		},
-
-		cdf : function( x, alpha, beta ) {
-			return jstat.incompleteBeta( x, alpha, beta );
-		},
-
-		mean : function( alpha, beta ) {
-			return alpha / ( alpha + beta );
-		},
-
-		median : function( alpha, beta ) {
-			// TODO: implement beta median
-		},
-
-		mode : function( alpha, beta ) {
-			return ( alpha * beta ) / ( Math.pow( alpha + beta, 2 ) * ( alpha + beta + 1 ));
-		},
-
-		variance : function( alpha, beta ) {
-			return ( alpha * beta ) / ( Math.pow( alpha + beta, 2 ) * ( alpha + beta + 1 ) );
-		}
-	},
-
-	cauchy : {
-		pdf : function( x, xn, l ) {
-			return ( l / ( Math.pow( x - xn, 2) + Math.pow( l, 2 ))) / Math.PI;
-		},
-
-		cdf : function( x, xn, l ) {
-			return Math.atan(( x - xn) / l ) / Math.PI + 0.5;
-		}
-	},
-
-	chisquare : {
-		pdf : function( x, k ) {
-			return (Math.pow( x, k / 2 - 1) * Math.exp( -x / 2 )) / ( Math.pow( 2, k / 2) * jstat.gammafn( k / 2 ));
-		},
-
-		cdf : function( x, k ) {
-			return jstat.lgamma( x / 2, k / 2 ) / jstat.gammafn( k / 2 );
-		}
-	},
-
-	exponential : {
-		pdf : function( x, rate ) {
-			return x < 0 ? 0 : rate * Math.exp( -rate * x );
-		},
-
-		cdf : function( x, rate ) {
-			return x < 0 ? 0 : 1 - Math.exp( -rate * x );
-		},
-
-		mean : function( rate ) {
-			return 1 / rate;
-		},
-
-		median : function ( rate ) {
-			return ( 1 / rate ) * Math.log(2);
-		},
-
-		mode : function( rate ) {
-			return 0;
-		},
-
-		variance : function( rate ) {
-			return Math.pow( rate, -2 );
-		}
-	},
-
-	gamma : {
-		pdf : function( x, shape, scale ) {
-			return Math.pow( x, shape - 1 ) * ( Math.exp( -x / scale ) / ( jstat.gammafn( shape ) * Math.pow( scale, shape ) ) );
-		},
-
-		cdf : function( x, shape, scale ) {
-			return jlstat.gammap( x / scale, shape );
-		},
-
-		mean : function( shape, scale ) {
-			return shape * scale;
-		},
-
-		mode : function( shape, scale ) {
-			if( shape > 1 ) return ( k - 1 ) * scale;
-			return undefined;
-		},
-
-		variance: function( shape, scale ) {
-			return shape * scale * scale;
-		}
-	},
-
-	lognormal : {
-		pdf : function( x, mu, sigma ) {
-			return ( 1 / ( x * sigma * Math.sqrt( 2 * Math.PI ) ) ) * Math.exp( -Math.pow( Math.log( x ) - mu, 2) / ( 2 * sigma*sigma ) );
-		},
-
-		cdf : function( x, mu, sigma ) {
-			return 0.5 + ( 0.5 * jstat.erf( ( Math.log( x ) - mu ) / Math.sqrt( 2 * sigma*sigma ) ) );
-		},
-
-		mean : function( mu, sigma ) {
-			return Math.exp( mu + sigma*sigma / 2);
-		},
-
-		median : function( mu, sigma ) {
-			return Math.exp(mu);
-		},
-
-		mode : function( mu, sigma ) {
-			return Math.exp( mu - sigma*sigma );
-		},
-
-		variance : function( mu, sigma ) {
-			return ( Math.exp( sigma*sigma ) - 1 ) * Math.exp( 2 * mu + sigma*sigma );
-		}
-	},
-
-	normal : {
-		pdf : function( x, mean, std ) {
-			return ( 1 / ( Math.sqrt( 2 * Math.PI * std * std))) * Math.exp( -( Math.pow( x - mean, 2 ) / 2 * std * std ) );
-		},
-
-		cdf : function( x, mean, std ) {
-			return 0.5 * ( 1 + jstat.erf( ( x - mean ) / Math.sqrt( 2 * std * std ) ) );
-		},
-
-		mean : function( mean, std ) {
-			return mean;
-		},
-
-		median : function( mean, std ) {
-			return mean;
-		},
-
-		mode : function ( mean, std ) {
-			return mean;
-		},
-
-		variance : function( mean, std ) {
-			return std * std;
-		}
-	},
-
-	weibull : {
-		pdf : function( x, scale, shape ) {
-			return x < 0 ? 0 : ( shape / scale ) * Math.pow(( x / scale ),( shape - 1 )) * Math.exp(-( Math.pow(( x / scale ), shape )));
-		},
-
-		cdf : function( x, scale, shape ) {
-			return x < 0 ? 0 : 1 - Math.exp( Math.pow(-( x / scale ), shape ));
-		},
-
-		mean : function( scale, shape ) {
-			return scale * jstat.gammafn( 1 + 1 / shape );
-		},
-
-		median : function( scale, shape ) {
-			return scale * Math.pow( Math.log( 2 ), 1 / shape );
-		},
-
-		mode : function( scale, shape ) {
-			return ( shape > 1 ) ? scale * Math.pow(( shape - 1 ) / shape, 1 / shape ) : undefined;
-		},
-
-		variance : function( scale, shape ) {
-			return scale * scale * jstat.gammafn( 1 + 2 / shape ) - Math.pow( this.mean( scale, shape ), 2 );
-		}
-	},
-
-	uniform : {
-		pdf : function( x, a, b ) {
-			return ( x < a || x > b ) ? 0 : 1 / ( b - a );
-		},
-
-		cdf : function( x, a, b ) {
-			if ( x < a ) {
-				return 0;
-			} else if ( x < b ) {
-				return ( x - a ) / ( b - a );
-			};
-			return 1;
-		}
-	},
-
-	// uniform distribution in terms of mean and standard dev
-	uniformmv : {
-		pdf : function( x, m, s ) {
-			var sqrtt = Math.sqrt( -3 );
-			return ( -s * sqrtt <= x - m || x - m <= s * sqrtt )
-				? 1 / ( 2 * s * sqrtt )
-			: 0;
-		},
-
-		cdf : function( x, m, s ) {
-			var sqrtt = Math.sqrt( -3 );
-			return ( x - m < -s * sqrtt )
-				? 0
-			: ( x - m >= s * sqrtt )
-				? 1
-			: 0.5 * (( x - m ) / ( s * sqrtt ) + 1 );
-		}
-	},
-
-	binomial : {
-		pdf : function( k, n, p ) {
-			return jstat.combination( n, k ) * Math.pow( p, k ) * Math.pow( 1 - p, n - k );
-		},
-
-		cdf : function( x, n, p ) {
-			var binomarr = [],
-				k = 0,
-				i = 0,
-				sum = 0;
-			if ( x < 0 ) {
-				return 0;
-			};
-			if ( x < n ) {
-				for ( ; k < n; k++ ) {
-					binomarr[ k ] = jstat.binomial( k, n, p );
-				};
-				for ( ; i <= x; i++ ) {
-					sum += binomarr[ i ];
-				};
-				return sum;
-			};
-			return 1;
-		}
-	},
-
-	negbin : {
-		pdf : function( k, r, p ) {
-			return k !== Math.floor( k )
-				? false
-			: k < 0
-				? 0
-			: jstat.combination( k + r - 1, k ) * Math.pow( 1 - p, r ) * Math.pow( p, k );
-		},
-
-		cdf : function( x, r, p ) {
-			var sum = 0,
-				k = 0;
-			if ( x < 0 ) return 0;
-			for ( ; k <= x; k++ ) {
-				sum += jstat.negbin( k, r, p );
-			};
-			return sum;
-		}
-	},
-
-	hypgeom : {
-		pdf : function( k, N, m, n ) {
-			return x !== Math.floor( x )
-				? false
-			: ( x < 0)
-				? 0
-			: jstat.combination( m, k ) * jstat.combination( N - m , n - k ) / jstat.combination( N, n );
-		},
-
-		cdf : function( x, N, m, n ) {
-			var sum = 0,
-				k = 0;
-			if ( x < 0 ) return 0;
-			for ( ; k <= x; k++ ) {
-				sum += jstat.hypgeom( k, N, m, n );
-			};
-			return sum;
-		}
-	},
-
-	poisson : {
-		pdf : function( k, l ) {
-			return Math.pow( l, k ) * Math.exp( -l ) / jstat.factorial( k );
-		},
-
-		cdf : function( x, l ) {
-			var sum = 0,
-				k = 0;
-			if ( x < 0 ) return 0;
-			for ( ; k <= x; k++ ) {
-				sum += jstat.poisson( k, l );
-			};
-			return sum;
-		}
+		return jStat.covariance( arr1, arr2 ) / jStat.stdev( arr1 ) / jStat.stdev( arr2 );
 	}
+
 });
 
-// exposing jstat
-return jstat;
+// exposing jStat
+return jStat;
 
 })( Math );
