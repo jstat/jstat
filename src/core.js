@@ -886,6 +886,33 @@ jstat.extend({
 		}
 	},
 
+	// Normal distribution
+	normal : {
+		pdf : function( x, mean, std ) {
+			return ( 1 / ( Math.sqrt( 2 * Math.PI * std * std))) * Math.exp( -( Math.pow( x - mean, 2 ) / 2 * std * std ) );
+		},
+
+		cdf : function( x, mean, std ) {
+			return 0.5 * ( 1 + jstat.erf( ( x - mean ) / Math.sqrt( 2 * std * std ) ) );
+		},
+
+		mean : function( mean, std ) {
+			return mean;
+		},
+
+		median : function( mean, std ) {
+			return mean;
+		},
+
+		mode : function ( mean, std ) {
+			return mean;
+		},
+
+		variance : function( mean, std ) {
+			return std * std;
+		}
+	},
+	
 	// uniform distribution
 	uniform : function( x, a, b ) {
 		return ( x < a || x > b ) ? 0 : 1 / ( b - a );
