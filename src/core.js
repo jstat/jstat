@@ -310,19 +310,33 @@ jstat.fn.extend({
 		return jstat( res );
 	},
 
+	// BUG: Does not work for matrices
 	// computes the norm of the vector
 	norm : function() {
-		return Math.sqrt( this.dot( this ) );
+		if( this.rows() > 1 && this.cols() > 1 ) {
+			// matrix norm
+		} else {
+			// vector norm
+			return Math.sqrt( this.dot( this ) );
+		}
 	},
 
-	// BUG: Does not work in all cases
+	// BUG: Does not work for matrices
 	// computes the angle between two vectors
 	angle : function( k ) {
-		var  col = 0, ncol = this.cols(), res = [ncol], tNorm = this.norm(), kNorm = k.norm();
-		for( ; col < ncol; col++ ) {
-			res[col] = Math.acos( this.col( col ).dot( k.col( col ) ) / ( tNorm * kNorm ) );
+		 return Math.acos( this.dot( k ) / ( this.norm() * k.norm() ) );
+	},
+
+
+	// Tests whether a matrix is symmetric
+	symmetric : function() {
+		var issymmetric = true, row = 0, size = this.rows(), col;
+		for ( ; (row < size) & issymmetric; row++ ) {
+			for ( col = 0; (col < size) & issymmetric; col++ ) {
+				issymmetric = ( this[col][row] == this[row][col] );
+			}
 		}
-		return jstat( res );
+		return issymmetric;
 	},
 
 	// Returns the number of rows in the matrix
