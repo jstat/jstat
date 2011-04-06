@@ -434,7 +434,7 @@ jstat.extend({
 	factorial : function( n ) {
 		var fval = 1;
 		if ( n < 0 ) return NaN;
-		if ( n != Math.floor( n ) ) return jstat.gamma( n + 1 );
+		if ( n != Math.floor( n ) ) return jstat.gammafn( n + 1 );
 		for( ; n > 0; n-- ) {
 			fval *= n;
 		};
@@ -452,11 +452,11 @@ jstat.extend({
 	},
 
 	// gamma of x
-	gamma : function( x ) {
+	gammafn : function( x ) {
 
 		if( isNaN( x ) ) {
 			// run for all values in matrix
-			return x.map( function( value ) { return jstat.gamma( value ) } );
+			return x.map( function( value ) { return jstat.gammafn( value ) } );
 		}
 
 		var v = 1,
@@ -835,7 +835,7 @@ jstat.extend({
 	beta : {
 
 		pdf : function( x, alpha, beta ) {
-			return jstat.gamma( alpha + beta ) / ( jstat.gamma( alpha ) * jstat.gamma( beta )) * Math.pow( x, alpha - 1 ) * Math.pow( 1 - x, beta - 1 );
+			return jstat.gammafn( alpha + beta ) / ( jstat.gammafn( alpha ) * jstat.gammafn( beta )) * Math.pow( x, alpha - 1 ) * Math.pow( 1 - x, beta - 1 );
 		},
 
 		// cumulative beta distribution
@@ -877,12 +877,22 @@ jstat.extend({
 	chisquare : {
 		
 		pdf : function( x, k ) {
-			return (Math.pow( x, k / 2 - 1) * Math.exp( -x / 2 )) / ( Math.pow( 2, k / 2) * jstat.gamma( k / 2 ));
+			return (Math.pow( x, k / 2 - 1) * Math.exp( -x / 2 )) / ( Math.pow( 2, k / 2) * jstat.gammafn( k / 2 ));
 		},
 
 		// cumulative uniform distribution
 		cdf : function( x, k ) {
-			return jstat.lgamma( x / 2, k / 2 ) / jstat.gamma( k / 2 );
+			return jstat.lgamma( x / 2, k / 2 ) / jstat.gammafn( k / 2 );
+		}
+	},
+
+	gamma : {
+		pdf : function( x, shape, scale ) {
+			return Math.pow( x, shape - 1 ) * ( Math.exp( -x / scale ) / ( jstat.gammafn( shape ) * Math.pow( scale, shape ) ) );
+		},
+		//BUG: This is not working as expected.
+		cdf : function( x, shape, scale ) {
+			return jstat.gammap( x / scale, shape ) / jstat.gammafn( shape );
 		}
 	},
 
