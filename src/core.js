@@ -140,7 +140,11 @@ jstat.fn.extend({
 
 	// map one matrix to another
 	map : function( func ) {
-		var row = 0, nrow = this.rows(), col, ncol = this.cols(), res = [];
+		var row = 0,
+			nrow = this.rows(),
+			ncol = this.cols(),
+			res = [],
+			col;
 		for( ; row < nrow; row ++) {
 			res[row] = []
 			for( col = 0; col < ncol; col++ ) {
@@ -498,35 +502,50 @@ jstat.extend({
 
 	// statistical distribution calculations //
 
-	// beta distribution
-	beta : function( x, a, b ) {
-		return jstat.gamma( a + b ) / ( jstat.gamma( a ) * jstat.gamma( b )) * Math.pow( x, a - 1 ) * Math.pow( 1 - x, b - 1 );
-	},
+	beta : {
 
-	// cumulative beta distribution
-	// BUG: returns Infinity when a < 1
-	betacdf : function( x, a, b, dt ) {
-		var ab1 = a + b - 1,
-			fact = jstat.factorial,
-			gamma = jstat.gamma,
-			ab1fact = fact( ab1 ),
-			j = a,
-			sum = 0;
+		// beta distribution
+		pdf : function( x, alpha, beta ) {
+			return jstat.gamma( alpha + beta ) / ( jstat.gamma( alpha ) * jstat.gamma( beta )) * Math.pow( x, alpha - 1 ) * Math.pow( 1 - x, beta - 1 );
+		},
 
-		// quick calculation if a and b are integers
-		if ( a === Math.floor( a ) && b === Math.floor( b )) {
-			for ( ; j <= ab1; j++ ) {
-				sum += ab1fact / ( fact( j ) * fact( ab1 - j )) * Math.pow( x, j ) * Math.pow( 1 - x, ab1 - j );
+		// cumulative beta distribution
+		// BUG: returns Infinity when a < 1
+		cdf : function( x, alpha, beta, dt ) {
+			var ab1 = alpha + beta - 1,
+				fact = jstat.factorial,
+				gamma = jstat.gamma,
+				ab1fact = fact( ab1 ),
+				j = alpha,
+				sum = 0;
+
+			// quick calculation if a and b are integers
+			if ( alpha === Math.floor( alpha ) && beta === Math.floor( beta )) {
+				for ( ; j <= ab1; j++ ) {
+					sum += ab1fact / ( fact( j ) * fact( ab1 - j )) * Math.pow( x, j ) * Math.pow( 1 - x, ab1 - j );
+				};
+				return sum;
+			};
+
+			// otherwise will have to integrate
+			dt = dt || 0.1;
+			for ( j = 0.1; j <= x; j += dt ) {
+				sum += jstat.beta( j, alpha, beta ) * dt;
 			};
 			return sum;
-		};
+		},
 
-		// otherwise will have to integrate
-		dt = dt || 0.1;
-		for ( j = 0.1; j <= x; j += dt ) {
-			sum += jstat.beta( j, a, b ) * dt;
-		};
-		return sum;
+		mean : function( alpha, beta ) {
+			return alpha / ( alpha + beta );
+		},
+
+		median : function( alpha, beta ) {
+			// TODO: implement beta median
+		},
+
+		mode : function( alpha, beta ) {
+			return ( alpha * beta ) / ( Math.pow( alpha + beta, 2 ) * ( alpha + beta + 1 ));
+		}
 	},
 
 	// cauchy distribution
