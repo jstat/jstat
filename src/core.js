@@ -961,7 +961,32 @@ jstat.extend({
 			return std * std;
 		}
 	},
-	
+
+	weibull : {
+		pdf : function( x, scale, shape ) {
+			return x < 0 ? 0 : ( shape / scale ) * Math.pow(( x / scale ),( shape - 1 )) * Math.exp(-( Math.pow(( x / scale ), shape )));
+		},
+
+		cdf : function( x, scale, shape ) {
+			return x < 0 ? 0 : 1 - Math.exp( Math.pow(-( x / scale ), shape ));
+		},
+
+		mean : function( scale, shape ) {
+			return scale * jstat.gammafn( 1 + 1 / shape );
+		},
+
+		median : function( scale, shape ) {
+			return scale * Math.pow( Math.log( 2 ), 1 / shape );
+		},
+
+		mode : function( scale, shape ) {
+			return ( shape > 1 ) ? scale * Math.pow( ( shape - 1 ) / shape, 1 / shape ) : undefined;
+		},
+
+		variance : function( scale, shape ) {
+			return scale*scale * jstat.gammafn( 1 + 2 / shape) - Math.pow( this.mean( scale, shape ), 2 );
+		}
+	},
 	// uniform distribution
 	uniform : function( x, a, b ) {
 		return ( x < a || x > b ) ? 0 : 1 / ( b - a );
@@ -1019,16 +1044,6 @@ jstat.extend({
 			return sum;
 		};
 		return 1;
-	},
-
-	// weibull distribution of x
-	weibull : function( x, a, b ) {
-		return x < 0 ? 0 : ( a / b ) * Math.pow(( x / b ),( a - 1 )) * Math.exp(-( Math.pow(( x / b ), a )));
-	},
-
-	// cumulative probability of x for weibull distibution
-	weibullcdf : function( x, a, b ) {
-		return x < 0 ? 0 : 1 - Math.exp( Math.pow(-( x / b ), a ));
 	},
 
 	// negative binomial distribution
