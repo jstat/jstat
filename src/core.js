@@ -45,8 +45,12 @@ jstat.fn = jstat.prototype = {
 	init : function( args ) {
 		// if first argument is an array, must be vector or matrix
 		if ( isArray( args[0] )) {
-			for ( var i = 0; i < args.length; i++ ) {
-				this.push( isArray( args[i][0] ) ? args[i] : [ args[i] ] );
+			if ( isArray( args[0][0] )) {
+				for ( var i = 0; i < args[0].length; i++ ) {
+					this.push( args[0][i] );
+				};
+			} else {
+				this.push( args[0] );
 			};
 		// if first argument is number, assume creation of sequence
 		} else if ( !isNaN( args[0] )) {
@@ -117,13 +121,18 @@ jstat.fn.extend({
 
 	// transpose a vector or matrix
 	transpose : function() {
-		var rows = this.rows(), cols = this.cols(),
-			elements = [], ni = cols, i, nj, j;
-		do { i = cols - ni;
+		var rows = this.rows(),
+			cols = this.cols(),
+			elements = [],
+			ni = cols,
+			i, nj, j;
+		do {
+			i = cols - ni;
 			elements[i] = [];
 			nj = rows;
-			do { j = rows - nj;
-				elements[i][j] = this[0][j][i];
+			do {
+				j = rows - nj;
+				elements[i][j] = this[j][i];
 			} while (--nj);
 		} while (--ni);
 		return jstat( elements );
@@ -135,7 +144,7 @@ jstat.fn.extend({
 		for( ; row < nrow; row ++) {
 			res[row] = []
 			for( col = 0; col < ncol; col++ ) {
-				res[row][col] = func( this[0][row][col] );
+				res[row][col] = func( this[row][col] );
 			}
 		}
 		return jstat(res);
@@ -146,7 +155,7 @@ jstat.fn.extend({
 		var row = 0, nrow = this.rows(), col, ncol = this.cols();
 		for( ; row < nrow; row ++) {
 			for( col = 0; col < ncol; col++ ) {
-				this[0][row][col] = func( this[0][row][col] );
+				this[row][col] = func( this[row][col] );
 			}
 		}
 		return this;
@@ -183,12 +192,12 @@ jstat.fn.extend({
 					// TODO: is there a better way to initialise the array
 					sum = 0;
 					for( col = 0; col < ncol; col++ ) {
-						sum += this[0][row][col] * k[0][col][rescols];
+						sum += this[row][col] * k[col][rescols];
 					}
 					res[row][rescols] = sum;
 				}
 			}
-			return ( nrow == 1 && rescols == 1 ) ? res[0][0] : jstat( res );
+			return ( nrow == 1 && rescols == 1 ) ? res[0] : jstat( res );
 		} else {
 			return this.map( function ( value ) { return value * k; } );
 		}
@@ -222,7 +231,7 @@ jstat.fn.extend({
 	// TODO: implement for matrices
 	// computes the norm of the vector
 	norm : function() {
-		var dot = ( this[0].length > 1 ) ? this.transpose().multiply( this ) : this.multiply( this.transpose() );
+		var dot = ( this.length > 1 ) ? this.transpose().multiply( this ) : this.multiply( this.transpose() );
 		return Math.sqrt(dot);
 	},
 
@@ -234,21 +243,21 @@ jstat.fn.extend({
 	},
 
 	rows: function() {
-		return this[0].length || 1;
+		return this.length || 1;
 	},
 
 	cols: function() {
-		return this[0][0].length || 1;
+		return this[0].length || 1;
 	},
 
 	row: function( index ) {
-	    return jstat(this[0][index]);
+	    return jstat( this[index] );
 	},
 
 	col: function( index ) {
 	    var column = [], i = 0;
-	    for( ; i < this[0].length; i ++) {
-		column[i] = [this[0][i][index]];
+	    for( ; i < this.length; i ++) {
+		column[i] = [this[i][index]];
 	    }
 	    return jstat(column);
 	}
