@@ -886,13 +886,39 @@ jstat.extend({
 		}
 	},
 
+	exponential : {
+		pdf : function( x, rate ) {
+			return x < 0 ? 0 : rate * Math.exp( -rate * x );
+		},
+
+		cdf : function( x, rate ) {
+			return x < 0 ? 0 : 1 - Math.exp( -rate * x );
+		},
+
+		mean : function( rate ) {
+			return 1 / rate;
+		},
+
+		median : function ( rate ) {
+			return ( 1 / rate ) * Math.log(2);
+		},
+
+		mode : function( rate ) {
+			return 0;
+		},
+
+		variance : function( rate ) {
+			return Math.pow( rate, -2 );
+		}
+	},
+
 	gamma : {
 		pdf : function( x, shape, scale ) {
 			return Math.pow( x, shape - 1 ) * ( Math.exp( -x / scale ) / ( jstat.gammafn( shape ) * Math.pow( scale, shape ) ) );
 		},
 
 		cdf : function( x, shape, scale ) {
-			return jstat.gammap( x / scale, shape );
+			return jlstat.gammap( x / scale, shape );
 		},
 
 		mean : function( shape, scale ) {
@@ -1084,16 +1110,6 @@ jstat.extend({
 			sum += jstat.hypgeom( k, N, m, n );
 		};
 		return sum;
-	},
-
-	// exponential distribution
-	exponential : function( x, l ) {
-		return x < 0 ? 0 : l * Math.exp( -l * x );
-	},
-
-	// cumulative probability for exponential distribution
-	exponentialcdf : function( x, l ) {
-		return x < 0 ? 0 : 1 - Math.exp( -l * x );
 	},
 
 	// poisson distribution
