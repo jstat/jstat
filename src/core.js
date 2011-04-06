@@ -597,16 +597,6 @@ jstat.extend({
 		return ( x < 0.0 ) ? -jstat.gammap( x*x, 0.5 ) : jstat.gammap( x*x, 0.5 );
 	},
 
-	// calcualte sum of f(x) from a to b
-	sumFunc : function( a, b, func ) {
-		var sum = 0;
-		while ( a <= b ) {
-			sum += func( a++ );
-		};
-		return sum;
-	},
-
-	
 
 	// vector/matrix specific functionality //
 
