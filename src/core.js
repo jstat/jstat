@@ -455,6 +455,21 @@ jstat.extend({
 		return Math.exp((((((((-3617 / 122400 * w + 7 / 1092) * w - 691 / 360360) * w + 5 / 5940) * w - 1 / 1680)  * w + 1 / 1260) * w - 1 / 360) * w + 1 / 12) / x + 0.5 * Math.log(2 * Math.PI) - Math.log(v) - x + (x - 0.5) * Math.log(x));
 	},
 
+	// Log-gamma function
+	gammaln : function( xx ) {
+		var x, y, tmp, ser,j = 0,
+			cof = [76.18009172947146, -86.50532032941677, 24.01409824083091,
+				-1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5];
+
+		y = x = xx;
+		tmp = x + 5.5;
+		tmp -= ( x + 0.5 ) * Math.log( tmp );
+		ser = 1.000000000190015;
+		for( ; j < 5; j++ ) ser += cof[j] / ++y;
+
+		return -tmp + Math.log( 2.5066282746310005 * ser / x);
+	},
+
 	// lower incomplete gamma function
 	lgamma : function( x, s, dt ) {
 		dt = dt || 0.1;
@@ -617,6 +632,86 @@ jstat.extend({
 			sq_dev[ i ] = ( arr1[ i ] - u ) * ( arr2[ i ] - v );
 		};
 		return jstat.sum( sq_dev ) / arr1Len;
+	},
+
+	// Returns the incomplete beta function I_x(a,b)
+	incompleteBeta : function( x, a, b ) {
+
+		if( isNaN( x ) ) {
+			// run for all values in matrix
+			return x.map( function( value ) { return jstat.incompleteBeta( value, a, b ) } );
+		}
+
+		// Evaluates the continued fraction for incomplete beta function
+		// by modified Lentz's method.
+		function betacf( x, a, b ) {
+			// TODO: make fpmin constant?
+			var m = 1, m2, aa, c, d, del, h, qab, qam, qap, fpmin = 1e-30;
+
+			// These q's will be used in factors that occur in the coefficients
+			qab = a + b;
+			qap = a + 1;
+			qam = a - 1;
+
+			c = 1;
+			d = 1 - qab * x / qap;
+
+			if( Math.abs( d ) < fpmin ) d = fpmin;
+
+			d = 1 / d;
+			h = d;
+
+			// TODO: replace 100 with MAXIT constant
+			for ( ; m <= 100; m++ ) {
+				m2 = 2 * m;
+				aa = m * ( b - m ) * x / ( ( qam + m2 ) * ( a + m2 ) );
+				d = 1 + aa * d;	// One step (the even one) of the recurrence
+
+				// TODO: Make precision check function?
+				if( Math.abs( d ) < fpmin ) d = fpmin;
+
+				c = 1 + aa / c;
+
+				if( Math.abs( c ) < fpmin ) c = fpmin;
+
+				d = 1 / d;
+
+				h *= d * c;
+
+				aa = -( a + m ) * ( qab + m ) * x / ( ( a + m2 ) * ( qap + m2 ) );
+				d = 1 + aa * d;	// Next step of the recurrence (the odd one)
+
+				if( Math.abs( d ) < fpmin ) d = fpmin;
+
+				c = 1 + aa / c;
+
+				if( Math.abs( c ) < fpmin ) c = fpmin;
+
+				d = 1 / d;
+
+				del = d * c;
+
+				h *= del;
+
+				// TODO: make 3e-7 a constant
+				if( Math.abs( del - 1.0 ) < 3e-7 ) break;	// Are we done?
+			}
+
+			return h;
+		}
+
+		var bt = ( x === 0 || x === 1 ) ?  0 :
+			Math.exp(jstat.gammaln( a + b ) - jstat.gammaln( a ) -
+			jstat.gammaln( b ) + a * Math.log( x ) + b *
+			Math.log( 1 - x ));	// Factors in front of the continued fraction.
+
+		if( x < ( a + 1 ) / ( a + b + 2 ) )
+			// Use continued fraction directly.
+			return bt * betacf( x, b, a ) / a;
+
+		// else use continued fraction after making the symmetry transformation.
+		return 1 - bt * betacf( 1 - x, b, a ) / b;
+
 	},
 
 	// correlation coefficient of two arrays
