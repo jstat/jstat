@@ -508,6 +508,85 @@ jstat.extend({
 		return sum;
 	},
 
+
+
+	// returns the incomplete gamma function P(a,x);
+	gammap : function( x, a ) {
+		var gamser, gammcf, gln;
+
+		if( isNaN( x ) ) {
+			// run for all values in matrix
+			return x.map( function( value ) { return jstat.gammap( value, a ) } );
+		}
+
+		// TODO: evaluate whether these functions should be public
+		// Returns the incomplete gamma function Q(a,x) evaluated by its
+		// continued fraction representation as gammacf
+		function gcf( x, a ) {
+			var i = 1, an, b, c, d, del, h, fpmin = 1e-30;
+
+			gln = jstat.gammaln( a );
+			b = x + 1 - a;
+			c = 1 / fpmin;
+			d = 1 / b;
+			h = d;
+			for( ; i <= 100; i++ ) {
+				an = -i * ( i - a );
+				b += 2;
+				d = an * d + b;
+				if( Math.abs( d ) < fpmin ) d = fpmin;
+
+				c = b + an / c;
+
+				if( Math.abs( c ) < fpmin ) c = fpmin;
+
+				d = 1 / d;
+				del = d * c;
+				h *= del
+
+				if( Math.abs( del - 1 ) < 3e-7 ) break;
+			}
+			gammcf = Math.exp( -x + a * Math.log( x ) - ( gln ) ) * h;
+		}
+
+		// Returns the incomplete gamma function P(a,x) evaluated by its
+		// series representation as gamser
+		function gser( x, a ) {
+			var n = 1, sum, del, ap;
+
+			gln = jstat.gammaln( a );
+
+			if( x <= 0 ) {
+				gamser = 0;
+				return;
+			} else {
+				ap = a;
+				del = sum = 1 / a;
+				// TODO: replace 100 with constant
+				for ( ; n <= 100; n++ ) {
+					++ap;
+					del *= x / ap;
+					sum += del;
+					if( Math.abs( del ) < Math.abs( sum ) * 3.0e-7 ) {
+						gamser = sum * Math.exp( -x + a * Math.log( x ) - ( gln ));
+						return;
+					}
+				}
+				return;
+			}
+		}
+		
+		if( x < ( a + 1 ) ) {
+			// use series representation
+			gser( x, a );
+			return gamser;
+		} else {
+			// use the continued fraction representation
+			gcf( x, a );
+			return 1 - gammcf;
+		}
+	},
+
 	// calcualte sum of f(x) from a to b
 	sumFunc : function( a, b, func ) {
 		var sum = 0;
