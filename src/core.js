@@ -722,6 +722,11 @@ jStat.extend({
 		return jStat.sum( sq_dev ) / arr1Len;
 	},
 
+	// Returns the beta function B(z,w)
+	betafn : function( z, w ) {
+		return Math.exp( j$.gammaln( z ) + j$.gammaln( w ) - j$.gammaln( z + w ) );
+	},
+
 	// Returns the incomplete beta function I_x(a,b)
 	incompleteBeta : function( x, a, b ) {
 
