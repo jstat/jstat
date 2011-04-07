@@ -41,7 +41,7 @@ j$.extend( jDist, {
 		},
 
 		mean : function( location, scale ) {
-			j$.xerror();
+			xerror();
 		},
 
 		median: function( location, scale ) {
@@ -53,7 +53,7 @@ j$.extend( jDist, {
 		},
 
 		variance : function( location, scale ) {
-			j$.xerror();
+			xerror();
 		}
 	},
 
@@ -182,6 +182,33 @@ j$.extend( jDist, {
 
 		variance : function( mean, std ) {
 			return std * std;
+		}
+	},
+
+	studentt : {
+		pdf : function( x, dof ) {
+			return ( j$.gammafn( ( dof + 1 ) / 2 ) / ( Math.sqrt( dof * Math.PI ) * j$.gammafn( dof / 2 ) ) ) * Math.pow( 1 + ( ( x*x ) / dof ), -( ( dof + 1 ) / 2 ) );
+		},
+
+		cdf : function( x, dof ) {
+			var dof2 = dof / 2;
+			return j$.incompleteBeta( ( x + Math.sqrt( x*x + dof ) ) / ( 2 * Math.sqrt( x*x + dof ) ), dof2, dof2 );
+		},
+
+		mean : function( dof ) {
+			return ( dof > 1 ) ? 0 : undefined;
+		},
+
+		median : function ( dof ) {
+			return 0;
+		},
+
+		mode : function( dof ) {
+			return 0;
+		},
+
+		variance : function( dof ) {
+			return ( dof  > 2 ) ? dof / ( dof - 2 ) : ( dof > 1 ) ? Infinity : undefined;
 		}
 	},
 
