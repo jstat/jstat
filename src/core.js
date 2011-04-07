@@ -340,34 +340,47 @@ jStat.fn.extend({
 		for( ; col < ncol; col++ ) {
 			res[col] = +jStat.sum( this.col(col) )
 		}
-		return jStat( res );
+		return ( ncol > 1 ) ? jStat( res ) : res[0];
 	},
 
 	// Returns the mean of each column in the matrix
 	mean : function() {
-		var  col = 0, ncol = this.cols(), res = [ncol];
-		for( ; col < ncol; col++ ) {
-			res[col] = +jStat.mean( this.col(col) )
+		var  col = 0, ncol = this.cols(), nrow = this.rows(), res = [ncol];
+		if( nrow > 1 ) {
+			for( ; col < ncol; col++ ) {
+				res[col] = +jStat.mean( this.col(col) )
+			}
+			return ( ncol > 1 ) ? jStat( res ) : res[0];
+		} else {
+			return jStat.mean( this[0] );
 		}
-		return jStat( res );
+
 	},
 
 	// Returns the standard deviation of each column in the matrix
 	std : function() {
-		var  col = 0, ncol = this.cols(), res = [ncol];
-		for( ; col < ncol; col++ ) {
-			res[col] = +jStat.stdev( this.col(col) )
+		var  col = 0, ncol = this.cols(), nrow = this.rows(), res = [ncol];
+		if( nrow > 1 ) {
+			for( ; col < ncol; col++ ) {
+				res[col] = +jStat.stdev( this.col(col) )
+			}
+			return ( ncol > 1 ) ? jStat( res ) : res[0];
+		} else {
+			return jStat.stdev( this[0] );
 		}
-		return jStat( res );
 	},
 
 	// Returns the variance of each column in the matrix
 	variance : function() {
-		var  col = 0, ncol = this.cols(), res = [ncol];
-		for( ; col < ncol; col++ ) {
-			res[col] = +jStat.variance( this.col(col) )
+		var  col = 0, ncol = this.cols(), nrow = this.rows(), res = [ncol];
+		if( nrow > 1 ) {
+			for( ; col < ncol; col++ ) {
+				res[col] = +jStat.variance( this.col(col) )
+			}
+			return ( ncol > 1 ) ? jStat( res ) : res[0];
+		} else {
+			return jStat.variance( this[0] );
 		}
-		return jStat( res );
 	},
 
 	// BUG: Does not work for matrices
@@ -444,6 +457,9 @@ jStat.fn.extend({
 
 
 // static methods //
+
+var iset = 0;
+var gset;
 
 jStat.extend({
 
@@ -812,6 +828,34 @@ jStat.extend({
 	// correlation coefficient of two arrays
 	corrcoeff : function( arr1, arr2 ) {
 		return jStat.covariance( arr1, arr2 ) / jStat.stdev( arr1 ) / jStat.stdev( arr2 );
+	},
+
+	
+	randn : function( n, m ) {
+		m = m || n;
+		if( n ) {
+			var mat = j$.zeros( n,m );
+			mat.apply(function() { return j$.randn() } );
+			return mat;
+		}
+		var fac, rsq, v1, v2;
+		if( iset === 0 ) {
+			do {
+				v1 = 2 * Math.random() - 1;
+				v2 = 2 * Math.random() - 1;
+				rsq = v1 * v1 + v2 * v2;
+			} while( rsq >= 1 || rsq == 0.0 );
+			fac = Math.sqrt( -2 * Math.log( rsq ) / rsq );
+			// Now make the Box-Muller transformation to get two normal
+			// deviates. Return one and save the other for next time.
+			gset = v1 * fac;
+			iset = 1;
+			return v2 * fac;
+		} else {
+			iset = 0;
+			return gset;
+		}
+
 	}
 
 });
