@@ -551,26 +551,7 @@ jStat.extend({
 		return -tmp + Math.log( 2.5066282746310005 * ser / xx);
 	},
 
-	// lower incomplete gamma function
-	lgamma : function( x, s, dt ) {
-
-		if( isNaN( x ) ) {
-			// run for all values in matrix
-			return x.map( function( value ) { return jStat.lgamma( value, s, dt ) } );
-		}
-
-		dt = dt || 0.1;
-		var sum = 0,
-			i = 0;
-		for ( ; i <= x; i += dt ) {
-			sum += Math.pow( i, s - 1 ) * Math.exp( -i ) * dt;
-		};
-		return sum;
-	},
-
-
-
-	// returns the incomplete gamma function P(a,x);
+	// returns the lower incomplete gamma function P(a,x);
 	gammap : function( x, a ) {
 		var gamser, gammcf, gln;
 
