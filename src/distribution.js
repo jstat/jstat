@@ -32,12 +32,28 @@ j$.extend( jDist, {
 	},
 
 	cauchy : {
-		pdf : function( x, xn, l ) {
-			return ( l / ( Math.pow( x - xn, 2) + Math.pow( l, 2 ))) / Math.PI;
+		pdf : function( x, location, scale ) {
+			return ( scale / ( Math.pow( x - location, 2 ) + Math.pow( scale, 2 ) ) ) / Math.PI;
 		},
 
-		cdf : function( x, xn, l ) {
-			return Math.atan(( x - xn) / l ) / Math.PI + 0.5;
+		cdf : function( x, location, scale ) {
+			return Math.atan(( x - location) / scale ) / Math.PI + 0.5;
+		},
+
+		mean : function( location, scale ) {
+			j$.xerror();
+		},
+
+		median: function( location, scale ) {
+			return location;
+		},
+
+		mode : function( location, scale ) {
+			return location;
+		},
+
+		variance : function( location, scale ) {
+			j$.xerror();
 		}
 	},
 
