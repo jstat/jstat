@@ -223,8 +223,28 @@ j$.extend( jDist, {
 				return ( x - a ) / ( b - a );
 			};
 			return 1;
+		},
+
+		mean : function( a, b ) {
+			return 0.5 * ( a + b );
+		},
+
+		median : function( a, b ) {
+			return mean( a, b );
+		},
+
+		mode : function( a, b ) {
+
+		},
+
+		variance : function( a, b ) {
+			return 0.08333333333333333 * Math.pow( b - a, 2 );
 		}
 	},
+
+	// Discrete distributions //
+
+	// TODO: update these with proper notations.
 
 	// uniform distribution in terms of mean and standard dev
 	uniformmv : {
