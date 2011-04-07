@@ -116,7 +116,7 @@ j$.extend( jDist, {
 		},
 
 		cdf : function( x, shape, scale ) {
-			return jlstat.gammap( x / scale, shape );
+			return j$.gammap( x / scale, shape );
 		},
 
 		mean : function( shape, scale ) {
@@ -182,6 +182,32 @@ j$.extend( jDist, {
 
 		variance : function( mean, std ) {
 			return std * std;
+		}
+	},
+
+	pareto : {
+		pdf : function( x, scale, shape ) {
+			return ( x > scale ) ? ( shape * Math.pow( scale, shape ) ) / Math.pow( x, shape + 1 ) : undefined;
+		},
+
+		cdf : function( x, scale, shape ) {
+			return 1 - Math.pow( scale / x, shape );
+		},
+
+		mean : function( scale, shape ) {
+			return ( shape > 1 ) ? ( shape * Math.pow( scale, shape ) ) / ( shape - 1 ) : undefined;
+		},
+
+		median : function( scale, shape ) {
+			return scale * ( shape * Math.SQRT2 );
+		},
+
+		mode : function( scale, shape ) {
+			return scale;
+		},
+
+		variance : function( scale, shape ) {
+			return ( shape > 2 ) ? ( scale*scale * shape ) / ( Math.pow( shape - 1, 2 ) * ( shape - 2 ) ) : undefined;
 		}
 	},
 
