@@ -206,6 +206,16 @@ j$.extend( jDist, {
 			return mean;
 		},
 
+		sample : function( x, mean, std ) {
+			if( x ) {
+				// return a jstat object filled with random samples
+				return j$.randn( x.rows(), x.cols() ).multiply( std ).add( mean );
+			} else {
+				// return a random sample
+				return j$.randn() * std + mean;
+			}
+		},
+
 		variance : function( mean, std ) {
 			return std * std;
 		}
