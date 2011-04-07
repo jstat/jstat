@@ -133,6 +133,32 @@ j$.extend( jDist, {
 		}
 	},
 
+	kumaraswamy : {
+		pdf : function( x, alpha, beta ) {
+			return alpha * beta * Math.pow( x, alpha - 1 ) * Math.pow( 1 - Math.pow( x, alpha ), beta - 1 );
+		},
+
+		cdf : function( x, alpha, beta ) {
+			return ( 1 - Math.pow( 1 - Math.pow( x, alpha ), beta ) );
+		},
+
+		mean : function( alpha, beta ) {
+			return ( beta * j$.gammafn( 1 + 1 / alpha ) * j$.gammafn( beta ) ) / ( j$.gammafn( 1 + 1 / alpha + beta ) );
+		},
+
+		median : function( alpha, beta ) {
+			return Math.pow( 1 - Math.pow( 2, -1 / beta ), 1 / alpha );
+		},
+
+		mode : function( alpha, beta ) {
+			return ( alpha >= 1 && beta >= 1 && ( alpha !== 1 && beta !== 1 ) ) ? Math.pow( ( alpha - 1 ) / ( alpha * beta - 1 ), 1 / alpha ) : undefined;
+		},
+		
+		variance: function( alpha, beta ) {
+			xerror();
+		}
+	},
+
 	lognormal : {
 		pdf : function( x, mu, sigma ) {
 			return ( 1 / ( x * sigma * Math.sqrt( 2 * Math.PI ) ) ) * Math.exp( -Math.pow( Math.log( x ) - mu, 2) / ( 2 * sigma*sigma ) );
