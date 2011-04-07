@@ -7,7 +7,7 @@ var jDist = function() {
 j$.extend( jDist, {
 	beta : {
 		pdf : function( x, alpha, beta ) {
-			return j$.gammafn( alpha + beta ) / ( j$.gammafn( alpha ) * j$.gammafn( beta )) * Math.pow( x, alpha - 1 ) * Math.pow( 1 - x, beta - 1 );
+			return ( Math.pow( x, alpha - 1 ) * Math.pow( 1 - x, beta - 1 ) ) / j$.betafn( alpha, beta );
 		},
 
 		cdf : function( x, alpha, beta ) {
