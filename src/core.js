@@ -793,6 +793,8 @@ jStat.extend({
 			return h;
 		}
 
+		if( x < 0 || x > 1 ) xerror();
+
 		var bt = ( x === 0 || x === 1 ) ?  0 :
 			Math.exp(jStat.gammaln( a + b ) - jStat.gammaln( a ) -
 			jStat.gammaln( b ) + a * Math.log( x ) + b *
