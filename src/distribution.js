@@ -58,12 +58,29 @@ j$.extend( jDist, {
 	},
 
 	chisquare : {
-		pdf : function( x, k ) {
-			return (Math.pow( x, k / 2 - 1) * Math.exp( -x / 2 )) / ( Math.pow( 2, k / 2) * j$.gammafn( k / 2 ));
+		pdf : function( x, dof ) {
+			return (Math.pow( x, dof / 2 - 1) * Math.exp( -x / 2 )) / ( Math.pow( 2, dof / 2) * j$.gammafn( dof / 2 ));
 		},
 
-		cdf : function( x, k ) {
-			return j$.lgamma( x / 2, k / 2 ) / j$.gammafn( k / 2 );
+		cdf : function( x, dof ) {
+			return j$.gammap( x / 2, dof / 2 );
+		},
+
+		mean : function( dof ) {
+			return dof;
+		},
+
+		//TODO: this is an approximation (is there a better way?)
+		median : function( dof ) {
+			return dof * Math.pow( 1 - ( 2 / ( 9 * dof ) ), 3 );
+		},
+
+		mode : function( dof ) {
+			return ( dof - 2 > 0 ) ? dof - 2 : 0;
+		},
+
+		variance: function( dof ) {
+			return 2 * dof;
 		}
 	},
 
