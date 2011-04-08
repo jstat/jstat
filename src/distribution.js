@@ -335,6 +335,12 @@ j$.extend( jDist, {
 			return j$.incompleteBeta( ( x + Math.sqrt( x*x + dof ) ) / ( 2 * Math.sqrt( x*x + dof ) ), dof2, dof2 );
 		},
 
+		inv : function( p, dof ) {
+			var x = j$.incompleteBetaInv( 2 * Math.min( p, 1 - p ), 0.5 * dof, 0.5 );
+			x = Math.sqrt( dof * ( 1 - x ) / x );
+			return ( p > 0 ) ? x : -x;
+		},
+
 		mean : function( dof ) {
 			return ( dof > 1 ) ? 0 : undefined;
 		},
