@@ -94,6 +94,10 @@ j$.extend( jDist, {
 			return j$.gammap( x / 2, dof / 2 );
 		},
 
+		inv : function( p, dof ) {
+			return 2 * j$.gammapInv( p, 0.5 * dof );
+		},
+
 		mean : function( dof ) {
 			return dof;
 		},
