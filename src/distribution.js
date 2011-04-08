@@ -82,7 +82,9 @@ j$.extend( jDist, {
 		sample : function( x,dof ) {
 			if( x ) {
 				// return a jstat object filled with random samples
-				return j$.randg( dof/2, x.rows(), x.cols() ).multiply( 2 );
+				return x.alter( function() {
+					return j$.randg( dof/2 ) * 2;
+				});
 			} else {
 				// return a random sample
 				return j$.randg( dof/2 ) * 2;
@@ -141,7 +143,9 @@ j$.extend( jDist, {
 		sample : function( x, shape, scale ) {
 			if( x ) {
 				// return a jstat object filled with random samples
-				return j$.randg( shape, x.rows(), x.cols() ).multiply( scale );
+				return x.alter( function() {
+					return j$.randg( shape ) * scale;
+				});
 			} else {
 				// return a random sample
 				return j$.randg( shape ) * scale;
@@ -229,7 +233,9 @@ j$.extend( jDist, {
 		sample : function( x, mean, std ) {
 			if( x ) {
 				// return a jstat object filled with random samples
-				return j$.randn( x.rows(), x.cols() ).multiply( std ).add( mean );
+				return x.alter( function() {
+					return j$.randn() * std + mean;
+				});
 			} else {
 				// return a random sample
 				return j$.randn() * std + mean;
@@ -287,6 +293,17 @@ j$.extend( jDist, {
 
 		mode : function( dof ) {
 			return 0;
+		},
+
+		sample : function( x, dof ) {
+			if( x ) {
+				return x.alter( function() {
+					return j$.randn() * Math.sqrt( dof / ( 2 * j$.randg( dof / 2) ) );
+				});
+			} else {
+				// return a random sample
+				return j$.randn() * Math.sqrt( dof / ( 2 * j$.randg( dof / 2) ) );
+			}
 		},
 
 		variance : function( dof ) {
