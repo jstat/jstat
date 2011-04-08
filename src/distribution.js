@@ -177,6 +177,10 @@ j$.extend( jDist, {
 			return j$.gammap( x / scale, shape );
 		},
 
+		inv : function( p, shape, scale ) {
+			return j$.gammapInv( p, shape ) * scale;
+		},
+
 		mean : function( shape, scale ) {
 			return shape * scale;
 		},
