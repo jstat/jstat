@@ -209,8 +209,8 @@ jStat.extend( jStat.fn, {
 		return jStat( res );
 	},
 
-	// apply a function to each element in the matrix
-	apply : function( func ) {
+	// alter a function to each element in the matrix
+	alter : function( func ) {
 		var row = 0,
 		nrow = this.rows(),
 		ncol = this.cols(),
@@ -308,7 +308,7 @@ jStat.extend( jStat.fn, {
 
 	// set all values to zero
 	clear : function() {
-		return this.apply( function() { return 0; } );
+		return this.alter( function() { return 0; } );
 	},
 
 	// Returns the dimensions of the object { rows: i, cols: j }
@@ -804,7 +804,7 @@ jStat.extend({
 		m = m || n;
 		if( n ) {
 			var mat = jStat.zeros( n,m );
-			mat.apply(function() { return jStat.randn(); } );
+			mat.alter(function() { return jStat.randn(); } );
 			return mat;
 		}
 		var fac, rsq, v1, v2;
