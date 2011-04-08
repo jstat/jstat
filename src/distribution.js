@@ -262,6 +262,10 @@ j$.extend( jDist, {
 			return 0.5 * ( 1 + j$.erf( ( x - mean ) / Math.sqrt( 2 * std * std ) ) );
 		},
 
+		inv : function( p, mean, std ) {
+			return -1.41421356237309505 * std * j$.erfcinv( 2 * p ) + mean;
+		},
+		
 		mean : function( mean, std ) {
 			return mean;
 		},
