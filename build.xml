@@ -21,6 +21,7 @@
 			<filelist dir="${src.dir}">
 				<!-- this list of files will need to be maintained -->
 				<file name="core.js" />
+				<file name="special.js" />
 				<file name="distribution.js" />
 			</filelist>
 		</concat>
