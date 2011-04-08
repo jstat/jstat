@@ -844,7 +844,7 @@ jStat.extend({
 			} while( v <= 0 );
 			v = v*v*v;
 			u = Math.random();
-		} while( u > 1 - 0.331 * x*x*x*x &&
+		} while( u > 1 - 0.331 * Math.pow( x, 4 ) &&
 			Math.log( u ) > 0.5 * x*x + a1 * ( 1 - v + Math.log( v ) ));
 
 		// alpha > 1
