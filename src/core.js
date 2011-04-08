@@ -819,22 +819,22 @@ jStat.extend({
 	},
 
 	// Returns a gamma deviate by the method of Marsaglia and Tsang.
-	randg : function( alpha, n, m ) {
+	randg : function( shape, n, m ) {
 		m = m || n;
-		alpha = alpha || 1;
+		shape = shape || 1;
 		if( n ) {
 			var mat = jStat.zeros( n,m );
-			mat.alter(function() { return jStat.randg( alpha ); } );
+			mat.alter(function() { return jStat.randg( shape ); } );
 			return mat;
 		}
 
-		var a1, a2, oalph = alpha, u, v, x;
+		var a1, a2, oalph = shape, u, v, x;
 
-		if( alpha <= 0 ) xerror();
+		if( shape <= 0 ) xerror();
 
-		if( alpha < 1 ) alpha += 1;
+		if( shape < 1 ) shape += 1;
 
-		a1 = alpha - 1 / 3;
+		a1 = shape - 1 / 3;
 		a2 = 1 / Math.sqrt( 9 * a1 );
 
 		do {
@@ -848,7 +848,7 @@ jStat.extend({
 			Math.log( u ) > 0.5 * x*x + a1 * ( 1 - v + Math.log( v ) ));
 
 		// alpha > 1
-		if( alpha == oalph ) return a1 * v;
+		if( shape == oalph ) return a1 * v;
 
 		// alpha < 1
 		do u = Math.random(); while( u == 0 );

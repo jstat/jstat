@@ -124,8 +124,18 @@ j$.extend( jDist, {
 		},
 
 		mode : function( shape, scale ) {
-			if( shape > 1 ) return ( k - 1 ) * scale;
+			if( shape > 1 ) return ( shape - 1 ) * scale;
 			return undefined;
+		},
+
+		sample : function( x, shape, scale ) {
+			if( x ) {
+				// return a jstat object filled with random samples
+				return j$.randg( shape, x.rows(), x.cols() ).multiply( scale );
+			} else {
+				// return a random sample
+				return j$.randg( shape ) * scale;
+			}
 		},
 
 		variance: function( shape, scale ) {
