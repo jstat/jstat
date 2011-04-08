@@ -366,6 +366,16 @@ j$.extend( jDist, {
 			return ( shape > 1 ) ? scale * Math.pow(( shape - 1 ) / shape, 1 / shape ) : undefined;
 		},
 
+		sample : function( x, scale, shape ) {
+			if( x ) {
+				return x.alter( function() {
+					return scale * Math.pow( -Math.log( Math.random() ), 1 / shape );
+				})
+			} else {
+				return scale * Math.pow( -Math.log( Math.random() ), 1 / shape );
+			}
+		},
+
 		variance : function( scale, shape ) {
 			return scale * scale * j$.gammafn( 1 + 2 / shape ) - Math.pow( this.mean( scale, shape ), 2 );
 		}
