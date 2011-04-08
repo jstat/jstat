@@ -234,6 +234,10 @@ j$.extend( jDist, {
 			return 0.5 + ( 0.5 * j$.erf( ( Math.log( x ) - mu ) / Math.sqrt( 2 * sigma*sigma ) ) );
 		},
 
+		inv : function( p, mu, sigma ) {
+			return Math.exp( -1.41421356237309505 * sigma * j$.erfcinv( 2 * p ) + mu);
+		},
+
 		mean : function( mu, sigma ) {
 			return Math.exp( mu + sigma*sigma / 2);
 		},
