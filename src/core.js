@@ -440,9 +440,6 @@ jStat.extend( jStat.fn, {
 
 // static methods //
 
-var iset = 0;
-var gset;
-
 jStat.extend({
 
 	// creates a rows x cols matrix of zeros
@@ -799,7 +796,8 @@ jStat.extend({
 		return jStat.covariance( arr1, arr2 ) / jStat.stdev( arr1 ) / jStat.stdev( arr2 );
 	},
 
-	
+	// Returns a normal deviate (mu=0, sigma=1).
+	// If n and m are specified it returns a jstat object of normal deviates.
 	randn : function( n, m ) {
 		m = m || n;
 		if( n ) {
@@ -807,24 +805,17 @@ jStat.extend({
 			mat.alter(function() { return jStat.randn(); } );
 			return mat;
 		}
-		var fac, rsq, v1, v2;
-		if( iset === 0 ) {
-			do {
-				v1 = 2 * Math.random() - 1;
-				v2 = 2 * Math.random() - 1;
-				rsq = v1 * v1 + v2 * v2;
-			} while( rsq >= 1 || rsq === 0 );
-			fac = Math.sqrt( -2 * Math.log( rsq ) / rsq );
-			// Now make the Box-Muller transformation to get two normal
-			// deviates. Return one and save the other for next time.
-			gset = v1 * fac;
-			iset = 1;
-			return v2 * fac;
-		} else {
-			iset = 0;
-			return gset;
-		}
+		var u, v, x, y, q;
 
+		do {
+			u = Math.random();
+			v = 1.7156 * ( Math.random() - 0.5 );
+			x = u - 0.449871;
+			y = Math.abs( v ) + 0.386595;
+			q = x*x + y * ( 0.19600 * y - 0.25472 * x );
+		} while( q > 0.27597
+			&& ( q > 0.27846 || v*v > -4 * Math.log( u ) * u*u ) );
+		return v / u;
 	}
 
 });
