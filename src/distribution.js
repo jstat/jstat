@@ -1,21 +1,21 @@
-this.d$ = this.jDist = (function( Math, j$ ) {
+this.d$ = this.jDist = (function( Math, jStat ) {
 
 var jDist = function() {
 	// TODO: finish implemenation of jDist object
 	};
 
-j$.extend( jDist, {
+jStat.extend( jDist, {
 	beta : {
 		pdf : function( x, alpha, beta ) {
-			return ( Math.pow( x, alpha - 1 ) * Math.pow( 1 - x, beta - 1 ) ) / j$.betafn( alpha, beta );
+			return ( Math.pow( x, alpha - 1 ) * Math.pow( 1 - x, beta - 1 ) ) / jStat.betafn( alpha, beta );
 		},
 
 		cdf : function( x, alpha, beta ) {
-			return j$.incompleteBeta( x, alpha, beta );
+			return jStat.incompleteBeta( x, alpha, beta );
 		},
 
 		inv : function( p, alpha, beta ) {
-			return j$.incompleteBetaInv( p, alpha, beta );
+			return jStat.incompleteBetaInv( p, alpha, beta );
 		},
 
 		mean : function( alpha, beta ) {
@@ -34,13 +34,13 @@ j$.extend( jDist, {
 			if( x ) {
 				// return a jstat object filled with random samples
 				return x.alter( function() {
-					var u = j$.randg( alpha );
-					return u / ( u + j$.randg( beta ) );
+					var u = jStat.randg( alpha );
+					return u / ( u + jStat.randg( beta ) );
 				});
 			} else {
 				// return a random sample
-				var u = j$.randg( alpha );
-				return u / ( u + j$.randg( beta ) );
+				var u = jStat.randg( alpha );
+				return u / ( u + jStat.randg( beta ) );
 			}
 		},
 
@@ -77,10 +77,10 @@ j$.extend( jDist, {
 		sample : function( x, location, scale ) {
 			if ( x ) {
 				return x.alter( function() {
-					return j$.randn() * Math.sqrt( 1 / ( 2 * j$.randg( 0.5 ) ) ) * scale + location;
+					return jStat.randn() * Math.sqrt( 1 / ( 2 * jStat.randg( 0.5 ) ) ) * scale + location;
 				});
 			} else {
-				return j$.randn() * Math.sqrt( 1 / ( 2 * j$.randg( 0.5 ) ) ) * scale + location;
+				return jStat.randn() * Math.sqrt( 1 / ( 2 * jStat.randg( 0.5 ) ) ) * scale + location;
 			}
 		},
 
@@ -91,15 +91,15 @@ j$.extend( jDist, {
 
 	chisquare : {
 		pdf : function( x, dof ) {
-			return (Math.pow( x, dof / 2 - 1) * Math.exp( -x / 2 )) / ( Math.pow( 2, dof / 2) * j$.gammafn( dof / 2 ));
+			return (Math.pow( x, dof / 2 - 1) * Math.exp( -x / 2 )) / ( Math.pow( 2, dof / 2) * jStat.gammafn( dof / 2 ));
 		},
 
 		cdf : function( x, dof ) {
-			return j$.gammap( x / 2, dof / 2 );
+			return jStat.gammap( x / 2, dof / 2 );
 		},
 
 		inv : function( p, dof ) {
-			return 2 * j$.gammapInv( p, 0.5 * dof );
+			return 2 * jStat.gammapInv( p, 0.5 * dof );
 		},
 
 		mean : function( dof ) {
@@ -119,11 +119,11 @@ j$.extend( jDist, {
 			if( x ) {
 				// return a jstat object filled with random samples
 				return x.alter( function() {
-					return j$.randg( dof/2 ) * 2;
+					return jStat.randg( dof/2 ) * 2;
 				});
 			} else {
 				// return a random sample
-				return j$.randg( dof/2 ) * 2;
+				return jStat.randg( dof/2 ) * 2;
 			}
 		},
 
@@ -174,15 +174,15 @@ j$.extend( jDist, {
 
 	gamma : {
 		pdf : function( x, shape, scale ) {
-			return Math.pow( x, shape - 1 ) * ( Math.exp( -x / scale ) / ( j$.gammafn( shape ) * Math.pow( scale, shape ) ) );
+			return Math.pow( x, shape - 1 ) * ( Math.exp( -x / scale ) / ( jStat.gammafn( shape ) * Math.pow( scale, shape ) ) );
 		},
 
 		cdf : function( x, shape, scale ) {
-			return j$.gammap( x / scale, shape );
+			return jStat.gammap( x / scale, shape );
 		},
 
 		inv : function( p, shape, scale ) {
-			return j$.gammapInv( p, shape ) * scale;
+			return jStat.gammapInv( p, shape ) * scale;
 		},
 
 		mean : function( shape, scale ) {
@@ -198,11 +198,11 @@ j$.extend( jDist, {
 			if( x ) {
 				// return a jstat object filled with random samples
 				return x.alter( function() {
-					return j$.randg( shape ) * scale;
+					return jStat.randg( shape ) * scale;
 				});
 			} else {
 				// return a random sample
-				return j$.randg( shape ) * scale;
+				return jStat.randg( shape ) * scale;
 			}
 		},
 
@@ -221,7 +221,7 @@ j$.extend( jDist, {
 		},
 
 		mean : function( alpha, beta ) {
-			return ( beta * j$.gammafn( 1 + 1 / alpha ) * j$.gammafn( beta ) ) / ( j$.gammafn( 1 + 1 / alpha + beta ) );
+			return ( beta * jStat.gammafn( 1 + 1 / alpha ) * jStat.gammafn( beta ) ) / ( jStat.gammafn( 1 + 1 / alpha + beta ) );
 		},
 
 		median : function( alpha, beta ) {
@@ -243,11 +243,11 @@ j$.extend( jDist, {
 		},
 
 		cdf : function( x, mu, sigma ) {
-			return 0.5 + ( 0.5 * j$.erf( ( Math.log( x ) - mu ) / Math.sqrt( 2 * sigma*sigma ) ) );
+			return 0.5 + ( 0.5 * jStat.erf( ( Math.log( x ) - mu ) / Math.sqrt( 2 * sigma*sigma ) ) );
 		},
 
 		inv : function( p, mu, sigma ) {
-			return Math.exp( -1.41421356237309505 * sigma * j$.erfcinv( 2 * p ) + mu);
+			return Math.exp( -1.41421356237309505 * sigma * jStat.erfcinv( 2 * p ) + mu);
 		},
 
 		mean : function( mu, sigma ) {
@@ -265,10 +265,10 @@ j$.extend( jDist, {
 		sample : function( x, mu, sigma ) {
 			if( x ) {
 				return x.alter( function() {
-					return Math.exp( j$.randn() * sigma + mu );
+					return Math.exp( jStat.randn() * sigma + mu );
 				})
 			} else {
-				return Math.exp( j$.randn() * sigma + mu );
+				return Math.exp( jStat.randn() * sigma + mu );
 			}
 		},
 
@@ -283,11 +283,11 @@ j$.extend( jDist, {
 		},
 
 		cdf : function( x, mean, std ) {
-			return 0.5 * ( 1 + j$.erf( ( x - mean ) / Math.sqrt( 2 * std * std ) ) );
+			return 0.5 * ( 1 + jStat.erf( ( x - mean ) / Math.sqrt( 2 * std * std ) ) );
 		},
 
 		inv : function( p, mean, std ) {
-			return -1.41421356237309505 * std * j$.erfcinv( 2 * p ) + mean;
+			return -1.41421356237309505 * std * jStat.erfcinv( 2 * p ) + mean;
 		},
 		
 		mean : function( mean, std ) {
@@ -306,11 +306,11 @@ j$.extend( jDist, {
 			if( x ) {
 				// return a jstat object filled with random samples
 				return x.alter( function() {
-					return j$.randn() * std + mean;
+					return jStat.randn() * std + mean;
 				});
 			} else {
 				// return a random sample
-				return j$.randn() * std + mean;
+				return jStat.randn() * std + mean;
 			}
 		},
 
@@ -347,16 +347,16 @@ j$.extend( jDist, {
 
 	studentt : {
 		pdf : function( x, dof ) {
-			return ( j$.gammafn( ( dof + 1 ) / 2 ) / ( Math.sqrt( dof * Math.PI ) * j$.gammafn( dof / 2 ) ) ) * Math.pow( 1 + ( ( x*x ) / dof ), -( ( dof + 1 ) / 2 ) );
+			return ( jStat.gammafn( ( dof + 1 ) / 2 ) / ( Math.sqrt( dof * Math.PI ) * jStat.gammafn( dof / 2 ) ) ) * Math.pow( 1 + ( ( x*x ) / dof ), -( ( dof + 1 ) / 2 ) );
 		},
 
 		cdf : function( x, dof ) {
 			var dof2 = dof / 2;
-			return j$.incompleteBeta( ( x + Math.sqrt( x*x + dof ) ) / ( 2 * Math.sqrt( x*x + dof ) ), dof2, dof2 );
+			return jStat.incompleteBeta( ( x + Math.sqrt( x*x + dof ) ) / ( 2 * Math.sqrt( x*x + dof ) ), dof2, dof2 );
 		},
 
 		inv : function( p, dof ) {
-			var x = j$.incompleteBetaInv( 2 * Math.min( p, 1 - p ), 0.5 * dof, 0.5 );
+			var x = jStat.incompleteBetaInv( 2 * Math.min( p, 1 - p ), 0.5 * dof, 0.5 );
 			x = Math.sqrt( dof * ( 1 - x ) / x );
 			return ( p > 0 ) ? x : -x;
 		},
@@ -376,11 +376,11 @@ j$.extend( jDist, {
 		sample : function( x, dof ) {
 			if( x ) {
 				return x.alter( function() {
-					return j$.randn() * Math.sqrt( dof / ( 2 * j$.randg( dof / 2) ) );
+					return jStat.randn() * Math.sqrt( dof / ( 2 * jStat.randg( dof / 2) ) );
 				});
 			} else {
 				// return a random sample
-				return j$.randn() * Math.sqrt( dof / ( 2 * j$.randg( dof / 2) ) );
+				return jStat.randn() * Math.sqrt( dof / ( 2 * jStat.randg( dof / 2) ) );
 			}
 		},
 
@@ -403,7 +403,7 @@ j$.extend( jDist, {
 		},
 
 		mean : function( scale, shape ) {
-			return scale * j$.gammafn( 1 + 1 / shape );
+			return scale * jStat.gammafn( 1 + 1 / shape );
 		},
 
 		median : function( scale, shape ) {
@@ -425,7 +425,7 @@ j$.extend( jDist, {
 		},
 
 		variance : function( scale, shape ) {
-			return scale * scale * j$.gammafn( 1 + 2 / shape ) - Math.pow( this.mean( scale, shape ), 2 );
+			return scale * scale * jStat.gammafn( 1 + 2 / shape ) - Math.pow( this.mean( scale, shape ), 2 );
 		}
 	},
 
@@ -495,7 +495,7 @@ j$.extend( jDist, {
 
 	binomial : {
 		pdf : function( k, n, p ) {
-			return j$.combination( n, k ) * Math.pow( p, k ) * Math.pow( 1 - p, n - k );
+			return jStat.combination( n, k ) * Math.pow( p, k ) * Math.pow( 1 - p, n - k );
 		},
 
 		cdf : function( x, n, p ) {
@@ -508,7 +508,7 @@ j$.extend( jDist, {
 			};
 			if ( x < n ) {
 				for ( ; k < n; k++ ) {
-					binomarr[ k ] = j$.binomial( k, n, p );
+					binomarr[ k ] = jStat.binomial( k, n, p );
 				};
 				for ( ; i <= x; i++ ) {
 					sum += binomarr[ i ];
@@ -525,7 +525,7 @@ j$.extend( jDist, {
 				? false
 			: k < 0
 				? 0
-			: j$.combination( k + r - 1, k ) * Math.pow( 1 - p, r ) * Math.pow( p, k );
+			: jStat.combination( k + r - 1, k ) * Math.pow( 1 - p, r ) * Math.pow( p, k );
 		},
 
 		cdf : function( x, r, p ) {
@@ -533,7 +533,7 @@ j$.extend( jDist, {
 				k = 0;
 			if ( x < 0 ) return 0;
 			for ( ; k <= x; k++ ) {
-				sum += j$.negbin( k, r, p );
+				sum += jStat.negbin( k, r, p );
 			};
 			return sum;
 		}
@@ -545,7 +545,7 @@ j$.extend( jDist, {
 				? false
 			: ( x < 0)
 				? 0
-			: j$.combination( m, k ) * j$.combination( N - m , n - k ) / j$.combination( N, n );
+			: jStat.combination( m, k ) * jStat.combination( N - m , n - k ) / jStat.combination( N, n );
 		},
 
 		cdf : function( x, N, m, n ) {
@@ -553,7 +553,7 @@ j$.extend( jDist, {
 				k = 0;
 			if ( x < 0 ) return 0;
 			for ( ; k <= x; k++ ) {
-				sum += j$.hypgeom( k, N, m, n );
+				sum += jStat.hypgeom( k, N, m, n );
 			};
 			return sum;
 		}
@@ -561,7 +561,7 @@ j$.extend( jDist, {
 
 	poisson : {
 		pdf : function( k, l ) {
-			return Math.pow( l, k ) * Math.exp( -l ) / j$.factorial( k );
+			return Math.pow( l, k ) * Math.exp( -l ) / jStat.factorial( k );
 		},
 
 		cdf : function( x, l ) {
@@ -569,7 +569,7 @@ j$.extend( jDist, {
 				k = 0;
 			if ( x < 0 ) return 0;
 			for ( ; k <= x; k++ ) {
-				sum += j$.poisson( k, l );
+				sum += jStat.poisson( k, l );
 			};
 			return sum;
 		}
