@@ -628,6 +628,30 @@ jStat.extend({
 
 		return 1 - j$.erf( x );
 	},
+
+	// Returns the inverse of the complementary error function
+	inverfc : function( p ) {
+		if( isNan( p ) ) {
+			return p.map( function( value ) { return jStat.inverfc( value ); } );
+		}
+
+		var x, err, t, pp, j = 0;
+
+		if( p >= 2 ) return -100;
+		if( p <= 0 ) return 100;
+
+		pp = ( p < 1 ) ? p : 2 - p;
+
+		t = Math.sqrt( -2 * Math.log( pp / 2 ) );
+		x = -0.70711 * ( ( 2.30753 + t * 0.27061 ) / ( 1 + t * ( 0.99229 + t * 0.4481) ) - t );
+
+		for( ; j < 2; j++ ) {
+			err = j$.erfc( x ) - pp;
+			x =+ err / ( 1.12837916709551257 * Math.exp( -x*x ) - x * err );
+		}
+
+		return ( p < 1 ) ? x : -x;
+	},
 	
 	// vector/matrix specific functionality //
 
