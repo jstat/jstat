@@ -133,6 +133,10 @@ j$.extend( jDist, {
 			return x < 0 ? 0 : 1 - Math.exp( -rate * x );
 		},
 
+		inv : function( p, rate ) {
+			return -Math.log( 1 - p ) / rate;
+		},
+
 		mean : function( rate ) {
 			return 1 / rate;
 		},
@@ -148,10 +152,10 @@ j$.extend( jDist, {
 		sample : function( x, rate ) {
 			if( x ) {
 				return x.alter( function() {
-					return -rate * Math.log( Math.random() );
+					return -1 / rate * Math.log( Math.random() );
 				})
 			} else {
-				return -rate * Math.log( Math.random() );
+				return -1 / rate * Math.log( Math.random() );
 			}
 		},
 
