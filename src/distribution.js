@@ -26,6 +26,20 @@ j$.extend( jDist, {
 			return ( alpha * beta ) / ( Math.pow( alpha + beta, 2 ) * ( alpha + beta + 1 ));
 		},
 
+		sample : function( x, alpha, beta ) {
+			if( x ) {
+				// return a jstat object filled with random samples
+				return x.alter( function() {
+					var u = j$.randg( alpha );
+					return u / ( u + j$.randg( beta ) );
+				});
+			} else {
+				// return a random sample
+				var u = j$.randg( alpha );
+				return u / ( u + j$.randg( beta ) );
+			}
+		},
+
 		variance : function( alpha, beta ) {
 			return ( alpha * beta ) / ( Math.pow( alpha + beta, 2 ) * ( alpha + beta + 1 ) );
 		}
