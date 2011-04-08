@@ -15,8 +15,8 @@ var jStat = function() {
 	toString = Object.prototype.toString,
 
 	// ascending/descending functions for sort
-	ascNum = function( a, b ) { return a - b; },
-	descNum = function( a, b ) { return b - a; },
+	ascNum = function( a, b ) {return a - b;},
+	descNum = function( a, b ) {return b - a;},
 
 	// test if array
 	isArray = function( arg ) {
@@ -226,9 +226,9 @@ jStat.extend( jStat.fn, {
 	// add a vector or scalar to the vector
 	add : function( k ) {
 		if( isNaN( k ) ) {
-			return this.map( function( value, row, col ) { return value + k[row][col]; });
+			return this.map( function( value, row, col ) {return value + k[row][col];});
 		} else {
-			return this.map( function ( value ) { return value + k; } );
+			return this.map( function ( value ) {return value + k;} );
 		}
 	},
 
@@ -238,7 +238,7 @@ jStat.extend( jStat.fn, {
 		if( isNaN( k ) ) {
 			// unsupported operation
 		} else {
-			return this.map( function ( value ) { return value / k; } );
+			return this.map( function ( value ) {return value / k;} );
 		}
 	},
 
@@ -262,16 +262,16 @@ jStat.extend( jStat.fn, {
 			}
 			return ( nrow == 1 && rescols == 1 ) ? res[0][0] : res;
 		} else {
-			return this.map( function ( value ) { return value * k; } );
+			return this.map( function ( value ) {return value * k;} );
 		}
 	},
 
 	// subtract a vector or scalar from the vector
 	subtract : function( k ) {
 		if( isNaN( k ) ) {
-			return this.map( function( value, row, col ) { return value - k[row][col]; });
+			return this.map( function( value, row, col ) {return value - k[row][col];});
 		} else {
-			return this.map( function ( value ) { return value - k; });
+			return this.map( function ( value ) {return value - k;});
 		}
 	},
 
@@ -298,22 +298,22 @@ jStat.extend( jStat.fn, {
 
 	// raise every element by a scalar or vector
 	pow : function( k ) {
-		return this.map( function( value ) { return Math.pow( value, k ); } );
+		return this.map( function( value ) {return Math.pow( value, k );} );
 	},
 
 	// generate the absolute values of the vector
 	abs : function() {
-		return this.map( function( value ) { return Math.abs( value ); } );
+		return this.map( function( value ) {return Math.abs( value );} );
 	},
 
 	// set all values to zero
 	clear : function() {
-		return this.alter( function() { return 0; } );
+		return this.alter( function() {return 0;} );
 	},
 
 	// Returns the dimensions of the object { rows: i, cols: j }
 	dimensions : function() {
-		return { rows: this.rows(), cols: this.cols() };
+		return {rows: this.rows(), cols: this.cols()};
 	},
 
 	// Returns the sum of each column in the matrix
@@ -444,22 +444,22 @@ jStat.extend({
 
 	// creates a rows x cols matrix of zeros
 	zeros : function( rows, cols ) {
-		return jStat.create( rows, cols, function() { return 0; } );
+		return jStat.create( rows, cols, function() {return 0;} );
 	},
 
 	// creates a rows x cols matrix of ones
 	ones: function( rows, cols ) {
-		return jStat.create( rows, cols, function() { return 1; } );
+		return jStat.create( rows, cols, function() {return 1;} );
 	},
 
 	// Creates a rows x cols matrix of uniformly random numbers
 	rand: function( rows, cols ) {
-		return jStat.create( rows, cols, function() { return Math.random(); } );
+		return jStat.create( rows, cols, function() {return Math.random();} );
 	},
 
 	// Creates an identity matrix of size row x cols
 	identity : function( rows, cols ) {
-		return jStat.create( rows, cols, function( i, j ) { return ( i === j ) ? 1 : 0; } );
+		return jStat.create( rows, cols, function( i, j ) {return ( i === j ) ? 1 : 0;} );
 	},
 
 	// creates a rows x cols matrix according to the supplied function
@@ -510,7 +510,7 @@ jStat.extend({
 			w;
 		if( isNaN( x ) ) {
 			// run for all values in matrix
-			return x.map( function( value ) { return jStat.gammafn( value ); } );
+			return x.map( function( value ) {return jStat.gammafn( value );} );
 		}
 		if ( x == Math.floor( x ) ) return jStat.factorial( x - 1 );
 		while ( x < 8 ) {
@@ -528,7 +528,7 @@ jStat.extend({
 				-1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5];
 		if( isNaN( x ) ) {
 			// run for all values in matrix
-			return x.map( function( value ) { return jStat.gammaln( value ); } );
+			return x.map( function( value ) {return jStat.gammaln( value );} );
 		}
 		y = xx = x;
 		tmp = xx + 5.5;
@@ -545,7 +545,7 @@ jStat.extend({
 
 		if( isNaN( x ) ) {
 			// run for all values in matrix
-			return x.map( function( value ) { return jStat.gammap( value, a ); } );
+			return x.map( function( value ) {return jStat.gammap( value, a );} );
 		}
 		
 		gln = jStat.gammaln( a );
@@ -567,7 +567,7 @@ jStat.extend({
 	erf : function( x ) {
 		if( isNaN( x ) ) {
 			// run for all values in matrix
-			return x.map( function( value ) { return jStat.erf( value ); } );
+			return x.map( function( value ) {return jStat.erf( value );} );
 		}
 
 		var cof = [
@@ -623,7 +623,7 @@ jStat.extend({
 	erfc : function( x ) {
 		if( isNaN( x ) ) {
 			// run for all values in matrix
-			return x.map( function( value ) { return jStat.erfc( value ); } );
+			return x.map( function( value ) {return jStat.erfc( value );} );
 		}
 
 		return 1 - j$.erf( x );
@@ -632,7 +632,7 @@ jStat.extend({
 	// Returns the inverse of the complementary error function
 	erfcinv : function( p ) {
 		if( isNaN( p ) ) {
-			return p.map( function( value ) { return jStat.erfcinv( value ); } );
+			return p.map( function( value ) {return jStat.erfcinv( value );} );
 		}
 
 		var x, err, t, pp, j = 0;
@@ -793,12 +793,56 @@ jStat.extend({
 		return Math.exp( jStat.gammaln( z ) + jStat.gammaln( w ) - jStat.gammaln( z + w ) );
 	},
 
+	// Returns the inverse of the incomplete beta function
+	incompleteBetaInv : function( p, a, b ) {
+
+		if( isNaN( p ) ) {
+			// run for all values in matrix
+			return p.map( function( value ) {return jStat.incompleteBetaInv( value, a, b );} );
+		}
+
+		var EPS = 1e-8, pp, t, u, err, x, al, h, w, afac, a1=a-1, b1=b-1,j=0,lna,lnb;
+
+		if( p <= 0 ) return 0;
+		else if( p >= 1 ) return 1;
+		else if( a >= 1 && b >= 1 ) {
+			pp = ( p < 0.5 ) ? p : 1 - p;
+			t = Math.sqrt( -2 * Math.log( pp ) );
+			x = ( 2.30753 + t * 0.27061 ) / ( 1 + t* ( 0.99229 + t * 0.04481 ) ) - t;
+			if( p < 0.5 ) x = -x;
+			al = ( x*x -3 ) / 6;
+			h = 2 / ( 1 / ( 2 * a - 1 )  + 1 / ( 2 * b - 1 ) );
+			w = ( x * Math.sqrt( al + h ) / h ) - ( 1 / ( 2 * b - 1 ) - 1 / ( 2 * a - 1 ) ) * ( al + 5 / 6 - 2 / ( 3 * h ) );
+			x = a / ( a + b * Math.exp( 2 * w ) );
+		} else {
+			lna = Math.log( a / ( a + b ) );
+			lnb = Math.log( b / ( a + b ) );
+			t = Math.exp( a * lna ) / a;
+			u = Math.exp( b * lnb ) / b;
+			w = t + u;
+			if( p < t / w) x = Math.pow( a*w*p, 1 / a );
+			else x = 1 - Math.pow( b*w*( 1 - p ), 1 / b);
+		}
+		afac = -j$.gammaln( a ) - j$.gammaln( b ) + j$.gammaln( a + b );
+		for( ; j < 10; j++ ) {
+			if( x === 0 || x === 1) return x;
+			err = j$.incompleteBeta( x, a, b ) - p;
+			t = Math.exp( a1 * Math.log( x ) + b1 * Math.log( 1 - x ) + afac );
+			u = err / t;
+			x -= ( t = u / ( 1 - 0.5 * Math.min( 1, u * ( a1 / x - b1 / ( 1 - x ) ) ) ) );
+			if( x <= 0 ) x = 0.5 * ( x + t );
+			if( x >= 1 ) x = 0.5 * ( x + t + 1 );
+			if( Math.abs( t ) < EPS * x && j > 0 ) break;
+		}
+		return x;
+	},
+
 	// Returns the incomplete beta function I_x(a,b)
 	incompleteBeta : function( x, a, b ) {
 
 		if( isNaN( x ) ) {
 			// run for all values in matrix
-			return x.map( function( value ) { return jStat.incompleteBeta( value, a, b ); } );
+			return x.map( function( value ) {return jStat.incompleteBeta( value, a, b );} );
 		}
 
 		// Evaluates the continued fraction for incomplete beta function
@@ -882,7 +926,7 @@ jStat.extend({
 		m = m || n;
 		if( n ) {
 			var mat = jStat.zeros( n,m );
-			mat.alter(function() { return jStat.randn(); } );
+			mat.alter(function() {return jStat.randn();} );
 			return mat;
 		}
 		var u, v, x, y, q;
@@ -904,7 +948,7 @@ jStat.extend({
 		shape = shape || 1;
 		if( n ) {
 			var mat = jStat.zeros( n,m );
-			mat.alter(function() { return jStat.randg( shape ); } );
+			mat.alter(function() {return jStat.randg( shape );} );
 			return mat;
 		}
 
