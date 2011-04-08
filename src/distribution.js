@@ -382,6 +382,10 @@ j$.extend( jDist, {
 			return x < 0 ? 0 : 1 - Math.exp( -Math.pow(( x / scale ), shape ));
 		},
 
+		inv : function( p, scale, shape ) {
+			return scale * Math.pow( -Math.log( 1 - p ), 1 / shape );
+		},
+
 		mean : function( scale, shape ) {
 			return scale * j$.gammafn( 1 + 1 / shape );
 		},
