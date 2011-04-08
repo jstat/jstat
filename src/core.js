@@ -816,6 +816,44 @@ jStat.extend({
 		} while( q > 0.27597
 			&& ( q > 0.27846 || v*v > -4 * Math.log( u ) * u*u ) );
 		return v / u;
+	},
+
+	// Returns a gamma deviate by the method of Marsaglia and Tsang.
+	randg : function( alpha, n, m ) {
+		m = m || n;
+		alpha = alpha || 1;
+		if( n ) {
+			var mat = jStat.zeros( n,m );
+			mat.alter(function() { return jStat.randg( alpha ); } );
+			return mat;
+		}
+
+		var a1, a2, oalph = alpha, u, v, x;
+
+		if( alpha <= 0 ) xerror();
+
+		if( alpha < 1 ) alpha += 1;
+
+		a1 = alpha - 1 / 3;
+		a2 = 1 / Math.sqrt( 9 * a1 );
+
+		do {
+			do {
+				x = j$.randn();
+				v = 1 + a2 * x;
+			} while( v <= 0 );
+			v = v*v*v;
+			u = Math.random();
+		} while( u > 1 - 0.331 * x*x*x*x &&
+			Math.log( u ) > 0.5 * x*x + a1 * ( 1 - v + Math.log( v ) ));
+
+		// alpha > 1
+		if( alpha == oalph ) return a1 * v;
+
+		// alpha < 1
+		do u = Math.random(); while( u == 0 );
+		
+		return Math.pow( u, 1 / oalph ) * a1 * v;
 	}
 
 });
