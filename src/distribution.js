@@ -63,7 +63,6 @@ jStat.extend( jDist, {
 		},
 
 		mean : function( location, scale ) {
-			xerror();
 		},
 
 		median: function( location, scale ) {
@@ -85,7 +84,6 @@ jStat.extend( jDist, {
 		},
 
 		variance : function( location, scale ) {
-			xerror();
 		}
 	},
 
@@ -233,7 +231,6 @@ jStat.extend( jDist, {
 		},
 		
 		variance: function( alpha, beta ) {
-			xerror();
 		}
 	},
 
