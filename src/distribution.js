@@ -238,6 +238,16 @@ j$.extend( jDist, {
 			return Math.exp( mu - sigma*sigma );
 		},
 
+		sample : function( x, mu, sigma ) {
+			if( x ) {
+				return x.alter( function() {
+					return Math.exp( j$.randn() * sigma + mu );
+				})
+			} else {
+				return Math.exp( j$.randn() * sigma + mu );
+			}
+		},
+
 		variance : function( mu, sigma ) {
 			return ( Math.exp( sigma*sigma ) - 1 ) * Math.exp( 2 * mu + sigma*sigma );
 		}
@@ -405,6 +415,16 @@ j$.extend( jDist, {
 
 		mode : function( a, b ) {
 
+		},
+
+		sample : function( x, a, b ) {
+			if( x ) {
+				return x.alter( function() {
+					return ( a / 2 + b / 2 ) + ( b / 2 - a / 2) * ( 2 * Math.random() - 1);
+				});
+			} else {
+				return ( a / 2 + b / 2 ) + ( b / 2 - a / 2) * ( 2 * Math.random() - 1);
+			}
 		},
 
 		variance : function( a, b ) {
