@@ -48,14 +48,14 @@ jStat.fn = jStat.prototype = {
 			if ( isArray( args[0][0] )) {
 				for ( var i = 0; i < args[0].length; i++ ) {
 					this.push( args[0][i] );
-				};
+				}
 			} else {
 				this.push( args[0] );
-			};
+			}
 		// if first argument is number, assume creation of sequence
 		} else if ( !isNaN( args[0] )) {
 			this.push( jStat.seq.apply( this, args ));
-		};
+		}
 		return this;
 	},
 
@@ -79,14 +79,14 @@ jStat.extend = function( obj ) {
 	var args = slice.call( arguments ),
 	i = 1, j;
 	if ( args.length === 1 ) {
-		for ( var i in obj ) {
+		for ( i in obj ) {
 			jStat[i] = obj[i];
-		};
+		}
 		return this;
-	};
+	}
 	for ( ; i < args.length; i++ ) {
 		for ( j in args[i] ) obj[j] = args[i][j];
-	};
+	}
 	return obj;
 };
 
@@ -98,14 +98,14 @@ jStat.extend = function( obj ) {
 			if ( isFunction( func )) {
 				for ( ; j < this.length; j++ ) {
 					callLater( func, jStat( this[j] ), [ jStat[ passfunc ]( this[j][0] )]);
-				};
+				}
 				return this;
 			} else {
 				for ( ; j < this.length; j++ ) {
 					arr.push( jStat[ passfunc ]( this[j] ));
-				};
+				}
 				return arr.length === 1 ? arr[0] : jStat[ passfunc ]( arr );
-			};
+			}
 		};
 	})( funcs[i] );
 })( 'sum min max mean median mode range variance stdev meandev meddev quartiles'.split(' '));
@@ -114,7 +114,7 @@ jStat.extend = function( obj ) {
 // Returns the incomplete gamma function Q(a,x) evaluated by its
 // continued fraction representation as gammacf
 function gcf( x, a, gln ) {
-	var i = 1, an, b, c, d, del, h, gln, fpmin = 1e-30;
+	var i = 1, an, b, c, d, del, h, fpmin = 1e-30;
 
 	gln = jStat.gammaln( a );
 	b = x + 1 - a;
@@ -133,17 +133,17 @@ function gcf( x, a, gln ) {
 
 		d = 1 / d;
 		del = d * c;
-		h *= del
+		h *= del;
 
 		if( Math.abs( del - 1 ) < 3e-7 ) break;
 	}
 	return Math.exp( -x + a * Math.log( x ) - ( gln ) ) * h;
-};
+}
 
 // Returns the incomplete gamma function P(a,x) evaluated by its
 // series representation as gamser
 function gser( x, a, gln ) {
-	var n = 1, sum, del, ap, gln;
+	var n = 1, sum, del, ap;
 
 	gln = jStat.gammaln( a );
 
@@ -188,8 +188,8 @@ jStat.extend( jStat.fn, {
 			obj[i] = [];
 			for ( j = 0; j < rows; j++ ) {
 				obj[i][j] = this[j][i];
-			};
-		};
+			}
+		}
 		return jStat( obj );
 	},
 
@@ -201,7 +201,7 @@ jStat.extend( jStat.fn, {
 			res = [],
 			col;
 		for ( ; row < nrow; row ++) {
-			res[row] = []
+			res[row] = [];
 			for ( col = 0; col < ncol; col++ ) {
 				res[row][col] = func( this[row][col], row, col );
 			}
@@ -226,7 +226,7 @@ jStat.extend( jStat.fn, {
 	// add a vector or scalar to the vector
 	add : function( k ) {
 		if( isNaN( k ) ) {
-			return this.map( function( value, row, col ) { return value + k[row][col] })
+			return this.map( function( value, row, col ) { return value + k[row][col]; });
 		} else {
 			return this.map( function ( value ) { return value + k; } );
 		}
@@ -269,9 +269,9 @@ jStat.extend( jStat.fn, {
 	// subtract a vector or scalar from the vector
 	subtract : function( k ) {
 		if( isNaN( k ) ) {
-			return this.map( function( value, row, col ) { return value - k[row][col] })
+			return this.map( function( value, row, col ) { return value - k[row][col]; });
 		} else {
-			return this.map( function ( value ) { return value - k; } );
+			return this.map( function ( value ) { return value - k; });
 		}
 	},
 
@@ -323,7 +323,7 @@ jStat.extend( jStat.fn, {
 			res = [],
 			tmpthis = this.transpose();
 		for( ; col < ncol; col++ ) {
-			res[col] = jStat.sum( tmpthis[col] )
+			res[col] = jStat.sum( tmpthis[col] );
 		}
 		return ( ncol > 1 ) ? jStat( res ) : res[0];
 	},
@@ -336,7 +336,7 @@ jStat.extend( jStat.fn, {
 			res = [],
 			tmpthis = this.transpose();
 		for( ; col < ncol; col++ ) {
-			res[col] = jStat.mean( tmpthis[col] )
+			res[col] = jStat.mean( tmpthis[col] );
 		}
 		return ( ncol > 1 ) ? jStat( res ) : res[0];
 	},
@@ -349,7 +349,7 @@ jStat.extend( jStat.fn, {
 			res = [],
 			tmpthis = this.transpose();
 		for( ; col < ncol; col++ ) {
-			res[col] = jStat.stdev( tmpthis[col] )
+			res[col] = jStat.stdev( tmpthis[col] );
 		}
 		return ( ncol > 1 ) ? jStat( res ) : res[0];
 	},
@@ -362,7 +362,7 @@ jStat.extend( jStat.fn, {
 			res = [],
 			tmpthis = this.transpose();
 		for( ; col < ncol; col++ ) {
-			res[col] = jStat.variance( tmpthis[col] )
+			res[col] = jStat.variance( tmpthis[col] );
 		}
 		return ( ncol > 1 ) ? jStat( res ) : res[0];
 	},
@@ -492,7 +492,7 @@ jStat.extend({
 		if ( n != Math.floor( n ) ) return jStat.gammafn( n + 1 );
 		for( ; n > 0; n-- ) {
 			fval *= n;
-		};
+		}
 		return fval;
 	},
 
@@ -508,35 +508,30 @@ jStat.extend({
 
 	// gamma of x
 	gammafn : function( x ) {
-
-		if( isNaN( x ) ) {
-			// run for all values in matrix
-			return x.map( function( value ) { return jStat.gammafn( value ) } );
-		}
-
 		var v = 1,
 			w;
+		if( isNaN( x ) ) {
+			// run for all values in matrix
+			return x.map( function( value ) { return jStat.gammafn( value ); } );
+		}
 		if ( x == Math.floor( x ) ) return jStat.factorial( x - 1 );
 		while ( x < 8 ) {
 			v *= x;
 			x++;
-		};
+		}
 		w = 1 / (x * x);
 		return Math.exp((((((((-3617 / 122400 * w + 7 / 1092) * w - 691 / 360360) * w + 5 / 5940) * w - 1 / 1680)  * w + 1 / 1260) * w - 1 / 360) * w + 1 / 12) / x + 0.5 * Math.log(2 * Math.PI) - Math.log(v) - x + (x - 0.5) * Math.log(x));
 	},
 
 	// Log-gamma function
 	gammaln : function( x ) {
-
-		if( isNaN( x ) ) {
-			// run for all values in matrix
-			return x.map( function( value ) { return jStat.gammaln( value ) } );
-		}
-
 		var xx, y, tmp, ser,j = 0,
 			cof = [76.18009172947146, -86.50532032941677, 24.01409824083091,
 				-1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5];
-
+		if( isNaN( x ) ) {
+			// run for all values in matrix
+			return x.map( function( value ) { return jStat.gammaln( value ); } );
+		}
 		y = xx = x;
 		tmp = xx + 5.5;
 		tmp -= ( xx + 0.5 ) * Math.log( tmp );
@@ -552,14 +547,13 @@ jStat.extend({
 
 		if( isNaN( x ) ) {
 			// run for all values in matrix
-			return x.map( function( value ) { return jStat.gammap( value, a ) } );
+			return x.map( function( value ) { return jStat.gammap( value, a ); } );
 		}
 		
 		gln = jStat.gammaln( a );
 		gammcf = gcf( x, a, gln );
 		gamser = gser( x, a, gln );
 
-		
 		if( x < ( a + 1 ) ) {
 			// use series representation
 			gser( x, a );
@@ -575,10 +569,9 @@ jStat.extend({
 	erf : function( x ) {
 		if( isNaN( x ) ) {
 			// run for all values in matrix
-			return x.map( function( value ) { return jStat.erf( value ) } );
+			return x.map( function( value ) { return jStat.erf( value ); } );
 		}
-
-		return ( x < 0.0 ) ? -jStat.gammap( x*x, 0.5 ) : jStat.gammap( x*x, 0.5 );
+		return ( x < 0.0 ) ? -jStat.gammap( x * x, 0.5 ) : jStat.gammap( x * x, 0.5 );
 	},
 
 
@@ -590,7 +583,7 @@ jStat.extend({
 			i = arr.length;
 		while ( --i >= 0 ) {
 			sum += +arr[i];
-		};
+		}
 		return sum;
 	},
 
@@ -645,10 +638,10 @@ jStat.extend({
 					// count is less than max count, so reset values
 					} else {
 						count = 1;
-					};
-				};
-			};
-		};
+					}
+				}
+			}
+		}
 
 		return ( numMaxCount === 0 ) ? maxNum : false;
 	},
@@ -666,7 +659,7 @@ jStat.extend({
 			i = arr.length - 1;
 		for( ; i >= 0; i-- ) {
 			stSum += Math.pow( ( arr[i] - mean ), 2 );
-		};
+		}
 		return stSum / ( arr.length - 1 );
 	},
 
@@ -682,7 +675,7 @@ jStat.extend({
 			i = arr.length - 1;
 		for ( ; i >= 0; i-- ) {
 			devSum += Math.abs( arr[ i ] - mean );
-		};
+		}
 		return devSum / arr.length;
 	},
 
@@ -693,7 +686,7 @@ jStat.extend({
 			i = arr.length - 1;
 		for ( ; i >= 0; i-- ) {
 			devSum += Math.abs( arr[ i ] - median );
-		};
+		}
 		return devSum / arr.length;
 	},
 
@@ -713,13 +706,13 @@ jStat.extend({
 			i = 0;
 		for ( ; i < arr1Len; i++ ) {
 			sq_dev[ i ] = ( arr1[ i ] - u ) * ( arr2[ i ] - v );
-		};
+		}
 		return jStat.sum( sq_dev ) / arr1Len;
 	},
 
 	// Returns the beta function B(z,w)
 	betafn : function( z, w ) {
-		return Math.exp( j$.gammaln( z ) + j$.gammaln( w ) - j$.gammaln( z + w ) );
+		return Math.exp( jStat.gammaln( z ) + jStat.gammaln( w ) - jStat.gammaln( z + w ) );
 	},
 
 	// Returns the incomplete beta function I_x(a,b)
@@ -727,7 +720,7 @@ jStat.extend({
 
 		if( isNaN( x ) ) {
 			// run for all values in matrix
-			return x.map( function( value ) { return jStat.incompleteBeta( value, a, b ) } );
+			return x.map( function( value ) { return jStat.incompleteBeta( value, a, b ); } );
 		}
 
 		// Evaluates the continued fraction for incomplete beta function
@@ -763,9 +756,7 @@ jStat.extend({
 				if( Math.abs( c ) < fpmin ) c = fpmin;
 
 				d = 1 / d;
-
 				h *= d * c;
-
 				aa = -( a + m ) * ( qab + m ) * x / ( ( a + m2 ) * ( qap + m2 ) );
 				d = 1 + aa * d;	// Next step of the recurrence (the odd one)
 
@@ -776,9 +767,7 @@ jStat.extend({
 				if( Math.abs( c ) < fpmin ) c = fpmin;
 
 				d = 1 / d;
-
 				del = d * c;
-
 				h *= del;
 
 				// TODO: make 3e-7 a constant
@@ -788,7 +777,7 @@ jStat.extend({
 			return h;
 		}
 
-		if( x < 0 || x > 1 ) xerror();
+		if( x < 0 || x > 1 ) return false;
 
 		var bt = ( x === 0 || x === 1 ) ?  0 :
 			Math.exp(jStat.gammaln( a + b ) - jStat.gammaln( a ) -
@@ -813,8 +802,8 @@ jStat.extend({
 	randn : function( n, m ) {
 		m = m || n;
 		if( n ) {
-			var mat = j$.zeros( n,m );
-			mat.apply(function() { return j$.randn() } );
+			var mat = jStat.zeros( n,m );
+			mat.apply(function() { return jStat.randn(); } );
 			return mat;
 		}
 		var fac, rsq, v1, v2;
@@ -823,7 +812,7 @@ jStat.extend({
 				v1 = 2 * Math.random() - 1;
 				v2 = 2 * Math.random() - 1;
 				rsq = v1 * v1 + v2 * v2;
-			} while( rsq >= 1 || rsq == 0.0 );
+			} while( rsq >= 1 || rsq === 0 );
 			fac = Math.sqrt( -2 * Math.log( rsq ) / rsq );
 			// Now make the Box-Muller transformation to get two normal
 			// deviates. Return one and save the other for next time.
