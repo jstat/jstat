@@ -79,6 +79,16 @@ j$.extend( jDist, {
 			return ( dof - 2 > 0 ) ? dof - 2 : 0;
 		},
 
+		sample : function( x,dof ) {
+			if( x ) {
+				// return a jstat object filled with random samples
+				return j$.randg( dof/2, x.rows(), x.cols() ).multiply( 2 );
+			} else {
+				// return a random sample
+				return j$.randg( dof/2 ) * 2;
+			}
+		},
+
 		variance: function( dof ) {
 			return 2 * dof;
 		}
