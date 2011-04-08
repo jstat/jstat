@@ -14,6 +14,10 @@ j$.extend( jDist, {
 			return j$.incompleteBeta( x, alpha, beta );
 		},
 
+		inv : function( p, alpha, beta ) {
+			return j$.incompleteBetaInv( p, alpha, beta );
+		},
+
 		mean : function( alpha, beta ) {
 			return alpha / ( alpha + beta );
 		},
