@@ -390,6 +390,7 @@ jStat.extend( jStat.fn, {
 		var issymmetric = true,
 			row = 0,
 			size = this.rows(), col;
+		if( this.rows() !== this.cols() ) return false;
 		for ( ; ( row < size ) && issymmetric; row++ ) {
 			for ( col = 0; ( col < size ) && issymmetric; col++ ) {
 				issymmetric = ( this[col][row] === this[row][col] );
