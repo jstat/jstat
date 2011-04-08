@@ -141,6 +141,16 @@ j$.extend( jDist, {
 			return 0;
 		},
 
+		sample : function( x, rate ) {
+			if( x ) {
+				return x.alter( function() {
+					return -rate * Math.log( Math.random() );
+				})
+			} else {
+				return -rate * Math.log( Math.random() );
+			}
+		},
+
 		variance : function( rate ) {
 			return Math.pow( rate, -2 );
 		}
