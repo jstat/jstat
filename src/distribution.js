@@ -66,6 +66,16 @@ j$.extend( jDist, {
 			return location;
 		},
 
+		sample : function( x, location, scale ) {
+			if ( x ) {
+				return x.alter( function() {
+					return j$.randn() * Math.sqrt( 1 / ( 2 * j$.randg( 0.5 ) ) ) * scale + location;
+				});
+			} else {
+				return j$.randn() * Math.sqrt( 1 / ( 2 * j$.randg( 0.5 ) ) ) * scale + location;
+			}
+		},
+
 		variance : function( location, scale ) {
 			xerror();
 		}
