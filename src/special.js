@@ -120,7 +120,7 @@ jStat.extend({
 		var j = 0,x,gln,err,t,u,pp,lna1,afac,a1=a-1,EPS=1e-8;
 		gln = jStat.gammaln( a );
 
-		if( a <= 0 ) xerror();
+//		if( a <= 0 ) xerror();
 		if( p >= 1 ) return Math.max( 100, a + 100 * Math.sqrt( a ) );
 		if( p <= 0 ) return 0;
 		if( a > 1 ) {
@@ -401,7 +401,7 @@ jStat.extend({
 
 		var a1, a2, oalph = shape, u, v, x;
 
-		if( shape <= 0 ) xerror();
+//		if( shape <= 0 ) xerror();
 
 		if( shape < 1 ) shape += 1;
 
