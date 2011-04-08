@@ -54,6 +54,10 @@ j$.extend( jDist, {
 			return Math.atan(( x - location) / scale ) / Math.PI + 0.5;
 		},
 
+		inv : function( p, location, scale ) {
+			return location + scale * Math.tan( Math.PI * ( p - 0.5 ) );
+		},
+
 		mean : function( location, scale ) {
 			xerror();
 		},
