@@ -1,10 +1,6 @@
-this.d$ = this.jDist = (function( Math, jStat ) {
+(function( Math, jStat ) {
 
-var jDist = function() {
-	// TODO: finish implemenation of jDist object
-	};
-
-jStat.extend( jDist, {
+jStat.extend({
 	beta : {
 		pdf : function( x, alpha, beta ) {
 			return ( Math.pow( x, alpha - 1 ) * Math.pow( 1 - x, beta - 1 ) ) / jStat.betafn( alpha, beta );
@@ -573,5 +569,4 @@ jStat.extend( jDist, {
 	}
 });
 
-return jDist;
 })( Math, jStat );

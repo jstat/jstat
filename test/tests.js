@@ -82,21 +82,21 @@ $(function() {
 	module('distribution');
 
 	test('uniformcdf',function(){
-		equals(jDist.uniform.cdf(0.5, 0, 2),0.25,'uniform.cdf(0, 2, 0.5)');
+		equals(jStat.uniform.cdf(0.5, 0, 2),0.25,'uniform.cdf(0, 2, 0.5)');
 	});
 
 	test('binomial',function(){
-		equals(jDist.binomial.pdf(2, 5, 0.5),0.3125,'binomial.pdf(5, 1/2, 2)');
+		equals(jStat.binomial.pdf(2, 5, 0.5),0.3125,'binomial.pdf(5, 1/2, 2)');
 	});
 
 	test('weibull',function(){
-		equals(jDist.weibull.pdf(1,1,1),0.36787944117144233,'weibull(1,1,1)');
-		equals(jDist.weibull.pdf(2,1,2),0.18393972058572117,'weibull(2,1,2)');
+		equals(jStat.weibull.pdf(1,1,1),0.36787944117144233,'weibull(1,1,1)');
+		equals(jStat.weibull.pdf(2,1,2),0.18393972058572117,'weibull(2,1,2)');
 	});
 
 	test('weibullcdf',function(){
-		equals(jDist.weibull.cdf(1,1,1),0.6321205588285577,'weibull.cdf(1,1,1)');
-		equals(jDist.weibull.cdf(2,1,2),0.6321205588285577,'weibull.cdf(2,1,2)');
+		equals(jStat.weibull.cdf(1,1,1),0.6321205588285577,'weibull.cdf(1,1,1)');
+		equals(jStat.weibull.cdf(2,1,2),0.6321205588285577,'weibull.cdf(2,1,2)');
 	});
 
 });
