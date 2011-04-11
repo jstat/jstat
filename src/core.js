@@ -197,7 +197,8 @@ jStat.extend( jStat.fn, {
 
 	// destructively alter an object
 	alter : function( func ) {
-		return this.map( func, true );
+		jStat.alter( this, func );
+		return this;
 	}
 });
 
