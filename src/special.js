@@ -1,3 +1,5 @@
+(function() {
+
 // Special functions //
 
 // TODO: evaluate whether these functions should be public
@@ -56,6 +58,28 @@ function gser( x, a, gln ) {
 }
 
 jStat.extend({
+
+	// factorial of n
+	factorial : function( n ) {
+		var fval = 1;
+		if ( n < 0 ) return NaN;
+		if ( n != Math.floor( n ) ) return jStat.gammafn( n + 1 );
+		for( ; n > 0; n-- ) {
+			fval *= n;
+		}
+		return fval;
+	},
+
+	// combinations of n, m
+	combination : function( n, m ) {
+		return ( jStat.factorial( n ) / jStat.factorial( m )) / jStat.factorial( n - m );
+	},
+
+	// permutations of n, m
+	permutation : function( n, m ) {
+		return jStat.factorial( n ) / jStat.factorial( n - m );
+	},
+
 	// gamma of x
 	gammafn : function( x ) {
 		var v = 1,
@@ -427,3 +451,5 @@ jStat.extend({
 		return Math.pow( u, 1 / oalph ) * a1 * v;
 	}
 });
+
+})();

@@ -14,9 +14,12 @@ var jStat = function() {
 	slice = Array.prototype.slice,
 	toString = Object.prototype.toString,
 
+	// for code compression
+	length = 'length',
+
 	// ascending/descending functions for sort
-	ascNum = function( a, b ) {return a - b;},
-	descNum = function( a, b ) {return b - a;},
+	ascNum = function( a, b ) { return a - b; },
+	descNum = function( a, b ) { return b - a; },
 
 	// test if array
 	isArray = function( arg ) {
@@ -31,27 +34,22 @@ var jStat = function() {
 	// test if object
 	isObject = function( arg ) {
 		return toString.call( arg ) === "[object Object]";
-	},
-
-	// simple method to run functions in setTimeout
-	callLater = function( func, context, values ) {
-		setTimeout( function() {
-			func.apply( context, values );
-		}, 10 );
 	};
 
 jStat.fn = jStat.prototype = {
 	constructor : jStat,
 	init : function( args ) {
+
 		// if first argument is an array, must be vector or matrix
 		if ( isArray( args[0] )) {
 			if ( isArray( args[0][0] )) {
-				for ( var i = 0; i < args[0].length; i++ ) {
+				for ( var i = 0; i < args[0][length]; i++ ) {
 					this.push( args[0][i] );
 				}
 			} else {
 				this.push( args[0] );
 			}
+
 		// if first argument is number, assume creation of sequence
 		} else if ( !isNaN( args[0] )) {
 			this.push( jStat.seq.apply( this, args ));
@@ -78,270 +76,73 @@ jStat.fn.init.prototype = jStat.fn;
 jStat.extend = function( obj ) {
 	var args = slice.call( arguments ),
 	i = 1, j;
-	if ( args.length === 1 ) {
+	if ( args[length] === 1 ) {
 		for ( i in obj ) {
 			jStat[i] = obj[i];
 		}
 		return this;
 	}
-	for ( ; i < args.length; i++ ) {
+	for ( ; i < args[length]; i++ ) {
 		for ( j in args[i] ) obj[j] = args[i][j];
 	}
 	return obj;
 };
 
-// extend jStat.fn with single single parameter static methods
+// extend jStat.fn with methods which don't require arguments and work on columns
 (function( funcs ) {
-	for ( var i = 0; i < funcs.length; i++ ) (function( passfunc ) {
-		jStat.fn[ passfunc ] = function( func ) {
-			var arr = [], j = 0;
-			if ( isFunction( func )) {
-				for ( ; j < this.length; j++ ) {
-					callLater( func, jStat( this[j] ), [ jStat[ passfunc ]( this[j][0] )]);
+	for ( var i = 0; i < funcs[length]; i++ ) (function( passfunc ) {
+
+		// if a matrix is passed, automatically assume operation should be done on the columns
+		jStat.fn[ passfunc ] = function( fullbool ) {
+			var arr = [],
+				i = 0,
+				tmpthis;
+
+			if ( this[length] > 1 ) {
+				tmpthis = this.transpose();
+				for ( ; i < tmpthis[length]; i++ ) {
+					arr[i] = jStat[ passfunc ]( tmpthis[i] );
 				}
-				return this;
-			} else {
-				for ( ; j < this.length; j++ ) {
-					arr.push( jStat[ passfunc ]( this[j] ));
+				if ( fullbool === true ) {
+					arr = jStat[ passfunc ]( arr );
 				}
-				return arr.length === 1 ? arr[0] : jStat[ passfunc ]( arr );
 			}
+
+			return arr[length] > 1 ? jStat( arr ) : jStat[ passfunc ]( this[0] );
 		};
 	})( funcs[i] );
-})( 'sum min max mean median mode range variance stdev meandev meddev quartiles'.split(' '));
+})( 'sum min max mean median mode range variance stdev meandev meddev quartiles'.split( ' ' ));
+
+// extend jStat.fn with methods that have no argument
+(function( funcs ) {
+	for ( var i = 0; i < funcs[length]; i++ ) (function( passfunc ) {
+		jStat.fn[ passfunc ] = function() {
+			var results = jStat[ passfunc ]( this );
+			return isArray( results ) ? jStat( results ) : results;
+		};
+	})( funcs[i] );
+})( 'transpose clear norm symmetric'.split( ' ' ));
+
+// extend jStat.fn with methods that require one argument
+(function( funcs ) {
+	for ( var i = 0; i < funcs[length]; i++ ) (function( passfunc ) {
+		jStat.fn[ passfunc ] = function( arg ) {
+			return jStat( jStat[ passfunc ]( this, arg ));
+		};
+	})( funcs[i] );
+})( 'add divide multiply subtract dot pow abs angle'.split( ' ' ));
 
 // extend jStat.fn
 jStat.extend( jStat.fn, {
 
 	// Returns the number of rows in the matrix
 	rows: function() {
-		return this.length || 1;
+		return this[length] || 1;
 	},
 
 	// Returns the number of columns in the matrix
 	cols: function() {
-		return this[0].length || 1;
-	},
-
-	// transpose a vector or matrix
-	transpose : function() {
-		var rows = this.length,
-			cols = this[0].length,
-			obj = [],
-			i = 0, j;
-		for ( ; i < cols; i++ ) {
-			obj[i] = [];
-			for ( j = 0; j < rows; j++ ) {
-				obj[i][j] = this[j][i];
-			}
-		}
-		return jStat( obj );
-	},
-
-	// map one matrix to another
-	map : function( func ) {
-		var row = 0,
-			nrow = this.rows(),
-			ncol = this.cols(),
-			res = [],
-			col;
-		for ( ; row < nrow; row ++) {
-			res[row] = [];
-			for ( col = 0; col < ncol; col++ ) {
-				res[row][col] = func( this[row][col], row, col );
-			}
-		}
-		return jStat( res );
-	},
-
-	// alter a function to each element in the matrix
-	alter : function( func ) {
-		var row = 0,
-		nrow = this.rows(),
-		ncol = this.cols(),
-		col; 
-		for( ; row < nrow; row ++) {
-			for( col = 0; col < ncol; col++ ) {
-				this[row][col] = func( this[row][col], row, col );
-			}
-		}
-		return this;
-	},
-
-	// add a vector or scalar to the vector
-	add : function( k ) {
-		if( isNaN( k ) ) {
-			return this.map( function( value, row, col ) {return value + k[row][col];});
-		} else {
-			return this.map( function ( value ) {return value + k;} );
-		}
-	},
-
-	// TODO: Implement matrix division
-	// matrix division
-	divide : function( k ) {
-		if( isNaN( k ) ) {
-			// unsupported operation
-		} else {
-			return this.map( function ( value ) {return value / k;} );
-		}
-	},
-
-	// matrix multiplication
-	multiply : function( k ) {
-		var nrow, col, nrescols,
-			row=this.rows(),
-			ncol = this.cols(),
-			sum = 0,
-			res = jStat.zeros(nrow, nrescols = ( isNaN( k ) ) ? k.cols() : ncol),
-			rescols = 0;
-		if( isNaN(k) ) {
-			for( ; rescols < nrescols; rescols++ ) {
-				for( row = 0; row < nrow; row++ ) {
-					sum = 0;
-					for( col = 0; col < ncol; col++ ) {
-						sum += this[row][col] * k[col][rescols];
-					}
-					res[row][rescols] = sum;
-				}
-			}
-			return ( nrow == 1 && rescols == 1 ) ? res[0][0] : res;
-		} else {
-			return this.map( function ( value ) {return value * k;} );
-		}
-	},
-
-	// subtract a vector or scalar from the vector
-	subtract : function( k ) {
-		if( isNaN( k ) ) {
-			return this.map( function( value, row, col ) {return value - k[row][col];});
-		} else {
-			return this.map( function ( value ) {return value - k;});
-		}
-	},
-
-	// Returns the dot product of two matricies
-	dot : function( k ) {
-		// convert column to row vector
-		var left = ( this.cols() === 1 && this.rows() !== 1 ) ? this.transpose() : this,
-			right = ( k.cols() === 1 && k.rows() !== 1 ) ? k.transpose() : k,
-			res = [],
-			row = 0,
-			nrow = left.rows(),
-			ncol = left.cols(),
-			sum, col;
-		for( ; row < nrow; row++ ) {
-			res[row] = [];
-			sum = 0;
-			for( col = 0; col < ncol; col++ ) {
-				sum += left[row][col] * right[row][col];
-			}
-			res[row] = sum;
-		}
-		return ( res.length === 1 ) ? res[0] : jStat( res );
-	},
-
-	// raise every element by a scalar or vector
-	pow : function( k ) {
-		return this.map( function( value ) {return Math.pow( value, k );} );
-	},
-
-	// generate the absolute values of the vector
-	abs : function() {
-		return this.map( function( value ) {return Math.abs( value );} );
-	},
-
-	// set all values to zero
-	clear : function() {
-		return this.alter( function() {return 0;} );
-	},
-
-	// Returns the dimensions of the object { rows: i, cols: j }
-	dimensions : function() {
-		return {rows: this.rows(), cols: this.cols()};
-	},
-
-	// Returns the sum of each column in the matrix
-	sumx : function() {
-		var col = 0,
-			ncol = this.cols(),
-			res = [],
-			tmpthis = this.transpose();
-		for( ; col < ncol; col++ ) {
-			res[col] = jStat.sum( tmpthis[col] );
-		}
-		return ( ncol > 1 ) ? jStat( res ) : res[0];
-	},
-
-	// Returns the mean of each column in the matrix
-	meanx : function() {
-		var col = 0,
-			ncol = this.cols(),
-			nrow = this.rows(),
-			res = [],
-			tmpthis = this.transpose();
-		for( ; col < ncol; col++ ) {
-			res[col] = jStat.mean( tmpthis[col] );
-		}
-		return ( ncol > 1 ) ? jStat( res ) : res[0];
-	},
-
-	// Returns the standard deviation of each column in the matrix
-	stdevx : function() {
-		var col = 0,
-			ncol = this.cols(),
-			nrow = this.rows(),
-			res = [],
-			tmpthis = this.transpose();
-		for( ; col < ncol; col++ ) {
-			res[col] = jStat.stdev( tmpthis[col] );
-		}
-		return ( ncol > 1 ) ? jStat( res ) : res[0];
-	},
-
-	// Returns the variance of each column in the matrix
-	variancex : function() {
-		var col = 0,
-			ncol = this.cols(),
-			nrow = this.rows(),
-			res = [],
-			tmpthis = this.transpose();
-		for( ; col < ncol; col++ ) {
-			res[col] = jStat.variance( tmpthis[col] );
-		}
-		return ( ncol > 1 ) ? jStat( res ) : res[0];
-	},
-
-	// BUG: Does not work for matrices
-	// computes the norm of the vector
-	norm : function() {
-		if( this.rows() > 1 && this.cols() > 1 ) {
-			// matrix norm
-		} else {
-			// vector norm
-			return Math.sqrt( this.dot( this ) );
-		}
-	},
-
-	// BUG: Does not work for matrices
-	// computes the angle between two vectors
-	angle : function( k ) {
-		 return Math.acos( this.dot( k ) / ( this.norm() * k.norm() ) );
-	},
-
-
-	// Tests whether a matrix is symmetric
-	symmetric : function() {
-		var issymmetric = true,
-			row = 0,
-			size = this.rows(), col;
-		if( this.rows() !== this.cols() ) return false;
-		for ( ; ( row < size ) && issymmetric; row++ ) {
-			for ( col = 0; ( col < size ) && issymmetric; col++ ) {
-				issymmetric = ( this[col][row] === this[row][col] );
-			}
-		}
-		return issymmetric;
+		return this[0][length] || 1;
 	},
 
 	// Returns a specified row as a vector
@@ -353,7 +154,7 @@ jStat.extend( jStat.fn, {
 	col: function( index ) {
 	    var column = [],
 			i = 0;
-	    for ( ; i < this.length; i++ ) {
+	    for ( ; i < this[length]; i++ ) {
 			column[i] = [ this[i][index] ];
 	    }
 	    return jStat( column );
@@ -364,7 +165,7 @@ jStat.extend( jStat.fn, {
 		var row = 0,
 			nrow = this.rows(),
 			res = [];
-		for( ; row < nrow; row ++ ) {
+		for( ; row < nrow; row++ ) {
 			res[row] = [ this[row][row] ];
 		}
 		return jStat( res );
@@ -379,6 +180,24 @@ jStat.extend( jStat.fn, {
 			res[i] = [ this[i][nrow] ];
 		}
 		return jStat( res );
+	},
+
+	// Returns the dimensions of the object { rows: i, cols: j }
+	dimensions : function() {
+		return {
+			rows : this.rows(),
+			cols : this.cols()
+		};
+	},
+
+	// map a function to a matrix or vector
+	map : function( func, toAlter ) {
+		return jStat( jStat.map( this, func, toAlter ));
+	},
+
+	// destructively alter an object
+	alter : function( func ) {
+		return this.map( func, true );
 	}
 });
 
@@ -387,27 +206,45 @@ jStat.extend( jStat.fn, {
 
 jStat.extend({
 
-	// creates a rows x cols matrix of zeros
-	zeros : function( rows, cols ) {
-		return jStat.create( rows, cols, function() {return 0;} );
+	// transpose a matrix or array
+	transpose : function( arr ) {
+		arr = isArray( arr[0] ) ? arr : [ arr ];
+		var rows = arr[length],
+			cols = arr[0][length],
+			obj = [],
+			i = 0, j;
+		for ( ; i < cols; i++ ) {
+			obj[i] = [];
+			for ( j = 0; j < rows; j++ ) {
+				obj[i][j] = arr[j][i];
+			}
+		}
+		return obj;
 	},
 
-	// creates a rows x cols matrix of ones
-	ones: function( rows, cols ) {
-		return jStat.create( rows, cols, function() {return 1;} );
+	// map a function to a matrix or vector
+	map : function( arr, func, toAlter ) {
+		arr = isArray( arr[0] ) ? arr : [ arr ];
+		var row = 0,
+			nrow = arr[length],
+			ncol = arr[0][length],
+			res = toAlter ? arr : [],
+			col;
+		for ( ; row < nrow; row++ ) {
+			res[row] = res[row] || [];
+			for ( col = 0; col < ncol; col++ ) {
+				res[row][col] = func( arr[row][col], row, col );
+			}
+		}
+		return res;
 	},
 
-	// Creates a rows x cols matrix of uniformly random numbers
-	rand: function( rows, cols ) {
-		return jStat.create( rows, cols, function() {return Math.random();} );
+	// destructively alter an array
+	alter : function( arr, func ) {
+		return jStat.map( arr, func, true );
 	},
 
-	// Creates an identity matrix of size row x cols
-	identity : function( rows, cols ) {
-		return jStat.create( rows, cols, function( i, j ) {return ( i === j ) ? 1 : 0;} );
-	},
-
-	// creates a rows x cols matrix according to the supplied function
+	// generate a rows x cols matrix according to the supplied function
 	create: function ( rows, cols, func ) {
 		var i, j, res = [];
 		for( i = 0; i < rows; i++ ) {
@@ -416,7 +253,27 @@ jStat.extend({
 				res[i][j] = func( i, j );
 			}
 		}
-		return jStat( res );
+		return res;
+	},
+
+	// generate a rows x cols matrix of zeros
+	zeros : function( rows, cols ) {
+		return jStat.create( rows, cols, function() { return 0; });
+	},
+
+	// generate a rows x cols matrix of ones
+	ones: function( rows, cols ) {
+		return jStat.create( rows, cols, function() { return 1; });
+	},
+
+	// generate a rows x cols matrix of uniformly random numbers
+	rand: function( rows, cols ) {
+		return jStat.create( rows, cols, function() { return Math.random(); });
+	},
+
+	// generate an identity matrix of size row x cols
+	identity : function( rows, cols ) {
+		return jStat.create( rows, cols, function( i, j ) { return ( i === j ) ? 1 : 0; });
 	},
 
 	// generate sequence
@@ -428,35 +285,129 @@ jStat.extend({
 		return jStat( arr );
 	},
 
-	// factorial of n
-	factorial : function( n ) {
-		var fval = 1;
-		if ( n < 0 ) return NaN;
-		if ( n != Math.floor( n ) ) return jStat.gammafn( n + 1 );
-		for( ; n > 0; n-- ) {
-			fval *= n;
+	// add a vector or scalar to the vector
+	add : function( arr, arg ) {
+		return isNaN( arg )
+			? jStat.map( arr, function( value, row, col ) { return value + arg[row][col]; })
+		: jStat.map(arr, function ( value ) { return value + arg; });
+	},
+
+	// TODO: Implement matrix division
+	// matrix division
+	divide : function( arr, arg ) {
+		return isNaN( arg )
+			? false
+		: jStat.map(arr, function ( value ) { return value / arg; });
+	},
+
+	// matrix multiplication
+	multiply : function( arr, arg ) {
+		var row, col, nrescols, sum,
+			nrow = arr[length],
+			ncol = arr[0][length],
+			res = jStat.zeros( nrow, nrescols = ( isNaN( arg )) ? arg[0][length] : ncol ),
+			rescols = 0;
+		if( isNaN( arg )) {
+			for( ; rescols < nrescols; rescols++ ) {
+				for( row = 0; row < nrow; row++ ) {
+					sum = 0;
+					for( col = 0; col < ncol; col++ ) {
+						sum += arr[row][col] * arg[col][rescols];
+					}
+					res[row][rescols] = sum;
+				}
+			}
+			return ( nrow === 1 && rescols === 1 ) ? res[0][0] : res;
 		}
-		return fval;
+		return jStat.map( arr, function( value ) { return value * arg; });
 	},
 
-	// combinations of n, m
-	combination : function( n, m ) {
-		return ( jStat.factorial( n ) / jStat.factorial( m ) ) / jStat.factorial( n - m );
+	// subtract a vector or scalar from the vector
+	subtract : function( arr, arg ) {
+		return isNaN( arg )
+			? jStat.map( arr, function( value, row, col ) { return value - arg[row][col]; })
+		: jStat.map( arr, function( value ) { return value - arg; });
 	},
 
-	// permutations of n, m
-	permutation : function( n, m ) {
-		return jStat.factorial( n ) / jStat.factorial( n - m );
+	// Returns the dot product of two matricies
+	dot : function( arr, arg ) {
+		arr = isArray( arr[0] ) ? arr : [ arr ];
+		arg = isArray( arg[0] ) ? arg : [ arg ];
+
+		// convert column to row vector
+		var left = ( arr[0][length] === 1 && arr[length] !== 1 ) ? jStat.transpose( arr ) : arr,
+			right = ( arg[0][length] === 1 && arg[length] !== 1 ) ? jStat.transpose( arg ) : arg,
+			res = [],
+			row = 0,
+			nrow = left[length],
+			ncol = left[0][length],
+			sum, col;
+		for( ; row < nrow; row++ ) {
+			res[row] = [];
+			sum = 0;
+			for( col = 0; col < ncol; col++ ) {
+				sum += left[row][col] * right[row][col];
+			}
+			res[row] = sum;
+		}
+		return ( res[length] === 1 ) ? res[0] : res;
 	},
 
-	// vector/matrix specific functionality //
+	// raise every element by a scalar or vector
+	pow : function( arr, arg ) {
+		return jStat.map( arr, function( value ) { return Math.pow( value, arg ); });
+	},
+
+	// generate the absolute values of the vector
+	abs : function( arr ) {
+		return jStat.map( arr, function( value ) { return Math.abs( value ); });
+	},
+
+	// set all values to zero
+	clear : function( arr ) {
+		return jStat.alter( arr, function() { return 0; });
+	},
+
+	// BUG: Does not work for matrices
+	// computes the norm of the vector
+	norm : function( arr ) {
+		arr = isArray( arr[0] ) ? arr : [ arr ];
+		if( arr[length] > 1 && arr[0][length] > 1 ) {
+			// matrix norm
+		} else {
+			// vector norm
+			return Math.sqrt( jStat.dot( arr, arr ) );
+		}
+	},
+
+	// BUG: Does not work for matrices
+	// computes the angle between two vectors
+	angle : function( arr, arg ) {
+		 return Math.acos( jStat.dot( arr, arg ) / ( jStat.norm( arr ) * jStat.norm( arg )));
+	},
+
+	// Tests whether a matrix is symmetric
+	symmetric : function( arr ) {
+		var issymmetric = true,
+			row = 0,
+			size = arr[length], col;
+		if( arr[length] !== arr[0][length] ) return false;
+		for ( ; row < size; row++ ) {
+			for ( col = 0; col < size; col++ ) {
+				if ( arr[col][row] !== arr[row][col] ) return false;
+			}
+		}
+		return true;
+	},
+
+	// array/vector specific functions //
 
 	// sum of an array
 	sum : function( arr ) {
 		var sum = 0,
-			i = arr.length;
-		while ( --i >= 0 ) {
-			sum += +arr[i];
+			i = arr[length];
+		while( --i >= 0 ) {
+			sum += arr[i];
 		}
 		return sum;
 	},
@@ -473,12 +424,12 @@ jStat.extend({
 
 	// mean value of an array
 	mean : function( arr ) {
-		return jStat.sum( arr ) / arr.length;
+		return jStat.sum( arr ) / arr[length];
 	},
 
 	// median of an array
 	median : function( arr ) {
-		var arrlen = arr.length,
+		var arrlen = arr[length],
 			_arr = arr.slice().sort( ascNum );
 
 		// check if array is even or odd, then return the appropriate
@@ -487,7 +438,7 @@ jStat.extend({
 
 	// mode of an array
 	mode : function( arr ) {
-		var arrLen = arr.length,
+		var arrLen = arr[length],
 			_arr = arr.slice().sort( ascNum ),
 			count = 1,
 			maxCount = 0,
@@ -523,50 +474,50 @@ jStat.extend({
 	// range of an array
 	range : function( arr ) {
 		var _arr = arr.slice().sort( ascNum );
-		return _arr[ _arr.length - 1 ] - _arr[0];
+		return _arr[ _arr[length] - 1 ] - _arr[0];
 	},
 
 	// variance of an array
 	variance : function( arr ) {
 		var mean = jStat.mean( arr ),
 			stSum = 0,
-			i = arr.length - 1;
+			i = arr[length] - 1;
 		for( ; i >= 0; i-- ) {
-			stSum += Math.pow( ( arr[i] - mean ), 2 );
+			stSum += Math.pow(( arr[i] - mean ), 2 );
 		}
-		return stSum / ( arr.length - 1 );
+		return stSum / ( arr[length] - 1 );
 	},
 
 	// standard deviation of an array
 	stdev : function( arr ) {
-		return Math.sqrt( jStat.variance( arr ) );
+		return Math.sqrt( jStat.variance( arr ));
 	},
 
 	// mean deviation (mean absolute deviation) of an array
 	meandev : function( arr ) {
 		var devSum = 0,
 			mean = jStat.mean( arr ),
-			i = arr.length - 1;
+			i = arr[length] - 1;
 		for ( ; i >= 0; i-- ) {
 			devSum += Math.abs( arr[ i ] - mean );
 		}
-		return devSum / arr.length;
+		return devSum / arr[length];
 	},
 
 	// median deviation (median absolute deviation) of an array
 	meddev : function( arr ) {
 		var devSum = 0,
 			median = jStat.median( arr ),
-			i = arr.length - 1;
+			i = arr[length] - 1;
 		for ( ; i >= 0; i-- ) {
 			devSum += Math.abs( arr[ i ] - median );
 		}
-		return devSum / arr.length;
+		return devSum / arr[length];
 	},
 
 	// quartiles of an array
 	quartiles : function( arr ) {
-		var arrlen = arr.length,
+		var arrlen = arr[length],
 			_arr = arr.slice().sort( ascNum );
 		return [ _arr[ Math.round( ( arrlen ) / 4 ) - 1 ], _arr[ Math.round( ( arrlen ) / 2 ) - 1 ], _arr[ Math.round( ( arrlen ) * 3 / 4 ) - 1 ] ];
 	},
@@ -576,7 +527,7 @@ jStat.extend({
 		var u = jStat.mean( arr1 ),
 			v = jStat.mean( arr2 ),
 			sq_dev = [],
-			arr1Len = arr1.length,
+			arr1Len = arr1[length],
 			i = 0;
 		for ( ; i < arr1Len; i++ ) {
 			sq_dev[ i ] = ( arr1[ i ] - u ) * ( arr2[ i ] - v );
