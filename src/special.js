@@ -1,6 +1,62 @@
-(function() {
-
 // Special functions //
+
+(function( jStat, Math ) {
+
+// private functions
+
+
+// extending static jStat methods
+jStat.extend({
+
+	// Log-gamma function
+	gammaln : function( x ) {
+		var j = 0,
+			cof = [ 76.18009172947146, -86.50532032941677, 24.01409824083091,
+				-1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5 ],
+			xx, y, tmp, ser;
+		y = xx = x;
+		tmp = xx + 5.5;
+		tmp -= ( xx + 0.5 ) * Math.log( tmp );
+		ser = 1.000000000190015;
+		for( ; j < 5; j++ ) ser += cof[j] / ++y;
+		return Math.log( 2.5066282746310005 * ser / xx) - tmp;
+	},
+
+	// gamma of x
+	gammafn : function( x ) {
+		return x === Math.floor( x ) ? jStat.factorial( x - 1 ) : Math.exp( jStat.gammaln( x ));
+	},
+
+	// natural log factorial of n
+	factorialln : function( n ) {
+		return n < 0 ? NaN : j$.gammaln( n + 1 );
+	},
+
+	// factorial of n
+	factorial : function( n ) {
+		var fval = 1;
+		if ( n < 0 ) return NaN;
+		if ( n !== Math.floor( n )) return jStat.gammafn( n + 1 );
+		while ( n > 0 ) {
+			fval *= n--;
+		}
+		return fval;
+	}
+
+	
+});
+
+// making use of static methods on the instance
+(function( funcs ) {
+	for ( var i = 0; i < funcs.length; i++ ) (function( passfunc ) {
+		jStat.fn[ passfunc ] = function() {
+			return jStat( jStat.map( this, function( value ) { return jStat[ passfunc ]( value ); }));
+		};
+	})( funcs[i] );
+})( 'gammaln gammafn factorial factorialln'.split( ' ' ));
+
+// unrevised code beneath this line //
+
 
 // TODO: evaluate whether these functions should be public
 // Returns the incomplete gamma function Q(a,x) evaluated by its
@@ -59,16 +115,6 @@ function gser( x, a, gln ) {
 
 jStat.extend({
 
-	// factorial of n
-	factorial : function( n ) {
-		var fval = 1;
-		if ( n < 0 ) return NaN;
-		if ( n != Math.floor( n ) ) return jStat.gammafn( n + 1 );
-		for( ; n > 0; n-- ) {
-			fval *= n;
-		}
-		return fval;
-	},
 
 	// combinations of n, m
 	combination : function( n, m ) {
@@ -80,40 +126,7 @@ jStat.extend({
 		return jStat.factorial( n ) / jStat.factorial( n - m );
 	},
 
-	// gamma of x
-	gammafn : function( x ) {
-		var v = 1,
-			w;
-		if( isNaN( x ) ) {
-			// run for all values in matrix
-			return x.map( function( value ) {return jStat.gammafn( value );} );
-		}
-		if ( x == Math.floor( x ) ) return jStat.factorial( x - 1 );
-		while ( x < 8 ) {
-			v *= x;
-			x++;
-		}
-		w = 1 / (x * x);
-		return Math.exp((((((((-3617 / 122400 * w + 7 / 1092) * w - 691 / 360360) * w + 5 / 5940) * w - 1 / 1680)  * w + 1 / 1260) * w - 1 / 360) * w + 1 / 12) / x + 0.5 * Math.log(2 * Math.PI) - Math.log(v) - x + (x - 0.5) * Math.log(x));
-	},
 
-	// Log-gamma function
-	gammaln : function( x ) {
-		var xx, y, tmp, ser,j = 0,
-			cof = [76.18009172947146, -86.50532032941677, 24.01409824083091,
-				-1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5];
-		if( isNaN( x ) ) {
-			// run for all values in matrix
-			return x.map( function( value ) {return jStat.gammaln( value );} );
-		}
-		y = xx = x;
-		tmp = xx + 5.5;
-		tmp -= ( xx + 0.5 ) * Math.log( tmp );
-		ser = 1.000000000190015;
-		for( ; j < 5; j++ ) ser += cof[j] / ++y;
-
-		return -tmp + Math.log( 2.5066282746310005 * ser / xx);
-	},
 
 	// returns the lower incomplete gamma function P(a,x);
 	gammap : function( x, a ) {
@@ -452,4 +465,4 @@ jStat.extend({
 	}
 });
 
-})();
+})( this.jStat, this.Math );
