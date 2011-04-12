@@ -52,7 +52,7 @@ jStat.fn = jStat.prototype = {
 
 		// if first argument is number, assume creation of sequence
 		} else if ( !isNaN( args[0] )) {
-			this.push( jStat.seq.apply( this, args ));
+			this.push( jStat.seq.apply( null, args )[0] );
 		}
 		return this;
 	},
@@ -145,6 +145,14 @@ jStat.extend( jStat.fn, {
 		return this[0][length] || 1;
 	},
 
+	// Returns the dimensions of the object { rows: i, cols: j }
+	dimensions : function() {
+		return {
+			rows : this.rows(),
+			cols : this.cols()
+		};
+	},
+
 	// Returns a specified row as a vector
 	row: function( index ) {
 	    return jStat( this[index] );
@@ -180,14 +188,6 @@ jStat.extend( jStat.fn, {
 			res[i] = [ this[i][nrow] ];
 		}
 		return jStat( res );
-	},
-
-	// Returns the dimensions of the object { rows: i, cols: j }
-	dimensions : function() {
-		return {
-			rows : this.rows(),
-			cols : this.cols()
-		};
 	},
 
 	// map a function to a matrix or vector
@@ -283,7 +283,7 @@ jStat.extend({
 			step = ( max - min ) / ( length - 1 );
 		// TODO: replace toFixed value to user configurable parameter
 		for ( ; min <= max; min += step ) arr.push(+( func ? func.call( null, min ) : min ).toFixed(6));
-		return jStat( arr );
+		return arr;
 	},
 
 	// add a vector or scalar to the vector
