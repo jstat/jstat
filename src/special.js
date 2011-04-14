@@ -22,25 +22,34 @@ jStat.extend({
 		return Math.log( 2.5066282746310005 * ser / xx) - tmp;
 	},
 
-	// gamma of x
-	gammafn : function( x ) {
-		return x === Math.floor( x ) ? jStat.factorial( x - 1 ) : Math.exp( jStat.gammaln( x ));
+	// gamma of z
+	gammafn : function( z ) {
+		var g = 7,
+			p = [ 0.99999999999980993, 676.5203681218851, -1259.1392167224028,
+				771.32342877765313, -176.61502916214059, 12.507343278686905,
+				-0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7 ],
+			f = z > 15 ? 0 : 15 - z,
+			i = 0, x, t;
+		if ( z < 0.5 ) {
+			return +(( Math.PI / ( Math.sin( Math.PI * z ) * jStat.gammafn( 1 - z ))).toFixed( f ));
+		}
+		z -= 1;
+		x = p[0];
+		while( ++i < g + 2 ) {
+			x += p[i] / ( z + i );
+		}
+		t = z + g + 0.5;
+		return +(( Math.sqrt( 2 * Math.PI ) * Math.pow( t, z + 0.5 ) * Math.exp( -t ) * x ).toFixed( f ));
 	},
 
 	// natural log factorial of n
 	factorialln : function( n ) {
-		return n < 0 ? NaN : j$.gammaln( n + 1 );
+		return n < 0 ? NaN : jStat.gammaln( n + 1 );
 	},
 
 	// factorial of n
 	factorial : function( n ) {
-		var fval = 1;
-		if ( n < 0 ) return NaN;
-		if ( n !== Math.floor( n )) return jStat.gammafn( n + 1 );
-		while ( n > 0 ) {
-			fval *= n--;
-		}
-		return fval;
+		return n < 0 ? NaN : jStat.gammafn( n + 1 );
 	}
 
 	
