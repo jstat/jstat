@@ -22,24 +22,63 @@ jStat.extend({
 		return Math.log( 2.5066282746310005 * ser / xx) - tmp;
 	},
 
-	// gamma of z
-	gammafn : function( z ) {
-		var g = 7,
-			p = [ 0.99999999999980993, 676.5203681218851, -1259.1392167224028,
-				771.32342877765313, -176.61502916214059, 12.507343278686905,
-				-0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7 ],
-			f = z > 15 ? 0 : 15 - z,
-			i = 0, x, t;
-		if ( z < 0.5 ) {
-			return +(( Math.PI / ( Math.sin( Math.PI * z ) * jStat.gammafn( 1 - z ))).toFixed( f ));
+	// gamma of x
+	gammafn : function( x ) {
+		var p = [
+				-1.716185138865495, 24.76565080557592, -379.80425647094563,
+				629.3311553128184, 866.9662027904133, -31451.272968848367,
+				-36144.413418691176, 66456.14382024054
+			],
+			q = [
+				-30.8402300119739, 315.35062697960416, -1015.1563674902192,
+				-3107.771671572311, 22538.118420980151, 4755.8462775278811,
+				-134659.9598649693, -115132.2596755535
+			],
+			fact = false,
+			n = 0,
+			xden = 0,
+			xnum = 0,
+			y = x,
+			i, z, yi, res, sum, ysq;
+
+		if( y <= 0 ) {
+			res = y % 1;
+			if ( res ) {
+				fact = Math.PI / Math.sin( Math.PI * res );
+				y = 1 - y;
+			} else {
+				return Infinity;
+			}
 		}
-		z -= 1;
-		x = p[0];
-		while( ++i < g + 2 ) {
-			x += p[i] / ( z + i );
+
+		yi = y;
+		
+		if ( y < 1 ) {
+			z = y++;
+		} else {
+			z = ( y -= n = Math.floor( y ) - 1 ) - 1;
 		}
-		t = z + g + 0.5;
-		return +(( Math.sqrt( 2 * Math.PI ) * Math.pow( t, z + 0.5 ) * Math.exp( -t ) * x ).toFixed( f ));
+
+		for ( i = 0; i < 8; ++i ) {
+			xnum = ( xnum + p[i] ) * z;
+			xden = xden * z + q[i];
+		}
+		
+		res = xnum / xden + 1;
+		
+		if ( yi < y ) {
+			res /= yi;
+		} else if ( yi > y ) {
+			for ( i = 0; i < n; ++i ) {
+				res *= y;
+				y++;
+			}
+		}
+
+		if ( fact ) {
+			res = fact / res;
+		}
+		return res;
 	},
 
 	// natural log factorial of n
