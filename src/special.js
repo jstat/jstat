@@ -11,8 +11,10 @@ jStat.extend({
 	// Log-gamma function
 	gammaln : function( x ) {
 		var j = 0,
-			cof = [ 76.18009172947146, -86.50532032941677, 24.01409824083091,
-				-1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5 ],
+			cof = [
+				76.18009172947146, -86.50532032941677, 24.01409824083091,
+				-1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5
+			],
 			xx, y, tmp, ser;
 		y = xx = x;
 		tmp = xx + 5.5;
@@ -89,9 +91,23 @@ jStat.extend({
 	// factorial of n
 	factorial : function( n ) {
 		return n < 0 ? NaN : jStat.gammafn( n + 1 );
+	},
+
+	// combinations of n, m
+	combination : function( n, m ) {
+		return ( jStat.factorial( n ) / jStat.factorial( m )) / jStat.factorial( n - m );
+	},
+
+	// permutations of n, m
+	permutation : function( n, m ) {
+		return jStat.factorial( n ) / jStat.factorial( n - m );
+	},
+
+	// beta function
+	betafn : function( x, y ) {
+		return jStat.gammafn( x ) * jStat.gammafn( y ) / jStat.gammafn( x + y );
 	}
 
-	
 });
 
 // making use of static methods on the instance
@@ -163,16 +179,6 @@ function gser( x, a, gln ) {
 
 jStat.extend({
 
-
-	// combinations of n, m
-	combination : function( n, m ) {
-		return ( jStat.factorial( n ) / jStat.factorial( m )) / jStat.factorial( n - m );
-	},
-
-	// permutations of n, m
-	permutation : function( n, m ) {
-		return jStat.factorial( n ) / jStat.factorial( n - m );
-	},
 
 
 
@@ -325,10 +331,6 @@ jStat.extend({
 		return ( p < 1 ) ? x : -x;
 	},
 
-	// Returns the beta function B(z,w)
-	betafn : function( z, w ) {
-		return Math.exp( jStat.gammaln( z ) + jStat.gammaln( w ) - jStat.gammaln( z + w ) );
-	},
 
 	// Returns the inverse of the incomplete beta function
 	incompleteBetaInv : function( p, a, b ) {
