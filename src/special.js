@@ -42,9 +42,9 @@ jStat.extend({
 			i, z, yi, res, sum, ysq;
 
 		if( y <= 0 ) {
-			res = y % 1;
+			res = y % 1 + 3.6e-16;
 			if ( res ) {
-				fact = Math.PI / Math.sin( Math.PI * res );
+				fact = (!( y & 1 ) ? 1 : -1 ) * Math.PI / Math.sin( Math.PI * res );
 				y = 1 - y;
 			} else {
 				return Infinity;
