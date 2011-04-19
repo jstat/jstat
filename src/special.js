@@ -82,6 +82,44 @@ jStat.extend({
 		}
 		return res;
 	},
+	
+	// lower incomplete gamma function P(a,x)
+	gammap : function( a, x ) {
+
+		var ITMAX = Math.ceil( Math.log( a ) * 8.5 + a * 0.4 + 17 ),
+			aln = jStat.gammaln( a ),
+			afn = jStat.gammafn( a ),
+			ap = a,
+			sum = 1 / a,
+			del = sum,
+			b = x + 1 - a,
+			c = 1 / 1.0e-30,
+			d = 1 / b,
+			h = d,
+			i = 1,
+			an, endval;
+
+		if ( x < 0 || a <= 0 ) {
+			return NaN;
+		} else if ( x < a + 1 ) {
+			for ( ; i <= ITMAX; i++ ) {
+				sum += del *= x / ++ap;
+			}
+			endval = sum * Math.exp( -x + a * Math.log( x ) - ( aln ));
+		} else {
+			for ( ; i <= ITMAX; i++ ) {
+				an = -i * ( i - a );
+				b += 2;
+				d = an * d + b;
+				c = b + an / c;
+				d = 1 / d;
+				h *= d * c;
+			}
+			endval = 1 - h * Math.exp( -x + a * Math.log( x ) - ( aln ));
+		}
+
+		return endval * afn;
+	},
 
 	// natural log factorial of n
 	factorialln : function( n ) {
@@ -119,92 +157,11 @@ jStat.extend({
 	})( funcs[i] );
 })( 'gammaln gammafn factorial factorialln'.split( ' ' ));
 
+
+
 // unrevised code beneath this line //
 
-
-// TODO: evaluate whether these functions should be public
-// Returns the incomplete gamma function Q(a,x) evaluated by its
-// continued fraction representation as gammacf
-function gcf( x, a, gln ) {
-	var i = 1, an, b, c, d, del, h, fpmin = 1e-30;
-
-	gln = jStat.gammaln( a );
-	b = x + 1 - a;
-	c = 1 / fpmin;
-	d = 1 / b;
-	h = d;
-	for( ; i <= 100; i++ ) {
-		an = -i * ( i - a );
-		b += 2;
-		d = an * d + b;
-		if( Math.abs( d ) < fpmin ) d = fpmin;
-
-		c = b + an / c;
-
-		if( Math.abs( c ) < fpmin ) c = fpmin;
-
-		d = 1 / d;
-		del = d * c;
-		h *= del;
-
-		if( Math.abs( del - 1 ) < 3e-7 ) break;
-	}
-	return Math.exp( -x + a * Math.log( x ) - ( gln ) ) * h;
-}
-
-// Returns the incomplete gamma function P(a,x) evaluated by its
-// series representation as gamser
-function gser( x, a, gln ) {
-	var n = 1, sum, del, ap;
-
-	gln = jStat.gammaln( a );
-
-	if( x <= 0 ) {
-		return 0;
-	} else {
-		ap = a;
-		del = sum = 1 / a;
-		// TODO: replace 100 with constant
-		for ( ; n <= 100; n++ ) {
-			++ap;
-			del *= x / ap;
-			sum += del;
-			if( Math.abs( del ) < Math.abs( sum ) * 3.0e-7 ) {
-				return sum * Math.exp( -x + a * Math.log( x ) - ( gln ));
-			}
-		}
-		return false;
-	}
-}
-
 jStat.extend({
-
-
-
-
-	// returns the lower incomplete gamma function P(a,x);
-	gammap : function( x, a ) {
-		var gamser, gammcf, gln;
-
-		if( isNaN( x ) ) {
-			// run for all values in matrix
-			return x.map( function( value ) {return jStat.gammap( value, a );} );
-		}
-
-		gln = jStat.gammaln( a );
-		gammcf = gcf( x, a, gln );
-		gamser = gser( x, a, gln );
-
-		if( x < ( a + 1 ) ) {
-			// use series representation
-			gser( x, a );
-			return gamser;
-		} else {
-			// use the continued fraction representation
-			gcf( x, a );
-			return 1 - gammcf;
-		}
-	},
 
 	// Returns the inverse incomplte gamma function
 	gammapInv : function( p, a ) {
