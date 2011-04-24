@@ -1,49 +1,71 @@
 (function( Math, jStat ) {
 
-jStat.extend({
-	beta : {
-		pdf : function( x, alpha, beta ) {
-			return ( Math.pow( x, alpha - 1 ) * Math.pow( 1 - x, beta - 1 ) ) / jStat.betafn( alpha, beta );
-		},
+// add beta distribution object to jStat
+jStat.beta = function( alpha, beta ) {
+	if (!( this instanceof arguments.callee )) return new jStat.beta( alpha, beta );
+	this.alpha = alpha;
+	this.beta = beta;
+};
 
-		cdf : function( x, alpha, beta ) {
-			return jStat.incompleteBeta( x, alpha, beta );
-		},
+// extend beta function with static methods
+jStat.extend( jStat.beta, {
+	pdf : function( x, alpha, beta ) {
+		return ( Math.pow( x, alpha - 1 ) * Math.pow( 1 - x, beta - 1 ) ) / jStat.betafn( alpha, beta );
+	},
 
-		inv : function( p, alpha, beta ) {
-			return jStat.incompleteBetaInv( p, alpha, beta );
-		},
+	cdf : function( x, alpha, beta ) {
+		return jStat.incompleteBeta( x, alpha, beta );
+	},
 
-		mean : function( alpha, beta ) {
-			return alpha / ( alpha + beta );
-		},
+	inv : function( p, alpha, beta ) {
+		return jStat.incompleteBetaInv( p, alpha, beta );
+	},
 
-		median : function( alpha, beta ) {
-			// TODO: implement beta median
-		},
+	mean : function( alpha, beta ) {
+		return alpha / ( alpha + beta );
+	},
 
-		mode : function( alpha, beta ) {
-			return ( alpha * beta ) / ( Math.pow( alpha + beta, 2 ) * ( alpha + beta + 1 ));
-		},
+	median : function( alpha, beta ) {
+		// TODO: implement beta median
+	},
 
-		sample : function( x, alpha, beta ) {
-			if( x ) {
-				// return a jstat object filled with random samples
-				return x.alter( function() {
-					var u = jStat.randg( alpha );
-					return u / ( u + jStat.randg( beta ) );
-				});
-			} else {
-				// return a random sample
+	mode : function( alpha, beta ) {
+		return ( alpha * beta ) / ( Math.pow( alpha + beta, 2 ) * ( alpha + beta + 1 ));
+	},
+
+	sample : function( x, alpha, beta ) {
+		if( x ) {
+			// return a jstat object filled with random samples
+			return x.alter( function() {
 				var u = jStat.randg( alpha );
-				return u / ( u + jStat.randg( beta ) );
-			}
-		},
-
-		variance : function( alpha, beta ) {
-			return ( alpha * beta ) / ( Math.pow( alpha + beta, 2 ) * ( alpha + beta + 1 ) );
+				return u / ( u + jStat.randg( beta ));
+			});
+		} else {
+			// return a random sample
+			var u = jStat.randg( alpha );
+			return u / ( u + jStat.randg( beta ));
 		}
 	},
+
+	variance : function( alpha, beta ) {
+		return ( alpha * beta ) / ( Math.pow( alpha + beta, 2 ) * ( alpha + beta + 1 ) );
+	}
+});
+
+// extend the beta objects prototype
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.beta.prototype[ item ] = function( min, max, len ) {
+			var alpha = this.alpha, beta = this.beta;
+			return jStat.seq( min, max, len, function( x ) { return jStat.beta[ item ]( x, alpha, beta )});
+		};
+	})( vals[ item ]);
+})( 'pdf cdf inv mean median mode variance'.split( ' ' ));
+
+
+
+// all these still need to be implemented as their own instance methods
+jStat.extend({
 
 	cauchy : {
 		pdf : function( x, location, scale ) {
