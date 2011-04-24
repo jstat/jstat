@@ -282,7 +282,7 @@ jStat.extend({
 		var arr = [],
 			step = ( max - min ) / ( length - 1 );
 		// TODO: replace toFixed value to user configurable parameter
-		for ( ; min <= max; min += step ) arr.push(+( func ? func.call( null, min ) : min ).toFixed(6));
+		for ( ; min <= max; min += step ) arr.push(+( func ? func( min ) : min ).toFixed(6));
 		return arr;
 	},
 
