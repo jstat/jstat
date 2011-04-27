@@ -10,7 +10,7 @@ jStat.beta = function( alpha, beta ) {
 // extend beta function with static methods
 jStat.extend( jStat.beta, {
 	pdf : function( x, alpha, beta ) {
-		return ( Math.pow( x, alpha - 1 ) * Math.pow( 1 - x, beta - 1 ) ) / jStat.betafn( alpha, beta );
+		return ( Math.pow( x, alpha - 1 ) * Math.pow( 1 - x, beta - 1 )) / jStat.betafn( alpha, beta );
 	},
 
 	cdf : function( x, alpha, beta ) {
@@ -60,133 +60,194 @@ jStat.extend( jStat.beta, {
 			return jStat.seq( min, max, len, function( x ) { return jStat.beta[ item ]( x, alpha, beta )});
 		};
 	})( vals[ item ]);
-})( 'pdf cdf inv mean median mode variance'.split( ' ' ));
+})( 'pdf cdf inv'.split( ' ' ));
+
+
+
+// add cauchy distribution object to jStat
+jStat.cauchy = function( local, scale ) {
+	if (!( this instanceof arguments.callee )) return new jStat.cauchy( local, scale );
+	this.local = local;
+	this.scale = scale;
+};
+
+// extend cauchy function with static methods
+jStat.extend( jStat.cauchy, {
+	pdf : function( x, local, scale ) {
+		return ( scale / ( Math.pow( x - local, 2 ) + Math.pow( scale, 2 ))) / Math.PI;
+	},
+
+	cdf : function( x, local, scale ) {
+		return Math.atan(( x - local) / scale ) / Math.PI + 0.5;
+	},
+
+	inv : function( p, local, scale ) {
+		return local + scale * Math.tan( Math.PI * ( p - 0.5 ) );
+	},
+
+	mean : function( local, scale ) {
+		// TODO: implement this
+	},
+
+	median: function( local, scale ) {
+		return local;
+	},
+
+	mode : function( local, scale ) {
+		return local;
+	},
+
+	sample : function( x, local, scale ) {
+		if ( x ) {
+			return x.alter( function() {
+				return jStat.randn() * Math.sqrt( 1 / ( 2 * jStat.randg( 0.5 ) ) ) * scale + local;
+			});
+		} else {
+			return jStat.randn() * Math.sqrt( 1 / ( 2 * jStat.randg( 0.5 ) ) ) * scale + local;
+		}
+	},
+
+	variance : function( local, scale ) {
+		// TODO: implement this
+	}
+});
+
+// extend the cauchy objects prototype
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.cauchy.prototype[ item ] = function( min, max, len ) {
+			var local = this.local, scale = this.scale;
+			return jStat.seq( min, max, len, function( x ) { return jStat.cauchy[ item ]( x, local, scale )});
+		};
+	})( vals[ item ]);
+})( 'pdf cdf inv'.split( ' ' ));
+
+
+
+// add chisquare distribution object to jStat
+jStat.chisquare = function( dof ) {
+	if (!( this instanceof arguments.callee )) return new jStat.chisquare( dof );
+	this.dof = dof;
+};
+
+// extend chisquare function with static methods
+jStat.extend( jStat.chisquare, {
+	pdf : function( x, dof ) {
+		return (Math.pow( x, dof / 2 - 1) * Math.exp( -x / 2 )) / ( Math.pow( 2, dof / 2) * jStat.gammafn( dof / 2 ));
+	},
+
+	cdf : function( x, dof ) {
+		return jStat.gammap( x / 2, dof / 2 );
+	},
+
+	inv : function( p, dof ) {
+		return 2 * jStat.gammapInv( p, 0.5 * dof );
+	},
+
+	mean : function( dof ) {
+		return dof;
+	},
+
+	//TODO: this is an approximation (is there a better way?)
+	median : function( dof ) {
+		return dof * Math.pow( 1 - ( 2 / ( 9 * dof )), 3 );
+	},
+
+	mode : function( dof ) {
+		return ( dof - 2 > 0 ) ? dof - 2 : 0;
+	},
+
+	sample : function( x, dof ) {
+		if( x ) {
+			// return a jstat object filled with random samples
+			return x.alter( function() {
+				return jStat.randg( dof/2 ) * 2;
+			});
+		} else {
+			// return a random sample
+			return jStat.randg( dof/2 ) * 2;
+		}
+	},
+
+	variance: function( dof ) {
+		return 2 * dof;
+	}
+});
+
+// extend the chisquare objects prototype
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.chisquare.prototype[ item ] = function( min, max, len ) {
+			var dof = this.dof;
+			return jStat.seq( min, max, len, function( x ) { return jStat.chisquare[ item ]( x, dof )});
+		};
+	})( vals[ item ]);
+})( 'pdf cdf inv'.split( ' ' ));
+
+
+
+// add exponential distribution object to jStat
+jStat.exponential = function( rate ) {
+	if (!( this instanceof arguments.callee )) return new jStat.exponential( rate );
+	this.rate = rate;
+};
+
+// extend exponential function with static methods
+jStat.extend( jStat.exponential, {
+	pdf : function( x, rate ) {
+		return x < 0 ? 0 : rate * Math.exp( -rate * x );
+	},
+
+	cdf : function( x, rate ) {
+		return x < 0 ? 0 : 1 - Math.exp( -rate * x );
+	},
+
+	inv : function( p, rate ) {
+		return -Math.log( 1 - p ) / rate;
+	},
+
+	mean : function( rate ) {
+		return 1 / rate;
+	},
+
+	median : function ( rate ) {
+		return ( 1 / rate ) * Math.log(2);
+	},
+
+	mode : function( rate ) {
+		return 0;
+	},
+
+	sample : function( x, rate ) {
+		if( x ) {
+			return x.alter( function() {
+				return -1 / rate * Math.log( Math.random() );
+			})
+		} else {
+			return -1 / rate * Math.log( Math.random() );
+		}
+	},
+
+	variance : function( rate ) {
+		return Math.pow( rate, -2 );
+	}
+});
+
+// extend the exponential objects prototype
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.exponential.prototype[ item ] = function( min, max, len ) {
+			var rate = this.rate;
+			return jStat.seq( min, max, len, function( x ) { return jStat.exponential[ item ]( x, rate )});
+		};
+	})( vals[ item ]);
+})( 'pdf cdf inv'.split( ' ' ));
+
 
 
 
 // all these still need to be implemented as their own instance methods
 jStat.extend({
-
-	cauchy : {
-		pdf : function( x, location, scale ) {
-			return ( scale / ( Math.pow( x - location, 2 ) + Math.pow( scale, 2 ) ) ) / Math.PI;
-		},
-
-		cdf : function( x, location, scale ) {
-			return Math.atan(( x - location) / scale ) / Math.PI + 0.5;
-		},
-
-		inv : function( p, location, scale ) {
-			return location + scale * Math.tan( Math.PI * ( p - 0.5 ) );
-		},
-
-		mean : function( location, scale ) {
-		},
-
-		median: function( location, scale ) {
-			return location;
-		},
-
-		mode : function( location, scale ) {
-			return location;
-		},
-
-		sample : function( x, location, scale ) {
-			if ( x ) {
-				return x.alter( function() {
-					return jStat.randn() * Math.sqrt( 1 / ( 2 * jStat.randg( 0.5 ) ) ) * scale + location;
-				});
-			} else {
-				return jStat.randn() * Math.sqrt( 1 / ( 2 * jStat.randg( 0.5 ) ) ) * scale + location;
-			}
-		},
-
-		variance : function( location, scale ) {
-		}
-	},
-
-	chisquare : {
-		pdf : function( x, dof ) {
-			return (Math.pow( x, dof / 2 - 1) * Math.exp( -x / 2 )) / ( Math.pow( 2, dof / 2) * jStat.gammafn( dof / 2 ));
-		},
-
-		cdf : function( x, dof ) {
-			return jStat.gammap( x / 2, dof / 2 );
-		},
-
-		inv : function( p, dof ) {
-			return 2 * jStat.gammapInv( p, 0.5 * dof );
-		},
-
-		mean : function( dof ) {
-			return dof;
-		},
-
-		//TODO: this is an approximation (is there a better way?)
-		median : function( dof ) {
-			return dof * Math.pow( 1 - ( 2 / ( 9 * dof ) ), 3 );
-		},
-
-		mode : function( dof ) {
-			return ( dof - 2 > 0 ) ? dof - 2 : 0;
-		},
-
-		sample : function( x,dof ) {
-			if( x ) {
-				// return a jstat object filled with random samples
-				return x.alter( function() {
-					return jStat.randg( dof/2 ) * 2;
-				});
-			} else {
-				// return a random sample
-				return jStat.randg( dof/2 ) * 2;
-			}
-		},
-
-		variance: function( dof ) {
-			return 2 * dof;
-		}
-	},
-
-	exponential : {
-		pdf : function( x, rate ) {
-			return x < 0 ? 0 : rate * Math.exp( -rate * x );
-		},
-
-		cdf : function( x, rate ) {
-			return x < 0 ? 0 : 1 - Math.exp( -rate * x );
-		},
-
-		inv : function( p, rate ) {
-			return -Math.log( 1 - p ) / rate;
-		},
-
-		mean : function( rate ) {
-			return 1 / rate;
-		},
-
-		median : function ( rate ) {
-			return ( 1 / rate ) * Math.log(2);
-		},
-
-		mode : function( rate ) {
-			return 0;
-		},
-
-		sample : function( x, rate ) {
-			if( x ) {
-				return x.alter( function() {
-					return -1 / rate * Math.log( Math.random() );
-				})
-			} else {
-				return -1 / rate * Math.log( Math.random() );
-			}
-		},
-
-		variance : function( rate ) {
-			return Math.pow( rate, -2 );
-		}
-	},
 
 	gamma : {
 		pdf : function( x, shape, scale ) {
