@@ -61,6 +61,13 @@ jStat.extend( jStat.beta, {
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.beta.prototype[ item ] = function() {
+			return jStat.beta[ item ]( this.alpha, this.beta );
+		};
+	})( vals[ item ]);
+})( 'mean median mode variance'.split( ' ' ));
 
 
 
@@ -121,6 +128,13 @@ jStat.extend( jStat.cauchy, {
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.cauchy.prototype[ item ] = function() {
+			return jStat.cauchy[ item ]( this.local, this.scale );
+		};
+	})( vals[ item ]);
+})( 'mean median mode variance'.split( ' ' ));
 
 
 
@@ -183,6 +197,13 @@ jStat.extend( jStat.chisquare, {
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.chisquare.prototype[ item ] = function() {
+			return jStat.chisquare[ item ]( this.dof );
+		};
+	})( vals[ item ]);
+})( 'mean median mode variance'.split( ' ' ));
 
 
 
@@ -242,6 +263,13 @@ jStat.extend( jStat.exponential, {
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.exponential.prototype[ item ] = function() {
+			return jStat.exponential[ item ]( this.rate );
+		};
+	})( vals[ item ]);
+})( 'mean median mode variance'.split( ' ' ));
 
 
 
@@ -301,6 +329,13 @@ jStat.extend( jStat.gamma, {
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.gamma.prototype[ item ] = function() {
+			return jStat.gamma[ item ]( this.shape, this.scale );
+		};
+	})( vals[ item ]);
+})( 'mean median mode variance'.split( ' ' ));
 
 
 
@@ -346,6 +381,13 @@ jStat.extend( jStat.kumaraswamy, {
 		};
 	})( vals[ item ]);
 })( 'pdf cdf'.split( ' ' ));
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.kumaraswamy.prototype[ item ] = function() {
+			return jStat.kumaraswamy[ item ]( this.alpha, this.beta );
+		};
+	})( vals[ item ]);
+})( 'mean median mode variance'.split( ' ' ));
 
 
 
@@ -406,6 +448,13 @@ jStat.extend( jStat.lognormal, {
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.lognormal.prototype[ item ] = function() {
+			return jStat.lognormal[ item ]( this.mu, this.sigma );
+		};
+	})( vals[ item ]);
+})( 'mean median mode variance'.split( ' ' ));
 
 
 
@@ -468,6 +517,13 @@ jStat.extend( jStat.normal, {
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.normal.prototype[ item ] = function() {
+			return jStat.normal[ item ]( this.mean, this.std );
+		};
+	})( vals[ item ]);
+})( 'mean median mode variance'.split( ' ' ));
 
 
 
@@ -514,6 +570,13 @@ jStat.extend( jStat.pareto, {
 		};
 	})( vals[ item ]);
 })( 'pdf cdf'.split( ' ' ));
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.pareto.prototype[ item ] = function() {
+			return jStat.pareto[ item ]( this.scale, this.shape );
+		};
+	})( vals[ item ]);
+})( 'mean median mode variance'.split( ' ' ));
 
 
 
@@ -577,6 +640,13 @@ jStat.extend( jStat.studentt, {
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.studentt.prototype[ item ] = function() {
+			return jStat.studentt[ item ]( this.dof );
+		};
+	})( vals[ item ]);
+})( 'mean median mode variance'.split( ' ' ));
 
 
 
@@ -637,6 +707,13 @@ jStat.extend( jStat.weibull, {
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.weibull.prototype[ item ] = function() {
+			return jStat.weibull[ item ]( this.scale, this.shape );
+		};
+	})( vals[ item ]);
+})( 'mean median mode variance'.split( ' ' ));
 
 
 
@@ -698,6 +775,13 @@ jStat.extend( jStat.uniform, {
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.uniform.prototype[ item ] = function() {
+			return jStat.uniform[ item ]( this.a, this.b );
+		};
+	})( vals[ item ]);
+})( 'mean median mode variance'.split( ' ' ));
 
 
 
