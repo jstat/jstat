@@ -30,12 +30,6 @@ Linux/BSD users should use their appropriate package managers to install make, g
 if you swing that way.
 
 
-Grabbing Externals
-------------------
-
-The `speed/` and `test/` directories depend on a couple externals. To grab these run `make update_submodules`.
-
-
 Building jStat
 --------------
 
