@@ -58,7 +58,7 @@ jStat.extend({
 		if ( y < 1 ) {
 			z = y++;
 		} else {
-			z = ( y -= n = Math.floor( y ) - 1 ) - 1;
+			z = ( y -= n = ( y | 0 ) - 1 ) - 1;
 		}
 
 		for ( i = 0; i < 8; ++i ) {

@@ -434,7 +434,7 @@ jStat.extend({
 			_arr = arr.slice().sort( ascNum );
 
 		// check if array is even or odd, then return the appropriate
-		return !( arrlen & 1 ) ? ( _arr[ ( arrlen / 2 ) - 1 ] + _arr[ ( arrlen / 2 ) ] ) / 2 : _arr[ Math.floor( arrlen / 2 ) ];
+		return !( arrlen & 1 ) ? ( _arr[ ( arrlen / 2 ) - 1 ] + _arr[ ( arrlen / 2 ) ] ) / 2 : _arr[ ( arrlen / 2 ) | 0 ];
 	},
 
 	// mode of an array

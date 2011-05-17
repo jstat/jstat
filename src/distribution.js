@@ -842,7 +842,7 @@ jStat.extend({
 
 	negbin : {
 		pdf : function( k, r, p ) {
-			return k !== Math.floor( k )
+			return k !== k | 0
 				? false
 			: k < 0
 				? 0
@@ -862,7 +862,7 @@ jStat.extend({
 
 	hypgeom : {
 		pdf : function( k, N, m, n ) {
-			return x !== Math.floor( x )
+			return x !== x | 0
 				? false
 			: ( x < 0)
 				? 0
