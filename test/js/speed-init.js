@@ -33,42 +33,42 @@ $.jqml(['div', {'id':'calper-init', 'class':'main-holder'},
 		var rArr = ['div'],
 			objlist = [
 				// core.js
-				['jStat.seq', 'jstat-seq'],
-				['jStat.add', 'jstat-add'],
-				['jStat.divide', 'jstat-divide'],
-				['jStat.multiply', 'jstat-multiply'],
-				['jStat.subtract', 'jstat-subtract'],
-				['jStat.dot', 'jstat-dot'],
-				['jStat.pow', 'jstat-pow'],
-				['jStat.abs', 'jstat-abs'],
-				['jStat.clear', 'jstat-clear'],
-				['jStat.norm', 'jstat-norm'],
-				['jStat.angle', 'jstat-angle'],
-				['jStat.symmetric', 'jstat-symmetric'],
-				['jStat.sum', 'jstat-sum'],
-				['jStat.min', 'jstat-min'],
-				['jStat.max', 'jstat-max'],
-				['jStat.mean', 'jstat-mean'],
-				['jStat.median', 'jstat-median'],
-				['jStat.mode', 'jstat-mode'],
-				['jStat.range', 'jstat-range'],
-				['jStat.variance', 'jstat-variance'],
-				['jStat.stdev', 'jstat-stdev'],
-				['jStat.meandev', 'jstat-meandev'],
-				['jStat.meddev', 'jstat-meddev'],
-				['jStat.quartiles', 'jstat-quartiles'],
-				['jStat.covariance', 'jstat-covariance'],
-				['jStat.corrcoeff', 'jstat-corrcoeff'],
+				//['jStat.seq', 'jStat-seq'],
+				//['jStat.add', 'jStat-add'],
+				//['jStat.divide', 'jStat-divide'],
+				//['jStat.multiply', 'jStat-multiply'],
+				//['jStat.subtract', 'jStat-subtract'],
+				//['jStat.dot', 'jStat-dot'],
+				//['jStat.pow', 'jStat-pow'],
+				//['jStat.abs', 'jStat-abs'],
+				//['jStat.clear', 'jStat-clear'],
+				//['jStat.norm', 'jStat-norm'],
+				//['jStat.angle', 'jStat-angle'],
+				//['jStat.symmetric', 'jStat-symmetric'],
+				['jStat.sum', 'jStat-sum'],
+				['jStat.min', 'jStat-min'],
+				['jStat.max', 'jStat-max'],
+				['jStat.mean', 'jStat-mean'],
+				['jStat.median', 'jStat-median'],
+				['jStat.mode', 'jStat-mode'],
+				['jStat.range', 'jStat-range'],
+				['jStat.variance', 'jStat-variance'],
+				['jStat.stdev', 'jStat-stdev'],
+				['jStat.meandev', 'jStat-meandev'],
+				['jStat.meddev', 'jStat-meddev'],
+				['jStat.quartiles', 'jStat-quartiles'],
+				['jStat.covariance', 'jStat-covariance'],
+				['jStat.corrcoeff', 'jStat-corrcoeff'],
 
 				// special.js
-				['jStat.gammaln', 'jstat-gammaln'],
-				['jStat.gammafn', 'jstat-gammafn'],
-				['jStat.gammap', 'jstat-gammap'],
-				['jStat.factorialln', 'jstat-factorialln'],
-				['jStat.factorial', 'jstat-factorial'],
-				['jStat.combination', 'jstat-combination'],
-				['jStat.permutation', 'jstat-permutation'],
-				['jStat.betafn', 'jstat-betafn']
+				['jStat.gammaln', 'jStat-gammaln'],
+				['jStat.gammafn', 'jStat-gammafn'],
+				['jStat.gammap', 'jStat-gammap'],
+				['jStat.factorialln', 'jStat-factorialln'],
+				['jStat.factorial', 'jStat-factorial'],
+				['jStat.combination', 'jStat-combination'],
+				['jStat.permutation', 'jStat-permutation'],
+				['jStat.betafn', 'jStat-betafn']
 			];
 		$.each(objlist, function(idx, val){
 			rArr.push(['div', {'class':'init-choices'},
@@ -105,9 +105,9 @@ $('#init-start').click(function(e){
 			});
 			
 			// load tests based on what was checked
-			if($('#jstat-seq:checked').length === 1){
-				jStatTest.seq();
-			};
+			itemsChecked.each(function( idx, elem ) {
+				jStatTest[ $( elem ).attr( 'id' ).split( '-' )[1]]();
+			});
 			
 			// build testing box, and begin testing
 			buildTest();
