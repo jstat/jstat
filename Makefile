@@ -32,10 +32,10 @@ ${JS}: ${DIST_DIR}
 
 lint: jstat
 	@@if test ! -z ${JS_ENGINE}; then \
-		echo "Checking jStat against JSLint..."; \
-		${JS_ENGINE} build/jslint-check.js; \
+		echo "Checking jStat against JSHint..."; \
+		${JS_ENGINE} build/jshint-check.js; \
 	else \
-		echo "You must have NodeJS installed in order to test jStat against JSLint."; \
+		echo "You must have NodeJS installed in order to test jStat against JSHint."; \
 	fi
 
 min: jstat ${JS_MIN}
@@ -47,7 +47,6 @@ ${JS_MIN}: ${JS}
 	else \
 		echo "You must have NodeJS installed in order to minify jStat."; \
 	fi
-	
 
 clean:
 	@@echo "Removing Distribution directory:" ${DIST_DIR}
