@@ -11,7 +11,7 @@ function addCommas(nStr){
 
 
 // setup page structure
-$(jCt('div', {'id':'calper-init', 'class':'main-holder'},
+$.jqml(['div', {'id':'calper-init', 'class':'main-holder'},
 	['h1', 'enter options'],
 	['div',
 		['div', {'class':'init-options'},
@@ -83,7 +83,7 @@ $(jCt('div', {'id':'calper-init', 'class':'main-holder'},
 	['div', {'class':'baseline-content'}],
 	['button', {'id':'init-start', 'class':'hoverable'}, 'Run Tests'],
 	['div', {'class':'line-clear'}]
-)).appendTo('body');
+]).appendTo('body');
 
 
 
@@ -113,7 +113,7 @@ $('#init-start').click(function(e){
 			buildTest();
 		});
 	}else{
-		$(jCt('div', {'class':'error-overlay', 'style':'display:none;'}, 'Please select at least one test')).appendTo('body').fadeIn(200, function(){
+		$jqml(['div', {'class':'error-overlay', 'style':'display:none;'}, 'Please select at least one test']).appendTo('body').fadeIn(200, function(){
 			setTimeout(function(){
 				$('.error-overlay').fadeOut(200, function(){
 					$(this).remove();
@@ -130,7 +130,7 @@ function buildTest(){
 	var stoVar;
 	
 	// create the box
-	$(jCt('div', {'class':'main-holder','style':'display:none;'},
+	$.jqml(['div', {'class':'main-holder','style':'display:none;'},
 		['button', {'id':'test-button'}, 'Start'],
 		['p', {'id':'rem-time'}],
 		['p', {'id':'calper-running'}, 'Running Tests...'],
@@ -147,7 +147,7 @@ function buildTest(){
 			['tbody', {'id': 'calper-table'}]
 		],
 		['p', {'id':'calper-footer'}, 'All results are in itterations/sec.']
-	)).appendTo('body').fadeIn(250, function() {
+	]).appendTo('body').fadeIn(250, function() {
 		// setup interactions
 		$('#test-button').click(function(){
 			var $this = $(this);
@@ -186,7 +186,7 @@ function buildTest(){
 // setup tests to run
 Calper.testDone = function(val){
 	var res = val.results;
-	$(jCt(
+	$.jqml([
 		['tr',
 			['td', {'colspan': 5, 'class':'calper-data-title'}, val.name]
 		],['tr', {'class': 'calper-data-row'},
@@ -196,7 +196,7 @@ Calper.testDone = function(val){
 			['td', addCommas((res.max).toFixed(2))],
 			['td', {'class':'data-graph'}, ['span', {'id':'tmp-graph-select'}]]
 		]
-	)).appendTo('#calper-table');
+	]).appendTo('#calper-table');
 	
 	$('#tmp-graph-select').sparkline(val.cal, {
 		width: '350px',

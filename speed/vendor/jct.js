@@ -1,5 +1,0 @@
-/* DOM Element Creation Function
- * Copyright (c) 2010, Trevor Norris
- * This document is licensed as free software under the terms of the
- * MIT License: http://www.opensource.org/licenses/mit-license.php */
-(function(h,e,b){var i=Array.prototype.slice,f=/string|number/,j=h.documentElement.style.setAttribute?function(l,k){var m;for(m in l){if(m!="style"){k.setAttribute(m,l[m])}else{k.style.setAttribute("cssText",l[m])}}return k}:function(l,k){var m;for(m in l){k.setAttribute(m,l[m])}return k};function a(k){return(f).test(typeof k)}function c(k){return !!k.join}function d(l){var k=h.createElement(l[0]),n=l.length,m=1;for(;m<n;m++){c(l[m])?k.appendChild(d(l[m])):a(l[m])?k.appendChild(h.createTextNode(l[m])):l[m].nodeType?k.appendChild(l[m]):j(l[m],k)}return k}function g(){var k=i.call(arguments),l=k.length;return a(k[0])?d(k):(function(){var n=0,m=[];for(;n<l;n++){m.push(d(k[n]))}return m})()}e.jCt=g})(document,window);
