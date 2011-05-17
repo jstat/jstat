@@ -5,7 +5,7 @@ process of merging two similar projects and will update the website once the mer
 ===============================================================
 
 Build Prerequisites
---------------
+-------------------
 
 In order to build jStat, you need to have GNU make 3.8 or later, Node.js 0.2 or later, and git 1.7 or later.
 (Earlier versions might work OK, but are not tested.)
@@ -51,3 +51,8 @@ directory: `make PREFIX=/home/jstat/test/ [command]`
 
 With this example, the output files would end up in `/home/jstat/test/dist/`.
 
+
+Grabbing Externals
+------------------
+
+The `speed/` and `test/` directories depend on a couple externals. To grab these run `make update_submodules`.
