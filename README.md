@@ -1,5 +1,6 @@
-*NOTE* The code in this repository does not currently match that found on www.jstat.org. We are in the 
+*NOTE:* The code in this repository does not currently match that found on www.jstat.org. We are in the 
 process of merging two similar projects and will update the website once the merge is complete. 
+
 
 [jStat](http://www.jstat.org/) - JavaScript Statistical Library
 ===============================================================
@@ -29,6 +30,12 @@ Linux/BSD users should use their appropriate package managers to install make, g
 if you swing that way.
 
 
+Grabbing Externals
+------------------
+
+The `speed/` and `test/` directories depend on a couple externals. To grab these run `make update_submodules`.
+
+
 Building jStat
 --------------
 
@@ -50,9 +57,3 @@ If you want to build jStat to a directory that is different from the default loc
 directory: `make PREFIX=/home/jstat/test/ [command]`
 
 With this example, the output files would end up in `/home/jstat/test/dist/`.
-
-
-Grabbing Externals
-------------------
-
-The `speed/` and `test/` directories depend on a couple externals. To grab these run `make update_submodules`.
