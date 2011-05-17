@@ -28,6 +28,8 @@ jstat: ${JS}
 ${JS}: ${DIST_DIR}
 	@@echo "Building" ${JS}
 
+	@@cat ${BASE_FILES} > ${JS}
+
 lint: jstat
 	@@if test ! -z ${JS_ENGINE}; then \
 		echo "Checking jStat against JSLint..."; \
