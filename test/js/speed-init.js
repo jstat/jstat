@@ -28,6 +28,7 @@ $.jqml(['div', {'id':'calper-init', 'class':'main-holder'},
 		],
 		['div', {'class':'line-clear'}]
 	],
+	['button', {'class':'select-all'}, 'select all'],
 	['h1', 'select tests to run'],
 	(function(){
 		var rArr = ['div'],
@@ -85,6 +86,15 @@ $.jqml(['div', {'id':'calper-init', 'class':'main-holder'},
 	['div', {'class':'line-clear'}]
 ]).appendTo('body');
 
+
+// select all functionality
+$('.select-all').click(function selectall(){
+	$('.init-choices :checkbox').prop('checked', true);
+	$(this).text('deselect all').unbind('click').click(function(){
+		$('.init-choices :checkbox').prop('checked', false);
+		$(this).text('select all').unbind('click').click(selectall);
+	});
+});
 
 
 // bind Run Tests
