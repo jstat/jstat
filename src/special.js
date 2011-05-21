@@ -1,5 +1,4 @@
 // Special functions //
-
 (function( jStat, Math ) {
 
 // private functions
@@ -466,7 +465,7 @@ jStat.extend({
 		if( shape == oalph ) return a1 * v;
 
 		// alpha < 1
-		do u = Math.random(); while( u == 0 );
+		do { u = Math.random(); } while( u === 0 );
 
 		return Math.pow( u, 1 / oalph ) * a1 * v;
 	}

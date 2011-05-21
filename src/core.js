@@ -5,13 +5,8 @@
  * MIT License: http://www.opensource.org/licenses/mit-license.php */
 this.j$ = this.jStat = (function( Math, undefined ) {
 
-// global function
-var jStat = function() {
-		return new jStat.fn.init( slice.call( arguments ));
-	},
-
 	// for quick reference
-	slice = Array.prototype.slice,
+var slice = Array.prototype.slice,
 	toString = Object.prototype.toString,
 
 	// for code compression
@@ -36,6 +31,12 @@ var jStat = function() {
 		return toString.call( arg ) === "[object Object]";
 	};
 
+// global function
+function jStat() {
+	return new jStat.fn.init( slice.call( arguments ));
+};
+
+// extend jStat prototype
 jStat.fn = jStat.prototype = {
 	constructor : jStat,
 	init : function( args ) {

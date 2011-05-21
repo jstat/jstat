@@ -1,4 +1,4 @@
-(function( Math, jStat ) {
+(function( jStat, Math ) {
 
 // add beta distribution object to jStat
 jStat.beta = function( alpha, beta ) {
@@ -57,7 +57,7 @@ jStat.extend( jStat.beta, {
 	for ( var item in vals ) (function( item ) {
 		jStat.beta.prototype[ item ] = function( min, max, len ) {
 			var alpha = this.alpha, beta = this.beta;
-			return jStat.seq( min, max, len, function( x ) { return jStat.beta[ item ]( x, alpha, beta )});
+			return jStat.seq( min, max, len, function( x ) { return jStat.beta[ item ]( x, alpha, beta );});
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -124,7 +124,7 @@ jStat.extend( jStat.cauchy, {
 	for ( var item in vals ) (function( item ) {
 		jStat.cauchy.prototype[ item ] = function( min, max, len ) {
 			var local = this.local, scale = this.scale;
-			return jStat.seq( min, max, len, function( x ) { return jStat.cauchy[ item ]( x, local, scale )});
+			return jStat.seq( min, max, len, function( x ) { return jStat.cauchy[ item ]( x, local, scale );});
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -193,7 +193,7 @@ jStat.extend( jStat.chisquare, {
 	for ( var item in vals ) (function( item ) {
 		jStat.chisquare.prototype[ item ] = function( min, max, len ) {
 			var dof = this.dof;
-			return jStat.seq( min, max, len, function( x ) { return jStat.chisquare[ item ]( x, dof )});
+			return jStat.seq( min, max, len, function( x ) { return jStat.chisquare[ item ]( x, dof );});
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -243,7 +243,7 @@ jStat.extend( jStat.exponential, {
 		if( x ) {
 			return x.alter( function() {
 				return -1 / rate * Math.log( Math.random() );
-			})
+			});
 		} else {
 			return -1 / rate * Math.log( Math.random() );
 		}
@@ -259,7 +259,7 @@ jStat.extend( jStat.exponential, {
 	for ( var item in vals ) (function( item ) {
 		jStat.exponential.prototype[ item ] = function( min, max, len ) {
 			var rate = this.rate;
-			return jStat.seq( min, max, len, function( x ) { return jStat.exponential[ item ]( x, rate )});
+			return jStat.seq( min, max, len, function( x ) { return jStat.exponential[ item ]( x, rate );});
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -325,7 +325,7 @@ jStat.extend( jStat.gamma, {
 	for ( var item in vals ) (function( item ) {
 		jStat.gamma.prototype[ item ] = function( min, max, len ) {
 			var shape = this.shape, scale = this.scale;
-			return jStat.seq( min, max, len, function( x ) { return jStat.gamma[ item ]( x, shape, scale )});
+			return jStat.seq( min, max, len, function( x ) { return jStat.gamma[ item ]( x, shape, scale );});
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -377,7 +377,7 @@ jStat.extend( jStat.kumaraswamy, {
 	for ( var item in vals ) (function( item ) {
 		jStat.kumaraswamy.prototype[ item ] = function( min, max, len ) {
 			var alpha = this.alpha, beta = this.beta;
-			return jStat.seq( min, max, len, function( x ) { return jStat.kumaraswamy[ item ]( x, alpha, beta )});
+			return jStat.seq( min, max, len, function( x ) { return jStat.kumaraswamy[ item ]( x, alpha, beta );});
 		};
 	})( vals[ item ]);
 })( 'pdf cdf'.split( ' ' ));
@@ -428,7 +428,7 @@ jStat.extend( jStat.lognormal, {
 		if( x ) {
 			return x.alter( function() {
 				return Math.exp( jStat.randn() * sigma + mu );
-			})
+			});
 		} else {
 			return Math.exp( jStat.randn() * sigma + mu );
 		}
@@ -444,7 +444,7 @@ jStat.extend( jStat.lognormal, {
 	for ( var item in vals ) (function( item ) {
 		jStat.lognormal.prototype[ item ] = function( min, max, len ) {
 			var mu = this.mu, sigma = this.sigma;
-			return jStat.seq( min, max, len, function( x ) { return jStat.lognormal[ item ]( x, mu, sigma )});
+			return jStat.seq( min, max, len, function( x ) { return jStat.lognormal[ item ]( x, mu, sigma );});
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -513,7 +513,7 @@ jStat.extend( jStat.normal, {
 	for ( var item in vals ) (function( item ) {
 		jStat.normal.prototype[ item ] = function( min, max, len ) {
 			var mean = this.mean, std = this.std;
-			return jStat.seq( min, max, len, function( x ) { return jStat.normal[ item ]( x, mean, std )});
+			return jStat.seq( min, max, len, function( x ) { return jStat.normal[ item ]( x, mean, std );});
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -566,7 +566,7 @@ jStat.extend( jStat.pareto, {
 	for ( var item in vals ) (function( item ) {
 		jStat.pareto.prototype[ item ] = function( min, max, len ) {
 			var shape = this.shape, scale = this.scale;
-			return jStat.seq( min, max, len, function( x ) { return jStat.pareto[ item ]( x, scale, shape )});
+			return jStat.seq( min, max, len, function( x ) { return jStat.pareto[ item ]( x, scale, shape );});
 		};
 	})( vals[ item ]);
 })( 'pdf cdf'.split( ' ' ));
@@ -636,7 +636,7 @@ jStat.extend( jStat.studentt, {
 	for ( var item in vals ) (function( item ) {
 		jStat.studentt.prototype[ item ] = function( min, max, len ) {
 			var dof = this.dof;
-			return jStat.seq( min, max, len, function( x ) { return jStat.studentt[ item ]( x, dof )});
+			return jStat.seq( min, max, len, function( x ) { return jStat.studentt[ item ]( x, dof );});
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -687,7 +687,7 @@ jStat.extend( jStat.weibull, {
 		if( x ) {
 			return x.alter( function() {
 				return scale * Math.pow( -Math.log( Math.random() ), 1 / shape );
-			})
+			});
 		} else {
 			return scale * Math.pow( -Math.log( Math.random() ), 1 / shape );
 		}
@@ -703,7 +703,7 @@ jStat.extend( jStat.weibull, {
 	for ( var item in vals ) (function( item ) {
 		jStat.weibull.prototype[ item ] = function( min, max, len ) {
 			var scale = this.scale, shape = this.shape;
-			return jStat.seq( min, max, len, function( x ) { return jStat.weibull[ item ]( x, scale, shape )});
+			return jStat.seq( min, max, len, function( x ) { return jStat.weibull[ item ]( x, scale, shape );});
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -744,7 +744,7 @@ jStat.extend( jStat.uniform, {
 	},
 
 	median : function( a, b ) {
-		return mean( a, b );
+		return jStat.mean( a, b );
 	},
 
 	mode : function( a, b ) {
@@ -771,7 +771,7 @@ jStat.extend( jStat.uniform, {
 	for ( var item in vals ) (function( item ) {
 		jStat.uniform.prototype[ item ] = function( min, max, len ) {
 			var a = this.a, b = this.b;
-			return jStat.seq( min, max, len, function( x ) { return jStat.uniform[ item ]( x, a, b )});
+			return jStat.seq( min, max, len, function( x ) { return jStat.uniform[ item ]( x, a, b );});
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -862,9 +862,9 @@ jStat.extend({
 
 	hypgeom : {
 		pdf : function( k, N, m, n ) {
-			return x !== x | 0
+			return k !== k | 0
 				? false
-			: ( x < 0)
+			: ( k < 0)
 				? 0
 			: jStat.combination( m, k ) * jStat.combination( N - m , n - k ) / jStat.combination( N, n );
 		},
@@ -897,4 +897,4 @@ jStat.extend({
 	}
 });
 
-})( Math, jStat );
+})( this.jStat, this.Math);
