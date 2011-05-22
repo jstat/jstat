@@ -55,9 +55,8 @@ jStat.extend( jStat.beta, {
 // extend the beta objects prototype
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
-		jStat.beta.prototype[ item ] = function( min, max, len ) {
-			var alpha = this.alpha, beta = this.beta;
-			return jStat.seq( min, max, len, function( x ) { return jStat.beta[ item ]( x, alpha, beta );});
+		jStat.beta.prototype[ item ] = function( x ) {
+			return jStat.beta[ item ]( x, this.alpha, this.beta );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -122,9 +121,8 @@ jStat.extend( jStat.cauchy, {
 // extend the cauchy objects prototype
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
-		jStat.cauchy.prototype[ item ] = function( min, max, len ) {
-			var local = this.local, scale = this.scale;
-			return jStat.seq( min, max, len, function( x ) { return jStat.cauchy[ item ]( x, local, scale );});
+		jStat.cauchy.prototype[ item ] = function( x ) {
+			return jStat.cauchy[ item ]( x, this.local, this.scale );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -191,9 +189,8 @@ jStat.extend( jStat.chisquare, {
 // extend the chisquare objects prototype
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
-		jStat.chisquare.prototype[ item ] = function( min, max, len ) {
-			var dof = this.dof;
-			return jStat.seq( min, max, len, function( x ) { return jStat.chisquare[ item ]( x, dof );});
+		jStat.chisquare.prototype[ item ] = function( x ) {
+			return jStat.chisquare[ item ]( x, this.dof );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -257,9 +254,8 @@ jStat.extend( jStat.exponential, {
 // extend the exponential objects prototype
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
-		jStat.exponential.prototype[ item ] = function( min, max, len ) {
-			var rate = this.rate;
-			return jStat.seq( min, max, len, function( x ) { return jStat.exponential[ item ]( x, rate );});
+		jStat.exponential.prototype[ item ] = function( x ) {
+			return jStat.exponential[ item ]( x, this.rate );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -323,9 +319,8 @@ jStat.extend( jStat.gamma, {
 // extend the gamma objects prototype
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
-		jStat.gamma.prototype[ item ] = function( min, max, len ) {
-			var shape = this.shape, scale = this.scale;
-			return jStat.seq( min, max, len, function( x ) { return jStat.gamma[ item ]( x, shape, scale );});
+		jStat.gamma.prototype[ item ] = function( x ) {
+			return jStat.gamma[ item ]( x, this.shape, this.scale );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -375,9 +370,8 @@ jStat.extend( jStat.kumaraswamy, {
 // extend the kumaraswamy objects prototype
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
-		jStat.kumaraswamy.prototype[ item ] = function( min, max, len ) {
-			var alpha = this.alpha, beta = this.beta;
-			return jStat.seq( min, max, len, function( x ) { return jStat.kumaraswamy[ item ]( x, alpha, beta );});
+		jStat.kumaraswamy.prototype[ item ] = function( x ) {
+			return jStat.kumaraswamy[ item ]( x, this.alpha, this.beta );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf'.split( ' ' ));
@@ -442,9 +436,8 @@ jStat.extend( jStat.lognormal, {
 // extend the lognormal objects prototype
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
-		jStat.lognormal.prototype[ item ] = function( min, max, len ) {
-			var mu = this.mu, sigma = this.sigma;
-			return jStat.seq( min, max, len, function( x ) { return jStat.lognormal[ item ]( x, mu, sigma );});
+		jStat.lognormal.prototype[ item ] = function( x ) {
+			return jStat.lognormal[ item ]( x, this.mu, this.sigma );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -511,9 +504,8 @@ jStat.extend( jStat.normal, {
 // extend the normal objects prototype
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
-		jStat.normal.prototype[ item ] = function( min, max, len ) {
-			var mean = this.mean, std = this.std;
-			return jStat.seq( min, max, len, function( x ) { return jStat.normal[ item ]( x, mean, std );});
+		jStat.normal.prototype[ item ] = function( x ) {
+			return jStat.normal[ item ]( x, this.mean, this.std );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -564,9 +556,8 @@ jStat.extend( jStat.pareto, {
 // extend the pareto objects prototype
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
-		jStat.pareto.prototype[ item ] = function( min, max, len ) {
-			var shape = this.shape, scale = this.scale;
-			return jStat.seq( min, max, len, function( x ) { return jStat.pareto[ item ]( x, scale, shape );});
+		jStat.pareto.prototype[ item ] = function( x ) {
+			return jStat.pareto[ item ]( x, this.shape, this.scale );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf'.split( ' ' ));
@@ -634,9 +625,8 @@ jStat.extend( jStat.studentt, {
 // extend the studentt objects prototype
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
-		jStat.studentt.prototype[ item ] = function( min, max, len ) {
-			var dof = this.dof;
-			return jStat.seq( min, max, len, function( x ) { return jStat.studentt[ item ]( x, dof );});
+		jStat.studentt.prototype[ item ] = function( x ) {
+			return jStat.studentt[ item ]( x, this.dof );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -701,9 +691,8 @@ jStat.extend( jStat.weibull, {
 // extend the weibull objects prototype
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
-		jStat.weibull.prototype[ item ] = function( min, max, len ) {
-			var scale = this.scale, shape = this.shape;
-			return jStat.seq( min, max, len, function( x ) { return jStat.weibull[ item ]( x, scale, shape );});
+		jStat.weibull.prototype[ item ] = function( x ) {
+			return jStat.weinbull[ item ]( x, this.scale, this.shape );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -769,9 +758,8 @@ jStat.extend( jStat.uniform, {
 // extend the uniform objects prototype
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
-		jStat.uniform.prototype[ item ] = function( min, max, len ) {
-			var a = this.a, b = this.b;
-			return jStat.seq( min, max, len, function( x ) { return jStat.uniform[ item ]( x, a, b );});
+		jStat.uniform.prototype[ item ] = function( x ) {
+			return jStat.uniform[ item ]( x, this.a, this.b );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -790,10 +778,6 @@ jStat.extend( jStat.uniform, {
 
 // all these still need to be implemented as their own instance methods
 jStat.extend({
-
-	// Discrete distributions //
-
-	// TODO: update these with proper notations.
 
 	// uniform distribution in terms of mean and standard dev
 	uniformmv : {
