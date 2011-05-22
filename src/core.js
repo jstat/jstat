@@ -281,9 +281,10 @@ jStat.extend({
 	// generate sequence
 	seq : function( min, max, length, func ) {
 		var arr = [],
-			step = ( max - min ) / ( length - 1 );
+			hival = 1e15,
+			step = ( max * hival - min * hival ) / (( length - 1 ) * hival );
 		// TODO: replace toFixed value to user configurable parameter
-		for ( ; min <= max; min += step ) arr.push(+( func ? func( min ) : min ).toFixed(6));
+		for ( ; min <= max; min = ( min * hival + step * hival ) / hival ) arr.push(( func ? func( min ) : min ));
 		return arr;
 	},
 
