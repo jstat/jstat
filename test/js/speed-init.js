@@ -34,7 +34,7 @@ $.jqml(['div', {'id':'calper-init', 'class':'main-holder'},
 		var rArr = ['div'],
 			objlist = [
 				// core.js
-				//['jStat.seq', 'jStat-seq'],
+				['jStat.seq', 'jStat-seq'],
 				//['jStat.add', 'jStat-add'],
 				//['jStat.divide', 'jStat-divide'],
 				//['jStat.multiply', 'jStat-multiply'],
