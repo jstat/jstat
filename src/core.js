@@ -53,7 +53,7 @@ jStat.fn = jStat.prototype = {
 
 		// if first argument is number, assume creation of sequence
 		} else if ( !isNaN( args[0] )) {
-			this.push( jStat.seq.apply( null, args )[0] );
+			this.push( jStat.seq.apply( null, args ));
 		}
 		return this;
 	},
