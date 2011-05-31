@@ -17,8 +17,8 @@ jStat.extend( jStat.beta, {
 		return jStat.incompleteBeta( x, alpha, beta );
 	},
 
-	inv : function( p, alpha, beta ) {
-		return jStat.incompleteBetaInv( p, alpha, beta );
+	inv : function( x, alpha, beta ) {
+		return jStat.incompleteBetaInv( x, alpha, beta );
 	},
 
 	mean : function( alpha, beta ) {
@@ -33,18 +33,10 @@ jStat.extend( jStat.beta, {
 		return ( alpha * beta ) / ( Math.pow( alpha + beta, 2 ) * ( alpha + beta + 1 ));
 	},
 
-	sample : function( x, alpha, beta ) {
-		if( x ) {
-			// return a jstat object filled with random samples
-			return x.alter( function() {
-				var u = jStat.randg( alpha );
-				return u / ( u + jStat.randg( beta ));
-			});
-		} else {
-			// return a random sample
-			var u = jStat.randg( alpha );
-			return u / ( u + jStat.randg( beta ));
-		}
+	// return a random sample
+	sample : function( alpha, beta ) {
+		var u = jStat.randg( alpha );
+		return u / ( u + jStat.randg( beta ));
 	},
 
 	variance : function( alpha, beta ) {
@@ -52,7 +44,16 @@ jStat.extend( jStat.beta, {
 	}
 });
 
-// extend the beta objects prototype
+// extend the beta distribution prototype
+jStat.beta.prototype.sample = function( arr ) {
+	if ( arr ) {
+		return jStat.alter( arr, function() {
+			return jStat.beta.sample( this.alpha, this.beta );
+		});
+	} else {
+		return jStat.beta.sample( this.alpha, this.beta );
+	};
+};
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.beta.prototype[ item ] = function( x ) {
@@ -103,14 +104,8 @@ jStat.extend( jStat.cauchy, {
 		return local;
 	},
 
-	sample : function( x, local, scale ) {
-		if ( x ) {
-			return x.alter( function() {
-				return jStat.randn() * Math.sqrt( 1 / ( 2 * jStat.randg( 0.5 ) ) ) * scale + local;
-			});
-		} else {
-			return jStat.randn() * Math.sqrt( 1 / ( 2 * jStat.randg( 0.5 ) ) ) * scale + local;
-		}
+	sample : function( local, scale ) {
+		return jStat.randn() * Math.sqrt( 1 / ( 2 * jStat.randg( 0.5 ) ) ) * scale + local;
 	},
 
 	variance : function( local, scale ) {
@@ -118,7 +113,16 @@ jStat.extend( jStat.cauchy, {
 	}
 });
 
-// extend the cauchy objects prototype
+// extend the cauchy distribution prototype
+jStat.cauchy.prototype.sample = function( arr ) {
+	if ( arr ) {
+		return jStat.alter( arr, function() {
+			return jStat.cauchy.sample( this.local, this.scale );
+		});
+	} else {
+		return jStat.cauchy.sample( this.local, this.scale );
+	};
+};
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.cauchy.prototype[ item ] = function( x ) {
@@ -169,16 +173,8 @@ jStat.extend( jStat.chisquare, {
 		return ( dof - 2 > 0 ) ? dof - 2 : 0;
 	},
 
-	sample : function( x, dof ) {
-		if( x ) {
-			// return a jstat object filled with random samples
-			return x.alter( function() {
-				return jStat.randg( dof/2 ) * 2;
-			});
-		} else {
-			// return a random sample
-			return jStat.randg( dof/2 ) * 2;
-		}
+	sample : function( dof ) {
+		return jStat.randg( dof/2 ) * 2;
 	},
 
 	variance: function( dof ) {
@@ -186,7 +182,16 @@ jStat.extend( jStat.chisquare, {
 	}
 });
 
-// extend the chisquare objects prototype
+// extend the chisquare distribution prototype
+jStat.chisquare.prototype.sample = function( arr ) {
+	if ( arr ) {
+		return jStat.alter( arr, function() {
+			return jStat.chisquare.sample( this.dof );
+		});
+	} else {
+		return jStat.chisquare.sample( this.dof );
+	};
+};
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.chisquare.prototype[ item ] = function( x ) {
@@ -236,14 +241,8 @@ jStat.extend( jStat.exponential, {
 		return 0;
 	},
 
-	sample : function( x, rate ) {
-		if( x ) {
-			return x.alter( function() {
-				return -1 / rate * Math.log( Math.random() );
-			});
-		} else {
-			return -1 / rate * Math.log( Math.random() );
-		}
+	sample : function( rate ) {
+		return -1 / rate * Math.log( Math.random() );
 	},
 
 	variance : function( rate ) {
@@ -251,7 +250,16 @@ jStat.extend( jStat.exponential, {
 	}
 });
 
-// extend the exponential objects prototype
+// extend the exponential distribution prototype
+jStat.exponential.prototype.sample = function( arr ) {
+	if ( arr ) {
+		return jStat.alter( arr, function() {
+			return jStat.exponential.sample( this.rate );
+		});
+	} else {
+		return jStat.exponential.sample( this.rate );
+	};
+};
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.exponential.prototype[ item ] = function( x ) {
@@ -299,16 +307,8 @@ jStat.extend( jStat.gamma, {
 		return undefined;
 	},
 
-	sample : function( x, shape, scale ) {
-		if( x ) {
-			// return a jstat object filled with random samples
-			return x.alter( function() {
-				return jStat.randg( shape ) * scale;
-			});
-		} else {
-			// return a random sample
-			return jStat.randg( shape ) * scale;
-		}
+	sample : function( shape, scale ) {
+		return jStat.randg( shape ) * scale;
 	},
 
 	variance: function( shape, scale ) {
@@ -316,7 +316,16 @@ jStat.extend( jStat.gamma, {
 	}
 });
 
-// extend the gamma objects prototype
+// extend the gamma distribution  prototype
+jStat.gamma.prototype.sample = function( arr ) {
+	if ( arr ) {
+		return jStat.alter( arr, function() {
+			return jStat.gamma.sample( this.shape, this.scale );
+		});
+	} else {
+		return jStat.gamma.sample( this.shape, this.scale );
+	};
+};
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.gamma.prototype[ item ] = function( x ) {
@@ -418,14 +427,8 @@ jStat.extend( jStat.lognormal, {
 		return Math.exp( mu - sigma*sigma );
 	},
 
-	sample : function( x, mu, sigma ) {
-		if( x ) {
-			return x.alter( function() {
-				return Math.exp( jStat.randn() * sigma + mu );
-			});
-		} else {
-			return Math.exp( jStat.randn() * sigma + mu );
-		}
+	sample : function( mu, sigma ) {
+		return Math.exp( jStat.randn() * sigma + mu );
 	},
 
 	variance : function( mu, sigma ) {
@@ -433,7 +436,16 @@ jStat.extend( jStat.lognormal, {
 	}
 });
 
-// extend the lognormal objects prototype
+// extend the lognormal distribution prototype
+jStat.lognormal.prototype.sample = function( arr ) {
+	if ( arr ) {
+		return jStat.alter( arr, function() {
+			return jStat.lognormal.sample( this.mu, this.sigma );
+		});
+	} else {
+		return jStat.lognormal.sample( this.mu, this.sigma );
+	};
+};
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.lognormal.prototype[ item ] = function( x ) {
@@ -484,16 +496,8 @@ jStat.extend( jStat.normal, {
 		return mean;
 	},
 
-	sample : function( x, mean, std ) {
-		if( x ) {
-			// return a jstat object filled with random samples
-			return x.alter( function() {
-				return jStat.randn() * std + mean;
-			});
-		} else {
-			// return a random sample
-			return jStat.randn() * std + mean;
-		}
+	sample : function( mean, std ) {
+		return jStat.randn() * std + mean;
 	},
 
 	variance : function( mean, std ) {
@@ -501,7 +505,16 @@ jStat.extend( jStat.normal, {
 	}
 });
 
-// extend the normal objects prototype
+// extend the normal distribution prototype
+jStat.normal.prototype.sample = function( arr ) {
+	if ( arr ) {
+		return jStat.alter( arr, function() {
+			return jStat.normal.sample( this.mean, this.std );
+		});
+	} else {
+		return jStat.normal.sample( this.mean, this.std );
+	};
+};
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.normal.prototype[ item ] = function( x ) {
@@ -606,15 +619,8 @@ jStat.extend( jStat.studentt, {
 		return 0;
 	},
 
-	sample : function( x, dof ) {
-		if( x ) {
-			return x.alter( function() {
-				return jStat.randn() * Math.sqrt( dof / ( 2 * jStat.randg( dof / 2) ) );
-			});
-		} else {
-			// return a random sample
-			return jStat.randn() * Math.sqrt( dof / ( 2 * jStat.randg( dof / 2) ) );
-		}
+	sample : function( dof ) {
+		return jStat.randn() * Math.sqrt( dof / ( 2 * jStat.randg( dof / 2) ) );
 	},
 
 	variance : function( dof ) {
@@ -622,7 +628,16 @@ jStat.extend( jStat.studentt, {
 	}
 });
 
-// extend the studentt objects prototype
+// extend the studentt distribution prototype
+jStat.studentt.prototype.sample = function( arr ) {
+	if ( arr ) {
+		return jStat.alter( arr, function() {
+			return jStat.studentt.sample( this.dof );
+		});
+	} else {
+		return jStat.studentt.sample( this.dof );
+	};
+};
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.studentt.prototype[ item ] = function( x ) {
@@ -673,14 +688,8 @@ jStat.extend( jStat.weibull, {
 		return ( shape > 1 ) ? scale * Math.pow(( shape - 1 ) / shape, 1 / shape ) : undefined;
 	},
 
-	sample : function( x, scale, shape ) {
-		if( x ) {
-			return x.alter( function() {
-				return scale * Math.pow( -Math.log( Math.random() ), 1 / shape );
-			});
-		} else {
-			return scale * Math.pow( -Math.log( Math.random() ), 1 / shape );
-		}
+	sample : function( scale, shape ) {
+		return scale * Math.pow( -Math.log( Math.random() ), 1 / shape );
 	},
 
 	variance : function( scale, shape ) {
@@ -688,7 +697,16 @@ jStat.extend( jStat.weibull, {
 	}
 });
 
-// extend the weibull objects prototype
+// extend the weibull distribution prototype
+jStat.weibull.prototype.sample = function( arr ) {
+	if ( arr ) {
+		return jStat.alter( arr, function() {
+			return jStat.weibull.sample( this.scale, this.shape );
+		});
+	} else {
+		return jStat.weibull.sample( this.scale, this.shape );
+	};
+};
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.weibull.prototype[ item ] = function( x ) {
@@ -740,14 +758,8 @@ jStat.extend( jStat.uniform, {
 
 	},
 
-	sample : function( x, a, b ) {
-		if( x ) {
-			return x.alter( function() {
-				return ( a / 2 + b / 2 ) + ( b / 2 - a / 2) * ( 2 * Math.random() - 1);
-			});
-		} else {
-			return ( a / 2 + b / 2 ) + ( b / 2 - a / 2) * ( 2 * Math.random() - 1);
-		}
+	sample : function( a, b ) {
+		return ( a / 2 + b / 2 ) + ( b / 2 - a / 2) * ( 2 * Math.random() - 1);
 	},
 
 	variance : function( a, b ) {
@@ -755,7 +767,16 @@ jStat.extend( jStat.uniform, {
 	}
 });
 
-// extend the uniform objects prototype
+// extend the uniform distribution prototype
+jStat.uniform.prototype.sample = function( arr ) {
+	if ( arr ) {
+		return jStat.alter( arr, function() {
+			return jStat.uniform.sample( this.a, this.b );
+		});
+	} else {
+		return jStat.uniform.sample( this.a, this.b );
+	};
+};
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.uniform.prototype[ item ] = function( x ) {
