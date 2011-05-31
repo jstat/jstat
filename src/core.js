@@ -282,9 +282,14 @@ jStat.extend({
 	seq : function( min, max, length, func ) {
 		var arr = [],
 			hival = 1e15,
-			step = ( max * hival - min * hival ) / (( length - 1 ) * hival );
-		// TODO: replace toFixed value to user configurable parameter
-		for ( ; min <= max; min = ( min * hival + step * hival ) / hival ) arr.push(( func ? func( min ) : min ));
+			step = ( max * hival - min * hival ) / (( length - 1 ) * hival ),
+			current = min,
+			cnt = 0;
+
+		for ( ; current <= max; cnt++, current = ( min * hival + step * hival * cnt ) / hival ) {
+			arr.push(( func ? func( current ) : current ));
+		};
+
 		return arr;
 	},
 
