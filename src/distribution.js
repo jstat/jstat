@@ -5,6 +5,8 @@ jStat.beta = function( alpha, beta ) {
 	if (!( this instanceof arguments.callee )) return new jStat.beta( alpha, beta );
 	this.alpha = alpha;
 	this.beta = beta;
+
+	for ( var i in jStat.beta.prototype ) this[i] = this[i].bind( this );
 };
 
 // extend beta function with static methods
@@ -76,6 +78,8 @@ jStat.cauchy = function( local, scale ) {
 	if (!( this instanceof arguments.callee )) return new jStat.cauchy( local, scale );
 	this.local = local;
 	this.scale = scale;
+
+	for ( var i in jStat.cauchy.prototype ) this[i] = this[i].bind( this );
 };
 
 // extend cauchy function with static methods
@@ -144,6 +148,8 @@ jStat.cauchy.prototype.sample = function( arr ) {
 jStat.chisquare = function( dof ) {
 	if (!( this instanceof arguments.callee )) return new jStat.chisquare( dof );
 	this.dof = dof;
+
+	for ( var i in jStat.chisquare.prototype ) this[i] = this[i].bind( this );
 };
 
 // extend chisquare function with static methods
@@ -213,6 +219,8 @@ jStat.chisquare.prototype.sample = function( arr ) {
 jStat.exponential = function( rate ) {
 	if (!( this instanceof arguments.callee )) return new jStat.exponential( rate );
 	this.rate = rate;
+
+	for ( var i in jStat.exponential.prototype ) this[i] = this[i].bind( this );
 };
 
 // extend exponential function with static methods
@@ -282,6 +290,8 @@ jStat.gamma = function( shape, scale ) {
 	if (!( this instanceof arguments.callee )) return new jStat.gamma( shape, scale );
 	this.shape = shape;
 	this.scale = scale;
+
+	for ( var i in jStat.gamma.prototype ) this[i] = this[i].bind( this );
 };
 
 // extend gamma function with static methods
@@ -348,6 +358,8 @@ jStat.kumaraswamy = function( alpha, beta ) {
 	if (!( this instanceof arguments.callee )) return new jStat.kumaraswamy( alpha, beta );
 	this.alpha = alpha;
 	this.beta = beta;
+
+	for ( var i in jStat.kumaraswamy.prototype ) this[i] = this[i].bind( this );
 };
 
 // extend kumaraswamy function with static methods
@@ -399,6 +411,8 @@ jStat.lognormal = function( mu, sigma ) {
 	if (!( this instanceof arguments.callee )) return new jStat.lognormal( mu, sigma );
 	this.mu = mu;
 	this.sigma = sigma;
+
+	for ( var i in jStat.lognormal.prototype ) this[i] = this[i].bind( this );
 };
 
 // extend lognormal function with static methods
@@ -468,6 +482,8 @@ jStat.normal = function( mean, std ) {
 	if (!( this instanceof arguments.callee )) return new jStat.normal( mean, std );
 	this.mean = mean;
 	this.std = std;
+
+	for ( var i in jStat.normal.prototype ) this[i] = this[i].bind( this );
 };
 
 // extend normal function with static methods
@@ -537,6 +553,8 @@ jStat.pareto = function( scale, shape ) {
 	if (!( this instanceof arguments.callee )) return new jStat.pareto( scale, shape );
 	this.scale = scale;
 	this.shape = shape;
+
+	for ( var i in jStat.pareto.prototype ) this[i] = this[i].bind( this );
 };
 
 // extend pareto function with static methods
@@ -588,6 +606,8 @@ jStat.extend( jStat.pareto, {
 jStat.studentt = function( dof ) {
 	if (!( this instanceof arguments.callee )) return new jStat.studentt( dof );
 	this.dof = dof;
+
+	for ( var i in jStat.studentt.prototype ) this[i] = this[i].bind( this );
 };
 
 // extend studentt function with static methods
@@ -660,6 +680,8 @@ jStat.weibull = function( scale, shape ) {
 	if (!( this instanceof arguments.callee )) return new jStat.weibull( scale, shape );
 	this.scale = scale;
 	this.shape = shape;
+
+	for ( var i in jStat.weibull.prototype ) this[i] = this[i].bind( this );
 };
 
 // extend weibull function with static methods
@@ -729,6 +751,8 @@ jStat.uniform = function( a, b ) {
 	if (!( this instanceof arguments.callee )) return new jStat.uniform( a, b );
 	this.a = a;
 	this.b = b;
+
+	for ( var i in jStat.uniform.prototype ) this[i] = this[i].bind( this );
 };
 
 // extend uniform function with static methods

@@ -28,6 +28,27 @@ var slice = Array.prototype.slice,
 		return toString.call( arg ) === "[object Object]";
 	};
 
+// implement bind if browser doesn't natively support it
+if ( !Function.prototype.bind ) {
+	Function.prototype.bind = function( obj ) {
+		if(typeof this !== 'function') // closest thing possible to the ECMAScript 5 internal IsCallable function
+			throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
+
+		var slice = [].slice,
+			args = slice.call(arguments, 1),
+			self = this,
+			nop = function () {},
+			bound = function () {
+		return self.apply( this instanceof nop ? this : ( obj || {} ),
+			args.concat( slice.call(arguments) ) );
+		};
+
+		bound.prototype = this.prototype;
+
+		return bound;
+	};
+}
+
 // global function
 function jStat() {
 	return new jStat.fn.init( slice.call( arguments ));
@@ -73,7 +94,7 @@ jStat.fn.init.prototype = jStat.fn;
 // create method for easy extension
 jStat.extend = function( obj ) {
 	var args = slice.call( arguments ),
-	i = 1, j;
+		i = 1, j;
 	if ( args.length === 1 ) {
 		for ( i in obj ) {
 			jStat[i] = obj[i];
@@ -340,8 +361,8 @@ jStat.extend({
 		arg = isArray( arg[0] ) ? arg : [ arg ];
 
 		// convert column to row vector
-		var left = ( arr[0].length === 1 && arr[length] !== 1 ) ? jStat.transpose( arr ) : arr,
-			right = ( arg[0].length === 1 && arg[length] !== 1 ) ? jStat.transpose( arg ) : arg,
+		var left = ( arr[0].length === 1 && arr.length !== 1 ) ? jStat.transpose( arr ) : arr,
+			right = ( arg[0].length === 1 && arg.length !== 1 ) ? jStat.transpose( arg ) : arg,
 			res = [],
 			row = 0,
 			nrow = left.length,
@@ -377,7 +398,7 @@ jStat.extend({
 	// computes the norm of the vector
 	norm : function( arr ) {
 		arr = isArray( arr[0] ) ? arr : [ arr ];
-		if( arr.length > 1 && arr[0][length] > 1 ) {
+		if( arr.length > 1 && arr[0].length > 1 ) {
 			// matrix norm
 		} else {
 			// vector norm
@@ -396,7 +417,7 @@ jStat.extend({
 		var issymmetric = true,
 			row = 0,
 			size = arr.length, col;
-		if( arr.length !== arr[0][length] ) return false;
+		if( arr.length !== arr[0].length ) return false;
 		for ( ; row < size; row++ ) {
 			for ( col = 0; col < size; col++ ) {
 				if ( arr[col][row] !== arr[row][col] ) return false;
