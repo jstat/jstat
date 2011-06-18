@@ -9,9 +9,6 @@ this.j$ = this.jStat = (function( Math, undefined ) {
 var slice = Array.prototype.slice,
 	toString = Object.prototype.toString,
 
-	// for code compression
-	length = 'length',
-
 	// ascending/descending functions for sort
 	ascNum = function( a, b ) { return a - b; },
 	descNum = function( a, b ) { return b - a; },
@@ -44,7 +41,7 @@ jStat.fn = jStat.prototype = {
 		// if first argument is an array, must be vector or matrix
 		if ( isArray( args[0] )) {
 			if ( isArray( args[0][0] )) {
-				for ( var i = 0; i < args[0][length]; i++ ) {
+				for ( var i = 0; i < args[0].length; i++ ) {
 					this.push( args[0][i] );
 				}
 			} else {
@@ -77,13 +74,13 @@ jStat.fn.init.prototype = jStat.fn;
 jStat.extend = function( obj ) {
 	var args = slice.call( arguments ),
 	i = 1, j;
-	if ( args[length] === 1 ) {
+	if ( args.length === 1 ) {
 		for ( i in obj ) {
 			jStat[i] = obj[i];
 		}
 		return this;
 	}
-	for ( ; i < args[length]; i++ ) {
+	for ( ; i < args.length; i++ ) {
 		for ( j in args[i] ) obj[j] = args[i][j];
 	}
 	return obj;
@@ -91,7 +88,7 @@ jStat.extend = function( obj ) {
 
 // extend jStat.fn with methods which don't require arguments and work on columns
 (function( funcs ) {
-	for ( var i = 0; i < funcs[length]; i++ ) (function( passfunc ) {
+	for ( var i = 0; i < funcs.length; i++ ) (function( passfunc ) {
 
 		// if a matrix is passed, automatically assume operation should be done on the columns
 		jStat.fn[ passfunc ] = function( fullbool ) {
@@ -99,9 +96,9 @@ jStat.extend = function( obj ) {
 				i = 0,
 				tmpthis;
 
-			if ( this[length] > 1 ) {
+			if ( this.length > 1 ) {
 				tmpthis = this.transpose();
-				for ( ; i < tmpthis[length]; i++ ) {
+				for ( ; i < tmpthis.length; i++ ) {
 					arr[i] = jStat[ passfunc ]( tmpthis[i] );
 				}
 				if ( fullbool === true ) {
@@ -109,14 +106,14 @@ jStat.extend = function( obj ) {
 				}
 			}
 
-			return arr[length] > 1 ? jStat( arr ) : jStat[ passfunc ]( this[0] );
+			return arr.length > 1 ? jStat( arr ) : jStat[ passfunc ]( this[0] );
 		};
 	})( funcs[i] );
 })( 'sum min max mean median mode range variance stdev meandev meddev quartiles'.split( ' ' ));
 
 // extend jStat.fn with methods that have no argument
 (function( funcs ) {
-	for ( var i = 0; i < funcs[length]; i++ ) (function( passfunc ) {
+	for ( var i = 0; i < funcs.length; i++ ) (function( passfunc ) {
 		jStat.fn[ passfunc ] = function() {
 			var results = jStat[ passfunc ]( this );
 			return isArray( results ) ? jStat( results ) : results;
@@ -126,7 +123,7 @@ jStat.extend = function( obj ) {
 
 // extend jStat.fn with methods that require one argument
 (function( funcs ) {
-	for ( var i = 0; i < funcs[length]; i++ ) (function( passfunc ) {
+	for ( var i = 0; i < funcs.length; i++ ) (function( passfunc ) {
 		jStat.fn[ passfunc ] = function( arg ) {
 			return jStat( jStat[ passfunc ]( this, arg ));
 		};
@@ -138,12 +135,12 @@ jStat.extend( jStat.fn, {
 
 	// Returns the number of rows in the matrix
 	rows: function() {
-		return this[length] || 1;
+		return this.length || 1;
 	},
 
 	// Returns the number of columns in the matrix
 	cols: function() {
-		return this[0][length] || 1;
+		return this[0].length || 1;
 	},
 
 	// Returns the dimensions of the object { rows: i, cols: j }
@@ -163,7 +160,7 @@ jStat.extend( jStat.fn, {
 	col: function( index ) {
 	    var column = [],
 			i = 0;
-	    for ( ; i < this[length]; i++ ) {
+	    for ( ; i < this.length; i++ ) {
 			column[i] = [ this[i][index] ];
 	    }
 	    return jStat( column );
@@ -211,8 +208,8 @@ jStat.extend({
 	// transpose a matrix or array
 	transpose : function( arr ) {
 		arr = isArray( arr[0] ) ? arr : [ arr ];
-		var rows = arr[length],
-			cols = arr[0][length],
+		var rows = arr.length,
+			cols = arr[0].length,
 			obj = [],
 			i = 0, j;
 		for ( ; i < cols; i++ ) {
@@ -228,8 +225,8 @@ jStat.extend({
 	map : function( arr, func, toAlter ) {
 		arr = isArray( arr[0] ) ? arr : [ arr ];
 		var row = 0,
-			nrow = arr[length],
-			ncol = arr[0][length],
+			nrow = arr.length,
+			ncol = arr[0].length,
 			res = toAlter ? arr : [],
 			col;
 		for ( ; row < nrow; row++ ) {
@@ -311,9 +308,9 @@ jStat.extend({
 	// matrix multiplication
 	multiply : function( arr, arg ) {
 		var row, col, nrescols, sum,
-			nrow = arr[length],
-			ncol = arr[0][length],
-			res = jStat.zeros( nrow, nrescols = ( isNaN( arg )) ? arg[0][length] : ncol ),
+			nrow = arr.length,
+			ncol = arr[0].length,
+			res = jStat.zeros( nrow, nrescols = ( isNaN( arg )) ? arg[0].length : ncol ),
 			rescols = 0;
 		if( isNaN( arg )) {
 			for( ; rescols < nrescols; rescols++ ) {
@@ -343,12 +340,12 @@ jStat.extend({
 		arg = isArray( arg[0] ) ? arg : [ arg ];
 
 		// convert column to row vector
-		var left = ( arr[0][length] === 1 && arr[length] !== 1 ) ? jStat.transpose( arr ) : arr,
-			right = ( arg[0][length] === 1 && arg[length] !== 1 ) ? jStat.transpose( arg ) : arg,
+		var left = ( arr[0].length === 1 && arr[length] !== 1 ) ? jStat.transpose( arr ) : arr,
+			right = ( arg[0].length === 1 && arg[length] !== 1 ) ? jStat.transpose( arg ) : arg,
 			res = [],
 			row = 0,
-			nrow = left[length],
-			ncol = left[0][length],
+			nrow = left.length,
+			ncol = left[0].length,
 			sum, col;
 		for( ; row < nrow; row++ ) {
 			res[row] = [];
@@ -358,7 +355,7 @@ jStat.extend({
 			}
 			res[row] = sum;
 		}
-		return ( res[length] === 1 ) ? res[0] : res;
+		return ( res.length === 1 ) ? res[0] : res;
 	},
 
 	// raise every element by a scalar or vector
@@ -380,7 +377,7 @@ jStat.extend({
 	// computes the norm of the vector
 	norm : function( arr ) {
 		arr = isArray( arr[0] ) ? arr : [ arr ];
-		if( arr[length] > 1 && arr[0][length] > 1 ) {
+		if( arr.length > 1 && arr[0][length] > 1 ) {
 			// matrix norm
 		} else {
 			// vector norm
@@ -398,8 +395,8 @@ jStat.extend({
 	symmetric : function( arr ) {
 		var issymmetric = true,
 			row = 0,
-			size = arr[length], col;
-		if( arr[length] !== arr[0][length] ) return false;
+			size = arr.length, col;
+		if( arr.length !== arr[0][length] ) return false;
 		for ( ; row < size; row++ ) {
 			for ( col = 0; col < size; col++ ) {
 				if ( arr[col][row] !== arr[row][col] ) return false;
@@ -413,7 +410,7 @@ jStat.extend({
 	// sum of an array
 	sum : function( arr ) {
 		var sum = 0,
-			i = arr[length];
+			i = arr.length;
 		while( --i >= 0 ) {
 			sum += arr[i];
 		}
@@ -432,12 +429,12 @@ jStat.extend({
 
 	// mean value of an array
 	mean : function( arr ) {
-		return jStat.sum( arr ) / arr[length];
+		return jStat.sum( arr ) / arr.length;
 	},
 
 	// median of an array
 	median : function( arr ) {
-		var arrlen = arr[length],
+		var arrlen = arr.length,
 			_arr = arr.slice().sort( ascNum );
 
 		// check if array is even or odd, then return the appropriate
@@ -446,7 +443,7 @@ jStat.extend({
 
 	// mode of an array
 	mode : function( arr ) {
-		var arrLen = arr[length],
+		var arrLen = arr.length,
 			_arr = arr.slice().sort( ascNum ),
 			count = 1,
 			maxCount = 0,
@@ -482,18 +479,18 @@ jStat.extend({
 	// range of an array
 	range : function( arr ) {
 		var _arr = arr.slice().sort( ascNum );
-		return _arr[ _arr[length] - 1 ] - _arr[0];
+		return _arr[ _arr.length - 1 ] - _arr[0];
 	},
 
 	// variance of an array
 	variance : function( arr ) {
 		var mean = jStat.mean( arr ),
 			stSum = 0,
-			i = arr[length] - 1;
+			i = arr.length - 1;
 		for( ; i >= 0; i-- ) {
 			stSum += Math.pow(( arr[i] - mean ), 2 );
 		}
-		return stSum / ( arr[length] - 1 );
+		return stSum / ( arr.length - 1 );
 	},
 
 	// standard deviation of an array
@@ -505,27 +502,27 @@ jStat.extend({
 	meandev : function( arr ) {
 		var devSum = 0,
 			mean = jStat.mean( arr ),
-			i = arr[length] - 1;
+			i = arr.length - 1;
 		for ( ; i >= 0; i-- ) {
 			devSum += Math.abs( arr[ i ] - mean );
 		}
-		return devSum / arr[length];
+		return devSum / arr.length;
 	},
 
 	// median deviation (median absolute deviation) of an array
 	meddev : function( arr ) {
 		var devSum = 0,
 			median = jStat.median( arr ),
-			i = arr[length] - 1;
+			i = arr.length - 1;
 		for ( ; i >= 0; i-- ) {
 			devSum += Math.abs( arr[ i ] - median );
 		}
-		return devSum / arr[length];
+		return devSum / arr.length;
 	},
 
 	// quartiles of an array
 	quartiles : function( arr ) {
-		var arrlen = arr[length],
+		var arrlen = arr.length,
 			_arr = arr.slice().sort( ascNum );
 		return [ _arr[ Math.round( ( arrlen ) / 4 ) - 1 ], _arr[ Math.round( ( arrlen ) / 2 ) - 1 ], _arr[ Math.round( ( arrlen ) * 3 / 4 ) - 1 ] ];
 	},
@@ -535,7 +532,7 @@ jStat.extend({
 		var u = jStat.mean( arr1 ),
 			v = jStat.mean( arr2 ),
 			sq_dev = [],
-			arr1Len = arr1[length],
+			arr1Len = arr1.length,
 			i = 0;
 		for ( ; i < arr1Len; i++ ) {
 			sq_dev[ i ] = ( arr1[ i ] - u ) * ( arr2[ i ] - v );
