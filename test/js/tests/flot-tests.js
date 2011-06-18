@@ -1,40 +1,47 @@
 $(function() {
 	var betaInst = jStat.beta( 3, 4 );
-	$.plot( '#betadiv', [
-		{
-			data : jStat.seq( 0, 1, 101, function( x ) { return [ x, betaInst.pdf( x )];}),
-			label : 'PDF'
-		},{
-			data : jStat.seq( 0, 1, 101, function( x ) { return [ x, betaInst.cdf( x )];}),
-			label : 'CDF',
-			yaxis : 2
-		}],{
+	j$.plot( '#betadiv', [{
+		data : betaInst.pdf,
+		label : 'PDF'
+	},{
+		data : betaInst.cdf,
+		label : 'CDF',
+		yaxis : 2
+	}],{
+		flotopts : {
 			yaxes : [{}, { position : 'right' }]
+		}
 	});
 
 	var cauchyInst = jStat.cauchy( 3, 4 );
-	$.plot( '#cauchydiv', [
-		{
-			data : jStat.seq( -20, 20, 101, function( x ) { return [ x, cauchyInst.pdf( x )];}),
-			label : 'PDF'
-		},{
-			data : jStat.seq( -20, 20, 101, function( x ) { return [ x, cauchyInst.cdf( x )];}),
-			label : 'CDF',
-			yaxis : 2
-		}],{
+	j$.plot( '#cauchydiv', [{
+		data : cauchyInst.pdf,
+		label : 'PDF'
+	},{
+		data : cauchyInst.cdf,
+		label : 'CDF',
+		yaxis : 2
+	}],{
+		start : -20,
+		stop : 20,
+		flotopts : {
 			yaxes : [{}, { position : 'right' }]
+		}
 	});
 
 	var stInst = jStat.studentt( 4 );
-	$.plot( '#studenttdiv', [
-		{
-			data : jStat.seq( -6, 6, 101, function( x ) { return [ x, stInst.pdf( x, 4 )];}),
-			label : 'PDF'
-		},{
-			data : jStat.seq( -6, 6, 101, function( x ) { return [ x, stInst.cdf( x, 4 )];}),
-			label : 'CDF',
-			yaxis : 2
-		}],{
+	j$.plot( '#studenttdiv', [{
+		data : stInst.pdf,
+		label : 'PDF'
+	},{
+		data : stInst.cdf,
+		label : 'CDF',
+		yaxis : 2
+	}],{
+		start : -6,
+		stop : 6,
+		flotopts : {
 			yaxes : [{}, { position : 'right' }]
+		}
 	});
 });
