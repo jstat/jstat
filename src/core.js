@@ -340,8 +340,8 @@ jStat.extend({
 		arg = isArray( arg[0] ) ? arg : [ arg ];
 
 		// convert column to row vector
-		var left = ( arr[0].length === 1 && arr[length] !== 1 ) ? jStat.transpose( arr ) : arr,
-			right = ( arg[0].length === 1 && arg[length] !== 1 ) ? jStat.transpose( arg ) : arg,
+		var left = ( arr[0].length === 1 && arr.length !== 1 ) ? jStat.transpose( arr ) : arr,
+			right = ( arg[0].length === 1 && arg.length !== 1 ) ? jStat.transpose( arg ) : arg,
 			res = [],
 			row = 0,
 			nrow = left.length,
@@ -377,7 +377,7 @@ jStat.extend({
 	// computes the norm of the vector
 	norm : function( arr ) {
 		arr = isArray( arr[0] ) ? arr : [ arr ];
-		if( arr.length > 1 && arr[0][length] > 1 ) {
+		if( arr.length > 1 && arr[0].length > 1 ) {
 			// matrix norm
 		} else {
 			// vector norm
@@ -396,7 +396,7 @@ jStat.extend({
 		var issymmetric = true,
 			row = 0,
 			size = arr.length, col;
-		if( arr.length !== arr[0][length] ) return false;
+		if( arr.length !== arr[0].length ) return false;
 		for ( ; row < size; row++ ) {
 			for ( col = 0; col < size; col++ ) {
 				if ( arr[col][row] !== arr[row][col] ) return false;
