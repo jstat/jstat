@@ -44,13 +44,16 @@ jStat.fn = jStat.prototype = {
 				for ( var i = 0; i < args[0].length; i++ ) {
 					this[i] = args[0][i];
 				}
+				this.length = args[0].length;
 			} else {
 				this[0] = args[0];
+				this.length = 1;
 			}
 
 		// if first argument is number, assume creation of sequence
 		} else if ( !isNaN( args[0] )) {
 			this[0] = jStat.seq.apply( null, args );
+			this.length = 1;
 		}
 		return this;
 	},
