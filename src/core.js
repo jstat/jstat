@@ -14,7 +14,7 @@ var slice = Array.prototype.slice,
 	descNum = function( a, b ) { return b - a; },
 
 	// test if array
-	isArray = function( arg ) {
+	isArray = Array.isArray || function( arg ) {
 		return toString.call( arg ) === "[object Array]";
 	},
 
@@ -63,15 +63,15 @@ jStat.fn = jStat.prototype = {
 		if ( isArray( args[0] )) {
 			if ( isArray( args[0][0] )) {
 				for ( var i = 0; i < args[0].length; i++ ) {
-					this.push( args[0][i] );
+					this[i] = args[0][i];
 				}
 			} else {
-				this.push( args[0] );
+				this[0] = args[0];
 			}
 
 		// if first argument is number, assume creation of sequence
 		} else if ( !isNaN( args[0] )) {
-			this.push( jStat.seq.apply( null, args ));
+			this[0] = jStat.seq.apply( null, args );
 		}
 		return this;
 	},
@@ -244,18 +244,12 @@ jStat.extend({
 
 	// map a function to a matrix or vector
 	map : function( arr, func, toAlter ) {
-		arr = isArray( arr[0] ) ? arr : [ arr ];
-		var row = 0,
-			nrow = arr.length,
-			ncol = arr[0].length,
+		var len = arr.length,
 			res = toAlter ? arr : [],
-			col;
-		for ( ; row < nrow; row++ ) {
-			res[row] = res[row] || [];
-			for ( col = 0; col < ncol; col++ ) {
-				res[row][col] = func( arr[row][col], row, col );
-			}
-		}
+			i = 0;
+		for ( ; i < len; i++ )
+			if ( isArray( arr[i] )) res[i] = jStat.map( arr[i], func, toAlter );
+			else res[i] = func( arr[i], i, arr );
 		return res;
 	},
 
