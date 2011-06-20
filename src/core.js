@@ -31,28 +31,24 @@ var slice = Array.prototype.slice,
 // implement bind if browser doesn't natively support it
 if ( !Function.prototype.bind ) {
 	Function.prototype.bind = function( obj ) {
-		if(typeof this !== 'function') // closest thing possible to the ECMAScript 5 internal IsCallable function
-			throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
-
 		var slice = [].slice,
-			args = slice.call(arguments, 1),
+			args = slice.call( arguments, 1 ),
 			self = this,
-			nop = function () {},
-			bound = function () {
-		return self.apply( this instanceof nop ? this : ( obj || {} ),
-			args.concat( slice.call(arguments) ) );
-		};
-
+			nop = function() {},
+			bound = function() {
+				return self.apply( this instanceof nop ? this : ( obj || {} ),
+					args.concat( slice.call( arguments ))
+				);
+			};
 		bound.prototype = this.prototype;
-
 		return bound;
 	};
 }
 
 // global function
 function jStat() {
-	return new jStat.fn.init( slice.call( arguments ));
-};
+	return new jStat.fn.init( arguments );
+}
 
 // extend jStat prototype
 jStat.fn = jStat.prototype = {
