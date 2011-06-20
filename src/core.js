@@ -61,13 +61,16 @@ jStat.fn = jStat.prototype = {
 				for ( var i = 0; i < args[0].length; i++ ) {
 					this[i] = args[0][i];
 				}
+				this.length = args[0].length;
 			} else {
 				this[0] = args[0];
+				this.length = 1;
 			}
 
 		// if first argument is number, assume creation of sequence
 		} else if ( !isNaN( args[0] )) {
 			this[0] = jStat.seq.apply( null, args );
+			this.length = 1;
 		}
 		return this;
 	},
@@ -77,7 +80,7 @@ jStat.fn = jStat.prototype = {
 
 	// return clean array
 	toArray : function() {
-		return slice.call( this, 0 );
+		return slice.call( this );
 	},
 
 	// only to be used internally
@@ -112,7 +115,6 @@ jStat.extend = function( obj ) {
 			var arr = [],
 				i = 0,
 				tmpthis;
-
 			if ( this.length > 1 ) {
 				tmpthis = this.transpose();
 				for ( ; i < tmpthis.length; i++ ) {
@@ -122,7 +124,6 @@ jStat.extend = function( obj ) {
 					arr = jStat[ passfunc ]( arr );
 				}
 			}
-
 			return arr.length > 1 ? jStat( arr ) : jStat[ passfunc ]( this[0] );
 		};
 	})( funcs[i] );
@@ -170,17 +171,17 @@ jStat.extend( jStat.fn, {
 
 	// Returns a specified row as a vector
 	row: function( index ) {
-	    return jStat( this[index] );
+		return jStat( this[index] );
 	},
 
 	// Returns the specified column as a vector
 	col: function( index ) {
-	    var column = [],
+		var column = [],
 			i = 0;
-	    for ( ; i < this.length; i++ ) {
+		for ( ; i < this.length; i++ ) {
 			column[i] = [ this[i][index] ];
-	    }
-	    return jStat( column );
+		}
+		return jStat( column );
 	},
 
 	// Returns the diagonal of the matrix
@@ -206,8 +207,8 @@ jStat.extend( jStat.fn, {
 	},
 
 	// map a function to a matrix or vector
-	map : function( func, toAlter ) {
-		return jStat( jStat.map( this, func, toAlter ));
+	map : function( func ) {
+		return jStat( jStat.map( this, func ));
 	},
 
 	// destructively alter an object
@@ -256,7 +257,7 @@ jStat.extend({
 
 	// generate a rows x cols matrix according to the supplied function
 	create: function ( rows, cols, func ) {
-		var i, j, res = [];
+		var res = [], i, j;
 		for( i = 0; i < rows; i++ ) {
 			res[i]  = [];
 			for( j = 0; j < cols; j++ ) {
@@ -289,30 +290,28 @@ jStat.extend({
 	// generate sequence
 	seq : function( min, max, length, func ) {
 		var arr = [],
-			hival = 1e15,
+			hival = 1e15,	// simple fix for IEEE floating point errors
 			step = ( max * hival - min * hival ) / (( length - 1 ) * hival ),
 			current = min,
 			cnt = 0;
-
 		for ( ; current <= max; cnt++, current = ( min * hival + step * hival * cnt ) / hival ) {
 			arr.push(( func ? func( current ) : current ));
-		};
-
+		}
 		return arr;
 	},
 
 	// add a vector or scalar to the vector
 	add : function( arr, arg ) {
-		return isNaN( arg )
-			? jStat.map( arr, function( value, row, col ) { return value + arg[row][col]; })
-		: jStat.map(arr, function ( value ) { return value + arg; });
+		return isNaN( arg ) ?
+			jStat.map( arr, function( value, row, col ) { return value + arg[row][col]; })
+		: jStat.map( arr, function ( value ) { return value + arg; });
 	},
 
 	// TODO: Implement matrix division
 	// matrix division
 	divide : function( arr, arg ) {
-		return isNaN( arg )
-			? false
+		return isNaN( arg ) ?
+			false
 		: jStat.map(arr, function ( value ) { return value / arg; });
 	},
 
@@ -340,8 +339,8 @@ jStat.extend({
 
 	// subtract a vector or scalar from the vector
 	subtract : function( arr, arg ) {
-		return isNaN( arg )
-			? jStat.map( arr, function( value, row, col ) { return value - arg[row][col]; })
+		return isNaN( arg ) ?
+			jStat.map( arr, function( value, row, col ) { return value - arg[row][col]; })
 		: jStat.map( arr, function( value ) { return value - arg; });
 	},
 
@@ -387,12 +386,12 @@ jStat.extend({
 	// BUG: Does not work for matrices
 	// computes the norm of the vector
 	norm : function( arr ) {
-		arr = isArray( arr[0] ) ? arr : [ arr ];
+		arr = isArray( arr[0] ) ? arr : [arr];
 		if( arr.length > 1 && arr[0].length > 1 ) {
 			// matrix norm
 		} else {
 			// vector norm
-			return Math.sqrt( jStat.dot( arr, arr ) );
+			return Math.sqrt( jStat.dot( arr, arr ));
 		}
 	},
 
@@ -422,9 +421,7 @@ jStat.extend({
 	sum : function( arr ) {
 		var sum = 0,
 			i = arr.length;
-		while( --i >= 0 ) {
-			sum += arr[i];
-		}
+		while( --i >= 0 ) sum += arr[i];
 		return sum;
 	},
 
@@ -483,7 +480,6 @@ jStat.extend({
 				}
 			}
 		}
-
 		return ( numMaxCount === 0 ) ? maxNum : false;
 	},
 
@@ -515,7 +511,7 @@ jStat.extend({
 			mean = jStat.mean( arr ),
 			i = arr.length - 1;
 		for ( ; i >= 0; i-- ) {
-			devSum += Math.abs( arr[ i ] - mean );
+			devSum += Math.abs( arr[i] - mean );
 		}
 		return devSum / arr.length;
 	},
@@ -526,7 +522,7 @@ jStat.extend({
 			median = jStat.median( arr ),
 			i = arr.length - 1;
 		for ( ; i >= 0; i-- ) {
-			devSum += Math.abs( arr[ i ] - median );
+			devSum += Math.abs( arr[i] - median );
 		}
 		return devSum / arr.length;
 	},
@@ -535,7 +531,11 @@ jStat.extend({
 	quartiles : function( arr ) {
 		var arrlen = arr.length,
 			_arr = arr.slice().sort( ascNum );
-		return [ _arr[ Math.round( ( arrlen ) / 4 ) - 1 ], _arr[ Math.round( ( arrlen ) / 2 ) - 1 ], _arr[ Math.round( ( arrlen ) * 3 / 4 ) - 1 ] ];
+		return [
+			_arr[ Math.round(( arrlen ) / 4 ) - 1 ],
+			_arr[ Math.round(( arrlen ) / 2 ) - 1 ],
+			_arr[ Math.round(( arrlen ) * 3 / 4 ) - 1 ]
+		];
 	},
 
 	// covariance of two arrays
@@ -546,7 +546,7 @@ jStat.extend({
 			arr1Len = arr1.length,
 			i = 0;
 		for ( ; i < arr1Len; i++ ) {
-			sq_dev[ i ] = ( arr1[ i ] - u ) * ( arr2[ i ] - v );
+			sq_dev[i] = ( arr1[i] - u ) * ( arr2[i] - v );
 		}
 		return jStat.sum( sq_dev ) / arr1Len;
 	},
