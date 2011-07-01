@@ -10,15 +10,25 @@ jStat.beta = function( alpha, beta ) {
 // extend beta function with static methods
 jStat.extend( jStat.beta, {
 	pdf : function( x, alpha, beta ) {
+<<<<<<< HEAD
+	  if ( isNaN( x ) ) {
+	   return x.map( function(value ) { return Math.pow( value, alpha - 1) * Math.pow( 1 - value, beta - 1) / jStat.betafn(alpha, beta); });
+	}
 		return ( Math.pow( x, alpha - 1 ) * Math.pow( 1 - x, beta - 1 )) / jStat.betafn( alpha, beta );
+=======
+		return ( jStat.pow( x, alpha - 1 ) * jStat.pow( 1 - x, beta - 1 )) / jStat.betafn( alpha, beta );
+>>>>>>> e6f6a6f... visualisation.js added
 	},
 
 	cdf : function( x, alpha, beta ) {
+	if( isNaN(x )) {
+		return x.map( function( value) { return jStat.incompleteBeta( value, alpha, beta );});
+	}
 		return jStat.incompleteBeta( x, alpha, beta );
 	},
 
-	inv : function( x, alpha, beta ) {
-		return jStat.incompleteBetaInv( x, alpha, beta );
+	inv : function( p, alpha, beta ) {
+		return jStat.incompleteBetaInv( p, alpha, beta );
 	},
 
 	mean : function( alpha, beta ) {
@@ -33,34 +43,40 @@ jStat.extend( jStat.beta, {
 		return ( alpha * beta ) / ( Math.pow( alpha + beta, 2 ) * ( alpha + beta + 1 ));
 	},
 
-	// return a random sample
-	sample : function( alpha, beta ) {
-		var u = jStat.randg( alpha );
-		return u / ( u + jStat.randg( beta ));
+	sample : function( x, alpha, beta ) {
+		if( x ) {
+			// return a jstat object filled with random samples
+			return x.alter( function() {
+				var u = jStat.randg( alpha );
+				return u / ( u + jStat.randg( beta ));
+			});
+		} else {
+			// return a random sample
+			var u = jStat.randg( alpha );
+			return u / ( u + jStat.randg( beta ));
+		}
 	},
 
 	variance : function( alpha, beta ) {
 		return ( alpha * beta ) / ( Math.pow( alpha + beta, 2 ) * ( alpha + beta + 1 ) );
+	},
+	
+	plot : function(id, obj) {
+	      jStat.plot(id,obj).draw();
 	}
 });
 
-// extend the beta distribution prototype
-jStat.beta.prototype.sample = function( arr ) {
-	if ( arr ) {
-		return jStat.alter( arr, function() {
-			return jStat.beta.sample( this.alpha, this.beta );
-		});
-	} else {
-		return jStat.beta.sample( this.alpha, this.beta );
-	};
-};
+// extend the beta objects prototype
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.beta.prototype[ item ] = function( x ) {
-			return jStat.beta[ item ]( x, this.alpha, this.beta );
+		  if(item == "plot")
+		   return jStat.beta[ item ](x, this );
+		 else
+			    return jStat.beta[ item ]( x, this.alpha, this.beta );
 		};
 	})( vals[ item ]);
-})( 'pdf cdf inv'.split( ' ' ));
+})( 'pdf cdf inv sample plot'.split( ' ' ));
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.beta.prototype[ item ] = function() {
@@ -81,10 +97,16 @@ jStat.cauchy = function( local, scale ) {
 // extend cauchy function with static methods
 jStat.extend( jStat.cauchy, {
 	pdf : function( x, local, scale ) {
+	  if( isNaN (x) ) {
+	    return jStat.map(x, function ( value) {return ( scale / ( Math.pow( value - local, 2 ) + Math.pow( scale, 2 ))) / Math.PI; } );
+	  }
 		return ( scale / ( Math.pow( x - local, 2 ) + Math.pow( scale, 2 ))) / Math.PI;
 	},
 
 	cdf : function( x, local, scale ) {
+	    if( isNaN (x) ) {
+	      return jStat.map(x, function ( value ) { return Math.atan(( value - local) / scale ) / Math.PI + 0.5; }) ;
+	    }
 		return Math.atan(( x - local) / scale ) / Math.PI + 0.5;
 	},
 
@@ -104,32 +126,30 @@ jStat.extend( jStat.cauchy, {
 		return local;
 	},
 
-	sample : function( local, scale ) {
-		return jStat.randn() * Math.sqrt( 1 / ( 2 * jStat.randg( 0.5 ) ) ) * scale + local;
+	sample : function( x, local, scale ) {
+		if ( x ) {
+			return x.alter( function() {
+				return jStat.randn() * Math.sqrt( 1 / ( 2 * jStat.randg( 0.5 ) ) ) * scale + local;
+			});
+		} else {
+			return jStat.randn() * Math.sqrt( 1 / ( 2 * jStat.randg( 0.5 ) ) ) * scale + local;
+		}
 	},
 
 	variance : function( local, scale ) {
 		// TODO: implement this
 	}
+	
 });
 
-// extend the cauchy distribution prototype
-jStat.cauchy.prototype.sample = function( arr ) {
-	if ( arr ) {
-		return jStat.alter( arr, function() {
-			return jStat.cauchy.sample( this.local, this.scale );
-		});
-	} else {
-		return jStat.cauchy.sample( this.local, this.scale );
-	};
-};
+// extend the cauchy objects prototype
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.cauchy.prototype[ item ] = function( x ) {
 			return jStat.cauchy[ item ]( x, this.local, this.scale );
 		};
 	})( vals[ item ]);
-})( 'pdf cdf inv'.split( ' ' ));
+})( 'pdf cdf inv sample'.split( ' ' ));
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.cauchy.prototype[ item ] = function() {
@@ -149,10 +169,16 @@ jStat.chisquare = function( dof ) {
 // extend chisquare function with static methods
 jStat.extend( jStat.chisquare, {
 	pdf : function( x, dof ) {
+		if( isNaN( x) ) {
+			return x.map( function( value) {return (Math.pow( value, dof / 2 - 1) * Math.exp( -value / 2 )) / ( Math.pow( 2, dof / 2) * jStat.gammafn( dof / 2 ));});
+		}
 		return (Math.pow( x, dof / 2 - 1) * Math.exp( -x / 2 )) / ( Math.pow( 2, dof / 2) * jStat.gammafn( dof / 2 ));
 	},
 
 	cdf : function( x, dof ) {
+		if( isNaN( x)) {
+			return x.map( function( value) {return jStat.gammap( value / 2, dof / 2 );});
+		}
 		return jStat.gammap( x / 2, dof / 2 );
 	},
 
@@ -173,32 +199,38 @@ jStat.extend( jStat.chisquare, {
 		return ( dof - 2 > 0 ) ? dof - 2 : 0;
 	},
 
-	sample : function( dof ) {
-		return jStat.randg( dof/2 ) * 2;
+	sample : function( x, dof ) {
+		if( x ) {
+			// return a jstat object filled with random samples
+			return x.alter( function() {
+				return jStat.randg( dof/2 ) * 2;
+			});
+		} else {
+			// return a random sample
+			return jStat.randg( dof/2 ) * 2;
+		}
 	},
 
 	variance: function( dof ) {
 		return 2 * dof;
+	},
+
+	plot : function(id, obj) {
+	      jStat.plot(id,obj).draw();
 	}
 });
 
-// extend the chisquare distribution prototype
-jStat.chisquare.prototype.sample = function( arr ) {
-	if ( arr ) {
-		return jStat.alter( arr, function() {
-			return jStat.chisquare.sample( this.dof );
-		});
-	} else {
-		return jStat.chisquare.sample( this.dof );
-	};
-};
+// extend the chisquare objects prototype
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.chisquare.prototype[ item ] = function( x ) {
+		  if(item == "plot")
+		   return jStat.beta[ item ](x, this );
+		 else
 			return jStat.chisquare[ item ]( x, this.dof );
 		};
 	})( vals[ item ]);
-})( 'pdf cdf inv'.split( ' ' ));
+})( 'pdf cdf inv sample plot'.split( ' ' ));
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.chisquare.prototype[ item ] = function() {
@@ -218,13 +250,19 @@ jStat.exponential = function( rate ) {
 // extend exponential function with static methods
 jStat.extend( jStat.exponential, {
 	pdf : function( x, rate ) {
+	  if ( isNaN( x) ){
+	    return x.map(function( value ) { return value < 0 ? 0 : rate * Math.exp( -rate * value ); } );
+	  }
 		return x < 0 ? 0 : rate * Math.exp( -rate * x );
 	},
 
 	cdf : function( x, rate ) {
+	   if ( isNaN( x) ) {
+	    return x.map( function( value ) {return  value < 0 ? 0 : 1 - Math.exp( -rate * value ); } );
+	  }
 		return x < 0 ? 0 : 1 - Math.exp( -rate * x );
 	},
-
+	      
 	inv : function( p, rate ) {
 		return -Math.log( 1 - p ) / rate;
 	},
@@ -241,32 +279,36 @@ jStat.extend( jStat.exponential, {
 		return 0;
 	},
 
-	sample : function( rate ) {
-		return -1 / rate * Math.log( Math.random() );
+	sample : function( x, rate ) {
+		if( x ) {
+			return x.alter( function() {
+				return -1 / rate * Math.log( Math.random() );
+			});
+		} else {
+			return -1 / rate * Math.log( Math.random() );
+		}
 	},
 
 	variance : function( rate ) {
 		return Math.pow( rate, -2 );
+	},
+	
+	plot : function( id, obj ) {
+	  jStat.plot( id, obj).draw();
 	}
 });
 
-// extend the exponential distribution prototype
-jStat.exponential.prototype.sample = function( arr ) {
-	if ( arr ) {
-		return jStat.alter( arr, function() {
-			return jStat.exponential.sample( this.rate );
-		});
-	} else {
-		return jStat.exponential.sample( this.rate );
-	};
-};
+// extend the exponential objects prototype
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.exponential.prototype[ item ] = function( x ) {
+		 if( item == "plot" )
+		    return jStat.exponential[ item ](x, this )
+		  else
 			return jStat.exponential[ item ]( x, this.rate );
 		};
 	})( vals[ item ]);
-})( 'pdf cdf inv'.split( ' ' ));
+})( 'pdf cdf inv sample plot'.split( ' ' ));
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.exponential.prototype[ item ] = function() {
@@ -287,10 +329,17 @@ jStat.gamma = function( shape, scale ) {
 // extend gamma function with static methods
 jStat.extend( jStat.gamma, {
 	pdf : function( x, shape, scale ) {
+	  if( isNaN ( x) ) {
+		return x.map( function ( value ) { return Math.pow( value, shape - 1 ) * ( Math.exp( -value / scale ) / ( jStat.gammafn( shape ) * Math.pow( scale, shape ) ) );} );		
+	  } 
+	    
 		return Math.pow( x, shape - 1 ) * ( Math.exp( -x / scale ) / ( jStat.gammafn( shape ) * Math.pow( scale, shape ) ) );
 	},
 
 	cdf : function( x, shape, scale ) {
+		if( isNaN(x) ) {
+			return x.map( function( value) {return jStat.gammap( value / scale, shape );});
+		}
 		return jStat.gammap( x / scale, shape );
 	},
 
@@ -307,32 +356,38 @@ jStat.extend( jStat.gamma, {
 		return undefined;
 	},
 
-	sample : function( shape, scale ) {
-		return jStat.randg( shape ) * scale;
+	sample : function( x, shape, scale ) {
+		if( x ) {
+			// return a jstat object filled with random samples
+			return x.alter( function() {
+				return jStat.randg( shape ) * scale;
+			});
+		} else {
+			// return a random sample
+			return jStat.randg( shape ) * scale;
+		}
 	},
 
 	variance: function( shape, scale ) {
 		return shape * scale * scale;
+	},
+	
+	plot : function (id, obj ) {
+	  jStat.plot(id, obj).draw();
 	}
 });
 
-// extend the gamma distribution  prototype
-jStat.gamma.prototype.sample = function( arr ) {
-	if ( arr ) {
-		return jStat.alter( arr, function() {
-			return jStat.gamma.sample( this.shape, this.scale );
-		});
-	} else {
-		return jStat.gamma.sample( this.shape, this.scale );
-	};
-};
+// extend the gamma objects prototype
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.gamma.prototype[ item ] = function( x ) {
+		  if( item == "plot")
+		    return jStat.gamma[ item ]( x, this);
+		  else
 			return jStat.gamma[ item ]( x, this.shape, this.scale );
 		};
 	})( vals[ item ]);
-})( 'pdf cdf inv'.split( ' ' ));
+})( 'pdf cdf inv sample plot'.split( ' ' ));
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.gamma.prototype[ item ] = function() {
@@ -373,6 +428,7 @@ jStat.extend( jStat.kumaraswamy, {
 	},
 
 	variance: function( alpha, beta ) {
+	// TODO
 	}
 });
 
@@ -404,10 +460,16 @@ jStat.lognormal = function( mu, sigma ) {
 // extend lognormal function with static methods
 jStat.extend( jStat.lognormal, {
 	pdf : function( x, mu, sigma ) {
+	  if(isNaN( x) ) {
+		return x.map( function( value) { return ( 1 / ( value * sigma * Math.sqrt( 2 * Math.PI ) ) ) * Math.exp( -Math.pow( Math.log( value ) - mu, 2) / ( 2 * sigma*sigma ) ); } );
+	  } 
 		return ( 1 / ( x * sigma * Math.sqrt( 2 * Math.PI ) ) ) * Math.exp( -Math.pow( Math.log( x ) - mu, 2) / ( 2 * sigma*sigma ) );
 	},
 
 	cdf : function( x, mu, sigma ) {
+	  if( isNaN( x)) {
+		return x.map( function( value) { return 0.5 + ( 0.5 * jStat.erf( ( Math.log( value ) - mu ) / Math.sqrt( 2 * sigma*sigma ) ) ); });
+	  }
 		return 0.5 + ( 0.5 * jStat.erf( ( Math.log( x ) - mu ) / Math.sqrt( 2 * sigma*sigma ) ) );
 	},
 
@@ -427,32 +489,38 @@ jStat.extend( jStat.lognormal, {
 		return Math.exp( mu - sigma*sigma );
 	},
 
-	sample : function( mu, sigma ) {
-		return Math.exp( jStat.randn() * sigma + mu );
+	sample : function( x, mu, sigma ) {
+		if( x ) {
+			return x.alter( function() {
+				return Math.exp( jStat.randn() * sigma + mu );
+			});
+		} else {
+			return Math.exp( jStat.randn() * sigma + mu );
+		}
 	},
 
 	variance : function( mu, sigma ) {
 		return ( Math.exp( sigma*sigma ) - 1 ) * Math.exp( 2 * mu + sigma*sigma );
-	}
+	},
+	      
+	plot: function ( id, obj) {
+	  jStat.plot(id, obj).draw();
+	}                               
+	  
+	                              
 });
 
-// extend the lognormal distribution prototype
-jStat.lognormal.prototype.sample = function( arr ) {
-	if ( arr ) {
-		return jStat.alter( arr, function() {
-			return jStat.lognormal.sample( this.mu, this.sigma );
-		});
-	} else {
-		return jStat.lognormal.sample( this.mu, this.sigma );
-	};
-};
+// extend the lognormal objects prototype
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.lognormal.prototype[ item ] = function( x ) {
+		  if( item == "plot") {
+			return jStat.lognormal[ item ]( x, this );
+		  }
 			return jStat.lognormal[ item ]( x, this.mu, this.sigma );
 		};
 	})( vals[ item ]);
-})( 'pdf cdf inv'.split( ' ' ));
+})( 'pdf cdf inv sample plot'.split( ' ' ));
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.lognormal.prototype[ item ] = function() {
@@ -473,10 +541,16 @@ jStat.normal = function( mean, std ) {
 // extend normal function with static methods
 jStat.extend( jStat.normal, {
 	pdf : function( x, mean, std ) {
-		return ( 1 / ( Math.sqrt( 2 * Math.PI * std * std))) * Math.exp( -( Math.pow( x - mean, 2 ) / 2 * std * std ) );
+	  if(isNaN( x) ) {
+		return x.map( function (value) { return ( 1 / ( Math.sqrt( 2 * Math.PI * std * std))) * Math.exp( -( Math.pow( value - mean, 2 ) /( 2 * std * std )) );} );
+	  }
+		return ( 1 / ( Math.sqrt( 2 * Math.PI * std * std))) * Math.exp( -( Math.pow( x - mean, 2 ) / (2 * std * std) ) );
 	},
 
 	cdf : function( x, mean, std ) {
+	  if( isNaN( x)) {
+	    return x.map( function ( value) { return 0.5 * ( 1 + jStat.erf( ( value - mean ) / Math.sqrt( 2 * std * std ) ) );} );
+	  }
 		return 0.5 * ( 1 + jStat.erf( ( x - mean ) / Math.sqrt( 2 * std * std ) ) );
 	},
 
@@ -484,7 +558,7 @@ jStat.extend( jStat.normal, {
 		return -1.41421356237309505 * std * jStat.erfcinv( 2 * p ) + mean;
 	},
 
-	mean : function( mean, std ) {
+	mean_fnc : function( mean, std ) {
 		return mean;
 	},
 
@@ -496,39 +570,46 @@ jStat.extend( jStat.normal, {
 		return mean;
 	},
 
-	sample : function( mean, std ) {
-		return jStat.randn() * std + mean;
+	sample : function( x, mean, std ) {
+		if( x ) {
+			// return a jstat object filled with random samples
+			return x.alter( function() {
+				return jStat.randn() * std + mean;
+			});
+		} else {
+			// return a random sample
+			return jStat.randn() * std + mean;
+		}
 	},
 
 	variance : function( mean, std ) {
 		return std * std;
+	},
+	      
+	plot: function (id, obj) {
+	  jStat.plot(id, obj).draw();
 	}
+	
 });
 
-// extend the normal distribution prototype
-jStat.normal.prototype.sample = function( arr ) {
-	if ( arr ) {
-		return jStat.alter( arr, function() {
-			return jStat.normal.sample( this.mean, this.std );
-		});
-	} else {
-		return jStat.normal.sample( this.mean, this.std );
-	};
-};
+// extend the normal objects prototype
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.normal.prototype[ item ] = function( x ) {
+		  if( item == "plot") {
+		    return jStat.normal[ item ]( x, this);
+		  }
 			return jStat.normal[ item ]( x, this.mean, this.std );
 		};
 	})( vals[ item ]);
-})( 'pdf cdf inv'.split( ' ' ));
+})( 'pdf cdf inv sample plot'.split( ' ' ));
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.normal.prototype[ item ] = function() {
 			return jStat.normal[ item ]( this.mean, this.std );
 		};
 	})( vals[ item ]);
-})( 'mean median mode variance'.split( ' ' ));
+})( 'mean_fnc median mode variance'.split( ' ' ));
 
 
 
@@ -593,11 +674,17 @@ jStat.studentt = function( dof ) {
 // extend studentt function with static methods
 jStat.extend( jStat.studentt, {
 	pdf : function( x, dof ) {
+		if( isNaN(x) ) {
+			return x.map( function(value) {return ( jStat.gammafn( ( dof + 1 ) / 2 ) / ( Math.sqrt( dof * Math.PI ) * jStat.gammafn( dof / 2 ) ) ) * Math.pow( 1 + ( ( value*value ) / dof ), -( ( dof + 1 ) / 2 ) );});
+		}
 		return ( jStat.gammafn( ( dof + 1 ) / 2 ) / ( Math.sqrt( dof * Math.PI ) * jStat.gammafn( dof / 2 ) ) ) * Math.pow( 1 + ( ( x*x ) / dof ), -( ( dof + 1 ) / 2 ) );
 	},
 
 	cdf : function( x, dof ) {
 		var dof2 = dof / 2;
+		if( isNaN(x) ) {
+		return x.map( function( value) {return jStat.incompleteBeta( ( value + Math.sqrt( value*value + dof ) ) / ( 2 * Math.sqrt( value*value + dof ) ), dof2, dof2 );});
+		}		
 		return jStat.incompleteBeta( ( x + Math.sqrt( x*x + dof ) ) / ( 2 * Math.sqrt( x*x + dof ) ), dof2, dof2 );
 	},
 
@@ -619,32 +706,37 @@ jStat.extend( jStat.studentt, {
 		return 0;
 	},
 
-	sample : function( dof ) {
-		return jStat.randn() * Math.sqrt( dof / ( 2 * jStat.randg( dof / 2) ) );
+	sample : function( x, dof ) {
+		if( x ) {
+			return x.alter( function() {
+				return jStat.randn() * Math.sqrt( dof / ( 2 * jStat.randg( dof / 2) ) );
+			});
+		} else {
+			// return a random sample
+			return jStat.randn() * Math.sqrt( dof / ( 2 * jStat.randg( dof / 2) ) );
+		}
 	},
 
 	variance : function( dof ) {
 		return ( dof  > 2 ) ? dof / ( dof - 2 ) : ( dof > 1 ) ? Infinity : undefined;
+	},
+
+	plot: function( id, obj) {
+		jStat.plot(id,obj).draw();
 	}
 });
 
-// extend the studentt distribution prototype
-jStat.studentt.prototype.sample = function( arr ) {
-	if ( arr ) {
-		return jStat.alter( arr, function() {
-			return jStat.studentt.sample( this.dof );
-		});
-	} else {
-		return jStat.studentt.sample( this.dof );
-	};
-};
+// extend the studentt objects prototype
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.studentt.prototype[ item ] = function( x ) {
+		  if(item == "plot")
+		   return jStat.beta[ item ](x, this );
+		 else
 			return jStat.studentt[ item ]( x, this.dof );
 		};
 	})( vals[ item ]);
-})( 'pdf cdf inv'.split( ' ' ));
+})( 'pdf cdf inv sample plot'.split( ' ' ));
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.studentt.prototype[ item ] = function() {
@@ -688,8 +780,14 @@ jStat.extend( jStat.weibull, {
 		return ( shape > 1 ) ? scale * Math.pow(( shape - 1 ) / shape, 1 / shape ) : undefined;
 	},
 
-	sample : function( scale, shape ) {
-		return scale * Math.pow( -Math.log( Math.random() ), 1 / shape );
+	sample : function( x, scale, shape ) {
+		if( x ) {
+			return x.alter( function() {
+				return scale * Math.pow( -Math.log( Math.random() ), 1 / shape );
+			});
+		} else {
+			return scale * Math.pow( -Math.log( Math.random() ), 1 / shape );
+		}
 	},
 
 	variance : function( scale, shape ) {
@@ -697,16 +795,7 @@ jStat.extend( jStat.weibull, {
 	}
 });
 
-// extend the weibull distribution prototype
-jStat.weibull.prototype.sample = function( arr ) {
-	if ( arr ) {
-		return jStat.alter( arr, function() {
-			return jStat.weibull.sample( this.scale, this.shape );
-		});
-	} else {
-		return jStat.weibull.sample( this.scale, this.shape );
-	};
-};
+// extend the weibull objects prototype
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.weibull.prototype[ item ] = function( x ) {
@@ -758,8 +847,14 @@ jStat.extend( jStat.uniform, {
 
 	},
 
-	sample : function( a, b ) {
-		return ( a / 2 + b / 2 ) + ( b / 2 - a / 2) * ( 2 * Math.random() - 1);
+	sample : function( x, a, b ) {
+		if( x ) {
+			return x.alter( function() {
+				return ( a / 2 + b / 2 ) + ( b / 2 - a / 2) * ( 2 * Math.random() - 1);
+			});
+		} else {
+			return ( a / 2 + b / 2 ) + ( b / 2 - a / 2) * ( 2 * Math.random() - 1);
+		}
 	},
 
 	variance : function( a, b ) {
@@ -767,16 +862,7 @@ jStat.extend( jStat.uniform, {
 	}
 });
 
-// extend the uniform distribution prototype
-jStat.uniform.prototype.sample = function( arr ) {
-	if ( arr ) {
-		return jStat.alter( arr, function() {
-			return jStat.uniform.sample( this.a, this.b );
-		});
-	} else {
-		return jStat.uniform.sample( this.a, this.b );
-	};
-};
+// extend the uniform objects prototype
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.uniform.prototype[ item ] = function( x ) {
