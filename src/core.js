@@ -26,6 +26,12 @@ var slice = Array.prototype.slice,
 	// test if object
 	isObject = function( arg ) {
 		return toString.call( arg ) === "[object Object]";
+	},
+
+	// calculate correction for IEEE
+	calcRdx = function( n, m ) {
+		var val = n > m ? n : m;
+		return Math.pow( 10, 15 - ~~( Math.log((( val > 0 ) ? val : -val )) * Math.LOG10E ));
 	};
 
 // implement bind if browser doesn't natively support it
@@ -290,7 +296,7 @@ jStat.extend({
 	// generate sequence
 	seq : function( min, max, length, func ) {
 		var arr = [],
-			hival = 1e15,	// simple fix for IEEE floating point errors
+			hival = calcRdx( min, max ),
 			step = ( max * hival - min * hival ) / (( length - 1 ) * hival ),
 			current = min,
 			cnt = 0;
