@@ -10,14 +10,10 @@ jStat.beta = function( alpha, beta ) {
 // extend beta function with static methods
 jStat.extend( jStat.beta, {
 	pdf : function( x, alpha, beta ) {
-<<<<<<< HEAD
 	  if ( isNaN( x ) ) {
 	   return x.map( function(value ) { return Math.pow( value, alpha - 1) * Math.pow( 1 - value, beta - 1) / jStat.betafn(alpha, beta); });
 	}
 		return ( Math.pow( x, alpha - 1 ) * Math.pow( 1 - x, beta - 1 )) / jStat.betafn( alpha, beta );
-=======
-		return ( jStat.pow( x, alpha - 1 ) * jStat.pow( 1 - x, beta - 1 )) / jStat.betafn( alpha, beta );
->>>>>>> e6f6a6f... visualisation.js added
 	},
 
 	cdf : function( x, alpha, beta ) {

@@ -10,7 +10,10 @@ COMPILER = ${JS_ENGINE} ${BUILD_DIR}/uglify.js --unsafe
 
 BASE_FILES = ${SRC_DIR}/core.js\
 	${SRC_DIR}/distribution.js\
-	${SRC_DIR}/special.js
+	${SRC_DIR}/special.js\
+	${SRC_DIR}/visualisation.js\
+	${SRC_DIR}/optimisation.js\
+	${SRC_DIR}/linearalgebra.js
 
 JS = ${DIST_DIR}/jstat.js
 JS_MIN = ${DIST_DIR}/jstat.min.js
