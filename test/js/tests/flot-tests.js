@@ -1,6 +1,6 @@
 $(function() {
 	var betaInst = jStat.beta( 3, 4 );
-	j$.plot( '#betadiv', [{
+	j$.flot( '#betadiv', [{
 		data : betaInst.pdf,
 		label : 'PDF'
 	},{
@@ -14,7 +14,7 @@ $(function() {
 	});
 
 	var cauchyInst = jStat.cauchy( 3, 4 );
-	j$.plot( '#cauchydiv', [{
+	j$.flot( '#cauchydiv', [{
 		data : cauchyInst.pdf,
 		label : 'PDF'
 	},{
@@ -30,7 +30,7 @@ $(function() {
 	});
 
 	var stInst = jStat.studentt( 4 );
-	j$.plot( '#studenttdiv', [{
+	j$.flot( '#studenttdiv', [{
 		data : stInst.pdf,
 		label : 'PDF'
 	},{

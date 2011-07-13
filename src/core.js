@@ -90,7 +90,7 @@ jStat.fn = jStat.prototype = {
 	},
 
 	// only to be used internally
-	push : Array.prototype.push,
+	push : [].push,
 	sort : [].sort,
 	splice : [].splice
 };

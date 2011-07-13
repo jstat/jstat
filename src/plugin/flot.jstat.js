@@ -12,7 +12,7 @@ var defaults = {
 	flotopts : {}
 };
 
-jStat.plot = function( selector, funcs, opts ) {
+jStat.flot = function( selector, funcs, opts ) {
 	opts = jQuery.extend( true, {}, defaults, opts );
 
 	var data = [],
