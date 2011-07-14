@@ -117,20 +117,25 @@ jStat.extend = function( obj ) {
 	for ( var i = 0; i < funcs.length; i++ ) (function( passfunc ) {
 
 		// if a matrix is passed, automatically assume operation should be done on the columns
-		jStat.fn[ passfunc ] = function( fullbool ) {
+		jStat.fn[ passfunc ] = function( fullbool, func ) {
 			var arr = [],
 				i = 0,
-				tmpthis;
+				tmpthis = this;
+			if ( isFunction( fullbool )) {
+				func = fullbool;
+				fullbool = false;
+			}
+			if ( func ) {
+				setTimeout( function() {
+					func.call( tmpthis, jStat.fn[ passfunc ].call( tmpthis, fullbool ));
+				}, 15 );
+				return this;
+			}
 			if ( this.length > 1 ) {
-				tmpthis = this.transpose();
-				for ( ; i < tmpthis.length; i++ ) {
+				tmpthis = fullbool === true ? this : this.transpose();
+				for ( ; i < tmpthis.length; i++ )
 					arr[i] = jStat[ passfunc ]( tmpthis[i] );
-				}
-				if ( fullbool === true ) {
-					arr = jStat[ passfunc ]( arr );
-				}
-			} else {
-				arr = jStat[ passfunc ]( this[0] );
+				arr = fullbool === true ? jStat[ passfunc ]( arr ) : arr;
 			}
 			return arr;
 		};
@@ -140,8 +145,16 @@ jStat.extend = function( obj ) {
 // extend jStat.fn with methods that have no argument
 (function( funcs ) {
 	for ( var i = 0; i < funcs.length; i++ ) (function( passfunc ) {
-		jStat.fn[ passfunc ] = function() {
-			var results = jStat[ passfunc ]( this );
+		jStat.fn[ passfunc ] = function( func ) {
+			var tmpthis = this,
+				results;
+			if ( func ) {
+				setTimeout( function() {
+					func.call( tmpthis, jStat.fn[ passfunc ].call( tmpthis ));
+				}, 15 );
+				return this;
+			}
+			results = jStat[ passfunc ]( this );
 			return isArray( results ) ? jStat( results ) : results;
 		};
 	})( funcs[i] );
@@ -150,7 +163,14 @@ jStat.extend = function( obj ) {
 // extend jStat.fn with methods that require one argument
 (function( funcs ) {
 	for ( var i = 0; i < funcs.length; i++ ) (function( passfunc ) {
-		jStat.fn[ passfunc ] = function( arg ) {
+		jStat.fn[ passfunc ] = function( arg, func ) {
+			var tmpthis = this;
+			if ( func ) {
+				setTimeout( function() {
+					func.call( tmpthis, jStat.fn[ passfunc ].call( tmpthis, arg ));
+				}, 15 );
+				return this;
+			}
 			return jStat( jStat[ passfunc ]( this, arg ));
 		};
 	})( funcs[i] );
