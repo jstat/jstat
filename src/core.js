@@ -129,8 +129,10 @@ jStat.extend = function( obj ) {
 				if ( fullbool === true ) {
 					arr = jStat[ passfunc ]( arr );
 				}
+			} else {
+				arr = jStat[ passfunc ]( this[0] );
 			}
-			return arr.length > 1 ? jStat( arr ) : jStat[ passfunc ]( this[0] );
+			return arr;
 		};
 	})( funcs[i] );
 })( 'sum min max mean median mode range variance stdev meandev meddev quartiles'.split( ' ' ));
