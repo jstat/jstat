@@ -470,4 +470,4 @@ jStat.extend({
 	}
 });
 
-})( this.jStat, this.Math );
+})( this.jStat, Math );
