@@ -35,9 +35,9 @@ sylv.loadFile = function(name) {
 	document.write('<script type="text/javascript" src="' + sylv.loadFile.path + name + '"></script>');
 };
 
-sylv.loadFile("../jstat/src/core.js");
-sylv.loadFile("../jstat/src/distribution.js");
-sylv.loadFile("../jstat/src/special.js");
+sylv.loadFile("../src/core.js");
+sylv.loadFile("../src/distribution.js");
+sylv.loadFile("../src/special.js");
 sylv.loadFile("base/matrix.js");
 sylv.loadFile("base/stat.js");
 
