@@ -59,19 +59,23 @@ function historyNav(e) {
 };
 historyNav.pos = 0;
 historyNav.buff = [""];
-function plot(vals) {
+function plot(vals, optIfNotMatrix) {
 	$("#consoleOut"+print.nb).before('<div id="consoleOut'+(++print.nb)+'" style="width:'+windowWidth+'px;height:300px;"></div>');
-	var arr = Matrix.ToArray(vals);
-	var data = [];
-	var size = arr[0].length;
-	for (var i = 1; i<arr.length; i++) {
-		var ligne = [];
-		for (var j = 0; j<size; j++) {
-			ligne.push([arr[0][j],arr[i][j]]);
+	if (optIfNotMatrix == undefined) {
+		var arr = Matrix.ToArray(vals);
+		var data = [];
+		var size = arr[0].length;
+		for (var i = 1; i<arr.length; i++) {
+			var ligne = [];
+			for (var j = 0; j<size; j++) {
+				ligne.push([arr[0][j],arr[i][j]]);
+			};
+			data.push(ligne);
 		};
-		data.push(ligne);
+		jStat.flot("#consoleOut"+print.nb, data, {rawData: true});
+	} else {
+		jStat.flot("#consoleOut"+print.nb, vals, optIfNotMatrix);
 	};
-	$.plot($("#consoleOut"+print.nb), data);
 	return ""
 };
 function onResize() {
