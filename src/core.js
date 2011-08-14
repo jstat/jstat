@@ -177,7 +177,7 @@ jStat.extend = function( obj ) {
 			return jStat( jStat[ passfunc ]( this, arg ));
 		};
 	})( funcs[i] );
-})( 'add divide multiply subtract dot pow abs angle'.split( ' ' ));
+})( 'add divide x multiply subtract dot pow abs angle'.split( ' ' ));
 
 // extend jStat.fn
 jStat.extend( jStat.fn, {
@@ -347,7 +347,7 @@ jStat.extend({
 	},
 
 	// matrix multiplication
-	multiply : function( arr, arg ) {
+	x : function( arr, arg ) {
 		var row, col, nrescols, sum,
 			nrow = arr.length,
 			ncol = arr[0].length,
@@ -366,6 +366,11 @@ jStat.extend({
 			return ( nrow === 1 && rescols === 1 ) ? res[0][0] : res;
 		}
 		return jStat.map( arr, function( value ) { return value * arg; });
+	},
+	
+	// backward compatiblity
+	multiply : function( arr, arg ) {
+		return jStat.x( arr, arg );
 	},
 
 	// subtract a vector or scalar from the vector
