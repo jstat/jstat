@@ -74,6 +74,9 @@ jStat.fn = jStat.prototype = {
 			}
 
 		// if first argument is number, assume creation of sequence
+		} else if ( args.length == 1 ) {
+			this[0] = [args[0]];
+			this.length = 1;
 		} else if ( !isNaN( args[0] )) {
 			this[0] = jStat.seq.apply( null, args );
 			this.length = 1;
