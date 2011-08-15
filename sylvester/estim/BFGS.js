@@ -16,19 +16,20 @@
  * @param {array[integer]} point de depart
  * @constructor
  */
-function BTFS(F, Delta, x0) {
+function BFGS(F, Delta, x0) {
   this.f = F;
 	this.D = Delta;
 	this.x0 = x0;
 	this.mu = 0.9;
+	this.nu = 0.001;
 };
 
-// Returns a string representation of the matrix
-BTFS.prototype.nextStep = function() {
+// calculate the next step
+BFGS.prototype.nextStep = function() {
 	// definition de la référence, à passer dans une fonction lambda
 	var that = this;
 	// calcule des valeurs au point courrant
-	var fx = this.f(this.x0);
+	this.fx = this.f(this.x0);
 	var df = this.D(this.x0);
 	var S = this.s;
 	var X = this.x0.add(S);
@@ -42,9 +43,16 @@ BTFS.prototype.nextStep = function() {
 		this.x0 = X;
 	};
 	var p = this.B.x(df.x(-1));
-	var gs = new GoldenSection(0, 5, function(a) {return that.f(that.x.add(p.x(a)))});
-	var d = this.mu*df.transpose().x(p);
-	while (gs.nextStep() > fx+gs.a*d);
+	var gs = new GoldenSection(0, 5, function(a) {return that.f(that.x0.add(p.x(a)))});
+	var d = df.x(p);
+	// we use the Wolfe conditions
+	while (gs.nextStep() < this.fx+this.nu*gs.a*d  && this.D(this.x0.add(p.x(gs.a))).x(p) > this.fx+this.mu*d);
 	this.s = p.x(gs.a);
 	return gs.fa;
+};
+
+// do the algo with a standard stop condition
+BFGS.prototype.standardCalcul = function() {
+	var fx;
+	while((Math.abs((fx=this.nextStep())-this.fx)/Math.max(fx, this.fx, 1))<1e-15);
 };

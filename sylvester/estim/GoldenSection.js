@@ -17,7 +17,7 @@
  * @constructor
  */
 function GoldenSection(x0, x1, fct) {
-  this.f = fct;
+	this.f = fct;
 	this.x0 = x0;
 	this.x1 = x1;
 	this.phi = (1+Maht.sqrt(5))/2;
