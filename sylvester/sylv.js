@@ -28,6 +28,6 @@ sylv.loadFile = function(name) {
 sylv.loadFile("../src/core.js");
 sylv.loadFile("../src/distribution.js");
 sylv.loadFile("../src/special.js");
-sylv.loadFile("base/matrix.js");
-sylv.loadFile("base/stat.js");
+//sylv.loadFile("base/matrix.js");
+//sylv.loadFile("base/stat.js");
 

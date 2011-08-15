@@ -3,6 +3,33 @@
  * Copyright (c) 2011
  * This document is licensed as free software under the terms of the
  * MIT License: http://www.opensource.org/licenses/mit-license.php */
+ 
+// Copyright (c) 2011 Trevor Norris, Matthew Williams, Florian Pons (florian.pons.tv)
+//
+// Licensed under the MIT License
+
+// === Sylvester ===
+// Matrix mathematics modules for JavaScript
+// Copyright (c) 2007 James Coglan
+// 
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the "Software"),
+// to deal in the Software without restriction, including without limitation
+// the rights to use, copy, modify, merge, publish, distribute, sublicense,
+// and/or sell copies of the Software, and to permit persons to whom the
+// Software is furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+// THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+// DEALINGS IN THE SOFTWARE.
+
 this.j$ = this.jStat = (function( Math, undefined ) {
 
 	// for quick reference
@@ -88,8 +115,8 @@ jStat.fn = jStat.prototype = {
 	length : 0,
 
 	// return clean array
-	toArray : function() {
-		return slice.call( this );
+	toArray : function( args ) {
+		return slice.call( args || this );
 	},
 
 	// only to be used internally
@@ -161,7 +188,7 @@ jStat.extend = function( obj ) {
 			return isArray( results ) ? jStat( results ) : results;
 		};
 	})( funcs[i] );
-})( 'transpose clear norm symmetric'.split( ' ' ));
+})( 'transpose toRightTriangular det clear norm symmetric'.split( ' ' ));
 
 // extend jStat.fn with methods that require one argument
 (function( funcs ) {
@@ -246,6 +273,13 @@ jStat.extend( jStat.fn, {
 	alter : function( func ) {
 		jStat.alter( this, func );
 		return this;
+	},
+	
+	toString : function() {
+		var res = "[[";
+		res = res+this.toArray().join("],\n[");
+		res = res+"]]";
+		return res;
 	}
 });
 
@@ -268,6 +302,49 @@ jStat.extend({
 			}
 		}
 		return obj;
+	},
+	
+	toRightTriangular : function( arr ) {
+		var M = jStat.map( arr, function(a) {return a;}), els;
+		var n = arr.length, k = n, i, np, kp = arr[0].length, p;
+		do { i = k - n;
+			if (M[i][i] == 0) {
+				for (j = i + 1; j < k; j++) {
+					if (M[j][i] != 0) {
+						els = []; np = kp;
+						do { p = kp - np;
+							els.push(M[i][p] + M[j][p]);
+						} while (--np);
+						M[i] = els;
+						break;
+					}
+				}
+			}
+			if (M[i][i] != 0) {
+				for (j = i + 1; j < k; j++) {
+					var multiplier = M[j][i] / M[i][i];
+					els = []; np = kp;
+					do { p = kp - np;
+						// Elements with column numbers up to an including the number
+						// of the row that we're subtracting can safely be set straight to
+						// zero, since that's the point of this routine and it avoids having
+						// to loop over and correct rounding errors later
+						els.push(p <= i ? 0 : M[j][p] - M[i][p] * multiplier);
+					} while (--np);
+					M[j] = els;
+				}
+			}
+		} while (--n);
+		return M;
+	},
+	
+	det : function( arr ) {
+		var M = arr.toRightTriangular();
+		var det = M[0][0], n = M.length - 1, k = n, i;
+		do { i = k - n + 1;
+			det = det * M[i][i];
+		} while (--n);
+		return det;
 	},
 
 	// map a function to a matrix or vector

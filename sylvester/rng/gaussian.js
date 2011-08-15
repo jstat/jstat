@@ -68,5 +68,5 @@ Gaussian.prototype.serie = function(size) {
     res[i*2+1] = this.a_ + rand[1]*this.d_;
   };
   if(nbIter*2 < size) res[size-1] = this.a_ + Gaussian.normalBoxMuller()*this.d_;
-	return new Matrix([res]);
+	return jStat([res]);
 };

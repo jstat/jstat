@@ -52,7 +52,7 @@ historyNav.buff = [""];
 function plot(vals, optIfNotMatrix) {
 	$("#consoleOut"+print.nb).before('<div id="consoleOut'+(++print.nb)+'" style="width:'+windowWidth+'px;height:300px;"></div>');
 	if (optIfNotMatrix == undefined) {
-		var arr = Matrix.ToArray(vals);
+		var arr = jStat.fn.toArray(vals);
 		var data = [];
 		var size = arr[0].length;
 		for (var i = 1; i<arr.length; i++) {

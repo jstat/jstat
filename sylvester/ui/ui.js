@@ -62,5 +62,5 @@ sylv.ui.MatrixfromString = function(str) {
 		res[i] = res[i].split(reg);
 		res[i] = res[i].map(parseFloat);
 	};
-	return new sylv.Matrix(res);
+	return jStat(res);
 };

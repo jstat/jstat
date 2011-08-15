@@ -24,7 +24,7 @@ Csv.prototype.parse = function(txt) {
 	  data[i] = data[i].split(/,/g);
 	  data[i] = data[i].map(parseFloat);
 	};
-	this.m = new sylv.Matrix(data);
+	this.m = jStat(data);
 	this.t = txt;
 };
 

@@ -28,5 +28,5 @@ BlackScholes.prototype.serie = function(size, initValue) {
   for (var i = 1; i<size; i++) {
     res[i] = res[i-1]*gauss.boxMullerNext();
   };
-	return new Matrix([res]);
+	return jStat([res]);
 };
