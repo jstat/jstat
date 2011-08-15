@@ -11,42 +11,51 @@
 /**
  * Fonction d'évaluation de coefficients de la formule de Makeham.
  *
- * @param {integer} date de demarrage de P
- * @param {LifeTable} Taux annuel de vitalité au dates x, x+1, x+2 ...
+ * @param {integer} first date of L
+ * @param {LifeTable} Annual rate of vitality at dates x, x+1, x+2 ... or an array of l_x, l_x+n, l_x+2n, l_x+3n
+ * @param {integer} step between values
  * @constructor
  */
-function MakehamEstim(x, L) {
-	var P = L.P;
-	var n = Math.floor(P.length/3);
-	var A = [0,0,0];
-  for (var i = 0; i<3; i++) {
-		for (var j = 0; j<n; j++) {
-			A[i] += Math.log(P[i*n+j]);
-		}
+function MakehamEstim(x, L, n) {
+	var B = [0,0,0];
+	if (n == undefined) {
+		var P = L.P;
+		n = Math.floor(P.length/3);
+		for (var i = 0; i<3; i++) {
+			for (var j = 0; j<n; j++) {
+				B[i] += Math.log(P[i*n+j]);
+			}
+		};
+	} else {
+		for (var i = 0; i<3; i++) {
+			B[i] = Math.log(L[i+1])-Math.log(L[i]);
+		};
 	};
-	this.c = Math.exp(Math.log((A[1]-A[2])/(A[0]-A[1]))/n);
+	this.c = Math.exp(Math.log((B[1]-B[2])/(B[0]-B[1]))/n);
 	var cn_1 = Math.pow(this.c,n)-1;
-	var V = (A[1]-A[0])/cn_1;
+	var V = (B[1]-B[0])/cn_1;
 	this.g = Math.exp(V/(Math.pow(this.c,x)*cn_1));
-	this.s = Math.exp((A[0]-V)/n)
+	this.s = Math.exp((B[0]-V)/n);
 	this.ec = 0;
 	this.eg = 0;
 	this.es = 0;
-	this.A = [];
-	this.SA = 0;
-	this.lP = [];
-	this.SAlP = 0;
-	this.SAlP2 = 0;
-	for (var i = 0; i<P.length; i++) {
-		var a = L.L[i]*L.P[i]/L.Q[i];
-		var lp = Math.log(L.P[i]);
-		this.A.push(a);
-		this.lP.push(lp);
-		this.SA += a;
-		this.SAlP += a*lp;
-		this.SAlP2 += a*lp*lp;
+	if (L instanceof LifeTable) {
+		this.A = [];
+		this.SA = 0;
+		this.lP = [];
+		this.SAlP = 0;
+		this.SAlP2 = 0;
+		for (var i = 0; i<P.length; i++) {
+			var a = L.L[i]*L.P[i]/L.Q[i];
+			var lp = Math.log(L.P[i]);
+			this.A.push(a);
+			this.lP.push(lp);
+			this.SA += a;
+			this.SAlP += a*lp;
+			this.SAlP2 += a*lp*lp;
+		};
+		this.getCompCLast = {};
 	};
-	this.getCompCLast = {};
 };
 
 // Calculate f components with c values

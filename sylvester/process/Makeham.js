@@ -21,12 +21,25 @@ function Makeham(c, g, s) {
 	this.s = s;
 };
 
+/**
+ * Class to generate Gaussian random number
+ *
+ * @param {integer} the size of the serie
+ * @param {float} the begining of the serie
+ * @param {float} the first value of the serie
+ * @constructor
+ */
 Makeham.prototype.serie = function(size, x0, l0) {
   var k = l0/Math.pow(this.g, Math.pow(this.c,x0));
+	var res = [l0];
+	var si = 1;
   for (var i = 1; i<size; i++) {
-    res[i] = k*Math.pow(this.s,i)*Math.pow(this.g, Math.pow(this.c,i+x0)) ;
+		si *= this.s;
+    res[i] = k*si*Math.pow(this.g, Math.pow(this.c,i+x0)) ;
   };
-	return res;
+	var Lt = new LifeTable();
+	Lt.setL(res);
+	return Lt;
 };
 
 Makeham.prototype.toString = function() {

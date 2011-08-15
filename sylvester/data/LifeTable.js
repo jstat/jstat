@@ -3,15 +3,13 @@
 // Licensed under the MIT License
 
 /**
- * @fileoverview Class for representing matrices and static helper functions.
+ * @fileoverview Class for representing a life table.
  *
  *
  */
  
 /**
- * Creates a matrix from a string
- * @param {string} path The string representing a matrix.
- * @return {!goog.math.Matrix} The new matrix.
+ * Creates LifeTable
  */
 LifeTable = function() {
 	this.L = [1];
