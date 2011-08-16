@@ -131,7 +131,7 @@ jStat.extend = function( obj ) {
 			return jStat( jStat[ passfunc ]( this, arg ));
 		};
 	})( funcs[i] );
-})( 'add divide multiply subtract dot pow abs angle sq'.split( ' ' ));
+})( 'add divide multiply subtract dot pow abs angle sq vec_transpose'.split( ' ' ));
 
 (function( funcs ) {
 	for ( var i = 0; i < funcs[length]; i++ ) (function( passfunc ) {
@@ -584,6 +584,21 @@ jStat.extend({
 			res[i] = arr1[i] - arr2[i];
 		}
 		return res;
+	},
+
+	vec_transpose: function(arr) {
+	
+	m = arr.length;
+	n = arr[0].length;
+	T=jStat.zeros(n,m);
+	
+	for(var i=0;i<m;i++) {
+		for(var j=0;j<n;j++) {
+			T[j][i] = arr[i][j];
+		}
+	}
+	
+	return T;	
 	}
 });
 

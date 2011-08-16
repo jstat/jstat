@@ -59,7 +59,13 @@ jStat.extend( jStat.beta, {
 	
 	plot : function(id, obj) {
 	      jStat.plot(id,obj).draw();
-	}
+	},
+
+	param_change: function(alpha,beta,obj) {
+		obj.alpha = alpha;
+		obj.beta = beta;
+		return obj;
+	} 
 });
 
 // extend the beta objects prototype
@@ -80,6 +86,13 @@ jStat.extend( jStat.beta, {
 		};
 	})( vals[ item ]);
 })( 'mean median mode variance'.split( ' ' ));
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.beta.prototype[ item ] = function(x,y) {
+			return jStat.beta[ item ]( x,y,this);
+		};
+	})( vals[ item ]);
+})( 'param_change'.split( ' ' ));
 
 
 
@@ -291,20 +304,25 @@ jStat.extend( jStat.exponential, {
 	
 	plot : function( id, obj ) {
 	  jStat.plot( id, obj).draw();
-	}
+	},
+
+	param_change: function(rate,obj) {
+		obj.rate = rate;
+		return obj;
+	} 
 });
 
 // extend the exponential objects prototype
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.exponential.prototype[ item ] = function( x ) {
-		 if( item == "plot" )
+		 if( item == "plot" || item=="param_change")
 		    return jStat.exponential[ item ](x, this )
 		  else
 			return jStat.exponential[ item ]( x, this.rate );
 		};
 	})( vals[ item ]);
-})( 'pdf cdf inv sample plot'.split( ' ' ));
+})( 'pdf cdf inv sample plot param_change'.split( ' ' ));
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.exponential.prototype[ item ] = function() {
@@ -370,7 +388,13 @@ jStat.extend( jStat.gamma, {
 	
 	plot : function (id, obj ) {
 	  jStat.plot(id, obj).draw();
-	}
+	},
+
+	param_change: function(shape, scale,obj) {
+		obj.shape = shape;
+		obj.scale = scale;
+		return obj;
+	} 
 });
 
 // extend the gamma objects prototype
@@ -391,7 +415,13 @@ jStat.extend( jStat.gamma, {
 		};
 	})( vals[ item ]);
 })( 'mean median mode variance'.split( ' ' ));
-
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.gamma.prototype[ item ] = function(x,y) {
+			return jStat.gamma[ item ](x,y, this);
+		};
+	})( vals[ item ]);
+})( 'param_change'.split( ' ' ));
 
 
 // add kumaraswamy distribution object to jStat
@@ -501,7 +531,13 @@ jStat.extend( jStat.lognormal, {
 	      
 	plot: function ( id, obj) {
 	  jStat.plot(id, obj).draw();
-	}                               
+	},
+
+	param_change: function(mu,sigma,obj) {
+		obj.mu = mu;
+		obj.sigma = sigma;
+		return obj;
+	}   
 	  
 	                              
 });
@@ -524,6 +560,13 @@ jStat.extend( jStat.lognormal, {
 		};
 	})( vals[ item ]);
 })( 'mean median mode variance'.split( ' ' ));
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.lognormal.prototype[ item ] = function(x,y) {
+			return jStat.lognormal[ item ](x,y, this);
+		};
+	})( vals[ item ]);
+})( 'param_change'.split( ' ' ));
 
 
 
@@ -584,7 +627,13 @@ jStat.extend( jStat.normal, {
 	      
 	plot: function (id, obj) {
 	  jStat.plot(id, obj).draw();
-	}
+	},
+
+	param_change: function(mean, std,obj) {
+		obj.mean = mean;
+		obj.std = std;
+		return obj;
+	} 
 	
 });
 
@@ -606,6 +655,13 @@ jStat.extend( jStat.normal, {
 		};
 	})( vals[ item ]);
 })( 'mean_fnc median mode variance'.split( ' ' ));
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.normal.prototype[ item ] = function(x,y) {
+			return jStat.normal[ item ](x,y, this);
+		};
+	})( vals[ item ]);
+})( 'param_change'.split( ' ' ));
 
 
 
@@ -719,20 +775,24 @@ jStat.extend( jStat.studentt, {
 
 	plot: function( id, obj) {
 		jStat.plot(id,obj).draw();
-	}
+	},
+	param_change: function(dof,obj) {
+		obj.dof = dof;
+		return obj;
+	} 
 });
 
 // extend the studentt objects prototype
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.studentt.prototype[ item ] = function( x ) {
-		  if(item == "plot")
+		  if(item == "plot" || item == "param_change")
 		   return jStat.beta[ item ](x, this );
 		 else
 			return jStat.studentt[ item ]( x, this.dof );
 		};
 	})( vals[ item ]);
-})( 'pdf cdf inv sample plot'.split( ' ' ));
+})( 'pdf cdf inv sample plot param_change'.split( ' ' ));
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.studentt.prototype[ item ] = function() {

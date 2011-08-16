@@ -1,4 +1,8 @@
-
+/*
+Includes the methods to extend the mathematical support in jStat.
+Provides functions for the solution of linear system of equations, integration, extrapolation,
+interpolation, eigenvalue problems, differential equations and PCA analysis.
+*/
 
 jStat.extend({
 
@@ -38,7 +42,7 @@ jStat.extend({
 		n = A.length;		// no of rows
 		m=A[0].length;		//no of columns
 		A = jStat.augment(A,B);
-		maug=A[0].length;		//no of columns
+		maug=A[0].length;		//no of columns in augmented matrix
 		for( i = 0; i< n; i++ ) {
 			var pivot = A[i][i];
 			j=i
@@ -79,7 +83,7 @@ jStat.extend({
 		n = A.length;		// no of rows
 		m=A[0].length;		//no of columns
 		A = jStat.augment(A,B);
-		maug=A[0].length;		//no of columns
+		maug=A[0].length;		//no of columns in augmented matrix
 		for( i = 0; i< n; i++ ) {
 			var pivot = A[i][i];
 			j=i
@@ -124,10 +128,10 @@ jStat.extend({
 	},
 
 	gauss_jacobi: function(A,B,X,r) {
-		A=[[2,1],[5,7]];
-		B=[[11],[13]];
-		X=[[1],[1]];
-		r=0.001;
+		//A=[[2,1],[5,7]];
+		//B=[[11],[13]];
+		//X=[[1],[1]];
+		//r=0.001;
 		var i , j,n;
 		var Xv,C,H, Xk;
 		n = A.length;
@@ -158,10 +162,10 @@ jStat.extend({
 	},
 
 	gauss_seidel: function(A,B,X,r) {
-		A=[[2,1],[5,7]];
-		B=[[11],[13]];
-		X=[[1],[1]];
-		r=0.001;
+		//A=[[2,1],[5,7]];
+		//B=[[11],[13]];
+		//X=[[1],[1]];
+		//r=0.001;
 		var i , j,n;
 		var Xv,C,H, Xk;
 		n = A.length;
@@ -193,10 +197,11 @@ jStat.extend({
 	},
 
 	SOR: function(A,B,X,r,w) {
-		A=[[2,1],[5,7]];
-		B=[[11],[13]];
-		X=[[1],[1]];
-		r=0.001;
+	//	A=[[2,1],[5,7]];
+	//	B=[[11],[13]];
+	//	X=[[1],[1]];
+		//r=0.001;
+	//	w = 1.0
 		var i , j,n;
 		var Xv,C,H, Xk;
 		n = A.length;
@@ -252,6 +257,7 @@ jStat.extend({
 		
 	},
 
+	// TODO: NOT WORKING PROPERLY.
 	QR: function(A,B) {
 		var m, n , i, j, alpha, r, k, factor,sum;
 		var w=[],P=[],X=[];
@@ -288,6 +294,7 @@ jStat.extend({
 	},
 
 	jacobi: function(A) {
+		//A = [[1,2,3,4],[5,6,7,8],[2,7,8,1],[4,6,2,5]];
 		var condition, count, i,j,p,q,maxim,theta;
   		condition=1;  		//Condition variable to check tolerance error
   		count=0;	 		//keep track of number of rotations
@@ -295,13 +302,11 @@ jStat.extend({
   		var E=jStat.identity(n,n);     //Eigen Vector Matrix
 		var EV = [];		//EigenValues Vector
   
-		//******************Main Loop***********************  
   		while (condition==1) { 		// condition=1 only if tolerance is not reached
   			count=count+1;     			//updating the count
-			//***********Calculating  the maximum off-diagonal element************ 
-  			maxim = A[1][2];
-  			p=1;
-  			q=2;
+  			maxim = A[0][1];
+  			p=0;
+  			q=1;
   			for (i=0;i<n;i++) {
     				for (j=0;j<n;j++) {
       					if (i!=j) {
@@ -313,8 +318,6 @@ jStat.extend({
       					}
      				}
    			}
-
-			//****************************Calculating Theta**********************//
   			if (A[p][p]==A[q][q]) {
     				if (A[p][q]>0)
       					theta=Math.PI/4;
@@ -324,7 +327,6 @@ jStat.extend({
   			else
     				theta = Math.atan(2*A[p][q]/(A[p][p]-A[q][q]))/2;
 
-			//**********Creating the Rotation Matrix************************
   			var S=jStat.identity(n,n);
   			S[p][p]=Math.cos(theta);
   			S[p][q]=-Math.sin(theta);
@@ -334,7 +336,6 @@ jStat.extend({
   			E=jStat.multiply(E, S);   //Eigen Vector Matrix
   			B=jStat.multiply(jStat.multiply(jStat.inv(S),A),S);
   			A = B;
-			//**********Checking the tolerance condition*******************  
   			condition=0;
   			for (i=1;i<n;i++) {
     				for (j=1;j<n;j++) {
@@ -348,7 +349,7 @@ jStat.extend({
 		}
 		for(i=0;i<n;i++)
 			EV.push(A[i][i]);
-		return EV;
+		return [E,EV];
 
 	},
 
@@ -358,7 +359,7 @@ jStat.extend({
 		var k1, k2, u_j1,k3,k4;
 		
   		 if (order==2) {
-  		 	while (t_j!=p) {
+  		 	while (t_j<=p) {
       				k1=h*f(t_j,u_j);
     		  		k2=h*f(t_j+h,u_j+k1);
       				u_j1=u_j+(k1+k2)/2;
@@ -368,7 +369,7 @@ jStat.extend({
   		}
 
   		if (order==4) {
-    			while (t_j!=p) {
+    			while (t_j<=p) {
       				k1=h*f(t_j,u_j);
       				k2=h*f(t_j+h/2,u_j+k1/2);
       				k3=h*f(t_j+h/2,u_j+k2/2);
@@ -440,13 +441,11 @@ jStat.extend({
     			i = i+1;
   		}
   		a = g.length;
-		alert(a);
   		m = 1;
  		while ( a!=1 ) {
   			for (j=0; j< a-1; j++)
     				h1[j] = ((Math.pow(4,m))*g[j+1]-g[j])/(Math.pow(4,m)-1);
   			a = h1.length;
-			alert(a);
   			g = h1;
 			h1=[];
   			m = m+1;
@@ -494,7 +493,7 @@ jStat.extend({
 			}
     			A[i] = (1 - 2*(value-X[i]) * dl[i]) * (l[i]*l[i]);
     			B[i] = (value-X[i]) * (l[i]*l[i]);
-    			p = p + ( A[i]*F[i] + B[i]*df[i] );
+    			p = p + ( A[i]*F[i] + B[i]*dF[i] );
   		}
 		return p;
 	},
@@ -504,7 +503,6 @@ jStat.extend({
 		var n,p,i,j,l;
 		n = X.length;
   		p=0;
-  		//*******Running the outer loop to find all the langrange polynomials and adding them up***********
   		for (i=0;i<n;i++) {
     			l=F[i];  
     			for (j=0;j<n;j++) {
@@ -523,16 +521,13 @@ jStat.extend({
   		n=X.length;
   		A=jStat.identity(n,n);
   		B=jStat.zeros(n,1);
-		//*****************Creating Matrix H defining the difference between poitns*************
   		for (i=0; i<n-1; i++)
     			h[i]=X[i+1]-X[i];
 
-		//*****************Creating matrix alpha defining the coefficients for variables C_j's******
 		alpha[0] = 0;
   		for (i=1;i<n-1;i++)
     			alpha[i] = (3/h[i])*(F[i+1]-F[i])-(3/h[i-1])*(F[i]-F[i-1]);
 
-		//****************Solving the equation Ac=B**********************
   		for (i=1 ; i<n-1; i++) { 
     			A[i][i-1] = h[i-1];
     			A[i][i] = 2*(h[i-1]+h[i]);
@@ -541,19 +536,16 @@ jStat.extend({
   		}
   		c = jStat.multiply(jStat.inv(A),B);
 
-		//*****************Finding B_j's and D_j's from C_j's***************  
   		for (j=0; j<n-1; j++) {
     			b[j] = (F[j+1]-F[j])/h[j]-h[j]*(c[j+1][0]+2*c[j][0])/3;
     			d[j] = (c[j+1][0]-c[j][0])/(3*h[j]);
   		}
 
-		//*************Finding the final polynomial using all the coeffiecient values*********
 		for(j=0;j<n;j++) {
 			if( X[j]>value )
 				break;
 		}
 		j=j-1;	
-  	//	for (j=1;j<n-1;j++)
     			S = F[j] + (value-X[j]) * b[j] + jStat.sq(value-X[j]) * c[j] + (value-X[j])*jStat.sq(value-X[j]) * d[j];
 
 		return S;
@@ -565,14 +557,74 @@ jStat.extend({
 	},
 
 
+	PCA: function(X) {
+	
+	//X=[[2.5,0.5,2.2,1.9,3.1,2.3,2,1,1.5,1.1],[2.4,0.7,2.9,2.2,3.0,2.7,1.6,1.1,1.6,0.9],[0.2,1.4,0.6,1.9,2.3,2.5,0.5,1.7,2,1.6],[2.9,1,0.7,0.3,2.5,1.3,0.5,1.7,3,0.2]];
+
+	var m = X.length;
+	var n = X[0].length;
+	var flag = false;
+	var i,j, temp1;
+	var u=[], D=[], result=[], temp2=[];
+	var B= jStat.zeros(m,n);
+	var C= jStat.zeros(m,m);
+	var V= jStat.zeros(m,m);
+	var Vt= jStat.zeros(m,m);
+
+	
+	for(i=0; i<m; i++) {
+		u[i] = jStat.sum(X[i])/n;
+	}
+
+	for(i=0;i<n;i++) {
+		for( j=0;j<m;j++) {
+			B[j][i] = X[j][i] - u[j];
+		}
+	}
+
+	for(i=0;i<m;i++) {
+		for(j=0;j<m;j++) {
+			C[i][j] = (jStat.dot(B[i],B[j]))/(n-1);
+		}
+	}
+
+	result = jStat.jacobi(C);
+	V = result[0];
+	D = result[1];
+	Vt =jStat.vec_transpose(V);
+	for(i=0;i<D.length;i++) {
+		for(j=i;j<D.length;j++) {
+			if(D[i] < D[j] )  {
+				temp1 = D[i];
+				D[i]=D[j];
+				D[j] = temp1;
+				temp2 = Vt[i];
+				Vt[i] = Vt[j];
+				Vt[j] = temp2;
+			}
+		}
+	}
+	var Y= jStat.zeros(m,n);
+	var Bt = jStat.vec_transpose(B);
+	for(i=0;i<m;i++) {
+		for(j=0;j<Bt.length;j++) {
+			Y[i][j] = jStat.dot(Vt[i],Bt[j]);
+		}
+	}
+
+	return [X, D, Vt, Y];
+
+	}
+
+
 
 });
 
 (function( funcs ) {
 	for ( var i = 0; i < funcs[length]; i++ ) (function( passfunc ) {
-		jStat.fn[ passfunc ] = function( arg1, arg2 ) {
-			return jStat( jStat[ passfunc ]( arg1, arg2 ));
+		jStat.fn[ passfunc ] = function( arg1, arg2, arg3, arg4 ) {
+			return jStat( jStat[ passfunc ]( arg1, arg2,arg3, arg4 ));
 		};
 	})( funcs[i] );
-})( 'gauss_elimination'.split( ' ' ));
+})( 'gauss_jacobi'.split( ' ' ));
 

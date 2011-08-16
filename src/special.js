@@ -157,7 +157,7 @@ jStat.extend({
 			return jStat( jStat.map( this, function( value ) { return jStat[ passfunc ]( value ); }));
 		};
 	})( funcs[i] );
-})( 'gammaln gammafn factorial factorialln'.split( ' ' ));
+})( 'gammaln factorialln'.split( ' ' ));
 
 
 

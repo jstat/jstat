@@ -1,4 +1,61 @@
-    
+
+//to plot histograms given the data and number of bins.
+jStat.histogram = function(plot_container,data, bins) {
+
+	plot_container = "#" + plot_container;
+	var size = data.length;	
+	var data_min = jStat.min(data);
+	var a = data_min;
+	var b = jStat.max(data);
+	var step = (b-a)/bins;
+	var i,j,p;
+	var freq=[];
+	var plotdata= [];
+	var options;
+	for(j = 0;j<bins;j++)
+		freq[j]=0;
+	
+	j=0;
+	p = a + step;
+	for(j=0;j<bins;j++) {
+	for( i = 0; i<size; i++) {
+		if(j==0) {
+		if(data[i]>=a && data[i] <= p ) {
+			freq[j]++;
+		} 
+		}
+		else {
+		if(data[i]>a && data[i] <= p) {
+			freq[j]++;
+		} 
+		}
+	}
+	a=p;
+	if(j== (bins-1))
+		p = b;
+	else
+ 		p=p+step;	
+	}
+	for( i=data_min, j=0;j<bins;i=i+step,j++) {
+		plotdata.push([i,freq[j]/size]);
+	}
+
+	options= {
+		xaxis: {min: data_min, max: b},
+		yaxis: {min: 0, max: 1},
+		series: {
+		bars: { show:true, barWidth: step, lineWidth: 2}
+		}
+	};
+	$.plot($(plot_container), [{data: plotdata, color: 'rgb(100,200,156)'}], options);
+	
+
+};
+
+/* 
+plot function that is being called with a plot id, distribution,sample x and the options.
+If wants to plot a data series and not a distribution, pass the second parameter as NULL.
+*/
 jStat.plot = function(id, distribution, x, options ,nop) {
   
   if (!( this instanceof arguments.callee )) {
@@ -12,7 +69,7 @@ jStat.plot = function(id, distribution, x, options ,nop) {
         this._showCDF = false;
         this._maxY = 1;
         this._plotType = 'line';    // line, point, both
-        this._fill = false;
+        this._fill = false;		// true, false
 	this._min = 0;
 	this._max = 1.0;
 	this.nop = 100;
@@ -22,20 +79,21 @@ jStat.plot = function(id, distribution, x, options ,nop) {
 	  this._options = options;
 	else
 	  this._options = {
-		yaxis: { min: 0.0}
-	};
+	  };
 	if(nop!=null)
 		this.nop = nop;
 	
 	if( distribution != null) {
 	this.setDistribution(distribution,x);
 	}
+	else 
+	{
+		$.plot($(this._container),x,this._options);
+	}	
+
 	
 
 };
-
-
-
 
 
 jStat.extend(jStat.plot, {
@@ -66,18 +124,14 @@ jStat.extend(jStat.plot, {
 	obj._pdfValues = obj._distribution.pdf(obj.x);
 	obj._cdfValues = obj._distribution.cdf( obj.x );
 	obj._maxY = obj._pdfValues.max();
-	obj._options = {
-	  xaxis: {min: obj._min, max: obj._max},
-	 yaxis: {
-		min: 0, 
-		max: obj._maxY}
-	};
 	
+	obj._options.xaxis = {min: obj._min, max: obj._max};
+	obj._options.yaxis = {min: 0,max: obj._maxY};
+
 	obj._pdfdata = [];
 	obj._cdfdata = [];
 
 	obj.generatedata();
-	//alert(obj._pdfdata);
 	obj.draw();
   },
  
@@ -108,15 +162,15 @@ jStat.extend(jStat.plot, {
                     yaxis: 1,
                     data:obj._pdfdata,
                     color: 'rgb(237,194,64)',
-                    clickable: false,
-                    hoverable: false,
+                    clickable: true,
+                    hoverable: true,
                     label: "PDF"
                 }, {
                     yaxis: 2,
                     data:obj._cdfdata,
-                    clickable: false,
+                    clickable: true,
                     color: 'rgb(175,216,248)',
-                    hoverable: false,
+                    hoverable: true,
                     label: "CDF"
                 }]);
 		obj._maxY = Math.max(obj._cdfValues.max(), obj._pdfValues.max());		
@@ -128,9 +182,9 @@ jStat.extend(jStat.plot, {
    else if(obj._showPDF) {
                 obj.setData([{
                     data:obj._pdfdata,
-                    hoverable: false,
+                    hoverable: true,
                     color: 'rgb(237,194,64)',
-                    clickable: false,
+                    clickable: true,
                     label: "PDF"
                 }]);
 		    obj._maxY = obj._pdfValues.max();
@@ -142,9 +196,9 @@ jStat.extend(jStat.plot, {
     else if(obj._showCDF) {
                 obj.setData([{
                     data:obj._cdfdata,
-                    hoverable: false,
+                    hoverable: true,
                     color: 'rgb(237,194,64)',
-                    clickable: false,
+                    clickable: true,
                     label: "CDF"
                 }]);
 		    obj._maxY = obj._cdfValues.max();

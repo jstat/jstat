@@ -7,9 +7,63 @@ jStat.extend({
 
 });
 
+// The general cost function for optimising a function. It has methods value and gradf.
+jStat.fnc = function() {
+		if (!( this instanceof arguments.callee )) return new jStat.fnc();
+};
 
-jStat.test = function( inputs, opt_method, options) {
+jStat.extend(jStat.fnc,{
 
+	// Rosenbrock Function
+	value: 	function(params, obj) {
+		var x = params[0];
+		var y = params[1];
+		return jStat.sq(1-x) + 100*jStat.sq(y-jStat.sq(x));
+	},
+
+	gradf: function(params,  obj) {
+		var x = params[0];
+		var y = params[1];
+		var del = 0.00001;
+		var fx = (obj.value([x+del,y]) - obj.value([x-del,y]))/(2*del);
+		var fy = (obj.value([x,y+del]) - obj.value([x,y-del]))/(2*del);
+		return [fx,fy];
+
+	}
+
+
+});
+
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.fnc.prototype[ item ] = function( x ) {
+			    return jStat.fnc[ item ]( x, this);
+		};
+	})( vals[ item ]);
+})( 'value gradf'.split( ' ' ));
+
+
+jStat.optimiser = function(inputs, opt_method) {
+		var par1 = inputs[0];
+		var par2 = inputs[1];
+		var f = new jStat.fnc();
+		if(opt_method == "Nelder-Mead")
+		{
+		var optim_params = new jStat.optim(jStat([[par1,par2],[0.1,0.3],[0.3,0.9]]),f, opt_method);
+		}
+		else if(opt_method == "SCG")
+		{
+		var optim_params = new jStat.optim([par1,par2], f, opt_method);
+		}
+
+		return optim_params;	
+
+};
+
+
+jStat.elicitate = function( inputs, opt_method, options) {
+
+// Getting Parameters for Normal Distribution
 var c = new jStat.cost(inputs, 'normal');
 var par1 = c.median;
 var par2 = ((c.upper-c.lower)/(2*0.6744898));
@@ -20,6 +74,7 @@ var normal_params = new jStat.optim(jStat([[par1,par2],[0.1,0.3],[0.3,0.9]]),c, 
 else
 var normal_params = new jStat.optim([par1,par2], c, opt_method, options);
 
+// Getting Parameters for Beta Distribution
 c.distribution = 'beta';
 m1 = (c.median - c.lb)/(c.ub-c.lb);
 v1 = v/jStat.sq((c.upper - c.lower));
@@ -35,6 +90,7 @@ var beta_params = new jStat.optim(jStat([[par1, par2],[0.1,0.2],[0.3,0.1]]),c, o
 else
 var beta_params = new jStat.optim([par1,par2], c, opt_method, options);
 
+// Getting Parameters for Gamma Distribution
 c.distribution = 'gamma';
 par1 = jStat.sq(c.median)/v;
 par2 = v/m;
@@ -43,6 +99,7 @@ var gamma_params = new jStat.optim(jStat([[par1, par2],[0.1,0.2],[0.3,0.1]]),c, 
 else
 var gamma_params = new jStat.optim([par1,par2], c, opt_method, options);
 
+// Getting Parameters for LogNormal Distribution
 c.distribution = 'lognormal';
 par1 = Math.log(c.median);
 par2 = (Math.log(c.upper) - Math.log(c.lower))/(2*0.6744898);
@@ -51,12 +108,10 @@ var lnormal_params = new jStat.optim(jStat([[par1, par2],[0.1,0.2],[0.3,0.1]]),c
 else
 var lnormal_params = new jStat.optim([par1,par2], c, opt_method, options);
 
-//c.distribution = "studentt";
-//par1 = m;
-//par2 = v;
-//var studentt_params = new jStat.optim(jStat([[par1, par2],[0.1,0.2],[0.3,0.1]]),c, opt_method, options);
-
-//return [normal_params, beta_params, gamma_params, lnormal_params];
+/*c.distribution = "studentt";
+par1 = m;
+par2 = v;
+var studentt_params = new jStat.optim(jStat([[par1, par2],[0.1,0.2],[0.3,0.1]]),c, opt_method, options);*/
 
 //Finding Best Fit
 var min_dist = Math.min(normal_params.funcvalue,Math.min(beta_params.funcvalue, Math.min(gamma_params.funcvalue,lnormal_params.funcvalue)));
@@ -93,7 +148,7 @@ jStat.return_obj = function() {
 			this.dname=null;
 };			
 
-
+// Cost function for elicitating the distribution of unknown variable.
 jStat.cost = function(inputs, dist) {
 	if (!( this instanceof arguments.callee )) return new jStat.cost( inputs , dist);
 	this.lb = inputs[0]
@@ -107,6 +162,9 @@ jStat.cost = function(inputs, dist) {
 jStat.extend(jStat.cost, {
 
 	value: function ( params, obj) {
+		
+		var x = params[0];
+		var y= params[1];
 
 		if(params.length == 2) {
 			var param1 = params[0], param2 = params[1];
@@ -124,9 +182,10 @@ jStat.extend(jStat.cost, {
 				_dist = jStat.lognormal(param1, param2);
 			}
 		}
-		//else if(obj.distribution == "studentt") {
-		//	_dist = jStat.studentt(param1);
-		//}
+		
+		/*else if(obj.distribution == "studentt") {
+			_dist = jStat.studentt(param1);
+		}*/
 		sum = 0.0;
 		sum += (jStat.sq((_dist.cdf(obj.lb) - 0.0)) + jStat.sq(_dist.cdf(obj.lower) - 0.25) + jStat.sq(_dist.cdf(obj.median) - 0.50) + jStat.sq(_dist.cdf(obj.upper) - 0.75) + jStat.sq((_dist.cdf(obj.ub) - 1.0)));
 		return sum;
@@ -155,7 +214,7 @@ jStat.extend(jStat.cost, {
 
 
 jStat.optim = function( params, func, opt_method, options ) {
-	if (!( this instanceof arguments.callee )) return new jStat.cost( params, func, opt_method, options);
+	if (!( this instanceof arguments.callee )) return new jStat.optim( params, func, opt_method, options);
 	this.params = params;
 	this.func = func;
 	this.opt_method = opt_method;
@@ -273,13 +332,11 @@ jStat.extend(jStat.optim, {
 				var gradf =obj.func.gradf;
 				var sigma0 = Math.exp(-4);
 				var fold = obj.func.value(obj.params);
-				//alert(fold);
 				var fnow = fold;
 				var x = (obj.params);
 				var gradnew = obj.func.gradf(x);
 				var gradold = gradnew;
 				var d = jStat.vec_mult(gradnew,-1);
-				//alert(gradnew),alert(d);
 				var success = 1, nsuccess = 0, beta = 1.0, betamin = Math.exp(-15), betamax = Math.exp(100), j = 1;
 				var mu, kappa, sigma, theta,delta, alpha, Delta, gamma;
 				var xplus = [], gplus = [], xnew = [], fnew = [];
@@ -307,14 +364,11 @@ jStat.extend(jStat.optim, {
 						theta = jStat.dot(d,jStat.vec_sub(gplus, gradnew))/sigma;
 					}
 					delta = theta + beta*kappa;
-					//alert(gplus);
-				//	alert(mu),alert(kappa),alert(sigma),alert(xplus),alert(gplus),alert(theta),alert(delta);
 					if(delta <= 0) {
 						delta = beta*kappa;
 						beta = beta - theta/kappa;
 					}
 					alpha = - mu/delta;
-				//	alert(alpha);
 					xnew = [x[0] + jStat.vec_mult(d, alpha)[0], x[1]+jStat.vec_mult(d,alpha)[1]];
 					fnew = obj.func.value(xnew);
 					result.funclog.push(fnew);
@@ -331,10 +385,9 @@ jStat.extend(jStat.optim, {
 						success = 0;
 						fnow = fold;
 					}
-				//	alert(xnew),alert(fnew),alert(Delta);
+
 					if( success == 1) {
 						if(Math.abs(jStat.norm(jStat.vec_mult(d,alpha))) < 0.0001 && Math.abs(fnew - fold) < 0.0001) {
-							alert(xnew);
 							result.funcvalue = fnew;
 							result.param = xnew;
 							return result;
@@ -344,12 +397,10 @@ jStat.extend(jStat.optim, {
 							gradold = gradnew;
 							gradnew = obj.func.gradf( x );
 							if( jStat.dot(gradnew,gradnew) == 0) {
-								alert(xnew);
 								result.funcvalue = fnew;
 								result.param = xnew;
 								return result;
 							}
-							//alert(gradnew);
 						}
 					}
 
@@ -358,16 +409,12 @@ jStat.extend(jStat.optim, {
 					if( Delta > 0.75)
 						beta = Math.max(0.5*beta, betamin);
 
-				//	alert(beta);
-
 					if(success == 1) {
 						gamma = jStat.dot(jStat.vec_sub(gradold, gradnew),gradnew)/mu;
 						d = jStat.vec_sub(jStat.vec_mult(d, gamma), gradnew);
 					}
-				//	alert(d);
 					j++;
 				}
-				//alert(j);
 				result.param = x;
 				result.funcvalue = obj.func.value(x);
 				return result; 
