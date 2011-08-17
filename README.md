@@ -41,6 +41,8 @@ Then, to get a complete, minified, jslinted version of jStat, simply `cd` to the
 
 The built version of jStat will be put in the `dist/` subdirectory.
 
+Generate just the documentation by running `make doc`. Documentation will be placed in `dist/docs` by default.
+
 To remove all built files, run `make clean`.
 
 
