@@ -2,7 +2,15 @@ var JSHINT = require("./lib/jshint").JSHINT,
 	print = require("sys").print,
 	src = require("fs").readFileSync("dist/jstat.js", "utf8");
 
-JSHINT(src, { curly : false, forin : true, laxbreak : true, maxerr : 100, newcap : false, undef : true });
+JSHINT(src, {
+	browser: true,
+	curly : false,
+	forin : true,
+	laxbreak : true,
+	maxerr : 1000,
+	newcap : false,
+	undef : true
+});
 
 var ok = {
 	"The body of a for in should be wrapped in an if statement to filter unwanted properties from the prototype." : true,
