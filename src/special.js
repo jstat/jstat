@@ -12,11 +12,10 @@ jStat.extend({
 				-1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5
 			],
 			xx, y, tmp, ser;
-		y = xx = x;
-		tmp = xx + 5.5;
+		tmp = ( y = xx = x ) + 5.5;
 		tmp -= ( xx + 0.5 ) * Math.log( tmp );
 		ser = 1.000000000190015;
-		for( ; j < 5; j++ ) ser += cof[j] / ++y;
+		for( ; j < 6; j++ ) ser += cof[j] / ++y;
 		return Math.log( 2.5066282746310005 * ser / xx) - tmp;
 	},
 

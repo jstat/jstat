@@ -16,7 +16,10 @@ BASE_FILES = ${SRC_DIR}/core.js\
 JS = ${DIST_DIR}/jstat.js
 JS_MIN = ${DIST_DIR}/jstat.min.js
 
-all: update_submodules core
+DOC_DIR = doc
+DOC_LIST = `ls ${DOC_DIR}/md/`
+
+all: update_submodules core doc
 
 core: jstat min lint
 	@@echo "jStat build complete."
@@ -28,18 +31,26 @@ jstat: ${JS}
 
 ${JS}: ${DIST_DIR}
 	@@echo "Building" ${JS}
-
 	@@cat ${BASE_FILES} > ${JS}
 
 lint: jstat
 	@@if test ! -z ${JS_ENGINE}; then \
 		echo "Checking jStat against JSHint..."; \
-		${JS_ENGINE} build/jshint-check.js; \
+		${JS_ENGINE} ${BUILD_DIR}/jshint-check.js; \
 	else \
 		echo "You must have NodeJS installed in order to test jStat against JSHint."; \
 	fi
 
 min: jstat ${JS_MIN}
+
+doc:
+	@@echo 'Generating documentation...'
+	@@mkdir -p ${DIST_DIR}/docs/assets
+	@@cp ${DOC_DIR}/assets/*.css ${DIST_DIR}/docs/assets/
+	@@cp ${DOC_DIR}/assets/*.js ${DIST_DIR}/docs/assets/
+	@@for i in ${DOC_LIST}; do \
+		${JS_ENGINE} ${BUILD_DIR}/doctool.js ${DOC_DIR}/assets/template.html ${DOC_DIR}/md/$${i} ${DIST_DIR}/docs/$${i%.*}.html; \
+	done
 
 ${JS_MIN}: ${JS}
 	@@if test ! -z ${JS_ENGINE}; then \
@@ -56,4 +67,4 @@ clean:
 pull: pull_submodules
 	@@git pull ${REMOTE} ${BRANCH}
 
-.PHONY: all jstat lint min clean update_submodules pull_submodules pull core
+.PHONY: all jstat lint min doc clean update_submodules pull_submodules pull core
