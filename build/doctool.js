@@ -105,7 +105,7 @@ if (argc > 3) {
 		data = loadIncludes(data, filename);
 		// go markdown.
 		html = convertData(data);
-		filename = path.basename(filename, '.markdown');
+		filename = path.basename(filename, '.md');
 
 		if (filename != "_toc" && filename != "index") {
 			if (data) {
