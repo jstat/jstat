@@ -30,6 +30,7 @@ function Makeham(c, g, s) {
  * @constructor
  */
 Makeham.prototype.serie = function(size, x0, l0) {
+	if(l0==undefined) l0=1;
   var k = l0/Math.pow(this.g, Math.pow(this.c,x0));
 	var res = [l0];
 	var si = 1;
