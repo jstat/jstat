@@ -244,8 +244,8 @@ jStat.extend( jStat.fn, {
 	},
 
 	// map a function to a matrix or vector
-	map : function( func ) {
-		return jStat( jStat.map( this, func ));
+	map : function( func, toAlter ) {
+		return jStat( jStat.map( this, func, toAlter ));
 	},
 
 	// destructively alter an object
