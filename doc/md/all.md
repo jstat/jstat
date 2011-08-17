@@ -1,5 +1,5 @@
 @include overview.md
-@include Core-Functionality.md
-@include Distributions.md
-@include Flot-Integration.md
-@include Special-Functions.md
+@include core.md
+@include distributions.md
+@include special-functions.md
+@include flot-integration.md
