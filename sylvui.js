@@ -24,26 +24,28 @@ function execute() {
 	var cmd = document.getElementById("consoleIn");
 	$("#consoleOut"+print.nb).before('<div id="consoleOut'+(++print.nb)+'"></div>');
 	sylv.ui.print("<hr/>", false);
-	print(eval(cmd.value));
-	historyNav.buff[historyNav.buff.length-1]=cmd.value;
-	cmd.value = "";
+	try {
+		print(eval(consoleIn.getValue()));
+	} catch(e) {
+		print("<span style='color:red'>"+e+"</span>");
+	};
+	historyNav.buff[historyNav.buff.length-1]=consoleIn.getValue();
+	consoleIn.setValue("");
 	historyNav.buff.push("");
 	historyNav.pos = historyNav.buff.length-1;
 };
-function historyNav(e) {
-	switch(e.keyCode) {
+function historyNav(inst, e) {
+	if(e.shiftKey && e.type=="keydown") switch(e.keyCode) {
 		case 38:
-			var cmd = document.getElementById("consoleIn");
-			if(historyNav.pos==historyNav.buff.length-1) historyNav.buff[historyNav.pos]=cmd.value;
+			if(historyNav.pos==historyNav.buff.length-1) historyNav.buff[historyNav.pos]=consoleIn.getValue();
 			historyNav.pos--;
 			if(historyNav.pos<0) historyNav.pos=0;
-			cmd.value = historyNav.buff[historyNav.pos];
+			consoleIn.setValue(historyNav.buff[historyNav.pos]);
 			break;
 		case 40:
-			var cmd = document.getElementById("consoleIn");
 			historyNav.pos++;
 			if(historyNav.pos>historyNav.buff.length-1) historyNav.pos=historyNav.buff.length-1;
-			cmd.value = historyNav.buff[historyNav.pos];
+			consoleIn.setValue(historyNav.buff[historyNav.pos]);
 			break;
 	};
 };
@@ -74,3 +76,14 @@ function onResize() {
 	$("#consoleOut*").width(windowWidth);
 };
 $(window).resize(onResize);
+
+$(document).ready(function() {
+	consoleIn = CodeMirror.fromTextArea(document.getElementById("consoleIn"), {
+		indentWithTabs: true,
+		mode:  "javascript",
+		matchBrackets: true,
+		onKeyEvent: historyNav,
+		theme: "default"
+	});
+	onResize();
+});
