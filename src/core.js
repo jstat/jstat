@@ -285,13 +285,18 @@ jStat.extend({
 	
 	// map a function to a matrix or vector
 	map : function( arr, func, toAlter ) {
-		var len = arr.length,
+		if ( !isArray( arr[0] )) arr = [ arr ];
+		var row = 0,
+			nrow = arr.length,
+			ncol = arr[0].length,
 			res = toAlter ? arr : [],
-			i = 0;
-		for ( ; i < len; i++ )
-			if ( isArray( arr[i] )) res[i] = jStat.map( arr[i], func, toAlter );
-			else res[i] = func( arr[i], i, arr );
-		return res;
+			col;
+		for ( ; row < nrow; row++ ) {
+			if ( !res[row] ) res[row] = [];
+			for ( col = 0; col < ncol; col++ )
+				res[row][col] = func( arr[row][col], row, col );
+		}
+		return res.length === 1 ? res[0] : res;
 	},
 
 	// destructively alter an array
