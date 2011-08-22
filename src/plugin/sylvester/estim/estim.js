@@ -8,5 +8,4 @@
  *
  */
 
-sylv.loadFile("data/Csv.js");
-sylv.loadFile("data/LifeTable.js");
+require(["plugin/sylvester/estim/Kaplan-Meier", "plugin/sylvester/estim/GoldenSection", "plugin/sylvester/estim/BFGS", "plugin/sylvester/estim/Makeham"])

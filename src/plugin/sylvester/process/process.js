@@ -7,5 +7,4 @@
  *
  */
 
-sylv.loadFile("process/Black-Scholes.js");
-sylv.loadFile("process/Makeham.js");
+require(["plugin/sylvester/process/Black-Scholes", "plugin/sylvester/process/Makeham"])

@@ -1,4 +1,4 @@
-(function( jStat, jQuery ) {
+require(["core"],function() {
 
 // options:
 // - start: beginning of graph
@@ -32,4 +32,4 @@ jStat.flot = function( selector, funcs, opts ) {
 	return jQuery.plot( selector, data, opts.flotopts);
 };
 
-})( this.jStat, this.jQuery );
+});

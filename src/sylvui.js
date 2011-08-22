@@ -7,10 +7,13 @@
  *
  *
  */
-function exportAll() {
+that = this;
+require(["plugin/sylvester/sylv", "plugin/sylvester/ui/ui"], function() {
+
+that.exportAll = function() {
 	document.getElementById("consoleIn").value = sylv.ui.extractAll();
 };
-function historyNavAll() {
+that.historyNavAll = function() {
 	document.getElementById("consoleIn").value = historyNav.buff.join(";\n//////////////////////\n");
 };
 sylv.ui.print = function(val, nl) {
@@ -18,9 +21,9 @@ sylv.ui.print = function(val, nl) {
 	var cnsl = document.getElementById("consoleOut"+print.nb);
 	cnsl.innerHTML=txt.replace(/\n/g,"<br/>")+(nl?"<br/>":"")+cnsl.innerHTML; 
 };
-function print(val) {if(val) sylv.ui.print(val, true)};
+that.print = function(val) {if(val) sylv.ui.print(val, true)};
 print.nb = 0;
-function execute() {
+that.execute = function() {
 	var cmd = document.getElementById("consoleIn");
 	$("#consoleOut"+print.nb).before('<div id="consoleOut'+(++print.nb)+'"></div>');
 	sylv.ui.print("<hr/>", false);
@@ -34,7 +37,7 @@ function execute() {
 	historyNav.buff.push("");
 	historyNav.pos = historyNav.buff.length-1;
 };
-function historyNav(inst, e) {
+that.historyNav = function(inst, e) {
 	if(e.shiftKey && e.type=="keydown") switch(e.keyCode) {
 		case 38:
 			if(historyNav.pos==historyNav.buff.length-1) historyNav.buff[historyNav.pos]=consoleIn.getValue();
@@ -51,7 +54,7 @@ function historyNav(inst, e) {
 };
 historyNav.pos = 0;
 historyNav.buff = [""];
-function plot(vals, optIfNotMatrix) {
+that.plot = function(vals, optIfNotMatrix) {
 	$("#consoleOut"+print.nb).before('<div id="consoleOut'+(++print.nb)+'" style="width:'+windowWidth+'px;height:300px;"></div>');
 	if (optIfNotMatrix == undefined) {
 		var arr = jStat.fn.toArray(vals);
@@ -70,7 +73,7 @@ function plot(vals, optIfNotMatrix) {
 	};
 	return ""
 };
-function onResize() {
+that.onResize = function() {
 	windowWidth = $(window).width()-70;
 	$("#consoleIn").width(windowWidth);
 	$("#consoleOut*").width(windowWidth);
@@ -86,4 +89,6 @@ $(document).ready(function() {
 		theme: "default"
 	});
 	onResize();
+});
+
 });
