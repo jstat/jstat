@@ -1,11 +1,10 @@
 (function( jStat, Math ) {
 
-// add beta distribution object to jStat
+// add beta distribution object
 jStat.beta = function( alpha, beta ) {
 	if (!( this instanceof arguments.callee )) return new jStat.beta( alpha, beta );
 	this.alpha = alpha;
 	this.beta = beta;
-
 	for ( var i in jStat.beta.prototype ) this[i] = this[i].bind( this );
 };
 
@@ -54,7 +53,7 @@ jStat.beta.prototype.sample = function( arr ) {
 		});
 	} else {
 		return jStat.beta.sample( this.alpha, this.beta );
-	};
+	}
 };
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
@@ -73,12 +72,11 @@ jStat.beta.prototype.sample = function( arr ) {
 
 
 
-// add cauchy distribution object to jStat
+// add cauchy distribution
 jStat.cauchy = function( local, scale ) {
 	if (!( this instanceof arguments.callee )) return new jStat.cauchy( local, scale );
 	this.local = local;
 	this.scale = scale;
-
 	for ( var i in jStat.cauchy.prototype ) this[i] = this[i].bind( this );
 };
 
@@ -125,7 +123,7 @@ jStat.cauchy.prototype.sample = function( arr ) {
 		});
 	} else {
 		return jStat.cauchy.sample( this.local, this.scale );
-	};
+	}
 };
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
@@ -144,11 +142,10 @@ jStat.cauchy.prototype.sample = function( arr ) {
 
 
 
-// add chisquare distribution object to jStat
+// add chisquare distribution
 jStat.chisquare = function( dof ) {
 	if (!( this instanceof arguments.callee )) return new jStat.chisquare( dof );
 	this.dof = dof;
-
 	for ( var i in jStat.chisquare.prototype ) this[i] = this[i].bind( this );
 };
 
@@ -196,7 +193,7 @@ jStat.chisquare.prototype.sample = function( arr ) {
 		});
 	} else {
 		return jStat.chisquare.sample( this.dof );
-	};
+	}
 };
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
@@ -215,11 +212,10 @@ jStat.chisquare.prototype.sample = function( arr ) {
 
 
 
-// add exponential distribution object to jStat
+// add exponential distribution
 jStat.exponential = function( rate ) {
 	if (!( this instanceof arguments.callee )) return new jStat.exponential( rate );
 	this.rate = rate;
-
 	for ( var i in jStat.exponential.prototype ) this[i] = this[i].bind( this );
 };
 
@@ -266,7 +262,7 @@ jStat.exponential.prototype.sample = function( arr ) {
 		});
 	} else {
 		return jStat.exponential.sample( this.rate );
-	};
+	}
 };
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
@@ -285,12 +281,11 @@ jStat.exponential.prototype.sample = function( arr ) {
 
 
 
-// add gamma distribution object to jStat
+// add gamma distribution
 jStat.gamma = function( shape, scale ) {
 	if (!( this instanceof arguments.callee )) return new jStat.gamma( shape, scale );
 	this.shape = shape;
 	this.scale = scale;
-
 	for ( var i in jStat.gamma.prototype ) this[i] = this[i].bind( this );
 };
 
@@ -334,7 +329,7 @@ jStat.gamma.prototype.sample = function( arr ) {
 		});
 	} else {
 		return jStat.gamma.sample( this.shape, this.scale );
-	};
+	}
 };
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
@@ -353,12 +348,11 @@ jStat.gamma.prototype.sample = function( arr ) {
 
 
 
-// add kumaraswamy distribution object to jStat
+// add kumaraswamy distribution
 jStat.kumaraswamy = function( alpha, beta ) {
 	if (!( this instanceof arguments.callee )) return new jStat.kumaraswamy( alpha, beta );
 	this.alpha = alpha;
 	this.beta = beta;
-
 	for ( var i in jStat.kumaraswamy.prototype ) this[i] = this[i].bind( this );
 };
 
@@ -406,12 +400,11 @@ jStat.extend( jStat.kumaraswamy, {
 
 
 
-// add lognormal distribution object to jStat
+// add lognormal distribution
 jStat.lognormal = function( mu, sigma ) {
 	if (!( this instanceof arguments.callee )) return new jStat.lognormal( mu, sigma );
 	this.mu = mu;
 	this.sigma = sigma;
-
 	for ( var i in jStat.lognormal.prototype ) this[i] = this[i].bind( this );
 };
 
@@ -458,7 +451,7 @@ jStat.lognormal.prototype.sample = function( arr ) {
 		});
 	} else {
 		return jStat.lognormal.sample( this.mu, this.sigma );
-	};
+	}
 };
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
@@ -477,12 +470,11 @@ jStat.lognormal.prototype.sample = function( arr ) {
 
 
 
-// add normal distribution object to jStat
+// add normal distribution
 jStat.normal = function( mean, std ) {
 	if (!( this instanceof arguments.callee )) return new jStat.normal( mean, std );
 	this.mean = mean;
 	this.std = std;
-
 	for ( var i in jStat.normal.prototype ) this[i] = this[i].bind( this );
 };
 
@@ -529,7 +521,7 @@ jStat.normal.prototype.sample = function( arr ) {
 		});
 	} else {
 		return jStat.normal.sample( this.mean, this.std );
-	};
+	}
 };
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
@@ -548,12 +540,11 @@ jStat.normal.prototype.sample = function( arr ) {
 
 
 
-// add pareto distribution object to jStat
+// add pareto distribution
 jStat.pareto = function( scale, shape ) {
 	if (!( this instanceof arguments.callee )) return new jStat.pareto( scale, shape );
 	this.scale = scale;
 	this.shape = shape;
-
 	for ( var i in jStat.pareto.prototype ) this[i] = this[i].bind( this );
 };
 
@@ -602,11 +593,10 @@ jStat.extend( jStat.pareto, {
 
 
 
-// add studentt distribution object to jStat
+// add studentt distribution
 jStat.studentt = function( dof ) {
 	if (!( this instanceof arguments.callee )) return new jStat.studentt( dof );
 	this.dof = dof;
-
 	for ( var i in jStat.studentt.prototype ) this[i] = this[i].bind( this );
 };
 
@@ -656,7 +646,7 @@ jStat.studentt.prototype.sample = function( arr ) {
 		});
 	} else {
 		return jStat.studentt.sample( this.dof );
-	};
+	}
 };
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
@@ -675,12 +665,11 @@ jStat.studentt.prototype.sample = function( arr ) {
 
 
 
-// add weibull distribution object to jStat
+// add weibull distribution
 jStat.weibull = function( scale, shape ) {
 	if (!( this instanceof arguments.callee )) return new jStat.weibull( scale, shape );
 	this.scale = scale;
 	this.shape = shape;
-
 	for ( var i in jStat.weibull.prototype ) this[i] = this[i].bind( this );
 };
 
@@ -727,7 +716,7 @@ jStat.weibull.prototype.sample = function( arr ) {
 		});
 	} else {
 		return jStat.weibull.sample( this.scale, this.shape );
-	};
+	}
 };
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
@@ -746,12 +735,11 @@ jStat.weibull.prototype.sample = function( arr ) {
 
 
 
-// add uniform distribution object to jStat
+// add uniform distribution
 jStat.uniform = function( a, b ) {
 	if (!( this instanceof arguments.callee )) return new jStat.uniform( a, b );
 	this.a = a;
 	this.b = b;
-
 	for ( var i in jStat.uniform.prototype ) this[i] = this[i].bind( this );
 };
 
@@ -766,7 +754,7 @@ jStat.extend( jStat.uniform, {
 			return 0;
 		} else if ( x < b ) {
 			return ( x - a ) / ( b - a );
-		};
+		}
 		return 1;
 	},
 
@@ -799,7 +787,7 @@ jStat.uniform.prototype.sample = function( arr ) {
 		});
 	} else {
 		return jStat.uniform.sample( this.a, this.b );
-	};
+	}
 };
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
@@ -818,112 +806,202 @@ jStat.uniform.prototype.sample = function( arr ) {
 
 
 
+// add uniform distribution in terms of mean and standard deviation
+jStat.uniformmv = function( m, s ) {
+	if (!( this instanceof arguments.callee )) return new jStat.uniformmv( m, s );
+	this.m = m;
+	this.s = s;
+	for ( var i in jStat.uniformmv.prototype ) this[i] = this[i].bind( this );
+};
 
-
-
-// all these still need to be implemented as their own instance methods
-jStat.extend({
-
-	// uniform distribution in terms of mean and standard dev
-	uniformmv : {
-		pdf : function( x, m, s ) {
-			var sqrtt = Math.sqrt( -3 );
-			return ( -s * sqrtt <= x - m || x - m <= s * sqrtt )
-				? 1 / ( 2 * s * sqrtt )
-			: 0;
-		},
-
-		cdf : function( x, m, s ) {
-			var sqrtt = Math.sqrt( -3 );
-			return ( x - m < -s * sqrtt )
-				? 0
-			: ( x - m >= s * sqrtt )
-				? 1
-			: 0.5 * (( x - m ) / ( s * sqrtt ) + 1 );
-		}
+// extend uniform function with static methods
+jStat.extend( jStat.uniformmv, {
+	pdf : function( x, m, s ) {
+		var sqrtt = Math.sqrt( -3 );
+		return ( -s * sqrtt <= x - m || x - m <= s * sqrtt )
+			? 1 / ( 2 * s * sqrtt )
+		: 0;
 	},
 
-	binomial : {
-		pdf : function( k, n, p ) {
-			return jStat.combination( n, k ) * Math.pow( p, k ) * Math.pow( 1 - p, n - k );
-		},
-
-		cdf : function( x, n, p ) {
-			var binomarr = [],
-				k = 0,
-				i = 0,
-				sum = 0;
-			if ( x < 0 ) {
-				return 0;
-			};
-			if ( x < n ) {
-				for ( ; k < n; k++ ) {
-					binomarr[ k ] = jStat.binomial( k, n, p );
-				};
-				for ( ; i <= x; i++ ) {
-					sum += binomarr[ i ];
-				};
-				return sum;
-			};
-			return 1;
-		}
-	},
-
-	negbin : {
-		pdf : function( k, r, p ) {
-			return k !== k | 0
-				? false
-			: k < 0
-				? 0
-			: jStat.combination( k + r - 1, k ) * Math.pow( 1 - p, r ) * Math.pow( p, k );
-		},
-
-		cdf : function( x, r, p ) {
-			var sum = 0,
-				k = 0;
-			if ( x < 0 ) return 0;
-			for ( ; k <= x; k++ ) {
-				sum += jStat.negbin( k, r, p );
-			};
-			return sum;
-		}
-	},
-
-	hypgeom : {
-		pdf : function( k, N, m, n ) {
-			return k !== k | 0
-				? false
-			: ( k < 0)
-				? 0
-			: jStat.combination( m, k ) * jStat.combination( N - m , n - k ) / jStat.combination( N, n );
-		},
-
-		cdf : function( x, N, m, n ) {
-			var sum = 0,
-				k = 0;
-			if ( x < 0 ) return 0;
-			for ( ; k <= x; k++ ) {
-				sum += jStat.hypgeom( k, N, m, n );
-			};
-			return sum;
-		}
-	},
-
-	poisson : {
-		pdf : function( k, l ) {
-			return Math.pow( l, k ) * Math.exp( -l ) / jStat.factorial( k );
-		},
-
-		cdf : function( x, l ) {
-			var sum = 0,
-				k = 0;
-			if ( x < 0 ) return 0;
-			for ( ; k <= x; k++ ) {
-				sum += jStat.poisson( k, l );
-			};
-			return sum;
-		}
+	cdf : function( x, m, s ) {
+		var sqrtt = Math.sqrt( -3 );
+		return ( x - m < -s * sqrtt )
+			? 0
+		: ( x - m >= s * sqrtt )
+			? 1
+		: 0.5 * (( x - m ) / ( s * sqrtt ) + 1 );
 	}
 });
+
+// extend uniformmv prototype
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.uniformmv.prototype[ item ] = function( x ) {
+			return jStat.uniformmv[ item ]( x, this.m, this.s );
+		};
+	})( vals[ item ]);
+})( 'pdf cdf'.split( ' ' ));
+
+
+
+// add binomial distribution
+jStat.binomial = function( n, p ) {
+	if (!( this instanceof arguments.callee )) return new jStat.binomial( n, p );
+	this.n = n;
+	this.p = p;
+	for ( var i in jStat.binomial.prototype ) this[i] = this[i].bind( this );
+};
+
+// extend uniform function with static methods
+jStat.extend( jStat.binomial, {
+	pdf : function( k, n, p ) {
+		return jStat.combination( n, k ) * Math.pow( p, k ) * Math.pow( 1 - p, n - k );
+	},
+
+	cdf : function( x, n, p ) {
+		var binomarr = [],
+			k = 0,
+			i = 0,
+			sum = 0;
+		if ( x < 0 ) {
+			return 0;
+		}
+		if ( x < n ) {
+			for ( ; k < n; k++ ) {
+				binomarr[ k ] = jStat.binomial( k, n, p );
+			}
+			for ( ; i <= x; i++ ) {
+				sum += binomarr[ i ];
+			}
+			return sum;
+		}
+		return 1;
+	}
+});
+
+// extend binomial prototype
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.binomial.prototype[ item ] = function( x ) {
+			return jStat.binomial[ item ]( x, this.n, this.p );
+		};
+	})( vals[ item ]);
+})( 'pdf cdf'.split( ' ' ));
+
+
+
+// add negative binomial distribution
+jStat.negbin = function( r, p ) {
+	if (!( this instanceof arguments.callee )) return new jStat.negbin( r, p );
+	this.r = r;
+	this.p = p;
+	for ( var i in jStat.negbin.prototype ) this[i] = this[i].bind( this );
+};
+
+// extend uniform function with static methods
+jStat.extend( jStat.negbin, {
+	pdf : function( k, r, p ) {
+		return k !== k | 0
+			? false
+		: k < 0
+			? 0
+		: jStat.combination( k + r - 1, k ) * Math.pow( 1 - p, r ) * Math.pow( p, k );
+	},
+
+	cdf : function( x, r, p ) {
+		var sum = 0,
+			k = 0;
+		if ( x < 0 ) return 0;
+		for ( ; k <= x; k++ ) {
+			sum += jStat.negbin( k, r, p );
+		}
+		return sum;
+	}
+});
+
+// extend binomial prototype
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.negbin.prototype[ item ] = function( x ) {
+			return jStat.negbin[ item ]( x, this.r, this.p );
+		};
+	})( vals[ item ]);
+})( 'pdf cdf'.split( ' ' ));
+
+
+
+// add hypergeometric distribution
+jStat.hypgeom = function( N, m, n ) {
+	if (!( this instanceof arguments.callee )) return new jStat.hypgeom( N, m, n );
+	this.N = N;
+	this.m = m;
+	this.n = n;
+	for ( var i in jStat.hypgeom.prototype ) this[i] = this[i].bind( this );
+};
+
+// extend uniform function with static methods
+jStat.extend( jStat.hypgeom, {
+	pdf : function( k, N, m, n ) {
+		return k !== k | 0
+			? false
+		: ( k < 0)
+			? 0
+		: jStat.combination( m, k ) * jStat.combination( N - m , n - k ) / jStat.combination( N, n );
+	},
+
+	cdf : function( x, N, m, n ) {
+		var sum = 0,
+			k = 0;
+		if ( x < 0 ) return 0;
+		for ( ; k <= x; k++ ) {
+			sum += jStat.hypgeom( k, N, m, n );
+		}
+		return sum;
+	}
+});
+
+// extend hypgeom prototype
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.hypgeom.prototype[ item ] = function( x ) {
+			return jStat.hypgeom[ item ]( x, this.N, this.m, this.n );
+		};
+	})( vals[ item ]);
+})( 'pdf cdf'.split( ' ' ));
+
+
+
+// add poisson distribution
+jStat.poisson = function( l ) {
+	if (!( this instanceof arguments.callee )) return new jStat.poisson( l );
+	this.l = l;
+	for ( var i in jStat.poisson.prototype ) this[i] = this[i].bind( this );
+};
+
+// extend uniform function with static methods
+jStat.extend( jStat.poisson, {
+	pdf : function( k, l ) {
+		return Math.pow( l, k ) * Math.exp( -l ) / jStat.factorial( k );
+	},
+
+	cdf : function( x, l ) {
+		var sum = 0,
+			k = 0;
+		if ( x < 0 ) return 0;
+		for ( ; k <= x; k++ ) {
+			sum += jStat.poisson( k, l );
+		}
+		return sum;
+	}
+});
+
+// extend poisson prototype
+(function( vals ) {
+	for ( var item in vals ) (function( item ) {
+		jStat.poisson.prototype[ item ] = function( x ) {
+			return jStat.poisson[ item ]( x, this.l );
+		};
+	})( vals[ item ]);
+})( 'pdf cdf'.split( ' ' ));
 
 })( this.jStat, Math );
