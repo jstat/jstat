@@ -84,7 +84,7 @@ jStat.extend({
 	
 	// lower incomplete gamma function P(a,x)
 	gammap : function( x,a) {
-	  if( isNaN( x)) {
+	  if( x instanceof jStat ) {
 	    return x.map(function ( value ) { return jStat.gammap(value, a); } );
 	  }
 
@@ -202,7 +202,7 @@ jStat.extend({
 
 	// Returns the error function erf(x)
 	erf : function( x ) {
-		if( isNaN( x ) ) {
+	  if( x instanceof jStat ) {
 			// run for all values in matrix
 			return x.map( function( value ) {return jStat.erf( value );} );
 		}
@@ -258,7 +258,7 @@ jStat.extend({
 
 	// Returns the complmentary error function erfc(x)
 	erfc : function( x ) {
-		if( isNaN( x ) ) {
+	  if( x instanceof jStat ) {
 			// run for all values in matrix
 			return x.map( function( value ) {return jStat.erfc( value );} );
 		}
@@ -268,7 +268,7 @@ jStat.extend({
 
 	// Returns the inverse of the complementary error function
 	erfcinv : function( p ) {
-		if( isNaN( p ) ) {
+	  if( x instanceof jStat ) {
 			return p.map( function( value ) {return jStat.erfcinv( value );} );
 		}
 
@@ -294,7 +294,7 @@ jStat.extend({
 	// Returns the inverse of the incomplete beta function
 	incompleteBetaInv : function( p, a, b ) {
 
-		if( isNaN( p ) ) {
+	  if( x instanceof jStat ) {
 			// run for all values in matrix
 			return x.map( function( value ) {return jStat.incompleteBetaInv( value, a, b );} );
 		}
@@ -338,7 +338,7 @@ jStat.extend({
 	// Returns the incomplete beta function I_x(a,b)
 	incompleteBeta : function( x, a, b ) {
 
-		if( isNaN( x ) ) {
+	  if( x instanceof jStat ) {
 			// run for all values in matrix
 			return x.map( function( value ) {return jStat.incompleteBeta( value, a, b );} );
 		}
