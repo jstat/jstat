@@ -3,15 +3,16 @@
 jStat.histogram = function(plot_container,data, bins) {
 
 	plot_container = "#" + plot_container;
-	var size = data.length;	
-	var data_min = jStat.min(data);
-	var a = data_min;
-	var b = jStat.max(data);
-	var step = (b-a)/bins;
-	var i,j,p;
-	var freq=[];
-	var plotdata= [];
-	var options;
+	var size = data.length,
+	data_min = jStat.min(data),
+	a = data_min,
+	b = jStat.max(data),
+	step = (b-a)/bins,
+	i,j,p,
+	freq = [],
+	plotdata= [],
+	options;
+	
 	for(j = 0;j<bins;j++)
 		freq[j]=0;
 	
@@ -117,7 +118,7 @@ jStat.extend(jStat.plot, {
 	    obj._min = 0.0;
 	    obj._max = 0.998999999;
 	  }
-	if(x== null)
+	if(x == null)
 		obj.x = jStat( jStat.seq( obj._min, obj._max, obj.nop) );
 	else
 		obj.x = x;
@@ -139,6 +140,7 @@ jStat.extend(jStat.plot, {
   	var nrow = obj.x.rows(),
 	ncol = obj.x.cols(),
 	row_cnt = 0;
+
 	for( ; row_cnt < nrow ; row_cnt++ ) {
 	  for ( var col_cnt = 0; col_cnt < ncol; col_cnt++ ) {
 	if(obj._pdfValues[row_cnt][col_cnt] != Infinity ) {
@@ -214,8 +216,9 @@ jStat.extend(jStat.plot, {
  setType: function(type, obj) {
   
 	obj._plotType = type;
-        var lines = {};
-        var points = {};
+        var lines = {},
+        points = {};
+
         if(obj._plotType == 'lines') {
             lines.show = true;
             points.show = false;
