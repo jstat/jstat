@@ -20,15 +20,15 @@ function GoldenSection(x0, x1, fct) {
 	this.f = fct;
 	this.x0 = x0;
 	this.x1 = x1;
-	this.phi = (1+Maht.sqrt(5))/2;
-	this.x2 = x0+(x1-x0)/(1+this.phi);
+	this.phi = 1/(1+(1+Math.sqrt(5))/2);
+	this.x2 = x0+(x1-x0)*this.phi;
 	this.a = this.x2
 	this.fa = fct(this.a);
 };
 
 // Calculate the next step and return the value of the function at the new point.
 GoldenSection.prototype.nextStep = function() {
-	var x = this.x2+this.phi*(this.x2-this.x1);
+	var x = this.x2+this.phi*(this.x1-this.x2);
 	var fa = this.f(x);
 	if(fa<this.fa) {
 		this.fa = fa;

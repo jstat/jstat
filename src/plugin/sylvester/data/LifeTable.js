@@ -41,7 +41,7 @@ LifeTable.prototype.setL = function(L) {
 	this.Q = [];
 	for (var i = 1; i < L.length; i++) {
 	  this.P.push(this.L[i]/this.L[i-1]);
-	  this.Q.push(1-this.P[i]);
+	  this.Q.push(1-this.P[i-1]);
 	};
 };
 

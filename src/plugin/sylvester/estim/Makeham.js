@@ -61,13 +61,14 @@ function MakehamEstim(x, L, n) {
 // Calculate f components with c values
 MakehamEstim.prototype.getCompC = function(c) {
 	if (this.getCompCLast.c != c) {
+		this.getCompCLast.c = c;
 		this.getCompCLast.AxCx = 0;
 		this.getCompCLast.AxlPCx = 0;
 		this.getCompCLast.AxC2x = 0;
 		for (var i = this.A.length-1; i>-1; i--) {
-			this.getCompCLast.AxCx += this.getCompCLast.AxCx*cx+this.A[i];
-			this.getCompCLast.AxlPCx += this.getCompCLast.AxlPCx*cx+this.A[i]*this.lP[i];
-			this.getCompCLast.AxC2x += this.getCompCLast.AxC2x*cx*cx+this.A[i];
+			this.getCompCLast.AxCx += this.getCompCLast.AxCx*c+this.A[i];
+			this.getCompCLast.AxlPCx += this.getCompCLast.AxlPCx*c+this.A[i]*this.lP[i];
+			this.getCompCLast.AxC2x += this.getCompCLast.AxC2x*c*c+this.A[i];
 		};
 	};
 	return this.getCompCLast
@@ -77,9 +78,10 @@ MakehamEstim.prototype.getCompC = function(c) {
 MakehamEstim.prototype.getF = function() {
 	var that = this;
 	return function(V) {
+		if(isNaN(V[0])) V = V[0];
 		that.getCompC(V[0]);
-		var lg = Math.log(V[1]);
-		var ls = Math.log(V[2]);
+		var lg = Math.log(Math.abs(V[1]));
+		var ls = Math.log(Math.abs(V[2]));
 		var c_1lg = (V[0]-1)*lg;
 		return that.SAlP2+(that.SA*ls-2*that.SAlP)*ls+(that.getCompCLast.AxC2x*c_1lg-2*(that.getCompCLast.AxlPCx+ls*that.getCompCLast.AxCx))*c_1lg;
 	};
@@ -89,6 +91,7 @@ MakehamEstim.prototype.getF = function() {
 MakehamEstim.prototype.getDF = function() {
 	var that = this;
 	return function(V) {
+		if(isNaN(V[0])) V = V[0];
 		var res = [];
 		that.getCompC(V[0]);
 		var lg = Math.log(V[1]);
@@ -97,10 +100,10 @@ MakehamEstim.prototype.getDF = function() {
 		var cx = 1;
 		res[0] = 0;
 		for (var i = 0; i<that.A.length; i++) {
-			res[0] += that.A[i]*(ls-that.lP[i]+c_1lg*cx)(V[0]*(i+1)-i)*cx;
+			res[0] += that.A[i]*(ls-that.lP[i]+c_1lg*cx)*(V[0]*(i+1)-i)*cx;
 			cx *= V[0];
 		};
-		res[0] *= l*lg/V[0];
+		res[0] *= lg/V[0];
 		res[1] = (that.getCompCLast.AxC2x*c_1lg-that.getCompCLast.AxlPCx+ls*that.getCompCLast.AxCx)*2*(V[0]-1)/V[1];
 		res[2] = (that.SA*ls-that.SAlP+c_1lg*that.getCompCLast.AxCx)*2/V[2];
 		return j$(res);
@@ -109,11 +112,11 @@ MakehamEstim.prototype.getDF = function() {
 
 // Returns a process representation of the serie
 MakehamEstim.prototype.improveValues = function() {
-	bfgs = new BFGS(this.getF(),this.getDF(),j$([[this.c], [this.g], [this.s]]));
+	bfgs = new BFGS(this.getF(),this.getDF(),j$([this.c, this.g, this.s]));
 	bfgs.standardCalcul();
-	this.ec = bfgs.s[0];
-	this.eg = bfgs.s[1];
-	this.es = bfgs.s[2];
+	this.ec = bfgs.s[0][0];
+	this.eg = bfgs.s[0][1];
+	this.es = bfgs.s[0][2];
 };
 
 // Returns a process representation of the serie

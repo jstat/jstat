@@ -12,7 +12,7 @@
 this.j$ = this.jStat = (function( Math, undefined ) {
 
 	// for quick reference
-var slice = Array.prototype.slice,
+	var slice = Array.prototype.slice,
 	toString = Object.prototype.toString,
 
 	// ascending/descending functions for sort
@@ -68,7 +68,7 @@ jStat.fn = jStat.prototype = {
 	init : function( args ) {
 
 		// if first argument is an array, must be vector or matrix
-		if ( isArray( args[0] )) {
+		if ( isArray( args[0] ) || args[0] instanceof jStat) {
 			if ( isArray( args[0][0] )) {
 				for ( var i = 0; i < args[0].length; i++ ) {
 					this[i] = args[0][i];
@@ -313,7 +313,7 @@ jStat.extend({
 				res[i][j] = func( i, j );
 			}
 		}
-		return res;
+		return jStat(res);
 	},
 
 	// generate a rows x cols matrix of zeros
@@ -333,6 +333,7 @@ jStat.extend({
 
 	// generate an identity matrix of size row x cols
 	identity : function( rows, cols ) {
+		if(cols == undefined) cols = rows;
 		return jStat.create( rows, cols, function( i, j ) { return ( i === j ) ? 1 : 0; });
 	},
 
@@ -382,8 +383,8 @@ jStat.extend({
 				}
 			}
 			return ( nrow === 1 && rescols === 1 ) ? res[0][0] : res;
-		}
-		return jStat.map( arr, function( value ) { return value * arg; });
+		};
+		return jStat.map( arr, function( value , row, col) { return value * arg; });
 	},
 	
 	// backward compatiblity
