@@ -16,17 +16,17 @@ jStat.extend(jStat.fnc,{
 
 	// Rosenbrock Function
 	value: 	function(params, obj) {
-		var x = params[0];
-		var y = params[1];
+		var x = params[0],
+		y = params[1];
 		return jStat.sq(1-x) + 100*jStat.sq(y-jStat.sq(x));
 	},
 
 	gradf: function(params,  obj) {
-		var x = params[0];
-		var y = params[1];
-		var del = 0.00001;
-		var fx = (obj.value([x+del,y]) - obj.value([x-del,y]))/(2*del);
-		var fy = (obj.value([x,y+del]) - obj.value([x,y-del]))/(2*del);
+		var x = params[0],
+		y = params[1],
+		del = 0.00001,
+		fx = (obj.value([x+del,y]) - obj.value([x-del,y]))/(2*del),
+		fy = (obj.value([x,y+del]) - obj.value([x,y-del]))/(2*del);
 		return [fx,fy];
 
 	}
@@ -44,16 +44,18 @@ jStat.extend(jStat.fnc,{
 
 
 jStat.optimiser = function(inputs, opt_method) {
-		var par1 = inputs[0];
-		var par2 = inputs[1];
-		var f = new jStat.fnc();
+		var par1 = inputs[0],
+		par2 = inputs[1],
+		f = new jStat.fnc(),
+		optim_params;
+
 		if(opt_method == "Nelder-Mead")
 		{
-		var optim_params = new jStat.optim(jStat([[par1,par2],[0.1,0.3],[0.3,0.9]]),f, opt_method);
+		optim_params = new jStat.optim(jStat([[par1,par2],[0.1,0.3],[0.3,0.9]]),f, opt_method);
 		}
 		else if(opt_method == "SCG")
 		{
-		var optim_params = new jStat.optim([par1,par2], f, opt_method);
+		optim_params = new jStat.optim([par1,par2], f, opt_method);
 		}
 
 		return optim_params;	
@@ -64,20 +66,24 @@ jStat.optimiser = function(inputs, opt_method) {
 jStat.elicitate = function( inputs, opt_method, options) {
 
 // Getting Parameters for Normal Distribution
-var c = new jStat.cost(inputs, 'normal');
-var par1 = c.median;
-var par2 = ((c.upper-c.lower)/(2*0.6744898));
-var m = par1;
-var v = par2;
+var c = new jStat.cost(inputs, 'normal'),
+par1 = c.median,
+par2 = ((c.upper-c.lower)/(2*0.6744898)),
+m = par1,
+v = par2,
+normal_params;
+
 if(opt_method == "Nelder-Mead")
-var normal_params = new jStat.optim(jStat([[par1,par2],[0.1,0.3],[0.3,0.9]]),c, opt_method, options);
+normal_params = new jStat.optim(jStat([[par1,par2],[0.1,0.3],[0.3,0.9]]),c, opt_method, options);
 else
-var normal_params = new jStat.optim([par1,par2], c, opt_method, options);
+normal_params = new jStat.optim([par1,par2], c, opt_method, options);
+
 
 // Getting Parameters for Beta Distribution
 c.distribution = 'beta';
-m1 = (c.median - c.lb)/(c.ub-c.lb);
-v1 = v/jStat.sq((c.upper - c.lower));
+var m1 = (c.median - c.lb)/(c.ub-c.lb),
+v1 = v/jStat.sq((c.upper - c.lower)),
+beta_params;
 c.lower -= c.lb/(c.ub - c.lb);
 c.median -= c.lb/(c.ub - c.lb);
 c.upper -= c.lb/(c.ub - c.lb);
@@ -85,28 +91,36 @@ c.ub -= c.lb/(c.ub - c.lb);
 c.lb = 0;
 par1 = m1^3/v1*(1/m1-1)-m1;
 par2 = par1/m1-par1;
+
 if(opt_method =="Nelder-Mead")
-var beta_params = new jStat.optim(jStat([[par1, par2],[0.1,0.2],[0.3,0.1]]),c, opt_method, options);
+beta_params = new jStat.optim(jStat([[par1, par2],[0.1,0.2],[0.3,0.1]]),c, opt_method, options);
 else
-var beta_params = new jStat.optim([par1,par2], c, opt_method, options);
+beta_params = new jStat.optim([par1,par2], c, opt_method, options);
+
 
 // Getting Parameters for Gamma Distribution
+var gamma_params;
 c.distribution = 'gamma';
 par1 = jStat.sq(c.median)/v;
 par2 = v/m;
+
 if(opt_method=="Nelder-Mead")
-var gamma_params = new jStat.optim(jStat([[par1, par2],[0.1,0.2],[0.3,0.1]]),c, opt_method, options);
+gamma_params = new jStat.optim(jStat([[par1, par2],[0.1,0.2],[0.3,0.1]]),c, opt_method, options);
 else
-var gamma_params = new jStat.optim([par1,par2], c, opt_method, options);
+gamma_params = new jStat.optim([par1,par2], c, opt_method, options);
+
 
 // Getting Parameters for LogNormal Distribution
+var lnormal_params;
 c.distribution = 'lognormal';
 par1 = Math.log(c.median);
 par2 = (Math.log(c.upper) - Math.log(c.lower))/(2*0.6744898);
+
 if(opt_method=="Nelder-Mead")
-var lnormal_params = new jStat.optim(jStat([[par1, par2],[0.1,0.2],[0.3,0.1]]),c, opt_method, options);
+lnormal_params = new jStat.optim(jStat([[par1, par2],[0.1,0.2],[0.3,0.1]]),c, opt_method, options);
 else
-var lnormal_params = new jStat.optim([par1,par2], c, opt_method, options);
+lnormal_params = new jStat.optim([par1,par2], c, opt_method, options);
+
 
 /*c.distribution = "studentt";
 par1 = m;
@@ -163,12 +177,14 @@ jStat.extend(jStat.cost, {
 
 	value: function ( params, obj) {
 		
-		var x = params[0];
-		var y= params[1];
+		var x = params[0],
+		y= params[1],
+		sum = 0.0;
 
 		if(params.length == 2) {
-			var param1 = params[0], param2 = params[1];
-			var _dist = jStat.normal(param1, param2);
+			var param1 = params[0], param2 = params[1],
+			_dist = jStat.normal(param1, param2);
+
 			if(obj.distribution == "gamma") {
 				_dist = jStat.gamma(param1, param2);
 			}
@@ -186,18 +202,17 @@ jStat.extend(jStat.cost, {
 		/*else if(obj.distribution == "studentt") {
 			_dist = jStat.studentt(param1);
 		}*/
-		sum = 0.0;
 		sum += (jStat.sq((_dist.cdf(obj.lb) - 0.0)) + jStat.sq(_dist.cdf(obj.lower) - 0.25) + jStat.sq(_dist.cdf(obj.median) - 0.50) + jStat.sq(_dist.cdf(obj.upper) - 0.75) + jStat.sq((_dist.cdf(obj.ub) - 1.0)));
 		return sum;
 
 	},
 	
 	gradf: function( params, obj) {
-		var x = params[0];
-		var y = params[1];
-		var del = 0.00001;
-		var fx = (obj.value([x+del,y]) - obj.value([x-del,y]))/(2*del);
-		var fy = (obj.value([x,y+del]) - obj.value([x,y-del]))/(2*del);
+		var x = params[0],
+		y = params[1],
+		del = 0.00001,
+		fx = (obj.value([x+del,y]) - obj.value([x-del,y]))/(2*del),
+		fy = (obj.value([x,y+del]) - obj.value([x,y-del]))/(2*del);
 		return [fx,fy];
 	}
 	
@@ -233,9 +248,10 @@ jStat.optim = function( params, func, opt_method, options ) {
 jStat.extend(jStat.optim, {
 
 	get_sum: function(obj) {
-			var i,j,sum;
-			mtps = obj.params.rows();
+			var i,j,sum,
+			mtps = obj.params.rows(),
 			ndim = obj.params.cols();
+
 			for(j = 0; j< ndim; j++) {
 	   	 		for( sum = 0.0, i = 0; i< mtps; i++) {
 					sum += obj.params[i][j];
@@ -248,16 +264,16 @@ jStat.extend(jStat.optim, {
 	calculate: function(obj) {
 
 			if ( obj.opt_method == "Nelder-Mead" ) {
-			var result = new jStat.return_obj();
-			var NMAX = 5000;
-			var rtol, ytry, ysave;
-			var i, j, ihi, ilo, inhi;
-			var temp;
-			var tiny = 1.0 * Math.exp(-10);
-			var ftol = 0.0001; 
-			var mtps = obj.params.rows();
-			var ndim = obj.params.cols();
-			var nfunk = 0;
+			var result = new jStat.return_obj(),
+			NMAX = 5000,
+			rtol, ytry, ysave,
+			i, j, ihi, ilo, inhi,
+			temp,
+			tiny = 1.0 * Math.exp(-10),
+			ftol = 0.0001, 
+			mtps = obj.params.rows(),
+			ndim = obj.params.cols(),
+			nfunk = 0;
 			
 			obj.get_sum();
 
@@ -328,19 +344,19 @@ jStat.extend(jStat.optim, {
 				return result;
 			}
 			else if ( obj.opt_method == "SCG" || obj.opt_method == "scg") {
-				var result = new jStat.return_obj();
-				var gradf =obj.func.gradf;
-				var sigma0 = Math.exp(-4);
-				var fold = obj.func.value(obj.params);
-				var fnow = fold;
-				var x = (obj.params);
-				var gradnew = obj.func.gradf(x);
-				var gradold = gradnew;
-				var d = jStat.vec_mult(gradnew,-1);
-				var success = 1, nsuccess = 0, beta = 1.0, betamin = Math.exp(-15), betamax = Math.exp(100), j = 1;
-				var mu, kappa, sigma, theta,delta, alpha, Delta, gamma;
-				var xplus = [], gplus = [], xnew = [], fnew = [];
-				var eps = Math.exp(-10);
+				var result = new jStat.return_obj(),
+				gradf =obj.func.gradf,
+				sigma0 = Math.exp(-4),
+				fold = obj.func.value(obj.params),
+				fnow = fold,
+				x = (obj.params),
+				gradnew = obj.func.gradf(x),
+				gradold = gradnew,
+				d = jStat.vec_mult(gradnew,-1),
+				success = 1, nsuccess = 0, beta = 1.0, betamin = Math.exp(-15), betamax = Math.exp(100), j = 1,
+				mu, kappa, sigma, theta,delta, alpha, Delta, gamma,
+				xplus = [], gplus = [], xnew = [], fnew = [],
+				eps = Math.exp(-10);
 
 				result.funclog.push(fold);
 				result.pointlog.push(x);
@@ -425,9 +441,9 @@ jStat.extend(jStat.optim, {
 	},
 
 	amotry: function(ihi, fac, obj) {
-			var fac1, fac2,j,ytry_temp;
-			var ndim = obj.params.cols();
-			var ptry = [];	
+			var fac1, fac2,j,ytry_temp,
+			ndim = obj.params.cols(),
+			ptry = [];	
 	
 		    	fac1 = (1.0 - fac )/ndim;
 	    		fac2 = fac1 - fac;
