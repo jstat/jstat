@@ -8,14 +8,15 @@ jStat.extend({
 
 
 	augment: function(A,B) {
-		var col1 = A[0].length;
-		var col2 = B[0].length;
-		var col = col1+col2;
-		var n = A.length;
-		var i,j;
-		var C= jStat.zeros(n,col);
+		var col1 = A[0].length,
+		col2 = B[0].length,
+		col = col1+col2,
+		n = A.length,
+		i,j,
+		C=[];
 
 		for( i =0;i<n;i++) {
+			C[i] = [];
 			for(j = 0;j<col1;j++)
 				C[i][j]= A[i][j];
 			for(;j<col;j++)
@@ -25,26 +26,36 @@ jStat.extend({
 	},
 
 	inv: function(A) {
-		B=jStat.identity(A.length,A[0].length);
-		C = jStat.gauss_jordan(A,B);
-		rows = A.length;
-		cols = A[0].length;
-		I = jStat.zeros(rows,cols);
-		for(var i =0;i<rows;i++)
-			for(var j=cols-1;j<C[0].length;j++)
+		var i,j,
+		B=jStat.identity(A.length,A[0].length),
+		C = jStat.gauss_jordan(A,B),
+		rows = A.length,
+		cols = A[0].length,
+		I = [];
+
+		for(i =0;i<rows;i++) {
+			I[i] = [];
+			for(j=cols-1;j<C[0].length;j++)
 				I[i][j-cols] = C[i][j];
+		}
 		return I;
 	},
 		
 	gauss_elimination: function(A, B) {
-		var i,j,k,n,m,factor,sum;
-		var X=[];
-		n = A.length;		// no of rows
-		m=A[0].length;		//no of columns
+		var i = 0,
+		j = 0,
+		k = 0,
+		n = A.length,		// no of rows
+		m = A[0].length,	//no of columns
+		factor = 1,
+		sum = 0,
+		maug,pivot,temp,
+		X=[];
 		A = jStat.augment(A,B);
-		maug=A[0].length;		//no of columns in augmented matrix
+		maug = A[0].length;		//no of columns in augmented matrix
+
 		for( i = 0; i< n; i++ ) {
-			var pivot = A[i][i];
+			pivot = A[i][i];
 			j=i
     			for (k = i+1;k< m;k++) {
        				if( pivot < Math.abs(A[k][i]) ) {
@@ -78,14 +89,20 @@ jStat.extend({
 	},
 
 	gauss_jordan: function(A,B) {
-		var i,j,k,n,m,factor,sum;
-		var X=[];
-		n = A.length;		// no of rows
-		m=A[0].length;		//no of columns
+		var i = 0,
+		j = 0,
+		k = 0,
+		n = A.length,		// no of rows
+		m = A[0].length,	//no of columns
+		factor = 1,
+		sum = 0,
+		temp,pivot,maug,
+		X=[];
 		A = jStat.augment(A,B);
-		maug=A[0].length;		//no of columns in augmented matrix
+		maug = A[0].length;		//no of columns in augmented matrix
+
 		for( i = 0; i< n; i++ ) {
-			var pivot = A[i][i];
+			pivot = A[i][i];
 			j=i
     			for (k = i+1;k< m;k++) {
        				if( pivot < Math.abs(A[k][i]) ) {
@@ -132,20 +149,28 @@ jStat.extend({
 		//B=[[11],[13]];
 		//X=[[1],[1]];
 		//r=0.001;
-		var i , j,n;
-		var Xv,C,H, Xk;
-		n = A.length;
-  		var L=jStat.zeros(n,n);
-  		var U=jStat.zeros(n,n);
-  		var D=jStat.zeros(n,n);
+		var i = 0,j = 0,
+		n = A.length,
+		Xv,C,H, Xk,
+  		L =[],
+  		U=[],
+  		D=[];
+
   		for (i=0;i<n;i++) {
+			L[i] = [], U[i] = [], D[i] = [];
     			for (j=0;j<n;j++) {
-      				if (i>j)
-        				L[i][j] = A[i][j];
-      				else if (i<j)
+      				if (i>j) {
+        				L[i][j] = A[i][j]; 
+					U[i][j] = D[i][j] = 0;
+				}
+      				else if (i<j) {
         				U[i][j] = A[i][j];
-     	 			else
+					L[i][j] = D[i][j] = 0;
+				}
+     	 			else {
         				D[i][j] = A[i][j];
+					L[i][j] = U[i][j] = 0;
+				}
 			}
 		}
   		H=jStat.multiply(jStat.multiply(jStat.inv(D),jStat.add(L,U)),-1);
@@ -166,20 +191,28 @@ jStat.extend({
 		//B=[[11],[13]];
 		//X=[[1],[1]];
 		//r=0.001;
-		var i , j,n;
-		var Xv,C,H, Xk;
-		n = A.length;
-  		var L=jStat.zeros(n,n);
-  		var U=jStat.zeros(n,n);
-  		var D=jStat.zeros(n,n);
+		var i = 0 ,j = 0,
+		n = A.length,
+		Xv,C,H, Xk,
+  		L=[],
+  		U=[],
+  		D=[];
+
   		for (i=0;i<n;i++) {
+			L[i] = [], U[i] = [], D[i] = [];
     			for (j=0;j<n;j++) {
-      				if (i>j)
-        				L[i][j] = A[i][j];
-      				else if (i<j)
+      				if (i>j) {
+        				L[i][j] = A[i][j]; 
+					U[i][j] = D[i][j] = 0;
+				}
+      				else if (i<j) {
         				U[i][j] = A[i][j];
-     	 			else
+					L[i][j] = D[i][j] = 0;
+				}
+     	 			else {
         				D[i][j] = A[i][j];
+					L[i][j] = U[i][j] = 0;
+				}
 			}
 		}
   		H=jStat.multiply(jStat.multiply(jStat.inv(jStat.add(D,L)),U),-1);
@@ -202,20 +235,27 @@ jStat.extend({
 	//	X=[[1],[1]];
 		//r=0.001;
 	//	w = 1.0
-		var i , j,n;
-		var Xv,C,H, Xk;
-		n = A.length;
-  		var L=jStat.zeros(n,n);
-  		var U=jStat.zeros(n,n);
-  		var D=jStat.zeros(n,n);
+		var i = 0, j = 0,
+		n = A.length,
+		Xv,C,H, Xk;
+  		L=[],
+  		U=[],
+  		D=[];
   		for (i=0;i<n;i++) {
+			L[i] = [], U[i] = [], D[i] = [];
     			for (j=0;j<n;j++) {
-      				if (i>j)
-        				L[i][j] = A[i][j];
-      				else if (i<j)
+      				if (i>j) {
+        				L[i][j] = A[i][j]; 
+					U[i][j] = D[i][j] = 0;
+				}
+      				else if (i<j) {
         				U[i][j] = A[i][j];
-     	 			else
+					L[i][j] = D[i][j] = 0;
+				}
+     	 			else {
         				D[i][j] = A[i][j];
+					L[i][j] = U[i][j] = 0;
+				}
 			}
 		}
   		H=jStat.multiply(jStat.inv(jStat.add(D,jStat.multiply(L,w))),jStat.subtract(jStat.multiply(D,(1-w)),jStat.multiply(U,w)));
@@ -233,10 +273,12 @@ jStat.extend({
 
 
 	householder: function(A) {
-		var m, n , i, j, alpha, r, k, factor;
-		var w=[],P=[];
-  		m = A.length;
-  		n = A[0].length;
+		var m = A.length, 
+		n = A[0].length, 
+		i = 0, j = 0, 
+		alpha, r, k, factor,
+		w = [],P = [];
+
   		for (i=0; i<m-1; i++) {
     			alpha=0;
     			for (j=i+1; j<n; j++)
@@ -259,10 +301,11 @@ jStat.extend({
 
 	// TODO: NOT WORKING PROPERLY.
 	QR: function(A,B) {
-		var m, n , i, j, alpha, r, k, factor,sum;
-		var w=[],P=[],X=[];
-  		m = A.length;
-  		n = A[0].length;
+		var m = A.length,
+  		n = A[0].length,
+		i = 0, j = 0, alpha, r, k, factor,sum,
+		w=[],P=[],X=[];
+
   		for (i=0; i<m-1; i++) {
     			alpha=0;
     			for (j=i+1; j<n; j++)
@@ -280,8 +323,6 @@ jStat.extend({
     			A = jStat.multiply(P,A);
 			B = jStat.multiply(P,B);
   		}
-		alert(A);
-		alert(B);
 		for(i = m-1;i>=0;i-- ) {
 			sum =0;
 			for(j = i+1; j<=n-1;j++) {
@@ -295,12 +336,12 @@ jStat.extend({
 
 	jacobi: function(A) {
 		//A = [[1,2,3,4],[5,6,7,8],[2,7,8,1],[4,6,2,5]];
-		var condition, count, i,j,p,q,maxim,theta;
-  		condition=1;  		//Condition variable to check tolerance error
-  		count=0;	 		//keep track of number of rotations
-		n = A.length;
-  		var E=jStat.identity(n,n);     //Eigen Vector Matrix
-		var EV = [];		//EigenValues Vector
+		var condition = 1, 		//Condition variable to check tolerance error
+		count = 0, 			//keep track of number of rotations
+		i,j,p,q,maxim,theta,	 		
+		n = A.length,
+  		E=jStat.identity(n,n),				//Eigen Vector Matrix
+		EV = [];			//EigenValues Vector
   
   		while (condition==1) { 		// condition=1 only if tolerance is not reached
   			count=count+1;     			//updating the count
@@ -349,14 +390,14 @@ jStat.extend({
 		}
 		for(i=0;i<n;i++)
 			EV.push(A[i][i]);
-		return [E,EV];
+		return [E,EV];			//returns both the eigenvalue and eigenmatrix
 
 	},
 
 
 	rungekutta: function(f,h,p,t_j,u_j,order) {
 		
-		var k1, k2, u_j1,k3,k4;
+		var k1, k2, u_j1, k3, k4;
 		
   		 if (order==2) {
   		 	while (t_j<=p) {
@@ -383,15 +424,17 @@ jStat.extend({
 	},
 
 	romberg: function(f,a,b,order) {
-		var i,h,I,d,m,a1,b1,j,k;
-		var x=[],h1=[],g=[];
-  		i=0;
-  		h=(b-a)/2;
+		var i = 0,
+		h = (b-a)/2,
+		I,d,
+		m,a1,j,k,
+		x=[],h1=[],g=[];
+
   		while (i<order/2) {
-     			I=f(a);
+     			I = f(a);
      			for( j=a,k=0;j<=b;j=j+h,k++)
 				x[k] = j;
-     			m=x.length;
+     			m = x.length;
     			for (j=1;j< m-1;j++) {
       				if ((j%2)!=0)
         				I = I + 4*f(x[j]);
@@ -404,7 +447,7 @@ jStat.extend({
     			i=i+1;
 		}
   		a1 = g.length;
-  		m=1;
+		m = 1;
  		while (a1!=1) {
   			for (j=0; j<a1-1; j++)
     				h1[j]=((4^m)*g[j+1]-g[j])/(4^m-1);
@@ -419,20 +462,21 @@ jStat.extend({
 
 	richardson: function(X,f,x,h) {
 		function pos(X,x) {
-			var i,n,p;
-  			n = X.length;
+			var i = 0,
+			n = X.length,
+			p;
     			for (i=0;i<n;i++)
     				if (X[i]==x) 
       					p=i;
     			return p;
 		}
 				
-		var n,h_min,i,y1,y2,m,a,j;
-		var g=[],h1=[];		
-	
- 		n=X.length;
-		h_min = Math.abs(x-X[pos(X,x)+1]);   
-  		i=0;
+		var n = X.length,
+		h_min = Math.abs(x-X[pos(X,x)+1]), 
+		i = 0,
+		y1,y2,m,a,j,
+		g=[],h1=[];	
+
   		while ( h >= h_min) {    
     			y1 = pos(X,x+h);
     			y2 = pos(X,x);
@@ -456,13 +500,14 @@ jStat.extend({
 	},
 
 	simpson: function(f,a,b,n) {
-		var h,i,I,j,k,m;
-		var x =[];
-  		h=(b-a)/n;
+		var h = (b-a)/n,
+		i, I = f(a),
+		j,k,m,
+		x =[];
+
      		for( j=a,k=0;j<=b;j=j+h,k++)
 			x[k] = j;
   		m = x.length;
-  		I= f(a);
   		for (i=1;i<m-1;i++) {
     			if (i%2!=0)
       				I=I+4*f(x[i]);
@@ -475,10 +520,10 @@ jStat.extend({
 
 	hermite: function(X,F,dF,value) {
 
-		var n,p,i,j,p;
-		var l=[],dl=[],A=[],B=[];
-  		n=X.length;
- 	 	p=0;
+		var n = X.length,
+		p =0 ,i = 0,j = 0,
+		l=[],dl=[],A=[],B=[];
+
   		for ( i=0; i<n; i++) {
     			l[i]=1;
     			for ( j=0; j<n; j++) {
@@ -500,9 +545,9 @@ jStat.extend({
 
 	lagrange : function(X,F,value) {
 
-		var n,p,i,j,l;
+		var p = 0,i,j,l,
 		n = X.length;
-  		p=0;
+
   		for (i=0;i<n;i++) {
     			l=F[i];  
     			for (j=0;j<n;j++) {
@@ -516,11 +561,9 @@ jStat.extend({
 
 	cubic_spline: function(X,F,value) {
 
-		var n, i, S;
-		var A=[],B=[],alpha=[],c=[],h=[],b=[],d=[];
-  		n=X.length;
-  		A=jStat.identity(n,n);
-  		B=jStat.zeros(n,1);
+		var n =X.length, i, S,
+		A = [],B = [],alpha = [],c = [],h = [],b = [],d = [];
+
   		for (i=0; i<n-1; i++)
     			h[i]=X[i+1]-X[i];
 
@@ -529,6 +572,7 @@ jStat.extend({
     			alpha[i] = (3/h[i])*(F[i+1]-F[i])-(3/h[i-1])*(F[i]-F[i-1]);
 
   		for (i=1 ; i<n-1; i++) { 
+			A[i] = [], B[i] = [];
     			A[i][i-1] = h[i-1];
     			A[i][i] = 2*(h[i-1]+h[i]);
     			A[i][i+1] = h[i];
@@ -561,37 +605,40 @@ jStat.extend({
 	
 	//X=[[2.5,0.5,2.2,1.9,3.1,2.3,2,1,1.5,1.1],[2.4,0.7,2.9,2.2,3.0,2.7,1.6,1.1,1.6,0.9],[0.2,1.4,0.6,1.9,2.3,2.5,0.5,1.7,2,1.6],[2.9,1,0.7,0.3,2.5,1.3,0.5,1.7,3,0.2]];
 
-	var m = X.length;
-	var n = X[0].length;
-	var flag = false;
-	var i,j, temp1;
-	var u=[], D=[], result=[], temp2=[];
-	var B= jStat.zeros(m,n);
-	var C= jStat.zeros(m,m);
-	var V= jStat.zeros(m,m);
-	var Vt= jStat.zeros(m,m);
-
+	var m = X.length,
+	n = X[0].length,
+	flag = false,
+	i, j,temp1,
+	u=[], D=[], result=[], temp2=[],
+	Y = [],
+	Bt = [],
+	B= [],
+	C= [],
+	V= [],
+	Vt= [];
 	
 	for(i=0; i<m; i++) {
 		u[i] = jStat.sum(X[i])/n;
 	}
 
 	for(i=0;i<n;i++) {
+		B[i] = [];
 		for( j=0;j<m;j++) {
-			B[j][i] = X[j][i] - u[j];
+			B[i][j] = X[j][i] - u[j];
 		}
 	}
+	B = jStat.transpose(B);
 
 	for(i=0;i<m;i++) {
+		C[i] = [];
 		for(j=0;j<m;j++) {
 			C[i][j] = (jStat.dot(B[i],B[j]))/(n-1);
 		}
 	}
-
 	result = jStat.jacobi(C);
 	V = result[0];
 	D = result[1];
-	Vt =jStat.vec_transpose(V);
+	Vt =jStat.transpose(V);
 	for(i=0;i<D.length;i++) {
 		for(j=i;j<D.length;j++) {
 			if(D[i] < D[j] )  {
@@ -604,9 +651,9 @@ jStat.extend({
 			}
 		}
 	}
-	var Y= jStat.zeros(m,n);
-	var Bt = jStat.vec_transpose(B);
+	Bt = jStat.transpose(B);
 	for(i=0;i<m;i++) {
+		Y[i] = [];
 		for(j=0;j<Bt.length;j++) {
 			Y[i][j] = jStat.dot(Vt[i],Bt[j]);
 		}
@@ -619,12 +666,4 @@ jStat.extend({
 
 
 });
-
-(function( funcs ) {
-	for ( var i = 0; i < funcs[length]; i++ ) (function( passfunc ) {
-		jStat.fn[ passfunc ] = function( arg1, arg2, arg3, arg4 ) {
-			return jStat( jStat[ passfunc ]( arg1, arg2,arg3, arg4 ));
-		};
-	})( funcs[i] );
-})( 'gauss_jacobi'.split( ' ' ));
 
