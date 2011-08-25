@@ -25,4 +25,14 @@ sylv.loadFile = function(name) {
 	document.write('<script type="text/javascript" src="' + sylv.loadFile.path + name + '"></script>');
 };
 
+sylv.extend = function(obj, methodes) {
+	for(var mth in methodes) {
+		obj.prototype[mth] = methodes[mth];
+		obj[mth] = function(that) {
+			return methodes[mth].apply(that,Array.prototype.slice.call(arguments, 1))
+		};
+	}
+	return obj;
+};
+
 require(["plugin/sylvester/data/data", "plugin/sylvester/process/process", "plugin/sylvester/ui/ui", "plugin/sylvester/estim/estim"])
