@@ -10,14 +10,14 @@ jStat.beta = function( alpha, beta ) {
 // extend beta function with static methods
 jStat.extend( jStat.beta, {
 	pdf : function( x, alpha, beta ) {
-	  if ( isNaN( x ) ) {
+	  if ( x instanceof jStat) {
 	   return x.map( function(value ) { return Math.pow( value, alpha - 1) * Math.pow( 1 - value, beta - 1) / jStat.betafn(alpha, beta); });
 	}
 		return ( Math.pow( x, alpha - 1 ) * Math.pow( 1 - x, beta - 1 )) / jStat.betafn( alpha, beta );
 	},
 
 	cdf : function( x, alpha, beta ) {
-	if( isNaN(x )) {
+	if( x instanceof jStat) {
 		return x.map( function( value) { return jStat.incompleteBeta( value, alpha, beta );});
 	}
 		return jStat.incompleteBeta( x, alpha, beta );
@@ -57,10 +57,6 @@ jStat.extend( jStat.beta, {
 		return ( alpha * beta ) / ( Math.pow( alpha + beta, 2 ) * ( alpha + beta + 1 ) );
 	},
 	
-	plot : function(id, obj) {
-	      jStat.plot(id,obj).draw();
-	},
-
 	param_change: function(alpha,beta,obj) {
 		obj.alpha = alpha;
 		obj.beta = beta;
@@ -72,13 +68,10 @@ jStat.extend( jStat.beta, {
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.beta.prototype[ item ] = function( x ) {
-		  if(item == "plot")
-		   return jStat.beta[ item ](x, this );
-		 else
 			    return jStat.beta[ item ]( x, this.alpha, this.beta );
 		};
 	})( vals[ item ]);
-})( 'pdf cdf inv sample plot'.split( ' ' ));
+})( 'pdf cdf inv sample'.split( ' ' ));
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.beta.prototype[ item ] = function() {
@@ -106,14 +99,14 @@ jStat.cauchy = function( local, scale ) {
 // extend cauchy function with static methods
 jStat.extend( jStat.cauchy, {
 	pdf : function( x, local, scale ) {
-	  if( isNaN (x) ) {
+	  if( x instanceof jStat ) {
 	    return jStat.map(x, function ( value) {return ( scale / ( Math.pow( value - local, 2 ) + Math.pow( scale, 2 ))) / Math.PI; } );
 	  }
 		return ( scale / ( Math.pow( x - local, 2 ) + Math.pow( scale, 2 ))) / Math.PI;
 	},
 
 	cdf : function( x, local, scale ) {
-	    if( isNaN (x) ) {
+	  if( x instanceof jStat ) {
 	      return jStat.map(x, function ( value ) { return Math.atan(( value - local) / scale ) / Math.PI + 0.5; }) ;
 	    }
 		return Math.atan(( x - local) / scale ) / Math.PI + 0.5;
@@ -178,14 +171,14 @@ jStat.chisquare = function( dof ) {
 // extend chisquare function with static methods
 jStat.extend( jStat.chisquare, {
 	pdf : function( x, dof ) {
-		if( isNaN( x) ) {
+	  if( x instanceof jStat ) {
 			return x.map( function( value) {return (Math.pow( value, dof / 2 - 1) * Math.exp( -value / 2 )) / ( Math.pow( 2, dof / 2) * jStat.gammafn( dof / 2 ));});
 		}
 		return (Math.pow( x, dof / 2 - 1) * Math.exp( -x / 2 )) / ( Math.pow( 2, dof / 2) * jStat.gammafn( dof / 2 ));
 	},
 
 	cdf : function( x, dof ) {
-		if( isNaN( x)) {
+	  if( x instanceof jStat ) {
 			return x.map( function( value) {return jStat.gammap( value / 2, dof / 2 );});
 		}
 		return jStat.gammap( x / 2, dof / 2 );
@@ -222,10 +215,6 @@ jStat.extend( jStat.chisquare, {
 
 	variance: function( dof ) {
 		return 2 * dof;
-	},
-
-	plot : function(id, obj) {
-	      jStat.plot(id,obj).draw();
 	}
 });
 
@@ -233,13 +222,10 @@ jStat.extend( jStat.chisquare, {
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.chisquare.prototype[ item ] = function( x ) {
-		  if(item == "plot")
-		   return jStat.beta[ item ](x, this );
-		 else
 			return jStat.chisquare[ item ]( x, this.dof );
 		};
 	})( vals[ item ]);
-})( 'pdf cdf inv sample plot'.split( ' ' ));
+})( 'pdf cdf inv sample'.split( ' ' ));
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.chisquare.prototype[ item ] = function() {
@@ -259,14 +245,14 @@ jStat.exponential = function( rate ) {
 // extend exponential function with static methods
 jStat.extend( jStat.exponential, {
 	pdf : function( x, rate ) {
-	  if ( isNaN( x) ){
+	  if( x instanceof jStat ) {
 	    return x.map(function( value ) { return value < 0 ? 0 : rate * Math.exp( -rate * value ); } );
 	  }
 		return x < 0 ? 0 : rate * Math.exp( -rate * x );
 	},
 
 	cdf : function( x, rate ) {
-	   if ( isNaN( x) ) {
+	  if( x instanceof jStat ) {
 	    return x.map( function( value ) {return  value < 0 ? 0 : 1 - Math.exp( -rate * value ); } );
 	  }
 		return x < 0 ? 0 : 1 - Math.exp( -rate * x );
@@ -302,10 +288,6 @@ jStat.extend( jStat.exponential, {
 		return Math.pow( rate, -2 );
 	},
 	
-	plot : function( id, obj ) {
-	  jStat.plot( id, obj).draw();
-	},
-
 	param_change: function(rate,obj) {
 		obj.rate = rate;
 		return obj;
@@ -316,13 +298,13 @@ jStat.extend( jStat.exponential, {
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.exponential.prototype[ item ] = function( x ) {
-		 if( item == "plot" || item=="param_change")
+		 if( item=="param_change")
 		    return jStat.exponential[ item ](x, this )
 		  else
 			return jStat.exponential[ item ]( x, this.rate );
 		};
 	})( vals[ item ]);
-})( 'pdf cdf inv sample plot param_change'.split( ' ' ));
+})( 'pdf cdf inv sample param_change'.split( ' ' ));
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.exponential.prototype[ item ] = function() {
@@ -343,7 +325,7 @@ jStat.gamma = function( shape, scale ) {
 // extend gamma function with static methods
 jStat.extend( jStat.gamma, {
 	pdf : function( x, shape, scale ) {
-	  if( isNaN ( x) ) {
+	  if( x instanceof jStat ) {
 		return x.map( function ( value ) { return Math.pow( value, shape - 1 ) * ( Math.exp( -value / scale ) / ( jStat.gammafn( shape ) * Math.pow( scale, shape ) ) );} );		
 	  } 
 	    
@@ -351,7 +333,7 @@ jStat.extend( jStat.gamma, {
 	},
 
 	cdf : function( x, shape, scale ) {
-		if( isNaN(x) ) {
+	  if( x instanceof jStat ) {
 			return x.map( function( value) {return jStat.gammap( value / scale, shape );});
 		}
 		return jStat.gammap( x / scale, shape );
@@ -385,10 +367,6 @@ jStat.extend( jStat.gamma, {
 	variance: function( shape, scale ) {
 		return shape * scale * scale;
 	},
-	
-	plot : function (id, obj ) {
-	  jStat.plot(id, obj).draw();
-	},
 
 	param_change: function(shape, scale,obj) {
 		obj.shape = shape;
@@ -401,13 +379,10 @@ jStat.extend( jStat.gamma, {
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.gamma.prototype[ item ] = function( x ) {
-		  if( item == "plot")
-		    return jStat.gamma[ item ]( x, this);
-		  else
 			return jStat.gamma[ item ]( x, this.shape, this.scale );
 		};
 	})( vals[ item ]);
-})( 'pdf cdf inv sample plot'.split( ' ' ));
+})( 'pdf cdf inv sample'.split( ' ' ));
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.gamma.prototype[ item ] = function() {
@@ -486,14 +461,14 @@ jStat.lognormal = function( mu, sigma ) {
 // extend lognormal function with static methods
 jStat.extend( jStat.lognormal, {
 	pdf : function( x, mu, sigma ) {
-	  if(isNaN( x) ) {
+	  if( x instanceof jStat ) {
 		return x.map( function( value) { return ( 1 / ( value * sigma * Math.sqrt( 2 * Math.PI ) ) ) * Math.exp( -Math.pow( Math.log( value ) - mu, 2) / ( 2 * sigma*sigma ) ); } );
 	  } 
 		return ( 1 / ( x * sigma * Math.sqrt( 2 * Math.PI ) ) ) * Math.exp( -Math.pow( Math.log( x ) - mu, 2) / ( 2 * sigma*sigma ) );
 	},
 
 	cdf : function( x, mu, sigma ) {
-	  if( isNaN( x)) {
+	  if( x instanceof jStat ) {
 		return x.map( function( value) { return 0.5 + ( 0.5 * jStat.erf( ( Math.log( value ) - mu ) / Math.sqrt( 2 * sigma*sigma ) ) ); });
 	  }
 		return 0.5 + ( 0.5 * jStat.erf( ( Math.log( x ) - mu ) / Math.sqrt( 2 * sigma*sigma ) ) );
@@ -528,10 +503,6 @@ jStat.extend( jStat.lognormal, {
 	variance : function( mu, sigma ) {
 		return ( Math.exp( sigma*sigma ) - 1 ) * Math.exp( 2 * mu + sigma*sigma );
 	},
-	      
-	plot: function ( id, obj) {
-	  jStat.plot(id, obj).draw();
-	},
 
 	param_change: function(mu,sigma,obj) {
 		obj.mu = mu;
@@ -546,13 +517,10 @@ jStat.extend( jStat.lognormal, {
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.lognormal.prototype[ item ] = function( x ) {
-		  if( item == "plot") {
-			return jStat.lognormal[ item ]( x, this );
-		  }
 			return jStat.lognormal[ item ]( x, this.mu, this.sigma );
 		};
 	})( vals[ item ]);
-})( 'pdf cdf inv sample plot'.split( ' ' ));
+})( 'pdf cdf inv sample '.split( ' ' ));
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.lognormal.prototype[ item ] = function() {
@@ -580,14 +548,14 @@ jStat.normal = function( mean, std ) {
 // extend normal function with static methods
 jStat.extend( jStat.normal, {
 	pdf : function( x, mean, std ) {
-	  if(isNaN( x) ) {
+	  if( x instanceof jStat ) {
 		return x.map( function (value) { return ( 1 / ( Math.sqrt( 2 * Math.PI * std * std))) * Math.exp( -( Math.pow( value - mean, 2 ) /( 2 * std * std )) );} );
 	  }
 		return ( 1 / ( Math.sqrt( 2 * Math.PI * std * std))) * Math.exp( -( Math.pow( x - mean, 2 ) / (2 * std * std) ) );
 	},
 
 	cdf : function( x, mean, std ) {
-	  if( isNaN( x)) {
+	  if( x instanceof jStat ) {
 	    return x.map( function ( value) { return 0.5 * ( 1 + jStat.erf( ( value - mean ) / Math.sqrt( 2 * std * std ) ) );} );
 	  }
 		return 0.5 * ( 1 + jStat.erf( ( x - mean ) / Math.sqrt( 2 * std * std ) ) );
@@ -624,10 +592,6 @@ jStat.extend( jStat.normal, {
 	variance : function( mean, std ) {
 		return std * std;
 	},
-	      
-	plot: function (id, obj) {
-	  jStat.plot(id, obj).draw();
-	},
 
 	param_change: function(mean, std,obj) {
 		obj.mean = mean;
@@ -641,13 +605,10 @@ jStat.extend( jStat.normal, {
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.normal.prototype[ item ] = function( x ) {
-		  if( item == "plot") {
-		    return jStat.normal[ item ]( x, this);
-		  }
 			return jStat.normal[ item ]( x, this.mean, this.std );
 		};
 	})( vals[ item ]);
-})( 'pdf cdf inv sample plot'.split( ' ' ));
+})( 'pdf cdf inv sample'.split( ' ' ));
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.normal.prototype[ item ] = function() {
@@ -726,7 +687,7 @@ jStat.studentt = function( dof ) {
 // extend studentt function with static methods
 jStat.extend( jStat.studentt, {
 	pdf : function( x, dof ) {
-		if( isNaN(x) ) {
+	  if( x instanceof jStat ) {
 			return x.map( function(value) {return ( jStat.gammafn( ( dof + 1 ) / 2 ) / ( Math.sqrt( dof * Math.PI ) * jStat.gammafn( dof / 2 ) ) ) * Math.pow( 1 + ( ( value*value ) / dof ), -( ( dof + 1 ) / 2 ) );});
 		}
 		return ( jStat.gammafn( ( dof + 1 ) / 2 ) / ( Math.sqrt( dof * Math.PI ) * jStat.gammafn( dof / 2 ) ) ) * Math.pow( 1 + ( ( x*x ) / dof ), -( ( dof + 1 ) / 2 ) );
@@ -734,7 +695,7 @@ jStat.extend( jStat.studentt, {
 
 	cdf : function( x, dof ) {
 		var dof2 = dof / 2;
-		if( isNaN(x) ) {
+	  if( x instanceof jStat ) {
 		return x.map( function( value) {return jStat.incompleteBeta( ( value + Math.sqrt( value*value + dof ) ) / ( 2 * Math.sqrt( value*value + dof ) ), dof2, dof2 );});
 		}		
 		return jStat.incompleteBeta( ( x + Math.sqrt( x*x + dof ) ) / ( 2 * Math.sqrt( x*x + dof ) ), dof2, dof2 );
@@ -773,9 +734,6 @@ jStat.extend( jStat.studentt, {
 		return ( dof  > 2 ) ? dof / ( dof - 2 ) : ( dof > 1 ) ? Infinity : undefined;
 	},
 
-	plot: function( id, obj) {
-		jStat.plot(id,obj).draw();
-	},
 	param_change: function(dof,obj) {
 		obj.dof = dof;
 		return obj;
@@ -786,13 +744,13 @@ jStat.extend( jStat.studentt, {
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.studentt.prototype[ item ] = function( x ) {
-		  if(item == "plot" || item == "param_change")
+		  if(item == "param_change")
 		   return jStat.beta[ item ](x, this );
 		 else
 			return jStat.studentt[ item ]( x, this.dof );
 		};
 	})( vals[ item ]);
-})( 'pdf cdf inv sample plot param_change'.split( ' ' ));
+})( 'pdf cdf inv sample param_change'.split( ' ' ));
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.studentt.prototype[ item ] = function() {
