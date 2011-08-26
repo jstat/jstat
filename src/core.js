@@ -3,10 +3,16 @@
  * Copyright (c) 2011
  * This document is licensed as free software under the terms of the
  * MIT License: http://www.opensource.org/licenses/mit-license.php */
+ 
+// Copyright (c) 2011 Trevor Norris, Matthew Williams, Florian Pons (florian.pons.tv)
+//
+// Licensed under the MIT License
+
+
 this.j$ = this.jStat = (function( Math, undefined ) {
 
 	// for quick reference
-var slice = Array.prototype.slice,
+	var slice = Array.prototype.slice,
 	toString = Object.prototype.toString,
 
 	// ascending/descending functions for sort
@@ -60,7 +66,7 @@ jStat.fn = jStat.prototype = {
 	init : function( args ) {
 
 		// if first argument is an array, must be vector or matrix
-		if ( isArray( args[0] )) {
+		if ( isArray( args[0] ) || args[0] instanceof jStat) {
 			if ( isArray( args[0][0] )) {
 				for ( var i = 0; i < args[0].length; i++ ) {
 					this[i] = args[0][i];
@@ -72,6 +78,9 @@ jStat.fn = jStat.prototype = {
 			}
 
 		// if first argument is number, assume creation of sequence
+		} else if ( args.length == 1 ) {
+			this[0] = [args[0]];
+			this.length = 1;
 		} else if ( !isNaN( args[0] )) {
 			this[0] = jStat.seq.apply( null, args );
 			this.length = 1;
@@ -84,7 +93,7 @@ jStat.fn = jStat.prototype = {
 
 	// return clean array
 	toArray : function() {
-		return slice.call( this );
+		return slice.call( args || this );
 	},
 
 	// only to be used internally
@@ -179,6 +188,7 @@ jStat.extend({
 
 	// generate an identity matrix of size row x cols
 	identity : function( rows, cols ) {
+		if(cols == undefined) cols = rows;
 		return jStat.create( rows, cols, function( i, j ) { return ( i === j ) ? 1 : 0; });
 	},
 
@@ -212,7 +222,7 @@ jStat.extend({
 	},
 
 	// matrix multiplication
-	multiply : function( arr, arg ) {
+	x : function( arr, arg ) {
 		var row, col, nrescols, sum,
 			nrow = arr.length,
 			ncol = arr[0].length,
@@ -231,12 +241,24 @@ jStat.extend({
 		}
 		return jStat.map( arr, function( value ) { return value * arg; });
 	},
+	
+	// backward compatiblity
+	multiply : function( arr, arg ) {
+		return jStat.x( arr, arg );
 
 	// subtract a vector or scalar from the vector
 	subtract : function( arr, arg ) {
-		return isNaN( arg ) ?
-			jStat.map( arr, function( value, row, col ) { return value - arg[row][col]; })
-		: jStat.map( arr, function( value ) { return value - arg; });
+		var res;
+		if( isNaN( arg ) ) {
+			if( isNaN( arg[0] ) ) {
+				res = jStat.map( arr, function( value, row, col ) { return value - arg[row][col]?arg[row][col]:0; });
+			} else {
+				res = jStat.map( arr, function( value, row, col ) { return value - arg[col]?arg[col]:0; });
+			};
+		} else {
+			res = jStat.map( arr, function( value ) { return value - arg; });
+		};
+		return res
 	},
 
 	// Returns the dot product of two matricies
@@ -514,7 +536,7 @@ jStat.extend({
 			return jStat( jStat[ passfunc ]( this, arg ));
 		};
 	})( funcs[i] );
-})( 'add divide multiply subtract dot pow abs angle'.split( ' ' ));
+})( 'add divide x multiply subtract dot pow abs angle'.split( ' ' ));
 
 // extend jStat.fn
 jStat.extend( jStat.fn, {
@@ -583,6 +605,13 @@ jStat.extend( jStat.fn, {
 	alter : function( func ) {
 		jStat.alter( this, func );
 		return this;
++	},
++	
++	toString : function() {
++		var res = "[[";
++		res = res+this.toArray().join("],\n[");
++		res = res+"]]";
++		return res;
 	}
 });
 
