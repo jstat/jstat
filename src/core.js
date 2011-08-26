@@ -244,7 +244,8 @@ jStat.extend({
 	
 	// backward compatiblity
 	multiply : function( arr, arg ) {
-		return jStat.x( arr, arg );
+		return jStat.x( arr, arg )
+	},
 
 	// subtract a vector or scalar from the vector
 	subtract : function( arr, arg ) {
@@ -605,13 +606,13 @@ jStat.extend( jStat.fn, {
 	alter : function( func ) {
 		jStat.alter( this, func );
 		return this;
-+	},
-+	
-+	toString : function() {
-+		var res = "[[";
-+		res = res+this.toArray().join("],\n[");
-+		res = res+"]]";
-+		return res;
+	},
+	
+	toString : function() {
+		var res = "[[";
+		res = res+this.toArray().join("],\n[");
+		res = res+"]]";
+		return res;
 	}
 });
 
