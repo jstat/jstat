@@ -1,5 +1,6 @@
 
 //to plot histograms given the data and number of bins.
+
 jStat.histogram = function(plot_container,data, bins) {
 
 	plot_container = "#" + plot_container;
