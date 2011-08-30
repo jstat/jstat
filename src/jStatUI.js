@@ -8,7 +8,7 @@
  *
  */
 that = this;
-require(["plugin/sylvester/data/data", "plugin/sylvester/process/process", "plugin/sylvester/estim/estim", "plugin/sylvester/ui/ui"], function() {
+require(["plugin/sylvester/data/data", "plugin/sylvester/process/process", "plugin/sylvester/estim/estim", "plugin/sylvester/ui/ui", "plugin/sylvester/copula/copula"], function() {
 
 that.exportAll = function() {
 	document.getElementById("consoleIn").value = sylv.ui.extractAll();
