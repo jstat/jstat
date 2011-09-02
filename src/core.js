@@ -151,7 +151,7 @@ jStat.extend({
 	},
 
 	// generate a rows x cols matrix according to the supplied function
-	create: function ( rows, cols, func ) {
+	create : function ( rows, cols, func ) {
 		var res = [], i, j;
 		for( i = 0; i < rows; i++ ) {
 			res[i]  = [];
@@ -168,12 +168,12 @@ jStat.extend({
 	},
 
 	// generate a rows x cols matrix of ones
-	ones: function( rows, cols ) {
+	ones : function( rows, cols ) {
 		return jStat.create( rows, cols, function() { return 1; });
 	},
 
 	// generate a rows x cols matrix of uniformly random numbers
-	rand: function( rows, cols ) {
+	rand : function( rows, cols ) {
 		return jStat.create( rows, cols, function() { return Math.random(); });
 	},
 
@@ -515,17 +515,24 @@ jStat.extend({
 		};
 	})( funcs[i] );
 })( 'add divide multiply subtract dot pow abs angle'.split( ' ' ));
+// extend jStat.fn with simple shortcut methods
+(function( funcs ) {
+	for ( var i = 0; i < funcs.length; i++ ) (function( passfunc ) {
+		jStat.fn[ passfunc ] = function() {
+			return jStat( jStat[ passfunc ].apply( null, arguments ));
+		};
+	})( funcs[i] );
+})( 'create zeros ones rand identity'.split( ' ' ));
 
 // extend jStat.fn
 jStat.extend( jStat.fn, {
-
 	// Returns the number of rows in the matrix
-	rows: function() {
+	rows : function() {
 		return this.length || 1;
 	},
 
 	// Returns the number of columns in the matrix
-	cols: function() {
+	cols : function() {
 		return this[0].length || 1;
 	},
 
@@ -538,12 +545,12 @@ jStat.extend( jStat.fn, {
 	},
 
 	// Returns a specified row as a vector
-	row: function( index ) {
+	row : function( index ) {
 		return jStat( this[index] );
 	},
 
 	// Returns the specified column as a vector
-	col: function( index ) {
+	col : function( index ) {
 		var column = [],
 			i = 0;
 		for ( ; i < this.length; i++ ) {
@@ -576,7 +583,7 @@ jStat.extend( jStat.fn, {
 
 	// map a function to a matrix or vector
 	map : function( func, toAlter ) {
-		return jStat.map( this, func, toAlter );
+		return jStat( jStat.map( this, func, toAlter ));
 	},
 
 	// destructively alter an array
