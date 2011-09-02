@@ -253,7 +253,7 @@ jStat.exponential = function( rate ) {
 	this.rate = rate;
 	for ( var i in jStat.exponential.prototype ) this[i] = this[i].bind( this );
 };
-jStat.fn.exponential = function() {
+jStat.fn.exponential = function( rate ) {
 	var newthis = jStat.exponential( rate );
 	newthis.data = this;
 	return newthis;
@@ -334,7 +334,7 @@ jStat.gamma = function( shape, scale ) {
 	this.scale = scale;
 	for ( var i in jStat.gamma.prototype ) this[i] = this[i].bind( this );
 };
-jStat.fn.gamma = function() {
+jStat.fn.gamma = function( shape, scale ) {
 	var newthis = jStat.gamma( shape, scale );
 	newthis.data = this;
 	return newthis;
@@ -413,7 +413,7 @@ jStat.kumaraswamy = function( alpha, beta ) {
 	this.beta = beta;
 	for ( var i in jStat.kumaraswamy.prototype ) this[i] = this[i].bind( this );
 };
-jStat.fn.kumaraswamy = function() {
+jStat.fn.kumaraswamy = function( alpha, beta ) {
 	var newthis = jStat.kumaraswamy( alpha, beta );
 	newthis.data = this;
 	return newthis;
@@ -477,7 +477,7 @@ jStat.lognormal = function( mu, sigma ) {
 	this.sigma = sigma;
 	for ( var i in jStat.lognormal.prototype ) this[i] = this[i].bind( this );
 };
-jStat.fn.lognormal = function() {
+jStat.fn.lognormal = function( mu, sigma ) {
 	var newthis = jStat.lognormal( mu, sigma );
 	newthis.data = this;
 	return newthis;
@@ -559,7 +559,7 @@ jStat.normal = function( mean, std ) {
 	this.std = std;
 	for ( var i in jStat.normal.prototype ) this[i] = this[i].bind( this );
 };
-jStat.fn.normal = function() {
+jStat.fn.normal = function( mean, std ) {
 	var newthis = jStat.normal( mean, std );
 	newthis.data = this;
 	return newthis;
@@ -641,7 +641,7 @@ jStat.pareto = function( scale, shape ) {
 	this.shape = shape;
 	for ( var i in jStat.pareto.prototype ) this[i] = this[i].bind( this );
 };
-jStat.fn.pareto = function() {
+jStat.fn.pareto = function( scale, shape ) {
 	var newthis = jStat.pareto( scale, shape );
 	newthis.data = this;
 	return newthis;
@@ -705,7 +705,7 @@ jStat.studentt = function( dof ) {
 	this.dof = dof;
 	for ( var i in jStat.studentt.prototype ) this[i] = this[i].bind( this );
 };
-jStat.fn.studentt = function() {
+jStat.fn.studentt = function( dof ) {
 	var newthis = jStat.studentt( dof );
 	newthis.data = this;
 	return newthis;
@@ -789,7 +789,7 @@ jStat.weibull = function( scale, shape ) {
 	this.shape = shape;
 	for ( var i in jStat.weibull.prototype ) this[i] = this[i].bind( this );
 };
-jStat.fn.weibull = function() {
+jStat.fn.weibull = function( scale, shape ) {
 	var newthis = jStat.weibull( scale, shape );
 	newthis.data = this;
 	return newthis;
@@ -871,7 +871,7 @@ jStat.uniform = function( a, b ) {
 	this.b = b;
 	for ( var i in jStat.uniform.prototype ) this[i] = this[i].bind( this );
 };
-jStat.fn.uniform = function() {
+jStat.fn.uniform = function( a, b ) {
 	var newthis = jStat.uniform( a, b );
 	newthis.data = this;
 	return newthis;
@@ -954,7 +954,7 @@ jStat.uniformmv = function( m, s ) {
 	this.s = s;
 	for ( var i in jStat.uniformmv.prototype ) this[i] = this[i].bind( this );
 };
-jStat.fn.uniformmv = function() {
+jStat.fn.uniformmv = function( m, s ) {
 	var newthis = jStat.uniformmv( m, s );
 	newthis.data = this;
 	return newthis;
@@ -1004,7 +1004,7 @@ jStat.binomial = function( n, p ) {
 	this.p = p;
 	for ( var i in jStat.binomial.prototype ) this[i] = this[i].bind( this );
 };
-jStat.fn.binomial = function() {
+jStat.fn.binomial = function( n, p ) {
 	var newthis = jStat.binomial( n, p );
 	newthis.data = this;
 	return newthis;
@@ -1062,7 +1062,7 @@ jStat.negbin = function( r, p ) {
 	this.p = p;
 	for ( var i in jStat.negbin.prototype ) this[i] = this[i].bind( this );
 };
-jStat.fn.negbin = function() {
+jStat.fn.negbin = function( r, p ) {
 	var newthis = jStat.negbin( r, p );
 	newthis.data = this;
 	return newthis;
@@ -1115,7 +1115,7 @@ jStat.hypgeom = function( N, m, n ) {
 	this.n = n;
 	for ( var i in jStat.hypgeom.prototype ) this[i] = this[i].bind( this );
 };
-jStat.fn.hypogeom = function() {
+jStat.fn.hypogeom = function( N, m, n ) {
 	var newthis = jStat.hypogeom( N, m, n );
 	newthis.data = this;
 	return newthis;
@@ -1167,7 +1167,7 @@ jStat.poisson = function( l ) {
 	this.l = l;
 	for ( var i in jStat.poisson.prototype ) this[i] = this[i].bind( this );
 };
-jStat.fn.poisson = function() {
+jStat.fn.poisson = function( l ) {
 	var newthis = jStat.poisson( l );
 	newthis.data = this;
 	return newthis;
