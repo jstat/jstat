@@ -140,7 +140,7 @@ jStat.extend({
 		for ( ; row < nrow; row++ ) {
 			if ( !res[row] ) res[row] = [];
 			for ( col = 0; col < ncol; col++ )
-				res[row].push( func( arr[row][col], row, col ));
+				res[row][col] = func( arr[row][col], row, col );
 		}
 		return res.length === 1 ? res[0] : res;
 	},
