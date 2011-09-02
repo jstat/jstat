@@ -355,12 +355,12 @@ jStat.extend({
 	// Returns a gamma deviate by the method of Marsaglia and Tsang.
 	randg : function( shape, n, m ) {
 		var oalph = shape,
-			a1, a2, u, v, x;
+			a1, a2, u, v, x, mat;
 		if ( !m ) m = n;
 		if ( !shape ) shape = 1;
 
 		if( n ) {
-			var mat = jStat.zeros( n,m );
+			mat = jStat.zeros( n,m );
 			mat.alter(function() { return jStat.randg( shape ); });
 			return mat;
 		}

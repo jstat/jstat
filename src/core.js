@@ -115,8 +115,8 @@ jStat.extend({
 
 	// transpose a matrix or array
 	transpose : function( arr ) {
-		var arr = isArray( arr[0] ) ? arr : [ arr ],
-			rows = arr.length,
+		if ( !isArray( arr[0] )) arr = [ arr ];
+		var rows = arr.length,
 			cols = arr[0].length,
 			obj = [],
 			i = 0, j;
@@ -241,10 +241,10 @@ jStat.extend({
 
 	// Returns the dot product of two matricies
 	dot : function( arr, arg ) {
-		var arr = isArray( arr[0] ) ? arr : [ arr ],
-			arg = isArray( arg[0] ) ? arg : [ arg ],
+		if ( !isArray( arr )) arr = [ arr ];
+		if ( !isArray( arg )) arg = [ arg ];
 			// convert column to row vector
-			left = ( arr[0].length === 1 && arr.length !== 1 ) ? jStat.transpose( arr ) : arr,
+		var left = ( arr[0].length === 1 && arr.length !== 1 ) ? jStat.transpose( arr ) : arr,
 			right = ( arg[0].length === 1 && arg.length !== 1 ) ? jStat.transpose( arg ) : arg,
 			res = [],
 			row = 0,

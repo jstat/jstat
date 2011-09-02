@@ -11,7 +11,7 @@ jStat.fn.beta = function( alpha, beta ) {
 	var newthis = jStat.beta( alpha, beta );
 	newthis.data = this.toArray();
 	return newthis;
-}
+};
 
 // extend beta function with static methods
 jStat.extend( jStat.beta, {

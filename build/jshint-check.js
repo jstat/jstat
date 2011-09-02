@@ -2,12 +2,13 @@ var JSHINT = require("./lib/jshint").JSHINT,
 	print = require("sys").print,
 	src = require("fs").readFileSync("dist/jstat.js", "utf8");
 
-JSHINT(src, {
+JSHINT( src, {
 	browser: true,
 	curly : false,
+	eqnull : true,
 	forin : true,
 	laxbreak : true,
-	maxerr : 1000,
+	maxerr : 10000,
 	newcap : false,
 	undef : true
 });

@@ -19,7 +19,7 @@ JS_MIN = ${DIST_DIR}/jstat.min.js
 DOC_DIR = doc
 DOC_LIST = `ls ${DOC_DIR}/md/`
 
-all: update_submodules core doc
+all: clean core doc
 
 core: jstat min lint
 	@@echo "jStat build complete."
@@ -67,4 +67,4 @@ clean:
 pull: pull_submodules
 	@@git pull ${REMOTE} ${BRANCH}
 
-.PHONY: all jstat lint min doc clean update_submodules pull_submodules pull core
+.PHONY: all jstat lint min doc clean pull_submodules pull core
