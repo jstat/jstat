@@ -7,6 +7,11 @@ jStat.beta = function( alpha, beta ) {
 	this.beta = beta;
 	for ( var i in jStat.beta.prototype ) this[i] = this[i].bind( this );
 };
+jStat.fn.beta = function( alpha, beta ) {
+	var newthis = jStat.beta( alpha, beta );
+	newthis.data = this.toArray();
+	return newthis;
+}
 
 // extend beta function with static methods
 jStat.extend( jStat.beta, {
@@ -58,7 +63,14 @@ jStat.beta.prototype.sample = function( arr ) {
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.beta.prototype[ item ] = function( x ) {
-			return jStat.beta[ item ]( x, this.alpha, this.beta );
+			var alpha = this.alpha,
+				beta = this.beta;
+			if ( isNaN( x )) {
+				return jStat( this.data ).map( function( x ) {
+					return jStat.beta[item]( x, alpha, beta );
+				});
+			}
+			return jStat.beta[ item ]( x, alpha, beta );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -78,6 +90,11 @@ jStat.cauchy = function( local, scale ) {
 	this.local = local;
 	this.scale = scale;
 	for ( var i in jStat.cauchy.prototype ) this[i] = this[i].bind( this );
+};
+jStat.fn.cauchy = function( local, scale ) {
+	var newthis = jStat.cauchy( local, scale );
+	newthis.data = this.toArray();
+	return newthis;
 };
 
 // extend cauchy function with static methods
@@ -128,7 +145,14 @@ jStat.cauchy.prototype.sample = function( arr ) {
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.cauchy.prototype[ item ] = function( x ) {
-			return jStat.cauchy[ item ]( x, this.local, this.scale );
+			var local = this.local,
+				scale = this.scale;
+			if ( isNaN( x )) {
+				return jStat( this.data ).map( function( x ) {
+					return jStat.cauchy[item]( x, local, scale );
+				});
+			}
+			return jStat.cauchy[ item ]( x, local, scale );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -147,6 +171,11 @@ jStat.chisquare = function( dof ) {
 	if (!( this instanceof arguments.callee )) return new jStat.chisquare( dof );
 	this.dof = dof;
 	for ( var i in jStat.chisquare.prototype ) this[i] = this[i].bind( this );
+};
+jStat.fn.chisquare = function( dof ) {
+	var newthis = jStat.chisquare( dof );
+	newthis.data = this.toArray();
+	return newthis;
 };
 
 // extend chisquare function with static methods
@@ -198,7 +227,13 @@ jStat.chisquare.prototype.sample = function( arr ) {
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.chisquare.prototype[ item ] = function( x ) {
-			return jStat.chisquare[ item ]( x, this.dof );
+			var dof = this.dof;
+			if ( isNaN( x )) {
+				return jStat( this.data ).map( function( x ) {
+					return jStat.chisquare[item]( x, dof );
+				});
+			}
+			return jStat.chisquare[ item ]( x, dof );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -217,6 +252,11 @@ jStat.exponential = function( rate ) {
 	if (!( this instanceof arguments.callee )) return new jStat.exponential( rate );
 	this.rate = rate;
 	for ( var i in jStat.exponential.prototype ) this[i] = this[i].bind( this );
+};
+jStat.fn.exponential = function() {
+	var newthis = jStat.exponential( rate );
+	newthis.data = this;
+	return newthis;
 };
 
 // extend exponential function with static methods
@@ -267,7 +307,13 @@ jStat.exponential.prototype.sample = function( arr ) {
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.exponential.prototype[ item ] = function( x ) {
-			return jStat.exponential[ item ]( x, this.rate );
+			var rate = this.rate;
+			if ( isNaN( x )) {
+				return jStat( this.data ).map( function( x ) {
+					return jStat.exponential[item]( x, rate );
+				});
+			}
+			return jStat.exponential[ item ]( x, rate );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -287,6 +333,11 @@ jStat.gamma = function( shape, scale ) {
 	this.shape = shape;
 	this.scale = scale;
 	for ( var i in jStat.gamma.prototype ) this[i] = this[i].bind( this );
+};
+jStat.fn.gamma = function() {
+	var newthis = jStat.gamma( shape, scale );
+	newthis.data = this;
+	return newthis;
 };
 
 // extend gamma function with static methods
@@ -334,7 +385,14 @@ jStat.gamma.prototype.sample = function( arr ) {
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.gamma.prototype[ item ] = function( x ) {
-			return jStat.gamma[ item ]( x, this.shape, this.scale );
+			var shape = this.shape,
+				scale = this.scale;
+			if ( isNaN( x )) {
+				return jStat( this.data ).map( function( x ) {
+					return jStat.gamma[item]( x, shape, scale );
+				});
+			}
+			return jStat.gamma[ item ]( x, shape, scale );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -354,6 +412,11 @@ jStat.kumaraswamy = function( alpha, beta ) {
 	this.alpha = alpha;
 	this.beta = beta;
 	for ( var i in jStat.kumaraswamy.prototype ) this[i] = this[i].bind( this );
+};
+jStat.fn.kumaraswamy = function() {
+	var newthis = jStat.kumaraswamy( alpha, beta );
+	newthis.data = this;
+	return newthis;
 };
 
 // extend kumaraswamy function with static methods
@@ -386,7 +449,14 @@ jStat.extend( jStat.kumaraswamy, {
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.kumaraswamy.prototype[ item ] = function( x ) {
-			return jStat.kumaraswamy[ item ]( x, this.alpha, this.beta );
+			var alpha = this.alpha,
+				beta = this.beta;
+			if ( isNaN( x )) {
+				return jStat( this.data ).map( function( x ) {
+					return jStat.kumaraswamy[item]( x, alpha, beta );
+				});
+			}
+			return jStat.kumaraswamy[ item ]( x, alpha, beta );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf'.split( ' ' ));
@@ -406,6 +476,11 @@ jStat.lognormal = function( mu, sigma ) {
 	this.mu = mu;
 	this.sigma = sigma;
 	for ( var i in jStat.lognormal.prototype ) this[i] = this[i].bind( this );
+};
+jStat.fn.lognormal = function() {
+	var newthis = jStat.lognormal( mu, sigma );
+	newthis.data = this;
+	return newthis;
 };
 
 // extend lognormal function with static methods
@@ -456,7 +531,14 @@ jStat.lognormal.prototype.sample = function( arr ) {
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.lognormal.prototype[ item ] = function( x ) {
-			return jStat.lognormal[ item ]( x, this.mu, this.sigma );
+			var mu = this.mu,
+				sigma = this.sigma;
+			if ( isNaN( x )) {
+				return jStat( this.data ).map( function( x ) {
+					return jStat.lognormal[item]( x, mu, sigma );
+				});
+			}
+			return jStat.lognormal[ item ]( x, mu, sigma );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -476,6 +558,11 @@ jStat.normal = function( mean, std ) {
 	this.mean = mean;
 	this.std = std;
 	for ( var i in jStat.normal.prototype ) this[i] = this[i].bind( this );
+};
+jStat.fn.normal = function() {
+	var newthis = jStat.normal( mean, std );
+	newthis.data = this;
+	return newthis;
 };
 
 // extend normal function with static methods
@@ -526,7 +613,14 @@ jStat.normal.prototype.sample = function( arr ) {
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.normal.prototype[ item ] = function( x ) {
-			return jStat.normal[ item ]( x, this.mean, this.std );
+			var mean = this.mean,
+				std = this.std;
+			if ( isNaN( x )) {
+				return jStat( this.data ).map( function( x ) {
+					return jStat.normal[item]( x, mean, std );
+				});
+			}
+			return jStat.normal[ item ]( x, mean, std );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -546,6 +640,11 @@ jStat.pareto = function( scale, shape ) {
 	this.scale = scale;
 	this.shape = shape;
 	for ( var i in jStat.pareto.prototype ) this[i] = this[i].bind( this );
+};
+jStat.fn.pareto = function() {
+	var newthis = jStat.pareto( scale, shape );
+	newthis.data = this;
+	return newthis;
 };
 
 // extend pareto function with static methods
@@ -579,7 +678,14 @@ jStat.extend( jStat.pareto, {
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.pareto.prototype[ item ] = function( x ) {
-			return jStat.pareto[ item ]( x, this.shape, this.scale );
+			var shape = this.shape,
+				scale = this.scale;
+			if ( isNaN( x )) {
+				return jStat( this.data ).map( function( x ) {
+					return jStat.pareto[item]( x, shape, scale );
+				});
+			}
+			return jStat.pareto[ item ]( x, shape, scale );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf'.split( ' ' ));
@@ -598,6 +704,11 @@ jStat.studentt = function( dof ) {
 	if (!( this instanceof arguments.callee )) return new jStat.studentt( dof );
 	this.dof = dof;
 	for ( var i in jStat.studentt.prototype ) this[i] = this[i].bind( this );
+};
+jStat.fn.studentt = function() {
+	var newthis = jStat.studentt( dof );
+	newthis.data = this;
+	return newthis;
 };
 
 // extend studentt function with static methods
@@ -651,7 +762,13 @@ jStat.studentt.prototype.sample = function( arr ) {
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.studentt.prototype[ item ] = function( x ) {
-			return jStat.studentt[ item ]( x, this.dof );
+			var dof = this.dof;
+			if ( isNaN( x )) {
+				return jStat( this.data ).map( function( x ) {
+					return jStat.studentt[item]( x, dof );
+				});
+			}
+			return jStat.studentt[ item ]( x, dof );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -671,6 +788,11 @@ jStat.weibull = function( scale, shape ) {
 	this.scale = scale;
 	this.shape = shape;
 	for ( var i in jStat.weibull.prototype ) this[i] = this[i].bind( this );
+};
+jStat.fn.weibull = function() {
+	var newthis = jStat.weibull( scale, shape );
+	newthis.data = this;
+	return newthis;
 };
 
 // extend weibull function with static methods
@@ -721,7 +843,14 @@ jStat.weibull.prototype.sample = function( arr ) {
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.weibull.prototype[ item ] = function( x ) {
-			return jStat.weinbull[ item ]( x, this.scale, this.shape );
+			var scale = this.scale,
+				shape = this.shape;
+			if ( isNaN( x )) {
+				return jStat( this.data ).map( function( x ) {
+					return jStat.weibull[item]( x, scale, shape );
+				});
+			}
+			return jStat.weinbull[ item ]( x, scale, shape );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -741,6 +870,11 @@ jStat.uniform = function( a, b ) {
 	this.a = a;
 	this.b = b;
 	for ( var i in jStat.uniform.prototype ) this[i] = this[i].bind( this );
+};
+jStat.fn.uniform = function() {
+	var newthis = jStat.uniform( a, b );
+	newthis.data = this;
+	return newthis;
 };
 
 // extend uniform function with static methods
@@ -792,7 +926,14 @@ jStat.uniform.prototype.sample = function( arr ) {
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.uniform.prototype[ item ] = function( x ) {
-			return jStat.uniform[ item ]( x, this.a, this.b );
+			var a = this.a,
+				b = this.b;
+			if ( isNaN( x )) {
+				return jStat( this.data ).map( function( x ) {
+					return jStat.uniform[item]( x, a, b );
+				});
+			}
+			return jStat.uniform[ item ]( x, a, b );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf inv'.split( ' ' ));
@@ -812,6 +953,11 @@ jStat.uniformmv = function( m, s ) {
 	this.m = m;
 	this.s = s;
 	for ( var i in jStat.uniformmv.prototype ) this[i] = this[i].bind( this );
+};
+jStat.fn.uniformmv = function() {
+	var newthis = jStat.uniformmv( m, s );
+	newthis.data = this;
+	return newthis;
 };
 
 // extend uniform function with static methods
@@ -837,7 +983,14 @@ jStat.extend( jStat.uniformmv, {
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.uniformmv.prototype[ item ] = function( x ) {
-			return jStat.uniformmv[ item ]( x, this.m, this.s );
+			var m = this.m,
+				s = this.s;
+			if ( isNaN( x )) {
+				return jStat( this.data ).map( function( x ) {
+					return jStat.uniformmv[item]( x, m, s );
+				});
+			}
+			return jStat.uniformmv[ item ]( x, m, s );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf'.split( ' ' ));
@@ -850,6 +1003,11 @@ jStat.binomial = function( n, p ) {
 	this.n = n;
 	this.p = p;
 	for ( var i in jStat.binomial.prototype ) this[i] = this[i].bind( this );
+};
+jStat.fn.binomial = function() {
+	var newthis = jStat.binomial( n, p );
+	newthis.data = this;
+	return newthis;
 };
 
 // extend uniform function with static methods
@@ -883,7 +1041,14 @@ jStat.extend( jStat.binomial, {
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.binomial.prototype[ item ] = function( x ) {
-			return jStat.binomial[ item ]( x, this.n, this.p );
+			var n = this.n,
+				p = this.p;
+			if ( isNaN( x )) {
+				return jStat( this.data ).map( function( x ) {
+					return jStat.binomial[item]( x, n, p );
+				});
+			}
+			return jStat.binomial[ item ]( x, n, p );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf'.split( ' ' ));
@@ -896,6 +1061,11 @@ jStat.negbin = function( r, p ) {
 	this.r = r;
 	this.p = p;
 	for ( var i in jStat.negbin.prototype ) this[i] = this[i].bind( this );
+};
+jStat.fn.negbin = function() {
+	var newthis = jStat.negbin( r, p );
+	newthis.data = this;
+	return newthis;
 };
 
 // extend uniform function with static methods
@@ -923,7 +1093,14 @@ jStat.extend( jStat.negbin, {
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.negbin.prototype[ item ] = function( x ) {
-			return jStat.negbin[ item ]( x, this.r, this.p );
+			var r = this.r,
+				p = this.p;
+			if ( isNaN( x )) {
+				return jStat( this.data ).map( function( x ) {
+					return jStat.negbin[item]( x, r, p );
+				});
+			}
+			return jStat.negbin[ item ]( x, r, p );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf'.split( ' ' ));
@@ -937,6 +1114,11 @@ jStat.hypgeom = function( N, m, n ) {
 	this.m = m;
 	this.n = n;
 	for ( var i in jStat.hypgeom.prototype ) this[i] = this[i].bind( this );
+};
+jStat.fn.hypogeom = function() {
+	var newthis = jStat.hypogeom( N, m, n );
+	newthis.data = this;
+	return newthis;
 };
 
 // extend uniform function with static methods
@@ -964,7 +1146,15 @@ jStat.extend( jStat.hypgeom, {
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.hypgeom.prototype[ item ] = function( x ) {
-			return jStat.hypgeom[ item ]( x, this.N, this.m, this.n );
+			var N = this.N,
+				m = this.m,
+				n = this.n;
+			if ( isNaN( x )) {
+				return jStat( this.data ).map( function( x ) {
+					return jStat.hypgeom[item]( x, N, m, n );
+				});
+			}
+			return jStat.hypgeom[ item ]( x, N, m, n );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf'.split( ' ' ));
@@ -976,6 +1166,11 @@ jStat.poisson = function( l ) {
 	if (!( this instanceof arguments.callee )) return new jStat.poisson( l );
 	this.l = l;
 	for ( var i in jStat.poisson.prototype ) this[i] = this[i].bind( this );
+};
+jStat.fn.poisson = function() {
+	var newthis = jStat.poisson( l );
+	newthis.data = this;
+	return newthis;
 };
 
 // extend uniform function with static methods
@@ -999,7 +1194,13 @@ jStat.extend( jStat.poisson, {
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.poisson.prototype[ item ] = function( x ) {
-			return jStat.poisson[ item ]( x, this.l );
+			var l = this.l;
+			if ( isNaN( x )) {
+				return jStat( this.data ).map( function( x ) {
+					return jStat.poisson[item]( x, l );
+				});
+			}
+			return jStat.poisson[ item ]( x, l );
 		};
 	})( vals[ item ]);
 })( 'pdf cdf'.split( ' ' ));
