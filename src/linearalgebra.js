@@ -603,7 +603,7 @@ jStat.extend({
 
 	PCA: function(X) {
 	
-	//X=[[2.5,0.5,2.2,1.9,3.1,2.3,2,1,1.5,1.1],[2.4,0.7,2.9,2.2,3.0,2.7,1.6,1.1,1.6,0.9],[0.2,1.4,0.6,1.9,2.3,2.5,0.5,1.7,2,1.6],[2.9,1,0.7,0.3,2.5,1.3,0.5,1.7,3,0.2]];
+	X=[[2.5,0.5,2.2,1.9,3.1,2.3,2,1,1.5,1.1],[2.4,0.7,2.9,2.2,3.0,2.7,1.6,1.1,1.6,0.9],[0.2,1.4,0.6,1.9,2.3,2.5,0.5,1.7,2,1.6],[2.9,1,0.7,0.3,2.5,1.3,0.5,1.7,3,0.2]];
 
 	var m = X.length,
 	n = X[0].length,
@@ -620,7 +620,7 @@ jStat.extend({
 	for(i=0; i<m; i++) {
 		u[i] = jStat.sum(X[i])/n;
 	}
-
+alert(u);
 	for(i=0;i<n;i++) {
 		B[i] = [];
 		for( j=0;j<m;j++) {
@@ -628,13 +628,14 @@ jStat.extend({
 		}
 	}
 	B = jStat.transpose(B);
-
+alert(B);
 	for(i=0;i<m;i++) {
 		C[i] = [];
 		for(j=0;j<m;j++) {
-			C[i][j] = (jStat.dot(B[i],B[j]))/(n-1);
+			C[i][j] = (jStat.dot([B[i]],[B[j]]))/(n-1);
 		}
 	}
+alert(C);
 	result = jStat.jacobi(C);
 	V = result[0];
 	D = result[1];
@@ -655,7 +656,7 @@ jStat.extend({
 	for(i=0;i<m;i++) {
 		Y[i] = [];
 		for(j=0;j<Bt.length;j++) {
-			Y[i][j] = jStat.dot(Vt[i],Bt[j]);
+			Y[i][j] = jStat.dot([Vt[i]],[Bt[j]]);
 		}
 	}
 
