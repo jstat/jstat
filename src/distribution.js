@@ -1,17 +1,65 @@
 (function( jStat, Math ) {
 
-// add beta distribution object
-jStat.beta = function( alpha, beta ) {
-	if (!( this instanceof arguments.callee )) return new jStat.beta( alpha, beta );
-	this.alpha = alpha;
-	this.beta = beta;
-	for ( var i in jStat.beta.prototype ) this[i] = this[i].bind( this );
-};
-jStat.fn.beta = function( alpha, beta ) {
-	var newthis = jStat.beta( alpha, beta );
-	newthis.data = this.toArray();
-	return newthis;
-};
+// generate all distribution instance methods
+(function( list ) {
+	for ( var i = 0; i < list.length; i++ ) (function( func ) {
+		// distribution instance method
+		jStat[ func ] = function( a, b, c ) {
+			if (!( this instanceof arguments.callee )) return new arguments.callee( a, b, c );
+			this._a = a;
+			this._b = b;
+			this._c = c;
+			for ( var i in jStat[ func ].prototype ) this[ i ] = this[ i ].bind( this );
+		};
+		// distribution method to be used on a jStat instance
+		jStat.fn[ func ] = function( a, b, c ) {
+			var newthis = jStat[ func ]( a, b, c );
+			newthis.data = this;
+			return newthis;
+		};
+		// sample instance method
+		jStat[ func ].prototype.sample = function( arr ) {
+			var a = this._a,
+				b = this._b,
+				c = this._c;
+			if ( arr )
+				return jStat.alter( arr, function() {
+					return jStat[ func ].sample( a, b, c );
+				});
+			else
+				return jStat[ func ].sample( a, b, c );
+		};
+		// generate the pdf, cdf and inv instance methods
+		(function( vals ) {
+			for ( var i = 0; i < vals.length; i++ ) (function( fnfunc ) {
+				jStat[ func ].prototype[ fnfunc ] = function( x ) {
+					var a = this._a,
+						b = this._b,
+						c = this._c;
+					if ( isNaN( x )) {
+						return jStat.fn.map.call( this.data, function( x ) {
+							return jStat[ func ][ fnfunc ]( x, a, b, c );
+						});
+					}
+					return jStat[ func ][ fnfunc ]( x, a, b, c );
+				};
+			})( vals[ i ]);
+		})( 'pdf cdf inv'.split( ' ' ));
+		// generate the mean, median, mode and variance instance methods
+		(function( vals ) {
+			for ( var i = 0; i < vals.length; i++ ) (function( fnfunc ) {
+				jStat[ func ].prototype[ fnfunc ] = function() {
+					return jStat[ func ][ fnfunc ]( this._a, this._b, this._c );
+				};
+			})( vals[ i ]);
+		})( 'mean median mode variance'.split( ' ' ));
+	})( list[ i ]);
+})((
+	'beta cauchy chisquare exponential gamma kumaraswamy lognormal normal ' +
+	'pareto studentt weibull uniform uniformmv binomial negbin hypgeom poisson'
+).split( ' ' ));
+
+
 
 // extend beta function with static methods
 jStat.extend( jStat.beta, {
@@ -50,52 +98,7 @@ jStat.extend( jStat.beta, {
 	}
 });
 
-// extend the beta distribution prototype
-jStat.beta.prototype.sample = function( arr ) {
-	if ( arr ) {
-		return jStat.alter( arr, function() {
-			return jStat.beta.sample( this.alpha, this.beta );
-		});
-	} else {
-		return jStat.beta.sample( this.alpha, this.beta );
-	}
-};
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.beta.prototype[ item ] = function( x ) {
-			var alpha = this.alpha,
-				beta = this.beta;
-			if ( isNaN( x )) {
-				return jStat( this.data ).map( function( x ) {
-					return jStat.beta[item]( x, alpha, beta );
-				});
-			}
-			return jStat.beta[ item ]( x, alpha, beta );
-		};
-	})( vals[ item ]);
-})( 'pdf cdf inv'.split( ' ' ));
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.beta.prototype[ item ] = function() {
-			return jStat.beta[ item ]( this.alpha, this.beta );
-		};
-	})( vals[ item ]);
-})( 'mean median mode variance'.split( ' ' ));
 
-
-
-// add cauchy distribution
-jStat.cauchy = function( local, scale ) {
-	if (!( this instanceof arguments.callee )) return new jStat.cauchy( local, scale );
-	this.local = local;
-	this.scale = scale;
-	for ( var i in jStat.cauchy.prototype ) this[i] = this[i].bind( this );
-};
-jStat.fn.cauchy = function( local, scale ) {
-	var newthis = jStat.cauchy( local, scale );
-	newthis.data = this.toArray();
-	return newthis;
-};
 
 // extend cauchy function with static methods
 jStat.extend( jStat.cauchy, {
@@ -132,51 +135,7 @@ jStat.extend( jStat.cauchy, {
 	}
 });
 
-// extend the cauchy distribution prototype
-jStat.cauchy.prototype.sample = function( arr ) {
-	if ( arr ) {
-		return jStat.alter( arr, function() {
-			return jStat.cauchy.sample( this.local, this.scale );
-		});
-	} else {
-		return jStat.cauchy.sample( this.local, this.scale );
-	}
-};
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.cauchy.prototype[ item ] = function( x ) {
-			var local = this.local,
-				scale = this.scale;
-			if ( isNaN( x )) {
-				return jStat( this.data ).map( function( x ) {
-					return jStat.cauchy[item]( x, local, scale );
-				});
-			}
-			return jStat.cauchy[ item ]( x, local, scale );
-		};
-	})( vals[ item ]);
-})( 'pdf cdf inv'.split( ' ' ));
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.cauchy.prototype[ item ] = function() {
-			return jStat.cauchy[ item ]( this.local, this.scale );
-		};
-	})( vals[ item ]);
-})( 'mean median mode variance'.split( ' ' ));
 
-
-
-// add chisquare distribution
-jStat.chisquare = function( dof ) {
-	if (!( this instanceof arguments.callee )) return new jStat.chisquare( dof );
-	this.dof = dof;
-	for ( var i in jStat.chisquare.prototype ) this[i] = this[i].bind( this );
-};
-jStat.fn.chisquare = function( dof ) {
-	var newthis = jStat.chisquare( dof );
-	newthis.data = this.toArray();
-	return newthis;
-};
 
 // extend chisquare function with static methods
 jStat.extend( jStat.chisquare, {
@@ -214,50 +173,7 @@ jStat.extend( jStat.chisquare, {
 	}
 });
 
-// extend the chisquare distribution prototype
-jStat.chisquare.prototype.sample = function( arr ) {
-	if ( arr ) {
-		return jStat.alter( arr, function() {
-			return jStat.chisquare.sample( this.dof );
-		});
-	} else {
-		return jStat.chisquare.sample( this.dof );
-	}
-};
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.chisquare.prototype[ item ] = function( x ) {
-			var dof = this.dof;
-			if ( isNaN( x )) {
-				return jStat( this.data ).map( function( x ) {
-					return jStat.chisquare[item]( x, dof );
-				});
-			}
-			return jStat.chisquare[ item ]( x, dof );
-		};
-	})( vals[ item ]);
-})( 'pdf cdf inv'.split( ' ' ));
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.chisquare.prototype[ item ] = function() {
-			return jStat.chisquare[ item ]( this.dof );
-		};
-	})( vals[ item ]);
-})( 'mean median mode variance'.split( ' ' ));
 
-
-
-// add exponential distribution
-jStat.exponential = function( rate ) {
-	if (!( this instanceof arguments.callee )) return new jStat.exponential( rate );
-	this.rate = rate;
-	for ( var i in jStat.exponential.prototype ) this[i] = this[i].bind( this );
-};
-jStat.fn.exponential = function( rate ) {
-	var newthis = jStat.exponential( rate );
-	newthis.data = this;
-	return newthis;
-};
 
 // extend exponential function with static methods
 jStat.extend( jStat.exponential, {
@@ -294,51 +210,7 @@ jStat.extend( jStat.exponential, {
 	}
 });
 
-// extend the exponential distribution prototype
-jStat.exponential.prototype.sample = function( arr ) {
-	if ( arr ) {
-		return jStat.alter( arr, function() {
-			return jStat.exponential.sample( this.rate );
-		});
-	} else {
-		return jStat.exponential.sample( this.rate );
-	}
-};
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.exponential.prototype[ item ] = function( x ) {
-			var rate = this.rate;
-			if ( isNaN( x )) {
-				return jStat( this.data ).map( function( x ) {
-					return jStat.exponential[item]( x, rate );
-				});
-			}
-			return jStat.exponential[ item ]( x, rate );
-		};
-	})( vals[ item ]);
-})( 'pdf cdf inv'.split( ' ' ));
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.exponential.prototype[ item ] = function() {
-			return jStat.exponential[ item ]( this.rate );
-		};
-	})( vals[ item ]);
-})( 'mean median mode variance'.split( ' ' ));
 
-
-
-// add gamma distribution
-jStat.gamma = function( shape, scale ) {
-	if (!( this instanceof arguments.callee )) return new jStat.gamma( shape, scale );
-	this.shape = shape;
-	this.scale = scale;
-	for ( var i in jStat.gamma.prototype ) this[i] = this[i].bind( this );
-};
-jStat.fn.gamma = function( shape, scale ) {
-	var newthis = jStat.gamma( shape, scale );
-	newthis.data = this;
-	return newthis;
-};
 
 // extend gamma function with static methods
 jStat.extend( jStat.gamma, {
@@ -372,52 +244,7 @@ jStat.extend( jStat.gamma, {
 	}
 });
 
-// extend the gamma distribution  prototype
-jStat.gamma.prototype.sample = function( arr ) {
-	if ( arr ) {
-		return jStat.alter( arr, function() {
-			return jStat.gamma.sample( this.shape, this.scale );
-		});
-	} else {
-		return jStat.gamma.sample( this.shape, this.scale );
-	}
-};
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.gamma.prototype[ item ] = function( x ) {
-			var shape = this.shape,
-				scale = this.scale;
-			if ( isNaN( x )) {
-				return jStat( this.data ).map( function( x ) {
-					return jStat.gamma[item]( x, shape, scale );
-				});
-			}
-			return jStat.gamma[ item ]( x, shape, scale );
-		};
-	})( vals[ item ]);
-})( 'pdf cdf inv'.split( ' ' ));
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.gamma.prototype[ item ] = function() {
-			return jStat.gamma[ item ]( this.shape, this.scale );
-		};
-	})( vals[ item ]);
-})( 'mean median mode variance'.split( ' ' ));
 
-
-
-// add kumaraswamy distribution
-jStat.kumaraswamy = function( alpha, beta ) {
-	if (!( this instanceof arguments.callee )) return new jStat.kumaraswamy( alpha, beta );
-	this.alpha = alpha;
-	this.beta = beta;
-	for ( var i in jStat.kumaraswamy.prototype ) this[i] = this[i].bind( this );
-};
-jStat.fn.kumaraswamy = function( alpha, beta ) {
-	var newthis = jStat.kumaraswamy( alpha, beta );
-	newthis.data = this;
-	return newthis;
-};
 
 // extend kumaraswamy function with static methods
 jStat.extend( jStat.kumaraswamy, {
@@ -445,43 +272,7 @@ jStat.extend( jStat.kumaraswamy, {
 	}
 });
 
-// extend the kumaraswamy objects prototype
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.kumaraswamy.prototype[ item ] = function( x ) {
-			var alpha = this.alpha,
-				beta = this.beta;
-			if ( isNaN( x )) {
-				return jStat( this.data ).map( function( x ) {
-					return jStat.kumaraswamy[item]( x, alpha, beta );
-				});
-			}
-			return jStat.kumaraswamy[ item ]( x, alpha, beta );
-		};
-	})( vals[ item ]);
-})( 'pdf cdf'.split( ' ' ));
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.kumaraswamy.prototype[ item ] = function() {
-			return jStat.kumaraswamy[ item ]( this.alpha, this.beta );
-		};
-	})( vals[ item ]);
-})( 'mean median mode variance'.split( ' ' ));
 
-
-
-// add lognormal distribution
-jStat.lognormal = function( mu, sigma ) {
-	if (!( this instanceof arguments.callee )) return new jStat.lognormal( mu, sigma );
-	this.mu = mu;
-	this.sigma = sigma;
-	for ( var i in jStat.lognormal.prototype ) this[i] = this[i].bind( this );
-};
-jStat.fn.lognormal = function( mu, sigma ) {
-	var newthis = jStat.lognormal( mu, sigma );
-	newthis.data = this;
-	return newthis;
-};
 
 // extend lognormal function with static methods
 jStat.extend( jStat.lognormal, {
@@ -518,52 +309,7 @@ jStat.extend( jStat.lognormal, {
 	}
 });
 
-// extend the lognormal distribution prototype
-jStat.lognormal.prototype.sample = function( arr ) {
-	if ( arr ) {
-		return jStat.alter( arr, function() {
-			return jStat.lognormal.sample( this.mu, this.sigma );
-		});
-	} else {
-		return jStat.lognormal.sample( this.mu, this.sigma );
-	}
-};
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.lognormal.prototype[ item ] = function( x ) {
-			var mu = this.mu,
-				sigma = this.sigma;
-			if ( isNaN( x )) {
-				return jStat( this.data ).map( function( x ) {
-					return jStat.lognormal[item]( x, mu, sigma );
-				});
-			}
-			return jStat.lognormal[ item ]( x, mu, sigma );
-		};
-	})( vals[ item ]);
-})( 'pdf cdf inv'.split( ' ' ));
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.lognormal.prototype[ item ] = function() {
-			return jStat.lognormal[ item ]( this.mu, this.sigma );
-		};
-	})( vals[ item ]);
-})( 'mean median mode variance'.split( ' ' ));
 
-
-
-// add normal distribution
-jStat.normal = function( mean, std ) {
-	if (!( this instanceof arguments.callee )) return new jStat.normal( mean, std );
-	this.mean = mean;
-	this.std = std;
-	for ( var i in jStat.normal.prototype ) this[i] = this[i].bind( this );
-};
-jStat.fn.normal = function( mean, std ) {
-	var newthis = jStat.normal( mean, std );
-	newthis.data = this;
-	return newthis;
-};
 
 // extend normal function with static methods
 jStat.extend( jStat.normal, {
@@ -600,52 +346,7 @@ jStat.extend( jStat.normal, {
 	}
 });
 
-// extend the normal distribution prototype
-jStat.normal.prototype.sample = function( arr ) {
-	if ( arr ) {
-		return jStat.alter( arr, function() {
-			return jStat.normal.sample( this.mean, this.std );
-		});
-	} else {
-		return jStat.normal.sample( this.mean, this.std );
-	}
-};
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.normal.prototype[ item ] = function( x ) {
-			var mean = this.mean,
-				std = this.std;
-			if ( isNaN( x )) {
-				return jStat( this.data ).map( function( x ) {
-					return jStat.normal[item]( x, mean, std );
-				});
-			}
-			return jStat.normal[ item ]( x, mean, std );
-		};
-	})( vals[ item ]);
-})( 'pdf cdf inv'.split( ' ' ));
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.normal.prototype[ item ] = function() {
-			return jStat.normal[ item ]( this.mean, this.std );
-		};
-	})( vals[ item ]);
-})( 'mean median mode variance'.split( ' ' ));
 
-
-
-// add pareto distribution
-jStat.pareto = function( scale, shape ) {
-	if (!( this instanceof arguments.callee )) return new jStat.pareto( scale, shape );
-	this.scale = scale;
-	this.shape = shape;
-	for ( var i in jStat.pareto.prototype ) this[i] = this[i].bind( this );
-};
-jStat.fn.pareto = function( scale, shape ) {
-	var newthis = jStat.pareto( scale, shape );
-	newthis.data = this;
-	return newthis;
-};
 
 // extend pareto function with static methods
 jStat.extend( jStat.pareto, {
@@ -674,42 +375,7 @@ jStat.extend( jStat.pareto, {
 	}
 });
 
-// extend the pareto objects prototype
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.pareto.prototype[ item ] = function( x ) {
-			var shape = this.shape,
-				scale = this.scale;
-			if ( isNaN( x )) {
-				return jStat( this.data ).map( function( x ) {
-					return jStat.pareto[item]( x, shape, scale );
-				});
-			}
-			return jStat.pareto[ item ]( x, shape, scale );
-		};
-	})( vals[ item ]);
-})( 'pdf cdf'.split( ' ' ));
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.pareto.prototype[ item ] = function() {
-			return jStat.pareto[ item ]( this.scale, this.shape );
-		};
-	})( vals[ item ]);
-})( 'mean median mode variance'.split( ' ' ));
 
-
-
-// add studentt distribution
-jStat.studentt = function( dof ) {
-	if (!( this instanceof arguments.callee )) return new jStat.studentt( dof );
-	this.dof = dof;
-	for ( var i in jStat.studentt.prototype ) this[i] = this[i].bind( this );
-};
-jStat.fn.studentt = function( dof ) {
-	var newthis = jStat.studentt( dof );
-	newthis.data = this;
-	return newthis;
-};
 
 // extend studentt function with static methods
 jStat.extend( jStat.studentt, {
@@ -749,51 +415,7 @@ jStat.extend( jStat.studentt, {
 	}
 });
 
-// extend the studentt distribution prototype
-jStat.studentt.prototype.sample = function( arr ) {
-	if ( arr ) {
-		return jStat.alter( arr, function() {
-			return jStat.studentt.sample( this.dof );
-		});
-	} else {
-		return jStat.studentt.sample( this.dof );
-	}
-};
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.studentt.prototype[ item ] = function( x ) {
-			var dof = this.dof;
-			if ( isNaN( x )) {
-				return jStat( this.data ).map( function( x ) {
-					return jStat.studentt[item]( x, dof );
-				});
-			}
-			return jStat.studentt[ item ]( x, dof );
-		};
-	})( vals[ item ]);
-})( 'pdf cdf inv'.split( ' ' ));
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.studentt.prototype[ item ] = function() {
-			return jStat.studentt[ item ]( this.dof );
-		};
-	})( vals[ item ]);
-})( 'mean median mode variance'.split( ' ' ));
 
-
-
-// add weibull distribution
-jStat.weibull = function( scale, shape ) {
-	if (!( this instanceof arguments.callee )) return new jStat.weibull( scale, shape );
-	this.scale = scale;
-	this.shape = shape;
-	for ( var i in jStat.weibull.prototype ) this[i] = this[i].bind( this );
-};
-jStat.fn.weibull = function( scale, shape ) {
-	var newthis = jStat.weibull( scale, shape );
-	newthis.data = this;
-	return newthis;
-};
 
 // extend weibull function with static methods
 jStat.extend( jStat.weibull, {
@@ -830,52 +452,7 @@ jStat.extend( jStat.weibull, {
 	}
 });
 
-// extend the weibull distribution prototype
-jStat.weibull.prototype.sample = function( arr ) {
-	if ( arr ) {
-		return jStat.alter( arr, function() {
-			return jStat.weibull.sample( this.scale, this.shape );
-		});
-	} else {
-		return jStat.weibull.sample( this.scale, this.shape );
-	}
-};
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.weibull.prototype[ item ] = function( x ) {
-			var scale = this.scale,
-				shape = this.shape;
-			if ( isNaN( x )) {
-				return jStat( this.data ).map( function( x ) {
-					return jStat.weibull[item]( x, scale, shape );
-				});
-			}
-			return jStat.weinbull[ item ]( x, scale, shape );
-		};
-	})( vals[ item ]);
-})( 'pdf cdf inv'.split( ' ' ));
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.weibull.prototype[ item ] = function() {
-			return jStat.weibull[ item ]( this.scale, this.shape );
-		};
-	})( vals[ item ]);
-})( 'mean median mode variance'.split( ' ' ));
 
-
-
-// add uniform distribution
-jStat.uniform = function( a, b ) {
-	if (!( this instanceof arguments.callee )) return new jStat.uniform( a, b );
-	this.a = a;
-	this.b = b;
-	for ( var i in jStat.uniform.prototype ) this[i] = this[i].bind( this );
-};
-jStat.fn.uniform = function( a, b ) {
-	var newthis = jStat.uniform( a, b );
-	newthis.data = this;
-	return newthis;
-};
 
 // extend uniform function with static methods
 jStat.extend( jStat.uniform, {
@@ -913,52 +490,7 @@ jStat.extend( jStat.uniform, {
 	}
 });
 
-// extend the uniform distribution prototype
-jStat.uniform.prototype.sample = function( arr ) {
-	if ( arr ) {
-		return jStat.alter( arr, function() {
-			return jStat.uniform.sample( this.a, this.b );
-		});
-	} else {
-		return jStat.uniform.sample( this.a, this.b );
-	}
-};
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.uniform.prototype[ item ] = function( x ) {
-			var a = this.a,
-				b = this.b;
-			if ( isNaN( x )) {
-				return jStat( this.data ).map( function( x ) {
-					return jStat.uniform[item]( x, a, b );
-				});
-			}
-			return jStat.uniform[ item ]( x, a, b );
-		};
-	})( vals[ item ]);
-})( 'pdf cdf inv'.split( ' ' ));
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.uniform.prototype[ item ] = function() {
-			return jStat.uniform[ item ]( this.a, this.b );
-		};
-	})( vals[ item ]);
-})( 'mean median mode variance'.split( ' ' ));
 
-
-
-// add uniform distribution in terms of mean and standard deviation
-jStat.uniformmv = function( m, s ) {
-	if (!( this instanceof arguments.callee )) return new jStat.uniformmv( m, s );
-	this.m = m;
-	this.s = s;
-	for ( var i in jStat.uniformmv.prototype ) this[i] = this[i].bind( this );
-};
-jStat.fn.uniformmv = function( m, s ) {
-	var newthis = jStat.uniformmv( m, s );
-	newthis.data = this;
-	return newthis;
-};
 
 // extend uniform function with static methods
 jStat.extend( jStat.uniformmv, {
@@ -979,36 +511,7 @@ jStat.extend( jStat.uniformmv, {
 	}
 });
 
-// extend uniformmv prototype
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.uniformmv.prototype[ item ] = function( x ) {
-			var m = this.m,
-				s = this.s;
-			if ( isNaN( x )) {
-				return jStat( this.data ).map( function( x ) {
-					return jStat.uniformmv[item]( x, m, s );
-				});
-			}
-			return jStat.uniformmv[ item ]( x, m, s );
-		};
-	})( vals[ item ]);
-})( 'pdf cdf'.split( ' ' ));
 
-
-
-// add binomial distribution
-jStat.binomial = function( n, p ) {
-	if (!( this instanceof arguments.callee )) return new jStat.binomial( n, p );
-	this.n = n;
-	this.p = p;
-	for ( var i in jStat.binomial.prototype ) this[i] = this[i].bind( this );
-};
-jStat.fn.binomial = function( n, p ) {
-	var newthis = jStat.binomial( n, p );
-	newthis.data = this;
-	return newthis;
-};
 
 // extend uniform function with static methods
 jStat.extend( jStat.binomial, {
@@ -1037,36 +540,7 @@ jStat.extend( jStat.binomial, {
 	}
 });
 
-// extend binomial prototype
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.binomial.prototype[ item ] = function( x ) {
-			var n = this.n,
-				p = this.p;
-			if ( isNaN( x )) {
-				return jStat( this.data ).map( function( x ) {
-					return jStat.binomial[item]( x, n, p );
-				});
-			}
-			return jStat.binomial[ item ]( x, n, p );
-		};
-	})( vals[ item ]);
-})( 'pdf cdf'.split( ' ' ));
 
-
-
-// add negative binomial distribution
-jStat.negbin = function( r, p ) {
-	if (!( this instanceof arguments.callee )) return new jStat.negbin( r, p );
-	this.r = r;
-	this.p = p;
-	for ( var i in jStat.negbin.prototype ) this[i] = this[i].bind( this );
-};
-jStat.fn.negbin = function( r, p ) {
-	var newthis = jStat.negbin( r, p );
-	newthis.data = this;
-	return newthis;
-};
 
 // extend uniform function with static methods
 jStat.extend( jStat.negbin, {
@@ -1089,37 +563,7 @@ jStat.extend( jStat.negbin, {
 	}
 });
 
-// extend binomial prototype
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.negbin.prototype[ item ] = function( x ) {
-			var r = this.r,
-				p = this.p;
-			if ( isNaN( x )) {
-				return jStat( this.data ).map( function( x ) {
-					return jStat.negbin[item]( x, r, p );
-				});
-			}
-			return jStat.negbin[ item ]( x, r, p );
-		};
-	})( vals[ item ]);
-})( 'pdf cdf'.split( ' ' ));
 
-
-
-// add hypergeometric distribution
-jStat.hypgeom = function( N, m, n ) {
-	if (!( this instanceof arguments.callee )) return new jStat.hypgeom( N, m, n );
-	this.N = N;
-	this.m = m;
-	this.n = n;
-	for ( var i in jStat.hypgeom.prototype ) this[i] = this[i].bind( this );
-};
-jStat.fn.hypogeom = function( N, m, n ) {
-	var newthis = jStat.hypogeom( N, m, n );
-	newthis.data = this;
-	return newthis;
-};
 
 // extend uniform function with static methods
 jStat.extend( jStat.hypgeom, {
@@ -1142,36 +586,7 @@ jStat.extend( jStat.hypgeom, {
 	}
 });
 
-// extend hypgeom prototype
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.hypgeom.prototype[ item ] = function( x ) {
-			var N = this.N,
-				m = this.m,
-				n = this.n;
-			if ( isNaN( x )) {
-				return jStat( this.data ).map( function( x ) {
-					return jStat.hypgeom[item]( x, N, m, n );
-				});
-			}
-			return jStat.hypgeom[ item ]( x, N, m, n );
-		};
-	})( vals[ item ]);
-})( 'pdf cdf'.split( ' ' ));
 
-
-
-// add poisson distribution
-jStat.poisson = function( l ) {
-	if (!( this instanceof arguments.callee )) return new jStat.poisson( l );
-	this.l = l;
-	for ( var i in jStat.poisson.prototype ) this[i] = this[i].bind( this );
-};
-jStat.fn.poisson = function( l ) {
-	var newthis = jStat.poisson( l );
-	newthis.data = this;
-	return newthis;
-};
 
 // extend uniform function with static methods
 jStat.extend( jStat.poisson, {
@@ -1189,20 +604,5 @@ jStat.extend( jStat.poisson, {
 		return sum;
 	}
 });
-
-// extend poisson prototype
-(function( vals ) {
-	for ( var item in vals ) (function( item ) {
-		jStat.poisson.prototype[ item ] = function( x ) {
-			var l = this.l;
-			if ( isNaN( x )) {
-				return jStat( this.data ).map( function( x ) {
-					return jStat.poisson[item]( x, l );
-				});
-			}
-			return jStat.poisson[ item ]( x, l );
-		};
-	})( vals[ item ]);
-})( 'pdf cdf'.split( ' ' ));
 
 })( this.jStat, Math );
