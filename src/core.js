@@ -473,9 +473,9 @@ jStat.extend({
 				tmpthis = fullbool === true ? this : this.transpose();
 				for ( ; i < tmpthis.length; i++ )
 					arr[i] = jStat[ passfunc ]( tmpthis[i] );
-				arr = fullbool === true ? jStat[ passfunc ]( arr ) : arr;
+				return fullbool === true ? jStat[ passfunc ]( arr ) : arr;
 			}
-			return arr;
+			return jStat[ passfunc ]( this[0] );
 		};
 	})( funcs[i] );
 })( 'sum min max mean median mode range variance stdev meandev meddev quartiles'.split( ' ' ));
