@@ -6,7 +6,7 @@ jStat is a statistical library written in JavaScript that allows you to perform 
 
 ### Architecture
 
-All methods that execute from the jStat prototype (instance methods) simply pass their parameters to the static method counterpart to do the actual calculation.
+Calculations are done by *static methods*, while working with groups of numbers is handled by the *instance methods*.
 Here is a pseudo example of what is happening in `core.js`:
 
     jStat.min = function( arr ) {
@@ -17,7 +17,6 @@ Here is a pseudo example of what is happening in `core.js`:
         var i = 0,
             newval = [];
         while( newval.push( jStat.min( this[i] )), ++i < this.length );
-        if ( newval.length === 1 ) newval = newval[0];
         return newval;
     }
 
@@ -25,7 +24,7 @@ Here is a pseudo example of what is happening in `core.js`:
 The reason for this approach is to allow for maxium flexibility to other developers who want to extend jStat, while allowing for easy creation of wrappers.
 This way extending jStat requires minimal performance overhead and allows for more unique wrappers to be created.
 
-**Remember: Static methods always return native JavaScript types. Instance methods almost always return a jStat object.**
+**Remember: Static methods almost always return native JavaScript types. Instance methods always return a jStat object.**
 
 Here is a simple example on the difference in usage between the static and instance methods:
 
@@ -52,3 +51,15 @@ By using the jStat object we can pass callback functions and chain the execution
 
 This method sets each calculation to be executed in an asynchronous queue.
 Very useful method of preventing blocking when working with large data sets.
+
+Let's look at a few chaining and shorthand examples:
+
+    jStat( 0, 1, 11 ) === jStat( jStat.seq( 0, 1, 11 ));
+    jStat().rand( 4, 4 ) === jStat( jStat.rand( 4, 4 ));
+
+    jStat().create( function( x, y ) {
+        return ( x + Math.random()) / ( y + Math.random());
+    }).min( true, function( x ) {
+        // do something with the min value
+    }).beta( 0.5, 0.5 ).pdf();  // generate and return the pdf
+                                // of the beta function for all values
