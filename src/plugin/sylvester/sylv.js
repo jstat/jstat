@@ -8,7 +8,7 @@
  *
  */
  
-define(function() {
+define(["main"], function() {
 	sylv = function() { };
 
 	sylv.loadFile = function(name) {
