@@ -240,7 +240,6 @@ jStat.extend({
 		return xk;
 	},
 
-
 	householder : function( a ) {
 		var m = a.length,
 			n = a[0].length,
@@ -346,7 +345,6 @@ jStat.extend({
 		//returns both the eigenvalue and eigenmatrix
 		return [e, ev];
 	},
-
 
 	rungekutta : function( f, h, p, t_j, u_j, order ) {
 		var k1, k2, u_j1, k3, k4;
