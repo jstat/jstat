@@ -9,7 +9,7 @@
  */
 that = this;
 define(["plugin/sylvester/data/data", "plugin/sylvester/process/process", "plugin/sylvester/estim/estim", "plugin/sylvester/ui/ui", "plugin/sylvester/copula/copula"], function() {
-define(["plugin/flot.jstat"]);
+require(["plugin/flot.jstat"]);
 that.exportAll = function() {
 	document.getElementById("consoleIn").value = sylv.ui.extractAll();
 };
@@ -57,17 +57,16 @@ historyNav.buff = [""];
 that.plot = function(vals, optIfNotMatrix) {
 	$("#consoleOut"+print.nb).before('<div id="consoleOut'+(++print.nb)+'" style="width:'+windowWidth+'px;height:300px;"></div>');
 	if (optIfNotMatrix == undefined) {
-		var arr = jStat.fn.toArray(vals);
 		var data = [];
-		var size = arr[0].length;
-		for (var i = 1; i<arr.length; i++) {
+		var size = vals[0].length;
+		for (var i = 1; i<vals.length; i++) {
 			var ligne = [];
 			for (var j = 0; j<size; j++) {
-				ligne.push([arr[0][j],arr[i][j]]);
+				ligne.push([vals[0][j],vals[i][j]]);
 			};
 			data.push(ligne);
 		};
-		jStat.flot("#consoleOut"+print.nb, data, {rawData: true});
+		a=jStat.flot("#consoleOut"+print.nb, data, {rawData: true});
 	} else {
 		jStat.flot("#consoleOut"+print.nb, vals, optIfNotMatrix);
 	};
@@ -76,7 +75,9 @@ that.plot = function(vals, optIfNotMatrix) {
 that.onResize = function() {
 	windowWidth = $(window).width()-70;
 	$("#consoleIn").width(windowWidth);
-	$("#consoleOut*").width(windowWidth);
+	for (var i = 0; i<=print.nb; i++) {
+		$("#consoleOut"+i).width(windowWidth)
+	};
 };
 $(window).resize(onResize);
 
