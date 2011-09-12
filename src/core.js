@@ -181,6 +181,7 @@ jStat.extend({
 
 	// generate an identity matrix of size row x cols
 	identity : function( rows, cols ) {
+		if(!cols) cols = rows;
 		return jStat.create( rows, cols, function( i, j ) { return ( i === j ) ? 1 : 0; });
 	},
 
