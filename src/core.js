@@ -60,7 +60,7 @@ jStat.fn = jStat.prototype = {
 	init : function( args ) {
 
 		// if first argument is an array, must be vector or matrix
-		if ( isArray( args[0] )) {
+		if ( isArray( args[0] ) || args[0] instanceof jStat) {
 			if ( isArray( args[0][0] )) {
 				for ( var i = 0; i < args[0].length; i++ ) {
 					this[i] = args[0][i];
@@ -70,7 +70,9 @@ jStat.fn = jStat.prototype = {
 				this[0] = args[0];
 				this.length = 1;
 			}
-
+		} else if ( args.length == 1 ) {
+			this[0] = [args[0]];
+			this.length = 1;
 		// if first argument is number, assume creation of sequence
 		} else if ( !isNaN( args[0] )) {
 			this[0] = jStat.seq.apply( null, args );
