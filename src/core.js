@@ -86,7 +86,7 @@ jStat.fn = jStat.prototype = {
 
 	// return clean array
 	toArray : function() {
-		return slice.call( this );
+		return slice.call( arguments[0] || this );
 	},
 
 	// only to be used internally
