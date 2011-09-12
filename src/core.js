@@ -60,7 +60,7 @@ jStat.fn = jStat.prototype = {
 	init : function( args ) {
 
 		// if first argument is an array, must be vector or matrix
-		if ( isArray( args[0] )) {
+		if ( isArray( args[0] ) || args[0] instanceof jStat) {
 			if ( isArray( args[0][0] )) {
 				for ( var i = 0; i < args[0].length; i++ ) {
 					this[i] = args[0][i];
@@ -70,7 +70,9 @@ jStat.fn = jStat.prototype = {
 				this[0] = args[0];
 				this.length = 1;
 			}
-
+		} else if ( args.length == 1 ) {
+			this[0] = [args[0]];
+			this.length = 1;
 		// if first argument is number, assume creation of sequence
 		} else if ( !isNaN( args[0] )) {
 			this[0] = jStat.seq.apply( null, args );
@@ -84,7 +86,7 @@ jStat.fn = jStat.prototype = {
 
 	// return clean array
 	toArray : function() {
-		return slice.call( this );
+		return slice.call( arguments[0] || this );
 	},
 
 	// only to be used internally
@@ -179,6 +181,7 @@ jStat.extend({
 
 	// generate an identity matrix of size row x cols
 	identity : function( rows, cols ) {
+		if(!cols) cols = rows;
 		return jStat.create( rows, cols, function( i, j ) { return ( i === j ) ? 1 : 0; });
 	},
 
@@ -234,9 +237,17 @@ jStat.extend({
 
 	// subtract a vector or scalar from the vector
 	subtract : function( arr, arg ) {
-		return isNaN( arg ) ?
-			jStat.map( arr, function( value, row, col ) { return value - arg[row][col]; })
-		: jStat.map( arr, function( value ) { return value - arg; });
+		var res;
+		if( isNaN( arg ) ) {
+			if( isNaN( arg[0] ) ) {
+				res = jStat.map( arr, function( value, row, col ) { return value - arg[row][col]?arg[row][col]:0; });
+			} else {
+				res = jStat.map( arr, function( value, row, col ) { return value - arg[col]?arg[col]:0; });
+			};
+		} else {
+			res = jStat.map( arr, function( value ) { return value - arg; });
+		};
+		return res
 	},
 
 	// Returns the dot product of two matricies
