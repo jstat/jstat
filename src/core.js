@@ -237,9 +237,17 @@ jStat.extend({
 
 	// subtract a vector or scalar from the vector
 	subtract : function( arr, arg ) {
-		return isNaN( arg ) ?
-			jStat.map( arr, function( value, row, col ) { return value - arg[row][col]; })
-		: jStat.map( arr, function( value ) { return value - arg; });
+		var res;
+		if( isNaN( arg ) ) {
+			if( isNaN( arg[0] ) ) {
+				res = jStat.map( arr, function( value, row, col ) { return value - arg[row][col]?arg[row][col]:0; });
+			} else {
+				res = jStat.map( arr, function( value, row, col ) { return value - arg[col]?arg[col]:0; });
+			};
+		} else {
+			res = jStat.map( arr, function( value ) { return value - arg; });
+		};
+		return res
 	},
 
 	// Returns the dot product of two matricies
