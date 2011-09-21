@@ -232,6 +232,11 @@ jStat.extend({
 		return jStat.map( arr, function( value ) { return value * arg; });
 	},
 
+	// calculate the square
+	sq : function( arg ) {
+		return arg * arg;
+	},
+
 	// subtract a vector or scalar from the vector
 	subtract : function( arr, arg ) {
 		return isNaN( arg ) ?
