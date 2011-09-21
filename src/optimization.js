@@ -184,7 +184,7 @@ jStat.extend(jStat.optim, {
 				x = (obj.params),
 				gradnew = obj.func.gradf(x),
 				gradold = gradnew,
-				d = jStat.vec_mult(gradnew,-1),
+				d = jStat.multiply(gradnew,-1),
 				success = 1, nsuccess = 0, beta = 1.0, betamin = Math.exp(-15), betamax = Math.exp(100), j = 1,
 				mu, kappa, sigma, theta,delta, alpha, Delta, gamma,
 				xplus = [], gplus = [], xnew = [], fnew = [],
@@ -195,7 +195,7 @@ jStat.extend(jStat.optim, {
 				if ( success == 1 ) {
 					mu = jStat.dot( d, gradnew );
 					if ( mu >=0 ) {
-						d = jStat.vec_mult( gradnew, -1 );
+						d = jStat.multiply( gradnew, -1 );
 						mu = jStat.dot( d, gradnew );
 					}
 					kappa = jStat.dot( d, d );
@@ -205,9 +205,9 @@ jStat.extend(jStat.optim, {
 						return result;
 					}
 					sigma = sigma0 / Math.sqrt( kappa );
-					xplus = [ x[0] + jStat.vec_mult( d, sigma )[0], x[1] + jStat.vec_mult( d, sigma )[1] ];
+					xplus = [ x[0] + jStat.multiply( d, sigma )[0], x[1] + jStat.multiply( d, sigma )[1] ];
 					gplus = obj.func.gradf( xplus );
-					theta = jStat.dot( d, jStat.vec_sub( gplus, gradnew )) / sigma;
+					theta = jStat.dot( d, jStat.subtract( gplus, gradnew )) / sigma;
 				}
 				delta = theta + beta * kappa;
 				if ( delta <= 0 ) {
@@ -215,7 +215,7 @@ jStat.extend(jStat.optim, {
 					beta = beta - theta/kappa;
 				}
 				alpha = -mu / delta;
-				xnew = [ x[0] + jStat.vec_mult( d, alpha )[0], x[1] + jStat.vec_mult( d, alpha )[1] ];
+				xnew = [ x[0] + jStat.multiply( d, alpha )[0], x[1] + jStat.multiply( d, alpha )[1] ];
 				fnew = obj.func.value( xnew );
 				result.funclog.push( fnew );
 				result.pointlog.push( xnew );
@@ -230,7 +230,7 @@ jStat.extend(jStat.optim, {
 					fnow = fold;
 				}
 				if ( success == 1 ) {
-					if ( Math.abs( jStat.norm( jStat.vec_mult( d, alpha ))) < 0.0001
+					if ( Math.abs( jStat.norm( jStat.multiply( d, alpha ))) < 0.0001
 						&& Math.abs( fnew - fold ) < 0.0001 ) {
 						result.funcvalue = fnew;
 						result.param = xnew;
@@ -251,8 +251,8 @@ jStat.extend(jStat.optim, {
 				if ( Delta > 0.75 )
 					beta = Math.max( 0.5 * beta, betamin );
 				if (success === 1 ) {
-					gamma = jStat.dot( jStat.vec_sub( gradold, gradnew ), gradnew ) / mu;
-					d = jStat.vec_sub( jStat.vec_mult( d, gamma ), gradnew );
+					gamma = jStat.dot( jStat.subtract( gradold, gradnew ), gradnew ) / mu;
+					d = jStat.subtract( jStat.multiply( d, gamma ), gradnew );
 				}
 				j++;
 			}
