@@ -11,8 +11,7 @@ COMPILER = ${JS_ENGINE} ${BUILD_DIR}/uglify.js --unsafe
 BASE_FILES = ${SRC_DIR}/core.js\
 	${SRC_DIR}/distribution.js\
 	${SRC_DIR}/special.js\
-	${SRC_DIR}/linearalgebra.js\
-	${SRC_DIR}/plugin/flot.jstat.js
+	${SRC_DIR}/linearalgebra.js
 
 JS = ${DIST_DIR}/jstat.js
 JS_MIN = ${DIST_DIR}/jstat.min.js
@@ -65,7 +64,4 @@ clean:
 	@@echo "Removing Distribution directory:" ${DIST_DIR}
 	@@rm -rf ${DIST_DIR}
 
-pull: pull_submodules
-	@@git pull ${REMOTE} ${BRANCH}
-
-.PHONY: all jstat lint min doc clean pull_submodules pull core
+.PHONY: all jstat lint min doc clean core
