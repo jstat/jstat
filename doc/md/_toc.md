@@ -4,5 +4,4 @@
 * [Core](core.html)
 * [Distributions](distributions.html)
 * [Special Functions](special-functions.html)
-* [Flot Integration](flot-integration.html)
 * [Linear Algebra](linear-algebra.html)
