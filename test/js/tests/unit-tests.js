@@ -1,5 +1,102 @@
 $(function() {
-	module('main');
+	var singleArr = [ 1, 2, 3 ],
+		doubleArr = [[ 1, 2, 3 ],[ 4, 5, 6 ],[ 7, 8, 9 ]];
+
+	module( 'core' );
+
+	test( 'sequence generation', function() {
+		deepEqual( jStat.seq( 0, 1, 5 ), [ 0, 0.25, 0.5, 0.75, 1 ], 'seq( 0, 1, 5 )' );
+	});
+
+	test( 'row count', function() {
+		equals( jStat( singleArr.slice() ).rows(), 1, 'fn.rows()' );
+		equals( jStat( doubleArr.slice() ).rows(), 3, 'fn.rows()' );
+	});
+
+	test( 'column count', function() {
+		equals( jStat( singleArr.slice() ).cols(), 3, 'fn.cols()' );
+		equals( jStat( doubleArr.slice() ).cols(), 3, 'fn.cols()' );
+	});
+
+	test( 'dimensions', function() {
+		deepEqual( jStat( singleArr.slice()).dimensions(), {
+			rows : 1,
+			cols : 3
+		}, 'fn.dimensions()' );
+		deepEqual( jStat( doubleArr.slice()).dimensions(), {
+			rows : 3,
+			cols : 3
+		}, 'fn.dimensions()' );
+	});
+
+	test( 'row vector', function() {
+		deepEqual( jStat( singleArr.slice()).row( 0 ).toArray(), [[ 1, 2, 3 ]], 'fn.row()' );
+		deepEqual( jStat( doubleArr.slice()).row( 1 ).toArray(), [[ 4, 5, 6 ]], 'fn.row()' );
+	});
+
+	test( 'column vector', function() {
+		deepEqual( jStat( singleArr.slice()).col( 0 ).toArray(), [[ 1 ]], 'fn.col()' );
+		deepEqual( jStat( doubleArr.slice()).col( 1 ).toArray(), [[ 2 ],[ 5 ],[ 8 ]], 'fn.col()' );
+	});
+
+	test( 'matrix diagonal', function() {
+		deepEqual( jStat( doubleArr.slice()).diag().toArray(), [[ 1 ],[ 5 ],[ 9 ]], 'fn.diag()' );
+	});
+
+	test( 'matrix anti-diagonal', function() {
+		deepEqual( jStat( doubleArr.slice()).antidiag().toArray(), [[ 3 ],[ 5 ],[ 7 ]], 'fn.antidiag()' );
+	});
+
+	test( 'matrix transpose', function() {
+		deepEqual( jStat.transpose( doubleArr ), [[ 1, 4, 7 ],[ 2, 5, 8 ],[ 3, 6, 9 ]], 'transpose()' );
+	});
+
+	test( 'map', function() {
+		deepEqual( jStat.map( doubleArr, function( x ) {
+			return x * 2;
+		}), [[ 2, 4, 6 ],[ 8, 10, 12 ],[ 14, 16, 18 ]], 'map()' );
+	});
+
+	test( 'add', function() {
+		deepEqual( jStat.add( doubleArr, 2 ), [[ 3, 4, 5 ],[ 6, 7, 8 ],[ 9, 10, 11 ]], 'add()' );
+	});
+
+	test( 'subtract', function() {
+		deepEqual( jStat.subtract( doubleArr, 2 ), [[ -1, 0, 1 ],[ 2, 3, 4 ],[ 5, 6, 7 ]], 'subtract()' );
+	});
+
+	test( 'multiply', function() {
+		deepEqual( jStat.multiply( doubleArr, 2 ), [[ 2, 4, 6 ],[ 8, 10, 12 ],[ 14, 16, 18 ]], 'multiply()' );
+	});
+
+	test( 'divide', function() {
+		deepEqual( jStat.divide( singleArr, 2 ), [ 1 / 2, 1, 3 / 2 ], 'divide()' );
+	});
+
+	test( 'dot', function() {
+		deepEqual( jStat.dot([[ 1, 2 ],[ 3, 4 ]],[[ 5, 6 ],[ 7, 8 ]]), [ 17, 53 ], 'dot()' );
+	});
+
+	test( 'pow', function() {
+		deepEqual( jStat.pow( singleArr, 2 ), [ 1, 4, 9 ], 'pow()' );
+	});
+
+	test( 'abs', function() {
+		deepEqual( jStat.abs([ 1, -1, -2 ]), [ 1, 1, 2 ], 'abs()' );
+	});
+
+	test( 'vector norm', function() {
+		equals( jStat.norm([ 1, 2, 3 ]), 3.7416573867739413, 'norm()' );
+	});
+
+	test( 'vector angle', function() {
+		equals( jStat.angle([ 2, 3, 4 ],[ 1, -2, 3 ]), 66.6, 'angle()' );
+	});
+
+	test( 'symmetric', function() {
+		equals( jStat.symmetric( singleArr ), false, 'symmetric()' );
+		equals( jStat.symmetric( doubleArr ), true, 'symmetric()' );
+	});
 
 	test('sum',function(){
 		equals(jStat.sum([1,2,3,4,5,6]),21,'sum([1,2,3,4,5,6])');
@@ -51,7 +148,7 @@ $(function() {
 
 	test('factorial',function(){
 		equals(jStat.factorial(5),120,'factorial(5)');
-		equals(jStat.factorial(.5),0.8862269254527566,'factorial(.5)');
+		equals(jStat.factorial(.5).toFixed(7),'0.8862269','factorial(.5)');
 	});
 
 	test('combination',function(){
@@ -63,7 +160,7 @@ $(function() {
 	});
 
 	test('gamma',function(){
-		equals(jStat.gammafn(.5),1.7724538509055165,'gamma(.5)');
+		equals(jStat.gammafn(.5).toFixed(7),'1.7724539','gamma(.5)');
 		equals(jStat.gammafn(15),87178291200,'gamma(5)');
 	});
 
@@ -78,6 +175,8 @@ $(function() {
 	test('corrcoeff',function(){
 		equals(jStat.corrcoeff([1,2,3,6,9,3,1,2,5],[2,3,5,2,5,7,8,9,6]),-0.16693777514921238,'corrcoeff([1,2,3,6,9,3,1,2,5],[2,3,5,2,5,7,8,9,6])');
 	});
+
+
 
 	module('distribution');
 
