@@ -391,7 +391,7 @@ jStat.extend({
 		for( ; i >= 0; i-- ) {
 			stSum += Math.pow(( arr[i] - mean ), 2 );
 		}
-		return stSum / ( arr.length - 1 );
+		return stSum / arr.length;
 	},
 
 	// standard deviation of an array
