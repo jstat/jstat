@@ -132,7 +132,7 @@ $(function() {
 	});
 
 	test('variance',function(){
-		equals(jStat.variance([1,2,3,4,5,6]),3.5,'variance([1,2,3,4,5,6])');
+		equals(jStat.variance([3,4,5,6,7]),2,'variance([3,4,5,6,7])');
 	});
 
 	test('stdev',function(){
