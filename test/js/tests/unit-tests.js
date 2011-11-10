@@ -86,6 +86,7 @@ $(function() {
 	});
 
 	test( 'vector norm', function() {
+		equals( jStat.norm([ 1, 2, 3 ], 1 ), 6, 'norm()' );
 		equals( jStat.norm([ 1, 2, 3 ]), 3.7416573867739413, 'norm()' );
 	});
 
@@ -95,7 +96,8 @@ $(function() {
 
 	test( 'symmetric', function() {
 		equals( jStat.symmetric( singleArr ), false, 'symmetric()' );
-		equals( jStat.symmetric( doubleArr ), true, 'symmetric()' );
+		equals( jStat.symmetric( doubleArr ), false, 'symmetric()' );
+		equals( jStat.symmetric([[ 1, 2 ],[ 2, 1 ]]), true, 'symmetric()' );
 	});
 
 	test('sum',function(){
