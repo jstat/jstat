@@ -133,11 +133,13 @@ $(function() {
 
 	test('variance',function(){
 		equals(jStat.variance([3,4,5,6,7]),2,'variance([3,4,5,6,7])');
+		equals(jStat.variance([1,2,3,4,5,6], 1),3.5,'variance([1,2,3,4,5,6], 1)');
 	});
 
 	test('stdev',function(){
-		equals(jStat.stdev([3,4,5]),1,'stdev([3,4,5])');
-		equals(jStat.stdev([-3,-4,-5]),1,'stdev([-3,-4,-5])');
+		equals(jStat.stdev([3,4,5], 1),1,'stdev([3,4,5], 1)');
+		equals(jStat.stdev([-3,-4,-5], 1),1,'stdev([-3,-4,-5], 1)');
+		equals(jStat.stdev([1,2,3]), 0.816496580927726, 'stdev([1,2,3])');
 	});
 
 	test('meandev',function(){
