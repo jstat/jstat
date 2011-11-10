@@ -384,19 +384,20 @@ jStat.extend({
 	},
 
 	// variance of an array
-	variance : function( arr ) {
+	// flag indicates population vs sample
+	variance : function( arr, flag ) {
 		var mean = jStat.mean( arr ),
 			stSum = 0,
 			i = arr.length - 1;
 		for( ; i >= 0; i-- ) {
 			stSum += Math.pow(( arr[i] - mean ), 2 );
 		}
-		return stSum / arr.length;
+		return stSum / ( arr.length - ( flag ? 1 : 0 ));
 	},
 
 	// standard deviation of an array
-	stdev : function( arr ) {
-		return Math.sqrt( jStat.variance( arr ));
+	stdev : function( arr, flag ) {
+		return Math.sqrt( jStat.variance( arr, flag ));
 	},
 
 	// mean deviation (mean absolute deviation) of an array
