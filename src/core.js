@@ -448,7 +448,7 @@ jStat.extend({
 
 	// correlation coefficient of two arrays
 	corrcoeff : function( arr1, arr2 ) {
-		return jStat.covariance( arr1, arr2 ) / jStat.stdev( arr1 ) / jStat.stdev( arr2 );
+		return jStat.covariance( arr1, arr2 ) / jStat.stdev( arr1, 1 ) / jStat.stdev( arr2, 1 );
 	}
 });
 
