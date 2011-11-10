@@ -276,16 +276,20 @@ jStat.extend({
 		return jStat.alter( arr, function() { return 0; });
 	},
 
-	// BUG: Does not work for matrices
-	// computes the norm of the vector
-	norm : function( arr ) {
-		arr = isArray( arr[0] ) ? arr : [arr];
-		if( arr.length > 1 && arr[0].length > 1 ) {
-			// matrix norm
-			return false;
-		}
+	// TODO: make compatible with matrices
+	// computes the p-norm of the vector
+	norm : function( arr, p ) {
+		var nnorm = 0,
+			i = 0;
+		// check the p-value of the norm, and set for most common case
+		if ( isNaN( p )) p = 2;
+		// check if multi-dimensional array, and make vector correction
+		if ( isArray( arr[0] )) arr = arr[0];
 		// vector norm
-		return Math.sqrt( jStat.dot( arr, arr ));
+		for (; i < arr.length; i++ ) {
+			nnorm += Math.pow( Math.abs( arr[i] ), p );
+		}
+		return Math.pow( nnorm, 1 / p );
 	},
 
 	// BUG: Does not work for matrices
