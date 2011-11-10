@@ -149,14 +149,14 @@ window.jStatTest = {
 	covariance : function() {
 		test('jStat.covariance', function(itter){
 			for(;itter > 0; itter--){
-				jStat.covariance( tmpseq );
+				jStat.covariance( tmpseq, tmpseq );
 			}
 		}, 'inner');
 	},
 	corrcoeff : function() {
 		test('jStat.corrcoeff', function(itter){
 			for(;itter > 0; itter--){
-				jStat.corroeff( tmpseq );
+				jStat.corrcoeff( tmpseq, tmpseq );
 			}
 		}, 'inner');
 	},
