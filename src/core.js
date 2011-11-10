@@ -241,8 +241,8 @@ jStat.extend({
 
 	// Returns the dot product of two matricies
 	dot : function( arr, arg ) {
-		if ( !isArray( arr )) arr = [ arr ];
-		if ( !isArray( arg )) arg = [ arg ];
+		if ( !isArray( arr[0] )) arr = [ arr ];
+		if ( !isArray( arg[0] )) arg = [ arg ];
 			// convert column to row vector
 		var left = ( arr[0].length === 1 && arr.length !== 1 ) ? jStat.transpose( arr ) : arr,
 			right = ( arg[0].length === 1 && arg.length !== 1 ) ? jStat.transpose( arg ) : arg,
