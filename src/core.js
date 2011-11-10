@@ -236,7 +236,9 @@ jStat.extend({
 	// subtract a vector or scalar from the vector
 	subtract : function( arr, arg ) {
 		return isNaN( arg )
-			? jStat.map( arr, function( value, row, col ) { return value - arg[col]; })
+			? isNaN( arg[0] )
+				? jStat.map( arr, function( value, row, col ) { return value - arg[row][col] || 0; })
+			: jStat.map( arr, function( value, row, col ) { return value - arg[col] || 0; })
 		: jStat.map( arr, function( value ) { return value - arg; });
 	},
 
