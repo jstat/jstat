@@ -292,10 +292,10 @@ jStat.extend({
 		return Math.pow( nnorm, 1 / p );
 	},
 
-	// BUG: Does not work for matrices
+	// TODO: make compatible with matrices
 	// computes the angle between two vectors
 	angle : function( arr, arg ) {
-		 return Math.acos( jStat.dot( arr, arg ) / ( jStat.norm( arr ) * jStat.norm( arg )));
+		return Math.acos( jStat.dot( arr, arg ) / ( jStat.norm( arr ) * jStat.norm( arg )))
 	},
 
 	// Tests whether a matrix is symmetric

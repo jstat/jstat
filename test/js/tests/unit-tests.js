@@ -91,7 +91,7 @@ $(function() {
 	});
 
 	test( 'vector angle', function() {
-		equals( jStat.angle([ 2, 3, 4 ],[ 1, -2, 3 ]), 66.6, 'angle()' );
+		equals( jStat.angle([ 1, 0, 1 ],[ 0, 1, 0 ]), Math.PI / 2, 'angle()' );
 	});
 
 	test( 'symmetric', function() {
