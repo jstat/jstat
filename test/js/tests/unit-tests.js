@@ -63,6 +63,7 @@ $(function() {
 
 	test( 'subtract', function() {
 		deepEqual( jStat.subtract( doubleArr, 2 ), [[ -1, 0, 1 ],[ 2, 3, 4 ],[ 5, 6, 7 ]], 'subtract()' );
+		deepEqual( jStat.subtract([[ 1, 2 ],[ 3, 4 ]],[[ 2, 1 ],[ 4, 3 ]]), [[ -1, 1 ],[ -1, 1 ]], 'subtract()' );
 	});
 
 	test( 'multiply', function() {
