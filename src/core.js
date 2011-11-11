@@ -10,28 +10,7 @@ var slice = Array.prototype.slice,
 	toString = Object.prototype.toString,
 
 	// ascending/descending functions for sort
-	ascNum = function( a, b ) { return a - b; },
-
-	// test if array
-	isArray = Array.isArray || function( arg ) {
-		return toString.call( arg ) === "[object Array]";
-	},
-
-	// test if function
-	isFunction = function( arg ) {
-		return toString.call( arg ) === "[object Function]";
-	},
-
-	// test if object
-	isObject = function( arg ) {
-		return toString.call( arg ) === "[object Object]";
-	},
-
-	// calculate correction for IEEE error
-	calcRdx = function( n, m ) {
-		var val = n > m ? n : m;
-		return Math.pow( 10, 15 - ~~( Math.log((( val > 0 ) ? val : -val )) * Math.LOG10E ));
-	};
+	ascNum = function( a, b ) { return a - b; };
 
 // implement bind if browser doesn't natively support it
 if ( !Function.prototype.bind ) {
@@ -60,8 +39,8 @@ jStat.fn = jStat.prototype = {
 	init : function( args ) {
 
 		// if first argument is an array, must be vector or matrix
-		if ( isArray( args[0] )) {
-			if ( isArray( args[0][0] )) {
+		if ( jStat.utils.isArray( args[0] )) {
+			if ( jStat.utils.isArray( args[0][0] )) {
 				for ( var i = 0; i < args[0].length; i++ ) {
 					this[i] = args[0][i];
 				}
@@ -94,6 +73,25 @@ jStat.fn = jStat.prototype = {
 };
 jStat.fn.init.prototype = jStat.fn;
 
+// utility functions
+jStat.utils = {
+
+	// calculate correction for IEEE error
+	calcRdx : function( n, m ) {
+		var val = n > m ? n : m;
+		return Math.pow( 10, 15 - ~~( Math.log((( val > 0 ) ? val : -val )) * Math.LOG10E ));
+	},
+	// test if array
+	isArray : Array.isArray || function( arg ) {
+		return toString.call( arg ) === "[object Array]";
+	},
+
+	// test if function
+	isFunction : function( arg ) {
+		return toString.call( arg ) === "[object Function]";
+	}
+};
+
 // create method for easy extension
 jStat.extend = function( obj ) {
 	var args = slice.call( arguments ),
@@ -115,7 +113,7 @@ jStat.extend({
 
 	// transpose a matrix or array
 	transpose : function( arr ) {
-		if ( !isArray( arr[0] )) arr = [ arr ];
+		if ( !jStat.utils.isArray( arr[0] )) arr = [ arr ];
 		var rows = arr.length,
 			cols = arr[0].length,
 			obj = [],
@@ -131,7 +129,7 @@ jStat.extend({
 
 	// map a function to an array or array of arrays
 	map : function( arr, func, toAlter ) {
-		if ( !isArray( arr[0] )) arr = [ arr ];
+		if ( !jStat.utils.isArray( arr[0] )) arr = [ arr ];
 		var row = 0,
 			nrow = arr.length,
 			ncol = arr[0].length,
@@ -186,7 +184,7 @@ jStat.extend({
 	// generate sequence
 	seq : function( min, max, length, func ) {
 		var arr = [],
-			hival = calcRdx( min, max ),
+			hival = jStat.utils.calcRdx( min, max ),
 			step = ( max * hival - min * hival ) / (( length - 1 ) * hival ),
 			current = min,
 			cnt = 0;
@@ -244,8 +242,8 @@ jStat.extend({
 
 	// Returns the dot product of two matricies
 	dot : function( arr, arg ) {
-		if ( !isArray( arr[0] )) arr = [ arr ];
-		if ( !isArray( arg[0] )) arg = [ arg ];
+		if ( !jStat.utils.isArray( arr[0] )) arr = [ arr ];
+		if ( !jStat.utils.isArray( arg[0] )) arg = [ arg ];
 			// convert column to row vector
 		var left = ( arr[0].length === 1 && arr.length !== 1 ) ? jStat.transpose( arr ) : arr,
 			right = ( arg[0].length === 1 && arg.length !== 1 ) ? jStat.transpose( arg ) : arg,
@@ -254,10 +252,10 @@ jStat.extend({
 			nrow = left.length,
 			ncol = left[0].length,
 			sum, col;
-		for( ; row < nrow; row++ ) {
+		for ( ; row < nrow; row++ ) {
 			res[row] = [];
 			sum = 0;
-			for( col = 0; col < ncol; col++ )
+			for ( col = 0; col < ncol; col++ )
 				sum += left[row][col] * right[row][col];
 			res[row] = sum;
 		}
@@ -287,7 +285,7 @@ jStat.extend({
 		// check the p-value of the norm, and set for most common case
 		if ( isNaN( p )) p = 2;
 		// check if multi-dimensional array, and make vector correction
-		if ( isArray( arr[0] )) arr = arr[0];
+		if ( jStat.utils.isArray( arr[0] )) arr = arr[0];
 		// vector norm
 		for (; i < arr.length; i++ ) {
 			nnorm += Math.pow( Math.abs( arr[i] ), p );
@@ -298,7 +296,7 @@ jStat.extend({
 	// TODO: make compatible with matrices
 	// computes the angle between two vectors
 	angle : function( arr, arg ) {
-		return Math.acos( jStat.dot( arr, arg ) / ( jStat.norm( arr ) * jStat.norm( arg )))
+		return Math.acos( jStat.dot( arr, arg ) / ( jStat.norm( arr ) * jStat.norm( arg )));
 	},
 
 	// Tests whether a matrix is symmetric
@@ -465,7 +463,7 @@ jStat.extend({
 				i = 0,
 				tmpthis = this;
 			// assignment reassignation depending on how parameters were passed in
-			if ( isFunction( fullbool )) {
+			if ( jStat.utils.isFunction( fullbool )) {
 				func = fullbool;
 				fullbool = false;
 			}
@@ -502,7 +500,7 @@ jStat.extend({
 				return this;
 			}
 			results = jStat[ passfunc ]( this );
-			return isArray( results ) ? jStat( results ) : results;
+			return jStat.utils.isArray( results ) ? jStat( results ) : results;
 		};
 	})( funcs[i] );
 })( 'transpose clear norm symmetric'.split( ' ' ));
