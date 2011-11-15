@@ -227,13 +227,6 @@
 #### jStat.uniform.variance( a, b )
 
 
-### jStat.uniformmv
-
-#### jStat.uniformmv.pdf( x, m, s )
-
-#### jStat.uniformmv.cdf( x, m, s )
-
-
 ### jStat.binomial
 
 #### jStat.binomial.pdf( k, n, p )

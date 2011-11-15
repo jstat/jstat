@@ -56,7 +56,7 @@
 	})( list[ i ]);
 })((
 	'beta cauchy chisquare exponential gamma kumaraswamy lognormal normal ' +
-	'pareto studentt weibull uniform uniformmv binomial negbin hypgeom poisson'
+	'pareto studentt weibull uniform  binomial negbin hypgeom poisson'
 ).split( ' ' ));
 
 
@@ -486,22 +486,7 @@ jStat.extend( jStat.uniform, {
 	},
 
 	variance : function( a, b ) {
-		return 0.08333333333333333 * Math.pow( b - a, 2 );
-	}
-});
-
-
-
-// extend uniform function with static methods
-jStat.extend( jStat.uniformmv, {
-	pdf : function( x, m, s ) {
-		var sqrtt = Math.sqrt( -3 );
-		return ( -s * sqrtt <= x - m || x - m <= s * sqrtt ) ? 1 / ( 2 * s * sqrtt ) : 0;
-	},
-
-	cdf : function( x, m, s ) {
-		var sqrtt = Math.sqrt( -3 );
-		return ( x - m < -s * sqrtt ) ? 0 : ( x - m >= s * sqrtt ) ? 1 : 0.5 * (( x - m ) / ( s * sqrtt ) + 1 );
+		return Math.pow( b - a, 2 ) / 12;
 	}
 });
 
