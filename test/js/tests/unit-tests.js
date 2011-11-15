@@ -185,22 +185,116 @@ $(function() {
 
 	module('distribution');
 
-	test('uniformcdf',function(){
-		equals(jStat.uniform.cdf(0.5, 0, 2),0.25,'uniform.cdf(0, 2, 0.5)');
+	test('beta',function(){
+		equals(jStat.beta.pdf(0,1,1),1,'beta.pdf(0,1,1)');
+		equals(jStat.beta.pdf(0.5,0.5,0.5),0.6366197687940683,'beta.pdf(0.5,0.5,0.5)');
+		equals(jStat.beta.cdf(0,1,1),0,'beta.cdf(0,1,1)');
+		equals(jStat.beta.cdf(0.5,0.5,0.5).toFixed(4),'0.5000','beta.cdf(0.5,0.5,0.5)');
 	});
 
-	test('binomial',function(){
-		equals(jStat.binomial.pdf(2, 5, 0.5),0.3125,'binomial.pdf(5, 1/2, 2)');
+	test('cauchy',function(){
+		equals(jStat.cauchy.pdf(0,1,1),0.15915494309189535,'cauchy.pdf(0,1,1)');
+		equals(jStat.cauchy.pdf(0.5,0.5,0.5),0.6366197723675814,'cauchy.pdf(0.5,0.5,0.5)');
+		equals(jStat.cauchy.cdf(0,1,1),0.25,'cauchy.cdf(0,1,1)');
+		equals(jStat.cauchy.cdf(0.5,0.5,0.5),0.5,'cauchy.cdf(0.5,0.5,0.5)');
+	});
+
+	test('chisquare',function(){
+		equals(jStat.chisquare.pdf(0.5,0.5),0.3037807865917943,'chisquare.pdf(0.5,0.5)');
+		equals(jStat.chisquare.pdf(0.5,1),0.43939128823451334,'chisquare.pdf(0.5,1)');
+		equals(jStat.chisquare.cdf(0.5,0.5),2.6962861099717164,'chisquare.cdf(0.5,0.5)');
+		equals(jStat.chisquare.cdf(0.5,1),3.0690276591232104,'chisquare.cdf(0.5,1)');
+	});
+
+	test('exponential',function(){
+		equals(jStat.exponential.pdf(0.5,0.5),0.38940039153570244,'exponential.pdf(0.5,0.5)');
+		equals(jStat.exponential.pdf(0.5,1),0.6065306597126334,'exponential.pdf(0.5,1)');
+		equals(jStat.exponential.cdf(0.5,0.5),0.22119921692859512,'exponential.cdf(0.5,0.5)');
+		equals(jStat.exponential.cdf(0.5,1),0.3934693402873666,'exponential.cdf(0.5,1)');
+	});
+
+	test('gamma',function(){
+		equals(jStat.gamma.pdf(0.5,0.5,0.5),0.41510749625554133,'gamma.pdf(0.5,0.5,0.5)');
+		equals(jStat.gamma.pdf(0.5,1,1),0.6065306597126334,'gamma.pdf(0.5,1,1)');
+		equals(jStat.gamma.cdf(0.5,0.5,0.5),0.3934693402873665,'gamma.cdf(0.5,0.5,0.5)');
+		equals(jStat.gamma.cdf(0.5,1,1),1.493648269786591,'gamma.cdf(0.5,1,1)');
+	});
+
+	test('kumaraswamy',function(){
+		equals(jStat.kumaraswamy.pdf(0.5,0.5,0.5),0.6532814824381883,'kumaraswamy.pdf(0.5,0.5,0.5)');
+		equals(jStat.kumaraswamy.pdf(0.5,1,1),1,'kumaraswamy.pdf(0.5,1,1)');
+		equals(jStat.kumaraswamy.cdf(0.5,0.5,0.5),0.4588038998538031,'kumaraswamy.cdf(0.5,0.5,0.5)');
+		equals(jStat.kumaraswamy.cdf(0.5,1,1),0.5,'kumaraswamy.cdf(0.5,1,1)');
+	});
+
+	test('lognormal',function(){
+		equals(jStat.lognormal.pdf(0.5,0.5,0.5),0.09256496459388698,'lognormal.pdf(0.5,0.5,0.5)');
+		equals(jStat.lognormal.pdf(0.5,1,1),0.19029780481010555,'lognormal.pdf(0.5,1,1)');
+		equals(jStat.lognormal.cdf(0.5,0.5,0.5),0.008509561256088927,'lognormal.cdf(0.5,0.5,0.5)');
+		equals(jStat.lognormal.cdf(0.5,1,1),0.045213727790224145,'lognormal.cdf(0.5,1,1)');
+	});
+
+	test('normal',function(){
+		equals(jStat.normal.pdf(0.5,0.5,0.5),0.7978845608028654,'normal.pdf(0.5,0.5,0.5)');
+		equals(jStat.normal.pdf(0.5,1,1),0.3520653267642995,'normal.pdf(0.5,1,1)');
+		equals(jStat.normal.cdf(0.5,0.5,0.5),0.5,'normal.cdf(0.5,0.5,0.5)');
+		equals(jStat.normal.cdf(0.5,1,1),0.3085375387259869,'normal.cdf(0.5,1,1)');
+	});
+
+	test('pareto',function(){
+		equals(jStat.pareto.pdf(0.5,0.4,0.5),0.8944271909999159,'pareto.pdf(0.5,0.4,0.5)');
+		equals(jStat.pareto.pdf(1,1,1),undefined,'pareto.pdf(1,1,1)');
+		equals(jStat.pareto.cdf(0.5,0.4,0.5),0.10557280900008414,'pareto.cdf(0.5,0.4,0.5)');
+		equals(jStat.pareto.cdf(1,1,1),0,'pareto.cdf(1,1,1)');
+	});
+
+	test('studentt',function(){
+		equals(jStat.studentt.pdf(0.5,0.5),0.19896393257609168,'studentt.pdf(0.5,0.5)');
+		equals(jStat.studentt.pdf(1,1),0.15915494264520624,'studentt.pdf(1,1)');
+		equals(jStat.studentt.cdf(0.5,0.5),0.6213409636390478,'studentt.cdf(0.5,0.5)');
+		equals(jStat.studentt.cdf(1,1).toFixed(5),'0.75000','studentt.cdf(1,1)');
 	});
 
 	test('weibull',function(){
-		equals(jStat.weibull.pdf(1,1,1),0.36787944117144233,'weibull(1,1,1)');
-		equals(jStat.weibull.pdf(2,1,2),0.18393972058572117,'weibull(2,1,2)');
+		equals(jStat.weibull.pdf(1,1,1),0.36787944117144233,'weibull.pdf(1,1,1)');
+		equals(jStat.weibull.pdf(2,1,2),0.07326255555493671,'weibull.pdf(2,1,2)');
+		equals(jStat.weibull.cdf(1,1,1),0.6321205588285577,'weibull.cdf(1,1,1)');
+		equals(jStat.weibull.cdf(2,1,2),0.9816843611112658,'weibull.cdf(2,1,2)');
 	});
 
-	test('weibullcdf',function(){
-		equals(jStat.weibull.cdf(1,1,1),0.6321205588285577,'weibull.cdf(1,1,1)');
-		equals(jStat.weibull.cdf(2,1,2),0.6321205588285577,'weibull.cdf(2,1,2)');
+	test('uniform',function(){
+		equals(jStat.uniform.pdf(1,0,2),0.5,'uniform.pdf(1,0,2)');
+		equals(jStat.uniform.pdf(1,0,1),1,'uniform.pdf(1,0,1)');
+		equals(jStat.uniform.cdf(0.5,0,2),0.25,'uniform.cdf(0.5,0,2)');
+		equals(jStat.uniform.cdf(1,0,2),0.5,'uniform.cdf(1,0,2)');
+	});
+
+	test('binomial',function(){
+		equals(jStat.binomial.pdf(2,5,0.5),0.3125,'binomial.pdf(2,5,0.5)');
+		equals(jStat.binomial.pdf(1,4,0.5),0.25,'binomial.pdf(1,4,0.5)');
+		equals(jStat.binomial.cdf(2,5,0.5),0.5,'binomial.cdf(2,5,0.5)');
+		equals(jStat.binomial.cdf(1,4,0.5),0.3125,'binomial.cdf(1,4,0.5)');
+	});
+
+	test('negbin',function(){
+		equals(jStat.negbin.pdf(1,2,2),4,'negbin.pdf(1,2,2)');
+		equals(jStat.negbin.pdf(1,2,3),24,'negbin.pdf(1,2,3)');
+		equals(jStat.negbin.cdf(1,2,2),5,'negbin.cdf(1,2,2)');
+		equals(jStat.negbin.cdf(1,2,3),28,'negbin.cdf(1,2,3)');
+	});
+
+	test('hypgeom',function(){
+		equals(jStat.hypgeom.pdf(1,6,2,4),8/15,'hypgeom.pdf(1,6,2,4)');
+		equals(jStat.hypgeom.pdf(1,7,3,5),1/7,'hypgeom.pdf(1,7,3,5)');
+		equals(jStat.hypgeom.cdf(1,6,2,4),0.6,'hypgeom.cdf(1,6,4,2)');
+		equals(jStat.hypgeom.cdf(1,8,3,5),0.2857142857142857,'hypgeom.cdf(1,8,3,5)');
+	});
+
+	test('poisson',function(){
+		equals(jStat.poisson.pdf(1,3),0.14936120510359183,'poisson.pdf(1,3)');
+		equals(jStat.poisson.pdf(1,5),0.03368973499542734,'poisson.pdf(1,5)');
+		equals(jStat.poisson.cdf(1,3),0.19914827347145578,'poisson.cdf(1,3)');
+		equals(jStat.poisson.cdf(1,5),0.040427681994512805,'poisson.cdf(1,5)');
 	});
 
 });
