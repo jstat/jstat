@@ -508,7 +508,7 @@ jStat.extend( jStat.binomial, {
 		}
 		if ( x < n ) {
 			for ( ; k < n; k++ ) {
-				binomarr[ k ] = jStat.binomial( k, n, p );
+				binomarr[ k ] = jStat.binomial.pdf( k, n, p );
 			}
 			for ( ; i <= x; i++ ) {
 				sum += binomarr[ i ];
@@ -534,7 +534,7 @@ jStat.extend( jStat.negbin, {
 			k = 0;
 		if ( x < 0 ) return 0;
 		for ( ; k <= x; k++ ) {
-			sum += jStat.negbin( k, r, p );
+			sum += jStat.negbin.pdf( k, r, p );
 		}
 		return sum;
 	}
@@ -555,7 +555,7 @@ jStat.extend( jStat.hypgeom, {
 			k = 0;
 		if ( x < 0 ) return 0;
 		for ( ; k <= x; k++ ) {
-			sum += jStat.hypgeom( k, N, m, n );
+			sum += jStat.hypgeom.pdf( k, N, m, n );
 		}
 		return sum;
 	}
@@ -574,7 +574,7 @@ jStat.extend( jStat.poisson, {
 			k = 0;
 		if ( x < 0 ) return 0;
 		for ( ; k <= x; k++ ) {
-			sum += jStat.poisson( k, l );
+			sum += jStat.poisson.pdf( k, l );
 		}
 		return sum;
 	}
