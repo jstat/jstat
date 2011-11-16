@@ -105,6 +105,10 @@ $(function() {
 		equals(jStat.sum([1,2,3,4,5,6]),21,'sum([1,2,3,4,5,6])');
 	});
 
+	test('product',function(){
+		equals(jStat.product([1,2,3,4,5,6]),720,'product([1,2,3,4,5,6])');
+	});
+
 	test('min',function(){
 		equals(jStat.min([1,2,3,4,5,6]),1,'min([1,2,3,4,5,6])');
 	});

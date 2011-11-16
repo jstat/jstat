@@ -151,6 +151,11 @@ Tests if a matrix is symmetric.
 Return the sum of a vector, or of matrix columns.
 If pass boolean true as first argument, then return sum of entire object.
 
+### product( [[bool][,callback]][callback] )
+
+Return the product of a vector, or of matrix columns.
+If pass boolean true as first argument, then return product of entire object.
+
 ### min( [[bool][,callback]][callback] )
 
 Return the minimum value of a vector, or of matrix columns.
