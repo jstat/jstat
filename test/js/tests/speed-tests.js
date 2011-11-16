@@ -69,6 +69,27 @@ window.jStatTest = {
 			}
 		}, 'inner');
 	},
+	sumsqrd : function() {
+		test('jStat.sumsqrd', function(itter){
+			for(;itter > 0; itter--){
+				jStat.sumsqrd( tmpseq );
+			}
+		}, 'inner');
+	},
+	sumsqerr : function() {
+		test('jStat.sumsqerr', function(itter){
+			for(;itter > 0; itter--){
+				jStat.sumsqerr( tmpseq );
+			}
+		}, 'inner');
+	},
+	product : function() {
+		test('jStat.product', function(itter){
+			for(;itter > 0; itter--){
+				jStat.product( tmpseq );
+			}
+		}, 'inner');
+	},
 	min : function() {
 		test('jStat.min', function(itter){
 			for(;itter > 0; itter--){
@@ -87,6 +108,13 @@ window.jStatTest = {
 		test('jStat.mean', function(itter){
 			for(;itter > 0; itter--){
 				jStat.mean( tmpseq );
+			}
+		}, 'inner');
+	},
+	geomean : function() {
+		test('jStat.geomean', function(itter){
+			for(;itter > 0; itter--){
+				jStat.geomean( tmpseq );
 			}
 		}, 'inner');
 	},
