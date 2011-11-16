@@ -156,6 +156,11 @@ If pass boolean true as first argument, then return sum of entire object.
 Return the sum sqared of a vector, or of matrix columns.
 If pass boolean true as first argument, then return sum of entire object.
 
+### sumsqerr( [[bool][,callback]][callback] )
+
+Return the sum sqared error of a vector, or of matrix columns.
+If pass boolean true as first argument, then return sum of entire object.
+
 ### product( [[bool][,callback]][callback] )
 
 Return the product of a vector, or of matrix columns.

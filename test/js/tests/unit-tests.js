@@ -109,6 +109,10 @@ $(function() {
 		equals(jStat.sumsqrd([1,2,3,4]),30,'sumsqrt([1,2,3,4])');
 	});
 
+	test('sumsqerr',function(){
+		equals(jStat.sumsqerr([1,2,3,4,5,6]),17.5,'sumsqerr([1,2,3,4,5,6])');
+	});
+
 	test('product',function(){
 		equals(jStat.product([1,2,3,4,5,6]),720,'product([1,2,3,4,5,6])');
 	});

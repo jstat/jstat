@@ -350,6 +350,15 @@ jStat.extend({
 		return sum;
 	},
 
+	// sum squared error
+	sumsqerr : function( arr ) {
+		var mean = jStat.mean( arr ),
+			sum = 0,
+			i = arr.length;
+		while ( --i >= 0 ) sum += Math.pow( arr[i] - mean, 2 );
+		return sum;
+	},
+
 	// product of an array
 	product : function( arr ) {
 		var prod = 1,
@@ -527,7 +536,7 @@ jStat.extend({
 			return jStat[ passfunc ]( this[0] );
 		};
 	})( funcs[i] );
-})( 'sum sumsqrd product min max mean geomean median mode range variance stdev meandev meddev quartiles'.split( ' ' ));
+})( 'sum sumsqrd sumsqerr product min max mean geomean median mode range variance stdev meandev meddev quartiles'.split( ' ' ));
 
 // extend jStat.fn with methods that have no argument
 (function( funcs ) {
