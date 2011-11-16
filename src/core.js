@@ -342,6 +342,14 @@ jStat.extend({
 		return sum;
 	},
 
+	// sum squared
+	sumsqrd : function( arr ) {
+		var sum = 0,
+			i = arr.length;
+		while ( --i >= 0 ) sum += arr[i] * arr[i];
+		return sum;
+	},
+
 	// product of an array
 	product : function( arr ) {
 		var prod = 1,
@@ -519,7 +527,7 @@ jStat.extend({
 			return jStat[ passfunc ]( this[0] );
 		};
 	})( funcs[i] );
-})( 'sum product min max mean geomean median mode range variance stdev meandev meddev quartiles'.split( ' ' ));
+})( 'sum sumsqrd product min max mean geomean median mode range variance stdev meandev meddev quartiles'.split( ' ' ));
 
 // extend jStat.fn with methods that have no argument
 (function( funcs ) {
