@@ -181,6 +181,11 @@ If pass boolean true as first argument, then return max of entire object.
 Return the mean value of a vector, or of matrix columns.
 If pass boolean true as first argument, then return mean of entire object.
 
+### meansqerr( [[bool][,callback]][callback] )
+
+Return the mean square erro value of a vector, or of matrix columns.
+If pass boolean true as first argument, then return mean of entire object.
+
 ### geomean( [[bool][,callback]][callback] )
 
 Return the geometric mean of a vector, or of matrix columns.

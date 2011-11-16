@@ -382,6 +382,11 @@ jStat.extend({
 		return jStat.sum( arr ) / arr.length;
 	},
 
+	// mean squared error
+	meansqerr : function( arr ) {
+		return jStat.sumsqerr( arr ) / arr.length;
+	},
+
 	// geometric mean of an array
 	geomean : function( arr ) {
 		return Math.pow( jStat.product( arr ), 1 / arr.length );

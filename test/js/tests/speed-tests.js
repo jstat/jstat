@@ -111,6 +111,13 @@ window.jStatTest = {
 			}
 		}, 'inner');
 	},
+	meansqerr : function() {
+		test('jStat.meansqerr', function(itter){
+			for(;itter > 0; itter--){
+				jStat.meansqerr( tmpseq );
+			}
+		}, 'inner');
+	},
 	geomean : function() {
 		test('jStat.geomean', function(itter){
 			for(;itter > 0; itter--){
