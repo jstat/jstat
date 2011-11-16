@@ -365,6 +365,11 @@ jStat.extend({
 		return jStat.sum( arr ) / arr.length;
 	},
 
+	// geometric mean of an array
+	geomean : function( arr ) {
+		return Math.pow( jStat.product( arr ), 1 / arr.length );
+	},
+
 	// median of an array
 	median : function( arr ) {
 		var arrlen = arr.length,
@@ -514,7 +519,7 @@ jStat.extend({
 			return jStat[ passfunc ]( this[0] );
 		};
 	})( funcs[i] );
-})( 'sum product min max mean median mode range variance stdev meandev meddev quartiles'.split( ' ' ));
+})( 'sum product min max mean geomean median mode range variance stdev meandev meddev quartiles'.split( ' ' ));
 
 // extend jStat.fn with methods that have no argument
 (function( funcs ) {

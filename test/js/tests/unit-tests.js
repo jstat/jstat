@@ -121,6 +121,10 @@ $(function() {
 		equals(jStat.mean([1,2,3,4,5,6]),3.5,'mean([1,2,3,4,5,6])');
 	});
 
+	test('geomean',function(){
+		equals(jStat.geomean([1,2,3,4,5,6]),2.993795165523909,'geomean([1,2,3,4,5,6])');
+	});
+
 	test('median',function(){
 		equals(jStat.median([1,2,3,3,4,5,6]),3,'median([1,2,3,3,4,5,6])');
 		equals(jStat.median([1,2,3,4,5,6]),3.5,'median([1,2,3,4,5,6])');
