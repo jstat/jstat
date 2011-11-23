@@ -313,7 +313,7 @@ jStat.extend({
 	},
 
 	// TODO: make compatible with matrices
-	// computes the angle between two vectors
+	// computes the angle between two vectors in rads
 	angle : function( arr, arg ) {
 		return Math.acos( jStat.dot( arr, arg ) / ( jStat.norm( arr ) * jStat.norm( arg )));
 	},
@@ -403,6 +403,8 @@ jStat.extend({
 	},
 
 	// mode of an array
+	// if there are multiple modes of an array, just returns false
+	// is this the appropriate way of handling it?
 	mode : function( arr ) {
 		var arrLen = arr.length,
 			_arr = arr.slice().sort( ascNum ),
@@ -578,6 +580,7 @@ jStat.extend({
 		};
 	})( funcs[i] );
 })( 'add divide multiply subtract dot pow abs angle'.split( ' ' ));
+
 // extend jStat.fn with simple shortcut methods
 (function( funcs ) {
 	for ( var i = 0; i < funcs.length; i++ ) (function( passfunc ) {

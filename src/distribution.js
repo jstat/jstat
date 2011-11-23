@@ -114,10 +114,6 @@ jStat.extend( jStat.cauchy, {
 		return local + scale * Math.tan( Math.PI * ( p - 0.5 ));
 	},
 
-	mean : function( local, scale ) {
-		// TODO: implement this
-	},
-
 	median: function( local, scale ) {
 		return local;
 	},
@@ -128,10 +124,6 @@ jStat.extend( jStat.cauchy, {
 
 	sample : function( local, scale ) {
 		return jStat.randn() * Math.sqrt( 1 / ( 2 * jStat.randg( 0.5 ))) * scale + local;
-	},
-
-	variance : function( local, scale ) {
-		// TODO: implement this
 	}
 });
 
@@ -269,6 +261,7 @@ jStat.extend( jStat.kumaraswamy, {
 	},
 
 	variance: function( alpha, beta ) {
+		// TODO: complete this
 	}
 });
 
@@ -478,7 +471,7 @@ jStat.extend( jStat.uniform, {
 	},
 
 	mode : function( a, b ) {
-
+		// TODO: complete this
 	},
 
 	sample : function( a, b ) {
@@ -524,8 +517,10 @@ jStat.extend( jStat.binomial, {
 // extend uniform function with static methods
 jStat.extend( jStat.negbin, {
 	pdf : function( k, r, p ) {
-		return k !== k | 0 ? false
-		: k < 0 ? 0
+		return k !== k | 0
+			? false
+		: k < 0
+			? 0
 		: jStat.combination( k + r - 1, k ) * Math.pow( 1 - p, r ) * Math.pow( p, k );
 	},
 
@@ -545,8 +540,10 @@ jStat.extend( jStat.negbin, {
 // extend uniform function with static methods
 jStat.extend( jStat.hypgeom, {
 	pdf : function( k, N, m, n ) {
-		return k !== k | 0 ? false
-		: ( k < 0) ? 0
+		return k !== k | 0
+			? false
+		: ( k < 0)
+			? 0
 		: jStat.combination( m, k ) * jStat.combination( N - m , n - k ) / jStat.combination( N, n );
 	},
 
