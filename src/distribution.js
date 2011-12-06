@@ -56,7 +56,7 @@
 	})( list[ i ]);
 })((
 	'beta cauchy chisquare exponential gamma kumaraswamy lognormal normal ' +
-	'pareto studentt weibull uniform  binomial negbin hypgeom poisson'
+	'pareto studentt weibull uniform  binomial negbin hypgeom poisson triangular'
 ).split( ' ' ));
 
 
@@ -577,6 +577,60 @@ jStat.extend( jStat.poisson, {
 			sum += jStat.poisson.pdf( k, l );
 		}
 		return sum;
+	}
+});
+
+
+
+// extend triangular function with static methods
+jStat.extend( jStat.triangular, {
+	pdf : function( x, a, b, c ) {
+		if ( b <= a || c < a || c > b )
+            return undefined;
+        
+        if ( x < a || x > b ) {
+            return 0;
+        } else {
+            if ( x <= c )
+                return ( 2 * ( x - a ) ) / ( ( b - a ) * ( c - a ) );
+            else
+                return ( 2 * ( b - x ) ) / ( ( b - a ) * ( b - c ) );
+        }
+	},
+
+	cdf : function( x, a, b, c ) {
+		if ( b <= a || c < a || c > b )
+            return undefined;
+        
+        if ( x < a ) {
+			return 0;
+		} else {
+            if ( x <= c )
+                return Math.pow( x - a, 2 ) / ( ( b - a ) * ( c - a ) );
+            else
+                return 1 - Math.pow( b - x, 2 ) / ( ( b - a ) * ( b - c ) );
+		}
+		return 1;
+	},
+
+	mean : function( a, b, c ) {
+		return ( a + b + c ) / 3;
+	},
+
+	median : function( a, b, c ) {
+		if ( c <= ( a + b ) / 2) {
+            return b - Math.sqrt( ( b - a ) * ( b - c ) ) / Math.sqrt( 2 );
+        } else if ( c > ( a + b ) / 2) {
+            return a + Math.sqrt( ( b - a ) * ( c - a ) ) / Math.sqrt( 2 );
+        }
+	},
+
+	mode : function( a, b, c ) {
+        return c;
+	},
+
+	variance : function( a, b, c ) {
+		return ( Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2) - a*b - a*c - b*c ) / 18;
 	}
 });
 
