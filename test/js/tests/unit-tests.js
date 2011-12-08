@@ -316,5 +316,13 @@ $(function() {
 		equals(jStat.poisson.cdf(1,3),0.19914827347145578,'poisson.cdf(1,3)');
 		equals(jStat.poisson.cdf(1,5),0.040427681994512805,'poisson.cdf(1,5)');
 	});
+    
+    test('triangular',function(){
+		equals(jStat.triangular.pdf(0.5,0,1,1),1,'triangular.pdf(0.5,0,1,1)');
+		equals(jStat.triangular.pdf(0.5,1,1,3),undefined,'triangular.pdf(0.5,1,1,3)');
+		equals(jStat.triangular.cdf(0.2,0,1,0.5),0.08000000000000002,'triangular.cdf(0.2,0,1,0.5)');
+		equals(jStat.triangular.mean(0,1,1),0.6666666666666666,'triangular.mean(0,1,1)');
+        equals(jStat.triangular.variance(0,1,0.5),0.041666666666666664,'triangular.variance(0,1,0.5)');
+	});
 
 });
