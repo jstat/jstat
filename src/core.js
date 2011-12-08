@@ -15,7 +15,7 @@ var slice = Array.prototype.slice,
 	// calculate correction for IEEE error
 	calcRdx = function( n, m ) {
 		var val = n > m ? n : m;
-		return Math.pow( 10, 15 - ~~( Math.log((( val > 0 ) ? val : -val )) * Math.LOG10E ));
+		return Math.pow( 10, 17 - ~~( Math.log((( val > 0 ) ? val : -val )) * Math.LOG10E ));
 	},
 
 	// test if array
