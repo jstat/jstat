@@ -253,3 +253,18 @@
 #### jStat.poisson.pdf( k, l )
 
 #### jStat.poisson.cdf( x, l )
+
+
+### jStat.triangular
+
+#### jStat.triangular.pdf( x, a, b, c )
+
+#### jStat.triangular.cdf( x, a, b, c )
+
+#### jStat.triangular.mean( x, a, b, c )
+
+#### jStat.triangular.median( x, a, b, c )
+
+#### jStat.triangular.mode( x, a, b, c )
+
+#### jStat.triangular.variance( x, a, b, c )

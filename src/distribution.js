@@ -582,31 +582,26 @@ jStat.extend( jStat.poisson, {
 // extend triangular function with static methods
 jStat.extend( jStat.triangular, {
 	pdf : function( x, a, b, c ) {
-		if ( b <= a || c < a || c > b )
-            return undefined;
-        
-        if ( x < a || x > b ) {
-            return 0;
-        } else {
-            if ( x <= c )
-                return ( 2 * ( x - a ) ) / ( ( b - a ) * ( c - a ) );
-            else
-                return ( 2 * ( b - x ) ) / ( ( b - a ) * ( b - c ) );
-        }
+		return ( b <= a || c < a || c > b )
+			? undefined
+		: ( x < a || x > b )
+			? 0
+		: ( x <= c )
+			? ( 2 * ( x - a )) / (( b - a ) * ( c - a ))
+		: ( 2 * ( b - x )) / (( b - a ) * ( b - c ));
 	},
 
 	cdf : function( x, a, b, c ) {
 		if ( b <= a || c < a || c > b )
-            return undefined;
-        
-        if ( x < a ) {
+			return undefined;
+		if ( x < a ) {
 			return 0;
 		} else {
-            if ( x <= c )
-                return Math.pow( x - a, 2 ) / ( ( b - a ) * ( c - a ) );
-            else
-                return 1 - Math.pow( b - x, 2 ) / ( ( b - a ) * ( b - c ) );
+			if ( x <= c )
+				return Math.pow( x - a, 2 ) / (( b - a ) * ( c - a ));
+			return 1 - Math.pow( b - x, 2 ) / (( b - a ) * ( b - c ));
 		}
+		// never reach this
 		return 1;
 	},
 
@@ -615,19 +610,19 @@ jStat.extend( jStat.triangular, {
 	},
 
 	median : function( a, b, c ) {
-		if ( c <= ( a + b ) / 2) {
-            return b - Math.sqrt( ( b - a ) * ( b - c ) ) / Math.sqrt( 2 );
-        } else if ( c > ( a + b ) / 2) {
-            return a + Math.sqrt( ( b - a ) * ( c - a ) ) / Math.sqrt( 2 );
-        }
+		if ( c <= ( a + b ) / 2 ) {
+			return b - Math.sqrt(( b - a ) * ( b - c )) / Math.sqrt( 2 );
+		} else if ( c > ( a + b ) / 2 ) {
+			return a + Math.sqrt(( b - a ) * ( c - a )) / Math.sqrt( 2 );
+		}
 	},
 
 	mode : function( a, b, c ) {
-        return c;
+		return c;
 	},
 
 	variance : function( a, b, c ) {
-		return ( Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2) - a*b - a*c - b*c ) / 18;
+		return ( a * a + b * b + c * c - a * b - a * c - b * c ) / 18;
 	}
 });
 
