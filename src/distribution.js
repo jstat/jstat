@@ -307,7 +307,7 @@ jStat.extend( jStat.lognormal, {
 // extend normal function with static methods
 jStat.extend( jStat.normal, {
 	pdf : function( x, mean, std ) {
-		return ( 1 / ( Math.sqrt( 2 * Math.PI * std * std))) * Math.exp( -( Math.pow( x - mean, 2 ) / 2 * std * std ));
+		return ( 1 / ( Math.sqrt( 2 * Math.PI * std * std))) * Math.exp( -( Math.pow( x - mean, 2 ) / ( 2 * std * std ) ));
 	},
 
 	cdf : function( x, mean, std ) {
