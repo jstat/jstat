@@ -158,15 +158,25 @@ jStat.extend({
 	combination : function( n, m ) {
 		return ( jStat.factorial( n ) / jStat.factorial( m )) / jStat.factorial( n - m );
 	},
+	
+	combinationln : function( n, m ){
+		return  jStat.factorialln( n ) - jStat.factorialln( m ) - jStat.factorialln( n - m );
+	},
 
 	// permutations of n, m
 	permutation : function( n, m ) {
 		return jStat.factorial( n ) / jStat.factorial( n - m );
 	},
+	
 
 	// beta function
 	betafn : function( x, y ) {
-		return jStat.gammafn( x ) * jStat.gammafn( y ) / jStat.gammafn( x + y );
+		return Math.exp(jStat.betaln(x,y));
+	},
+	
+	// natural logarithm of beta function
+	betaln : function( x, y ) {
+		return jStat.gammaln( x ) + jStat.gammaln( y ) - jStat.gammaln( x + y );
 	},
 
 	// Returns the inverse incomplte gamma function
