@@ -621,6 +621,12 @@ jStat.extend( jStat.triangular, {
 		return c;
 	},
 
+	sample : function( a, b, c ) {
+        var u = Math.random();
+		return u < ( ( c - a ) / ( b - a ) ) ? 
+            a + Math.sqrt( u * ( b - a ) * ( c - a ) ) : b - Math.sqrt( ( 1 - u ) * ( b - a ) * ( b - c ) );
+	},
+
 	variance : function( a, b, c ) {
 		return ( a * a + b * b + c * c - a * b - a * c - b * c ) / 18;
 	}
