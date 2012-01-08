@@ -494,6 +494,9 @@ jStat.extend( jStat.uniform, {
 // extend uniform function with static methods
 jStat.extend( jStat.binomial, {
 	pdf : function( k, n, p ) {
+		if(p===0 || p===1){
+			return ((n*p)==k)*1.0;
+		}
 		var logDensity = jStat.combinationln(n, k) + k*Math.log(p) + (n - k)*Math.log(1 - p);
 		return Math.exp(logDensity);
 	},
