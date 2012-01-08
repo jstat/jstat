@@ -402,6 +402,28 @@ jStat.extend({
 		: _arr[( arrlen / 2 ) | 0 ];
 	},
 
+	// cumulative sum of an array
+	cumsum : function( arr ) {
+		var cumsum = [arr[0]], arrLen = arr.length, i;
+		
+		for(i=1; i<arrLen; i++)
+		{
+			cumsum.push(cumsum[i-1] + arr[i]);
+		}
+		return cumsum;
+	},
+
+	// successive differences of an array
+	diff : function( arr) {
+		var diffs = [], arrLen = arr.length, i;
+		
+		for(i=1; i<arrLen; i++)
+		{
+			diffs.push(arr[i] - arr[i-1]);
+		}
+		return diffs;
+	},
+
 	// mode of an array
 	// if there are multiple modes of an array, just returns false
 	// is this the appropriate way of handling it?
