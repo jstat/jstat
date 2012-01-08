@@ -257,7 +257,7 @@ $(function() {
 	test('normal',function(){
 		equals(jStat.normal.pdf(0.5,0.5,0.5),0.7978845608028654,'normal.pdf(0.5,0.5,0.5)');
 		equals(jStat.normal.pdf(0.5,1,1),0.3520653267642995,'normal.pdf(0.5,1,1)');
-        equals(jStat.normal.pdf(50,202,154),0.0015916430144100925,'normal.pdf(50,202,154)');
+		equals(jStat.normal.pdf(50,202,154),0.0015916430144100925,'normal.pdf(50,202,154)');
 		equals(jStat.normal.cdf(0.5,0.5,0.5),0.5,'normal.cdf(0.5,0.5,0.5)');
 		equals(jStat.normal.cdf(0.5,1,1),0.3085375387259869,'normal.cdf(0.5,1,1)');
 	});
