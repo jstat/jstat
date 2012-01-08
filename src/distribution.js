@@ -313,7 +313,7 @@ jStat.extend( jStat.lognormal, {
 jStat.extend( jStat.normal, {
 	pdf : function( x, mean, std ) {
 		var logDensity = -0.5 * Math.log(2 * Math.PI) - Math.log(std) - Math.pow( x - mean, 2 ) / ( 2 * std * std );
-		return logDensity;
+		return Math.exp(logDensity);
 	},
 
 	cdf : function( x, mean, std ) {
