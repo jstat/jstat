@@ -167,11 +167,10 @@ jStat.extend({
 	permutation : function( n, m ) {
 		return jStat.factorial( n ) / jStat.factorial( n - m );
 	},
-	
 
 	// beta function
 	betafn : function( x, y ) {
-		return Math.exp(jStat.betaln(x,y));
+		return jStat.gammafn( x ) * jStat.gammafn( y ) / jStat.gammafn( x + y );
 	},
 	
 	// natural logarithm of beta function

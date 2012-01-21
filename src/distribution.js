@@ -64,8 +64,7 @@
 // extend beta function with static methods
 jStat.extend( jStat.beta, {
 	pdf : function( x, alpha, beta ) {
-		var logDensity = (alpha-1)*Math.log(x) + (beta-1)*Math.log(1-x) - jStat.betaln(alpha,beta);
-		return Math.exp(logDensity);
+		return ( Math.pow( x, alpha - 1 ) * Math.pow( 1 - x, beta - 1 )) / jStat.betafn( alpha, beta );
 	},
 
 	cdf : function( x, alpha, beta ) {
@@ -133,8 +132,7 @@ jStat.extend( jStat.cauchy, {
 // extend chisquare function with static methods
 jStat.extend( jStat.chisquare, {
 	pdf : function( x, dof ) {
-		var logDensity = (dof / 2 - 1) * Math.log(x) - x / 2 - (dof / 2) * Math.log(2) - jStat.gammaln(dof / 2);
-		return Math.exp(logDensity);
+		return Math.exp(( dof / 2 - 1 ) * Math.log( x ) - x / 2 - ( dof / 2 ) * Math.log( 2 ) - jStat.gammaln( dof / 2 ));
 	},
 
 	cdf : function( x, dof ) {
@@ -209,8 +207,7 @@ jStat.extend( jStat.exponential, {
 // extend gamma function with static methods
 jStat.extend( jStat.gamma, {
 	pdf : function( x, shape, scale ) {
-		var logDensity = (shape - 1) * Math.log(x) - x / scale - jStat.gammaln(shape) - shape * Math.log(scale);
-		return Math.exp(logDensity);
+		return Math.exp(( shape - 1 ) * Math.log( x ) - x / scale - jStat.gammaln( shape ) - shape * Math.log( scale ));
 	},
 
 	cdf : function( x, shape, scale ) {
@@ -244,8 +241,7 @@ jStat.extend( jStat.gamma, {
 // extend kumaraswamy function with static methods
 jStat.extend( jStat.kumaraswamy, {
 	pdf : function( x, alpha, beta ) {
-		var logDensity = Math.log(alpha) + Math.log(beta) + (alpha - 1) * Math.log(x) + (beta - 1) * Math.log(1 - Math.pow(x, alpha));
-		return Math.exp(logDensity);
+		return Math.exp( Math.log( alpha ) + Math.log( beta ) + ( alpha - 1 ) * Math.log( x ) + ( beta - 1 ) * Math.log( 1 - Math.pow( x, alpha )));
 	},
 
 	cdf : function( x, alpha, beta ) {
@@ -274,8 +270,7 @@ jStat.extend( jStat.kumaraswamy, {
 // extend lognormal function with static methods
 jStat.extend( jStat.lognormal, {
 	pdf : function( x, mu, sigma ) {
-		var logDensity = -Math.log(x) - 0.5 * Math.log(2 * Math.PI) - Math.log(sigma) - Math.pow( Math.log( x ) - mu, 2 ) / ( 2 * sigma * sigma );
-		return Math.exp(logDensity);
+		return Math.exp(-Math.log( x ) - 0.5 * Math.log( 2 * Math.PI ) - Math.log( sigma ) - Math.pow( Math.log( x ) - mu, 2 ) / ( 2 * sigma * sigma ));
 	},
 
 	cdf : function( x, mu, sigma ) {
@@ -283,7 +278,7 @@ jStat.extend( jStat.lognormal, {
 	},
 
 	inv : function( p, mu, sigma ) {
-		return Math.exp( -1.41421356237309505 * sigma * jStat.erfcinv( 2 * p ) + mu);
+		return Math.exp( -1.41421356237309505 * sigma * jStat.erfcinv( 2 * p ) + mu );
 	},
 
 	mean : function( mu, sigma ) {
@@ -312,8 +307,7 @@ jStat.extend( jStat.lognormal, {
 // extend normal function with static methods
 jStat.extend( jStat.normal, {
 	pdf : function( x, mean, std ) {
-		var logDensity = -0.5 * Math.log(2 * Math.PI) - Math.log(std) - Math.pow( x - mean, 2 ) / ( 2 * std * std );
-		return Math.exp(logDensity);
+		return Math.exp( -0.5 * Math.log( 2 * Math.PI ) - Math.log( std ) - Math.pow( x - mean, 2 ) / ( 2 * std * std ));
 	},
 
 	cdf : function( x, mean, std ) {
@@ -494,11 +488,11 @@ jStat.extend( jStat.uniform, {
 // extend uniform function with static methods
 jStat.extend( jStat.binomial, {
 	pdf : function( k, n, p ) {
-		if(p===0 || p===1){
-			return ((n*p)==k)*1.0;
-		}
-		var logDensity = jStat.combinationln(n, k) + k*Math.log(p) + (n - k)*Math.log(1 - p);
-		return Math.exp(logDensity);
+		// TODO: not sure what this is supposed to accomplish
+		//if ( p===0 || p===1 ) {
+			//return (( n * p ) === k ) * 1.0;
+		//}
+		return Math.exp( jStat.combinationln( n, k ) + k * Math.log( p ) + ( n - k ) * Math.log( 1 - p ));
 	},
 
 	cdf : function( x, n, p ) {
