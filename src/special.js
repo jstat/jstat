@@ -141,7 +141,7 @@ jStat.extend({
 			}
 			endval = 1 - h * Math.exp( -x + a * Math.log( x ) - ( aln ));
 		}
-		return endval * afn;
+		return endval * afn / jStat.gammafn( a );
 	},
 
 	// natural log factorial of n
@@ -180,7 +180,7 @@ jStat.extend({
 	},
 
 	// Returns the inverse incomplte gamma function
-	gammapinv : function( p, a ) {
+	gammapInv : function( p, a ) {
 		var j = 0,
 			a1 = a - 1,
 			EPS = 1e-8,
@@ -193,7 +193,7 @@ jStat.extend({
 			afac = Math.exp( a1 * ( lna1 - 1 ) - gln );
 			pp = ( p < 0.5 ) ? p : 1 - p;
 			t = Math.sqrt( -2 * Math.log( pp ));
-			x = ( 2.30753 + t * 0.27061 ) / ( 1 + t * ( 0.99229 + t * 0.04481 ));
+			x = ( 2.30753 + t * 0.27061 ) / ( 1 + t * ( 0.99229 + t * 0.04481 )) - t;
 			if( p < 0.5 ) x = -x;
 			x = Math.max( 1e-3, a * Math.pow( 1 - 1 / ( 9 * a ) - x / ( 3 * Math.sqrt( a )), 3 ));
 		} else {
@@ -203,7 +203,7 @@ jStat.extend({
 		}
 		for( ; j < 12; j++ ) {
 			if( x <= 0 ) return 0;
-			err = jStat.gammap( x, a ) - p;
+			err = jStat.gammap( a, x ) - p;
 			if( a > 1 ) t = afac * Math.exp( -( x - a1 ) + a1 * ( Math.log( x ) - lna1 ));
 			else t = Math.exp( -x + a1 * Math.log( x ) - gln );
 			u = err / t;

@@ -214,7 +214,7 @@ jStat.extend( jStat.gamma, {
 	},
 
 	cdf : function( x, shape, scale ) {
-		return jStat.gammap( x / scale, shape );
+		return jStat.gammap( shape, x/scale );
 	},
 
 	inv : function( p, shape, scale ) {
