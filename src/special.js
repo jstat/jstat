@@ -179,7 +179,7 @@ jStat.extend({
 	},
 
 	// Returns the inverse incomplte gamma function
-	gammapInv : function( p, a ) {
+	gammapinv : function( p, a ) {
 		var j = 0,
 			a1 = a - 1,
 			EPS = 1e-8,

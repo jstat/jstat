@@ -140,7 +140,7 @@ jStat.extend( jStat.chisquare, {
 	},
 
 	inv : function( p, dof ) {
-		return 2 * jStat.gammapInv( p, 0.5 * dof );
+		return 2 * jStat.gammapinv( p, 0.5 * dof );
 	},
 
 	mean : function( dof ) {
@@ -211,11 +211,11 @@ jStat.extend( jStat.gamma, {
 	},
 
 	cdf : function( x, shape, scale ) {
-		return jStat.gammap( shape, x/scale );
+		return jStat.gammap( shape, x / scale );
 	},
 
 	inv : function( p, shape, scale ) {
-		return jStat.gammapInv( p, shape ) * scale;
+		return jStat.gammapinv( p, shape ) * scale;
 	},
 
 	mean : function( shape, scale ) {
