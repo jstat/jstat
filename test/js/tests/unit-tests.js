@@ -189,6 +189,17 @@ $(function() {
 		equals(jStat.gammafn(15),87178291200,'gamma(5)');
 	});
 
+	test('gammap',function(){
+		equals(jStat.gammap(1,0),0,'gammap(1,0)');
+		equals(jStat.gammap(3,3),0.576809918873157,'gammap(3,3)');
+		equals(jStat.gammap(5,2),0.05265301734371116,'gammap(5,2)');
+	});
+
+	test('gammapinv',function(){
+		equals(jStat.gammapinv(0,1),0,'gammapinv(0,1)');		
+		equals(jStat.gammapinv(.5,7),6.669637074549828,'gammapinv(.5,7)');
+	});
+
 	test('quartiles',function(){
 		equals(jStat.quartiles([1,2,3,6,9,3,1,2,5]).toString(),'1,3,5','quartiles([1,2,3,6,9,3,1,2,5])');
 	});
@@ -220,10 +231,11 @@ $(function() {
 	});
 
 	test('chisquare',function(){
-		equals(jStat.chisquare.pdf(0.5,0.5),0.3037807865917943,'chisquare.pdf(0.5,0.5)');
-		equals(jStat.chisquare.pdf(0.5,1),0.43939128823451334,'chisquare.pdf(0.5,1)');
-		equals(jStat.chisquare.cdf(0.5,0.5),2.6962861099717164,'chisquare.cdf(0.5,0.5)');
-		equals(jStat.chisquare.cdf(0.5,1),3.0690276591232104,'chisquare.cdf(0.5,1)');
+		equals(jStat.chisquare.pdf(0.5,0.5),0.3037807865950047,'chisquare.pdf(0.5,0.5)');
+		equals(jStat.chisquare.pdf(0.5,1),0.4393912894677035,'chisquare.pdf(0.5,1)');
+		equals(jStat.chisquare.cdf(0.5,0.5),0.7436779405938267,'chisquare.cdf(0.5,0.5)');
+		equals(jStat.chisquare.cdf(0.5,1),0.5204998778130242,'chisquare.cdf(0.5,1)');
+		equals(jStat.chisquare.inv(0.5,3),2.3659738843753264,'chisquare.inv(0.5,3)');
 	});
 
 	test('exponential',function(){
@@ -234,21 +246,22 @@ $(function() {
 	});
 
 	test('gamma',function(){
-		equals(jStat.gamma.pdf(0.5,0.5,0.5),0.41510749625554133,'gamma.pdf(0.5,0.5,0.5)');
+		equals(jStat.gamma.pdf(0.5,0.5,0.5),0.4151074974205769,'gamma.pdf(0.5,0.5,0.5)');
 		equals(jStat.gamma.pdf(0.5,1,1),0.6065306597126334,'gamma.pdf(0.5,1,1)');
-		equals(jStat.gamma.cdf(0.5,0.5,0.5),0.3934693402873665,'gamma.cdf(0.5,0.5,0.5)');
-		equals(jStat.gamma.cdf(0.5,1,1),1.493648269786591,'gamma.cdf(0.5,1,1)');
+		equals(jStat.gamma.cdf(0.5,0.5,0.5),0.8427007929325737,'gamma.cdf(0.5,0.5,0.5)');
+		equals(jStat.gamma.cdf(0.5,1,1),0.3934693402873665,'gamma.cdf(0.5,1,1)');
+		equals(jStat.gamma.inv(.5,2,3),5.03504097004998,'gamma.inv(.5,2,3)');
 	});
 
 	test('kumaraswamy',function(){
-		equals(jStat.kumaraswamy.pdf(0.5,0.5,0.5),0.6532814824381883,'kumaraswamy.pdf(0.5,0.5,0.5)');
+		equals(jStat.kumaraswamy.pdf(0.5,0.5,0.5),0.6532814824381884,'kumaraswamy.pdf(0.5,0.5,0.5)');
 		equals(jStat.kumaraswamy.pdf(0.5,1,1),1,'kumaraswamy.pdf(0.5,1,1)');
 		equals(jStat.kumaraswamy.cdf(0.5,0.5,0.5),0.4588038998538031,'kumaraswamy.cdf(0.5,0.5,0.5)');
 		equals(jStat.kumaraswamy.cdf(0.5,1,1),0.5,'kumaraswamy.cdf(0.5,1,1)');
 	});
 
 	test('lognormal',function(){
-		equals(jStat.lognormal.pdf(0.5,0.5,0.5),0.09256496459388698,'lognormal.pdf(0.5,0.5,0.5)');
+		equals(jStat.lognormal.pdf(0.5,0.5,0.5),0.09256496459388697,'lognormal.pdf(0.5,0.5,0.5)');
 		equals(jStat.lognormal.pdf(0.5,1,1),0.19029780481010555,'lognormal.pdf(0.5,1,1)');
 		equals(jStat.lognormal.cdf(0.5,0.5,0.5),0.008509561256088927,'lognormal.cdf(0.5,0.5,0.5)');
 		equals(jStat.lognormal.cdf(0.5,1,1),0.045213727790224145,'lognormal.cdf(0.5,1,1)');
@@ -257,7 +270,7 @@ $(function() {
 	test('normal',function(){
 		equals(jStat.normal.pdf(0.5,0.5,0.5),0.7978845608028654,'normal.pdf(0.5,0.5,0.5)');
 		equals(jStat.normal.pdf(0.5,1,1),0.3520653267642995,'normal.pdf(0.5,1,1)');
-		equals(jStat.normal.pdf(50,202,154),0.0015916430144100925,'normal.pdf(50,202,154)');
+		equals(jStat.normal.pdf(50,202,154),0.001591643014410092,'normal.pdf(50,202,154)');
 		equals(jStat.normal.cdf(0.5,0.5,0.5),0.5,'normal.cdf(0.5,0.5,0.5)');
 		equals(jStat.normal.cdf(0.5,1,1),0.3085375387259869,'normal.cdf(0.5,1,1)');
 	});
