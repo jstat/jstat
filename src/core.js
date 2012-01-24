@@ -369,12 +369,20 @@ jStat.extend({
 
 	// minimum value of an array
 	min : function( arr ) {
-		return Math.min.apply( null, arr );
+		var low = arr[0],
+			i = 0;
+		while ( ++i < arr.length )
+			if ( arr[i] < low ) low = arr[i];
+		return low;
 	},
 
 	// maximum value of an array
 	max : function( arr ) {
-		return Math.max.apply( null, arr );
+		var high = arr[0],
+			i = 0;
+		while ( ++i < arr.length )
+			if ( arr[i] > high ) high = arr[i];
+		return high;
 	},
 
 	// mean value of an array
