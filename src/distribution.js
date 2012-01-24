@@ -136,7 +136,7 @@ jStat.extend( jStat.chisquare, {
 	},
 
 	cdf : function( x, dof ) {
-		return jStat.gammap( x / 2, dof / 2 );
+		return jStat.gammap( dof / 2, x / 2 );
 	},
 
 	inv : function( p, dof ) {
@@ -488,10 +488,9 @@ jStat.extend( jStat.uniform, {
 // extend uniform function with static methods
 jStat.extend( jStat.binomial, {
 	pdf : function( k, n, p ) {
-		// TODO: not sure what this is supposed to accomplish
-		//if ( p===0 || p===1 ) {
-			//return (( n * p ) === k ) * 1.0;
-		//}
+		if ( p===0 || p===1 ) {
+			return (( n * p ) === k ? 1 : 0 );
+		}
 		return Math.exp( jStat.combinationln( n, k ) + k * Math.log( p ) + ( n - k ) * Math.log( 1 - p ));
 	},
 
