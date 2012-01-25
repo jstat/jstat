@@ -206,7 +206,7 @@ jStat.extend({
 			cnt = 0;
 		// current is assigned using a technique to compensate for IEEE error
 		for ( ; current <= max; cnt++, current = ( min * hival + step * hival * cnt ) / hival )
-			arr.push(( func ? func( current ) : current ));
+			arr.push(( func ? func( current, cnt ) : current ));
 		return arr;
 	},
 

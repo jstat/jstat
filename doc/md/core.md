@@ -19,6 +19,13 @@ By passing a function the sequence value can be manipulated:
     });
     // vector === [[ 0, 0.5, 1, 1.5, 2 ]];
 
+The second argument passed to the function is the count (starting from 0).
+Using this we can create a multidimensional array (useful for plotting data):
+
+    var betaGraph = jStat( 0, 1, 11, function( x, cnt ) {
+        return [ jStat.beta.pdf( x, alpha, beta ), cnt ];
+    });
+
 ### rows()
 
 Returns the number of rows in the jStat object.
