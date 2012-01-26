@@ -253,6 +253,15 @@ $(function() {
 		equals(jStat.gamma.inv(.5,2,3),5.03504097004998,'gamma.inv(.5,2,3)');
 	});
 
+	test('invgamma',function(){
+		equals(jStat.invgamma.pdf(0.5,0.5,0.5),0.4151074974205768,'invgamma.pdf(0.5,0.5,0.5)');
+		equals(jStat.invgamma.pdf(0.5,1,1),0.5413411329464507,'invgamma.pdf(0.5,1,1)');
+		equals(jStat.invgamma.cdf(0.5,0.5,0.5),0.15729920706742628,'invgamma.cdf(0.5,0.5,0.5)');
+		equals(jStat.invgamma.cdf(0.5,1,1),0.1353352832366126,'invgamma.cdf(0.5,1,1)');
+		equals(jStat.invgamma.inv(.4,2,3),1.4834497113321283,'invgamma.inv(.4,2,3)');
+	});
+
+
 	test('kumaraswamy',function(){
 		equals(jStat.kumaraswamy.pdf(0.5,0.5,0.5),0.6532814824381884,'kumaraswamy.pdf(0.5,0.5,0.5)');
 		equals(jStat.kumaraswamy.pdf(0.5,1,1),1,'kumaraswamy.pdf(0.5,1,1)');
