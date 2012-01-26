@@ -30,12 +30,12 @@ $(function() {
 	});
 
 	test( 'row vector', function() {
-		deepEqual( jStat( singleArr.slice()).row( 0 ).toArray(), [[ 1, 2, 3 ]], 'fn.row()' );
-		deepEqual( jStat( doubleArr.slice()).row( 1 ).toArray(), [[ 4, 5, 6 ]], 'fn.row()' );
+		deepEqual( jStat( singleArr.slice()).row( 0 ).toArray(), [ 1, 2, 3 ], 'fn.row()' );
+		deepEqual( jStat( doubleArr.slice()).row( 1 ).toArray(), [ 4, 5, 6 ], 'fn.row()' );
 	});
 
 	test( 'column vector', function() {
-		deepEqual( jStat( singleArr.slice()).col( 0 ).toArray(), [[ 1 ]], 'fn.col()' );
+		deepEqual( jStat( singleArr.slice()).col( 0 ).toArray(), [ 1 ], 'fn.col()' );
 		deepEqual( jStat( doubleArr.slice()).col( 1 ).toArray(), [[ 2 ],[ 5 ],[ 8 ]], 'fn.col()' );
 	});
 

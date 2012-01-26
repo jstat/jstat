@@ -79,7 +79,9 @@ jStat.fn = jStat.prototype = {
 
 	// return clean array
 	toArray : function() {
-		return slice.call( this );
+		return ( this.length > 1 ) ?
+			slice.call( this )
+		: slice.call( this )[0];
 	},
 
 	// only to be used internally
