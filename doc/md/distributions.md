@@ -94,6 +94,23 @@
 #### jStat.gamma.variance( shape, scale )
 
 
+### jStat.invgamma( shape, scale )
+
+#### jStat.invgamma.pdf( x, shape, scale )
+
+#### jStat.invgamma.cdf( x, shape, scale )
+
+#### jStat.invgamma.inv( p, shape, scale )
+
+#### jStat.invgamma.mean( shape, scale )
+
+#### jStat.invgamma.mode( shape, scale )
+
+#### jStat.invgamma.sample( shape, scale )
+
+#### jStat.invgamma.variance( shape, scale )
+
+
 ### jStat.kumaraswamy( alpha, beta )
 
 #### jStat.kumaraswamy.pdf( x, alpha, beta )

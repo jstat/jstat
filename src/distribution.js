@@ -55,7 +55,7 @@
 		})( 'mean median mode variance'.split( ' ' ));
 	})( list[ i ]);
 })((
-	'beta cauchy chisquare exponential gamma kumaraswamy lognormal normal ' +
+	'beta cauchy chisquare exponential gamma invgamma kumaraswamy lognormal normal ' +
 	'pareto studentt weibull uniform  binomial negbin hypgeom poisson triangular'
 ).split( ' ' ));
 
@@ -236,6 +236,36 @@ jStat.extend( jStat.gamma, {
 	}
 });
 
+// extend inverse gamma function with static methods
+jStat.extend( jStat.invgamma, {
+	pdf : function( x, shape, scale ) {
+		return Math.exp( -( shape + 1 ) * Math.log( x ) - scale/x - jStat.gammaln( shape ) + shape * Math.log( scale ) );
+	},
+
+	cdf : function( x, shape, scale ) {
+		return 1 - jStat.gammap( shape, scale / x );
+	},
+
+	inv : function( p, shape, scale ) {
+		return scale / jStat.gammapinv( 1 - p, shape );
+	},
+
+	mean : function( shape, scale ) {
+		return ( shape > 1 ) ? scale / ( shape - 1 ) : undefined;
+	},
+
+	mode : function( shape, scale ) {
+		return scale / ( shape + 1 );
+	},
+
+	sample : function( shape, scale ) {
+		return scale / jStat.randg( shape );
+	},
+
+	variance: function( shape, scale ) {
+		return (shape > 2) ? scale * scale / ( ( shape - 1 ) * ( shape - 1) * ( shape - 2 ) ): undefined;
+	}
+});
 
 
 // extend kumaraswamy function with static methods
