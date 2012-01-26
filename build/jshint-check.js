@@ -1,5 +1,5 @@
 var JSHINT = require("./lib/jshint").JSHINT,
-	print = require("sys").print,
+	print = require("util").print,
 	src = require("fs").readFileSync("dist/jstat.js", "utf8");
 
 JSHINT( src, {

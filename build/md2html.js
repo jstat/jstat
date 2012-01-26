@@ -1,4 +1,4 @@
-var print = require( 'sys' ).print,
+var print = require( 'util' ).print,
 	//src = require("fs").readFileSync("dist/jstat.js", "utf8"),
 	fs = require( 'fs' ),
 	dir = fs.readdirSync( 'doc/md' ),
