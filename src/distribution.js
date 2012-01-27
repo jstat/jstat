@@ -9,7 +9,7 @@
 			this._a = a;
 			this._b = b;
 			this._c = c;
-			for ( var i in jStat[ func ].prototype ) this[ i ] = this[ i ].bind( this );
+			return this;
 		};
 		// distribution method to be used on a jStat instance
 		jStat.fn[ func ] = function( a, b, c ) {
