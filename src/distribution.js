@@ -526,20 +526,15 @@ jStat.extend( jStat.binomial, {
 
 	cdf : function( x, n, p ) {
 		var binomarr = [],
-			k = 0,
-			i = 0,
-			sum = 0;
+			k = 0;
 		if ( x < 0 ) {
 			return 0;
 		}
 		if ( x < n ) {
-			for ( ; k < n; k++ ) {
+			for ( ; k <= x; k++ ) {
 				binomarr[ k ] = jStat.binomial.pdf( k, n, p );
 			}
-			for ( ; i <= x; i++ ) {
-				sum += binomarr[ i ];
-			}
-			return sum;
+			return jStat.sum( binomarr );
 		}
 		return 1;
 	}
