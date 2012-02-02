@@ -9,7 +9,7 @@
 			this._a = a;
 			this._b = b;
 			this._c = c;
-			for ( var i in jStat[ func ].prototype ) this[ i ] = this[ i ].bind( this );
+			return this;
 		};
 		// distribution method to be used on a jStat instance
 		jStat.fn[ func ] = function( a, b, c ) {
@@ -55,8 +55,8 @@
 		})( 'mean median mode variance'.split( ' ' ));
 	})( list[ i ]);
 })((
-	'beta cauchy chisquare exponential gamma kumaraswamy lognormal normal ' +
-	'pareto studentt weibull uniform uniformmv binomial negbin hypgeom poisson'
+	'beta cauchy chisquare exponential gamma invgamma kumaraswamy lognormal normal ' +
+	'pareto studentt weibull uniform  binomial negbin hypgeom poisson triangular'
 ).split( ' ' ));
 
 
@@ -114,10 +114,6 @@ jStat.extend( jStat.cauchy, {
 		return local + scale * Math.tan( Math.PI * ( p - 0.5 ));
 	},
 
-	mean : function( local, scale ) {
-		// TODO: implement this
-	},
-
 	median: function( local, scale ) {
 		return local;
 	},
@@ -128,10 +124,6 @@ jStat.extend( jStat.cauchy, {
 
 	sample : function( local, scale ) {
 		return jStat.randn() * Math.sqrt( 1 / ( 2 * jStat.randg( 0.5 ))) * scale + local;
-	},
-
-	variance : function( local, scale ) {
-		// TODO: implement this
 	}
 });
 
@@ -140,15 +132,15 @@ jStat.extend( jStat.cauchy, {
 // extend chisquare function with static methods
 jStat.extend( jStat.chisquare, {
 	pdf : function( x, dof ) {
-		return ( Math.pow( x, dof / 2 - 1) * Math.exp( -x / 2 )) / ( Math.pow( 2, dof / 2) * jStat.gammafn( dof / 2 ));
+		return Math.exp(( dof / 2 - 1 ) * Math.log( x ) - x / 2 - ( dof / 2 ) * Math.log( 2 ) - jStat.gammaln( dof / 2 ));
 	},
 
 	cdf : function( x, dof ) {
-		return jStat.gammap( x / 2, dof / 2 );
+		return jStat.gammap( dof / 2, x / 2 );
 	},
 
 	inv : function( p, dof ) {
-		return 2 * jStat.gammapInv( p, 0.5 * dof );
+		return 2 * jStat.gammapinv( p, 0.5 * dof );
 	},
 
 	mean : function( dof ) {
@@ -215,15 +207,15 @@ jStat.extend( jStat.exponential, {
 // extend gamma function with static methods
 jStat.extend( jStat.gamma, {
 	pdf : function( x, shape, scale ) {
-		return Math.pow( x, shape - 1 ) * ( Math.exp( -x / scale ) / ( jStat.gammafn( shape ) * Math.pow( scale, shape )));
+		return Math.exp(( shape - 1 ) * Math.log( x ) - x / scale - jStat.gammaln( shape ) - shape * Math.log( scale ));
 	},
 
 	cdf : function( x, shape, scale ) {
-		return jStat.gammap( x / scale, shape );
+		return jStat.gammap( shape, x / scale );
 	},
 
 	inv : function( p, shape, scale ) {
-		return jStat.gammapInv( p, shape ) * scale;
+		return jStat.gammapinv( p, shape ) * scale;
 	},
 
 	mean : function( shape, scale ) {
@@ -244,12 +236,42 @@ jStat.extend( jStat.gamma, {
 	}
 });
 
+// extend inverse gamma function with static methods
+jStat.extend( jStat.invgamma, {
+	pdf : function( x, shape, scale ) {
+		return Math.exp( -( shape + 1 ) * Math.log( x ) - scale/x - jStat.gammaln( shape ) + shape * Math.log( scale ) );
+	},
+
+	cdf : function( x, shape, scale ) {
+		return 1 - jStat.gammap( shape, scale / x );
+	},
+
+	inv : function( p, shape, scale ) {
+		return scale / jStat.gammapinv( 1 - p, shape );
+	},
+
+	mean : function( shape, scale ) {
+		return ( shape > 1 ) ? scale / ( shape - 1 ) : undefined;
+	},
+
+	mode : function( shape, scale ) {
+		return scale / ( shape + 1 );
+	},
+
+	sample : function( shape, scale ) {
+		return scale / jStat.randg( shape );
+	},
+
+	variance: function( shape, scale ) {
+		return (shape > 2) ? scale * scale / ( ( shape - 1 ) * ( shape - 1) * ( shape - 2 ) ): undefined;
+	}
+});
 
 
 // extend kumaraswamy function with static methods
 jStat.extend( jStat.kumaraswamy, {
 	pdf : function( x, alpha, beta ) {
-		return alpha * beta * Math.pow( x, alpha - 1 ) * Math.pow( 1 - Math.pow( x, alpha ), beta - 1 );
+		return Math.exp( Math.log( alpha ) + Math.log( beta ) + ( alpha - 1 ) * Math.log( x ) + ( beta - 1 ) * Math.log( 1 - Math.pow( x, alpha )));
 	},
 
 	cdf : function( x, alpha, beta ) {
@@ -269,6 +291,7 @@ jStat.extend( jStat.kumaraswamy, {
 	},
 
 	variance: function( alpha, beta ) {
+		// TODO: complete this
 	}
 });
 
@@ -277,7 +300,7 @@ jStat.extend( jStat.kumaraswamy, {
 // extend lognormal function with static methods
 jStat.extend( jStat.lognormal, {
 	pdf : function( x, mu, sigma ) {
-		return ( 1 / ( x * sigma * Math.sqrt( 2 * Math.PI ))) * Math.exp( -Math.pow( Math.log( x ) - mu, 2 ) / ( 2 * sigma * sigma ));
+		return Math.exp(-Math.log( x ) - 0.5 * Math.log( 2 * Math.PI ) - Math.log( sigma ) - Math.pow( Math.log( x ) - mu, 2 ) / ( 2 * sigma * sigma ));
 	},
 
 	cdf : function( x, mu, sigma ) {
@@ -285,7 +308,7 @@ jStat.extend( jStat.lognormal, {
 	},
 
 	inv : function( p, mu, sigma ) {
-		return Math.exp( -1.41421356237309505 * sigma * jStat.erfcinv( 2 * p ) + mu);
+		return Math.exp( -1.41421356237309505 * sigma * jStat.erfcinv( 2 * p ) + mu );
 	},
 
 	mean : function( mu, sigma ) {
@@ -314,7 +337,7 @@ jStat.extend( jStat.lognormal, {
 // extend normal function with static methods
 jStat.extend( jStat.normal, {
 	pdf : function( x, mean, std ) {
-		return ( 1 / ( Math.sqrt( 2 * Math.PI * std * std))) * Math.exp( -( Math.pow( x - mean, 2 ) / 2 * std * std ));
+		return Math.exp( -0.5 * Math.log( 2 * Math.PI ) - Math.log( std ) - Math.pow( x - mean, 2 ) / ( 2 * std * std ));
 	},
 
 	cdf : function( x, mean, std ) {
@@ -478,7 +501,7 @@ jStat.extend( jStat.uniform, {
 	},
 
 	mode : function( a, b ) {
-
+		// TODO: complete this
 	},
 
 	sample : function( a, b ) {
@@ -486,22 +509,7 @@ jStat.extend( jStat.uniform, {
 	},
 
 	variance : function( a, b ) {
-		return 0.08333333333333333 * Math.pow( b - a, 2 );
-	}
-});
-
-
-
-// extend uniform function with static methods
-jStat.extend( jStat.uniformmv, {
-	pdf : function( x, m, s ) {
-		var sqrtt = Math.sqrt( -3 );
-		return ( -s * sqrtt <= x - m || x - m <= s * sqrtt ) ? 1 / ( 2 * s * sqrtt ) : 0;
-	},
-
-	cdf : function( x, m, s ) {
-		var sqrtt = Math.sqrt( -3 );
-		return ( x - m < -s * sqrtt ) ? 0 : ( x - m >= s * sqrtt ) ? 1 : 0.5 * (( x - m ) / ( s * sqrtt ) + 1 );
+		return Math.pow( b - a, 2 ) / 12;
 	}
 });
 
@@ -510,25 +518,23 @@ jStat.extend( jStat.uniformmv, {
 // extend uniform function with static methods
 jStat.extend( jStat.binomial, {
 	pdf : function( k, n, p ) {
-		return jStat.combination( n, k ) * Math.pow( p, k ) * Math.pow( 1 - p, n - k );
+		if ( p===0 || p===1 ) {
+			return (( n * p ) === k ? 1 : 0 );
+		}
+		return Math.exp( jStat.combinationln( n, k ) + k * Math.log( p ) + ( n - k ) * Math.log( 1 - p ));
 	},
 
 	cdf : function( x, n, p ) {
 		var binomarr = [],
-			k = 0,
-			i = 0,
-			sum = 0;
+			k = 0;
 		if ( x < 0 ) {
 			return 0;
 		}
 		if ( x < n ) {
-			for ( ; k < n; k++ ) {
-				binomarr[ k ] = jStat.binomial( k, n, p );
+			for ( ; k <= x; k++ ) {
+				binomarr[ k ] = jStat.binomial.pdf( k, n, p );
 			}
-			for ( ; i <= x; i++ ) {
-				sum += binomarr[ i ];
-			}
-			return sum;
+			return jStat.sum( binomarr );
 		}
 		return 1;
 	}
@@ -539,8 +545,10 @@ jStat.extend( jStat.binomial, {
 // extend uniform function with static methods
 jStat.extend( jStat.negbin, {
 	pdf : function( k, r, p ) {
-		return k !== k | 0 ? false
-		: k < 0 ? 0
+		return k !== k | 0
+			? false
+		: k < 0
+			? 0
 		: jStat.combination( k + r - 1, k ) * Math.pow( 1 - p, r ) * Math.pow( p, k );
 	},
 
@@ -549,7 +557,7 @@ jStat.extend( jStat.negbin, {
 			k = 0;
 		if ( x < 0 ) return 0;
 		for ( ; k <= x; k++ ) {
-			sum += jStat.negbin( k, r, p );
+			sum += jStat.negbin.pdf( k, r, p );
 		}
 		return sum;
 	}
@@ -560,8 +568,10 @@ jStat.extend( jStat.negbin, {
 // extend uniform function with static methods
 jStat.extend( jStat.hypgeom, {
 	pdf : function( k, N, m, n ) {
-		return k !== k | 0 ? false
-		: ( k < 0) ? 0
+		return k !== k | 0
+			? false
+		: ( k < 0)
+			? 0
 		: jStat.combination( m, k ) * jStat.combination( N - m , n - k ) / jStat.combination( N, n );
 	},
 
@@ -570,7 +580,7 @@ jStat.extend( jStat.hypgeom, {
 			k = 0;
 		if ( x < 0 ) return 0;
 		for ( ; k <= x; k++ ) {
-			sum += jStat.hypgeom( k, N, m, n );
+			sum += jStat.hypgeom.pdf( k, N, m, n );
 		}
 		return sum;
 	}
@@ -589,9 +599,79 @@ jStat.extend( jStat.poisson, {
 			k = 0;
 		if ( x < 0 ) return 0;
 		for ( ; k <= x; k++ ) {
-			sum += jStat.poisson( k, l );
+			sum += jStat.poisson.pdf( k, l );
 		}
 		return sum;
+	},
+
+	mean : function( l ) {
+		return l;
+	},
+
+	variance : function( l ) {
+		return l;
+	},
+
+	sample : function( l ) {
+		var p = 1, k = 0, L = Math.exp(-l);
+		do {
+			k++;
+			p *= Math.random();
+		} while (p > L);
+		return k - 1;
+	}
+});
+
+// extend triangular function with static methods
+jStat.extend( jStat.triangular, {
+	pdf : function( x, a, b, c ) {
+		return ( b <= a || c < a || c > b )
+			? undefined
+		: ( x < a || x > b )
+			? 0
+		: ( x <= c )
+			? ( 2 * ( x - a )) / (( b - a ) * ( c - a ))
+		: ( 2 * ( b - x )) / (( b - a ) * ( b - c ));
+	},
+
+	cdf : function( x, a, b, c ) {
+		if ( b <= a || c < a || c > b )
+			return undefined;
+		if ( x < a ) {
+			return 0;
+		} else {
+			if ( x <= c )
+				return Math.pow( x - a, 2 ) / (( b - a ) * ( c - a ));
+			return 1 - Math.pow( b - x, 2 ) / (( b - a ) * ( b - c ));
+		}
+		// never reach this
+		return 1;
+	},
+
+	mean : function( a, b, c ) {
+		return ( a + b + c ) / 3;
+	},
+
+	median : function( a, b, c ) {
+		if ( c <= ( a + b ) / 2 ) {
+			return b - Math.sqrt(( b - a ) * ( b - c )) / Math.sqrt( 2 );
+		} else if ( c > ( a + b ) / 2 ) {
+			return a + Math.sqrt(( b - a ) * ( c - a )) / Math.sqrt( 2 );
+		}
+	},
+
+	mode : function( a, b, c ) {
+		return c;
+	},
+
+	sample : function( a, b, c ) {
+		var u = Math.random();
+		return u < (( c - a ) / ( b - a )) ?
+			a + Math.sqrt( u * ( b - a ) * ( c - a )) : b - Math.sqrt(( 1 - u ) * ( b - a ) * ( b - c ));
+	},
+
+	variance : function( a, b, c ) {
+		return ( a * a + b * b + c * c - a * b - a * c - b * c ) / 18;
 	}
 });
 

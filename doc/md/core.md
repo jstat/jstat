@@ -5,7 +5,7 @@
 Create a new jStat object from either an existing array, or pass in values to generate a sequence.
 For example, create a new jStat matrix by doing the following:
 
-    var matrix = jStat([[1,2,3],[4,5,6],[7,8,9]]);
+    var matrix = jStat([[ 1, 2, 3 ],[ 4, 5, 6 ],[ 7, 8, 9 ]]);
 
 Or create a vector from a sequence:
 
@@ -18,6 +18,13 @@ By passing a function the sequence value can be manipulated:
         return x * 2;
     });
     // vector === [[ 0, 0.5, 1, 1.5, 2 ]];
+
+The second argument passed to the function is the count (starting from 0).
+Using this we can create a multidimensional array (useful for plotting data):
+
+    var betaGraph = jStat( 0, 1, 11, function( x, cnt ) {
+        return [ jStat.beta.pdf( x, alpha, beta ), cnt ];
+    });
 
 ### rows()
 
@@ -151,6 +158,21 @@ Tests if a matrix is symmetric.
 Return the sum of a vector, or of matrix columns.
 If pass boolean true as first argument, then return sum of entire object.
 
+### sumsqrd( [[bool][,callback]][callback] )
+
+Return the sum sqared of a vector, or of matrix columns.
+If pass boolean true as first argument, then return sum of entire object.
+
+### sumsqerr( [[bool][,callback]][callback] )
+
+Return the sum sqared error of a vector, or of matrix columns.
+If pass boolean true as first argument, then return sum of entire object.
+
+### product( [[bool][,callback]][callback] )
+
+Return the product of a vector, or of matrix columns.
+If pass boolean true as first argument, then return product of entire object.
+
 ### min( [[bool][,callback]][callback] )
 
 Return the minimum value of a vector, or of matrix columns.
@@ -164,6 +186,16 @@ If pass boolean true as first argument, then return max of entire object.
 ### mean( [[bool][,callback]][callback] )
 
 Return the mean value of a vector, or of matrix columns.
+If pass boolean true as first argument, then return mean of entire object.
+
+### meansqerr( [[bool][,callback]][callback] )
+
+Return the mean square erro value of a vector, or of matrix columns.
+If pass boolean true as first argument, then return mean of entire object.
+
+### geomean( [[bool][,callback]][callback] )
+
+Return the geometric mean of a vector, or of matrix columns.
 If pass boolean true as first argument, then return mean of entire object.
 
 ### median( [[bool][,callback]][callback] )
@@ -208,27 +240,27 @@ If pass boolean true as first argument, then return quartiles of entire object.
 
 ## Core Static Functionality
 
-### jStat.create( rows, cols, func )
+### jStat.create( rows[,cols], func )
 
 Generate a rows x cols matrix according to the supplied function.
 
-### jStat.zeros( rows, cols )
+### jStat.zeros( rows[,cols] )
 
 Generate a rows x cols matrix of zeros.
 
-### jStat.ones( rows, cols )
+### jStat.ones( rows[,cols] )
 
 Generate a rows x cols matrix of ones.
 
-### jStat.rand( rows, cols )
+### jStat.rand( rows[,cols] )
 
 Generate a rows x cols matrix of uniformly random numbers.
 
-### jStat.identity( rows, cols )
+### jStat.identity( rows[,cols] )
 
 Generate an identity matrix of size row x cols.
 
-### jStat.seq( min, max, length [,func] )
+### jStat.seq( min, max, length[,func] )
 
 Generate an array sequence.
 
@@ -254,7 +286,9 @@ Generate an array sequence.
 
 ### jStat.clear( arr )
 
-### jStat.norm( arr )
+### jStat.norm( arr[,p] )
+
+Calculate the p-norm of a vector. `p` will default to 2 if unspecified.
 
 ### jStat.angle( arr, arg )
 
@@ -274,9 +308,13 @@ Generate an array sequence.
 
 ### jStat.range( arr )
 
-### jStat.variance( arr )
+### jStat.variance( arr[, flag] )
 
-### jStat.stdev( arr )
+Population variance of an array. If `flag == true` then will calculate the sample variance.
+
+### jStat.stdev( arr[, flag] )
+
+Population standard deviation of an array. If `flag == true` then will calculate the sample standard deviation.
 
 ### jStat.meandev( arr )
 
@@ -287,3 +325,13 @@ Generate an array sequence.
 ### jStat.covariance( arr1, arr2 )
 
 ### jStat.corrcoeff( arr1, arr2 )
+
+## jStat Utility Methods
+
+### jStat.utils.calcRdx( num0, num1 )
+
+Calculate the decimal shift for the IEEE calculation correction.
+
+### jStat.utils.isArray( arg )
+
+### jStat.utils.isFunction( arg )

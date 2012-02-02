@@ -16,7 +16,7 @@
 
 ### betafn( x, y )
 
-### gammapInv( p, a )
+### gammapinv( p, a )
 
 ### erf( x )
 

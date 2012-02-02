@@ -94,6 +94,23 @@
 #### jStat.gamma.variance( shape, scale )
 
 
+### jStat.invgamma( shape, scale )
+
+#### jStat.invgamma.pdf( x, shape, scale )
+
+#### jStat.invgamma.cdf( x, shape, scale )
+
+#### jStat.invgamma.inv( p, shape, scale )
+
+#### jStat.invgamma.mean( shape, scale )
+
+#### jStat.invgamma.mode( shape, scale )
+
+#### jStat.invgamma.sample( shape, scale )
+
+#### jStat.invgamma.variance( shape, scale )
+
+
 ### jStat.kumaraswamy( alpha, beta )
 
 #### jStat.kumaraswamy.pdf( x, alpha, beta )
@@ -227,13 +244,6 @@
 #### jStat.uniform.variance( a, b )
 
 
-### jStat.uniformmv
-
-#### jStat.uniformmv.pdf( x, m, s )
-
-#### jStat.uniformmv.cdf( x, m, s )
-
-
 ### jStat.binomial
 
 #### jStat.binomial.pdf( k, n, p )
@@ -260,3 +270,18 @@
 #### jStat.poisson.pdf( k, l )
 
 #### jStat.poisson.cdf( x, l )
+
+
+### jStat.triangular
+
+#### jStat.triangular.pdf( x, a, b, c )
+
+#### jStat.triangular.cdf( x, a, b, c )
+
+#### jStat.triangular.mean( x, a, b, c )
+
+#### jStat.triangular.median( x, a, b, c )
+
+#### jStat.triangular.mode( x, a, b, c )
+
+#### jStat.triangular.variance( x, a, b, c )

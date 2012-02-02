@@ -6,7 +6,6 @@ function betacf( x, a, b ) {
 	var fpmin = 1e-30,
 		m = 1,
 		m2, aa, c, d, del, h, qab, qam, qap;
-
 	// These q's will be used in factors that occur in the coefficients
 	qab = a + b;
 	qap = a + 1;
@@ -50,10 +49,10 @@ jStat.extend({
 				76.18009172947146, -86.50532032941677, 24.01409824083091,
 				-1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5
 			],
-			xx, y, tmp, ser;
+			ser = 1.000000000190015,
+			xx, y, tmp;
 		tmp = ( y = xx = x ) + 5.5;
 		tmp -= ( xx + 0.5 ) * Math.log( tmp );
-		ser = 1.000000000190015;
 		for( ; j < 6; j++ ) ser += cof[j] / ++y;
 		return Math.log( 2.5066282746310005 * ser / xx) - tmp;
 	},
@@ -76,7 +75,6 @@ jStat.extend({
 			xnum = 0,
 			y = x,
 			i, z, yi, res, sum, ysq;
-
 		if( y <= 0 ) {
 			res = y % 1 + 3.6e-16;
 			if ( res ) {
@@ -86,21 +84,17 @@ jStat.extend({
 				return Infinity;
 			}
 		}
-
 		yi = y;
 		if ( y < 1 ) {
 			z = y++;
 		} else {
 			z = ( y -= n = ( y | 0 ) - 1 ) - 1;
 		}
-
 		for ( i = 0; i < 8; ++i ) {
 			xnum = ( xnum + p[i] ) * z;
 			xden = xden * z + q[i];
 		}
-
 		res = xnum / xden + 1;
-
 		if ( yi < y ) {
 			res /= yi;
 		} else if ( yi > y ) {
@@ -109,7 +103,6 @@ jStat.extend({
 				y++;
 			}
 		}
-
 		if ( fact ) {
 			res = fact / res;
 		}
@@ -118,7 +111,6 @@ jStat.extend({
 
 	// lower incomplete gamma function P(a,x)
 	gammap : function( a, x ) {
-
 		var ITMAX = Math.ceil( Math.log( a ) * 8.5 + a * 0.4 + 17 ),
 			aln = jStat.gammaln( a ),
 			afn = jStat.gammafn( a ),
@@ -131,7 +123,6 @@ jStat.extend({
 			h = d,
 			i = 1,
 			an, endval;
-
 		if ( x < 0 || a <= 0 ) {
 			return NaN;
 		} else if ( x < a + 1 ) {
@@ -150,8 +141,7 @@ jStat.extend({
 			}
 			endval = 1 - h * Math.exp( -x + a * Math.log( x ) - ( aln ));
 		}
-
-		return endval * afn;
+		return endval * afn / jStat.gammafn( a );
 	},
 
 	// natural log factorial of n
@@ -168,6 +158,10 @@ jStat.extend({
 	combination : function( n, m ) {
 		return ( jStat.factorial( n ) / jStat.factorial( m )) / jStat.factorial( n - m );
 	},
+	
+	combinationln : function( n, m ){
+		return  jStat.factorialln( n ) - jStat.factorialln( m ) - jStat.factorialln( n - m );
+	},
 
 	// permutations of n, m
 	permutation : function( n, m ) {
@@ -178,6 +172,11 @@ jStat.extend({
 	betafn : function( x, y ) {
 		return jStat.gammafn( x ) * jStat.gammafn( y ) / jStat.gammafn( x + y );
 	},
+	
+	// natural logarithm of beta function
+	betaln : function( x, y ) {
+		return jStat.gammaln( x ) + jStat.gammaln( y ) - jStat.gammaln( x + y );
+	},
 
 	// Returns the inverse incomplte gamma function
 	gammapinv : function( p, a ) {
@@ -186,7 +185,6 @@ jStat.extend({
 			EPS = 1e-8,
 			gln = jStat.gammaln( a ),
 			x, err, t, u, pp, lna1, afac;
-
 		if( p >= 1 ) return Math.max( 100, a + 100 * Math.sqrt( a ) );
 		if( p <= 0 ) return 0;
 		if( a > 1 ) {
@@ -194,7 +192,7 @@ jStat.extend({
 			afac = Math.exp( a1 * ( lna1 - 1 ) - gln );
 			pp = ( p < 0.5 ) ? p : 1 - p;
 			t = Math.sqrt( -2 * Math.log( pp ));
-			x = ( 2.30753 + t * 0.27061 ) / ( 1 + t * ( 0.99229 + t * 0.04481 ));
+			x = ( 2.30753 + t * 0.27061 ) / ( 1 + t * ( 0.99229 + t * 0.04481 )) - t;
 			if( p < 0.5 ) x = -x;
 			x = Math.max( 1e-3, a * Math.pow( 1 - 1 / ( 9 * a ) - x / ( 3 * Math.sqrt( a )), 3 ));
 		} else {
@@ -202,10 +200,9 @@ jStat.extend({
 			if( p < t ) x = Math.pow( p / t, 1 / a);
 			else x = 1 - Math.log( 1 - ( p - t ) / ( 1 - t ));
 		}
-
 		for( ; j < 12; j++ ) {
 			if( x <= 0 ) return 0;
-			err = jStat.gammap( x, a ) - p;
+			err = jStat.gammap( a, x ) - p;
 			if( a > 1 ) t = afac * Math.exp( -( x - a1 ) + a1 * ( Math.log( x ) - lna1 ));
 			else t = Math.exp( -x + a1 * Math.log( x ) - gln );
 			u = err / t;
@@ -235,7 +232,6 @@ jStat.extend({
 			d = 0,
 			dd = 0,
 			t, ty, tmp, res;
-
 		if( x < 0 ) {
 			x = -x;
 			isneg = true;
@@ -260,7 +256,6 @@ jStat.extend({
 	erfcinv : function( p ) {
 		var j = 0,
 			x, err, t, pp;
-
 		if( p >= 2 ) return -100;
 		if( p <= 0 ) return 100;
 		pp = ( p < 1 ) ? p : 2 - p;
@@ -280,7 +275,6 @@ jStat.extend({
 			b1 = b - 1,
 			j = 0,
 			lna, lnb, pp, t, u, err, x, al, h, w, afac;
-
 		if( p <= 0 ) return 0;
 		if( p >= 1 ) return 1;
 		if( a >= 1 && b >= 1 ) {
@@ -322,7 +316,6 @@ jStat.extend({
 			Math.exp(jStat.gammaln( a + b ) - jStat.gammaln( a ) -
 			jStat.gammaln( b ) + a * Math.log( x ) + b *
 			Math.log( 1 - x ));
-
 		if( x < 0 || x > 1 ) return false;
 		if( x < ( a + 1 ) / ( a + b + 2 ) )
 			// Use continued fraction directly.
@@ -336,7 +329,6 @@ jStat.extend({
 	randn : function( n, m ) {
 		var u, v, x, y, q, mat;
 		if ( !m ) m = n;
-
 		if( n ) {
 			mat = jStat.zeros( n, m );
 			mat.alter(function() { return jStat.randn(); });
@@ -358,7 +350,6 @@ jStat.extend({
 			a1, a2, u, v, x, mat;
 		if ( !m ) m = n;
 		if ( !shape ) shape = 1;
-
 		if( n ) {
 			mat = jStat.zeros( n,m );
 			mat.alter(function() { return jStat.randg( shape ); });
