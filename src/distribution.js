@@ -518,10 +518,9 @@ jStat.extend( jStat.uniform, {
 // extend uniform function with static methods
 jStat.extend( jStat.binomial, {
 	pdf : function( k, n, p ) {
-		if ( p===0 || p===1 ) {
-			return (( n * p ) === k ? 1 : 0 );
-		}
-		return Math.exp( jStat.combinationln( n, k ) + k * Math.log( p ) + ( n - k ) * Math.log( 1 - p ));
+		return ( p === 0 || p === 1 ) ?
+			(( n * p ) === k ? 1 : 0 ) :
+		jStat.combination( n, k ) * Math.pow( p, k ) * Math.pow( 1 - p, n - k );
 	},
 
 	cdf : function( x, n, p ) {

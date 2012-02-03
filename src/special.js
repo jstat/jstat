@@ -156,7 +156,10 @@ jStat.extend({
 
 	// combinations of n, m
 	combination : function( n, m ) {
-		return ( jStat.factorial( n ) / jStat.factorial( m )) / jStat.factorial( n - m );
+		// make sure n or m don't exceed the upper limit of usable values
+		return ( n > 170 || m > 170 ) ?
+			Math.exp( jStat.combinationln( n, m )) :
+		( jStat.factorial( n ) / jStat.factorial( m )) / jStat.factorial( n - m );
 	},
 	
 	combinationln : function( n, m ){
