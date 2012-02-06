@@ -598,7 +598,7 @@ jStat.extend( jStat.poisson, {
 			k = 0;
 		if ( x < 0 ) return 0;
 		for ( ; k <= x; k++ ) {
-			sumarr.push(jStat.poisson.pdf( k, l ))
+			sumarr.push(jStat.poisson.pdf( k, l ));
 		}
 		return jStat.sum(sumarr);
 	},
