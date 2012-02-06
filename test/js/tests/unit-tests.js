@@ -234,7 +234,7 @@ $(function() {
 	test('chisquare',function(){
 		equals(jStat.chisquare.pdf(0.5,0.5),0.3037807865950047,'chisquare.pdf(0.5,0.5)');
 		equals(jStat.chisquare.pdf(0.5,1),0.4393912894677035,'chisquare.pdf(0.5,1)');
-		equals(jStat.chisquare.cdf(0.5,0.5),0.7436779405938267,'chisquare.cdf(0.5,0.5)');
+		equals(jStat.chisquare.cdf(0.5,0.5),0.7436779447314111,'chisquare.cdf(0.5,0.5)');
 		equals(jStat.chisquare.cdf(0.5,1),0.5204998778130242,'chisquare.cdf(0.5,1)');
 		equals(jStat.chisquare.inv(0.5,3),2.3659738843753264,'chisquare.inv(0.5,3)');
 	});
@@ -249,7 +249,7 @@ $(function() {
 	test('gamma',function(){
 		equals(jStat.gamma.pdf(0.5,0.5,0.5),0.4151074974205769,'gamma.pdf(0.5,0.5,0.5)');
 		equals(jStat.gamma.pdf(0.5,1,1),0.6065306597126334,'gamma.pdf(0.5,1,1)');
-		equals(jStat.gamma.cdf(0.5,0.5,0.5),0.8427007929325737,'gamma.cdf(0.5,0.5,0.5)');
+		equals(jStat.gamma.cdf(0.5,0.5,0.5),0.8427007929496787,'gamma.cdf(0.5,0.5,0.5)');
 		equals(jStat.gamma.cdf(0.5,1,1),0.3934693402873665,'gamma.cdf(0.5,1,1)');
 		equals(jStat.gamma.inv(.5,2,3),5.03504097004998,'gamma.inv(.5,2,3)');
 	});
@@ -257,7 +257,7 @@ $(function() {
 	test('invgamma',function(){
 		equals(jStat.invgamma.pdf(0.5,0.5,0.5),0.4151074974205768,'invgamma.pdf(0.5,0.5,0.5)');
 		equals(jStat.invgamma.pdf(0.5,1,1),0.5413411329464507,'invgamma.pdf(0.5,1,1)');
-		equals(jStat.invgamma.cdf(0.5,0.5,0.5),0.15729920706742628,'invgamma.cdf(0.5,0.5,0.5)');
+		equals(jStat.invgamma.cdf(0.5,0.5,0.5),0.1572992070503213,'invgamma.cdf(0.5,0.5,0.5)');
 		equals(jStat.invgamma.cdf(0.5,1,1),0.1353352832366126,'invgamma.cdf(0.5,1,1)');
 		equals(jStat.invgamma.inv(.4,2,3),1.4834497113321283,'invgamma.inv(.4,2,3)');
 	});

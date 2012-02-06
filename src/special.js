@@ -111,8 +111,7 @@ jStat.extend({
 
 	// lower incomplete gamma function P(a,x)
 	gammap : function( a, x ) {
-		var ITMAX = Math.ceil( Math.log( a ) * 8.5 + a * 0.4 + 17 ),
-			aln = jStat.gammaln( a ),
+		var aln = jStat.gammaln( a ),
 			afn = jStat.gammafn( a ),
 			ap = a,
 			sum = 1 / a,
@@ -122,6 +121,9 @@ jStat.extend({
 			d = 1 / b,
 			h = d,
 			i = 1,
+			afix = ( a >= 1 ) ? a : 1 / a,
+			// calculate maximum number of itterations required for a
+			ITMAX = -~( Math.log( afix ) * 8.5 + a * 0.4 + 17 ),
 			an, endval;
 		if ( x < 0 || a <= 0 ) {
 			return NaN;
