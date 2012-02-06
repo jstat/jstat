@@ -173,7 +173,12 @@ jStat.extend({
 
 	// beta function
 	betafn : function( x, y ) {
-		return jStat.gammafn( x ) * jStat.gammafn( y ) / jStat.gammafn( x + y );
+		// ensure arguments are positive
+		if(x<=0 | y<=0) return undefined;
+		// make sure x + y doesn't exceed the upper limit of usable values
+		return ( x + y > 160 ) ?
+			Math.exp( jStat.betaln( x, y )) :
+		(jStat.gammafn( x ) * jStat.gammafn( y ) / jStat.gammafn( x + y ));
 	},
 	
 	// natural logarithm of beta function
