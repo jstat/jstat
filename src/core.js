@@ -323,8 +323,12 @@ jStat.extend({
 	// sum of an array
 	sum : function( arr ) {
 		var sum = 0,
-			i = arr.length;
-		while ( --i >= 0 ) sum += arr[i];
+			i = arr.length,
+			tmp;
+		while ( --i >= 0 ) {
+			tmp = calcRdx( sum, arr[i] );
+			sum = (( sum * tmp ) + ( arr[i] * tmp )) / tmp;
+		}
 		return sum;
 	},
 
