@@ -337,8 +337,8 @@ $(function() {
 	test('poisson',function(){
 		equals(jStat.poisson.pdf(1,3),0.14936120510359183,'poisson.pdf(1,3)');
 		equals(jStat.poisson.pdf(1,5),0.03368973499542734,'poisson.pdf(1,5)');
-		equals(jStat.poisson.cdf(1,3),0.19914827347145578,'poisson.cdf(1,3)');
-		equals(jStat.poisson.cdf(1,5),0.040427681994512805,'poisson.cdf(1,5)');
+		equals(jStat.poisson.cdf(1,3),0.19914827347145575,'poisson.cdf(1,3)');
+		equals(jStat.poisson.cdf(1,5),0.0404276819945128,'poisson.cdf(1,5)');
 	});
     
     test('triangular',function(){

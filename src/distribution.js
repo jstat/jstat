@@ -594,13 +594,13 @@ jStat.extend( jStat.poisson, {
 	},
 
 	cdf : function( x, l ) {
-		var sum = 0,
+		var sumarr = [],
 			k = 0;
 		if ( x < 0 ) return 0;
 		for ( ; k <= x; k++ ) {
-			sum += jStat.poisson.pdf( k, l );
+			sumarr.push(jStat.poisson.pdf( k, l ))
 		}
-		return sum;
+		return jStat.sum(sumarr);
 	},
 
 	mean : function( l ) {
