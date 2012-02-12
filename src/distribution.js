@@ -55,7 +55,7 @@
 		})( 'mean median mode variance'.split( ' ' ));
 	})( list[ i ]);
 })((
-	'beta cauchy chisquare exponential gamma invgamma kumaraswamy lognormal normal ' +
+	'beta centralF cauchy chisquare exponential gamma invgamma kumaraswamy lognormal normal ' +
 	'pareto studentt weibull uniform  binomial negbin hypgeom poisson triangular'
 ).split( ' ' ));
 
@@ -98,6 +98,41 @@ jStat.extend( jStat.beta, {
 	}
 });
 
+// extend F function with static methods
+jStat.extend( jStat.centralF, {
+	pdf : function( x, df1, df2 ) {
+		return  ( x >= 0) ?  
+			Math.sqrt( ( Math.pow( df1 * x, df1) * Math.pow( df2, df2 ) ) / ( Math.pow(df1 * x + df2, df1 + df2 ) ) ) / ( x * jStat.betafn( df1/2, df2/2 ) ) : undefined;
+		
+	},
+
+	cdf : function( x, df1, df2 ) {
+		return jStat.incompleteBeta( ( df1 * x ) / ( df1 * x + df2 ), df1 / 2, df2 / 2 );
+	},
+
+	inv : function( x, df1, df2 ) {
+		return df2 / (df1 * ( 1 / jStat.incompleteBetaInv( x, df1 / 2, df2 / 2 ) - 1 ) );
+	},
+
+	mean : function( df1, df2 ) {
+		return ( df2 > 2 ) ? df2 / ( df2 - 2 ) : undefined;
+	},
+
+	mode : function( df1, df2 ) {
+		return ( df1 > 2) ? ( df2 * ( df1 - 2 ) ) / ( df1 * ( df2 + 2 ) ) : undefined;
+	},
+
+	// return a random sample
+	sample : function( df1, df2 ) {
+		var x1 = jStat.randg( df1 / 2 ) * 2;
+		var x2 = jStat.randg( df2 / 2 ) * 2;
+		return ( x1 / df1 ) / ( x2 / df2 );
+	},
+
+	variance : function( df1, df2 ) {
+		return ( df2 > 4 ) ? 2 * df2 * df2 * ( df1 + df2 - 2) / ( df1 * ( df2 - 2 ) * ( df2 - 2 ) * ( df2 - 4 ) ): undefined;
+	}
+});
 
 
 // extend cauchy function with static methods

@@ -20,6 +20,23 @@
 #### jStat.beta.variance( alpha, beta )
 
 
+### jStat.centralF( df1, df2 )
+
+#### jStat.centralF.pdf( x, df1, df2 )
+
+#### jStat.centralF.cdf( x, df1, df2 )
+
+#### jStat.centralF.inv( x, df1, df2 )
+
+#### jStat.centralF.mean( df1, df2 )
+
+#### jStat.centralF.mode( df1, df2 )
+
+#### jStat.centralF.sample( df1, df2 )
+
+#### jStat.centralF.variance( df1, df2 )
+
+
 ### jStat.cauchy( local, scale )
 
 #### jStat.cauchy.pdf( x, local, scale )
