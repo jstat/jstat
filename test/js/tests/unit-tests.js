@@ -224,6 +224,15 @@ $(function() {
 		equals(jStat.beta.cdf(0.5,0.5,0.5).toFixed(4),'0.5000','beta.cdf(0.5,0.5,0.5)');
 	});
 
+	test('centralF',function(){
+		equals(jStat.centralF.pdf(1,3,5),0.3611744769149185,'centralF.pdf(1,3,5)');
+		equals(jStat.centralF.pdf(0.6,4,6),0.5949901826619861,'centralF.pdf(0.6,4,6)');
+		equals(jStat.centralF.cdf(.5,13,10),0.12056505959745863,'centralF.cdf(.5,13,10)');
+		equals(jStat.centralF.cdf(2,4,4),0.7407407407407407,'centralF.cdf(2,4,4)');
+		equals(jStat.centralF.inv(0.3,10,7),0.7089451037389662,'centralF.inv(0.3,10,7)');
+	});
+
+
 	test('cauchy',function(){
 		equals(jStat.cauchy.pdf(0,1,1),0.15915494309189535,'cauchy.pdf(0,1,1)');
 		equals(jStat.cauchy.pdf(0.5,0.5,0.5),0.6366197723675814,'cauchy.pdf(0.5,0.5,0.5)');
