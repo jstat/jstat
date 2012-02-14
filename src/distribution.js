@@ -64,11 +64,11 @@
 // extend beta function with static methods
 jStat.extend( jStat.beta, {
 	pdf : function( x, alpha, beta ) {
-		return ( Math.pow( x, alpha - 1 ) * Math.pow( 1 - x, beta - 1 )) / jStat.betafn( alpha, beta );
+		return (x > 1 || x < 0) ? 0 : ( Math.pow( x, alpha - 1 ) * Math.pow( 1 - x, beta - 1 )) / jStat.betafn( alpha, beta );
 	},
 
 	cdf : function( x, alpha, beta ) {
-		return jStat.incompleteBeta( x, alpha, beta );
+		return (x > 1 || x < 0) ? (x > 1) * 1 : jStat.incompleteBeta( x, alpha, beta );
 	},
 
 	inv : function( x, alpha, beta ) {
