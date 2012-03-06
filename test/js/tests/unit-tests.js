@@ -193,7 +193,7 @@ $(function() {
 	test('gammap',function(){
 		equals(jStat.gammap(1,0),0,'gammap(1,0)');
 		equals(jStat.gammap(3,3),0.576809918873157,'gammap(3,3)');
-		equals(jStat.gammap(5,2),0.05265301734371116,'gammap(5,2)');
+		equals(jStat.gammap(5,2),0.05265301734371115,'gammap(5,2)');
 	});
 
 	test('gammapinv',function(){

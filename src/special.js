@@ -53,7 +53,7 @@ jStat.extend({
 			xx, y, tmp;
 		tmp = ( y = xx = x ) + 5.5;
 		tmp -= ( xx + 0.5 ) * Math.log( tmp );
-		for( ; j < 6; j++ ) ser += cof[j] / ++y;
+		for ( ; j < 6; j++ ) ser += cof[j] / ++y;
 		return Math.log( 2.5066282746310005 * ser / xx) - tmp;
 	},
 
@@ -112,7 +112,6 @@ jStat.extend({
 	// lower incomplete gamma function P(a,x)
 	gammap : function( a, x ) {
 		var aln = jStat.gammaln( a ),
-			afn = jStat.gammafn( a ),
 			ap = a,
 			sum = 1 / a,
 			del = sum,
@@ -121,9 +120,8 @@ jStat.extend({
 			d = 1 / b,
 			h = d,
 			i = 1,
-			afix = ( a >= 1 ) ? a : 1 / a,
 			// calculate maximum number of itterations required for a
-			ITMAX = -~( Math.log( afix ) * 8.5 + a * 0.4 + 17 ),
+			ITMAX = -~( Math.log(( a >= 1 ) ? a : 1 / a ) * 8.5 + a * 0.4 + 17 ),
 			an, endval;
 		if ( x < 0 || a <= 0 ) {
 			return NaN;
@@ -131,19 +129,17 @@ jStat.extend({
 			for ( ; i <= ITMAX; i++ ) {
 				sum += del *= x / ++ap;
 			}
-			endval = sum * Math.exp( -x + a * Math.log( x ) - ( aln ));
-		} else {
-			for ( ; i <= ITMAX; i++ ) {
-				an = -i * ( i - a );
-				b += 2;
-				d = an * d + b;
-				c = b + an / c;
-				d = 1 / d;
-				h *= d * c;
-			}
-			endval = 1 - h * Math.exp( -x + a * Math.log( x ) - ( aln ));
+			return sum * Math.exp( -x + a * Math.log( x ) - ( aln ));
 		}
-		return endval * afn / jStat.gammafn( a );
+		for ( ; i <= ITMAX; i++ ) {
+			an = -i * ( i - a );
+			b += 2;
+			d = an * d + b;
+			c = b + an / c;
+			d = 1 / d;
+			h *= d * c;
+		}
+		return 1 - h * Math.exp( -x + a * Math.log( x ) - ( aln ));
 	},
 
 	// natural log factorial of n
