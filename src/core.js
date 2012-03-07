@@ -20,12 +20,17 @@ var slice = Array.prototype.slice,
 
 	// test if array
 	isArray = Array.isArray || function( arg ) {
-		return toString.call( arg ) === "[object Array]";
+		return toString.call( arg ) === '[object Array]';
 	},
 
 	// test if function
 	isFunction = function( arg ) {
-		return toString.call( arg ) === "[object Function]";
+		return toString.call( arg ) === '[object Function]';
+	},
+
+	// test if number
+	isNumber = function( arg ) {
+		return toString.call( arg ) === '[object Number]';
 	};
 
 // global function
@@ -37,11 +42,13 @@ function jStat() {
 jStat.fn = jStat.prototype = {
 	constructor : jStat,
 	init : function( args ) {
+		var i = 0;
 		// if first argument is an array, must be vector or matrix
 		if ( isArray( args[0] )) {
 			// check if matrix
 			if ( isArray( args[0][0] )) {
-				for ( var i = 0; i < args[0].length; i++ ) {
+				// itterating over each is faster than this.push.apply( this, args[0] );
+				for ( ; i < args[0].length; i++ ) {
 					this[i] = args[0][i];
 				}
 				this.length = args[0].length;
@@ -51,7 +58,7 @@ jStat.fn = jStat.prototype = {
 				this.length = 1;
 			}
 		// if first argument is number, assume creation of sequence
-		} else if ( !isNaN( args[0] )) {
+		} else if ( isNumber( args[0] )) {
 			this[0] = jStat.seq.apply( null, args );
 			this.length = 1;
 		}
@@ -81,7 +88,8 @@ jStat.fn.init.prototype = jStat.fn;
 jStat.utils = {
 	calcRdx : calcRdx,
 	isArray : isArray,
-	isFunction : isFunction
+	isFunction : isFunction,
+	isNumber : isNumber
 };
 
 // create method for easy extension
@@ -105,36 +113,39 @@ jStat.extend({
 
 	// transpose a matrix or array
 	transpose : function( arr ) {
+		var obj = [],
+			i = 0,
+			rows, cols, j;
+		// make sure arr is in matrix format
 		if ( !isArray( arr[0] )) arr = [ arr ];
-		var rows = arr.length,
-			cols = arr[0].length,
-			obj = [],
-			i = 0, j;
+		rows = arr.length;
+		cols = arr[0].length;
 		for ( ; i < cols; i++ ) {
-			obj.push([]);
+			obj.push( new Array( rows ));
 			for ( j = 0; j < rows; j++ ) {
-				obj[i].push( arr[j][i] );
+				obj[i][j] = arr[j][i];
 			}
 		}
-		return obj;
+		// if obj is vector, return only single array
+		return ( obj.length === 1 ) ? obj[0] : obj;
 	},
 
 	// map a function to an array or array of arrays
 	// toAlter is an internal variable
 	map : function( arr, func, toAlter ) {
-		if ( !isArray( arr[0] )) arr = [ arr ];
 		var row = 0,
-			nrow = arr.length,
-			ncol = arr[0].length,
-			res = toAlter ? arr : [],
-			col;
+			nrow, ncol, res, col;
+		if ( !isArray( arr[0] )) arr = [ arr ];
+		nrow = arr.length;
+		ncol = arr[0].length;
+		res = toAlter ? arr : new Array( nrow );
 		for ( ; row < nrow; row++ ) {
 			// if the row doesn't exist, create it
-			if ( !res[row] ) res[row] = [];
+			if ( !res[row] ) res[row] = new Array( ncol );
 			for ( col = 0; col < ncol; col++ )
 				res[row][col] = func( arr[row][col], row, col );
 		}
-		return res.length === 1 ? res[0] : res;
+		return ( res.length === 1 ) ? res[0] : res;
 	},
 
 	// destructively alter an array
@@ -144,15 +155,15 @@ jStat.extend({
 
 	// generate a rows x cols matrix according to the supplied function
 	create : function ( rows, cols, func ) {
+		var res = new Array( rows ), i, j;
 		if ( isFunction( cols )) {
 			func = cols;
 			cols = rows;
 		}
-		var res = [], i, j;
 		for ( i = 0; i < rows; i++ ) {
-			res[i]  = [];
+			res[i] = new Array( cols );
 			for ( j = 0; j < cols; j++ ) {
-				res[i].push( func( i, j ));
+				res[i][j] = func( i, j );
 			}
 		}
 		return res;
@@ -160,25 +171,25 @@ jStat.extend({
 
 	// generate a rows x cols matrix of zeros
 	zeros : function( rows, cols ) {
-		if ( isNaN( cols )) cols = rows;
+		if ( !isNumber( cols )) cols = rows;
 		return jStat.create( rows, cols, function() { return 0; });
 	},
 
 	// generate a rows x cols matrix of ones
 	ones : function( rows, cols ) {
-		if ( isNaN( cols )) cols = rows;
+		if ( !isNumber( cols )) cols = rows;
 		return jStat.create( rows, cols, function() { return 1; });
 	},
 
 	// generate a rows x cols matrix of uniformly random numbers
 	rand : function( rows, cols ) {
-		if ( isNaN( cols )) cols = rows;
+		if ( !isNumber( cols )) cols = rows;
 		return jStat.create( rows, cols, function() { return Math.random(); });
 	},
 
 	// generate an identity matrix of size row x cols
 	identity : function( rows, cols ) {
-		if ( isNaN( cols )) cols = rows;
+		if ( !isNumber( cols )) cols = rows;
 		return jStat.create( rows, cols, function( i, j ) { return ( i === j ) ? 1 : 0; });
 	},
 
@@ -219,7 +230,7 @@ jStat.extend({
 		var row, col, nrescols, sum,
 			nrow = arr.length,
 			ncol = arr[0].length,
-			res = jStat.zeros( nrow, nrescols = ( isNaN( arg )) ? arg[0].length : ncol ),
+			res = jStat.zeros( nrow, nrescols = ( isArray( arg )) ? arg[0].length : ncol ),
 			rescols = 0;
 		if ( isArray( arg )) {
 			for ( ; rescols < nrescols; rescols++ ) {
