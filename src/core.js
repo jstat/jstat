@@ -217,12 +217,13 @@ jStat.extend({
 		return jStat.map( arr, function ( value ) { return value + arg; });
 	},
 
-	// TODO: Implement matrix division
 	// matrix division
 	divide : function( arr, arg ) {
-		return isArray( arg ) ?
-			false
-		: jStat.map(arr, function ( value ) { return value / arg; });
+		if ( isArray( arg )) {
+			if ( !isArray( arg[0] )) arg = [ arg ];
+			return jStat.multiply( arr, jStat.inv( arg ));
+		}
+		return jStat.map( arr, function( value ) { return value / arg; });
 	},
 
 	// matrix multiplication
