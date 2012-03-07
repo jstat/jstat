@@ -1,4 +1,4 @@
-/*Provides functions for the solution of linear system of equations, integration, extrapolation,
+/* Provides functions for the solution of linear system of equations, integration, extrapolation,
  * interpolation, eigenvalue problems, differential equations and PCA analysis. */
 
 (function( jStat, Math ) {
@@ -31,6 +31,40 @@ jStat.extend({
 				obj[i][j - cols] = c[i][j];
 		}
 		return obj;
+	},
+
+	// calculate the determinant of a matrix
+	det : function( a ) {
+		var alen = a.length,
+			alend = alen * 2,
+			vals = new Array( alend ),
+			rowshift = alen - 1,
+			colshift = alend - 1,
+			mrow = rowshift - alen + 1,
+			mcol = colshift,
+			i = 0,
+			result = 0,
+			j;
+		for (; i < alend; i++ ) {
+			vals[i] = 1;
+		}
+		for ( i = 0; i < alen; i++ ) {
+			for ( j = 0; j < alen; j++ ) {
+				vals[( mrow < 0 ) ? mrow + alen : mrow ] *= a[i][j];
+				vals[( mcol < alen ) ? mcol + alen : mcol ] *= a[i][j];
+				mrow++;
+				mcol--;
+			}
+			mrow = --rowshift - alen + 1;
+			mcol = --colshift;
+		}
+		for ( i = 0; i < alen; i++ ) {
+			result += vals[i];
+		}
+		for (; i < alend; i++ ) {
+			result -= vals[i];
+		}
+		return result;
 	},
 
 	gauss_elimination : function( a, b ) {
@@ -597,4 +631,4 @@ jStat.extend({
 	}
 });
 
-})( this.jStat, Math );
+}( this.jStat, Math ));
