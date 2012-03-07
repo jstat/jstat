@@ -1,6 +1,8 @@
 ## Linear Algebra
 
-### jStat.augment()
+### jStat.aug()
+
+### jStat.det()
 
 ### jStat.inv()
 
