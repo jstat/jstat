@@ -214,7 +214,17 @@ jStat.extend({
 			if ( !isArray( arg[0] )) arg = [ arg ];
 			return jStat.map( arr, function( value, row, col ) { return value + arg[row][col]; });
 		}
-		return jStat.map( arr, function ( value ) { return value + arg; });
+		return jStat.map( arr, function( value ) { return value + arg; });
+	},
+
+	// subtract a vector or scalar from the vector
+	subtract : function( arr, arg ) {
+		// check if arg is a vector or scalar
+		if ( isArray( arg )) {
+			if ( !isArray( arg[0] )) arg = [ arg ];
+			return jStat.map( arr, function( value, row, col ) { return value - arg[row][col] || 0; });
+		}
+		return jStat.map( arr, function( value ) { return value - arg; });
 	},
 
 	// matrix division
@@ -245,16 +255,6 @@ jStat.extend({
 			return ( nrow === 1 && rescols === 1 ) ? res[0][0] : res;
 		}
 		return jStat.map( arr, function( value ) { return value * arg; });
-	},
-
-	// subtract a vector or scalar from the vector
-	subtract : function( arr, arg ) {
-		// check if arg is a vector or scalar
-		if ( isArray( arg )) {
-			if ( !isArray( arg[0] )) arg = [ arg ];
-			return jStat.map( arr, function( value, row, col ) { return value - arg[row][col] || 0; });
-		}
-		return jStat.map( arr, function( value ) { return value - arg; });
 	},
 
 	// Returns the dot product of two matricies
@@ -329,8 +329,6 @@ jStat.extend({
 		}
 		return true;
 	},
-
-	/* array/vector specific methods */
 
 	// sum of an array
 	sum : function( arr ) {
