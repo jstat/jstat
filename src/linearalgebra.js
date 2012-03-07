@@ -45,6 +45,10 @@ jStat.extend({
 			i = 0,
 			result = 0,
 			j;
+		// check for special 2x2 case
+		if ( alen === 2 ) {
+			return a[0][0] * a[1][1] - a[0][1] * a[1][0];
+		}
 		for (; i < alend; i++ ) {
 			vals[i] = 1;
 		}
