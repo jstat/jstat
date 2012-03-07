@@ -7,9 +7,11 @@ var push = Array.prototype.push;
 
 jStat.extend({
 
-	augment : function( a, b ) {
-		var newarr = a.slice();
-		for ( var i = 0; i < newarr.length; i++ ) {
+	// augment one matrix by another
+	aug : function( a, b ) {
+		var newarr = a.slice(),
+			i = 0;
+		for ( ; i < newarr.length; i++ ) {
 			push.apply( newarr[i], b[i] );
 		}
 		return newarr;
@@ -40,7 +42,7 @@ jStat.extend({
 			sum = 0,
 			x = [],
 			maug, pivot, temp, k;
-		a = jStat.augment( a, b );
+		a = jStat.aug( a, b );
 		maug = a[0].length;
 		for( ; i < n; i++ ) {
 			pivot = a[i][i];
@@ -84,7 +86,7 @@ jStat.extend({
 			sum = 0,
 			X=[],
 			temp, pivot, maug, k;
-		a = jStat.augment( a, b );
+		a = jStat.aug( a, b );
 		maug = a[0].length;
 		for ( ; i < n; i++ ) {
 			pivot = a[i][i];
