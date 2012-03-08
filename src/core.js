@@ -111,6 +111,62 @@ jStat.extend = function( obj ) {
 // static methods
 jStat.extend({
 
+	// Returns the number of rows in the matrix
+	rows : function( arr ) {
+		return arr.length || 1;
+	},
+
+	// Returns the number of columns in the matrix
+	cols : function( arr ) {
+		return arr[0].length || 1;
+	},
+
+	// Returns the dimensions of the object { rows: i, cols: j }
+	dimensions : function( arr ) {
+		return {
+			rows : jStat.rows( arr ),
+			cols : jStat.cols( arr )
+		};
+	},
+
+	// Returns a specified row as a vector
+	// stupid simple, but here to complete the set of methods
+	row : function( arr, index ) {
+		return arr[ index ];
+	},
+
+	// Returns the specified column as a vector
+	col : function( arr, index ) {
+		var column = [],
+			i = 0;
+		for ( ; i < arr.length; i++ ) {
+			column[i] = [ arr[i][index] ];
+		}
+		return column;
+	},
+
+	// Returns the diagonal of the matrix
+	diag : function( arr ) {
+		var row = 0,
+			nrow = arr.rows(),
+			res = [];
+		for ( ; row < nrow; row++ ) {
+			res[row] = [ arr[row][row] ];
+		}
+		return res;
+	},
+
+	// Returns the anti-diagonal of the matrix
+	antidiag : function( arr ) {
+		var nrow = arr.rows() - 1,
+			res = [],
+			i = 0;
+		for ( ; nrow >= 0; nrow--, i++ ) {
+			res[i] = [ arr[i][nrow] ];
+		}
+		return res;
+	},
+
 	// transpose a matrix or array
 	transpose : function( arr ) {
 		var obj = [],
@@ -193,6 +249,25 @@ jStat.extend({
 		return jStat.create( rows, cols, function( i, j ) { return ( i === j ) ? 1 : 0; });
 	},
 
+	// Tests whether a matrix is symmetric
+	symmetric : function( arr ) {
+		var issymmetric = true,
+			row = 0,
+			size = arr.length, col;
+		if ( arr.length !== arr[0].length ) return false;
+		for ( ; row < size; row++ ) {
+			for ( col = 0; col < size; col++ ) {
+				if ( arr[col][row] !== arr[row][col] ) return false;
+			}
+		}
+		return true;
+	},
+
+	// set all values to zero
+	clear : function( arr ) {
+		return jStat.alter( arr, function() { return 0; });
+	},
+
 	// generate sequence
 	seq : function( min, max, length, func ) {
 		if ( !isFunction( func )) func = false;
@@ -206,6 +281,8 @@ jStat.extend({
 			arr.push(( func ? func( current, cnt ) : current ));
 		return arr;
 	},
+
+	/* methods that will be moved to another file */
 
 	// add a vector/matrix to a vector/matrix or scalar
 	add : function( arr, arg ) {
@@ -289,11 +366,6 @@ jStat.extend({
 		return jStat.map( arr, function( value ) { return Math.abs( value ); });
 	},
 
-	// set all values to zero
-	clear : function( arr ) {
-		return jStat.alter( arr, function() { return 0; });
-	},
-
 	// TODO: make compatible with matrices
 	// computes the p-norm of the vector
 	norm : function( arr, p ) {
@@ -314,20 +386,6 @@ jStat.extend({
 	// computes the angle between two vectors in rads
 	angle : function( arr, arg ) {
 		return Math.acos( jStat.dot( arr, arg ) / ( jStat.norm( arr ) * jStat.norm( arg )));
-	},
-
-	// Tests whether a matrix is symmetric
-	symmetric : function( arr ) {
-		var issymmetric = true,
-			row = 0,
-			size = arr.length, col;
-		if ( arr.length !== arr[0].length ) return false;
-		for ( ; row < size; row++ ) {
-			for ( col = 0; col < size; col++ ) {
-				if ( arr[col][row] !== arr[row][col] ) return false;
-			}
-		}
-		return true;
 	},
 
 	// sum of an array
@@ -422,7 +480,7 @@ jStat.extend({
 	},
 
 	// successive differences of an array
-	diff : function( arr) {
+	diff : function( arr ) {
 		var diffs = [],
 			arrLen = arr.length,
 			i = 1;
@@ -625,57 +683,37 @@ jStat.extend( jStat.fn, {
 
 	// Returns the number of rows in the matrix
 	rows : function() {
-		return this.length || 1;
+		return jStat.rows( this );
 	},
 
 	// Returns the number of columns in the matrix
 	cols : function() {
-		return this[0].length || 1;
+		return jStat.cols( this );
 	},
 
 	// Returns the dimensions of the object { rows: i, cols: j }
 	dimensions : function() {
-		return {
-			rows : this.rows(),
-			cols : this.cols()
-		};
+		return jStat.dimensions( this );
 	},
 
 	// Returns a specified row as a vector
 	row : function( index ) {
-		return jStat( this[index] );
+		return jStat( jStat.row( this, index ));
 	},
 
 	// Returns the specified column as a vector
 	col : function( index ) {
-		var column = [],
-			i = 0;
-		for ( ; i < this.length; i++ ) {
-			column[i] = [ this[i][index] ];
-		}
-		return jStat( column );
+		return jStat( jStat.col( this, index ));
 	},
 
 	// Returns the diagonal of the matrix
 	diag : function() {
-		var row = 0,
-			nrow = this.rows(),
-			res = [];
-		for ( ; row < nrow; row++ ) {
-			res[row] = [ this[row][row] ];
-		}
-		return jStat( res );
+		return jStat( jStat.diag( this ));
 	},
 
 	// Returns the anti-diagonal of the matrix
 	antidiag : function() {
-		var nrow = this.rows() - 1,
-			res = [],
-			i = 0;
-		for ( ; nrow >= 0; nrow--, i++ ) {
-			res[i] = [ this[i][nrow] ];
-		}
-		return jStat( res );
+		return jStat( jStat.antidiag( this ));
 	},
 
 	// map a function to a matrix or vector
