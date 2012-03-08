@@ -134,7 +134,7 @@ jStat.extend({
 
 	// Returns the specified column as a vector
 	col : function( arr, index ) {
-		var column = [],
+		var column = new Array( arr.length ),
 			i = 0;
 		for ( ; i < arr.length; i++ ) {
 			column[i] = [ arr[i][index] ];
@@ -145,8 +145,8 @@ jStat.extend({
 	// Returns the diagonal of the matrix
 	diag : function( arr ) {
 		var row = 0,
-			nrow = arr.rows(),
-			res = [];
+			nrow = jStat.rows( arr ),
+			res = new Array( nrow );
 		for ( ; row < nrow; row++ ) {
 			res[row] = [ arr[row][row] ];
 		}
@@ -155,8 +155,8 @@ jStat.extend({
 
 	// Returns the anti-diagonal of the matrix
 	antidiag : function( arr ) {
-		var nrow = arr.rows() - 1,
-			res = [],
+		var nrow = jStat.rows( arr ) - 1,
+			res = new Array( nrow ),
 			i = 0;
 		for ( ; nrow >= 0; nrow--, i++ ) {
 			res[i] = [ arr[i][nrow] ];
@@ -297,7 +297,7 @@ jStat.extend({
 			return isArray( results ) ? jStat( results ) : results;
 		};
 	})( funcs[i] );
-})( 'transpose clear norm symmetric'.split( ' ' ));
+})( 'transpose clear norm symmetric rows cols dimensions diag antidiag'.split( ' ' ));
 
 // extend jStat.fn with simple shortcut methods
 (function( funcs ) {
@@ -311,21 +311,6 @@ jStat.extend({
 // extend jStat.fn
 jStat.extend( jStat.fn, {
 
-	// Returns the number of rows in the matrix
-	rows : function() {
-		return jStat.rows( this );
-	},
-
-	// Returns the number of columns in the matrix
-	cols : function() {
-		return jStat.cols( this );
-	},
-
-	// Returns the dimensions of the object { rows: i, cols: j }
-	dimensions : function() {
-		return jStat.dimensions( this );
-	},
-
 	// Returns a specified row as a vector
 	row : function( index ) {
 		return jStat( jStat.row( this, index ));
@@ -334,16 +319,6 @@ jStat.extend( jStat.fn, {
 	// Returns the specified column as a vector
 	col : function( index ) {
 		return jStat( jStat.col( this, index ));
-	},
-
-	// Returns the diagonal of the matrix
-	diag : function() {
-		return jStat( jStat.diag( this ));
-	},
-
-	// Returns the anti-diagonal of the matrix
-	antidiag : function() {
-		return jStat( jStat.antidiag( this ));
 	},
 
 	// map a function to a matrix or vector
