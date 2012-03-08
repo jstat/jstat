@@ -9,6 +9,7 @@ JS_ENGINE ?= `which node nodejs`
 COMPILER = ${JS_ENGINE} ${BUILD_DIR}/uglify.js --unsafe
 
 BASE_FILES = ${SRC_DIR}/core.js\
+	${SRC_DIR}/vector.js\
 	${SRC_DIR}/distribution.js\
 	${SRC_DIR}/special.js\
 	${SRC_DIR}/linearalgebra.js
