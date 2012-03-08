@@ -189,6 +189,11 @@ jStat.extend({
 		return devSum / arr.length;
 	},
 
+	// coefficient of variation
+	coeffvar : function( arr ) {
+		return jStat.stdev( arr ) / jStat.mean( arr );
+	},
+
 	// quartiles of an array
 	quartiles : function( arr ) {
 		var arrlen = arr.length,
