@@ -134,7 +134,7 @@ jStat.extend({
 
 	// Returns the specified column as a vector
 	col : function( arr, index ) {
-		var column = [],
+		var column = new Array( arr.length ),
 			i = 0;
 		for ( ; i < arr.length; i++ ) {
 			column[i] = [ arr[i][index] ];
@@ -145,8 +145,8 @@ jStat.extend({
 	// Returns the diagonal of the matrix
 	diag : function( arr ) {
 		var row = 0,
-			nrow = arr.rows(),
-			res = [];
+			nrow = jStat.rows( arr ),
+			res = new Array( nrow );
 		for ( ; row < nrow; row++ ) {
 			res[row] = [ arr[row][row] ];
 		}
@@ -155,8 +155,8 @@ jStat.extend({
 
 	// Returns the anti-diagonal of the matrix
 	antidiag : function( arr ) {
-		var nrow = arr.rows() - 1,
-			res = [],
+		var nrow = jStat.rows( arr ) - 1,
+			res = new Array( nrow ),
 			i = 0;
 		for ( ; nrow >= 0; nrow--, i++ ) {
 			res[i] = [ arr[i][nrow] ];
