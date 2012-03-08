@@ -57,6 +57,8 @@ $(function() {
 		}), [[ 2, 4, 6 ],[ 8, 10, 12 ],[ 14, 16, 18 ]], 'map()' );
 	});
 
+	module( 'vector' );
+
 	test( 'add', function() {
 		deepEqual( jStat.add( doubleArr, 2 ), [[ 3, 4, 5 ],[ 6, 7, 8 ],[ 9, 10, 11 ]], 'add()' );
 	});

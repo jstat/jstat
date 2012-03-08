@@ -18,6 +18,7 @@ core: jstat.js jstat.min.js
 
 jstat.js: \
 	src/core.js \
+	src/vector.js \
 	src/special.js \
 	src/distribution.js \
 	src/linearalgebra.js
