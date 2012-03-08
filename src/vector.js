@@ -3,10 +3,11 @@
 var calcRdx = jStat.utils.calcRdx,
 	isFunction = jStat.utils.isFunction,
 
-	// ascending/descending functions for sort
+	// ascending functions for sort
 	ascNum = function( a, b ) { return a - b; };
 
 jStat.extend({
+
 	// sum of an array
 	sum : function( arr ) {
 		var sum = 0,
@@ -152,13 +153,7 @@ jStat.extend({
 	// variance of an array
 	// flag indicates population vs sample
 	variance : function( arr, flag ) {
-		var mean = jStat.mean( arr ),
-			stSum = 0,
-			i = arr.length - 1;
-		for ( ; i >= 0; i-- ) {
-			stSum += Math.pow(( arr[i] - mean ), 2 );
-		}
-		return stSum / ( arr.length - ( flag ? 1 : 0 ));
+		return jStat.sumsqerr( arr ) / ( arr.length - ( flag ? 1 : 0 ));
 	},
 
 	// standard deviation of an array
