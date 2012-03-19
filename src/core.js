@@ -27,7 +27,7 @@ var slice = Array.prototype.slice,
 
 	// test if number
 	isNumber = function( arg ) {
-		return toString.call( arg ) === '[object Number]';
+		return toString.call( arg ) === '[object Number]' && !isNaN( arg );
 	};
 
 // global function
@@ -57,6 +57,10 @@ jStat.fn = jStat.prototype = {
 		// if first argument is number, assume creation of sequence
 		} else if ( isNumber( args[0] )) {
 			this[0] = jStat.seq.apply( null, args );
+			this.length = 1;
+		// unexpected argument value, return empty jStat object
+		} else {
+			this[0] = [];
 			this.length = 1;
 		}
 		return this;
