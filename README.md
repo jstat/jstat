@@ -35,6 +35,8 @@ Building jStat
 
 First, clone a copy of the jStat git repo by running `git clone git://github.com/jstat/jstat.git`.
 
+To download all necessary libraries run `npm install`.
+
 Then, to get a complete, minified version of jStat and all documentation, simply `cd` to the `jstat` directory and
 type `make`. If you don't have Node installed and/or want to make a basic, uncompressed, unlinted version of jstat,
 use `make jstat` instead of `make`.
