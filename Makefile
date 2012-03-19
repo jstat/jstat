@@ -39,6 +39,8 @@ doc:
 		$(JS_ENGINE) $(BUILD_DIR)/doctool.js $(DOC_DIR)/assets/template.html $(DOC_DIR)/md/$${i} $(DIST_DIR)/docs/$${i%.*}.html; \
 	done
 
+jstat: jstat.js
+
 install:
 	@echo 'Downloading necessary libraries for build'
 	@mkdir -p node_modules
