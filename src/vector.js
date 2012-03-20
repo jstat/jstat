@@ -1,5 +1,6 @@
 (function( jStat, Math ) {
 
+// for quick reference
 var calcRdx = jStat.utils.calcRdx,
 	isFunction = jStat.utils.isFunction,
 
@@ -14,6 +15,7 @@ jStat.extend({
 			i = arr.length,
 			tmp;
 		while ( --i >= 0 ) {
+			// TODO: find better way to perform this correction
 			tmp = calcRdx( sum, arr[i] );
 			sum = (( sum * tmp ) + ( arr[i] * tmp )) / tmp;
 		}
@@ -28,12 +30,16 @@ jStat.extend({
 		return sum;
 	},
 
-	// sum squared error
+	// sum of squares for error (SSE)
 	sumsqerr : function( arr ) {
 		var mean = jStat.mean( arr ),
 			sum = 0,
-			i = arr.length;
-		while ( --i >= 0 ) sum += Math.pow( arr[i] - mean, 2 );
+			i = arr.length,
+			tmp;
+		while ( --i >= 0 ) {
+			tmp = arr[i] - mean;
+			sum += tmp * tmp;
+		}
 		return sum;
 	},
 
