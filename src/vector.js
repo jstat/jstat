@@ -96,16 +96,17 @@ jStat.extend({
 
 	// cumulative sum of an array
 	cumsum : function( arr ) {
-		var cumsum = [arr[0]],
-			arrLen = arr.length,
+		var len = arr.length,
+			sums = new Array( len ),
 			i = 1;
-		for (; i < arrLen; i++ ) {
-			cumsum.push( cumsum[i-1] + arr[i]);
+		sums[0] = arr[0];
+		for ( ; i < len; i++ ) {
+			sums[i] = sums[i - 1] + arr[i];
 		}
-		return cumsum;
+		return sums;
 	},
 
-	// successive differences of an array
+	// successive differences of a sequence
 	diff : function( arr ) {
 		var diffs = [],
 			arrLen = arr.length,
@@ -219,7 +220,7 @@ jStat.extend({
 		return jStat.sum( sq_dev ) / arr1Len;
 	},
 
-	// correlation coefficient of two arrays
+	// population correlation coefficient
 	corrcoeff : function( arr1, arr2 ) {
 		return jStat.covariance( arr1, arr2 ) / jStat.stdev( arr1, 1 ) / jStat.stdev( arr2, 1 );
 	}
@@ -255,6 +256,6 @@ jStat.extend({
 			return jStat[ passfunc ]( this[0] );
 		};
 	})( funcs[i] );
-})( 'sum sumsqrd sumsqerr product min max mean geomean median mode range variance stdev meandev meddev quartiles'.split( ' ' ));
+})( 'sum sumsqrd sumsqerr product min max mean meansqerr geomean median cumsum diff mode range variance stdev meandev meddev coeffvar quartiles'.split( ' ' ));
 
 }( this.jStat, Math ));
