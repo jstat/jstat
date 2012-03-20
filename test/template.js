@@ -1,15 +1,15 @@
 var vows = require( 'vows' ),
 	assert = require('assert' )
-	suite = vows.describe( 'jStat.' );
+	suite = vows.describe( 'jStat' );
 
 require( '../env.js' );
 
 suite.addBatch({
 	'' : {
 		'topic' : function() {
-			return jStat.;
+			return jStat;
 		},
-		'' : function(  ) {
+		'' : function( jStat ) {
 		}
 	}
 });
