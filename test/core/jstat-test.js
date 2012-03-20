@@ -15,9 +15,9 @@ suite.addBatch({
 			assert.isFunction( jStat.fn.sort );
 			assert.isFunction( jStat.fn.splice );
 
-			assert.deepEqual( jStat(), [] );
-			assert.deepEqual( jStat( null ), [] );
-			assert.deepEqual( jStat( undefined ), [] );
+			assert.deepEqual( jStat().toArray(), [] );
+			assert.deepEqual( jStat( null ).toArray(), [] );
+			assert.deepEqual( jStat( undefined ).toArray(), [] );
 			assert.deepEqual( jStat( [] ).toArray(), [] );
 
 			assert.isTrue( jStat.fn.constructor === jStat );
