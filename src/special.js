@@ -331,14 +331,12 @@ jStat.extend({
 	},
 
 	// Returns a normal deviate (mu=0, sigma=1).
-	// If n and m are specified it returns a jstat object of normal deviates.
+	// If n and m are specified it returns a object of normal deviates.
 	randn : function( n, m ) {
 		var u, v, x, y, q, mat;
 		if ( !m ) m = n;
 		if( n ) {
-			mat = jStat.zeros( n, m );
-			mat.alter(function() { return jStat.randn(); });
-			return mat;
+			return jStat.create( n, m, function() { return jStat.randn(); });
 		}
 		do {
 			u = Math.random();
