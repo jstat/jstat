@@ -388,4 +388,12 @@ jStat.extend({
 	})( funcs[i] );
 })( 'gammaln gammafn factorial factorialln'.split( ' ' ));
 
+(function( funcs ) {
+	for ( var i = 0; i < funcs.length; i++ ) (function( passfunc ) {
+		jStat.fn[ passfunc ] = function() {
+			return jStat( jStat[ passfunc ].apply( null, arguments ));
+		};
+	})( funcs[i] );
+})( 'randn'.split( ' ' ));
+
 })( this.jStat, Math );
