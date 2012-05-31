@@ -36,8 +36,9 @@
 					var a = this._a,
 						b = this._b,
 						c = this._c;
-					if ( isNaN( x )) {
-						return jStat.fn.map.call( this.data, function( x ) {
+					if ( !x ) x = this.data;
+					if ( typeof x !== 'number' ) {
+						return jStat.fn.map.call( x, function( x ) {
 							return jStat[ func ][ fnfunc ]( x, a, b, c );
 						});
 					}
