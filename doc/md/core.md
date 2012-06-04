@@ -165,46 +165,189 @@ Also note `this` within the callback refers to the calling jStat object.
 
 ### diag()
 
-Returns the diagonal of the matrix.
+Returns the diagonal of a matrix.
+
+**diag( array )**
 
     var matrix = [[1,2,3],[4,5,6],[7,8,9]];
-    jStat( matrix ).diag() === jStat([[1],[5],[9]]);
     jStat.diag( matrix ) === [[1],[5],[9]];
+
+**fn.diag( [callback] )**
+
+    jStat( matrix ).diag() === jStat([[1],[5],[9]]);
+
+Or pass a callback to run the calculation asynchronously and pass on the calculation.
+This allows for continued chaining of methods to the jStat object.
+Also note `this` within the callback refers to the calling jStat object.
+
+    jStat( matrix ).diag(function( d ) {
+        // d === jStat([[1],[5],[9]])
+    });
 
 ### antidiag()
 
 Returns the anti-diagonal of the matrix.
 
+**antidiag( array )**
+
     var matrix = [[1,2,3],[4,5,6],[7,8,9]];
-    jStat( matrix ).antidiag() === jStat([[3],[5],[7]]);
     jStat.antidiag( matrix ) === [[3],[5],[7]];
 
-### transpose( [callback] )
+**fn.antidiag( [callback] )**
+
+    jStat( matrix ).antidiag() === jStat([[3],[5],[7]]);
+
+Or pass a callback to run the calculation asynchronously and pass on the calculation.
+This allows for continued chaining of methods to the jStat object.
+Also note `this` within the callback refers to the calling jStat object.
+
+    jStat( matrix ).antidiag(function( d ) {
+        // d === jStat([[3],[5],[7]])
+    });
+
+### transpose()
 
 Transpose a matrix.
 
-    jStat([[1,2],[3,4]]).transpose() === [[1,3],[2,4]];
+**transpose( array )**
+
+    var matrix = [[1,2],[3,4]];
+    jStat.transpose( matrix ) === [[1,3],[2,4]];
+
+**fn.transpose( [callback] )**
+
+    jStat( matrix ).transpose() === [[1,3],[2,4]];
+
+Or pass a callback to run the calculation asynchronously and pass on the calculation.
+This allows for continued chaining of methods to the jStat object.
+Also note `this` within the callback refers to the calling jStat object.
+
+    jStat( matrix ).transpose(function( d ) {
+        // d === jStat([[1,3],[2,4]])
+    })
 
 ### map( func )
 
 Map a function to all values and return a new object.
 
-    var matrix = jStat([[1,2],[3,4]]),
-        mapped = matrix.map( function( x ) {
-            return x * 2;
-        });
-    // matrix === [[1,2],[3,4]]
-    // mapped === [[2,4],[6,8]]
+**map( array, fn )**
+
+    var matrix = [[1,2],[3,4]];
+    jStat.map( matrix, function( x ) {
+        return x * 2;
+    });
+    // returns [[2,4],[6,8]]
+
+**fn.map( fn )**
+
+    jStat( matrix ).map(function( x ) {
+        return x * 2;
+    });
 
 ### alter( func )
 
-Destructively alter an object.
+Destructively map to an array.
 
-    var matrix = jStat([[1,2],[3,4]]);
-    matrix.alter( function( x ) {
+**alter( array, fn )**
+
+    var matrix = [[1,2],[3,4]];
+    jStat.alter( matrix, function( x ) {
         return x * 2;
     });
     // matrix === [[2,4],[6,8]]
+
+**fn.alter( fn )**
+
+    var matrix = [[1,2],[3,4]];
+    jStat( matrix ).alter( function( x ) {
+        return x * 2;
+    });
+
+### create()
+
+Create a row by col matrix using the supplied function
+If `col` is omitted then it will default to value `row`.
+
+**create( row[, col], fn )**
+
+    jStat.create( 2, function( row, col ) {
+        return row + col;
+    });
+    // returns [[0,1],[1,2]]
+
+**fn.create( row[, col], fn )**
+
+Use this technique for creating matrices in jStat instances.
+
+    jStat().create( 2, function( row, col ) {
+        return row + col;
+    });
+    // returns jStat([[0,1],[1,2]])
+
+### zeros()
+
+Create a row by col matrix of all zeros.
+If `col` is omitted then it will default to value `row`.
+
+**zeros( row[, col] )**
+
+    jStat.zeros( 2 );
+    // returns [[0,0],[0,0]]
+
+**fn.zeros( row[, col] )**
+
+Use this technique for creating matrices in jStat instances.
+
+    jStat().zeros( 2 );
+    // returns jStat([[0,0],[0,0]])
+
+### ones()
+
+Create a row by col matrix of all ones.
+If `col` is omitted then it will default to value `row`.
+
+**ones( row[, col] )**
+
+    jStat.zeros( 2 );
+    // returns [[0,0],[0,0]]
+
+**fn.ones( row[, col] )**
+
+Use this technique for creating matrices in jStat instances.
+
+    jStat().ones( 2 );
+    // returns jStat([[0,0],[0,0]])
+
+### rand()
+
+Create a matrix of normally distributed random numbers.
+If `col` is omitted then it will default to value `row`.
+
+**rand( row[, col] )**
+
+    jStat.rand( 3 );
+
+**fn.rand( row[, col] )**
+
+Use this technique for creating matrices in jStat instances.
+
+    jStat().rand( 3 );
+
+### identity()
+
+Create an identity matrix of row by col.
+If `col` is omitted then it will default to value `row`.
+
+**identity( row[, col] )**
+
+    jStat.identity( 2 );
+    // returns [[1,0],[0,1]]
+
+**fn.identity( row[, col] )**
+
+Use this technique for creating matrices in jStat instances.
+
+    jStat().identity( 2 );
 
 ## jStat Utility Methods
 
@@ -216,4 +359,12 @@ Calculate the decimal shift for the IEEE calculation correction.
 
 ### utils.isArray( arg )
 
+Test if `arg` is an array.
+
 ### utils.isFunction( arg )
+
+Test if `arg` is a function.
+
+### utils.isNumber( arg )
+
+Test if `arg` is a number and not `NaN`.
