@@ -1,14 +1,13 @@
-## Core Instance Functionality
+## Core Functionality
 
 Core functionality include methods that generate and analyse vectors or matrices.
-Also includes several utilty methods that are used throughout the library.
 
 ### jStat()
 
 The jStat object can function in several capacities, as demonstrated below.
 In all cases, jStat will always return an instance of itself.
 
-**jStat( array[, fn])**
+**jStat( array[, fn] )**
 
 Create a new jStat object from either an existing array or jStat object.
 For example, create a new jStat matrix by doing the following:
@@ -61,45 +60,96 @@ So creating `jStat` objects from methods like `rand()` can be accomplished in on
 
 ### rows()
 
-Returns the number of rows in the jStat object.
+Returns the count of rows in a matrix.
 
-    jStat([[1,2,3],[4,5,6]]).rows() === 2;
+**rows( array )**
+
+    var matrix = [[1,2,3],[4,5,6]];
+    jStat.rows( matrix ) === 2;
+
+**fn.rows( [callback] )**
+
+    jStat( matrix ).rows() === 2;
+
+Or pass a callback to run the calculation asynchronously and pass on the calculation.
+This allows for continued chaining of methods to the jStat object.
+
+    jStat( matrix ).rows(function( d ) {
+        // d === 2
+    });
 
 ### cols()
 
-Returns the number of columns in the jStat object.
+Returns the number of columns in a matrix.
 
-    jStat([[1,2,3],[4,5,6]]).cols() === 3;
+**cols( array )**
+
+    var matrix = [[1,2,3],[4,5,6]];
+    jStat.cols( matrix ) === 3;
+
+**fn.cols( [callback] )**
+
+    jStat( matrix ).cols() === 3;
+
+Or pass a callback to run the calculation asynchronously and pass on the calculation.
+This allows for continued chaining of methods to the jStat object.
+
+    jStat( matrix ).cols(function( d ) {
+        // d === 3
+    });
 
 ### dimensions()
 
-Returns and object with the dimensions of the jStat object.
+Returns and object with the dimensions of a matrix.
 
-    jStat([[1,2,3],[4,5,6]]).dimensions() === { cols: 3, rows: 2 };
+**dimensions( array )**
 
-### row( index )
+    var matrix = [[1,2,3],[4,5,6]];
+    jStat.dimensions( matrix ) === { cols: 3, rows: 2 };
 
-Returns a specified row as a vector.
+**fn.dimensions( [callback] )**
 
-    jStat([[1,2,3],[4,5,6]]).row( 0 ) === [[1,2,3]];
+    jStat( matrix ).dimensions() === { cols: 3, rows: 2 };
+
+Or pass a callback to run the calculation asynchronously and pass on the calculation.
+This allows for continued chaining of methods to the jStat object.
+
+    jStat( matrix ).dimensions(function( d ) {
+        // d === { cols: 3, rows: 2 }
+    });
+
+### row()
+
+Returns a specified row of an array or jStat object as a vector.
+
+    var matrix = [[1,2,3],[4,5,6]];
+    jStat( matrix ).row( 0 ) === jStat([1,2,3]);
+    jStat.row( matrix, 0 ) === [1,2,3];
+
 
 ### col( index )
 
 Returns the specified column as a column vector.
 
-    jStat([1,2,3],[4,5,6]]).col( 0 ) === [[1],[4]];
+    var matrix = [[1,2],[3,4]];
+    jStat( matrix ).col( 0 ) === jStat([[1],[3]]);
+    jStat.col( matrix, 0 ) === [[1],[3]];
 
 ### diag()
 
 Returns the diagonal of the matrix.
 
-    jStat([[1,2,3],[4,5,6],[7,8,9]]).diag() === [[1],[5],[9]];
+    var matrix = [[1,2,3],[4,5,6],[7,8,9]];
+    jStat( matrix ).diag() === jStat([[1],[5],[9]]);
+    jStat.diag( matrix ) === [[1],[5],[9]];
 
 ### antidiag()
 
 Returns the anti-diagonal of the matrix.
 
-    jStat([[1,2,3],[4,5,6],[7,8,9]]).antidiag() === [[3],[5],[7]];
+    var matrix = [[1,2,3],[4,5,6],[7,8,9]];
+    jStat( matrix ).antidiag() === jStat([[3],[5],[7]]);
+    jStat.antidiag( matrix ) === [[3],[5],[7]];
 
 ### transpose( [callback] )
 
@@ -128,44 +178,14 @@ Destructively alter an object.
     });
     // matrix === [[2,4],[6,8]]
 
-## Core Static Functionality
-
-### jStat.create( rows[,cols], func )
-
-Generate a rows x cols matrix according to the supplied function.
-
-### jStat.zeros( rows[,cols] )
-
-Generate a rows x cols matrix of zeros.
-
-### jStat.ones( rows[,cols] )
-
-Generate a rows x cols matrix of ones.
-
-### jStat.rand( rows[,cols] )
-
-Generate a rows x cols matrix of uniformly random numbers.
-
-### jStat.identity( rows[,cols] )
-
-Generate an identity matrix of size row x cols.
-
-### jStat.seq( min, max, length[,func] )
-
-Generate an array sequence.
-
-### jStat.transpose( arr )
-
-### jStat.map( arr, func )
-
-### jStat.alter( arr, func )
-
 ## jStat Utility Methods
 
-### jStat.utils.calcRdx( num0, num1 )
+Utilities that are used throughout the jStat library
+
+### utils.calcRdx( num0, num1 )
 
 Calculate the decimal shift for the IEEE calculation correction.
 
-### jStat.utils.isArray( arg )
+### utils.isArray( arg )
 
-### jStat.utils.isFunction( arg )
+### utils.isFunction( arg )
