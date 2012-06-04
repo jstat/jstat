@@ -755,6 +755,6 @@ jStat.extend({
 			return jStat( jStat[ passfunc ]( this, arg ));
 		};
 	}( funcs[i] ));
-}( 'add divide multiply subtract dot pow abs angle'.split( ' ' )));
+}( 'add divide multiply subtract dot pow abs norm angle'.split( ' ' )));
 
 }( this.jStat, Math ));

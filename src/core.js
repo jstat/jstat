@@ -308,7 +308,7 @@ jStat.extend({
 			return isArray( results ) ? jStat( results ) : results;
 		};
 	})( funcs[i] );
-})( 'transpose clear norm symmetric rows cols dimensions diag antidiag'.split( ' ' ));
+})( 'transpose clear symmetric rows cols dimensions diag antidiag'.split( ' ' ));
 
 // extend jStat.fn with simple shortcut methods
 (function( funcs ) {
