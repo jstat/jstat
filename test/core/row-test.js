@@ -13,6 +13,15 @@ suite.addBatch({
 			assert.deepEqual( jStat.row([[1,2],[3,4]], 1 ), [3,4] );
 			assert.deepEqual( jStat([[1,2],[3,4]]).row( 1 ).toArray(), [3,4] );
 		}
+	},
+	'fn.row' : {
+		'topic' : function() {
+			jStat([[1,2],[3,4]]).row( 0, this.callback );
+		},
+		'row callback' : function( val, stat ) {
+			assert.deepEqual( val.toArray(), [1,2] );
+			assert.isTrue( this instanceof jStat );
+		}
 	}
 });
 

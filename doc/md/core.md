@@ -73,6 +73,7 @@ Returns the count of rows in a matrix.
 
 Or pass a callback to run the calculation asynchronously and pass on the calculation.
 This allows for continued chaining of methods to the jStat object.
+Also note `this` within the callback refers to the calling jStat object.
 
     jStat( matrix ).rows(function( d ) {
         // d === 2
@@ -93,6 +94,7 @@ Returns the number of columns in a matrix.
 
 Or pass a callback to run the calculation asynchronously and pass on the calculation.
 This allows for continued chaining of methods to the jStat object.
+Also note `this` within the callback refers to the calling jStat object.
 
     jStat( matrix ).cols(function( d ) {
         // d === 3
@@ -113,6 +115,7 @@ Returns and object with the dimensions of a matrix.
 
 Or pass a callback to run the calculation asynchronously and pass on the calculation.
 This allows for continued chaining of methods to the jStat object.
+Also note `this` within the callback refers to the calling jStat object.
 
     jStat( matrix ).dimensions(function( d ) {
         // d === { cols: 3, rows: 2 }
@@ -120,20 +123,45 @@ This allows for continued chaining of methods to the jStat object.
 
 ### row()
 
-Returns a specified row of an array or jStat object as a vector.
+Returns a specified row of a matrix.
+
+**row( array, index )**
 
     var matrix = [[1,2,3],[4,5,6]];
-    jStat( matrix ).row( 0 ) === jStat([1,2,3]);
     jStat.row( matrix, 0 ) === [1,2,3];
 
+**fn.row( index[, callback] )**
 
-### col( index )
+    jStat( matrix ).row( 0 ) === jStat([1,2,3]);
+
+Or pass a callback to run the calculation asynchronously and pass on the calculation.
+This allows for continued chaining of methods to the jStat object.
+Also note `this` within the callback refers to the calling jStat object.
+
+    jStat( matrix ).row( 0, function( d ) {
+        // d === jStat([1,2,3])
+    });
+
+### col()
 
 Returns the specified column as a column vector.
 
+**col( index )**
+
     var matrix = [[1,2],[3,4]];
-    jStat( matrix ).col( 0 ) === jStat([[1],[3]]);
     jStat.col( matrix, 0 ) === [[1],[3]];
+
+**fn.col( index[, callback] )**
+
+    jStat( matrix ).col( 0 ) === jStat([[1],[3]]);
+
+Or pass a callback to run the calculation asynchronously and pass on the calculation.
+This allows for continued chaining of methods to the jStat object.
+Also note `this` within the callback refers to the calling jStat object.
+
+    jStat( matrix ).col( 0, function( d ) {
+        // d === jStat([[1],[3]])
+    })
 
 ### diag()
 

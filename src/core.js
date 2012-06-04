@@ -299,7 +299,7 @@ jStat.extend({
 				results;
 			// check for callback
 			if ( func ) {
-				setTimeout( function() {
+				setTimeout(function() {
 					func.call( tmpthis, jStat.fn[ passfunc ].call( tmpthis ));
 				}, 15 );
 				return this;
@@ -309,6 +309,23 @@ jStat.extend({
 		};
 	})( funcs[i] );
 })( 'transpose clear symmetric rows cols dimensions diag antidiag'.split( ' ' ));
+
+// extend jStat.fn with methods that have one argument
+(function( funcs ) {
+	for ( var i = 0; i < funcs.length; i++ ) (function( passfunc ) {
+		jStat.fn[ passfunc ] = function( index, func ) {
+			var tmpthis = this;
+			// check for callback
+			if ( func ) {
+				setTimeout(function() {
+					func.call( tmpthis, jStat.fn[ passfunc ].call( tmpthis, index ));
+				}, 15 );
+				return this;
+			}
+			return jStat( jStat[ passfunc ]( this, index ));
+		};
+	})( funcs[i] );
+})( 'row col'.split( ' ' ));
 
 // extend jStat.fn with simple shortcut methods
 (function( funcs ) {
@@ -320,17 +337,8 @@ jStat.extend({
 })( 'create zeros ones rand identity'.split( ' ' ));
 
 // extend jStat.fn
+// specialized instance methods that can't have generalized assignments
 jStat.extend( jStat.fn, {
-
-	// Returns a specified row as a vector
-	row : function( index ) {
-		return jStat( jStat.row( this, index ));
-	},
-
-	// Returns the specified column as a vector
-	col : function( index ) {
-		return jStat( jStat.col( this, index ));
-	},
 
 	// map a function to a matrix or vector
 	map : function( func, toAlter ) {
