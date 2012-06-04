@@ -25,7 +25,7 @@ var slice = Array.prototype.slice,
 		return toString.call( arg ) === '[object Function]';
 	},
 
-	// test if number
+	// test if number and not NaN
 	isNumber = function( arg ) {
 		return toString.call( arg ) === '[object Number]' && !isNaN( arg );
 	};
@@ -58,6 +58,10 @@ jStat.fn = jStat.prototype = {
 		} else if ( isNumber( args[0] )) {
 			this[0] = jStat.seq.apply( null, args );
 			this.length = 1;
+		// handle case when jStat object is passed to jStat
+		} else if ( args[0] instanceof jStat ) {
+			// duplicate the object and pass it back
+			return jStat( args[0].toArray() );
 		// unexpected argument value, return empty jStat object
 		} else {
 			this[0] = [];
