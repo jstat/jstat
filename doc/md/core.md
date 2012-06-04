@@ -1,16 +1,35 @@
 ## Core Instance Functionality
 
-Core functionality include methods that generate/alter/analyse vectors or matrices.
+Core functionality include methods that generate and analyse vectors or matrices.
 Also includes several utilty methods that are used throughout the library.
 
-### jStat( [array][start, stop, count[, func]] )
+### jStat()
 
-Create a new jStat object from either an existing array, or pass in values to generate a sequence.
+The jStat object can function in several capacities, as demonstrated below.
+In all cases, jStat will always return an instance of itself.
+
+**jStat( array[, fn])**
+
+Create a new jStat object from either an existing array or jStat object.
 For example, create a new jStat matrix by doing the following:
 
     var matrix = jStat([[ 1, 2, 3 ],[ 4, 5, 6 ],[ 7, 8, 9 ]]);
 
-Or create a vector from a sequence:
+If an existing jStat object is passed as an argument then it will be cloned into a new object:
+
+    var stat1 = jStat([[ 1, 2 ],[ 3, 4 ]]),
+        stat2 = jStat( stat1 );
+
+
+To transform the data on creation, pass a function as the final argument:
+
+    jStat([[ 1, 2 ],[ 3, 4 ]], function( x ) {
+        return x * 2;
+    });
+
+**jStat( start, stop, count[, fn ])**
+
+To create a sequence then pass numeric values in the same form `jStat.seq()` would be used:
 
     var vector = jStat( 0, 1, 5 );
     // vector === [[ 0, 0.25, 0.5, 0.75, 1 ]]
@@ -28,6 +47,17 @@ Using this we can create a multidimensional array (useful for plotting data):
     var betaGraph = jStat( 0, 1, 11, function( x, cnt ) {
         return [ jStat.beta.pdf( x, alpha, beta ), cnt ];
     });
+
+**jStat()**
+
+A chainable shortcut in the API exists to allow for filling in the data after object creation.
+So creating `jStat` objects from methods like `rand()` can be accomplished in one of the following ways:
+
+    // pass the generated random 3x3 matrix to jStat
+    jStat( jStat.rand( 3 ));
+    // or create an empty instance that is filled in afterwards
+    jStat().rand( 3 );
+
 
 ### rows()
 

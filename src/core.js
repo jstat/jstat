@@ -44,6 +44,10 @@ jStat.fn = jStat.prototype = {
 		if ( isArray( args[0] )) {
 			// check if matrix
 			if ( isArray( args[0][0] )) {
+				// see if a mapping function was also passed
+				if ( isFunction( args[1] )) {
+					args[0] = jStat.map( args[0], args[1] );
+				}
 				// itterating over each is faster than this.push.apply( this, args[0] );
 				for ( ; i < args[0].length; i++ ) {
 					this[i] = args[0][i];
@@ -51,7 +55,7 @@ jStat.fn = jStat.prototype = {
 				this.length = args[0].length;
 			// so must be vector
 			} else {
-				this[0] = args[0];
+				this[0] = isFunction( args[1] ) ? jStat.map( args[0], args[1] ) : args[0];
 				this.length = 1;
 			}
 		// if first argument is number, assume creation of sequence
@@ -135,7 +139,6 @@ jStat.extend({
 	},
 
 	// Returns a specified row as a vector
-	// stupid simple, but here to complete the set of methods
 	row : function( arr, index ) {
 		return arr[ index ];
 	},
