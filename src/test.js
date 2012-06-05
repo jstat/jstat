@@ -24,17 +24,17 @@ jStat.extend({
 			if(arguments[3]==1){
 				return 1-jStat.normal.cdf(Math.abs(arguments[0]),arguments[1],arguments[2]);
 			}
-			return 1-2*(jStat.normal.cdf(Math.abs(arguments[0]),arguments[1],arguments[2])-.5);
+			return 1-2*jStat.normal.cdf(Math.abs(arguments[0]),arguments[1],arguments[2]);
 			}
 		if(arguments[2]==1){
 			return 1-jStat.normal.cdf(Math.abs(arguments[0]),jStat.mean(arguments[1]),jStat.stdev(arguments[1],arguments[3]));
 		}
-		return 1-2*(jStat.normal.cdf(Math.abs(arguments[0]),jStat.mean(arguments[1]),jStat.stdev(arguments[1],arguments[3]))-.5);
+		return 1-2*jStat.normal.cdf(Math.abs(arguments[0]),jStat.mean(arguments[1]),jStat.stdev(arguments[1],arguments[3]));
 	}
 	if(arguments[1]==1){
 		return 1-jStat.normal.cdf(Math.abs(arguments[0]),0,1);
 	}
-	return 1-2*(jStat.normal.cdf(Math.abs(arguments[0]),0,1)-.5);
+	return 1-2*jStat.normal.cdf(Math.abs(arguments[0]),0,1);
 	},
 	
 
