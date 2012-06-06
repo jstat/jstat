@@ -36,11 +36,11 @@ jStat.extend({
 		return 1-jStat.normal.cdf(Math.abs(arguments[0]),0,1);
 	}
 	return 1-2*jStat.normal.cdf(Math.abs(arguments[0]),0,1);
-	},
+	}
 	
 
 
-})
+});
 
 
 jStat.extend(jStat.fn, {
@@ -55,9 +55,9 @@ jStat.extend(jStat.fn, {
 		return 1-jStat.normal.cdf(zscore,0,1);
 	}
 	return 2*(1-jStat.normal.cdf(zscore,0,1));
-	},
+	}
 	
-})
+});
 
 //T Statistics
 
@@ -98,10 +98,10 @@ jStat.extend({
 		return 1-jStat.studentt.cdf(tscore,arguments[1].length-1);
 	}
 	return 2*(1-jStat.studentt.cdf(tscore,arguments[1].length-1));
-	},
+	}
 	
 	
-})
+});
 
 jStat.extend(jStat.fn, {
 
@@ -117,7 +117,7 @@ jStat.extend(jStat.fn, {
 	}
 
 
-})
+});
 
 //F Statistics
 
@@ -184,9 +184,9 @@ jStat.extend({
 	ftest: function(){
 	//(fscore,df1,df2)
 		return 1-jStat.centralF.cdf(arguments[0],arguments[1],arguments[2]);
-	},
+	}
 
-})
+});
 
 jStat.extend(jStat.fn,{
 
@@ -200,9 +200,9 @@ jStat.extend(jStat.fn,{
 		n = n+this[i].length;
 		}
 		return jStat.ftest(this.anovafscore(),this.length-1,n-this.length);
-	},
+	}
 
-})
+});
 
 //Error Bounds
 
@@ -244,9 +244,9 @@ jStat.extend({
 	
 	significant: function(pvalue,alpha){
 		return pvalue<alpha;
-	},
+	}
 
-})
+});
 
 jStat.extend(jStat.fn,{
 
@@ -256,8 +256,8 @@ jStat.extend(jStat.fn,{
 	
 	tci: function(value,alpha){
 		return jStat.tci(value,alpha,this.toArray());
-	},
+	}
 
-})
+});
 
 }( this.jStat, Math ));
