@@ -4,5 +4,4 @@
 @include distributions.md
 @include special-functions.md
 @include linear-algebra.md
-@include regression.md
 @include test.md
