@@ -1,3 +1,4 @@
+(function( jStat, Math ) {
 //flag==true denotes use of sample standard deviation
 //Z Statistics
 
@@ -258,3 +259,5 @@ jStat.extend(jStat.fn,{
 	},
 
 })
+
+}( this.jStat, Math ));
