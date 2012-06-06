@@ -6,3 +6,4 @@
 * [Distributions](distributions.html)
 * [Special Functions](special-functions.html)
 * [Linear Algebra](linear-algebra.html)
+* [Statistical Tests](test.html)
