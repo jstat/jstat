@@ -253,7 +253,8 @@ jStat.extend({
 					arr[i] = jStat[ passfunc ]( tmpthis[i] );
 				return fullbool === true ? jStat[ passfunc ]( arr ) : arr;
 			}
-			return jStat[ passfunc ]( this[0] );
+			// pass fullbool if only vector, not a matrix. for variance and stdev
+			return jStat[ passfunc ]( this[0], fullbool );
 		};
 	})( funcs[i] );
 })( 'sum sumsqrd sumsqerr product min max mean meansqerr geomean median cumsum diff mode range variance stdev meandev meddev coeffvar quartiles'.split( ' ' ));
