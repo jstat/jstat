@@ -1,8 +1,7 @@
 (function( jStat, Math ) {
 
-// for quick reference
-var calcRdx = jStat.utils.calcRdx,
-	isFunction = jStat.utils.isFunction,
+	// for quick reference
+var isFunction = jStat.utils.isFunction,
 
 	// ascending functions for sort
 	ascNum = function( a, b ) { return a - b; };
@@ -15,9 +14,7 @@ jStat.extend({
 			i = arr.length,
 			tmp;
 		while ( --i >= 0 ) {
-			// TODO: find better way to perform this correction
-			tmp = calcRdx( sum, arr[i] );
-			sum = (( sum * tmp ) + ( arr[i] * tmp )) / tmp;
+			sum += arr[i];
 		}
 		return sum;
 	},
