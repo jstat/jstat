@@ -27,7 +27,7 @@ jStat.extend({
 		return sum;
 	},
 
-	// sum of squares for error (SSE)
+	// sum of squared errors of prediction (SSE)
 	sumsqerr : function( arr ) {
 		var mean = jStat.mean( arr ),
 			sum = 0,
@@ -71,7 +71,7 @@ jStat.extend({
 		return jStat.sum( arr ) / arr.length;
 	},
 
-	// mean squared error
+	// mean squared error (MSE)
 	meansqerr : function( arr ) {
 		return jStat.sumsqerr( arr ) / arr.length;
 	},
@@ -207,13 +207,13 @@ jStat.extend({
 	covariance : function( arr1, arr2 ) {
 		var u = jStat.mean( arr1 ),
 			v = jStat.mean( arr2 ),
-			sq_dev = [],
 			arr1Len = arr1.length,
+			sq_dev = new Array(arr1Len),
 			i = 0;
 		for ( ; i < arr1Len; i++ ) {
 			sq_dev[i] = ( arr1[i] - u ) * ( arr2[i] - v );
 		}
-		return jStat.sum( sq_dev ) / arr1Len;
+		return jStat.sum( sq_dev ) / ( arr1Len - 1 );
 	},
 
 	// population correlation coefficient
