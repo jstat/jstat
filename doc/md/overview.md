@@ -57,7 +57,7 @@ Let's look at a few chaining and shorthand examples:
     jStat( 0, 1, 11 ) === jStat( jStat.seq( 0, 1, 11 ));
     jStat().rand( 4, 4 ) === jStat( jStat.rand( 4, 4 ));
 
-    jStat().create( function( x, y ) {
+    jStat().create( 5, function( x, y ) {
         return ( x + Math.random()) / ( y + Math.random());
     }).min( true, function( x ) {
         // do something with the min value
