@@ -1,10 +1,12 @@
 ## Special Functions
 
-## Static Functionality
-
 ### betafn( x, y )
 
 Evaluates the Beta function at (x,y).
+
+### betaln( x, y )
+
+Evaluates the log Beta function at (x,y).
 
 ### betacf( x, a, b )
 
