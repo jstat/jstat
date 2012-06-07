@@ -275,7 +275,7 @@ jStat.extend({
 	},
 
 	// Returns the inverse of the incomplete beta function
-	incompleteBetaInv : function( p, a, b ) {
+	ibetainv : function( p, a, b ) {
 		var EPS = 1e-8,
 			a1 = a - 1,
 			b1 = b - 1,
@@ -304,7 +304,7 @@ jStat.extend({
 		afac = -jStat.gammaln( a ) - jStat.gammaln( b ) + jStat.gammaln( a + b );
 		for( ; j < 10; j++ ) {
 			if( x === 0 || x === 1) return x;
-			err = jStat.incompleteBeta( x, a, b ) - p;
+			err = jStat.ibeta( x, a, b ) - p;
 			t = Math.exp( a1 * Math.log( x ) + b1 * Math.log( 1 - x ) + afac );
 			u = err / t;
 			x -= ( t = u / ( 1 - 0.5 * Math.min( 1, u * ( a1 / x - b1 / ( 1 - x )))));
@@ -316,7 +316,7 @@ jStat.extend({
 	},
 
 	// Returns the incomplete beta function I_x(a,b)
-	incompleteBeta : function( x, a, b ) {
+	ibeta : function( x, a, b ) {
 		// Factors in front of the continued fraction.
 		var bt = ( x === 0 || x === 1 ) ?  0 :
 			Math.exp(jStat.gammaln( a + b ) - jStat.gammaln( a ) -

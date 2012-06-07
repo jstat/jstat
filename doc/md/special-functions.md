@@ -12,11 +12,11 @@ Evaluates the log Beta function at (x,y).
 
 Returns the continued fraction for the incomplete Beta function with parameters a and b modified by Lentz's method evaluated at x.
 
-### incompleteBetaInv( p, a, b)
+### ibetainv( p, a, b)
 
 Returns the inverse of the incomplete Beta function evaluated at (p,a,b).
 
-### incompleteBeta( x, a, b)
+### ibeta( x, a, b)
 
 Returns teh incomplete Beta function evaluated at (x,a,b).
 
