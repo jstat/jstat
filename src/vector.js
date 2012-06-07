@@ -150,8 +150,7 @@ jStat.extend({
 
 	// range of an array
 	range : function( arr ) {
-		var _arr = arr.slice().sort( ascNum );
-		return _arr[ _arr.length - 1 ] - _arr[0];
+		return jStat.max( arr ) - jStat.min( arr );
 	},
 
 	// variance of an array
