@@ -349,13 +349,54 @@ Use this technique for creating matrices in jStat instances.
 
     jStat().identity( 2 );
 
+### clear()
+
+Set all values in the vector or matrix to zero.
+
+**clear( array )**
+
+    var tmp = [1,2,3];
+    jStat.clear( tmp );
+    // tmp === [0,0,0]
+
+**fn.clear( [callback] )**
+
+    jStat( 0, 1, 3 ).clear();
+    // returns [[0,0,0]]
+
+If a callback is passed then the original object is not altered
+
+    var obj = jStat( 0, 1, 3 );
+    obj.clear(function() {
+        // this === [ 0, 0, 0 ]
+    });
+    // obj === [ 0, 0.5, 1 ]
+
+### symmetric()
+
+Tests if a matrix is symmetric.
+
+**symmetric( array )**
+
+    jStat.symmetric([[1,2],[2,1]]) === true
+
+**fn.symmetric( callback )**
+
+    jStat([[1,2],[2,1]]).symmetric() === true
+
+Can pass a callback to maintain chainability
+
+    jStat([[1,2],[2,1]]).symmetric(function( result ) {
+        // result === true
+    });
+
 ## jStat Utility Methods
 
 Utilities that are used throughout the jStat library
 
 ### utils.calcRdx( num0, num1 )
 
-Calculate the decimal shift for the IEEE calculation correction.
+Calculate the decimal shift for the IEEE 754 floating point calculation correction.
 
 ### utils.isArray( arg )
 

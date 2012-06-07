@@ -1,45 +1,93 @@
 ## Linear Algebra
 
-### jStat.aug()
+### add( arg )
 
-### jStat.det()
+Add value to all entries.
 
-### jStat.inv()
+    jStat([[1,2,3]]).add( 2 ) === [[3,4,5]];
 
-### jStat.gauss_elimination()
+### subtract( arg )
 
-### jStat.gauss_jordan()
+Subtract all entries by value.
 
-### jStat.lu()
+    jStat([[4,5,6]]).subtract( 2 ) === [[2,3,4]];
 
-### jStat.cholesky()
+### divide( arg )
 
-### jStat.gauss_jacobi()
+Divide all entries by value.
 
-### jStat.gauss_seidel()
+    jStat([[2,4,6]]).divide( 2 ) === [[1,2,3]];
 
-### jStat.SOR()
+### multiply( arg )
 
-### jStat.householder()
+Multiply all entries by value.
 
-### jStat.QR()
+    jStat([[1,2,3]]).multiply( 2 ) === [[2,4,6]];
 
-### jStat.jacobi()
+### dot( arg )
 
-### jStat.rungekutta()
+Take dot product.
 
-### jStat.romberg()
+### pow( arg )
 
-### jStat.richardson()
+Raise all entries by value.
 
-### jStat.simpson()
+    jStat([[1,2,3]]).pow( 2 ) === [[1,4,9]];
 
-### jStat.hermite()
+### abs()
 
-### jStat.lagrange()
+Return the absolute values of all entries.
 
-### jStat.cubic_spline()
+    jStat([[1,-2,-3]]).abs() === [[1,2,3]];
 
-### jStat.gauss_quadrature()
+### norm()
 
-### jStat.PCA()
+Compulte the norm of a vector.
+
+### angle( arg )
+
+Compute the angle between two vectors.
+
+### aug()
+
+### det()
+
+### inv()
+
+### gauss_elimination()
+
+### gauss_jordan()
+
+### lu()
+
+### cholesky()
+
+### gauss_jacobi()
+
+### gauss_seidel()
+
+### SOR()
+
+### householder()
+
+### QR()
+
+### jacobi()
+
+### rungekutta()
+
+### romberg()
+
+### richardson()
+
+### simpson()
+
+### hermite()
+
+### lagrange()
+
+### cubic_spline()
+
+### gauss_quadrature()
+
+### PCA()
