@@ -1,212 +1,654 @@
-## Vector Instance Functionality
+## Vector Functionality
 
-### sum( [[bool][,callback]][callback] )
+### sum()
 
-Return the sum of a vector, or of matrix columns.
-If pass boolean true as first argument, then return sum of entire object.
+**sum( array )**
 
-### sumsqrd( [[bool][,callback]][callback] )
+Return the sum of a vector.
 
-Return the sum sqared of a vector, or of matrix columns.
-If pass boolean true as first argument, then return sum of entire object.
+    jStat.sum([1,2,3]) === 6
 
-### sumsqerr( [[bool][,callback]][callback] )
+**fn.sum( [bool][,callback] )**
 
-Return the sum sqared error of a vector, or of matrix columns.
-If pass boolean true as first argument, then return sum of entire object.
+Return the sum of a vector or matrix columns.
 
-### product( [[bool][,callback]][callback] )
+    jStat( 1, 5, 5 ).sum() === 15
+    jStat([[1,2],[3,4]]).sum() === [ 4, 6 ]
 
-Return the product of a vector, or of matrix columns.
-If pass boolean true as first argument, then return product of entire object.
+If callback is passed then will pass result as first argument.
 
-### min( [[bool][,callback]][callback] )
+    jStat( 1, 5, 5 ).sum(function( result ) {
+        // result === 15
+    });
 
-Return the minimum value of a vector, or of matrix columns.
-If pass boolean true as first argument, then return min of entire object.
+If pass boolean true as first argument, then return sum of entire matrix.
 
-### max( [[bool][,callback]][callback] )
+    jStat([[1,2],[3,4]]).sum( true ) === 10
 
-Return the maximum value of a vector, or of matrix columns.
-If pass boolean true as first argument, then return max of entire object.
+And the two can be combined.
 
-### mean( [[bool][,callback]][callback] )
+    jStat[[1,2],[3,4]]).sum(true,function( result ) {
+        // result === 10
+    });
 
-Return the mean value of a vector, or of matrix columns.
-If pass boolean true as first argument, then return mean of entire object.
+### sumsqrd()
 
-### meansqerr( [[bool][,callback]][callback] )
+**sumsqrd( array )**
 
-Return the mean square erro value of a vector, or of matrix columns.
-If pass boolean true as first argument, then return mean of entire object.
+Return the sum squared of a vector.
 
-### geomean( [[bool][,callback]][callback] )
+    jStat.sumsqrd([1,2,3]) === 14
 
-Return the geometric mean of a vector, or of matrix columns.
-If pass boolean true as first argument, then return mean of entire object.
+**fn.sumsqrd( [bool][,callback] )**
 
-### median( [[bool][,callback]][callback] )
+Return the sum squared of a vector or matrix columns.
 
-Return the median value of a vector, or of matrix columns.
-If pass boolean true as first argument, then return median of entire object.
+    jStat( 1, 5, 5 ).sumsqrd() === 55
+    jStat([[1,2],[3,4]]).sumsqrd() === [ 10, 20 ]
 
-### mode( [[bool][,callback]][callback] )
+If callback is passed then will pass result as first argument.
 
-Return the mode of a vector, or of matrix columns.
-If pass boolean true as first argument, then return mode of entire object.
+    jStat( 1, 5, 5 ).sumsqrd(function( result ) {
+        // result === 55
+    });
 
-### range( [[bool][,callback]][callback] )
+If pass boolean true as first argument, then return sum squared of entire matrix.
 
-Return the mode of a vector, or of matrix columns.
-If pass boolean true as first argument, then return range of entire object.
+    jStat([[1,2],[3,4]]).sumsqrd( true ) === 650
 
-### variance( [[bool][,callback]][callback] )
+And the two can be combined.
 
-Return the variance of a vector, or of matrix columns.
-If pass boolean true as first argument, then return variance of entire object.
+    jStat[[1,2],[3,4]]).sumsqrd(true,function( result ) {
+        // result === 650
+    });
 
-### stdev( [[bool][,callback]][callback] )
+### sumsqerr()
 
-Return the standard deviation of a vector, or of matrix columns.
-If pass boolean true as first argument, then return standard deviation of entire object.
+**sumsqerr( array )**
 
-### meandev( [callback] )
+Return the sum of squared errors of prediction of a vector.
 
-Return the mean deviation of a vector, or of matrix columns.
-If pass boolean true as first argument, then return mean deviation of entire object.
+    jStat.sumsqerr([1,2,3]) === 2
 
-### meddev( [callback] )
+**fn.sumsqerr( [bool][,callback] )**
 
-Return the median deviation of a vector, or of matrix columns.
-If pass boolean true as first argument, then return median deviation of entire object.
+Return the sum of squared errors of prediction of a vector or matrix columns.
 
-### quartiles( [callback] )
+    jStat( 1, 5, 5 ).sumsqerr() === 10
+    jStat([[1,2],[3,4]]).sumsqerr() === [ 2, 2 ]
 
-Return the quartiles of a vector, or of matrix columns.
-If pass boolean true as first argument, then return quartiles of entire object.
+If callback is passed then will pass result as first argument.
 
-## Core Static Functionality
+    jStat( 1, 5, 5 ).sumsqerr(function( result ) {
+        // result === 55
+    });
 
-### jStat.add( arr, arg )
+If pass boolean true as first argument, then return sum of squared errors of entire matrix.
 
-Adds arg to all of the elements in the array 
+    jStat([[1,2],[3,4]]).sumsqerr( true ) === 0
 
-### jStat.divide( arr, arg )
+And the two can be combined.
 
-Divides each element of the array by arg. 
+    jStat[[1,2],[3,4]]).sumsqerr(true,function( result ) {
+        // result === 0
+    });
 
-### jStat.multiply( arr, arg )
+### product()
 
-Multiplies each element of the array by arg.
+**product( array )**
 
-### jStat.subtract( arr, arg )
+Return the product of a vector.
 
-Subtracts each element of the array by arg.
+    jStat.product([1,2,3]) === 6
 
-### jStat.dot( arr, arg )
+**fn.product( [bool][,callback] )**
 
-Returns the dot product of the two arguments
+Return the product of a vector or matrix columns.
 
-### jStat.pow( arr, arg )
+    jStat( 1, 5, 5 ).product() === 120
+    jStat([[1,2],[3,4]]).product() === [ 3, 8 ]
 
-Raises every element by a scaler power.
+If callback is passed then will pass result as first argument.
 
-### jStat.abs( arr )
+    jStat( 1, 5, 5 ).product(function( result ) {
+        // result === 120
+    });
 
-Returns the absolute value of the vector
+If pass boolean true as first argument, then return sumsqerr of entire matrix.
 
-### jStat.clear( arr )
+    jStat([[1,2],[3,4]]).product( true ) === 24
 
-Sets all values of the array to 0
+And the two can be combined.
 
-### jStat.norm( arr[,p] )
+    jStat[[1,2],[3,4]]).product(true,function( result ) {
+        // result === 24
+    });
 
-Calculate the p-norm of a vector. `p` will default to 2 if unspecified.
+### min()
 
-### jStat.angle( arr, arg )
+**min( array )**
 
-Computes the angle between two vectors
+Return the minimum value of a vector.
 
-### jStat.symmetric( arr )
+    jStat.min([1,2,3]) === 1
 
-Returns a boolean where true denotes the matrix is symmetric
+**fn.min( [bool][,callback] )**
 
-### jStat.sum( arr )
+Return the minimum value of a vector or matrix columns.
 
-Returns the sum of all of the elements of the array.
+    jStat( 1, 5, 5 ).min() === 1
+    jStat([[1,2],[3,4]]).min() === [ 1, 2 ]
 
-### jStat.diff( arr )
+If callback is passed then will pass result as first argument.
 
-Returns a value that is calculated by taking the successive differences of the array.
+    jStat( 1, 5, 5 ).min(function( result ) {
+        // result === 1
+    });
 
-### jStat.sumsqrd( arr )
+If pass boolean true as first argument, then return minimum of entire matrix.
 
-Returns the sum of each element squared in the vector (Sums x^2 for each x in the vector).
+    jStat([[1,2],[3,4]]).min( true ) === 1
 
-### jStat.sumsqerr( arr )
+And the two can be combined.
 
-Returns the sum squared error (SSE) (Sums (x-m)^2 for each x in the vector where m is the mean of the vector).
+    jStat[[1,2],[3,4]]).min(true,function( result ) {
+        // result === 1
+    });
 
-### jStat.product( arr )
+### max()
 
-Returns the product of the array (Multiplies all of the elements together).
+**max( array )**
 
-### jStat.min( arr )
+Return the maximum value of a vector.
 
-Returns the minimum value of the array.
+    jStat.max([1,2,3]) === 3
 
-### jStat.max( arr )
+**fn.max( [bool][,callback] )**
 
-Returns the maximum value of the array.
+Return the maximum value of a vector or matrix columns.
 
-### jStat.mean( arr )
+    jStat( 1, 5, 5 ).max() === 5
+    jStat([[1,2],[3,4]]).max() === [ 3, 4 ]
 
-Returns the mean value of the array.
+If callback is passed then will pass result as first argument.
 
-### jStat.median( arr )
+    jStat( 1, 5, 5 ).max(function( result ) {
+        // result === 5
+    });
 
-Returns the median value of the array.
+If pass boolean true as first argument, then return maximum of entire matrix.
 
-### jStat.mode( arr )
+    jStat([[1,2],[3,4]]).max( true ) === 4
 
-Returns the mode of the array.
+And the two can be combined.
 
-### jStat.meansqerr( arr )
+    jStat[[1,2],[3,4]]).max(true,function( result ) {
+        // result === 4
+    });
 
-Returns the mean squared error of the array.
+### mean()
 
-### jStat.geomean( arr )
+**mean( array )**
 
-Returns the geometric mean of the array.
+Return the mean of a vector.
 
-### jStat.range( arr )
+    jStat.mean([1,2,3]) === 2
 
-Returns an array with the minimum and maximum values of the array.
+**fn.max( [bool,][callback] )**
 
-### jStat.variance( arr[, flag] )
+Return the mean of a vector or matrix columns.
 
-Population variance of an array. If `flag == true` then will calculate the sample variance.
+    jStat( 1, 5, 5 ).mean() === 3
+    jStat([[1,2],[3,4]]).mean() === [ 2, 3 ]
 
-### jStat.stdev( arr[, flag] )
+If callback is passed then will pass result as first argument.
 
-Population standard deviation of an array. If `flag == true` then will calculate the sample standard deviation.
+    jStat( 1, 5, 5 ).mean(function( result ) {
+        // result === 3
+    });
 
-### jStat.meandev( arr )
+If pass boolean true as first argument, then return mean of entire matrix.
 
-Returns the mean absolute deviation of the array.
+    jStat([[1,2],[3,4]]).mean( true ) === 2.5
 
-### jStat.meddev( arr )
+And the two can be combined.
 
-Returns the median absolute deviation of the array.
+    jStat[[1,2],[3,4]]).mean(true,function( result ) {
+        // result === 2.5
+    });
 
-### jStat.quartiles( arr )
+### meansqerr()
 
-Returns the quartiles of the array.
+**meansqerr( array )**
 
-### jStat.covariance( arr1, arr2 )
+Return the mean squared error of a vector.
 
-Returns the covariance of the two arrays.
+    jStat.meansqerr([1,2,3]) === 0.66666...
 
-### jStat.corrcoeff( arr1, arr2 )
+**fn.meansqerr( [bool][,callback] )**
 
-Returns the correlation coefficient of the two arrays.
+Return the mean squared error of a vector or matrix columns.
+
+    jStat( 1, 5, 5 ).meansqerr() === 2
+    jStat([[1,2],[3,4]]).meansqerr() === [ 1, 1 ]
+
+If callback is passed then will pass result as first argument.
+
+    jStat( 1, 5, 5 ).meansqerr(function( result ) {
+        // result === 2
+    });
+
+If pass boolean true as first argument, then return mean squared error of entire matrix.
+
+    jStat([[1,2],[3,4]]).meansqerr( true ) === 0
+
+And the two can be combined.
+
+    jStat[[1,2],[3,4]]).meansqerr(true,function( result ) {
+        // result === 0
+    });
+
+### geomean()
+
+**geomean( array )**
+
+Return the geometric mean of a vector.
+
+    jStat.geomean([4,1,1/32]) === 0.5
+
+**fn.geomean( [bool][,callback] )**
+
+Return the geometric mean of a vector or matrix columns.
+
+    jStat([4,1,1\32]).geomean() === 0.5
+    jStat([[1,2],[3,4]]).geomean() === [ 1.732..., 2.828... ]
+
+If callback is passed then will pass result as first argument.
+
+    jStat([4,1,1\32]).geomean(function( result ) {
+        // result === 0.5
+    });
+
+If pass boolean true as first argument, then return geometric mean of entire matrix.
+
+    jStat([[1,2],[3,4]]).geomean( true ) === 2.213...
+
+And the two can be combined.
+
+    jStat[[1,2],[3,4]]).geomean(true,function( result ) {
+        // result === 2.213...
+    });
+
+### median()
+
+**median( array )**
+
+Return the median of a vector.
+
+    jStat.median([1,2,3]) === 2
+
+**fn.median( [bool][,callback] )**
+
+Return the median of a vector or matrix columns.
+
+    jStat( 1, 5, 5 ).median() === 3
+    jStat([[1,2],[3,4]]).median() === [ 2, 3 ]
+
+If callback is passed then will pass result as first argument.
+
+    jStat( 1, 5, 5 ).median(function( result ) {
+        // result === 3
+    });
+
+If pass boolean true as first argument, then return median of entire matrix.
+
+    jStat([[1,2],[3,4]]).median( true ) === 2.5
+
+And the two can be combined.
+
+    jStat[[1,2],[3,4]]).median(true,function( result ) {
+        // result === 2.5
+    });
+
+### cumsum()
+
+**cumsum( array )**
+
+Return an array of partial sums in the sequence.
+
+    jStat.cumsum([1,2,3]) === [1,3,6]
+
+**fn.cumsum( [bool][,callback] )**
+
+Return an array of partial sums for a vector or matrix columns.
+
+    jStat( 1, 5, 5 ).cumsum() === [1,3,6,10,15]
+    jStat([[1,2],[3,4]]).cumsum() === [[1,4],[2,6]]
+
+If callback is passed then will pass result as first argument.
+
+    jStat( 1, 5, 5 ).cumsum(function( result ) {
+        // result === [1,3,6,10,15]
+    });
+
+If pass boolean true as first argument, then return cumulative sums of the matrix.
+
+**Note:** See [BUG #48](https://github.com/jstat/jstat/issues/48)
+
+    jStat([[1,2],[3,4]]).cumsum( true ) === ...
+
+And the two can be combined.
+
+    jStat([[1,2],[3,4]]).cumsum(true,function( result ) {
+        // result === ...
+    });
+
+### diff()
+
+**diff( array )**
+
+Return an array of the successive differences of the array.
+
+    jStat.diff([1,2,2,3]) === [1,0,1]
+
+**fn.diff( [bool][,callback] )**
+
+Return an array of successive differences for a vector or matrix columns.
+
+    jStat([1,2,2,3]).diff() === [1,0,1]
+    jStat([[1,2],[3,4],[1,4]]).diff() === [[2,-2],[2,0]]
+
+If callback is passed then will pass result as first argument.
+
+    jStat([[1,2],[3,4],[1,4]]).diff(function( result ) {
+        // result === [[2,-2],[2,0]]
+    });
+
+If pass boolean true as first argument, then return successive difference for the whole matrix.
+
+    jStat([[1,2],[3,4],[1,4]]).diff(true) === [0,2]
+
+And the two can be combined.
+
+    jStat([[1,2],[3,4],[1,4]]).diff(true,function( result ) {
+        // result === [0,2]
+    });
+
+### mode()
+
+**mode( array )**
+
+Return the mode of a vector.
+If there are multiple modes then `mode()` will return false.
+
+**Note:** There is a feature request to return an array if multiple modes exist
+([Issue 44](https://github.com/jstat/jstat/issues/44 "")).
+
+    jStat.mode([1,2,2,3]) === 2
+    jStat.mode([1,2,3]) === false
+
+**fn.mode( [bool][,callback] )**
+
+Return the mode for a vector or matrix columns.
+
+    jStat([1,2,2,3]).mode() === 2
+    jStat([[1,2],[3,4],[1,4]]).mode() === [1,4]
+
+If callback is passed then will pass result as first argument.
+
+    jStat( 1, 5, 5 ).mode(function( result ) {
+        // result === false
+    });
+
+If pass boolean true as first argument, then return mode of the matrix.
+
+**Note:** See [BUG #50](https://github.com/jstat/jstat/issues/50)
+
+    jStat([[1,2],[1,2]]).mode( true ) === false
+
+And the two can be combined.
+
+    jStat[[1,2],[1,2]]).mode(true,function( result ) {
+        // result === false
+    });
+
+### range()
+
+**range( array )**
+
+Return the range of a vector
+
+    jStat.range([1,2,3]) === 2
+
+**fn.range( [bool][,callback] )**
+
+Return the range for a vector or matrix columns.
+
+    jStat([1,2,3]).range() === 2
+    jStat([[1,2],[3,4]]).range() === [2,2]
+
+If callback is passed then will pass result as first argument.
+
+    jStat( 1, 5, 5 ).range(function( result ) {
+        // result === 4
+    });
+
+If pass boolean true as first argument, then return range of the matrix.
+
+    jStat([[1,2],[3,5]]).range( true ) === true
+
+And the two can be combined.
+
+    jStat[[1,2],[3,5]]).range(true,function( result ) {
+        // result === 1
+    });
+
+### variance()
+
+**variance( array[,flag])**
+
+Return the variance of a vector.
+Flag indicates whether to compute population or sample.
+
+    jStat.variance([1,2,3,4]) === 1.25
+    jStat.variance([1,2,3,4],true) === 1.66666...
+
+**fn.variance( [bool][,callback] )**
+
+Return the variance for a vector or matrix columns.
+
+**Note:** Cannot pass flag to indicate between population or sample for matrices.
+There is a feature request for this on [Issue #51](https://github.com/jstat/jstat/issues/51).
+
+    jStat([1,2,3,4]).variance() === 1.25
+    jStat([[1,2],[3,4]]).variance() === [1,1]
+
+If callback is passed then will pass result as first argument.
+
+    jStat( 1, 5, 5 ).variance(function( result ) {
+        // result === 2
+    });
+
+If pass boolean true as first argument, then return variance of the matrix.
+
+    jStat([[1,2],[3,5]]).variance( true ) === 0.140625
+
+And the two can be combined.
+
+    jStat[[1,2],[3,5]]).variance(true,function( result ) {
+        // result === 0.140625
+    });
+
+### stdev()
+
+**stdev( array[,flag])**
+
+Return the standard deviation of a vector.
+Flag indicates whether to compute population or sample.
+
+    jStat.stdev([1,2,3,4]) === 1.118...
+    jStat.stdev([1,2,3,4],true) === 1.290...
+
+**fn.stdev( [bool][,callback] )**
+
+Return the standard deviation for a vector or matrix columns.
+
+**Note:** Cannot pass flag to indicate between population or sample for matrices.
+There is a feature request for this on [Issue #51](https://github.com/jstat/jstat/issues/51).
+
+    jStat([1,2,3,4]).stdev() === 1.118...
+    jStat([1,2,3,4]).stdev(true) === 1.290...
+    jStat([[1,2],[3,4]]).stdev() === [1,1]
+
+If callback is passed then will pass result as first argument.
+
+    jStat( 1, 4, 4 ).stdev(function( result ) {
+        // result === 1.118...
+    });
+    jStat( 1, 4, 4 ).stdev(true,function( result ) {
+        // result === 1.290...
+    });
+
+If pass boolean true as first argument, then return variance of the matrix.
+
+    jStat([[1,2],[3,5]]).stdev( true ) === 0.25
+
+And the two can be combined.
+
+    jStat[[1,2],[3,5]]).stdev(true,function( result ) {
+        // result === 0.25
+    });
+
+### meandev()
+
+**meandev( array )**
+
+Return the mean absolute deviation of a vector.
+
+    jStat.meandev([1,2,3,4]) === 1
+
+**fn.meandev( [bool][,callback] )**
+
+Return the mean absolute deviation for a vector or matrix columns.
+
+    jStat([1,2,3,4]).meandev() === 1
+    jStat([[1,2],[3,4]]).meandev() === [1,1]
+
+If callback is passed then will pass result as first argument.
+
+    jStat( 1, 4, 4 ).meandev(function( result ) {
+        // result === 1
+    });
+
+If pass boolean true as first argument, then return mean absolute deviation of the matrix.
+
+    jStat([[1,2],[3,5]]).meandev( true ) === 0.25
+
+And the two can be combined.
+
+    jStat[[1,2],[3,5]]).meandev(true,function( result ) {
+        // result === 0.25
+    });
+
+### meddev()
+
+**meddev( array )**
+
+Return the median absolute deviation of a vector.
+
+    jStat.meddev([1,2,3,4]) === 1
+
+**fn.meddev( [bool][,callback] )**
+
+Return the median absolute deviation for a vector or matrix columns.
+
+    jStat([1,2,3,4]).meddev() === 1
+    jStat([[1,2],[3,4]]).meddev() === [1,1]
+
+If callback is passed then will pass result as first argument.
+
+    jStat( 1, 4, 4 ).meddev(function( result ) {
+        // result === 1
+    });
+
+If pass boolean true as first argument, then return median absolute deviation of the matrix.
+
+    jStat([[1,2],[3,5]]).meddev( true ) === 0.25
+
+And the two can be combined.
+
+    jStat[[1,2],[3,5]]).meddev(true,function( result ) {
+        // result === 0.25
+    });
+
+### coeffvar()
+
+**coeffvar( array )**
+
+Return the coefficient of variation of a vector.
+
+    jStat.coeffvar([1,2,3,4]) === 0.447...
+
+**fn.coeffvar( [bool][,callback] )**
+
+Return the coefficient of variation for a vector or matrix columns.
+
+    jStat([1,2,3,4]).coeffvar() === 0.447...
+    jStat([[1,2],[3,4]]).coeffvar() === [0.5,0.333...]
+
+If callback is passed then will pass result as first argument.
+
+    jStat( 1, 4, 4 ).coeffvar(function( result ) {
+        // result === 0.447...
+    });
+
+If pass boolean true as first argument, then return coefficient of variation of the matrix.
+
+    jStat([[1,2],[3,5]]).coeffvar( true ) === 0.142...
+
+And the two can be combined.
+
+    jStat[[1,2],[3,5]]).coeffvar(true,function( result ) {
+        // result === 0.142...
+    });
+
+### quartiles()
+
+**quartiles( array )**
+
+Return the quartiles of a vector.
+
+    jStat.quartiles( jStat.seq(1,100,100)) === [25,50,75]
+
+**fn.quartiles( [callback] )**
+
+Return the quartiles for a vector or matrix columns.
+
+    jStat(1,100,100).quartiles() === [25,50,75]
+    jStat(1,100,100,function( x ) {
+        return [x,x];
+    }).quartiles() === [[25,50,75],[25,50,75]]
+
+If callback is passed then will pass result as first argument.
+
+    jStat(1,100,100).quartiles(function( result ) {
+        // result === [25,50,75]
+    });
+
+### covariance()
+
+**covariance( array, array )**
+
+Return the covariance of two vectors.
+
+    var seq = jStat.seq( 0, 10, 11 );
+    jStat.covariance( seq, seq ) === 11;
+
+### corrcoeff()
+
+**corrcoeff( array, array )**
+
+Return the correlation coefficient of two vectors.
+
+    var seq = jStat.seq( 0, 10, 11 );
+    jStat.corrcoeff( seq, seq ) === 1;
