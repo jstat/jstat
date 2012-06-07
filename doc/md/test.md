@@ -124,7 +124,7 @@ test on the arrays.
 Returns the p-value for the fscore with a numerator degress
 of freedom df1 and the denominator degrees of freedom df2
 
-### Confidence Intervals
+## Confidence Intervals
 
 ### jStat.normalci( value, alpha, sd, n)
 
