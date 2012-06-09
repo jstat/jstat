@@ -1,5 +1,7 @@
 ## Linear Algebra
 
+## Instance Functionality
+
 ### add( arg )
 
 Add value to all entries.
@@ -48,27 +50,87 @@ Compulte the norm of a vector.
 
 Compute the angle between two vectors.
 
-### aug()
+## Static Functionality
 
-### det()
+### add( arr, arg )
 
-### inv()
+Add arg to all entries of the array
 
-### gauss_elimination()
+### subtract( arr, arg )
 
-### gauss_jordan()
+Subtract all entries of the array by arg
 
-### lu()
+### divide( arr, arg )
 
-### cholesky()
+Divide all entries of the array by arg.
 
-### gauss_jacobi()
+### multiply( arr, arg )
 
-### gauss_seidel()
+Multiply all entries of the array by arg.
 
-### SOR()
+### dot( arr1, arr2 )
 
-### householder()
+Take dot product of array 1 and array 2.
+
+### pow( arr, arg )
+
+Raise all entries of the array to the power of arg
+
+### abs(arr)
+
+Return the absolute values of all entries in the array
+
+### norm(arr)
+
+Compulte the norm of a vector.
+
+### angle( arr1, arr2 )
+
+Compute the angle between two vectors.
+
+### aug(A,B)
+
+Augments matrix A by matrix B
+
+### det(A)
+
+Calculates the determinant of matrix A.
+
+### inv(A)
+
+Returns the inverse of the matrix A.
+
+### gauss_elimination(A,B)
+
+Performs Gaussian Elimination on matrix A augmented by matrix B.
+
+### gauss_jordan(A,B)
+
+Performs Gauss-Jordan Elimination on matrix A augmented by matrix B.
+
+### lu(A,B)
+
+Performs the LU-Decomposition on matrix A.
+
+### cholesky(A)
+
+Performs the Cholesky decomposition on matrix A.
+
+### gauss_jacobi(A,b,x,r)
+
+Solves the linear system Ax = b using the Gauss-Jacobi method with an initial guess of r. 
+
+### gauss_seidel(A,b,x,r)
+
+Solves the linear system Ax = b using the Gauss-Seidel method with an initial guess of r.
+
+### SOR(A,b,x,r,w)
+
+Solves the linear system Ax = b using the sucessive over-relaxation method with an initial guess of r and parameter w (omega).
+
+### householder(A)
+
+Performs the householder transformation on the matrix A.
 
 ### QR()
 
