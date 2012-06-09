@@ -25,17 +25,20 @@ jStat.extend({
 		var args = slice.call( arguments );
 		if ( args.length === 4 ) {
 			if( isNumber( args[1] )) {
+			var z = jStat.zscore(args[0],args[1],args[2])
 				return ( args[3] === 1 ) ?
-					(1-jStat.normal.cdf( Math.abs( args[0] ), args[1], args[2] )) :
-				( 2 -  jStat.normal.cdf( Math.abs( args[0] ), args[1], args[2] )* 2);
+					(jStat.normal.cdf( -Math.abs(z),0,1)) :
+				(jStat.normal.cdf( -Math.abs(z),0,1)* 2);
 			}
+			var z = args[0]
 			return ( args[2] === 1 ) ?
-				( 1 - jStat.normal.cdf( Math.abs( args[0] ), jStat.mean( args[1] ), jStat.stdev( args[1],args[3] ))) :
-			( 2 - jStat.normal.cdf( Math.abs( args[0] ), jStat.mean( args[1] ), jStat.stdev( args[1],args[3] ))*2);
+				( jStat.normal.cdf( -Math.abs(z),0,1)) :
+			(jStat.normal.cdf( -Math.abs(z),0,1)*2);
 		}
+		var z = jStat.zscore(args[0],args[1],args[3])
 		return ( args[1] === 1 ) ?
-			( 1 - jStat.normal.cdf( Math.abs( args[0] ), 0, 1 )) :
-		( 2 - jStat.normal.cdf( Math.abs( args[0] ), 0, 1 )*2);
+			( jStat.normal.cdf( -Math.abs(z), 0, 1 )) :
+		(jStat.normal.cdf( -Math.abs(z), 0, 1 )*2);
 	}
 });
 
@@ -47,8 +50,8 @@ jStat.extend( jStat.fn, {
 	ztest : function( value, sides, flag ) {
 		var zscore = Math.abs( this.zscore( value, flag ));
 		return ( sides === 1 ) ?
-			( 1 - jStat.normal.cdf( zscore, 0, 1 )) :
-		(2 - jStat.normal.cdf( zscore, 0, 1 ) * 2);
+			( jStat.normal.cdf( -zscore, 0, 1 )) :
+		(jStat.normal.cdf( -zscore, 0, 1 ) * 2);
 	}
 });
 
@@ -74,19 +77,19 @@ jStat.extend({
 		if ( args.length === 5 ) {
 			tscore = Math.abs( jStat.tscore( args[0], args[1], args[2], args[3] ));
 			return ( args[4] === 1 ) ?
-				( 1 - jStat.studentt.cdf( tscore, args[3] )) :
-			( 2 - jStat.studentt.cdf( tscore, args[3])*2);
+				(jStat.studentt.cdf( -tscore, args[3]-1 )) :
+			(jStat.studentt.cdf( -tscore, args[3]-1)*2);
 		}
 		if ( isNumber( args[1] )) {
 			tscore = Math.abs( args[0] )
 			return ( args[2] == 1 ) ?
-				( 1 - jStat.studentt.cdf( tscore, args[1])) :
-			( 2 - jStat.studentt.cdf( tscore, args[1]) * 2);
+				( jStat.studentt.cdf( -tscore, args[1]-1)) :
+			(jStat.studentt.cdf( -tscore, args[1]-1) * 2);
 		}
 		tscore = Math.abs( jStat.tscore( args[0], args[1] ))
 		return ( args[2] == 1 ) ?
-			( 1 - jStat.studentt.cdf( tscore, args[1].length-1)) :
-		( 2 - jStat.studentt.cdf( tscore, args[1].length-1) * 2);
+			( jStat.studentt.cdf( -tscore, args[1].length-1)) :
+		(jStat.studentt.cdf( -tscore, args[1].length-1) * 2);
 	}
 });
 
@@ -98,7 +101,7 @@ jStat.extend( jStat.fn, {
 	ttest : function( value, sides ) {
 		return ( sides === 1 ) ?
 			( 1 - jStat.studentt.cdf( Math.abs( this.tscore(value)), this.cols()-1)) :
-		( 2 * jStat.studentt.cdf( Math.abs( this.tscore(value)), this.cols()-1)-2);
+		(jStat.studentt.cdf( -Math.abs( this.tscore(value)), this.cols()-1)*2);
 	}
 });
 
