@@ -35,9 +35,11 @@ Building jStat
 
 First, clone a copy of the jStat git repo by running `git clone git://github.com/jstat/jstat.git`.
 
-Then, to get a complete, minified, jslinted version of jStat, simply `cd` to the `jstat` directory and type
-`make`. If you don't have Node installed and/or want to make a basic, uncompressed, unlinted version of jstat, use
-`make jstat` instead of `make`.
+To download all necessary libraries run `npm install`.
+
+Then, to get a complete, minified version of jStat and all documentation, simply `cd` to the `jstat` directory and
+type `make`. If you don't have Node installed and/or want to make a basic, uncompressed, unlinted version of jstat,
+use `make jstat` instead of `make`.
 
 The built version of jStat will be put in the `dist/` subdirectory.
 
@@ -46,10 +48,9 @@ Generate just the documentation by running `make doc`. Documentation will be pla
 To remove all built files, run `make clean`.
 
 
-Building to a different directory
----------------------------------
+Running Tests
+-------------
 
-If you want to build jStat to a directory that is different from the default location, you can specify the PREFIX
-directory: `make PREFIX=/home/jstat/test/ [command]`
+Execute all tests by running `make test`.
 
-With this example, the output files would end up in `/home/jstat/test/dist/`.
+Or if you with to run a specific test, `cd` to `test/<subdir>` and run `node <some_test>-test.js`.

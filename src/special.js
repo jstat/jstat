@@ -1,44 +1,6 @@
 // Special functions //
 (function( jStat, Math ) {
 
-// Evaluates the continued fraction for incomplete beta function by modified Lentz's method.
-function betacf( x, a, b ) {
-	var fpmin = 1e-30,
-		m = 1,
-		m2, aa, c, d, del, h, qab, qam, qap;
-	// These q's will be used in factors that occur in the coefficients
-	qab = a + b;
-	qap = a + 1;
-	qam = a - 1;
-	c = 1;
-	d = 1 - qab * x / qap;
-	if( Math.abs( d ) < fpmin ) d = fpmin;
-	d = 1 / d;
-	h = d;
-	for ( ; m <= 100; m++ ) {
-		m2 = 2 * m;
-		aa = m * ( b - m ) * x / ( ( qam + m2 ) * ( a + m2 ) );
-		// One step (the even one) of the recurrence
-		d = 1 + aa * d;
-		if( Math.abs( d ) < fpmin ) d = fpmin;
-		c = 1 + aa / c;
-		if( Math.abs( c ) < fpmin ) c = fpmin;
-		d = 1 / d;
-		h *= d * c;
-		aa = -( a + m ) * ( qab + m ) * x / ( ( a + m2 ) * ( qap + m2 ) );
-		// Next step of the recurrence (the odd one)
-		d = 1 + aa * d;
-		if( Math.abs( d ) < fpmin ) d = fpmin;
-		c = 1 + aa / c;
-		if( Math.abs( c ) < fpmin ) c = fpmin;
-		d = 1 / d;
-		del = d * c;
-		h *= del;
-		if( Math.abs( del - 1.0 ) < 3e-7 ) break;
-	}
-	return h;
-}
-
 // extending static jStat methods
 jStat.extend({
 
@@ -53,7 +15,7 @@ jStat.extend({
 			xx, y, tmp;
 		tmp = ( y = xx = x ) + 5.5;
 		tmp -= ( xx + 0.5 ) * Math.log( tmp );
-		for( ; j < 6; j++ ) ser += cof[j] / ++y;
+		for ( ; j < 6; j++ ) ser += cof[j] / ++y;
 		return Math.log( 2.5066282746310005 * ser / xx) - tmp;
 	},
 
@@ -111,9 +73,7 @@ jStat.extend({
 
 	// lower incomplete gamma function P(a,x)
 	gammap : function( a, x ) {
-		var ITMAX = Math.ceil( Math.log( a ) * 8.5 + a * 0.4 + 17 ),
-			aln = jStat.gammaln( a ),
-			afn = jStat.gammafn( a ),
+		var aln = jStat.gammaln( a ),
 			ap = a,
 			sum = 1 / a,
 			del = sum,
@@ -122,6 +82,8 @@ jStat.extend({
 			d = 1 / b,
 			h = d,
 			i = 1,
+			// calculate maximum number of itterations required for a
+			ITMAX = -~( Math.log(( a >= 1 ) ? a : 1 / a ) * 8.5 + a * 0.4 + 17 ),
 			an, endval;
 		if ( x < 0 || a <= 0 ) {
 			return NaN;
@@ -129,19 +91,17 @@ jStat.extend({
 			for ( ; i <= ITMAX; i++ ) {
 				sum += del *= x / ++ap;
 			}
-			endval = sum * Math.exp( -x + a * Math.log( x ) - ( aln ));
-		} else {
-			for ( ; i <= ITMAX; i++ ) {
-				an = -i * ( i - a );
-				b += 2;
-				d = an * d + b;
-				c = b + an / c;
-				d = 1 / d;
-				h *= d * c;
-			}
-			endval = 1 - h * Math.exp( -x + a * Math.log( x ) - ( aln ));
+			return sum * Math.exp( -x + a * Math.log( x ) - ( aln ));
 		}
-		return endval * afn / jStat.gammafn( a );
+		for ( ; i <= ITMAX; i++ ) {
+			an = -i * ( i - a );
+			b += 2;
+			d = an * d + b;
+			c = b + an / c;
+			d = 1 / d;
+			h *= d * c;
+		}
+		return 1 - h * Math.exp( -x + a * Math.log( x ) - ( aln ));
 	},
 
 	// natural log factorial of n
@@ -156,7 +116,10 @@ jStat.extend({
 
 	// combinations of n, m
 	combination : function( n, m ) {
-		return ( jStat.factorial( n ) / jStat.factorial( m )) / jStat.factorial( n - m );
+		// make sure n or m don't exceed the upper limit of usable values
+		return ( n > 170 || m > 170 ) ?
+			Math.exp( jStat.combinationln( n, m )) :
+		( jStat.factorial( n ) / jStat.factorial( m )) / jStat.factorial( n - m );
 	},
 	
 	combinationln : function( n, m ){
@@ -170,12 +133,55 @@ jStat.extend({
 
 	// beta function
 	betafn : function( x, y ) {
-		return jStat.gammafn( x ) * jStat.gammafn( y ) / jStat.gammafn( x + y );
+		// ensure arguments are positive
+		if ( x <= 0 || y <= 0 ) return undefined;
+		// make sure x + y doesn't exceed the upper limit of usable values
+		return ( x + y > 170 ) ?
+			Math.exp( jStat.betaln( x, y )) :
+		jStat.gammafn( x ) * jStat.gammafn( y ) / jStat.gammafn( x + y );
 	},
 	
 	// natural logarithm of beta function
 	betaln : function( x, y ) {
 		return jStat.gammaln( x ) + jStat.gammaln( y ) - jStat.gammaln( x + y );
+	},
+
+	// evaluates the continued fraction for incomplete beta function by modified Lentz's method.
+	betacf : function( x, a, b ) {
+		var fpmin = 1e-30,
+			m = 1,
+			m2, aa, c, d, del, h, qab, qam, qap;
+		// These q's will be used in factors that occur in the coefficients
+		qab = a + b;
+		qap = a + 1;
+		qam = a - 1;
+		c = 1;
+		d = 1 - qab * x / qap;
+		if( Math.abs( d ) < fpmin ) d = fpmin;
+		d = 1 / d;
+		h = d;
+		for ( ; m <= 100; m++ ) {
+			m2 = 2 * m;
+			aa = m * ( b - m ) * x / ( ( qam + m2 ) * ( a + m2 ) );
+			// One step (the even one) of the recurrence
+			d = 1 + aa * d;
+			if( Math.abs( d ) < fpmin ) d = fpmin;
+			c = 1 + aa / c;
+			if( Math.abs( c ) < fpmin ) c = fpmin;
+			d = 1 / d;
+			h *= d * c;
+			aa = -( a + m ) * ( qab + m ) * x / ( ( a + m2 ) * ( qap + m2 ) );
+			// Next step of the recurrence (the odd one)
+			d = 1 + aa * d;
+			if( Math.abs( d ) < fpmin ) d = fpmin;
+			c = 1 + aa / c;
+			if( Math.abs( c ) < fpmin ) c = fpmin;
+			d = 1 / d;
+			del = d * c;
+			h *= del;
+			if( Math.abs( del - 1.0 ) < 3e-7 ) break;
+		}
+		return h;
 	},
 
 	// Returns the inverse incomplte gamma function
@@ -269,7 +275,7 @@ jStat.extend({
 	},
 
 	// Returns the inverse of the incomplete beta function
-	incompleteBetaInv : function( p, a, b ) {
+	ibetainv : function( p, a, b ) {
 		var EPS = 1e-8,
 			a1 = a - 1,
 			b1 = b - 1,
@@ -298,7 +304,7 @@ jStat.extend({
 		afac = -jStat.gammaln( a ) - jStat.gammaln( b ) + jStat.gammaln( a + b );
 		for( ; j < 10; j++ ) {
 			if( x === 0 || x === 1) return x;
-			err = jStat.incompleteBeta( x, a, b ) - p;
+			err = jStat.ibeta( x, a, b ) - p;
 			t = Math.exp( a1 * Math.log( x ) + b1 * Math.log( 1 - x ) + afac );
 			u = err / t;
 			x -= ( t = u / ( 1 - 0.5 * Math.min( 1, u * ( a1 / x - b1 / ( 1 - x )))));
@@ -310,7 +316,7 @@ jStat.extend({
 	},
 
 	// Returns the incomplete beta function I_x(a,b)
-	incompleteBeta : function( x, a, b ) {
+	ibeta : function( x, a, b ) {
 		// Factors in front of the continued fraction.
 		var bt = ( x === 0 || x === 1 ) ?  0 :
 			Math.exp(jStat.gammaln( a + b ) - jStat.gammaln( a ) -
@@ -319,20 +325,18 @@ jStat.extend({
 		if( x < 0 || x > 1 ) return false;
 		if( x < ( a + 1 ) / ( a + b + 2 ) )
 			// Use continued fraction directly.
-			return bt * betacf( x, a, b ) / a;
+			return bt * jStat.betacf( x, a, b ) / a;
 		// else use continued fraction after making the symmetry transformation.
-		return 1 - bt * betacf( 1 - x, b, a ) / b;
+		return 1 - bt * jStat.betacf( 1 - x, b, a ) / b;
 	},
 
 	// Returns a normal deviate (mu=0, sigma=1).
-	// If n and m are specified it returns a jstat object of normal deviates.
+	// If n and m are specified it returns a object of normal deviates.
 	randn : function( n, m ) {
 		var u, v, x, y, q, mat;
 		if ( !m ) m = n;
 		if( n ) {
-			mat = jStat.zeros( n, m );
-			mat.alter(function() { return jStat.randn(); });
-			return mat;
+			return jStat.create( n, m, function() { return jStat.randn(); });
 		}
 		do {
 			u = Math.random();
@@ -383,5 +387,13 @@ jStat.extend({
 		};
 	})( funcs[i] );
 })( 'gammaln gammafn factorial factorialln'.split( ' ' ));
+
+(function( funcs ) {
+	for ( var i = 0; i < funcs.length; i++ ) (function( passfunc ) {
+		jStat.fn[ passfunc ] = function() {
+			return jStat( jStat[ passfunc ].apply( null, arguments ));
+		};
+	})( funcs[i] );
+})( 'randn'.split( ' ' ));
 
 })( this.jStat, Math );

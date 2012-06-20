@@ -1,13 +1,34 @@
-## Core Instance Functionality
+## Core Functionality
 
-### jStat( [array][start, stop, count[, func]] )
+Core functionality include methods that generate and analyse vectors or matrices.
 
-Create a new jStat object from either an existing array, or pass in values to generate a sequence.
+### jStat()
+
+The jStat object can function in several capacities, as demonstrated below.
+In all cases, jStat will always return an instance of itself.
+
+**jStat( array[, fn] )**
+
+Create a new jStat object from either an existing array or jStat object.
 For example, create a new jStat matrix by doing the following:
 
     var matrix = jStat([[ 1, 2, 3 ],[ 4, 5, 6 ],[ 7, 8, 9 ]]);
 
-Or create a vector from a sequence:
+If an existing jStat object is passed as an argument then it will be cloned into a new object:
+
+    var stat1 = jStat([[ 1, 2 ],[ 3, 4 ]]),
+        stat2 = jStat( stat1 );
+
+
+To transform the data on creation, pass a function as the final argument:
+
+    jStat([[ 1, 2 ],[ 3, 4 ]], function( x ) {
+        return x * 2;
+    });
+
+**jStat( start, stop, count[, fn ])**
+
+To create a sequence then pass numeric values in the same form `jStat.seq()` would be used:
 
     var vector = jStat( 0, 1, 5 );
     // vector === [[ 0, 0.25, 0.5, 0.75, 1 ]]
@@ -26,312 +47,365 @@ Using this we can create a multidimensional array (useful for plotting data):
         return [ jStat.beta.pdf( x, alpha, beta ), cnt ];
     });
 
+**jStat()**
+
+A chainable shortcut in the API exists to allow for filling in the data after object creation.
+So creating `jStat` objects from methods like `rand()` can be accomplished in one of the following ways:
+
+    // pass the generated random 3x3 matrix to jStat
+    jStat( jStat.rand( 3 ));
+    // or create an empty instance that is filled in afterwards
+    jStat().rand( 3 );
+
+
 ### rows()
 
-Returns the number of rows in the jStat object.
+Returns the count of rows in a matrix.
 
-    jStat([[1,2,3],[4,5,6]]).rows() === 2;
+**rows( array )**
+
+    var matrix = [[1,2,3],[4,5,6]];
+    jStat.rows( matrix ) === 2;
+
+**fn.rows( [callback] )**
+
+    jStat( matrix ).rows() === 2;
+
+Or pass a callback to run the calculation asynchronously and pass on the calculation.
+This allows for continued chaining of methods to the jStat object.
+Also note `this` within the callback refers to the calling jStat object.
+
+    jStat( matrix ).rows(function( d ) {
+        // d === 2
+    });
 
 ### cols()
 
-Returns the number of columns in the jStat object.
+Returns the number of columns in a matrix.
 
-    jStat([[1,2,3],[4,5,6]]).cols() === 3;
+**cols( array )**
+
+    var matrix = [[1,2,3],[4,5,6]];
+    jStat.cols( matrix ) === 3;
+
+**fn.cols( [callback] )**
+
+    jStat( matrix ).cols() === 3;
+
+Or pass a callback to run the calculation asynchronously and pass on the calculation.
+This allows for continued chaining of methods to the jStat object.
+Also note `this` within the callback refers to the calling jStat object.
+
+    jStat( matrix ).cols(function( d ) {
+        // d === 3
+    });
 
 ### dimensions()
 
-Returns and object with the dimensions of the jStat object.
+Returns and object with the dimensions of a matrix.
 
-    jStat([[1,2,3],[4,5,6]]).dimensions() === { cols: 3, rows: 2 };
+**dimensions( array )**
 
-### row( index )
+    var matrix = [[1,2,3],[4,5,6]];
+    jStat.dimensions( matrix ) === { cols: 3, rows: 2 };
 
-Returns a specified row as a vector.
+**fn.dimensions( [callback] )**
 
-    jStat([[1,2,3],[4,5,6]]).row( 0 ) === [[1,2,3]];
+    jStat( matrix ).dimensions() === { cols: 3, rows: 2 };
 
-### col( index )
+Or pass a callback to run the calculation asynchronously and pass on the calculation.
+This allows for continued chaining of methods to the jStat object.
+Also note `this` within the callback refers to the calling jStat object.
+
+    jStat( matrix ).dimensions(function( d ) {
+        // d === { cols: 3, rows: 2 }
+    });
+
+### row()
+
+Returns a specified row of a matrix.
+
+**row( array, index )**
+
+    var matrix = [[1,2,3],[4,5,6]];
+    jStat.row( matrix, 0 ) === [1,2,3];
+
+**fn.row( index[, callback] )**
+
+    jStat( matrix ).row( 0 ) === jStat([1,2,3]);
+
+Or pass a callback to run the calculation asynchronously and pass on the calculation.
+This allows for continued chaining of methods to the jStat object.
+Also note `this` within the callback refers to the calling jStat object.
+
+    jStat( matrix ).row( 0, function( d ) {
+        // d === jStat([1,2,3])
+    });
+
+### col()
 
 Returns the specified column as a column vector.
 
-    jStat([1,2,3],[4,5,6]]).col( 0 ) === [[1],[4]];
+**col( index )**
+
+    var matrix = [[1,2],[3,4]];
+    jStat.col( matrix, 0 ) === [[1],[3]];
+
+**fn.col( index[, callback] )**
+
+    jStat( matrix ).col( 0 ) === jStat([[1],[3]]);
+
+Or pass a callback to run the calculation asynchronously and pass on the calculation.
+This allows for continued chaining of methods to the jStat object.
+Also note `this` within the callback refers to the calling jStat object.
+
+    jStat( matrix ).col( 0, function( d ) {
+        // d === jStat([[1],[3]])
+    })
 
 ### diag()
 
-Returns the diagonal of the matrix.
+Returns the diagonal of a matrix.
 
-    jStat([[1,2,3],[4,5,6],[7,8,9]]).diag() === [[1],[5],[9]];
+**diag( array )**
+
+    var matrix = [[1,2,3],[4,5,6],[7,8,9]];
+    jStat.diag( matrix ) === [[1],[5],[9]];
+
+**fn.diag( [callback] )**
+
+    jStat( matrix ).diag() === jStat([[1],[5],[9]]);
+
+Or pass a callback to run the calculation asynchronously and pass on the calculation.
+This allows for continued chaining of methods to the jStat object.
+Also note `this` within the callback refers to the calling jStat object.
+
+    jStat( matrix ).diag(function( d ) {
+        // d === jStat([[1],[5],[9]])
+    });
 
 ### antidiag()
 
 Returns the anti-diagonal of the matrix.
 
-    jStat([[1,2,3],[4,5,6],[7,8,9]]).antidiag() === [[3],[5],[7]];
+**antidiag( array )**
 
-### transpose( [callback] )
+    var matrix = [[1,2,3],[4,5,6],[7,8,9]];
+    jStat.antidiag( matrix ) === [[3],[5],[7]];
+
+**fn.antidiag( [callback] )**
+
+    jStat( matrix ).antidiag() === jStat([[3],[5],[7]]);
+
+Or pass a callback to run the calculation asynchronously and pass on the calculation.
+This allows for continued chaining of methods to the jStat object.
+Also note `this` within the callback refers to the calling jStat object.
+
+    jStat( matrix ).antidiag(function( d ) {
+        // d === jStat([[3],[5],[7]])
+    });
+
+### transpose()
 
 Transpose a matrix.
 
-    jStat([[1,2],[3,4]]).transpose() === [[1,3],[2,4]];
+**transpose( array )**
+
+    var matrix = [[1,2],[3,4]];
+    jStat.transpose( matrix ) === [[1,3],[2,4]];
+
+**fn.transpose( [callback] )**
+
+    jStat( matrix ).transpose() === [[1,3],[2,4]];
+
+Or pass a callback to run the calculation asynchronously and pass on the calculation.
+This allows for continued chaining of methods to the jStat object.
+Also note `this` within the callback refers to the calling jStat object.
+
+    jStat( matrix ).transpose(function( d ) {
+        // d === jStat([[1,3],[2,4]])
+    })
 
 ### map( func )
 
 Map a function to all values and return a new object.
 
-    var matrix = jStat([[1,2],[3,4]]),
-        mapped = matrix.map( function( x ) {
-            return x * 2;
-        });
-    // matrix === [[1,2],[3,4]]
-    // mapped === [[2,4],[6,8]]
+**map( array, fn )**
+
+    var matrix = [[1,2],[3,4]];
+    jStat.map( matrix, function( x ) {
+        return x * 2;
+    });
+    // returns [[2,4],[6,8]]
+
+**fn.map( fn )**
+
+    jStat( matrix ).map(function( x ) {
+        return x * 2;
+    });
 
 ### alter( func )
 
-Destructively alter an object.
+Destructively map to an array.
 
-    var matrix = jStat([[1,2],[3,4]]);
-    matrix.alter( function( x ) {
+**alter( array, fn )**
+
+    var matrix = [[1,2],[3,4]];
+    jStat.alter( matrix, function( x ) {
         return x * 2;
     });
     // matrix === [[2,4],[6,8]]
 
-### add( arg )
+**fn.alter( fn )**
 
-Add value to all entries.
+    var matrix = [[1,2],[3,4]];
+    jStat( matrix ).alter( function( x ) {
+        return x * 2;
+    });
 
-    jStat([[1,2,3]]).add( 2 ) === [[3,4,5]];
+### create()
 
-### subtract( arg )
+Create a row by col matrix using the supplied function
+If `col` is omitted then it will default to value `row`.
 
-Subtract all entries by value.
+**create( row[, col], fn )**
 
-    jStat([[4,5,6]]).subtract( 2 ) === [[2,3,4]];
+    jStat.create( 2, function( row, col ) {
+        return row + col;
+    });
+    // returns [[0,1],[1,2]]
 
-### divide( arg )
+**fn.create( row[, col], fn )**
 
-Divide all entries by value.
+Use this technique for creating matrices in jStat instances.
 
-    jStat([[2,4,6]]).divide( 2 ) === [[1,2,3]];
+    jStat().create( 2, function( row, col ) {
+        return row + col;
+    });
+    // returns jStat([[0,1],[1,2]])
 
-### multiply( arg )
+### zeros()
 
-Multiply all entries by value.
+Create a row by col matrix of all zeros.
+If `col` is omitted then it will default to value `row`.
 
-    jStat([[1,2,3]]).multiply( 2 ) === [[2,4,6]];
+**zeros( row[, col] )**
 
-### dot( arg )
+    jStat.zeros( 2 );
+    // returns [[0,0],[0,0]]
 
-Take dot product.
+**fn.zeros( row[, col] )**
 
-### pow( arg )
+Use this technique for creating matrices in jStat instances.
 
-Raise all entries by value.
+    jStat().zeros( 2 );
+    // returns jStat([[0,0],[0,0]])
 
-    jStat([[1,2,3]]).pow( 2 ) === [[1,4,9]];
+### ones()
 
-### abs()
+Create a row by col matrix of all ones.
+If `col` is omitted then it will default to value `row`.
 
-Return the absolute values of all entries.
+**ones( row[, col] )**
 
-    jStat([[1,-2,-3]]).abs() === [[1,2,3]];
+    jStat.zeros( 2 );
+    // returns [[0,0],[0,0]]
+
+**fn.ones( row[, col] )**
+
+Use this technique for creating matrices in jStat instances.
+
+    jStat().ones( 2 );
+    // returns jStat([[0,0],[0,0]])
+
+### rand()
+
+Create a matrix of normally distributed random numbers.
+If `col` is omitted then it will default to value `row`.
+
+**rand( row[, col] )**
+
+    jStat.rand( 3 );
+
+**fn.rand( row[, col] )**
+
+Use this technique for creating matrices in jStat instances.
+
+    jStat().rand( 3 );
+
+### identity()
+
+Create an identity matrix of row by col.
+If `col` is omitted then it will default to value `row`.
+
+**identity( row[, col] )**
+
+    jStat.identity( 2 );
+    // returns [[1,0],[0,1]]
+
+**fn.identity( row[, col] )**
+
+Use this technique for creating matrices in jStat instances.
+
+    jStat().identity( 2 );
 
 ### clear()
 
-Set all values to 0. This is destructive.
+Set all values in the vector or matrix to zero.
 
-### norm()
+**clear( array )**
 
-Compulte the norm of a vector.
+    var tmp = [1,2,3];
+    jStat.clear( tmp );
+    // tmp === [0,0,0]
 
-### angle( arg )
+**fn.clear( [callback] )**
 
-Compute the angle between two vectors.
+    jStat( 0, 1, 3 ).clear();
+    // returns [[0,0,0]]
+
+If a callback is passed then the original object is not altered
+
+    var obj = jStat( 0, 1, 3 );
+    obj.clear(function() {
+        // this === [ 0, 0, 0 ]
+    });
+    // obj === [ 0, 0.5, 1 ]
 
 ### symmetric()
 
 Tests if a matrix is symmetric.
 
+**symmetric( array )**
+
+    jStat.symmetric([[1,2],[2,1]]) === true
+
+**fn.symmetric( callback )**
+
     jStat([[1,2],[2,1]]).symmetric() === true
 
-### sum( [[bool][,callback]][callback] )
-
-Return the sum of a vector, or of matrix columns.
-If pass boolean true as first argument, then return sum of entire object.
-
-### sumsqrd( [[bool][,callback]][callback] )
-
-Return the sum sqared of a vector, or of matrix columns.
-If pass boolean true as first argument, then return sum of entire object.
-
-### sumsqerr( [[bool][,callback]][callback] )
-
-Return the sum sqared error of a vector, or of matrix columns.
-If pass boolean true as first argument, then return sum of entire object.
-
-### product( [[bool][,callback]][callback] )
-
-Return the product of a vector, or of matrix columns.
-If pass boolean true as first argument, then return product of entire object.
-
-### min( [[bool][,callback]][callback] )
-
-Return the minimum value of a vector, or of matrix columns.
-If pass boolean true as first argument, then return min of entire object.
-
-### max( [[bool][,callback]][callback] )
-
-Return the maximum value of a vector, or of matrix columns.
-If pass boolean true as first argument, then return max of entire object.
-
-### mean( [[bool][,callback]][callback] )
-
-Return the mean value of a vector, or of matrix columns.
-If pass boolean true as first argument, then return mean of entire object.
-
-### meansqerr( [[bool][,callback]][callback] )
-
-Return the mean square erro value of a vector, or of matrix columns.
-If pass boolean true as first argument, then return mean of entire object.
-
-### geomean( [[bool][,callback]][callback] )
-
-Return the geometric mean of a vector, or of matrix columns.
-If pass boolean true as first argument, then return mean of entire object.
-
-### median( [[bool][,callback]][callback] )
-
-Return the median value of a vector, or of matrix columns.
-If pass boolean true as first argument, then return median of entire object.
-
-### mode( [[bool][,callback]][callback] )
-
-Return the mode of a vector, or of matrix columns.
-If pass boolean true as first argument, then return mode of entire object.
-
-### range( [[bool][,callback]][callback] )
-
-Return the mode of a vector, or of matrix columns.
-If pass boolean true as first argument, then return range of entire object.
-
-### variance( [[bool][,callback]][callback] )
-
-Return the variance of a vector, or of matrix columns.
-If pass boolean true as first argument, then return variance of entire object.
-
-### stdev( [[bool][,callback]][callback] )
-
-Return the standard deviation of a vector, or of matrix columns.
-If pass boolean true as first argument, then return standard deviation of entire object.
-
-### meandev( [callback] )
-
-Return the mean deviation of a vector, or of matrix columns.
-If pass boolean true as first argument, then return mean deviation of entire object.
-
-### meddev( [callback] )
-
-Return the median deviation of a vector, or of matrix columns.
-If pass boolean true as first argument, then return median deviation of entire object.
-
-### quartiles( [callback] )
-
-Return the quartiles of a vector, or of matrix columns.
-If pass boolean true as first argument, then return quartiles of entire object.
-
-## Core Static Functionality
-
-### jStat.create( rows[,cols], func )
-
-Generate a rows x cols matrix according to the supplied function.
-
-### jStat.zeros( rows[,cols] )
-
-Generate a rows x cols matrix of zeros.
-
-### jStat.ones( rows[,cols] )
-
-Generate a rows x cols matrix of ones.
-
-### jStat.rand( rows[,cols] )
-
-Generate a rows x cols matrix of uniformly random numbers.
-
-### jStat.identity( rows[,cols] )
-
-Generate an identity matrix of size row x cols.
-
-### jStat.seq( min, max, length[,func] )
-
-Generate an array sequence.
-
-### jStat.transpose( arr )
-
-### jStat.map( arr, func )
-
-### jStat.alter( arr, func )
-
-### jStat.add( arr, arg )
-
-### jStat.divide( arr, arg )
-
-### jStat.multiply( arr, arg )
-
-### jStat.subtract( arr, arg )
-
-### jStat.dot( arr, arg )
-
-### jStat.pow( arr, arg )
-
-### jStat.abs( arr )
-
-### jStat.clear( arr )
-
-### jStat.norm( arr[,p] )
-
-Calculate the p-norm of a vector. `p` will default to 2 if unspecified.
-
-### jStat.angle( arr, arg )
-
-### jStat.symmetric( arr )
-
-### jStat.sum( arr )
-
-### jStat.min( arr )
-
-### jStat.max( arr )
-
-### jStat.mean( arr )
-
-### jStat.median( arr )
-
-### jStat.mode( arr )
-
-### jStat.range( arr )
-
-### jStat.variance( arr[, flag] )
-
-Population variance of an array. If `flag == true` then will calculate the sample variance.
-
-### jStat.stdev( arr[, flag] )
-
-Population standard deviation of an array. If `flag == true` then will calculate the sample standard deviation.
-
-### jStat.meandev( arr )
-
-### jStat.meddev( arr )
-
-### jStat.quartiles( arr )
-
-### jStat.covariance( arr1, arr2 )
-
-### jStat.corrcoeff( arr1, arr2 )
+Can pass a callback to maintain chainability
+
+    jStat([[1,2],[2,1]]).symmetric(function( result ) {
+        // result === true
+    });
 
 ## jStat Utility Methods
 
-### jStat.utils.calcRdx( num0, num1 )
+Utilities that are used throughout the jStat library
 
-Calculate the decimal shift for the IEEE calculation correction.
+### utils.calcRdx( num0, num1 )
 
-### jStat.utils.isArray( arg )
+Calculate the decimal shift for the IEEE 754 floating point calculation correction.
 
-### jStat.utils.isFunction( arg )
+### utils.isArray( arg )
+
+Test if `arg` is an array.
+
+### utils.isFunction( arg )
+
+Test if `arg` is a function.
+
+### utils.isNumber( arg )
+
+Test if `arg` is a number and not `NaN`.

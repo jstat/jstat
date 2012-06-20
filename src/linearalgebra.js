@@ -1,15 +1,122 @@
-/*Provides functions for the solution of linear system of equations, integration, extrapolation,
+/* Provides functions for the solution of linear system of equations, integration, extrapolation,
  * interpolation, eigenvalue problems, differential equations and PCA analysis. */
 
 (function( jStat, Math ) {
 
-var push = Array.prototype.push;
+var push = Array.prototype.push,
+	isArray = jStat.utils.isArray;
 
 jStat.extend({
 
-	augment : function( a, b ) {
-		var newarr = a.slice();
-		for ( var i = 0; i < newarr.length; i++ ) {
+	// add a vector/matrix to a vector/matrix or scalar
+	add : function( arr, arg ) {
+		// check if arg is a vector or scalar
+		if ( isArray( arg )) {
+			if ( !isArray( arg[0] )) arg = [ arg ];
+			return jStat.map( arr, function( value, row, col ) { return value + arg[row][col]; });
+		}
+		return jStat.map( arr, function( value ) { return value + arg; });
+	},
+
+	// subtract a vector or scalar from the vector
+	subtract : function( arr, arg ) {
+		// check if arg is a vector or scalar
+		if ( isArray( arg )) {
+			if ( !isArray( arg[0] )) arg = [ arg ];
+			return jStat.map( arr, function( value, row, col ) { return value - arg[row][col] || 0; });
+		}
+		return jStat.map( arr, function( value ) { return value - arg; });
+	},
+
+	// matrix division
+	divide : function( arr, arg ) {
+		if ( isArray( arg )) {
+			if ( !isArray( arg[0] )) arg = [ arg ];
+			return jStat.multiply( arr, jStat.inv( arg ));
+		}
+		return jStat.map( arr, function( value ) { return value / arg; });
+	},
+
+	// matrix multiplication
+	multiply : function( arr, arg ) {
+		var row, col, nrescols, sum,
+			nrow = arr.length,
+			ncol = arr[0].length,
+			res = jStat.zeros( nrow, nrescols = ( isArray( arg )) ? arg[0].length : ncol ),
+			rescols = 0;
+		if ( isArray( arg )) {
+			for ( ; rescols < nrescols; rescols++ ) {
+				for ( row = 0; row < nrow; row++ ) {
+					sum = 0;
+					for ( col = 0; col < ncol; col++ )
+						sum += arr[row][col] * arg[col][rescols];
+					res[row][rescols] = sum;
+				}
+			}
+			return ( nrow === 1 && rescols === 1 ) ? res[0][0] : res;
+		}
+		return jStat.map( arr, function( value ) { return value * arg; });
+	},
+
+	// Returns the dot product of two matricies
+	dot : function( arr, arg ) {
+		if ( !isArray( arr[0] )) arr = [ arr ];
+		if ( !isArray( arg[0] )) arg = [ arg ];
+			// convert column to row vector
+		var left = ( arr[0].length === 1 && arr.length !== 1 ) ? jStat.transpose( arr ) : arr,
+			right = ( arg[0].length === 1 && arg.length !== 1 ) ? jStat.transpose( arg ) : arg,
+			res = [],
+			row = 0,
+			nrow = left.length,
+			ncol = left[0].length,
+			sum, col;
+		for ( ; row < nrow; row++ ) {
+			res[row] = [];
+			sum = 0;
+			for ( col = 0; col < ncol; col++ )
+				sum += left[row][col] * right[row][col];
+			res[row] = sum;
+		}
+		return ( res.length === 1 ) ? res[0] : res;
+	},
+
+	// raise every element by a scalar
+	pow : function( arr, arg ) {
+		return jStat.map( arr, function( value ) { return Math.pow( value, arg ); });
+	},
+
+	// generate the absolute values of the vector
+	abs : function( arr ) {
+		return jStat.map( arr, function( value ) { return Math.abs( value ); });
+	},
+
+	// TODO: make compatible with matrices
+	// computes the p-norm of the vector
+	norm : function( arr, p ) {
+		var nnorm = 0,
+			i = 0;
+		// check the p-value of the norm, and set for most common case
+		if ( isNaN( p )) p = 2;
+		// check if multi-dimensional array, and make vector correction
+		if ( isArray( arr[0] )) arr = arr[0];
+		// vector norm
+		for (; i < arr.length; i++ ) {
+			nnorm += Math.pow( Math.abs( arr[i] ), p );
+		}
+		return Math.pow( nnorm, 1 / p );
+	},
+
+	// TODO: make compatible with matrices
+	// computes the angle between two vectors in rads
+	angle : function( arr, arg ) {
+		return Math.acos( jStat.dot( arr, arg ) / ( jStat.norm( arr ) * jStat.norm( arg )));
+	},
+
+	// augment one matrix by another
+	aug : function( a, b ) {
+		var newarr = a.slice(),
+			i = 0;
+		for ( ; i < newarr.length; i++ ) {
 			push.apply( newarr[i], b[i] );
 		}
 		return newarr;
@@ -31,6 +138,44 @@ jStat.extend({
 		return obj;
 	},
 
+	// calculate the determinant of a matrix
+	det : function( a ) {
+		var alen = a.length,
+			alend = alen * 2,
+			vals = new Array( alend ),
+			rowshift = alen - 1,
+			colshift = alend - 1,
+			mrow = rowshift - alen + 1,
+			mcol = colshift,
+			i = 0,
+			result = 0,
+			j;
+		// check for special 2x2 case
+		if ( alen === 2 ) {
+			return a[0][0] * a[1][1] - a[0][1] * a[1][0];
+		}
+		for (; i < alend; i++ ) {
+			vals[i] = 1;
+		}
+		for ( i = 0; i < alen; i++ ) {
+			for ( j = 0; j < alen; j++ ) {
+				vals[( mrow < 0 ) ? mrow + alen : mrow ] *= a[i][j];
+				vals[( mcol < alen ) ? mcol + alen : mcol ] *= a[i][j];
+				mrow++;
+				mcol--;
+			}
+			mrow = --rowshift - alen + 1;
+			mcol = --colshift;
+		}
+		for ( i = 0; i < alen; i++ ) {
+			result += vals[i];
+		}
+		for (; i < alend; i++ ) {
+			result -= vals[i];
+		}
+		return result;
+	},
+
 	gauss_elimination : function( a, b ) {
 		var i = 0,
 			j = 0,
@@ -40,7 +185,7 @@ jStat.extend({
 			sum = 0,
 			x = [],
 			maug, pivot, temp, k;
-		a = jStat.augment( a, b );
+		a = jStat.aug( a, b );
 		maug = a[0].length;
 		for( ; i < n; i++ ) {
 			pivot = a[i][i];
@@ -75,49 +220,41 @@ jStat.extend({
 		return x;
 	},
 
-	gauss_jordan : function( a, b ) {
-		var i = 0,
-			j = 0,
-			n = a.length,
-			m = a[0].length,
-			factor = 1,
-			sum = 0,
-			X=[],
-			temp, pivot, maug, k;
-		a = jStat.augment( a, b );
-		maug = a[0].length;
-		for ( ; i < n; i++ ) {
-			pivot = a[i][i];
-			j = i;
-			for ( k = i+1;k< m;k++) {
-				if( pivot < Math.abs( a[k][i] )) {
-					pivot = a[k][i];
-					j = k;
-				}
+	gauss_jordan : function(a, b) {
+		var m = jStat.aug(a, b),
+			h = m.length,
+			w = m[0].length;
+		// find max pivot
+		for (var y = 0; y < h; y++) {
+			var maxrow = y;
+			for (var y2 = y+1; y2 < h; y2++) {
+				if (Math.abs(m[y2][y]) > Math.abs(m[maxrow][y]))
+					maxrow = y2;
 			}
-			if ( j != i ) {
-				for ( ; k < maug; k++ ) {
-					temp = a[i][k];
-					a[i][k] = a[j][k];
-					a[j][k] = temp;
-				}
-			}
-			for ( j = 0; j < n; j++ ) {
-				if ( i != j ) {
-					factor = a[j][i] / a[i][i];
-					for ( k = i; k<maug; k++ ) {
-						a[j][k] = a[j][k] - factor * a[i][k];
-					}
+			var tmp = m[y];
+			m[y] = m[maxrow];
+			m[maxrow] = tmp
+			for (var y2 = y+1; y2 < h; y2++) {
+				c = m[y2][y] / m[y][y];
+				for (var x = y; x < w; x++) {
+					m[y2][x] -= m[y][x] * c;
 				}
 			}
 		}
-		for ( i = 0; i < n; i++ ) {
-			factor = a[i][i];
-			for( k = 0; k < maug; k++ ) {
-				a[i][k] = a[i][k] / factor;
+		// backsubstitute
+		for (var y = h-1; y >= 0; y--) {
+			c = m[y][y];
+			for (var y2 = 0; y2 < y; y2++) {
+				for (var x = w-1; x > y-1; x--) {
+					m[y2][x] -= m[y][x] * m[y2][y] / c;
+				}
+			}
+			m[y][y] /= c;
+			for (var x = h; x < w; x++) {
+				m[y][x] /= c;
 			}
 		}
-		return a;
+		return m;
 	},
 
 	lu : function( a, b ) {
@@ -595,4 +732,21 @@ jStat.extend({
 	}
 });
 
-})( this.jStat, Math );
+// extend jStat.fn with methods that require one argument
+(function( funcs ) {
+	for ( var i = 0; i < funcs.length; i++ ) (function( passfunc ) {
+		jStat.fn[ passfunc ] = function( arg, func ) {
+			var tmpthis = this;
+			// check for callback
+			if ( func ) {
+				setTimeout( function() {
+					func.call( tmpthis, jStat.fn[ passfunc ].call( tmpthis, arg ));
+				}, 15 );
+				return this;
+			}
+			return jStat( jStat[ passfunc ]( this, arg ));
+		};
+	}( funcs[i] ));
+}( 'add divide multiply subtract dot pow abs norm angle'.split( ' ' )));
+
+}( this.jStat, Math ));

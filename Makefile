@@ -1,67 +1,54 @@
-SRC_DIR = src
-TEST_DIR = test
-BUILD_DIR = build
-
-PREFIX = .
-DIST_DIR = ${PREFIX}/dist
-
-JS_ENGINE ?= `which node nodejs`
-COMPILER = ${JS_ENGINE} ${BUILD_DIR}/uglify.js --unsafe
-
-BASE_FILES = ${SRC_DIR}/core.js\
-	${SRC_DIR}/distribution.js\
-	${SRC_DIR}/special.js\
-	${SRC_DIR}/linearalgebra.js
-
-JS = ${DIST_DIR}/jstat.js
-JS_MIN = ${DIST_DIR}/jstat.min.js
+NODE_PATH ?= ./node_modules
+DIST_DIR = ./dist
+JS_COMPILER = $(NODE_PATH)/uglify-js/bin/uglifyjs
+JS_TESTER = $(NODE_PATH)/vows/bin/vows
 
 DOC_DIR = doc
-DOC_LIST = `ls ${DOC_DIR}/md/`
+BUILD_DIR = build
+DOC_LIST = `ls $(DOC_DIR)/md/`
+JS_ENGINE ?= `which node nodejs`
 
 all: clean core doc
 
-core: jstat min lint
-	@@echo "jStat build complete."
+clean:
+	@echo 'Cleaning up build files'
+	@rm -rf dist
 
-${DIST_DIR}:
-	@@mkdir -p ${DIST_DIR}
+core: jstat.js jstat.min.js
 
-jstat: ${JS}
+jstat.js: \
+	src/core.js \
+	src/vector.js \
+	src/special.js \
+	src/distribution.js \
+	src/linearalgebra.js \
+	src/test.js 
+	@echo 'Building jStat'
+	@mkdir -p $(DIST_DIR)
+	@cat $^ > $(DIST_DIR)/$@
 
-${JS}: ${DIST_DIR}
-	@@echo "Building" ${JS}
-	@@cat ${BASE_FILES} > ${JS}
-
-lint: jstat
-	@@if test ! -z ${JS_ENGINE}; then \
-		echo "Checking jStat against JSHint..."; \
-		${JS_ENGINE} ${BUILD_DIR}/jshint-check.js; \
-	else \
-		echo "You must have NodeJS installed in order to test jStat against JSHint."; \
-	fi
-
-min: jstat ${JS_MIN}
+jstat.min.js: jstat.js
+	@echo 'Minifying jStat'
+	@$(JS_COMPILER) < $(DIST_DIR)/$< > $(DIST_DIR)/$@
 
 doc:
-	@@echo 'Generating documentation...'
-	@@mkdir -p ${DIST_DIR}/docs/assets
-	@@cp ${DOC_DIR}/assets/*.css ${DIST_DIR}/docs/assets/
-	@@cp ${DOC_DIR}/assets/*.js ${DIST_DIR}/docs/assets/
-	@@for i in ${DOC_LIST}; do \
-		${JS_ENGINE} ${BUILD_DIR}/doctool.js ${DOC_DIR}/assets/template.html ${DOC_DIR}/md/$${i} ${DIST_DIR}/docs/$${i%.*}.html; \
+	@echo 'Generating documentation'
+	@mkdir -p $(DIST_DIR)/docs/assets
+	@cp $(DOC_DIR)/assets/*.css $(DIST_DIR)/docs/assets/
+	@cp $(DOC_DIR)/assets/*.js $(DIST_DIR)/docs/assets/
+	@for i in $(DOC_LIST); do \
+		$(JS_ENGINE) $(BUILD_DIR)/doctool.js $(DOC_DIR)/assets/template.html $(DOC_DIR)/md/$${i} $(DIST_DIR)/docs/$${i%.*}.html; \
 	done
 
-${JS_MIN}: ${JS}
-	@@if test ! -z ${JS_ENGINE}; then \
-		echo "Minifying jStat" ${JS_MIN}; \
-		${COMPILER} ${JS} > ${JS_MIN}; \
-	else \
-		echo "You must have NodeJS installed in order to minify jStat."; \
-	fi
+jstat: jstat.js
 
-clean:
-	@@echo "Removing Distribution directory:" ${DIST_DIR}
-	@@rm -rf ${DIST_DIR}
+install:
+	@echo 'Downloading necessary libraries for build'
+	@mkdir -p node_modules
+	@npm install
 
-.PHONY: all jstat lint min doc clean core
+test: clean core
+	@echo 'Running jStat unit tests'
+	@$(JS_TESTER)
+
+.PHONY: clean core doc install test

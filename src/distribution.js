@@ -36,8 +36,9 @@
 					var a = this._a,
 						b = this._b,
 						c = this._c;
-					if ( isNaN( x )) {
-						return jStat.fn.map.call( this.data, function( x ) {
+					if ( !x ) x = this.data;
+					if ( typeof x !== 'number' ) {
+						return jStat.fn.map.call( x, function( x ) {
 							return jStat[ func ][ fnfunc ]( x, a, b, c );
 						});
 					}
@@ -55,7 +56,7 @@
 		})( 'mean median mode variance'.split( ' ' ));
 	})( list[ i ]);
 })((
-	'beta cauchy chisquare exponential gamma invgamma kumaraswamy lognormal normal ' +
+	'beta centralF cauchy chisquare exponential gamma invgamma kumaraswamy lognormal normal ' +
 	'pareto studentt weibull uniform  binomial negbin hypgeom poisson triangular'
 ).split( ' ' ));
 
@@ -64,15 +65,15 @@
 // extend beta function with static methods
 jStat.extend( jStat.beta, {
 	pdf : function( x, alpha, beta ) {
-		return ( Math.pow( x, alpha - 1 ) * Math.pow( 1 - x, beta - 1 )) / jStat.betafn( alpha, beta );
+		return (x > 1 || x < 0) ? 0 : ( Math.pow( x, alpha - 1 ) * Math.pow( 1 - x, beta - 1 )) / jStat.betafn( alpha, beta );
 	},
 
 	cdf : function( x, alpha, beta ) {
-		return jStat.incompleteBeta( x, alpha, beta );
+		return (x > 1 || x < 0) ? (x > 1) * 1 : jStat.ibeta( x, alpha, beta );
 	},
 
 	inv : function( x, alpha, beta ) {
-		return jStat.incompleteBetaInv( x, alpha, beta );
+		return jStat.ibetainv( x, alpha, beta );
 	},
 
 	mean : function( alpha, beta ) {
@@ -98,6 +99,41 @@ jStat.extend( jStat.beta, {
 	}
 });
 
+// extend F function with static methods
+jStat.extend( jStat.centralF, {
+	pdf : function( x, df1, df2 ) {
+		return  ( x >= 0) ?  
+			Math.sqrt( ( Math.pow( df1 * x, df1) * Math.pow( df2, df2 ) ) / ( Math.pow(df1 * x + df2, df1 + df2 ) ) ) / ( x * jStat.betafn( df1/2, df2/2 ) ) : undefined;
+		
+	},
+
+	cdf : function( x, df1, df2 ) {
+		return jStat.ibeta( ( df1 * x ) / ( df1 * x + df2 ), df1 / 2, df2 / 2 );
+	},
+
+	inv : function( x, df1, df2 ) {
+		return df2 / (df1 * ( 1 / jStat.ibetainv( x, df1 / 2, df2 / 2 ) - 1 ) );
+	},
+
+	mean : function( df1, df2 ) {
+		return ( df2 > 2 ) ? df2 / ( df2 - 2 ) : undefined;
+	},
+
+	mode : function( df1, df2 ) {
+		return ( df1 > 2) ? ( df2 * ( df1 - 2 ) ) / ( df1 * ( df2 + 2 ) ) : undefined;
+	},
+
+	// return a random sample
+	sample : function( df1, df2 ) {
+		var x1 = jStat.randg( df1 / 2 ) * 2;
+		var x2 = jStat.randg( df2 / 2 ) * 2;
+		return ( x1 / df1 ) / ( x2 / df2 );
+	},
+
+	variance : function( df1, df2 ) {
+		return ( df2 > 4 ) ? 2 * df2 * df2 * ( df1 + df2 - 2) / ( df1 * ( df2 - 2 ) * ( df2 - 2 ) * ( df2 - 4 ) ): undefined;
+	}
+});
 
 
 // extend cauchy function with static methods
@@ -408,11 +444,11 @@ jStat.extend( jStat.studentt, {
 
 	cdf : function( x, dof ) {
 		var dof2 = dof / 2;
-		return jStat.incompleteBeta(( x + Math.sqrt( x * x + dof )) / ( 2 * Math.sqrt( x * x + dof )), dof2, dof2 );
+		return jStat.ibeta(( x + Math.sqrt( x * x + dof )) / ( 2 * Math.sqrt( x * x + dof )), dof2, dof2 );
 	},
 
 	inv : function( p, dof ) {
-		var x = jStat.incompleteBetaInv( 2 * Math.min( p, 1 - p ), 0.5 * dof, 0.5 );
+		var x = jStat.ibetainv( 2 * Math.min( p, 1 - p ), 0.5 * dof, 0.5 );
 		x = Math.sqrt( dof * ( 1 - x ) / x );
 		return ( p > 0 ) ? x : -x;
 	},
@@ -518,10 +554,9 @@ jStat.extend( jStat.uniform, {
 // extend uniform function with static methods
 jStat.extend( jStat.binomial, {
 	pdf : function( k, n, p ) {
-		if ( p===0 || p===1 ) {
-			return (( n * p ) === k ? 1 : 0 );
-		}
-		return Math.exp( jStat.combinationln( n, k ) + k * Math.log( p ) + ( n - k ) * Math.log( 1 - p ));
+		return ( p === 0 || p === 1 ) ?
+			(( n * p ) === k ? 1 : 0 ) :
+		jStat.combination( n, k ) * Math.pow( p, k ) * Math.pow( 1 - p, n - k );
 	},
 
 	cdf : function( x, n, p ) {
@@ -595,13 +630,13 @@ jStat.extend( jStat.poisson, {
 	},
 
 	cdf : function( x, l ) {
-		var sum = 0,
+		var sumarr = [],
 			k = 0;
 		if ( x < 0 ) return 0;
 		for ( ; k <= x; k++ ) {
-			sum += jStat.poisson.pdf( k, l );
+			sumarr.push(jStat.poisson.pdf( k, l ));
 		}
-		return sum;
+		return jStat.sum(sumarr);
 	},
 
 	mean : function( l ) {
