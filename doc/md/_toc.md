@@ -7,3 +7,4 @@
 * [Distributions](distributions.html)
 * [Linear Algebra](linear-algebra.html)
 * [Statistical Tests](test.html)
+* [Optimization Routines](optimization.html)

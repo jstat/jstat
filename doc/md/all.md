@@ -5,3 +5,4 @@
 @include special-functions.md
 @include linear-algebra.md
 @include test.md
+@include optimization.md
