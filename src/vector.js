@@ -1,8 +1,7 @@
 (function( jStat, Math ) {
 
-// for quick reference
-var calcRdx = jStat.utils.calcRdx,
-	isFunction = jStat.utils.isFunction,
+	// for quick reference
+var isFunction = jStat.utils.isFunction,
 
 	// ascending functions for sort
 	ascNum = function( a, b ) { return a - b; };
@@ -15,9 +14,7 @@ jStat.extend({
 			i = arr.length,
 			tmp;
 		while ( --i >= 0 ) {
-			// TODO: find better way to perform this correction
-			tmp = calcRdx( sum, arr[i] );
-			sum = (( sum * tmp ) + ( arr[i] * tmp )) / tmp;
+			sum += arr[i];
 		}
 		return sum;
 	},
@@ -30,7 +27,7 @@ jStat.extend({
 		return sum;
 	},
 
-	// sum of squares for error (SSE)
+	// sum of squared errors of prediction (SSE)
 	sumsqerr : function( arr ) {
 		var mean = jStat.mean( arr ),
 			sum = 0,
@@ -74,7 +71,7 @@ jStat.extend({
 		return jStat.sum( arr ) / arr.length;
 	},
 
-	// mean squared error
+	// mean squared error (MSE)
 	meansqerr : function( arr ) {
 		return jStat.sumsqerr( arr ) / arr.length;
 	},
@@ -153,8 +150,7 @@ jStat.extend({
 
 	// range of an array
 	range : function( arr ) {
-		var _arr = arr.slice().sort( ascNum );
-		return _arr[ _arr.length - 1 ] - _arr[0];
+		return jStat.max( arr ) - jStat.min( arr );
 	},
 
 	// variance of an array
@@ -211,13 +207,13 @@ jStat.extend({
 	covariance : function( arr1, arr2 ) {
 		var u = jStat.mean( arr1 ),
 			v = jStat.mean( arr2 ),
-			sq_dev = [],
 			arr1Len = arr1.length,
+			sq_dev = new Array(arr1Len),
 			i = 0;
 		for ( ; i < arr1Len; i++ ) {
 			sq_dev[i] = ( arr1[i] - u ) * ( arr2[i] - v );
 		}
-		return jStat.sum( sq_dev ) / arr1Len;
+		return jStat.sum( sq_dev ) / ( arr1Len - 1 );
 	},
 
 	// population correlation coefficient

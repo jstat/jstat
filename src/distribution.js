@@ -69,11 +69,11 @@ jStat.extend( jStat.beta, {
 	},
 
 	cdf : function( x, alpha, beta ) {
-		return (x > 1 || x < 0) ? (x > 1) * 1 : jStat.incompleteBeta( x, alpha, beta );
+		return (x > 1 || x < 0) ? (x > 1) * 1 : jStat.ibeta( x, alpha, beta );
 	},
 
 	inv : function( x, alpha, beta ) {
-		return jStat.incompleteBetaInv( x, alpha, beta );
+		return jStat.ibetainv( x, alpha, beta );
 	},
 
 	mean : function( alpha, beta ) {
@@ -108,11 +108,11 @@ jStat.extend( jStat.centralF, {
 	},
 
 	cdf : function( x, df1, df2 ) {
-		return jStat.incompleteBeta( ( df1 * x ) / ( df1 * x + df2 ), df1 / 2, df2 / 2 );
+		return jStat.ibeta( ( df1 * x ) / ( df1 * x + df2 ), df1 / 2, df2 / 2 );
 	},
 
 	inv : function( x, df1, df2 ) {
-		return df2 / (df1 * ( 1 / jStat.incompleteBetaInv( x, df1 / 2, df2 / 2 ) - 1 ) );
+		return df2 / (df1 * ( 1 / jStat.ibetainv( x, df1 / 2, df2 / 2 ) - 1 ) );
 	},
 
 	mean : function( df1, df2 ) {
@@ -444,11 +444,11 @@ jStat.extend( jStat.studentt, {
 
 	cdf : function( x, dof ) {
 		var dof2 = dof / 2;
-		return jStat.incompleteBeta(( x + Math.sqrt( x * x + dof )) / ( 2 * Math.sqrt( x * x + dof )), dof2, dof2 );
+		return jStat.ibeta(( x + Math.sqrt( x * x + dof )) / ( 2 * Math.sqrt( x * x + dof )), dof2, dof2 );
 	},
 
 	inv : function( p, dof ) {
-		var x = jStat.incompleteBetaInv( 2 * Math.min( p, 1 - p ), 0.5 * dof, 0.5 );
+		var x = jStat.ibetainv( 2 * Math.min( p, 1 - p ), 0.5 * dof, 0.5 );
 		x = Math.sqrt( dof * ( 1 - x ) / x );
 		return ( p > 0 ) ? x : -x;
 	},

@@ -220,49 +220,41 @@ jStat.extend({
 		return x;
 	},
 
-	gauss_jordan : function( a, b ) {
-		var i = 0,
-			j = 0,
-			n = a.length,
-			m = a[0].length,
-			factor = 1,
-			sum = 0,
-			X=[],
-			temp, pivot, maug, k;
-		a = jStat.aug( a, b );
-		maug = a[0].length;
-		for ( ; i < n; i++ ) {
-			pivot = a[i][i];
-			j = i;
-			for ( k = i+1;k< m;k++) {
-				if( pivot < Math.abs( a[k][i] )) {
-					pivot = a[k][i];
-					j = k;
-				}
+	gauss_jordan : function(a, b) {
+		var m = jStat.aug(a, b),
+			h = m.length,
+			w = m[0].length;
+		// find max pivot
+		for (var y = 0; y < h; y++) {
+			var maxrow = y;
+			for (var y2 = y+1; y2 < h; y2++) {
+				if (Math.abs(m[y2][y]) > Math.abs(m[maxrow][y]))
+					maxrow = y2;
 			}
-			if ( j != i ) {
-				for ( ; k < maug; k++ ) {
-					temp = a[i][k];
-					a[i][k] = a[j][k];
-					a[j][k] = temp;
-				}
-			}
-			for ( j = 0; j < n; j++ ) {
-				if ( i != j ) {
-					factor = a[j][i] / a[i][i];
-					for ( k = i; k<maug; k++ ) {
-						a[j][k] = a[j][k] - factor * a[i][k];
-					}
+			var tmp = m[y];
+			m[y] = m[maxrow];
+			m[maxrow] = tmp
+			for (var y2 = y+1; y2 < h; y2++) {
+				c = m[y2][y] / m[y][y];
+				for (var x = y; x < w; x++) {
+					m[y2][x] -= m[y][x] * c;
 				}
 			}
 		}
-		for ( i = 0; i < n; i++ ) {
-			factor = a[i][i];
-			for( k = 0; k < maug; k++ ) {
-				a[i][k] = a[i][k] / factor;
+		// backsubstitute
+		for (var y = h-1; y >= 0; y--) {
+			c = m[y][y];
+			for (var y2 = 0; y2 < y; y2++) {
+				for (var x = w-1; x > y-1; x--) {
+					m[y2][x] -= m[y][x] * m[y2][y] / c;
+				}
+			}
+			m[y][y] /= c;
+			for (var x = h; x < w; x++) {
+				m[y][x] /= c;
 			}
 		}
-		return a;
+		return m;
 	},
 
 	lu : function( a, b ) {
