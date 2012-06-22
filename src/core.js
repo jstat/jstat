@@ -87,7 +87,8 @@ jStat.fn = jStat.prototype = {
 	// only to be used internally
 	push : [].push,
 	sort : [].sort,
-	splice : [].splice
+	splice : [].splice,
+	slice : [].slice
 };
 
 // for later instantiation
