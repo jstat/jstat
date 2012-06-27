@@ -1,8 +1,9 @@
 {
 	"name" : "jStat",
-	"version" : "0.0.1",
+	"version" : "0.0.2",
 	"description" : "Statistical Library for JavaScript",
 	"homepage" : "http://github.com/jstat/jstat",
+	"main" : "./dist/jstat.js",
 	"author" : {
 		"name" : "Trevor Norris",
 		"email" : "trev.norris@gmail.com",
@@ -16,7 +17,7 @@
 		"type" : "git",
 		"url" : "http ://github.com/jstat/jstat.git"
 	},
-	"devDependencies" : {
+	"dependencies" : {
 		"uglify-js" : "1.2.3",
 		"vows" : "0.6.x"
 	},
