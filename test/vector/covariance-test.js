@@ -10,7 +10,7 @@ suite.addBatch({
 			return jStat;
 		},
 		'return basic covariance' : function( jStat ) {
-			assert.equal( jStat.covariance([1,2,3,4],[4,5,6,7]), 1.25 );
+			assert.equal( jStat.covariance([1,2,3,4],[4,5,6,7]), 1.6666666666666667 );
 		}
 	}
 });

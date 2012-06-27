@@ -10,7 +10,7 @@ suite.addBatch({
 			return jStat;
 		},
 		'return basic corrcoeff' : function( jStat ) {
-			assert.equal( jStat.corrcoeff([1,2,3,4],[4,5,6,7]), 0.75 );
+			assert.equal( jStat.corrcoeff([1,2,3,4],[4,5,6,7]), 1.0000000000000002 );
 		}
 	}
 });
