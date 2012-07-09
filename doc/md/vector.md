@@ -379,13 +379,10 @@ And the two can be combined.
 **mode( array )**
 
 Return the mode of a vector.
-If there are multiple modes then `mode()` will return false.
-
-**Note:** There is a feature request to return an array if multiple modes exist
-([Issue 44](https://github.com/jstat/jstat/issues/44 "")).
+If there are multiple modes then `mode()` will return all of them.
 
     jStat.mode([1,2,2,3]) === 2
-    jStat.mode([1,2,3]) === false
+    jStat.mode([1,2,3]) === [1,2,3]
 
 **fn.mode( [bool][,callback] )**
 
@@ -402,9 +399,7 @@ If callback is passed then will pass result as first argument.
 
 If pass boolean true as first argument, then return mode of the matrix.
 
-**Note:** See [BUG #50](https://github.com/jstat/jstat/issues/50)
-
-    jStat([[1,2],[1,2]]).mode( true ) === false
+    jStat([[1,2],[1,2]]).mode( true ) === [[1,2],[1,2]]
 
 And the two can be combined.
 
