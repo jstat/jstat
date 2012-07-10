@@ -93,12 +93,6 @@ jStat.extend({
 
 	// cumulative sum of an array
 	cumsum : function( arr ) {
-		// if arr is matrix, return as it is the desired cumulative matrix
-		if ( jStat.utils.isArray(arr[0]) )
-		{
-			return arr;
-		}
-
 		var len = arr.length,
 			sums = new Array( len ),
 			i = 1;
@@ -252,6 +246,11 @@ jStat.extend({
 				tmpthis = fullbool === true ? this : this.transpose();
 				for ( ; i < tmpthis.length; i++ )
 					arr[i] = jStat[ passfunc ]( tmpthis[i] );
+				
+				if (passfunc == "cumsum") {
+					return arr;
+				}
+
 				return fullbool === true ? jStat[ passfunc ]( arr ) : arr;
 			}
 			// pass fullbool if only vector, not a matrix. for variance and stdev
