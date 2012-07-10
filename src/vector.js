@@ -121,7 +121,7 @@ jStat.extend({
 	},
 
 	// mode of an array
-	// if there are multiple modes of an array, just returns false
+	// if there are multiple modes of an array, return all of them
 	// is this the appropriate way of handling it?
 	mode : function( arr ) {
 		var arrLen = arr.length,
@@ -130,28 +130,27 @@ jStat.extend({
 			maxCount = 0,
 			numMaxCount = 0,
 			i = 0,
-			maxNum;
+			mode_arr = [];
 		for ( ; i < arrLen; i++ ) {
 			if ( _arr[ i ] === _arr[ i + 1 ] ) {
 				count++;
 			} else {
 				if ( count > maxCount ) {
-					maxNum = _arr[i];
+					mode_arr = [ _arr[i] ];
 					maxCount = count;
-					count = 1;
 					numMaxCount = 0;
-				} else {
-					// are there multiple max counts
-					if ( count === maxCount ) {
-						numMaxCount++;
-					// count is less than max count, so reset values
-					} else {
-						count = 1;
-					}
+				} 
+				// are there multiple max counts
+				else if ( count === maxCount ) {
+					mode_arr.push(_arr[i]);
+					numMaxCount++;
 				}
+				
+				// resetting count for new value in array
+				count = 1;
 			}
 		}
-		return ( numMaxCount === 0 ) ? maxNum : false;
+		return ( numMaxCount === 0 ) ? mode_arr[0] : mode_arr;
 	},
 
 	// range of an array
