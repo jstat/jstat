@@ -133,13 +133,13 @@ jStat.extend({
 					mode_arr = [ _arr[i] ];
 					maxCount = count;
 					numMaxCount = 0;
-				} 
+				}
 				// are there multiple max counts
 				else if ( count === maxCount ) {
 					mode_arr.push(_arr[i]);
 					numMaxCount++;
 				}
-				
+
 				// resetting count for new value in array
 				count = 1;
 			}
