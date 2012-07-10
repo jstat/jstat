@@ -16,7 +16,7 @@ suite.addBatch({
 			assert.equal( jStat([1,2,3,3]).mode(), 3 );
 		},
 		'mode matrix cols' : function( jStat ) {
-			assert.deepEqual( jStat([[1,2],[1,4]]).mode(), [1,false]);
+			assert.deepEqual( jStat([[1,2],[1,4]]).mode(), [1,[2,4]]);
 		}
 	},
 	'fn.mode vector' : {
@@ -32,7 +32,7 @@ suite.addBatch({
 			jStat([[1,2],[1,4]]).mode( this.callback );
 		},
 		'mode matrix cols callback' : function( val, stat ) {
-			assert.deepEqual( val, [1,false] );
+			assert.deepEqual( val, [1,[2,4]] );
 		}
 	}
 });
