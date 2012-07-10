@@ -333,9 +333,7 @@ If callback is passed then will pass result as first argument.
 
 If pass boolean true as first argument, then return cumulative sums of the matrix.
 
-**Note:** See [BUG #48](https://github.com/jstat/jstat/issues/48)
-
-    jStat([[1,2],[3,4]]).cumsum( true ) === ...
+    jStat([[1,2],[3,4]]).cumsum( true ) === [[1,3],[3,7]]
 
 And the two can be combined.
 
