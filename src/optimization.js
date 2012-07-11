@@ -1,63 +1,93 @@
-jStat.return_obj = function() {
-	if (!( this instanceof arguments.callee )) return new jStat.return_obj();
-	this.funclog = [];
-	this.pointlog = [];
-	this.funcvalue = this.paramnull = this.dist = this.dname = null;
-};
 
-
-
-// Cost function for elicitating the distribution of unknown variable.
-jStat.cost = function( inputs, dist ) {
-	if (!( this instanceof arguments.callee )) return new jStat.cost( inputs , dist);
-	this.lb = inputs[0];
-	this.lower = inputs[1];
-	this.median = inputs[2];
-	this.upper = inputs[3];
-	this.ub = inputs[4];
-	this.distribution = dist;
-};
-
-jStat.extend( jStat.cost, {
-
-	value : function ( params, obj ) {
-		var x = params[0],
-			y = params[1],
-			sum = 0;
-		if ( params.length === 2 ) {
-			var param1 = params[0],
-				param2 = params[1],
-				_dist = jStat.normal( param1, param2 );
-			if(obj.distribution == "gamma") {
-				_dist = jStat.gamma( param1, param2 );
-			} else if(obj.distribution == "normal") {
-				_dist = jStat.normal( param1, param2 );
-			} else if(obj.distribution == "beta") {
-				_dist = jStat.beta( param1, param2 );
-			} else if(obj.distribution == "lognormal") {
-				_dist = jStat.lognormal( param1, param2 );
-			}
-		}
-		sum += jStat.sq( _dist.cdf( obj.lb ) - 0 )
-			+ jStat.sq( _dist.cdf( obj.lower ) - 0.25 )
-			+ jStat.sq( _dist.cdf( obj.median ) - 0.50 )
-			+ jStat.sq( _dist.cdf( obj.upper ) - 0.75 )
-			+ jStat.sq( _dist.cdf( obj.ub ) - 1 );
-		return sum;
-	},
-
-	gradf: function( params, obj ) {
-		var x = params[0],
-			y = params[1],
-			del = 0.00001,
-			fx = ( obj.value([x + del, y]) - obj.value([x - del, y])) / ( 2 * del ),
-			fy = ( obj.value([x, y + del]) - obj.value([x, y - del])) / ( 2 * del );
-		return [fx, fy];
+// optimize the given function f using the opt_method and returns the optimized function value
+// and the point of optimization.
+jStat.optimizer = function( inputs, opt_method, f ) {
+	var par1 = inputs[0],
+		par2 = inputs[1],
+		optim_params;
+	if ( opt_method == "Nelder-Mead" ) {
+		optim_params = new jStat.optim( jStat([[ par1, par2 ],[ 0.1, 0.3 ],[ 0.3, 0.9 ]]), f, opt_method );
+	} else if ( opt_method == "SCG" ) {
+		optim_params = new jStat.optim( [par1,par2], f, opt_method );
 	}
-});
+	return optim_params;
 
+};
 
+// elicitate the probability distribution for an unknown variable given the quartiles.
+jStat.elicitate = function( inputs, opt_method, options) {
 
+	// Getting Initial Parameters for Normal Distribution
+	var c = new jStat.cost( inputs, 'normal' ),
+		par1 = c.median,
+		par2 = (( c.upper - c.lower ) / ( 2 * 0.6744898 )),
+		m = par1,
+		v = par2,
+		normal_params;
+	if ( opt_method == "Nelder-Mead" )
+		normal_params = new jStat.optim( jStat([[ par1, par2 ],[ 0.1, 0.3 ],[ 0.3, 0.9 ]]), c, opt_method, options );
+	else
+		normal_params = new jStat.optim([ par1, par2 ], c, opt_method, options );
+
+	// Getting Initial Parameters for Beta Distribution
+	c.distribution = 'beta';
+	var m1 = ( c.median - c.lb ) / ( c.ub - c.lb ),
+		v1 = v / jStat.sq(( c.upper - c.lower )),
+		beta_params;
+	c.lower -= c.lb / ( c.ub - c.lb );
+	c.median -= c.lb / ( c.ub - c.lb );
+	c.upper -= c.lb / ( c.ub - c.lb );
+	c.ub -= c.lb / ( c.ub - c.lb );
+	c.lb = 0;
+	par1 = Math.pow( m1, 3 ) / v1 * ( 1 / m1 - 1 ) - m1;
+	par2 = par1 / m1 - par1;
+	if ( opt_method =="Nelder-Mead" )
+		beta_params = new jStat.optim( jStat([[ par1, par2 ],[ 0.1, 0.2 ],[ 0.3, 0.1 ]]), c, opt_method, options );
+	else
+		beta_params = new jStat.optim([ par1, par2 ], c, opt_method, options );
+
+	// Getting Initial Parameters for Gamma Distribution
+	var gamma_params;
+	c.distribution = 'gamma';
+	par1 = jStat.sq( c.median ) / v;
+	par2 = v / m;
+	if ( opt_method=="Nelder-Mead" )
+		gamma_params = new jStat.optim( jStat([[ par1, par2 ],[ 0.1, 0.2 ],[ 0.3, 0.1 ]]), c, opt_method, options );
+	else
+		gamma_params = new jStat.optim([ par1, par2 ], c, opt_method, options );
+
+	// Getting Initial Parameters for LogNormal Distribution
+	var lnormal_params;
+	c.distribution = 'lognormal';
+	par1 = Math.log( c.median );
+	par2 = ( Math.log( c.upper ) - Math.log( c.lower )) / ( 2 * 0.6744898 );
+	if ( opt_method=="Nelder-Mead" )
+		lnormal_params = new jStat.optim( jStat([[ par1, par2 ],[ 0.1, 0.2 ],[ 0.3, 0.1 ]]), c, opt_method, options );
+	else
+		lnormal_params = new jStat.optim([ par1, par2 ], c, opt_method, options );
+
+	//Finding Best Fit Distribution
+	var min_dist = Math.min( normal_params.funcvalue, Math.min( beta_params.funcvalue, Math.min( gamma_params.funcvalue, lnormal_params.funcvalue )));
+	if ( min_dist == normal_params.funcvalue ) {
+		normal_params.dist = jStat.normal( normal_params.param[0], normal_params.param[1] );
+		normal_params.dname="normal";
+		return normal_params;
+	} else if ( min_dist == beta_params.funcvalue ) {
+		beta_params.dist = jStat.beta( beta_params.param[0], beta_params.param[1] );
+		beta_params.dname = "beta";
+		return beta_params;
+	} else if ( min_dist == gamma_params.funcvalue ) {
+		gamma_params.dist = jStat.gamma( gamma_params.param[0], gamma_params.param[1] );
+		gamma_params.dname = "gamma";
+		return gamma_params;
+	} else {
+		lnormal_params.dist = jStat.lognormal( lnormal_params.param[0], lnormal_params.param[1] );
+		lnormal_params.dname = "lognormal";
+		return lnormal_params;
+	}
+};
+
+// calls the optimization routines and return the optimized value.
 jStat.optim = function( params, func, opt_method, options ) {
 	if (!( this instanceof arguments.callee )) return new jStat.optim( params, func, opt_method, options);
 	var i = 0;
@@ -67,16 +97,18 @@ jStat.optim = function( params, func, opt_method, options ) {
 	this.options = options;
 	this.y = [];
 	this.psum = [];
+
 	if ( opt_method == "Nelder-Mead" ) {
 		for ( ; i < params.rows(); i++ ) {
 			this.y[i] = func.value( params[i] );
 		}
 	}
-	return this.calculate();
+	return this.optimize();
 };
 
 jStat.extend(jStat.optim, {
 
+	// sum of columns of the parameter matrix.
 	get_sum: function(obj) {
 		var j = 0,
 			mtps = obj.params.rows(),
@@ -108,9 +140,10 @@ jStat.extend(jStat.optim, {
 		return ytry_temp;
 	},
 
-	calculate: function( obj ) {
+	// implements the Nelder-Mead and Scaled Conjugate Gradient methods.
+	optimize: function( obj ) {
 		if ( obj.opt_method == "Nelder-Mead" ) {
-			var result = new jStat.return_obj(),
+			var result = new jStat.optim_return_obj(),
 				NMAX = 5000,
 				tiny = Math.exp( -10 ),
 				ftol = 0.0001,
@@ -132,8 +165,10 @@ jStat.extend(jStat.optim, {
 					} else if ( obj.y[i] > obj.y[inhi] && i != ihi )
 						inhi = i;
 				}
+
 				result.pointlog.push( obj.params[ihi] );
 				rtol = 2.0 * Math.abs( obj.y[ihi] - obj.y[ilo] ) / ( Math.abs( obj.y[ihi] ) + Math.abs( obj.y[ilo] ) + tiny );
+
 				if ( rtol < ftol ) {
 					temp = obj.y[0];
 					obj.y[0] = obj.y[ilo];
@@ -145,6 +180,7 @@ jStat.extend(jStat.optim, {
 					}
 					break;
 				}
+
 				if( nfunk >= NMAX)
 					return null;
 				nfunk += 2;
@@ -172,11 +208,13 @@ jStat.extend(jStat.optim, {
 				else
 					nfunk--;
 			}
+
 			result.param = obj.params[0];
 			result.funcvalue = obj.func.value( obj.params[0] );
 			return result;
+
 		} else if ( obj.opt_method == "SCG" || obj.opt_method == "scg" ) {
-			var result = new jStat.return_obj(),
+			var result = new jStat.optim_return_obj(),
 				gradf =obj.func.gradf,
 				sigma0 = Math.exp(-4),
 				fold = obj.func.value(obj.params),
@@ -263,7 +301,65 @@ jStat.extend(jStat.optim, {
 	}
 });
 
+// Return object for jStat.optim containing the optimized function value, point, and logs of
+// intermediate values.
+jStat.optim_return_obj = function() {
+	if (!( this instanceof arguments.callee )) return new jStat.optim_return_obj();
+	this.funclog = [];
+	this.pointlog = [];
+	this.funcvalue = this.paramnull = this.dist = this.dname = null;
+};
 
+// Cost function(Error function) for elicitating the distribution of unknown variable.
+jStat.cost = function( inputs, dist ) {
+	if (!( this instanceof arguments.callee )) return new jStat.cost( inputs , dist);
+	this.lb = inputs[0];
+	this.lower = inputs[1];
+	this.median = inputs[2];
+	this.upper = inputs[3];
+	this.ub = inputs[4];
+	this.distribution = dist;
+};
+
+jStat.extend( jStat.cost, {
+
+	// sum of squared errors
+	value : function ( params, obj ) {
+		var x = params[0],
+			y = params[1],
+			sum = 0;
+		if ( params.length === 2 ) {
+			var param1 = params[0],
+				param2 = params[1],
+				_dist = jStat.normal( param1, param2 );
+			if(obj.distribution == "gamma") {
+				_dist = jStat.gamma( param1, param2 );
+			} else if(obj.distribution == "normal") {
+				_dist = jStat.normal( param1, param2 );
+			} else if(obj.distribution == "beta") {
+				_dist = jStat.beta( param1, param2 );
+			} else if(obj.distribution == "lognormal") {
+				_dist = jStat.lognormal( param1, param2 );
+			}
+		}
+		sum += jStat.sq( _dist.cdf( obj.lb ) - 0 )
+			+ jStat.sq( _dist.cdf( obj.lower ) - 0.25 )
+			+ jStat.sq( _dist.cdf( obj.median ) - 0.50 )
+			+ jStat.sq( _dist.cdf( obj.upper ) - 0.75 )
+			+ jStat.sq( _dist.cdf( obj.ub ) - 1 );
+		return sum;
+	},
+
+	// gradient of cost function at a given point
+	gradf: function( params, obj ) {
+		var x = params[0],
+			y = params[1],
+			del = 0.00001,
+			fx = ( obj.value([x + del, y]) - obj.value([x - del, y])) / ( 2 * del ),
+			fy = ( obj.value([x, y + del]) - obj.value([x, y - del])) / ( 2 * del );
+		return [fx, fy];
+	}
+});
 
 // The general cost function for optimizing a function. It has methods value and gradf.
 jStat.fnc = function() {
@@ -279,6 +375,7 @@ jStat.extend( jStat.fnc, {
 		return jStat.sq( 1 - x ) + 100 * jStat.sq( y - jStat.sq( x ));
 	},
 
+	// gradient of the function at the given point
 	gradf : function( params,  obj ) {
 		var x = params[0],
 			y = params[1],
@@ -289,94 +386,7 @@ jStat.extend( jStat.fnc, {
 	}
 });
 
-
-
-jStat.optimizer = function( inputs, opt_method ) {
-	var par1 = inputs[0],
-		par2 = inputs[1],
-		f = jStat.fnc(),
-		optim_params;
-	if ( opt_method == "Nelder-Mead" ) {
-		optim_params = new jStat.optim( jStat([[ par1, par2 ],[ 0.1, 0.3 ],[ 0.3, 0.9 ]]), f, opt_method );
-	} else if ( opt_method == "SCG" ) {
-		optim_params = new jStat.optim( [par1,par2], f, opt_method );
-	}
-	return optim_params;
-
-};
-
-
-
-jStat.elicitate = function( inputs, opt_method, options) {
-
-	// Getting Parameters for Normal Distribution
-	var c = new jStat.cost( inputs, 'normal' ),
-		par1 = c.median,
-		par2 = (( c.upper - c.lower ) / ( 2 * 0.6744898 )),
-		m = par1,
-		v = par2,
-		normal_params;
-	if ( opt_method == "Nelder-Mead" )
-		normal_params = new jStat.optim( jStat([[ par1, par2 ],[ 0.1, 0.3 ],[ 0.3, 0.9 ]]), c, opt_method, options );
-	else
-		normal_params = new jStat.optim([ par1, par2 ], c, opt_method, options );
-	// Getting Parameters for Beta Distribution
-	c.distribution = 'beta';
-	var m1 = ( c.median - c.lb ) / ( c.ub - c.lb ),
-		v1 = v / jStat.sq(( c.upper - c.lower )),
-		beta_params;
-	c.lower -= c.lb / ( c.ub - c.lb );
-	c.median -= c.lb / ( c.ub - c.lb );
-	c.upper -= c.lb / ( c.ub - c.lb );
-	c.ub -= c.lb / ( c.ub - c.lb );
-	c.lb = 0;
-	par1 = Math.pow( m1, 3 ) / v1 * ( 1 / m1 - 1 ) - m1;
-	par2 = par1 / m1 - par1;
-	if ( opt_method =="Nelder-Mead" )
-		beta_params = new jStat.optim( jStat([[ par1, par2 ],[ 0.1, 0.2 ],[ 0.3, 0.1 ]]), c, opt_method, options );
-	else
-		beta_params = new jStat.optim([ par1, par2 ], c, opt_method, options );
-	// Getting Parameters for Gamma Distribution
-	var gamma_params;
-	c.distribution = 'gamma';
-	par1 = jStat.sq( c.median ) / v;
-	par2 = v / m;
-	if ( opt_method=="Nelder-Mead" )
-		gamma_params = new jStat.optim( jStat([[ par1, par2 ],[ 0.1, 0.2 ],[ 0.3, 0.1 ]]), c, opt_method, options );
-	else
-		gamma_params = new jStat.optim([ par1, par2 ], c, opt_method, options );
-	// Getting Parameters for LogNormal Distribution
-	var lnormal_params;
-	c.distribution = 'lognormal';
-	par1 = Math.log( c.median );
-	par2 = ( Math.log( c.upper ) - Math.log( c.lower )) / ( 2 * 0.6744898 );
-	if ( opt_method=="Nelder-Mead" )
-		lnormal_params = new jStat.optim( jStat([[ par1, par2 ],[ 0.1, 0.2 ],[ 0.3, 0.1 ]]), c, opt_method, options );
-	else
-		lnormal_params = new jStat.optim([ par1, par2 ], c, opt_method, options );
-	//Finding Best Fit
-	var min_dist = Math.min( normal_params.funcvalue, Math.min( beta_params.funcvalue, Math.min( gamma_params.funcvalue, lnormal_params.funcvalue )));
-	if ( min_dist == normal_params.funcvalue ) {
-		normal_params.dist = jStat.normal( normal_params.param[0], normal_params.param[1] );
-		normal_params.dname="normal";
-		return normal_params;
-	} else if ( min_dist == beta_params.funcvalue ) {
-		beta_params.dist = jStat.beta( beta_params.param[0], beta_params.param[1] );
-		beta_params.dname = "beta";
-		return beta_params;
-	} else if ( min_dist == gamma_params.funcvalue ) {
-		gamma_params.dist = jStat.gamma( gamma_params.param[0], gamma_params.param[1] );
-		gamma_params.dname = "gamma";
-		return gamma_params;
-	} else {
-		lnormal_params.dist = jStat.lognormal( lnormal_params.param[0], lnormal_params.param[1] );
-		lnormal_params.dname = "lognormal";
-		return lnormal_params;
-	}
-};
-
-
-
+// extending jStat.fnc with functions with one parameter.
 (function( vals ) {
 	for ( var i = 0; i < vals.length; i++ ) (function( item ) {
 		jStat.fnc.prototype[ item ] = function( x ) {
@@ -385,14 +395,16 @@ jStat.elicitate = function( inputs, opt_method, options) {
 	})( vals[ i ]);
 })( 'value gradf'.split( ' ' ));
 
+// extendig jStat.cost with functions with one parameter.
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.cost.prototype[ item ] = function( x ) {
-			return jStat.cost[ item ]( x,this);
+			return jStat.cost[ item ]( x, this);
 		};
 	})( vals[ item ]);
 })( 'value gradf'.split( ' ' ));
 
+// extending jStat.optim with functions with two parameters.
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.optim.prototype[ item ] = function( x , y) {
@@ -401,12 +413,13 @@ jStat.elicitate = function( inputs, opt_method, options) {
 	})( vals[ item ]);
 })( 'amotry'.split( ' ' ));
 
+// extending jStat.optim with functions with no parameter.
 (function( vals ) {
 	for ( var item in vals ) (function( item ) {
 		jStat.optim.prototype[ item ] = function() {
 			return jStat.optim[ item ]( this );
 		};
 	})( vals[ item ]);
-})( 'get_sum calculate'.split( ' ' ));
+})( 'get_sum optimize'.split( ' ' ));
 
 
