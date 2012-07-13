@@ -56,8 +56,9 @@ Execute all tests by running `make test`.
 Or if you with to run a specific test, `cd` to `test/<subdir>` and run `node <some_test>-test.js`.
 
 
-Join the Mailing List
----------------------
+Join the Community
+------------------
 
 We always like discussion of how to improve jStat.
 Join us at our [mailing list](http://groups.google.com/group/jstat-discuss/) and let us know what you'd like to see.
+Also come ask questions in the #jstat channel on irc.freenode.net.
