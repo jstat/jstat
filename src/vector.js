@@ -246,12 +246,40 @@ jStat.extend({
 				tmpthis = fullbool === true ? this : this.transpose();
 				for ( ; i < tmpthis.length; i++ )
 					arr[i] = jStat[ passfunc ]( tmpthis[i] );
+				
 				return fullbool === true ? jStat[ passfunc ]( arr ) : arr;
 			}
 			// pass fullbool if only vector, not a matrix. for variance and stdev
 			return jStat[ passfunc ]( this[0], fullbool );
 		};
 	})( funcs[i] );
-})( 'sum sumsqrd sumsqerr product min max mean meansqerr geomean median cumsum diff mode range variance stdev meandev meddev coeffvar quartiles'.split( ' ' ));
+})( 'sum sumsqrd sumsqerr product min max mean meansqerr geomean median diff mode range variance stdev meandev meddev coeffvar quartiles'.split( ' ' ));
+
+// extend jStat.fn with method for calculating cumulative sums, as it does not run again in case of true
+// if a matrix is passed, automatically assume operation should be done on the columns
+jStat.fn.cumsum = function( fullbool, func ) {
+	var arr = [],
+		i = 0,
+		tmpthis = this;
+	// assignment reassignation depending on how parameters were passed in
+	if ( isFunction( fullbool )) {
+		func = fullbool;
+		fullbool = false;
+	}
+	// check if a callback was passed with the function
+	if ( func ) {
+		setTimeout( function() {
+			func.call( tmpthis, jStat.fn.cumsum.call( tmpthis, fullbool ));
+		}, 15 );
+		return this;
+	}
+	// check if matrix and run calculations
+	if ( this.length > 1 ) {
+		tmpthis = fullbool === true ? this : this.transpose();
+		for ( ; i < tmpthis.length; i++ )
+			arr[i] = jStat.cumsum( tmpthis[i] );
+		return arr;
+	}
+};
 
 }( this.jStat, Math ));
