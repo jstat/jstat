@@ -280,6 +280,7 @@ jStat.fn.cumsum = function( fullbool, func ) {
 			arr[i] = jStat.cumsum( tmpthis[i] );
 		return arr;
 	}
+	return jStat.cumsum( this[0], fullbool );
 };
 
 }( this.jStat, Math ));
