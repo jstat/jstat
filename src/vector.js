@@ -93,12 +93,6 @@ jStat.extend({
 
 	// cumulative sum of an array
 	cumsum : function( arr ) {
-		// if arr is matrix, return as it is the desired cumulative matrix
-		if ( jStat.utils.isArray(arr[0]) )
-		{
-			return arr;
-		}
-			
 		var len = arr.length,
 			sums = new Array( len ),
 			i = 1;
@@ -258,6 +252,34 @@ jStat.extend({
 			return jStat[ passfunc ]( this[0], fullbool );
 		};
 	})( funcs[i] );
-})( 'sum sumsqrd sumsqerr product min max mean meansqerr geomean median cumsum diff mode range variance stdev meandev meddev coeffvar quartiles'.split( ' ' ));
+})( 'sum sumsqrd sumsqerr product min max mean meansqerr geomean median diff mode range variance stdev meandev meddev coeffvar quartiles'.split( ' ' ));
+
+// extend jStat.fn with method for calculating cumulative sums, as it does not run again in case of true
+// if a matrix is passed, automatically assume operation should be done on the columns
+jStat.fn.cumsum = function( fullbool, func ) {
+	var arr = [],
+		i = 0,
+		tmpthis = this;
+	// assignment reassignation depending on how parameters were passed in
+	if ( isFunction( fullbool )) {
+		func = fullbool;
+		fullbool = false;
+	}
+	// check if a callback was passed with the function
+	if ( func ) {
+		setTimeout( function() {
+			func.call( tmpthis, jStat.fn.cumsum.call( tmpthis, fullbool ));
+		}, 15 );
+		return this;
+	}
+	// check if matrix and run calculations
+	if ( this.length > 1 ) {
+		tmpthis = fullbool === true ? this : this.transpose();
+		for ( ; i < tmpthis.length; i++ )
+			arr[i] = jStat.cumsum( tmpthis[i] );
+		return arr;
+	}
+	return jStat.cumsum( this[0], fullbool );
+};
 
 }( this.jStat, Math ));

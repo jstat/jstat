@@ -32,21 +32,7 @@ var slice = Array.prototype.slice,
 
 	// converts the jStat matrix to vector
 	toVector = function( arr ) {
-		var arrLen = arr.length,
-			i = 0,
-			j = 0,
-			vector = [];
-
-		for ( ; i < arrLen; i++ ) {
-			for ( j = 0; j < arr[i].length; j++ ) {
-				vector.push( arr[i][j] );
-			}
-				
-			if ( ! jStat.utils.isArray( arr[i] )) {
-				vector.push(arr[i]);
-			}
-		}
-		return vector;
+		return [].concat.apply( [], arr );
 	};
 
 // global function
