@@ -28,6 +28,11 @@ var slice = Array.prototype.slice,
 	// test if number and not NaN
 	isNumber = function( arg ) {
 		return toString.call( arg ) === '[object Number]' && !isNaN( arg );
+	},
+
+	// converts the jStat matrix to vector
+	toVector = function( arr ) {
+		return [].concat.apply( [], arr );
 	};
 
 // global function
@@ -99,7 +104,8 @@ jStat.utils = {
 	calcRdx : calcRdx,
 	isArray : isArray,
 	isFunction : isFunction,
-	isNumber : isNumber
+	isNumber : isNumber,
+	toVector : toVector
 };
 
 // create method for easy extension
