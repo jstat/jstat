@@ -246,8 +246,7 @@ jStat.extend({
 				tmpthis = fullbool === true ? this : this.transpose();
 				for ( ; i < tmpthis.length; i++ )
 					arr[i] = jStat[ passfunc ]( tmpthis[i] );
-				
-				return fullbool === true ? jStat[ passfunc ]( arr ) : arr;
+				return fullbool === true ? jStat[ passfunc ]( jStat.utils.toVector(arr) ) : arr;
 			}
 			// pass fullbool if only vector, not a matrix. for variance and stdev
 			return jStat[ passfunc ]( this[0], fullbool );
