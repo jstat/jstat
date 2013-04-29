@@ -1,1 +1,1 @@
-jStat = require( '../dist/jstat.js' ).jStat;
+jStat = require('../dist/jstat.js').jStat;

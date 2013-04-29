@@ -1,17 +1,17 @@
-var vows = require( 'vows' ),
-	assert = require('assert' )
-	suite = vows.describe( 'jStat' );
+var vows = require('vows'),
+	assert = require('assert')
+	suite = vows.describe('jStat');
 
-require( '../env.js' );
+require('../env.js');
 
 suite.addBatch({
 	'' : {
 		'topic' : function() {
 			return jStat;
 		},
-		'' : function( jStat ) {
+		'' : function(jStat) {
 		}
 	}
 });
 
-suite.export( module );
+suite.export(module);
