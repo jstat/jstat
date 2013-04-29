@@ -1,8 +1,3 @@
-/**
- * jStat - JavaScript Statistical Library
- * Copyright (c) 2011
- * This document is licensed as free software under the terms of the
- * MIT License: http://www.opensource.org/licenses/mit-license.php */
 this.j$ = this.jStat = (function( Math, undefined ) {
 
 	// for quick reference
