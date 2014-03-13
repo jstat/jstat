@@ -53,7 +53,7 @@ Running Tests
 
 Execute all tests by running `make test`.
 
-Or if you with to run a specific test, `cd` to `test/<subdir>` and run `node <some_test>-test.js`.
+Or if you wish to run a specific test, `cd` to `test/<subdir>` and run `node <some_test>-test.js`.
 
 
 Join the Community
