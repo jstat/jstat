@@ -1,7 +1,3 @@
-*NOTE:* The code in this repository does not currently match that found on www.jstat.org. We are in the 
-process of merging two similar projects and will update the website once the merge is complete. 
-
-
 [jStat](http://www.jstat.org/) - JavaScript Statistical Library
 ===============================================================
 
