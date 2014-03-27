@@ -6,7 +6,7 @@ JS_TESTER = $(NODE_PATH)/vows/bin/vows
 DOC_DIR = doc
 BUILD_DIR = build
 DOC_LIST = `ls $(DOC_DIR)/md/`
-JS_ENGINE ?= `which node nodejs`
+JS_ENGINE ?= $(shell which node nodejs | grep -Po -m 1 "(.+?)$$")
 
 all: clean core doc
 
@@ -22,7 +22,7 @@ jstat.js: \
 	src/special.js \
 	src/distribution.js \
 	src/linearalgebra.js \
-	src/test.js 
+	src/test.js
 	@echo 'Building jStat'
 	@mkdir -p $(DIST_DIR)
 	@cat $^ > $(DIST_DIR)/$@
