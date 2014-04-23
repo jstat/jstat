@@ -441,7 +441,8 @@ And the two can be combined.
 **variance( array[,flag])**
 
 Return the variance of a vector.
-Flag indicates whether to compute population or sample.
+By default, the sample variance is calculated.
+Passing true as the flag indicates computes the population variance instead.
 
     jStat.variance([1,2,3,4]) === 1.25
     jStat.variance([1,2,3,4],true) === 1.66666...
@@ -477,7 +478,11 @@ And the two can be combined.
 **stdev( array[,flag])**
 
 Return the standard deviation of a vector.
-Flag indicates whether to compute population or sample.
+By defaut, the sample standard deviation is returned.
+Passing true for the flag parameter returns the population standard deviation.
+
+The 'sample' standard deviation is also called the 'corrected standard deviation', and is an unbiased estimator of the population standard deviation.
+The population standard deviation is also the 'uncorrected standard deviation', and is a biased but minimum-mean-squared-error estimator.
 
     jStat.stdev([1,2,3,4]) === 1.118...
     jStat.stdev([1,2,3,4],true) === 1.290...
@@ -641,7 +646,7 @@ Return the covariance of two vectors.
 
 **corrcoeff( array, array )**
 
-Return the correlation coefficient of two vectors.
+Return the population correlation coefficient of two vectors (Pearson's Rho).
 
     var seq = jStat.seq( 0, 10, 11 );
     jStat.corrcoeff( seq, seq ) === 1;

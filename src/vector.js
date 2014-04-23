@@ -215,7 +215,7 @@ jStat.extend({
 		return jStat.sum(sq_dev) / (arr1Len - 1);
 	},
 
-	// population correlation coefficient
+	// (pearson's) population correlation coefficient, rho
 	corrcoeff : function(arr1, arr2) {
 		return jStat.covariance(arr1, arr2) / jStat.stdev(arr1, 1) / jStat.stdev(arr2, 1);
 	}
