@@ -64,8 +64,19 @@
 
 // extend beta function with static methods
 jStat.extend(jStat.beta, {
+
 	pdf : function(x, alpha, beta) {
-		return (x > 1 || x < 0) ? 0 : (Math.pow(x, alpha - 1) * Math.pow(1 - x, beta - 1)) / jStat.betafn(alpha, beta);
+		// PDF is zero outside the support
+		if (x > 1 || x < 0) {
+			return 0;
+		};
+		// PDF is one for the uniform case
+		if (alpha == 1 && beta == 1) {
+			return 1;
+		};
+		return Math.exp((alpha - 1) * Math.log(x)
+						+ (beta - 1) * Math.log(1-x)
+						- jStat.betaln(alpha, beta));
 	},
 
 	cdf : function(x, alpha, beta) {
