@@ -202,7 +202,8 @@ jStat.extend({
 		];
 	},
 
-	// arbitrary quantiles of an array
+	// Arbitary quantiles of an array. Direct port of the scipy.stats
+	// implementation by Pierre GF Gerard-Marchant.
 	quantiles : function(arr, quantilesArray, alphap, betap) {
 
 	    if (typeof(alphap)==='undefined') {
@@ -212,20 +213,24 @@ jStat.extend({
 		var betap = 3/8.0;
 	    };
 
-	    var sortedQuantiles = quantilesArray.slice().sort(ascNum);
 	    var n = arr.length;
 	    var sortedArray = arr.slice().sort(ascNum);
 
 	    var quantileValues = [quantilesArray.length];
+
+	    var clip = function(arg, min, max) {
+		return Math.max(min, Math.min(arg, max));
+	    };
 	    
 	    for (var i=0; i < quantilesArray.length; i++) {
-		var quantile = quantilesArray[i];
+		var p = quantilesArray[i];
 
-		var m = alphap + quantile*(1.0-alphap-betap);
-		var j = Math.max(1, Math.min(n-1, Math.floor(n*quantile + m)));
-		var g = n*quantile + m - j;
-		
-		quantileValues[i] = (1-g)*sortedArray[j-1] + g*sortedArray[j];
+		var m = alphap + p*(1.0-alphap-betap);
+		var aleph = n*p + m;
+		var k = Math.floor(clip(aleph, 1, n-1));
+		var gamma = clip(aleph - k, 0, 1);
+
+		quantileValues[i] = (1.0 - gamma)*sortedArray[k-1] + gamma*sortedArray[k];
 	    };
 	    return quantileValues;
 	},
