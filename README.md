@@ -52,6 +52,13 @@ Execute all tests by running `make test`.
 Or if you wish to run a specific test, `cd` to `test/<subdir>` and run `node <some_test>-test.js`.
 
 
+Get the Code
+------------
+
+Both the minified and unminified source are located in the `dist/` directory. For those who don't want to build
+it themselves.
+
+
 Join the Community
 ------------------
 
