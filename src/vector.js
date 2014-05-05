@@ -202,6 +202,30 @@ jStat.extend({
 		];
 	},
 
+	// arbitrary quantiles of an array
+	quantiles : function(arr, quantilesArray, alphap, betap) {
+		var sortedQuantiles = quantilesArray.slice().sort(ascNum);
+		var sortedArray = arr.slice().sort(ascNum);
+		var quantileVals = [quantilesArray.length];
+		var n = arr.length;
+		var quantile, g, i, j, m;
+
+		if (typeof alphap  === 'undefined')
+			alphap = 3 / 8;
+		if (typeof betap === 'undefined')
+			betap = 3 / 8;
+
+		for (i = 0; i < quantilesArray.length; i++) {
+			quantile = quantilesArray[i];
+			m = alphap + quantile * (1 - alphap - betap);
+			j = Math.max(1, Math.min(n - 1, Math.floor(n * quantile + m)));
+			g = n * quantile + m - j;
+			quantileVals[i] = (1 - g) * sortedArray[j - 1] + g * sortedArray[j];
+		}
+
+		return quantileVals;
+	},
+
 	// covariance of two arrays
 	covariance : function(arr1, arr2) {
 		var u = jStat.mean(arr1),
@@ -253,6 +277,54 @@ jStat.extend({
 		};
 	})(funcs[i]);
 })('sum sumsqrd sumsqerr product min max mean meansqerr geomean median diff mode range variance stdev meandev meddev coeffvar quartiles'.split(' '));
+
+// Extend jStat.fn with functions that take arguments. Operations on matrices are done on columns.
+(function(funcs) {
+	for (var i = 0; i < funcs.length; i++) (function(passfunc) {
+		jStat.fn[ passfunc ] = function() {
+
+			var arr = [], i = 0, tmpthis = this;
+			var args = Array.prototype.slice.call(arguments);
+
+			// If the last argument is a function, we assume
+			// it's a callback; we strip the callback out
+			// and call the function again.
+			if (isFunction(args[args.length - 1])) {
+				var callbackFunction = args[args.length - 1];
+				var argsToPass = args.slice(0, args.length - 1);
+
+				setTimeout(function() {
+					callbackFunction
+					.call(tmpthis,
+						  jStat
+						  .fn[passfunc]
+						  .apply(tmpthis,
+								 argsToPass));
+				}, 15);
+				return this;
+			// Otherwise we curry the function args
+			// and call normally.
+			} else {
+				var callbackFunction = undefined;
+				var curriedFunction = function curriedFunction(vector) {
+					return jStat[passfunc].apply(tmpthis, [vector].concat(args));
+				}
+			};
+
+			// If this is a matrix, run column-by-column.
+			if (this.length > 1) {
+				tmpthis = tmpthis.transpose();
+				for (; i < tmpthis.length; i++)
+				arr[i] = curriedFunction(tmpthis[i]);
+				return arr;
+			}
+
+			// Otherwise run on the vector.
+			return curriedFunction(this[0]);
+		};
+	})(funcs[i]);
+})('quantiles'.split(' '));
+
 
 // extend jStat.fn with method for calculating cumulative sums, as it does not run again in case of true
 // if a matrix is passed, automatically assume operation should be done on the columns
