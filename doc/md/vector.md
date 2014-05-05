@@ -633,6 +633,20 @@ If callback is passed then will pass result as first argument.
         // result === [25,50,75]
     });
 
+### quantiles()
+
+**quantiles( dataArray, quantilesArray, [alphap[, betap]] )**
+
+Like quartiles, but calculate and return arbitrary quantiles of a vector
+or matrix (column-by-column).
+
+    jStat.quantiles([1, 2, 3, 4, 5, 6],
+                    [0.25, 0.5, 0.75]) === [1.9375, 3.5, 5.0625]
+
+Optional parameters alphap and betap govern the quantile estimation method.
+For more details see the Wikipedia page on quantiles or scipy.stats.mstats.mquantiles
+documentation.
+
 ### covariance()
 
 **covariance( array, array )**

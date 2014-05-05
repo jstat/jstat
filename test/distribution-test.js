@@ -2,7 +2,7 @@ var vows = require('vows'),
 assert = require('assert');
 suite = vows.describe('jStat.distribution');
 
-require('./env.js')
+require('./env.js');
 
 suite.addBatch({
 	'beta pdf': {
@@ -10,24 +10,6 @@ suite.addBatch({
 			return jStat;
 		},
 		'check pdf calculation' : function(jStat) {
-			var assertAlmostEqual = function (x, y, tol) {
-				if (x == y) {
-					// This handles positive
-					// and negative infinity
-					return true;
-				};
-				var diff = Math.abs(x-y);
-
-				if (isNaN(diff)) {
-					assert(false, "Number difference is NaN.");
-				}
-
-				if (diff > tol) {
-					assert(false, "Number difference greater than tolerance");
-				};
-
-				return true;
-			};
 
 			// Non-log form of the Beta pdf
 			var pdf = function (x, alpha, beta) {
@@ -37,11 +19,11 @@ suite.addBatch({
 			};
 
 			var tol = 0.0000001;
-
 			var args = [0, 0.1, 0.3, 0.5, 0.7, 0.9, 1];
+			var arg;
 
 			for (var i=0; i < args.length; i++) {
-				var arg = args[i];
+				arg = args[i];
 				assertAlmostEqual(jStat.beta.pdf(arg, 0.1, 0.1),
 									pdf(arg, 0.1, 0.1), tol);
 

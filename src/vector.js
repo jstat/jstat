@@ -6,6 +6,10 @@ var isFunction = jStat.utils.isFunction,
 	// ascending functions for sort
 	ascNum = function(a, b) { return a - b; };
 
+function clip(arg, min, max) {
+	return Math.max(min, Math.min(arg, max));
+}
+
 jStat.extend({
 
 	// sum of an array
@@ -202,13 +206,13 @@ jStat.extend({
 		];
 	},
 
-	// arbitrary quantiles of an array
+	// Arbitary quantiles of an array. Direct port of the scipy.stats
+	// implementation by Pierre GF Gerard-Marchant.
 	quantiles : function(arr, quantilesArray, alphap, betap) {
-		var sortedQuantiles = quantilesArray.slice().sort(ascNum);
 		var sortedArray = arr.slice().sort(ascNum);
 		var quantileVals = [quantilesArray.length];
 		var n = arr.length;
-		var quantile, g, i, j, m;
+		var i, p, m, aleph, k, gamma;
 
 		if (typeof alphap  === 'undefined')
 			alphap = 3 / 8;
@@ -216,11 +220,12 @@ jStat.extend({
 			betap = 3 / 8;
 
 		for (i = 0; i < quantilesArray.length; i++) {
-			quantile = quantilesArray[i];
-			m = alphap + quantile * (1 - alphap - betap);
-			j = Math.max(1, Math.min(n - 1, Math.floor(n * quantile + m)));
-			g = n * quantile + m - j;
-			quantileVals[i] = (1 - g) * sortedArray[j - 1] + g * sortedArray[j];
+			p = quantilesArray[i];
+			m = alphap + p * (1 - alphap - betap);
+			aleph = n * p + m;
+			k = Math.floor(clip(aleph, 1, n - 1));
+			gamma = clip(aleph - k, 0, 1);
+			quantileVals[i] = (1 - gamma) * sortedArray[k - 1] + gamma * sortedArray[k];
 		}
 
 		return quantileVals;
