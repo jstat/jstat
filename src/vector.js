@@ -231,7 +231,7 @@ jStat.quantiles = function quantiles(arr, quantilesArray, alphap, betap) {
   var n = arr.length;
   var i, p, m, aleph, k, gamma;
 
-  if (typeof alphap  === 'undefined')
+  if (typeof alphap === 'undefined')
     alphap = 3 / 8;
   if (typeof betap === 'undefined')
     betap = 3 / 8;
@@ -248,6 +248,27 @@ jStat.quantiles = function quantiles(arr, quantilesArray, alphap, betap) {
   return quantileVals;
 };
 
+// The percentile rank of score in a given array. Returns the percentage
+// of all values in the input array that are less than (kind='strict') or
+// less or equal than (kind='weak') score.
+jStat.percentileOfScore = function percentileOfScore(arr, score, kind) {
+  var counter = 0;
+  var len = arr.length;
+  var value;
+
+  if (typeof kind === 'undefined')
+    kind = 'weak';
+
+  for (i = 0; i < len; i++) {
+    value = arr[i];
+    if ((kind === 'strict' && value < score) ||
+        (kind === 'weak' && value <= score)) {
+      counter++;
+    }
+  }
+
+  return counter / len;
+};
 
 // covariance of two arrays
 jStat.covariance = function covariance(arr1, arr2) {
@@ -390,6 +411,6 @@ jProto.cumsum = function(fullbool, func) {
       return curriedFunction(this[0]);
     };
   })(funcs[i]);
-})('quantiles'.split(' '));
+})('quantiles percentileOfScore'.split(' '));
 
 }(this.jStat, Math));

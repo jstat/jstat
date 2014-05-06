@@ -647,6 +647,16 @@ Optional parameters alphap and betap govern the quantile estimation method.
 For more details see the Wikipedia page on quantiles or scipy.stats.mstats.mquantiles
 documentation.
 
+### percentileOfScore()
+
+**percentileOfScore( dataArray, score, [kind] )**
+
+The percentile rank of score in a given array. Returns the percentage
+of all values in the input array that are less than (kind='strict') or
+less or equal than (kind='weak') score.
+
+     jStat.percentileOfScore([1, 2, 3, 4, 5, 6], 3), 0.5, kind='weak') === 0.5;
+
 ### covariance()
 
 **covariance( array, array )**
