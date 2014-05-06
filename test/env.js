@@ -1,4 +1,5 @@
 jStat = require('../dist/jstat.js').jStat;
+var assert = require('assert');
 
 // Bad global variable hack to make this accessible
 assertAlmostEqual = function assertAlmostEqual(x, y, tol) {
