@@ -59,6 +59,19 @@ Both the minified and unminified source are located in the `dist/` directory. Fo
 it themselves.
 
 
+Contribute
+----------
+
+jStat is now going to follow most of the v8
+[JavaScript](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
+guidelines. There will be plenty of source that uses the old style, but we're
+going to work away from that.
+
+Also, we'll be going through and reimplementing a good portion of the code to
+run faster. Hopefully it won't take too long to get the project on one basic
+standard.
+
+
 Join the Community
 ------------------
 
