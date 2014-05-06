@@ -29,17 +29,18 @@ suite.addBatch({
       assert.isTrue(jStat([]) instanceof jStat);
 
       assert.equal(jStat.prototype.length, 0);
-      assert.equal(jStat([ 1, 2, 3 ]).length, 1);
-      assert.equal(jStat([ 1, 2, 3 ])[0].length, 3);
+      assert.equal(jStat([1, 2, 3]).length, 1);
+      assert.equal(jStat([1, 2, 3])[0].length, 3);
     },
 
     'matrix/vector generation' : function(jStat) {
-      assert.deepEqual(jStat([1,2,3]).toArray(), [1,2,3]);
-      assert.deepEqual(jStat([[1,2],[3,4]]).toArray(), [[1,2],[3,4]]);
-      assert.deepEqual(jStat(jStat([[1,2],[3,4]])).toArray(), [[1,2],[3,4]]);
-      assert.deepEqual(jStat([[1,2],[3,4]], function(x) {
+      assert.deepEqual(jStat([1, 2, 3]).toArray(), [1, 2, 3]);
+      assert.deepEqual(jStat([[1, 2], [3, 4]]).toArray(), [[1, 2], [3, 4]]);
+      assert.deepEqual(jStat(jStat([[1, 2], [3, 4]])).toArray(),
+                       [[1, 2], [3, 4]]);
+      assert.deepEqual(jStat([[1, 2], [3, 4]], function(x) {
         return x * 2;
-      }).toArray(), [[2,4],[6,8]]);
+      }).toArray(), [[2, 4], [6, 8]]);
     },
 
     'sequence generation' : function(jStat) {
@@ -47,7 +48,7 @@ suite.addBatch({
                        [0, 0.1, 0.2, 0.3, 0.4, 0.5]);
       assert.deepEqual(jStat(0, 5, 6, function(x) {
         return x * 2;
-      }).toArray(), [ 0, 2, 4, 6, 8, 10 ]);
+      }).toArray(), [0, 2, 4, 6, 8, 10]);
     }
   }
 });
