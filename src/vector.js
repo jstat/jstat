@@ -250,19 +250,19 @@ jStat.quantiles = function quantiles(arr, quantilesArray, alphap, betap) {
 
 // The percentile rank of score in a given array. Returns the percentage
 // of all values in the input array that are less than (kind='strict') or
-// less or equal than (kind='weak') score.
+// less or equal than (kind='weak') score. Default is weak.
 jStat.percentileOfScore = function percentileOfScore(arr, score, kind) {
   var counter = 0;
   var len = arr.length;
+  var strict = false;
   var value;
 
-  if (typeof kind === 'undefined')
-    kind = 'weak';
+  if (kind === 'strict') strict = true;
 
   for (i = 0; i < len; i++) {
     value = arr[i];
-    if ((kind === 'strict' && value < score) ||
-        (kind === 'weak' && value <= score)) {
+    if ((strict && value < score) ||
+        (!strict && value <= score)) {
       counter++;
     }
   }

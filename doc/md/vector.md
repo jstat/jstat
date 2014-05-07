@@ -653,7 +653,7 @@ documentation.
 
 The percentile rank of score in a given array. Returns the percentage
 of all values in the input array that are less than (kind='strict') or
-less or equal than (kind='weak') score.
+less or equal than (kind='weak') score. Default is weak.
 
      jStat.percentileOfScore([1, 2, 3, 4, 5, 6], 3), 0.5, kind='weak') === 0.5;
 
