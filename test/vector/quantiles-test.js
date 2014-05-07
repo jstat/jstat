@@ -36,7 +36,7 @@ suite.addBatch({
         var i;
 
         for (i = 0; i < quantiles.length; i++) {
-          assertAlmostEqual(results[i], expected[i], tol);
+          assert.epsilon(tol, results[i], expected[i]);
         }
     },
     'quantiles gamma dist': function(jStat) {
@@ -52,7 +52,7 @@ suite.addBatch({
                         6.47140404, 6.75392592, 7.91516455];
 
         for (var i=0; i < quantiles.length; i++)
-          assertAlmostEqual(results[i], expected[i], tol);
+          assert.epsilon(tol, results[i], expected[i]);
     }
   },
   '#quantiles vector': {

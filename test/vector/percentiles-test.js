@@ -13,9 +13,9 @@ suite.addBatch({
     },
     'return basic percentile of score': function(jStat) {
       assert.deepEqual(jStat.percentileOfScore([1, 2, 3, 4, 5, 6], 3), 0.5);
-      assertAlmostEqual(jStat.percentileOfScore([1, 2, 3, 4, 5, 6], 5),
-                        0.83333333333333343,
-                        tol);
+      assert.epsilon(tol,
+                     jStat.percentileOfScore([1, 2, 3, 4, 5, 6], 5),
+                     0.83333333333333343);
     },
     'return basic percentile of score: left extreme': function(jStat) {
       assert.deepEqual(jStat.percentileOfScore([1, 2, 3, 4, 5, 6], -1), 0.0);
@@ -24,10 +24,10 @@ suite.addBatch({
       assert.deepEqual(jStat.percentileOfScore([1, 2, 3, 4, 5, 6], 6), 1.0);
     },
     'return basic percentile of score (strict)': function(jStat) {
-      assertAlmostEqual(
+      assert.epsilon(
+          tol,
           jStat.percentileOfScore([1, 2, 3, 4, 5, 6], 5, 'strict'),
-          0.66666666666666657,
-          tol);
+          0.66666666666666657);
     },
     'percentile of score from instance': function(jStat) {
       assert.deepEqual(jStat([1, 2, 3, 4, 5, 6]).percentileOfScore(3), 0.5);
