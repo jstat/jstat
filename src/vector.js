@@ -255,7 +255,7 @@ jStat.percentileOfScore = function percentileOfScore(arr, score, kind) {
   var counter = 0;
   var len = arr.length;
   var strict = false;
-  var value;
+  var value, i;
 
   if (kind === 'strict') strict = true;
 
