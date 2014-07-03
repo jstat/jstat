@@ -1348,7 +1348,7 @@ jStat.randg = function randg(shape, n, m) {
           var a = this._a;
           var b = this._b;
           var c = this._c;
-          if (!x)
+          if (!x && x !== 0)
             x = this.data;
           if (typeof x !== 'number') {
             return jStat.fn.map.call(x, function(x) {
