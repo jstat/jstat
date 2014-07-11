@@ -468,6 +468,7 @@ Returns the value of x in the cdf of the Negative Binomial distribution with par
 #### jStat.hypgeom.pdf( k, N, m, n )
 
 Returns the value of k in the pdf of the Hypergeometric distribution with parameters N (the population size), m (the success rate), and n (the number of draws).
+
 #### jStat.hypgeom.cdf( x, N, m, n )
 
 Returns the value of k in the pdf of the Hypergeometric distribution with parameters N (the population size), m (the success rate), and n (the number of draws).
