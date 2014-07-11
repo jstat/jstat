@@ -66,6 +66,8 @@ suite.addBatch({
                     2290
                   ]; 
       // What was the probability of exactly this many 1s?
+      // Obtained from the calculator at 
+      // <http://www.geneprof.org/GeneProf/tools/hypergeometric.jsp>
       var answers = [
                       0.000017532028090435493,
                       0.0007404996809672229
