@@ -136,9 +136,6 @@ suite.addBatch({
         var calculated = jStat.hypgeom.pdf(successes[i], population[i], 
                                            available[i], draws[i]);
         
-        console.log("jStat.hypgeom.pdf(" + successes[i] + ", " + population[i] +
-          ", " + available[i] + ", " + draws[i] + ") = " + calculated);
-        
         // None of the answers should be NaN
         assert(!isNaN(calculated), "Hypergeometric PDF returned NaN");
         
