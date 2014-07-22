@@ -674,8 +674,6 @@ jStat.extend(jStat.hypgeom, {
     // m = number of successes in population
     // n = number of items drawn from population
    
-    console.log("Running on (" + x + ", " + N + ", " + m + ", " + n + ")"); 
-   
     if(x < 0 || x < m - (N - n)) {
       // If successes is somehow negative, or if we have less successes than we
       // would have to have gotten if everything we didn't draw was a success,

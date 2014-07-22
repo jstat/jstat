@@ -89,11 +89,10 @@ suite.addBatch({
               
                 var probReal = jStat.hypgeom.cdf(x, N, m, n);
               
-                console.log("HypCDF(" + x + ", " + N + ", " + m + ", " + n + 
-                  ") = " + probReal + " vs. " + probEasy);
-                  
-                assert(!isNaN(probReal));
-                assert.epsilon(tol, probReal, probEasy);
+                assert(!isNaN(probReal), 
+                  "Hypergeometric CDF returned NaN");
+                assert.epsilon(tol, probReal, probEasy,
+                  "Hypergeometric CDF didn't match naive implementation");
               }
             }
           }
@@ -141,10 +140,11 @@ suite.addBatch({
           ", " + available[i] + ", " + draws[i] + ") = " + calculated);
         
         // None of the answers should be NaN
-        assert(!isNaN(calculated));
+        assert(!isNaN(calculated), "Hypergeometric PDF returned NaN");
         
         // And they should all match
-        assert.epsilon(tol, calculated, answers[i]);
+        assert.epsilon(tol, calculated, answers[i],
+          "Hypergeometric PDF returned incorrect answer");
       }
     },
     'check cdf calculation' : function(jStat) {
@@ -188,14 +188,12 @@ suite.addBatch({
         var calculated = jStat.hypgeom.cdf(successes[i], population[i], 
                                            available[i], draws[i]);
         
-        console.log("jStat.hypgeom.cdf(" + successes[i] + ", " + population[i] +
-          ", " + available[i] + ", " + draws[i] + ") = " + calculated);
-        
         // None of the answers should be NaN
-        assert(!isNaN(calculated));
+        assert(!isNaN(calculated), "Hypergeometric CDF returned NaN");
         
         // And they should all match
-        assert.epsilon(tol, calculated, answers[i]);
+        assert.epsilon(tol, calculated, answers[i],
+          "Hypergeometric CDF returned incorrect answer");
       }
     }
   }
