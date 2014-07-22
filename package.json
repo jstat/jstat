@@ -1,27 +1,27 @@
 {
-	"name" : "jStat",
-	"version" : "0.0.2",
-	"description" : "Statistical Library for JavaScript",
-	"homepage" : "http://github.com/jstat/jstat",
-	"main" : "./dist/jstat.js",
-	"author" : {
-		"name" : "Trevor Norris",
-		"email" : "trev.norris@gmail.com",
-		"url" : "http://trevorjnorris.com"
-	},
-	"licenses" : [{
-		"type" : "MIT",
-		"url" : "http://www.opensource.org/licenses/mit-license.php"
-	}],
-	"repository" : {
-		"type" : "git",
-		"url" : "http ://github.com/jstat/jstat.git"
-	},
-	"dependencies" : {
-		"uglify-js" : "1.2.3",
-		"vows" : "0.7.x"
-	},
-	"scripts" : {
-		"test" : "./node_modules/vows/bin/vows --spec --isolate"
-	}
+  "name" : "jStat",
+  "version" : "0.0.4",
+  "description" : "Statistical Library for JavaScript",
+  "homepage" : "http://github.com/jstat/jstat",
+  "main" : "./dist/jstat.js",
+  "author" : {
+    "name" : "Trevor Norris",
+    "email" : "trev.norris@gmail.com",
+    "url" : "http://trevorjnorris.com"
+  },
+  "licenses" : [{
+    "type" : "MIT",
+    "url" : "http://www.opensource.org/licenses/mit-license.php"
+  }],
+  "repository" : {
+    "type" : "git",
+    "url" : "http://github.com/jstat/jstat.git"
+  },
+  "dependencies" : {
+    "uglify-js" : "1.2.3",
+    "vows" : "0.7.x"
+  },
+  "scripts" : {
+    "test" : "./node_modules/vows/bin/vows --spec --isolate"
+  }
 }
