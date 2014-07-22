@@ -100,10 +100,11 @@ suite.addBatch({
     'topic' : function() {
       return jStat;
     },
-    'check pdf/cdf agreement' : function(jStat) {
+    
+    'check pdf agreement' : function(jStat) {
       var tol = 0.0000001;
     
-      // Define a super easy pdf
+      // Define an easy pdf
       var easyPDF = function pdf(k, N, m, n) {
         return k !== k | 0
           ? false
@@ -113,7 +114,52 @@ suite.addBatch({
               jStat.combination(N, n);
       }
     
-      // Define a boring summation cdf based on it
+      // Now test the easy PDF agaisnt the real one.
+      
+      for(var N = 0; N < 10; N++) {
+        // For several population sizes
+        for(var m = 0; m < N; m++) {
+          // For all possible success counts
+          for(var n = 0; n < N; n++) {
+            // For all possible sample sizes
+            for(var x = 0; x < n; x++) {
+              // For all subset sizes of the sampled set
+              
+              // Get the probability be each method
+              var probEasy = easyPDF(x, N, m, n);
+              
+              if(!isNaN(probEasy)) {
+                // The easy PDF worked for this situation. Compare it to the
+                // real one.
+              
+                var probReal = jStat.hypgeom.pdf(x, N, m, n);
+              
+                assert(!isNaN(probReal), 
+                  "Hypergeometric PDF returned NaN");
+                assert.epsilon(tol, probReal, probEasy,
+                  "Hypergeometric PDF didn't match naive implementation");
+              }
+            }
+          }
+        }
+      }
+      
+    },
+    
+    'check cdf agreement' : function(jStat) {
+      var tol = 0.0000001;
+    
+      // Define an easy pdf
+      var easyPDF = function pdf(k, N, m, n) {
+        return k !== k | 0
+          ? false
+          : (k < 0)
+            ? 0
+            : jStat.combination(m, k) * jStat.combination(N - m , n - k) /
+              jStat.combination(N, n);
+      }
+    
+      // Define a summation cdf based on it
       var easyCDF = function(x, N, m, n) {
         // Sum up the total probability of every number of successes <= x, and
         // put it here.
@@ -128,12 +174,10 @@ suite.addBatch({
       
       for(var N = 0; N < 10; N++) {
         // For several population sizes
-        
         for(var m = 0; m < N; m++) {
           // For all possible success counts
           for(var n = 0; n < N; n++) {
-          // For all possible sample sizes
-          
+            // For all possible sample sizes
             for(var x = 0; x < n; x++) {
               // For all subset sizes of the sampled set
               
