@@ -1970,13 +1970,148 @@ jStat.extend(jStat.hypgeom, {
   },
 
   cdf: function cdf(x, N, m, n) {
-    var sum = 0,
-    k = 0;
-    if (x < 0) return 0;
-    for (; k <= x; k++) {
-      sum += jStat.hypgeom.pdf(k, N, m, n);
+    // Hypergeometric CDF.
+    
+    // This algorithm is apparently due to Prof. Thomas S. Ferguson,
+    // <tom@math.ucla.edu>, and is documented only by its implementation in his
+    // hypergeometric test calculator at
+    // <http://www.math.ucla.edu/~tom/distributions/Hypergeometric.html>.
+    
+    // x = number of successes drawn
+    // N = population size
+    // m = number of successes in population
+    // n = number of items drawn from population
+   
+    console.log("Running on (" + x + ", " + N + ", " + m + ", " + n + ")"); 
+   
+    if(x < 0 || x < m - (N - n)) {
+      // If successes is somehow negative, or if we have less successes than we
+      // would have to have gotten if everything we didn't draw was a success,
+      // then it's impossible to have this few successes drawn or fewer.
+      return 0;
+    } else if(x >= n || x >= m) {
+      // We're asking about the probability of having drawn more successes than
+      // there are in the population, or more successes than drawn items. We
+      // will always have this many successes or fewer.
+      return 1;
+    } else if (m * 2 > N) {
+      // More than half the population is successes. We want to flip the problem
+      // around so that less than half the population is successes. DO a
+      // multiply here since it's probably quicker than a divide.
+      
+      if(n * 2 > N) {
+        // More than half the population is sampled. We want to flip the problem
+        // around so that less than half the population is sampled.
+        
+        // Reverse sampling, reverse success/failure, and look at the part that
+        // wasn't in either the sampled or successful sets before.
+        return jStat.hypgeom.cdf(N - m - n + x, N, N - m, N - n)
+      } else {
+        // Half or less of the population is sampled, but we still have to flip
+        // around so less than half is successful when we do the actual work.
+        
+        // Reverse success, get the probability of not-observing the
+        // complementary number or fewer of not-successes, and flip the
+        // probability around to get the other half of the distribution.
+        return 1 - jStat.hypgeom.cdf(n - x - 1, N, N - m, n);
+      }
+      
+    } else if(n * 2 > N) {
+      // Half or less is successes, but more than half is sampled. We need to
+      // flip around in yet another way.
+            
+      // Try a different problem: sample the part we didn't sample before, and
+      // look at the probability of finding the corresponding number of
+      // successes we missed or fewer in that part, and then flip around to the
+      // probability of that not happening.
+      
+      return 1 - jStat.hypgeom.cdf(m - x - 1, N, m, N - n);
+      
+    } else if(m < n) {
+      // We want to have the number of things sampled to be less than the
+      // successes available. So swap the definitions of successful and sampled.
+      return jStat.hypgeom.cdf(x, N, n, m);
+    } else {
+      // If we get here, half or less of the population was sampled, half or
+      // less of it was successes, and we had fewer sampled things than
+      // successes. Now we can do this complicated iterative algorithm in an
+      // efficient way.
+      
+      // This is the part of Prof. Ferguson's code where magic appears to
+      // happen. I couldn't figure out what these variables actually mean as the
+      // algorithm runs, so they get these non-informative names. 
+      
+      // The toReturn variable, through repeated addition and multiplication by
+      // things less than 1, eventually ends up holding the answer. The original
+      // implementation called it "s".
+      var toReturn = 1;
+      
+      // This variable holds an amount that repeatedly gets modified and added
+      // in to toReturn. The original implementation called it "h".
+      var scratch = 1;
+      
+      // This variable runs through all the sampled items, and keeps track of
+      // how many we looked at in the first loop, so we know how many to do in
+      // the second loop.
+      var samplesDone = 0;
+      
+      for(var i = 0; i < x; i++) {
+        // Running i from 0 to the number of observed successes - 1 (inclusive)
+        
+        while(toReturn > 1 && samplesDone < n) {
+          // If the probability to return gets above 1 (which is a bad thing fro
+          // probabilities to do), we need to go through this bit, using up
+          // samples until either toReturn comes back down or we run out.
+          
+          // Compute a factor to multiply in to both toReturn and scratch. It
+          // will always be under 1 (since samplesDone <= n and both n and m are
+          // < half of N).
+          var factor = 1 - (m / (N - samplesDone)); 
+          
+          // Multiply the factor in.
+          scratch *= factor;
+          toReturn *= factor;
+          
+          // Use up this sample.
+          samplesDone++;
+          
+        }
+        
+        // OK, now we need to scale the scratch value by an arcane formula that
+        // looks like it's calculating a bit of a summation of a ratio of
+        // factorials all at once.
+        var factor = (n - i) * (m - i) / ((i + 1) * (N - m - n + i + 1));
+        
+        // Do the scaling.
+        scratch *= factor;
+        
+        // Add the scratch value in to the total.
+        toReturn += scratch;
+         
+      }
+      
+      // When we get here, we have somehow accounted for all the sampled
+      // successes, but we still need to account for the sampled items that
+      // weren't successes.
+      for(; samplesDone < n; samplesDone++) {
+        // For every remaining sampled item that we haven't done
+        
+        // Work out the probability factor that we get for this sample.
+        // Basically the probability that sampling this item didn't hit a
+        // success, assuming we sample all the not-successes first and without
+        // replacement.
+        var factor = 1 - (m / (N - samplesDone));
+        
+        // Multiply it in
+        toReturn *= factor;
+      }
+      
+      // Now we have finished calculating the probability in the hypergeometric
+      // CDF. Return it.
+      return toReturn;
+      
     }
-    return sum;
+   
   }
 });
 
