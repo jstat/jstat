@@ -1961,12 +1961,15 @@ jStat.extend(jStat.negbin, {
 // extend uniform function with static methods
 jStat.extend(jStat.hypgeom, {
   pdf: function pdf(k, N, m, n) {
+    // We define our PDF in terms of our CDF, because it's more numerically
+    // stable that way it seems.
     return k !== k | 0
       ? false
       : (k < 0)
         ? 0
-        : jStat.combination(m, k) * jStat.combination(N - m , n - k) /
-          jStat.combination(N, n);
+        : (k == 0)
+          ? jStat.hypgeom.cdf(k, N, m, n)
+          : jStat.hypgeom.cdf(k, N, m, n) - jStat.hypgeom.cdf(k - 1, N, m, n)
   },
 
   cdf: function cdf(x, N, m, n) {
