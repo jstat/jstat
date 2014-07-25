@@ -221,7 +221,7 @@ jStat.extend({
       change = Math.abs(jStat.studentt.inv(args[1] / 2, args[3] - 1) *
                         args[2] / Math.sqrt(args[3]));
     } else {
-      change = Math.abs(jStat.studentt.inv(args[1] / 2, args[2].length) *
+      change = Math.abs(jStat.studentt.inv(args[1] / 2, args[2].length - 1) *
                         jStat.stdev(args[2], true) / Math.sqrt(args[2].length));
     }
     ans[0] = args[0] - change;
