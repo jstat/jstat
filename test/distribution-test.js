@@ -206,29 +206,34 @@ suite.addBatch({
       // How many 1s were obtained by sampling?
       var successes = [
                         10,
-                        16
+                        16,
+                        252
                       ]; 
       // How big was the source population?
       var population = [
                         100,
+                        3589,
                         3589
                        ]; 
       // How many 1s were in it?
       var available = [
                         20,
-                        16
+                        16,
+                        252
                       ]; 
       // How big a sample was taken?
       var draws = [
                     15,
-                    2290
+                    2290,
+                    252
                   ]; 
       // What was the probability of exactly this many 1s?
       // Obtained from the calculator at 
       // <http://www.geneprof.org/GeneProf/tools/hypergeometric.jsp>
       var answers = [
                       0.000017532028090435493,
-                      0.0007404996809672229
+                      0.0007404996809672229,
+                      0 // Too small to represent on that calculator
                     ]; 
 
       for (var i=0; i < answers.length; i++) {
