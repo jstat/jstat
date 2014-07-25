@@ -1961,15 +1961,88 @@ jStat.extend(jStat.negbin, {
 // extend uniform function with static methods
 jStat.extend(jStat.hypgeom, {
   pdf: function pdf(k, N, m, n) {
-    // We define our PDF in terms of our CDF, because it's more numerically
-    // stable that way it seems.
-    return k !== k | 0
-      ? false
-      : (k < 0)
-        ? 0
-        : (k == 0)
-          ? jStat.hypgeom.cdf(k, N, m, n)
-          : jStat.hypgeom.cdf(k, N, m, n) - jStat.hypgeom.cdf(k - 1, N, m, n)
+    // Hypergeometric PDF.
+    
+    // A simplification of the CDF algorithm below.
+    
+    // k = number of successes drawn
+    // N = population size
+    // m = number of successes in population
+    // n = number of items drawn from population
+    
+    if(k !== k | 0) {
+      return false;
+    } else if(k < 0 || k < m - (N - n)) {
+      // It's impossible to have this few successes drawn.
+      return 0;
+    } else if(k > n || k > m) {
+      // It's impossible to have this many successes drawn.
+      return 0;
+    } else if (m * 2 > N) {
+      // More than half the population is successes.
+      
+      if(n * 2 > N) {
+        // More than half the population is sampled.
+        
+        return jStat.hypgeom.pdf(N - m - n + k, N, N - m, N - n)
+      } else {
+        // Half or less of the population is sampled.
+        
+        return jStat.hypgeom.pdf(n - k, N, N - m, n);
+      }
+      
+    } else if(n * 2 > N) {
+      // Half or less is successes.
+      
+      return jStat.hypgeom.pdf(m - k, N, m, N - n);
+      
+    } else if(m < n) {
+      // We want to have the number of things sampled to be less than the
+      // successes available. So swap the definitions of successful and sampled.
+      return jStat.hypgeom.pdf(k, N, n, m);
+    } else {
+      // If we get here, half or less of the population was sampled, half or
+      // less of it was successes, and we had fewer sampled things than
+      // successes. Now we can do this complicated iterative algorithm in an
+      // efficient way.
+      
+      // The basic premise of the algorithm is that we partially normalize our
+      // intermediate product to keep it in a numerically good region, and then
+      // finish the normalization at the end.
+      
+      // This variable holds the scaled probability of the current number of
+      // successes.
+      var scaledPDF = 1;
+      
+      // This keeps track of how much we have normalized.
+      var samplesDone = 0;
+      
+      for(var i = 0; i < k; i++) {
+        // For every possible number of successes up to that observed...
+        
+        while(scaledPDF > 1 && samplesDone < n) {
+          // Intermediate result is growing too big. Apply some of the
+          // normalization to shrink everything.
+          
+          scaledPDF *= 1 - (m / (N - samplesDone));
+          
+          // Say we've normalized by this sample already.
+          samplesDone++;
+        }
+        
+        // Work out the partially-normalized hypergeometric PDF for the next
+        // number of successes
+        scaledPDF *= (n - i) * (m - i) / ((i + 1) * (N - m - n + i + 1));
+      }
+      
+      for(; samplesDone < n; samplesDone++) {
+        // Apply all the rest of the normalization
+        scaledPDF *= 1 - (m / (N - samplesDone));
+      }
+      
+      // Bound answer sanely before returning.
+      return Math.min(1, Math.max(0, scaledPDF));
+    }
   },
 
   cdf: function cdf(x, N, m, n) {
