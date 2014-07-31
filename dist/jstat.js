@@ -1385,9 +1385,15 @@ jStat.extend(jStat.beta, {
     // PDF is one for the uniform case
     if (alpha == 1 && beta == 1)
       return 1;
-    return Math.exp((alpha - 1) * Math.log(x) +
-                    (beta - 1) * Math.log(1 - x) -
-                    jStat.betaln(alpha, beta));
+
+    if (alpha < 512 || beta < 512) {
+      return (Math.pow(x, alpha - 1) * Math.pow(1 - x, beta - 1)) /
+          jStat.betafn(alpha, beta);
+    } else {
+      return Math.exp((alpha - 1) * Math.log(x) +
+                      (beta - 1) * Math.log(1 - x) -
+                      jStat.betaln(alpha, beta));
+    }
   },
 
   cdf: function cdf(x, alpha, beta) {

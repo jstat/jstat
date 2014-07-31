@@ -34,6 +34,9 @@ suite.addBatch({
         assert(isNaN(pdf(arg, 1000, 5000)),
                'Old Beta pdf is not NaN for large parameter values.');
       }
+
+      assert.equal(jStat.beta.pdf(0, 1, 4), 4);
+      assert.equal(jStat.beta.pdf(1, 4, 1), 4);
     }
   },
   'gamma pdf': {
