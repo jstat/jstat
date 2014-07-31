@@ -78,3 +78,13 @@ Join the Community
 We always like discussion of how to improve jStat.
 Join us at our [mailing list](http://groups.google.com/group/jstat-discuss/) and let us know what you'd like to see.
 Also come ask questions in the #jstat channel on irc.freenode.net.
+
+
+CDN
+---
+
+The library is hosted on [jsDelivr](http://www.jsdelivr.com/) using the follwing
+url:
+```
+//cdn.jsdelivr.net/jstat/<version>/jstat.min.js
+```
