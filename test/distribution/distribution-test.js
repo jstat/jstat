@@ -66,6 +66,20 @@ suite.addBatch({
 });
 
 suite.addBatch({
+  'negbin pdf': {
+    'topic' : function() {
+      return jStat;
+    },
+    'check pdf calculation' : function(jStat) {
+      var k = 10; // number of failures
+      var r = 5; // threshold number of successes
+      var p = 0.25; // probability of a success
+      assert(jStat.negbin.pdf(k, r, p), 0.05504866037517786);
+    }
+  }
+});
+
+suite.addBatch({
   'hypergeometric pdf': {
     'topic' : function() {
       return jStat;
