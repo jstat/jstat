@@ -637,7 +637,7 @@ jStat.extend(jStat.negbin, {
       ? false
       : k < 0
         ? 0
-        : jStat.combination(k + r - 1, k) * Math.pow(1 - p, r) * Math.pow(p, k);
+        : jStat.combination(k + r - 1, r - 1) * Math.pow(1 - p, k) * Math.pow(p, r);
   },
 
   cdf: function cdf(x, r, p) {
