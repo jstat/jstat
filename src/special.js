@@ -1,5 +1,5 @@
 // Special functions //
-(function(jStat, Math) {
+module.exports = function(jStat) {
 
 // Log-gamma function
 jStat.gammaln = function gammaln(x) {
@@ -459,4 +459,4 @@ jStat.randg = function randg(shape, n, m) {
   })(funcs[i]);
 })('randn'.split(' '));
 
-}(this.jStat, Math));
+};

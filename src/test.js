@@ -1,4 +1,4 @@
-(function(jStat, Math) {
+module.exports = function(jStat, Math) {
 
 var slice = [].slice;
 var isNumber = jStat.utils.isNumber;
@@ -244,4 +244,4 @@ jStat.extend(jStat.fn, {
   }
 });
 
-}(this.jStat, Math));
+};
