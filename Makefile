@@ -1,5 +1,6 @@
 NODE_PATH ?= ./node_modules
 DIST_DIR = ./dist
+BROWSERIFY = $(NODE_PATH)/.bin/browserify
 JS_COMPILER = $(NODE_PATH)/uglify-js/bin/uglifyjs
 JS_TESTER = $(NODE_PATH)/vows/bin/vows
 
@@ -16,16 +17,10 @@ clean:
 
 core: jstat.js jstat.min.js
 
-jstat.js: \
-	src/core.js \
-	src/vector.js \
-	src/special.js \
-	src/distribution.js \
-	src/linearalgebra.js \
-	src/test.js
+jstat.js:
 	@echo 'Building jStat'
 	@mkdir -p $(DIST_DIR)
-	@cat $^ > $(DIST_DIR)/$@
+	@$(BROWSERIFY) index.js > $(DIST_DIR)/$@
 
 jstat.min.js: jstat.js
 	@echo 'Minifying jStat'
@@ -42,13 +37,8 @@ doc:
 
 jstat: jstat.js
 
-install:
-	@echo 'Downloading necessary libraries for build'
-	@mkdir -p node_modules
-	@npm install
-
 test: clean core
 	@echo 'Running jStat unit tests'
 	@$(JS_TESTER)
 
-.PHONY: clean core doc install test
+.PHONY: clean core doc test

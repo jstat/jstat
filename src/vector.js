@@ -1,4 +1,4 @@
-(function(jStat, Math) {
+module.exports = function(jStat) {
 
 var isFunction = jStat.utils.isFunction;
 
@@ -414,4 +414,4 @@ jProto.cumsum = function(fullbool, func) {
   })(funcs[i]);
 })('quantiles percentileOfScore'.split(' '));
 
-}(this.jStat, Math));
+};

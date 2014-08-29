@@ -1,4 +1,4 @@
-(function(jStat, Math) {
+module.exports = function(jStat) {
 
 // generate all distribution instance methods
 (function(list) {
@@ -925,4 +925,4 @@ jStat.extend(jStat.triangular, {
   }
 });
 
-}(this.jStat, Math));
+};

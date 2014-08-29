@@ -8,6 +8,7 @@
 
 
 //Regressions
+module.exports = function (jStat) {
 
 jStat.extend({
   buildxmatrix: function buildxmatrix(){
@@ -203,3 +204,4 @@ jStat.extend({
     return jStat(ans);
   }
 });
+};
