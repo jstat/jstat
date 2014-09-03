@@ -66,6 +66,46 @@ suite.addBatch({
 });
 
 suite.addBatch({
+  'binomial pdf': {
+    'topic' : function() {
+      return jStat;
+    },
+    //checked against R's dbinom(k, n, p)
+    'check pdf calculation' : function(jStat) {
+      var tol = 0.0000001;
+      assert.epsilon(tol, jStat.binomial.pdf(10, 25, 0.5), 0.09741664);
+      assert.epsilon(tol, jStat.binomial.pdf(50, 1000, 0.05), 0.05778798);
+    },
+    //Checked against r's pbinom(k, n, p)
+    'check cdf calculation' : function(jStat) {
+      var tol = 0.0000001;
+      assert.epsilon(tol, jStat.binomial.cdf(10, 25, 0.5), 0.2121781);
+      assert.epsilon(tol, jStat.binomial.cdf(50, 1000, 0.05), 0.537529);
+    }
+  }
+});
+
+suite.addBatch({
+  'binomial pdf': {
+    'topic' : function() {
+      return jStat;
+    },
+    //checked against R's dbinom(k, n, p)
+    'check pdf calculation' : function(jStat) {
+      var tol = 0.0000001;
+      assert.epsilon(tol, jStat.binomial.pdf(10, 25, 0.5), 0.09741664);
+      assert.epsilon(tol, jStat.binomial.pdf(50, 1000, 0.05), 0.05778798);
+    },
+    //Checked against r's pbinom(k, n, p)
+    'check cdf calculation' : function(jStat) {
+      var tol = 0.0000001;
+      assert.epsilon(tol, jStat.binomial.cdf(10, 25, 0.5), 0.2121781);
+      assert.epsilon(tol, jStat.binomial.cdf(50, 1000, 0.05), 0.537529);
+    }
+  }
+});
+
+suite.addBatch({
   'studentt pdf': {
     'topic' : function() {
       return jStat;
@@ -89,7 +129,7 @@ suite.addBatch({
       var tol = 0.0000001;
       assert.epsilon(tol, jStat.studentt.inv(0.5, 40), 0);
       assert.epsilon(tol, jStat.studentt.inv(0.7, 20), 0.5328628);
-      assert.epsilon(tol, jStat.studentt.inv(0.2, 10), -0.8790578);
+      assert.epsilon(tol, jStat.studentt.inv(0.2, 10), 0.8790578);
     }
   }
 });
