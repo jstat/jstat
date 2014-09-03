@@ -22,7 +22,6 @@
     "vows" : "0.7.x"
   },
   "scripts" : {
-    "test" : "./node_modules/vows/bin/vows --spec --isolate",
-    "install": "make jstat"
+    "test" : "./node_modules/vows/bin/vows --spec --isolate"
   }
 }
