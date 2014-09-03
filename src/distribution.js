@@ -498,7 +498,7 @@ jStat.extend(jStat.studentt, {
   inv: function(p, dof) {
     var x = jStat.ibetainv(2 * Math.min(p, 1 - p), 0.5 * dof, 0.5);
     x = Math.sqrt(dof * (1 - x) / x);
-    return (p > 0) ? x : -x;
+    return (p > 0.5) ? x : -x;
   },
 
   mean: function mean(dof) {
