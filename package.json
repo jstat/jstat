@@ -1,6 +1,6 @@
 {
   "name" : "jStat",
-  "version" : "1.0.1",
+  "version" : "1.0.2",
   "description" : "Statistical Library for JavaScript",
   "homepage" : "http://github.com/jstat/jstat",
   "main" : "./dist/jstat.js",
@@ -22,7 +22,6 @@
     "vows" : "0.7.x"
   },
   "scripts" : {
-    "test" : "./node_modules/vows/bin/vows --spec --isolate",
-    "install": "make jstat"
+    "test" : "./node_modules/vows/bin/vows --spec --isolate"
   }
 }
