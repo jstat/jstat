@@ -15,11 +15,11 @@ suite.addBatch({
       assert.isTrue(jStat([[1], [3]]).rows(function() {}) instanceof jStat);
     }
   },
-  '#rows' : {
-    'topic' : function() {
+  '#rows': {
+    'topic': function() {
       jStat([[1, 2, 3], [4, 5, 6]]).rows(this.callback);
     },
-    'rows sends value' : function(val, stat) {
+    'rows sends value': function(val, stat) {
       assert.equal(val, 2);
     }
   }

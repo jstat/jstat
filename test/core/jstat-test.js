@@ -5,12 +5,12 @@ var suite = vows.describe('jStat');
 require('../env.js');
 
 suite.addBatch({
-  'jStat' : {
-    'topic' : function() {
+  'jStat': {
+    'topic': function() {
       return jStat;
     },
 
-    'basic checks' : function(jStat) {
+    'basic checks': function(jStat) {
       assert.isFunction(jStat.prototype.toArray);
       assert.isFunction(jStat.prototype.push);
       assert.isFunction(jStat.prototype.sort);
@@ -33,7 +33,7 @@ suite.addBatch({
       assert.equal(jStat([1, 2, 3])[0].length, 3);
     },
 
-    'matrix/vector generation' : function(jStat) {
+    'matrix/vector generation': function(jStat) {
       assert.deepEqual(jStat([1, 2, 3]).toArray(), [1, 2, 3]);
       assert.deepEqual(jStat([[1, 2], [3, 4]]).toArray(), [[1, 2], [3, 4]]);
       assert.deepEqual(jStat(jStat([[1, 2], [3, 4]])).toArray(),
@@ -43,7 +43,7 @@ suite.addBatch({
       }).toArray(), [[2, 4], [6, 8]]);
     },
 
-    'sequence generation' : function(jStat) {
+    'sequence generation': function(jStat) {
       assert.deepEqual(jStat(0, 0.5, 6).toArray(),
                        [0, 0.1, 0.2, 0.3, 0.4, 0.5]);
       assert.deepEqual(jStat(0, 5, 6, function(x) {

@@ -19,7 +19,7 @@ suite.addBatch({
     'topic': function() {
       jStat([[1, 2, 3], [4, 5, 6]]).cols(this.callback);
     },
-    'cols sends value' : function(val, stat) {
+    'cols sends value': function(val, stat) {
       assert.equal(val, 3);
     }
   }
