@@ -44,7 +44,8 @@ Return the absolute values of all entries.
 
 ### norm()
 
-Compulte the norm of a vector.
+Compulte the norm of a vector. Note that if a matrix is passed, then the
+first row of the matrix will be used as a vector for norm().
 
 ### angle( arg )
 
@@ -118,7 +119,7 @@ Performs the Cholesky decomposition on matrix A.
 
 ### gauss_jacobi(A,b,x,r)
 
-Solves the linear system Ax = b using the Gauss-Jacobi method with an initial guess of r. 
+Solves the linear system Ax = b using the Gauss-Jacobi method with an initial guess of r.
 
 ### gauss_seidel(A,b,x,r)
 

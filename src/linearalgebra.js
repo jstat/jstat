@@ -94,8 +94,8 @@ jStat.extend({
     return jStat.map(arr, function(value) { return Math.abs(value); });
   },
 
-  // TODO: make compatible with matrices
   // computes the p-norm of the vector
+  // In the case that a matrix is passed, uses the first row as the vector
   norm: function norm(arr, p) {
     var nnorm = 0,
     i = 0;
@@ -757,7 +757,10 @@ jStat.extend({
         }, 15);
         return this;
       }
-      return jStat(jStat[passfunc](this, arg));
+      if (typeof jStat[passfunc](this, arg) === 'number')
+        return jStat[passfunc](this, arg);
+      else
+        return jStat(jStat[passfunc](this, arg));
     };
   }(funcs[i]));
 }('add divide multiply subtract dot pow abs norm angle'.split(' ')));
