@@ -5,11 +5,13 @@ var vows = require('vows'),
 require('../env.js');
 
 suite.addBatch({
-  '' : {
+  'linearalgebra' : {
     'topic' : function() {
       return jStat;
     },
-    '' : function(jStat) {
+    'pow function works' : function(jStat) {
+      var A = jStat([[1, 2], [3, 4]]);
+      assert.deepEqual(A.pow(2), jStat([[1, 4], [9, 16]]));
     }
   }
 });
