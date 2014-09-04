@@ -129,7 +129,7 @@ suite.addBatch({
       var tol = 0.0000001;
       assert.epsilon(tol, jStat.studentt.inv(0.5, 40), 0);
       assert.epsilon(tol, jStat.studentt.inv(0.7, 20), 0.5328628);
-      assert.epsilon(tol, jStat.studentt.inv(0.2, 10), 0.8790578);
+      assert.epsilon(tol, jStat.studentt.inv(0.2, 10), -0.8790578);
     }
   }
 });
