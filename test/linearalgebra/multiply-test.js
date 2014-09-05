@@ -17,6 +17,11 @@ suite.addBatch({
       var A = jStat([[1, 2], [3, 4]]);
       var B = [[1, 0], [0, 1]];
       assert.deepEqual(A.multiply(B), jStat([[1, 2], [3, 4]]));
+    },
+    'test that multiplying by a nonidentity matrix works': function(jStat) {
+      var A = jStat([[1, 2], [3, 4]]);
+      var B = [[1, 2], [3, 4]];
+      assert.deepEqual(A.multiply(B), jStat([[7, 10], [15, 22]]));
     }
   }
 });
