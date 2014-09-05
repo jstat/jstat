@@ -49,7 +49,8 @@ first row of the matrix will be used as a vector for norm().
 
 ### angle( arg )
 
-Compute the angle between two vectors.
+Compute the angle between two vectors. Note that if a matrix is passed, then
+the first row of the matrix will be used as the vector for angle().
 
 ## Static Functionality
 
@@ -91,7 +92,8 @@ Compute the angle between two vectors.
 
 ### aug(A,B)
 
-Augments matrix A by matrix B
+Augments matrix A by matrix B. Note that this method returns a plain matrix,
+not a jStat object.
 
 ### det(A)
 
