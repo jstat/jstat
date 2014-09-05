@@ -12,7 +12,7 @@ suite.addBatch({
     'return identity': function(jStat) {
       assert.deepEqual(jStat.identity(2), [[1, 0], [0, 1]]);
     },
-    'identity from empty jStat object' : function(jStat) {
+    'identity from empty jStat object': function(jStat) {
       assert.isTrue(jStat().identity(2) instanceof jStat);
       assert.deepEqual(jStat().identity(2).toArray(), [[1, 0], [0, 1]]);
     }

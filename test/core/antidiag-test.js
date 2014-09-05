@@ -9,7 +9,7 @@ suite.addBatch({
     'topic': function() {
       return jStat;
     },
-    'return antidiag' : function(jStat) {
+    'return antidiag': function(jStat) {
       assert.deepEqual(jStat.antidiag([[1, 2], [3, 4]]), [[2], [3]]);
       assert.deepEqual(jStat([[1, 2], [3, 4]]).antidiag().toArray(),
                        [[2], [3]]);
