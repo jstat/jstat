@@ -197,7 +197,7 @@ jStat.extend({
     maug, pivot, temp, k;
     a = jStat.aug(a, b);
     maug = a[0].length;
-    for(; i < n; i++) {
+    for(i = 0; i < n; i++) {
       pivot = a[i][i];
       j = i;
       for (k = i + 1; k < m; k++) {
@@ -223,7 +223,7 @@ jStat.extend({
     for (i = n - 1; i >= 0; i--) {
       sum = 0;
       for (j = i + 1; j<= n - 1; j++) {
-        sum = x[j] * a[i][j];
+        sum = sum + x[j] * a[i][j];
       }
       x[i] =(a[i][maug - 1] - sum) / a[i][i];
     }
