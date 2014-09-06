@@ -110,13 +110,14 @@ jStat.extend({
     return Math.pow(nnorm, 1 / p);
   },
 
-  // TODO: make compatible with matrices
   // computes the angle between two vectors in rads
+  // In case a matrix is passed, this uses the first row as the vector
   angle: function angle(arr, arg) {
     return Math.acos(jStat.dot(arr, arg) / (jStat.norm(arr) * jStat.norm(arg)));
   },
 
   // augment one matrix by another
+  // Note: this function returns a matrix, not a jStat object
   aug: function aug(a, b) {
     var newarr = a.slice(),
     i = 0;
@@ -126,20 +127,25 @@ jStat.extend({
     return newarr;
   },
 
+  // The inv() function calculates the inverse of a matrix
+  // Create the inverse by augmenting the matrix by the identity matrix of the
+  // appropriate size, and then use G-J elimination on the augmented matrix.
   inv: function inv(a) {
-    var rows = a.length,
-    cols = a[0].length,
-    b = jStat.identity(rows, cols),
-    c = jStat.gauss_jordan(a, b),
-    obj = [],
-    i = 0,
-    j;
+    var rows = a.length;
+    var cols = a[0].length;
+    var b = jStat.identity(rows, cols);
+    var c = jStat.gauss_jordan(a, b);
+    var result = [];
+    var i = 0;
+    var j;
+
+    //We need to copy the inverse portion to a new matrix to rid G-J artifacts
     for (; i < rows; i++) {
-      obj[i] = [];
-      for (j = cols - 1; j < c[0].length; j++)
-      obj[i][j - cols] = c[i][j];
+      result[i] = [];
+      for (j = cols; j < c[0].length; j++)
+        result[i][j - cols] = c[i][j];
     }
-    return obj;
+    return result;
   },
 
   // calculate the determinant of a matrix
@@ -191,7 +197,7 @@ jStat.extend({
     maug, pivot, temp, k;
     a = jStat.aug(a, b);
     maug = a[0].length;
-    for(; i < n; i++) {
+    for(i = 0; i < n; i++) {
       pivot = a[i][i];
       j = i;
       for (k = i + 1; k < m; k++) {
@@ -217,7 +223,7 @@ jStat.extend({
     for (i = n - 1; i >= 0; i--) {
       sum = 0;
       for (j = i + 1; j<= n - 1; j++) {
-        sum = x[j] * a[i][j];
+        sum = sum + x[j] * a[i][j];
       }
       x[i] =(a[i][maug - 1] - sum) / a[i][i];
     }
