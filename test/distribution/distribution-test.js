@@ -84,6 +84,36 @@ suite.addBatch({
     }
   },
 
+  'central F distribution': {
+    'topic': function() {
+      return jStat;
+    },
+    // Check against R's df(x, df1, df2)
+    'check pdf calculation': function(jStat) {
+      var tol = 0.0000001;
+
+      var zeroth = jStat.centralF.pdf(0.2, 1, 3);
+      assert.isNumber(zeroth);
+      assert.epsilon(tol, zeroth, 0.722349);
+
+      var first = jStat.centralF.pdf(1, 100, 100);
+      assert.isNumber(first);
+      assert.epsilon(tol, first, 1.989731);
+
+      var second = jStat.centralF.pdf(2.5, 50, 200);
+      assert.isNumber(second);
+      assert.epsilon(tol, second, 0.00003610325);
+
+      var third = jStat.centralF.pdf(0.8, 2, 10);
+      assert.isNumber(third);
+      assert.epsilon(tol, third, 0.4104423);
+
+      var value = jStat.centralF.pdf(0.4, 3, 10);
+      assert.isNumber(value);
+      assert.epsilon(tol, value, 0.6733766);
+    }
+  },
+
   'studentt pdf': {
     'topic': function() {
       return jStat;
@@ -110,7 +140,9 @@ suite.addBatch({
       assert.epsilon(tol, jStat.studentt.inv(0.2, 10), -0.8790578);
     }
   },
+});
 
+suite.addBatch({
   'negbin pdf': {
     'topic': function() {
       return jStat;
@@ -134,7 +166,9 @@ suite.addBatch({
       assert(jStat.negbin.cdf(k, r, p), 0.3135140584781766);
     }
   },
+});
 
+suite.addBatch({
   'hypergeometric pdf': {
     'topic': function() {
       return jStat;
@@ -166,8 +200,10 @@ suite.addBatch({
         assert.epsilon(tol, calculated, answers[i]);
       }
     }
-  },
+  }
+});
 
+suite.addBatch({
   'hypergeometric pdf': {
     'topic': function() {
       return jStat;
