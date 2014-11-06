@@ -135,7 +135,7 @@ Returns the value of the variance for the Chi Square distribution with degrees o
 #### jStat.exponential.pdf( x, rate )
 
 Returns the value of x in the pdf of the Exponential distribution with the parameter rate (lambda).
- 
+
 #### jStat.exponential.cdf( x, rate )
 
 Returns the value of x in the cdf of the Exponential distribution with the parameter rate (lambda).
@@ -344,7 +344,7 @@ Returns the value of the mode of the Pareto distribution with parameters scale (
 #### jStat.pareto.variance( scale, shape )
 
 Returns the value of the variance of the Pareto distribution with parameters scale (x_m) and shape (alpha).
- 
+
 ### jStat.studentt( dof )
 
 #### jStat.studentt.pdf( x, dof )
@@ -422,6 +422,10 @@ Returns the value of x in the pdf of the Uniform distribution from a to b.
 #### jStat.uniform.cdf( x, a, b )
 
 Returns the value of x in the cdf of the Uniform distribution from a to b.
+
+#### jStat.uniform.inv(p, a, b)
+
+Returns the inverse of the uniform.cdf function; i.e. the value of x for which uniform.cdf(x, a, b) == p.
 
 #### jStat.uniform.mean( a, b )
 
