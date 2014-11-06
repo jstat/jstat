@@ -593,6 +593,10 @@ jStat.extend(jStat.uniform, {
     return 1;
   },
 
+  inv: function(p, a, b) {
+    return a + (p * (b - a));
+  },
+
   mean: function mean(a, b) {
     return 0.5 * (a + b);
   },
