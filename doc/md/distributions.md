@@ -140,7 +140,7 @@ Returns the value of x in the pdf of the Exponential distribution with the param
 
 Returns the value of x in the cdf of the Exponential distribution with the parameter rate (lambda).
 
-#### jStat.exponential.inv( rate )
+#### jStat.exponential.inv(p, rate )
 
 Returns the value of x in the inverse of the cdf for the Exponential distribution with the parameter rate (lambda).
 
