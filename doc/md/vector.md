@@ -606,9 +606,25 @@ If pass boolean true as first argument, then return median absolute deviation of
 
 And the two can be combined.
 
-    jStat[[1,2],[3,5]]).meddev(true,function( result ) {
+    jStat([[1,2],[3,5]]).meddev(true,function( result ) {
         // result === 0.25
     });
+
+### skewness()
+
+**skewness( array )**
+
+Return the skewness of a vector (third standardized moment).
+
+    jStat.skewness([1,2,2,3,5]) === 0.75003...
+
+### kurtosis()
+
+**kurtosis( array )**
+
+Return the excess kurtosis of a vector (fourth standardized moment - 3).
+
+    jStat.kurtosis([1,2,3,4]) === -0.63610...
 
 ### coeffvar()
 
@@ -687,6 +703,16 @@ of all values in the input array that are less than (if `kind == 'strict'`) or
 less or equal than (if `kind == 'weak'`) score. Default is `'weak'`.
 
      jStat.percentileOfScore([1, 2, 3, 4, 5, 6], 3), 0.5, 'weak') === 0.5;
+
+### histogram()
+
+**histogram( dataArray, [numBins] )**
+
+The histogram data defined as the number of dataArray elements found in 
+equally sized bins across the range of dataArray. Default number
+of bins is 4.
+
+     jStat.histogram([100, 101, 102, 230, 304, 305, 400], 3) === [3, 1, 3];
 
 ### covariance()
 
