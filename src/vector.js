@@ -271,6 +271,22 @@ jStat.percentileOfScore = function percentileOfScore(arr, score, kind) {
   return counter / len;
 };
 
+// Histogram (bin count) data
+jStat.histogram = function histogram(arr, binCount) {
+  var first = jStat.min(arr);
+  var bin_count = binCount || 4;
+  var bin_width = (jStat.max(arr) - first) / bin_count;
+  var bins = [];
+  var i;
+
+  for (i = 0; i < bin_count; i++) bins[i] = 0;
+
+  for (i = 0; i < arr.length; i++)
+    bins[Math.min(Math.floor(((arr[i] - first) / bin_width)), bin_count-1)] += 1;
+
+  return bins;
+};
+
 // covariance of two arrays
 jStat.covariance = function covariance(arr1, arr2) {
   var u = jStat.mean(arr1);
@@ -367,7 +383,7 @@ jProto.cumsum = function(fullbool, func) {
     };
   })(funcs[i]);
 })(('sum sumsqrd sumsqerr product min max mean meansqerr geomean median diff ' +
-    'mode range variance stdev meandev meddev coeffvar quartiles').split(' '));
+    'mode range variance stdev meandev meddev coeffvar quartiles histogram').split(' '));
 
 
 // Extend jProto with functions that take arguments. Operations on matrices are

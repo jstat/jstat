@@ -657,6 +657,16 @@ less or equal than (if `kind == 'weak'`) score. Default is `'weak'`.
 
      jStat.percentileOfScore([1, 2, 3, 4, 5, 6], 3), 0.5, 'weak') === 0.5;
 
+### histogram()
+
+**histogram( dataArray, [numBins] )**
+
+The histogram data defined as the number of dataArray elements found in 
+equally sized bins across the range of dataArray. Default number
+of bins is 4.
+
+     jStat.histogram([100, 101, 102, 230, 304, 305, 400], 3) === [3, 1, 3];
+
 ### covariance()
 
 **covariance( array, array )**
