@@ -309,6 +309,30 @@ jStat.corrcoeff = function corrcoeff(arr1, arr2) {
       jStat.stdev(arr2, 1);
 };
 
+// (pearson's) moment coefficient of skewness
+jStat.skewness = function(arr) {
+  var mu = jStat.mean(arr); 
+  var sigma = jStat.stdev(arr);
+  var skewSum = 0;
+
+  for (i = 0; i < arr.length; i++)
+    skewSum += Math.pow( (arr[i]-mu) / sigma, 3);
+
+  return skewSum / arr.length;
+}
+
+// (pearson's) (excess) kurtosis
+jStat.kurtosis = function(arr) {
+  var mu = jStat.mean(arr); 
+  var sigma = jStat.stdev(arr);
+  var kurtSum = 0;
+
+  for (i = 0; i < arr.length; i++)
+    kurtSum += Math.pow( (arr[i]-mu) / sigma, 4);
+
+  return (kurtSum / arr.length) - 3;
+}
+
 
 var jProto = jStat.prototype;
 
@@ -383,7 +407,8 @@ jProto.cumsum = function(fullbool, func) {
     };
   })(funcs[i]);
 })(('sum sumsqrd sumsqerr product min max mean meansqerr geomean median diff ' +
-    'mode range variance stdev meandev meddev coeffvar quartiles histogram').split(' '));
+    'mode range variance stdev meandev meddev coeffvar quartiles histogram ' +
+    'skewness kurtosis').split(' '));
 
 
 // Extend jProto with functions that take arguments. Operations on matrices are
