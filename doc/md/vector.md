@@ -575,9 +575,25 @@ If pass boolean true as first argument, then return median absolute deviation of
 
 And the two can be combined.
 
-    jStat[[1,2],[3,5]]).meddev(true,function( result ) {
+    jStat([[1,2],[3,5]]).meddev(true,function( result ) {
         // result === 0.25
     });
+
+### skewness()
+
+**skewness( array )**
+
+Return the skewness of a vector (third standardized moment).
+
+    jStat.skewness([1,2,2,3,5]) === 0.75003...
+
+### kurtosis()
+
+**kurtosis( array )**
+
+Return the excess kurtosis of a vector (fourth standardized moment - 3).
+
+    jStat.kurtosis([1,2,3,4]) === -0.63610...
 
 ### coeffvar()
 
