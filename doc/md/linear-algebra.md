@@ -36,6 +36,18 @@ Raise all entries by value.
 
     jStat([[1,2,3]]).pow( 2 ) === [[1,4,9]];
 
+### exp()
+
+Exponentiate all entries.
+
+    jStat([[0,1]]).exp() === [[1, 2.718281828459045]]
+
+### log()
+
+Return the natural logarithm of all entries.
+
+    jStat([[1, 2.718281828459045]]).log() === [[0,1]];
+
 ### abs()
 
 Return the absolute values of all entries.
@@ -77,6 +89,14 @@ Take dot product of array 1 and array 2.
 ### pow( arr, arg )
 
 Raise all entries of the array to the power of arg
+
+### exp(arr)
+
+Exponentiate all entries in the array
+
+### log(arr)
+
+Return the natural logarithm of all entries in the array
 
 ### abs(arr)
 
