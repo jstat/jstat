@@ -272,17 +272,18 @@ jStat.percentileOfScore = function percentileOfScore(arr, score, kind) {
 };
 
 // Histogram (bin count) data
-jStat.histogram = function histogram(arr, binCount) {
+jStat.histogram = function histogram(arr, bins) {
   var first = jStat.min(arr);
-  var bin_count = binCount || 4;
-  var bin_width = (jStat.max(arr) - first) / bin_count;
+  var binCount = bins || 4;
+  var binWidth = (jStat.max(arr) - first) / binCount;
+  var len = arr.length;
   var bins = [];
   var i;
 
-  for (i = 0; i < bin_count; i++) bins[i] = 0;
+  for (i = 0; i < binCount; i++) bins[i] = 0;
 
-  for (i = 0; i < arr.length; i++)
-    bins[Math.min(Math.floor(((arr[i] - first) / bin_width)), bin_count-1)] += 1;
+  for (i = 0; i < len; i++)
+    bins[Math.min(Math.floor(((arr[i] - first) / binWidth)), binCount-1)] += 1;
 
   return bins;
 };
@@ -309,29 +310,28 @@ jStat.corrcoeff = function corrcoeff(arr1, arr2) {
       jStat.stdev(arr2, 1);
 };
 
-// (pearson's) moment coefficient of skewness
-jStat.skewness = function(arr) {
+// statistical standardized moments (general form of skew/kurt)
+jStat.stanMoment = function(arr, n) {
   var mu = jStat.mean(arr); 
   var sigma = jStat.stdev(arr);
+  var len = arr.length;
   var skewSum = 0;
 
-  for (i = 0; i < arr.length; i++)
-    skewSum += Math.pow( (arr[i]-mu) / sigma, 3);
+  for (i = 0; i < len; i++)
+    skewSum += Math.pow( (arr[i] - mu) / sigma, n);
 
   return skewSum / arr.length;
-}
+};
+
+// (pearson's) moment coefficient of skewness
+jStat.skewness = function(arr) {
+  return jStat.stanMoment(arr, 3);
+};
 
 // (pearson's) (excess) kurtosis
 jStat.kurtosis = function(arr) {
-  var mu = jStat.mean(arr); 
-  var sigma = jStat.stdev(arr);
-  var kurtSum = 0;
-
-  for (i = 0; i < arr.length; i++)
-    kurtSum += Math.pow( (arr[i]-mu) / sigma, 4);
-
-  return (kurtSum / arr.length) - 3;
-}
+  return jStat.stanMoment(arr, 4) - 3;
+};
 
 
 var jProto = jStat.prototype;
