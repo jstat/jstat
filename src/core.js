@@ -227,7 +227,7 @@ jStat.map = function map(arr, func, toAlter) {
 
 
 // Cumulatively combine the elements of an array or array of arrays using a function.
-jStat.cumreduce = function map(arr, func, toAlter) {
+jStat.cumreduce = function cumreduce(arr, func, toAlter) {
   var row, nrow, ncol, res, col;
 
   if (!isArray(arr[0]))
