@@ -248,7 +248,7 @@ Map a function to all values and return a new object.
 
 Cumulatively reduce values using a function and return a new object.
 
-**map( array, fn )**
+**cumreduce( array, fn )**
 
     var matrix = [[1,2],[3,4]];
     jStat.cumreduce( matrix, function( a, b ) {
@@ -256,7 +256,7 @@ Cumulatively reduce values using a function and return a new object.
     });
     // returns [[1,3],[3,7]]
 
-**fn.map( fn )**
+**fn.cumreduce( fn )**
 
     jStat( matrix ).cumreduce(function( a, b ) {
         return a + b;
