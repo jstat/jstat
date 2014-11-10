@@ -226,6 +226,30 @@ jStat.map = function map(arr, func, toAlter) {
 };
 
 
+// Cumulatively combine the elements of an array or array of arrays using a function.
+jStat.cumreduce = function map(arr, func, toAlter) {
+  var row, nrow, ncol, res, col;
+
+  if (!isArray(arr[0]))
+    arr = [arr];
+
+  nrow = arr.length;
+  ncol = arr[0].length;
+  res = toAlter ? arr : new Array(nrow);
+
+  for (row = 0; row < nrow; row++) {
+    // if the row doesn't exist, create it
+    if (!res[row])
+      res[row] = new Array(ncol);
+    if (ncol > 0)
+      res[row][0] = arr[row][0];
+    for (col = 1; col < ncol; col++)
+      res[row][col] = func(res[row][col-1], arr[row][col]);
+  }
+  return res.length === 1 ? res[0] : res;
+};
+
+
 // Destructively alter an array.
 jStat.alter = function alter(arr, func) {
   return jStat.map(arr, func, true);
@@ -369,6 +393,12 @@ jProto.toArray = function toArray() {
 // Map a function to a matrix or vector.
 jProto.map = function map(func, toAlter) {
   return jStat(jStat.map(this, func, toAlter));
+};
+
+
+// Cumulatively combine the elements of a matrix or vector using a function.
+jProto.cumreduce = function cumreduce(func, toAlter) {
+  return jStat(jStat.cumreduce(this, func, toAlter));
 };
 
 

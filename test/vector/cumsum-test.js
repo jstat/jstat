@@ -17,6 +17,9 @@ suite.addBatch({
     },
     'cumsum matrix cols': function(jStat) {
       assert.deepEqual(jStat([[1, 2], [3, 4]]).cumsum(), [[1, 4], [2, 6]]);
+    },
+    'cumsum matrix rows': function(jStat) {
+      assert.deepEqual(jStat([[1, 2], [3, 4]]).cumsum(true), [[1, 3], [3, 7]]);
     }
   },
   '#cumsum vector': {
@@ -33,6 +36,14 @@ suite.addBatch({
     },
     'cumsum matrix cols callback': function(val, stat) {
       assert.deepEqual(val, [[1, 4], [2, 6]]);
+    }
+  },
+  '#cumsum matrix rows': {
+    'topic': function() {
+      jStat([[1, 2], [3, 4]]).cumsum(true, this.callback);
+    },
+    'cumsum matrix rows callback': function(val, stat) {
+      assert.deepEqual(val, [[1, 3], [3, 7]]);
     }
   }
 });
