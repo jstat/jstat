@@ -204,7 +204,7 @@ jStat.extend(jStat.cauchy, {
 // extend chisquare function with static methods
 jStat.extend(jStat.chisquare, {
   pdf: function pdf(x, dof) {
-    return Math.exp((dof / 2 - 1) * Math.log(x) - x / 2 - (dof / 2) *
+    return x === 0 ? 0 : Math.exp((dof / 2 - 1) * Math.log(x) - x / 2 - (dof / 2) *
                     Math.log(2) - jStat.gammaln(dof / 2));
   },
 
