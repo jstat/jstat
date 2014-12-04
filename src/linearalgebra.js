@@ -89,6 +89,16 @@ jStat.extend({
     return jStat.map(arr, function(value) { return Math.pow(value, arg); });
   },
 
+  // exponentiate every element
+  exp: function exp(arr) {
+    return jStat.map(arr, function(value) { return Math.exp(value); });
+  },
+
+  // generate the natural log of every element
+  log: function exp(arr) {
+    return jStat.map(arr, function(value) { return Math.log(value); });
+  },
+
   // generate the absolute values of the vector
   abs: function abs(arr) {
     return jStat.map(arr, function(value) { return Math.abs(value); });
@@ -769,6 +779,6 @@ jStat.extend({
         return jStat(jStat[passfunc](this, arg));
     };
   }(funcs[i]));
-}('add divide multiply subtract dot pow abs norm angle'.split(' ')));
+}('add divide multiply subtract dot pow exp log abs norm angle'.split(' ')));
 
 }(this.jStat, Math));

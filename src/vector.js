@@ -108,13 +108,13 @@ jStat.median = function median(arr) {
 
 // cumulative sum of an array
 jStat.cumsum = function cumsum(arr) {
-  var len = arr.length;
-  var sums = new Array(len);
-  var i;
-  sums[0] = arr[0];
-  for (i = 1; i < len; i++)
-    sums[i] = sums[i - 1] + arr[i];
-  return sums;
+  return jStat.cumreduce(arr, function (a, b) { return a + b; });
+};
+
+
+// cumulative product of an array
+jStat.cumprod = function cumprod(arr) {
+  return jStat.cumreduce(arr, function (a, b) { return a * b; });
 };
 
 
@@ -297,39 +297,43 @@ jStat.corrcoeff = function corrcoeff(arr1, arr2) {
 var jProto = jStat.prototype;
 
 
-// Extend jProto with method for calculating cumulative sums, as it does not
-// run again in case of true.
+// Extend jProto with method for calculating cumulative sums and products.
+// This differs from the similar extension below as cumsum and cumprod should
+// not be run again in the case fullbool === true.
 // If a matrix is passed, automatically assume operation should be done on the
 // columns.
-jProto.cumsum = function(fullbool, func) {
-  var arr = [];
-  var i = 0;
-  var tmpthis = this;
-
-  // Assignment reassignation depending on how parameters were passed in.
-  if (isFunction(fullbool)) {
-    func = fullbool;
-    fullbool = false;
-  }
-
-  // Check if a callback was passed with the function.
-  if (func) {
-    setTimeout(function() {
-      func.call(tmpthis, jProto.cumsum.call(tmpthis, fullbool));
-    });
-    return this;
-  }
-
-  // Check if matrix and run calculations.
-  if (this.length > 1) {
-    tmpthis = fullbool === true ? this : this.transpose();
-    for (; i < tmpthis.length; i++)
-      arr[i] = jStat.cumsum(tmpthis[i]);
-    return arr;
-  }
-
-  return jStat.cumsum(this[0], fullbool);
-};
+(function(funcs) {
+  for (var i = 0; i < funcs.length; i++) (function(passfunc) {
+    // If a matrix is passed, automatically assume operation should be done on
+    // the columns.
+    jProto[passfunc] = function(fullbool, func) {
+      var arr = [];
+      var i = 0;
+      var tmpthis = this;
+      // Assignment reassignation depending on how parameters were passed in.
+      if (isFunction(fullbool)) {
+        func = fullbool;
+        fullbool = false;
+      }
+      // Check if a callback was passed with the function.
+      if (func) {
+        setTimeout(function() {
+          func.call(tmpthis, jProto[passfunc].call(tmpthis, fullbool));
+        });
+        return this;
+      }
+      // Check if matrix and run calculations.
+      if (this.length > 1) {
+        tmpthis = fullbool === true ? this : this.transpose();
+        for (; i < tmpthis.length; i++)
+          arr[i] = jStat[passfunc](tmpthis[i]);
+        return arr;
+      }
+      // Pass fullbool if only vector, not a matrix. for variance and stdev.
+      return jStat[passfunc](this[0], fullbool);
+    };
+  })(funcs[i]);
+})(('cumsum cumprod').split(' '));
 
 
 // Extend jProto with methods which don't require arguments and work on columns.

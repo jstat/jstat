@@ -244,6 +244,24 @@ Map a function to all values and return a new object.
         return x * 2;
     });
 
+### cumreduce( func )
+
+Cumulatively reduce values using a function and return a new object.
+
+**cumreduce( array, fn )**
+
+    var matrix = [[1,2],[3,4]];
+    jStat.cumreduce( matrix, function( a, b ) {
+        return a + b;
+    });
+    // returns [[1,3],[3,7]]
+
+**fn.cumreduce( fn )**
+
+    jStat( matrix ).cumreduce(function( a, b ) {
+        return a + b;
+    });
+
 ### alter( func )
 
 Destructively map to an array.

@@ -226,6 +226,30 @@ jStat.map = function map(arr, func, toAlter) {
 };
 
 
+// Cumulatively combine the elements of an array or array of arrays using a function.
+jStat.cumreduce = function cumreduce(arr, func, toAlter) {
+  var row, nrow, ncol, res, col;
+
+  if (!isArray(arr[0]))
+    arr = [arr];
+
+  nrow = arr.length;
+  ncol = arr[0].length;
+  res = toAlter ? arr : new Array(nrow);
+
+  for (row = 0; row < nrow; row++) {
+    // if the row doesn't exist, create it
+    if (!res[row])
+      res[row] = new Array(ncol);
+    if (ncol > 0)
+      res[row][0] = arr[row][0];
+    for (col = 1; col < ncol; col++)
+      res[row][col] = func(res[row][col-1], arr[row][col]);
+  }
+  return res.length === 1 ? res[0] : res;
+};
+
+
 // Destructively alter an array.
 jStat.alter = function alter(arr, func) {
   return jStat.map(arr, func, true);
@@ -369,6 +393,12 @@ jProto.toArray = function toArray() {
 // Map a function to a matrix or vector.
 jProto.map = function map(func, toAlter) {
   return jStat(jStat.map(this, func, toAlter));
+};
+
+
+// Cumulatively combine the elements of a matrix or vector using a function.
+jProto.cumreduce = function cumreduce(func, toAlter) {
+  return jStat(jStat.cumreduce(this, func, toAlter));
 };
 
 
@@ -540,13 +570,13 @@ jStat.median = function median(arr) {
 
 // cumulative sum of an array
 jStat.cumsum = function cumsum(arr) {
-  var len = arr.length;
-  var sums = new Array(len);
-  var i;
-  sums[0] = arr[0];
-  for (i = 1; i < len; i++)
-    sums[i] = sums[i - 1] + arr[i];
-  return sums;
+  return jStat.cumreduce(arr, function (a, b) { return a + b; });
+};
+
+
+// cumulative product of an array
+jStat.cumprod = function cumprod(arr) {
+  return jStat.cumreduce(arr, function (a, b) { return a * b; });
 };
 
 
@@ -729,39 +759,43 @@ jStat.corrcoeff = function corrcoeff(arr1, arr2) {
 var jProto = jStat.prototype;
 
 
-// Extend jProto with method for calculating cumulative sums, as it does not
-// run again in case of true.
+// Extend jProto with method for calculating cumulative sums and products.
+// This differs from the similar extension below as cumsum and cumprod should
+// not be run again in the case fullbool === true.
 // If a matrix is passed, automatically assume operation should be done on the
 // columns.
-jProto.cumsum = function(fullbool, func) {
-  var arr = [];
-  var i = 0;
-  var tmpthis = this;
-
-  // Assignment reassignation depending on how parameters were passed in.
-  if (isFunction(fullbool)) {
-    func = fullbool;
-    fullbool = false;
-  }
-
-  // Check if a callback was passed with the function.
-  if (func) {
-    setTimeout(function() {
-      func.call(tmpthis, jProto.cumsum.call(tmpthis, fullbool));
-    });
-    return this;
-  }
-
-  // Check if matrix and run calculations.
-  if (this.length > 1) {
-    tmpthis = fullbool === true ? this : this.transpose();
-    for (; i < tmpthis.length; i++)
-      arr[i] = jStat.cumsum(tmpthis[i]);
-    return arr;
-  }
-
-  return jStat.cumsum(this[0], fullbool);
-};
+(function(funcs) {
+  for (var i = 0; i < funcs.length; i++) (function(passfunc) {
+    // If a matrix is passed, automatically assume operation should be done on
+    // the columns.
+    jProto[passfunc] = function(fullbool, func) {
+      var arr = [];
+      var i = 0;
+      var tmpthis = this;
+      // Assignment reassignation depending on how parameters were passed in.
+      if (isFunction(fullbool)) {
+        func = fullbool;
+        fullbool = false;
+      }
+      // Check if a callback was passed with the function.
+      if (func) {
+        setTimeout(function() {
+          func.call(tmpthis, jProto[passfunc].call(tmpthis, fullbool));
+        });
+        return this;
+      }
+      // Check if matrix and run calculations.
+      if (this.length > 1) {
+        tmpthis = fullbool === true ? this : this.transpose();
+        for (; i < tmpthis.length; i++)
+          arr[i] = jStat[passfunc](tmpthis[i]);
+        return arr;
+      }
+      // Pass fullbool if only vector, not a matrix. for variance and stdev.
+      return jStat[passfunc](this[0], fullbool);
+    };
+  })(funcs[i]);
+})(('cumsum cumprod').split(' '));
 
 
 // Extend jProto with methods which don't require arguments and work on columns.
@@ -1515,8 +1549,9 @@ jStat.extend(jStat.cauchy, {
 // extend chisquare function with static methods
 jStat.extend(jStat.chisquare, {
   pdf: function pdf(x, dof) {
-    return Math.exp((dof / 2 - 1) * Math.log(x) - x / 2 - (dof / 2) *
-                    Math.log(2) - jStat.gammaln(dof / 2));
+    return x === 0 ? 0 :
+        Math.exp((dof / 2 - 1) * Math.log(x) - x / 2 - (dof / 2) *
+                 Math.log(2) - jStat.gammaln(dof / 2));
   },
 
   cdf: function cdf(x, dof) {
@@ -1902,6 +1937,10 @@ jStat.extend(jStat.uniform, {
     else if (x < b)
       return (x - a) / (b - a);
     return 1;
+  },
+
+  inv: function(p, a, b) {
+    return a + (p * (b - a));
   },
 
   mean: function mean(a, b) {
@@ -2338,6 +2377,16 @@ jStat.extend({
   // raise every element by a scalar
   pow: function pow(arr, arg) {
     return jStat.map(arr, function(value) { return Math.pow(value, arg); });
+  },
+
+  // exponentiate every element
+  exp: function exp(arr) {
+    return jStat.map(arr, function(value) { return Math.exp(value); });
+  },
+
+  // generate the natural log of every element
+  log: function exp(arr) {
+    return jStat.map(arr, function(value) { return Math.log(value); });
   },
 
   // generate the absolute values of the vector
@@ -3020,7 +3069,7 @@ jStat.extend({
         return jStat(jStat[passfunc](this, arg));
     };
   }(funcs[i]));
-}('add divide multiply subtract dot pow abs norm angle'.split(' ')));
+}('add divide multiply subtract dot pow exp log abs norm angle'.split(' ')));
 
 }(this.jStat, Math));
 (function(jStat, Math) {

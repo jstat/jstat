@@ -341,6 +341,37 @@ And the two can be combined.
         // result === ...
     });
 
+### cumprod()
+
+**cumprod( array )**
+
+Return an array of partial products in the sequence.
+
+    jStat.cumprod([2,3,4]) === [2,6,24]
+
+**fn.cumprod( [bool][,callback] )**
+
+Return an array of partial products for a vector or matrix columns.
+
+    jStat( 1, 5, 5 ).cumprod() === [1,2,6,24,120]
+    jStat([[1,2],[3,4]]).cumprod() === [[1,3],[2,8]]
+
+If callback is passed then will pass result as first argument.
+
+    jStat( 1, 5, 5 ).cumprod(function( result ) {
+        // result === [1,2,6,24,120]
+    });
+
+If pass boolean true as first argument, then return cumulative products of the matrix.
+
+    jStat([[1,2],[3,4]]).cumprod( true ) === [[1,2],[3,12]]
+
+And the two can be combined.
+
+    jStat([[1,2],[3,4]]).cumprod(true,function( result ) {
+        // result === ...
+    });
+
 ### diff()
 
 **diff( array )**
