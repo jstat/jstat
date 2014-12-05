@@ -271,6 +271,23 @@ jStat.percentileOfScore = function percentileOfScore(arr, score, kind) {
   return counter / len;
 };
 
+// Histogram (bin count) data
+jStat.histogram = function histogram(arr, bins) {
+  var first = jStat.min(arr);
+  var binCount = bins || 4;
+  var binWidth = (jStat.max(arr) - first) / binCount;
+  var len = arr.length;
+  var bins = [];
+  var i;
+
+  for (i = 0; i < binCount; i++) bins[i] = 0;
+
+  for (i = 0; i < len; i++)
+    bins[Math.min(Math.floor(((arr[i] - first) / binWidth)), binCount-1)] += 1;
+
+  return bins;
+};
+
 // covariance of two arrays
 jStat.covariance = function covariance(arr1, arr2) {
   var u = jStat.mean(arr1);
@@ -291,6 +308,29 @@ jStat.corrcoeff = function corrcoeff(arr1, arr2) {
   return jStat.covariance(arr1, arr2) /
       jStat.stdev(arr1, 1) /
       jStat.stdev(arr2, 1);
+};
+
+// statistical standardized moments (general form of skew/kurt)
+jStat.stanMoment = function(arr, n) {
+  var mu = jStat.mean(arr); 
+  var sigma = jStat.stdev(arr);
+  var len = arr.length;
+  var skewSum = 0;
+
+  for (i = 0; i < len; i++)
+    skewSum += Math.pow( (arr[i] - mu) / sigma, n);
+
+  return skewSum / arr.length;
+};
+
+// (pearson's) moment coefficient of skewness
+jStat.skewness = function(arr) {
+  return jStat.stanMoment(arr, 3);
+};
+
+// (pearson's) (excess) kurtosis
+jStat.kurtosis = function(arr) {
+  return jStat.stanMoment(arr, 4) - 3;
 };
 
 
@@ -371,7 +411,8 @@ var jProto = jStat.prototype;
     };
   })(funcs[i]);
 })(('sum sumsqrd sumsqerr product min max mean meansqerr geomean median diff ' +
-    'mode range variance stdev meandev meddev coeffvar quartiles').split(' '));
+    'mode range variance stdev meandev meddev coeffvar quartiles histogram ' +
+    'skewness kurtosis').split(' '));
 
 
 // Extend jProto with functions that take arguments. Operations on matrices are
