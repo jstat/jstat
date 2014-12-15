@@ -462,7 +462,7 @@ jStat.extend(jStat.normal, {
 // extend pareto function with static methods
 jStat.extend(jStat.pareto, {
   pdf: function pdf(x, scale, shape) {
-    if (x <= scale)
+    if (x < scale)
       return undefined;
     return (shape * Math.pow(scale, shape)) / Math.pow(x, shape + 1);
   },
