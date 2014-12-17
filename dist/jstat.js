@@ -710,6 +710,7 @@ jStat.quantiles = function quantiles(arr, quantilesArray, alphap, betap) {
   return quantileVals;
 };
 
+
 // The percentile rank of score in a given array. Returns the percentage
 // of all values in the input array that are less than (kind='strict') or
 // less or equal than (kind='weak') score. Default is weak.
@@ -733,6 +734,25 @@ jStat.percentileOfScore = function percentileOfScore(arr, score, kind) {
   return counter / len;
 };
 
+
+// Histogram (bin count) data
+jStat.histogram = function histogram(arr, bins) {
+  var first = jStat.min(arr);
+  var binCnt = bins || 4;
+  var binWidth = (jStat.max(arr) - first) / binCnt;
+  var len = arr.length;
+  var bins = [];
+  var i;
+
+  for (i = 0; i < binCnt; i++)
+    bins[i] = 0;
+  for (i = 0; i < len; i++)
+    bins[Math.min(Math.floor(((arr[i] - first) / binWidth)), binCnt - 1)] += 1;
+
+  return bins;
+};
+
+
 // covariance of two arrays
 jStat.covariance = function covariance(arr1, arr2) {
   var u = jStat.mean(arr1);
@@ -753,6 +773,29 @@ jStat.corrcoeff = function corrcoeff(arr1, arr2) {
   return jStat.covariance(arr1, arr2) /
       jStat.stdev(arr1, 1) /
       jStat.stdev(arr2, 1);
+};
+
+// statistical standardized moments (general form of skew/kurt)
+jStat.stanMoment = function stanMoment(arr, n) {
+  var mu = jStat.mean(arr);
+  var sigma = jStat.stdev(arr);
+  var len = arr.length;
+  var skewSum = 0;
+
+  for (i = 0; i < len; i++)
+    skewSum += Math.pow((arr[i] - mu) / sigma, n);
+
+  return skewSum / arr.length;
+};
+
+// (pearson's) moment coefficient of skewness
+jStat.skewness = function skewness(arr) {
+  return jStat.stanMoment(arr, 3);
+};
+
+// (pearson's) (excess) kurtosis
+jStat.kurtosis = function kurtosis(arr) {
+  return jStat.stanMoment(arr, 4) - 3;
 };
 
 
@@ -833,7 +876,8 @@ var jProto = jStat.prototype;
     };
   })(funcs[i]);
 })(('sum sumsqrd sumsqerr product min max mean meansqerr geomean median diff ' +
-    'mode range variance stdev meandev meddev coeffvar quartiles').split(' '));
+    'mode range variance stdev meandev meddev coeffvar quartiles histogram ' +
+    'skewness kurtosis').split(' '));
 
 
 // Extend jProto with functions that take arguments. Operations on matrices are
@@ -1807,7 +1851,7 @@ jStat.extend(jStat.normal, {
 // extend pareto function with static methods
 jStat.extend(jStat.pareto, {
   pdf: function pdf(x, scale, shape) {
-    if (x <= scale)
+    if (x < scale)
       return undefined;
     return (shape * Math.pow(scale, shape)) / Math.pow(x, shape + 1);
   },
