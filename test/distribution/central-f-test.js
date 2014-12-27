@@ -28,6 +28,15 @@ suite.addBatch({
       var fourth = jStat.centralF.pdf(0.4, 3, 10);
       assert.epsilon(tol, fourth, 0.6733766);
 
+      var first_at_zero = jStat.centralF.pdf(0.0, 3, 5);
+      assert.epsilon(tol, first_at_zero, 0);
+
+      var second_at_zero = jStat.centralF.pdf(0.0, 2, 1);
+      assert.epsilon(tol, second_at_zero, 1);
+
+      var third_at_zero = jStat.centralF.pdf(0.0, 1, 1);
+      assert.strictEqual(third_at_zero, Infinity);
+
     }
   },
 });
