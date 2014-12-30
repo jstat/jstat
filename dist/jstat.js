@@ -1016,7 +1016,7 @@ jStat.gammap = function gammap(a, x) {
     for (; i <= ITMAX; i++) {
       sum += del *= x / ++ap;
     }
-    return sum * Math.exp(-x + a * Math.log(x) - (aln));
+    return (sum * Math.exp(-x + a * Math.log(x) - (aln))) * jStat.gammafn(a);
   }
 
   for (; i <= ITMAX; i++) {
@@ -1028,7 +1028,7 @@ jStat.gammap = function gammap(a, x) {
     h *= d * c;
   }
 
-  return 1 - h * Math.exp(-x + a * Math.log(x) - (aln));
+  return (1 - h * Math.exp(-x + a * Math.log(x) - (aln))) * jStat.gammafn(a);
 };
 
 
