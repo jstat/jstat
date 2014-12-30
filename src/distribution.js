@@ -292,7 +292,7 @@ jStat.extend(jStat.gamma, {
   },
 
   cdf: function cdf(x, shape, scale) {
-    return jStat.gammap(shape, x / scale);
+    return jStat.lowerRegularizedGamma(shape, x / scale);
   },
 
   inv: function(p, shape, scale) {
