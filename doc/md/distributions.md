@@ -174,9 +174,13 @@ Returns the value of x in the pdf of the Gamma distribution with the parameters 
 
 Returns the value of x in the cdf of the Gamma distribution with the parameters shape (k) and scale (theta). Notice that if using the alpha beta convention, scale = 1/beta.
 
+This function is checked against R's pgamma function.
+
 #### jStat.gamma.inv( p, shape, scale )
 
 Returns the value of p in the inverse of the cdf for the Gamma distribution with the parameters shape (k) and scale (theta). Notice that if using the alpha beta convention, scale = 1/beta.
+
+This function is checked against R's qgamma function.
 
 #### jStat.gamma.mean( shape, scale )
 

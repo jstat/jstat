@@ -11,6 +11,8 @@ suite.addBatch({
     },
 
     // Checked against Mathematica Gamma[a, 0, x]
+    // Also checked against R's gammainc(x, a) via the pracma library
+    // gammainc() outputs three values, this matches 'lowinc'
     'check gammap': function(jStat) {
       var tol = 0.000001;
       assert.epsilon(tol, jStat.gammap(5, 5), 13.4281611);
