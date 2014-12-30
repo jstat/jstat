@@ -325,7 +325,7 @@ jStat.extend(jStat.invgamma, {
   },
 
   cdf: function cdf(x, shape, scale) {
-    return 1 - jStat.gammap(shape, scale / x);
+    return 1 - jStat.lowerRegularizedGamma(shape, scale / x);
   },
 
   inv: function(p, shape, scale) {
