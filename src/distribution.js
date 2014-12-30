@@ -216,7 +216,7 @@ jStat.extend(jStat.chisquare, {
   },
 
   cdf: function cdf(x, dof) {
-    return jStat.gammap(dof / 2, x / 2);
+    return jStat.lowerRegularizedGamma(dof / 2, x / 2);
   },
 
   inv: function(p, dof) {
