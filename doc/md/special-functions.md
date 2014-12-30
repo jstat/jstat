@@ -18,7 +18,7 @@ Returns the inverse of the incomplete Beta function evaluated at (p,a,b).
 
 ### ibeta( x, a, b)
 
-Returns teh incomplete Beta function evaluated at (x,a,b).
+Returns the incomplete Beta function evaluated at (x,a,b).
 
 ### gammaln( x )
 
@@ -54,7 +54,7 @@ Returns the inverse of the incomplete Gamma function evaluated at (p,a).
 
 ### erf( x )
 
-Returns the error function evaluated at x. 
+Returns the error function evaluated at x.
 
 ### erfc( x )
 
