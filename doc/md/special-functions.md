@@ -38,13 +38,13 @@ This function is usually written with a lower case greek gamma character, and is
 This function is tested against Mathematica's Gamma[a, 0, x].
 It is additionally tested against gammainc(a,x)'s 'lowinc' output from teh 'pracma' library for R.
 
-### lowerRegularizedGamma(x, a)
+### lowRegGamma(a, x)
 
-Returns the lower regularized incomplete gamma function evaluated at (x,a).
-It is defined as the quotient of the lower incomplete gamma function evaluated at (x, a) and the upper incomplete gamma function ('the gamma function') evaluated at (a).
+Returns the lower regularized incomplete gamma function evaluated at (a,x).
+It is defined as the quotient of the lower incomplete gamma function evaluated at (a, x) and the upper incomplete gamma function ('the gamma function') evaluated at (a).
 This function is usually written as P(x, a); and is one of the two [regularized gamma functions](http://mathworld.wolfram.com/RegularizedGammaFunction.html).
 
-This function is tested against gammainc(a, x)'s 'reginc' output from the 'pracma' library for R.
+This function is tested against gammainc(x, a)'s 'reginc' output from the 'pracma' library for R. Note that R and jStat switch the order of operators for this function.
 
 ### gammapinv( p, a )
 

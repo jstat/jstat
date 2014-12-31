@@ -71,11 +71,11 @@ jStat.gammafn = function gammafn(x) {
 //lower incomplete gamma function, which is usually typeset with a
 //lower-case greek gamma as the function symbol
 jStat.gammap = function gammap(a, x) {
-  return jStat.lowerRegularizedGamma(a, x) * jStat.gammafn(a);
+  return jStat.lowRegGamma(a, x) * jStat.gammafn(a);
 };
 
-//The lower regularized incomplete gamma function, usually writtenP(a,x)
-jStat.lowerRegularizedGamma= function lowerRegularizedGamma(a, x) {
+//The lower regularized incomplete gamma function, usually written P(a,x)
+jStat.lowRegGamma = function lowRegGamma(a, x) {
   var aln = jStat.gammaln(a);
   var ap = a;
   var sum = 1 / a;
@@ -240,7 +240,7 @@ jStat.gammapinv = function gammapinv(p, a) {
   for(; j < 12; j++) {
     if (x <= 0)
       return 0;
-    err = jStat.lowerRegularizedGamma(a, x) - p;
+    err = jStat.lowRegGamma(a, x) - p;
     if (a > 1)
       t = afac * Math.exp(-(x - a1) + a1 * (Math.log(x) - lna1));
     else
