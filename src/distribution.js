@@ -216,7 +216,7 @@ jStat.extend(jStat.chisquare, {
   },
 
   cdf: function cdf(x, dof) {
-    return jStat.gammap(dof / 2, x / 2);
+    return jStat.lowRegGamma(dof / 2, x / 2);
   },
 
   inv: function(p, dof) {
@@ -292,7 +292,7 @@ jStat.extend(jStat.gamma, {
   },
 
   cdf: function cdf(x, shape, scale) {
-    return jStat.gammap(shape, x / scale);
+    return jStat.lowRegGamma(shape, x / scale);
   },
 
   inv: function(p, shape, scale) {
@@ -325,7 +325,7 @@ jStat.extend(jStat.invgamma, {
   },
 
   cdf: function cdf(x, shape, scale) {
-    return 1 - jStat.gammap(shape, scale / x);
+    return 1 - jStat.lowRegGamma(shape, scale / x);
   },
 
   inv: function(p, shape, scale) {
