@@ -68,13 +68,13 @@ jStat.gammafn = function gammafn(x) {
 };
 
 
-//lower incomplete gamma function, which is usually typeset with a
-//lower-case greek gamma as the function symbol
+// lower incomplete gamma function, which is usually typeset with a
+// lower-case greek gamma as the function symbol
 jStat.gammap = function gammap(a, x) {
   return jStat.lowRegGamma(a, x) * jStat.gammafn(a);
 };
 
-//The lower regularized incomplete gamma function, usually written P(a,x)
+// The lower regularized incomplete gamma function, usually written P(a,x)
 jStat.lowRegGamma = function lowRegGamma(a, x) {
   var aln = jStat.gammaln(a);
   var ap = a;
