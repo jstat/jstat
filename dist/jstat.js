@@ -995,8 +995,15 @@ jStat.gammafn = function gammafn(x) {
 };
 
 
-// lower incomplete gamma function P(a,x)
+// lower incomplete gamma function, which is usually typeset with a
+// lower-case greek gamma as the function symbol
 jStat.gammap = function gammap(a, x) {
+  return jStat.lowRegGamma(a, x) * jStat.gammafn(a);
+};
+
+
+// The lower regularized incomplete gamma function, usually written P(a,x)
+jStat.lowRegGamma = function lowRegGamma(a, x) {
   var aln = jStat.gammaln(a);
   var ap = a;
   var sum = 1 / a;
@@ -1016,7 +1023,7 @@ jStat.gammap = function gammap(a, x) {
     for (; i <= ITMAX; i++) {
       sum += del *= x / ++ap;
     }
-    return (sum * Math.exp(-x + a * Math.log(x) - (aln))) * jStat.gammafn(a);
+    return (sum * Math.exp(-x + a * Math.log(x) - (aln)));
   }
 
   for (; i <= ITMAX; i++) {
@@ -1028,9 +1035,8 @@ jStat.gammap = function gammap(a, x) {
     h *= d * c;
   }
 
-  return (1 - h * Math.exp(-x + a * Math.log(x) - (aln))) * jStat.gammafn(a);
+  return (1 - h * Math.exp(-x + a * Math.log(x) - (aln)));
 };
-
 
 // natural log factorial of n
 jStat.factorialln = function factorialln(n) {
@@ -1129,7 +1135,7 @@ jStat.betacf = function betacf(x, a, b) {
 };
 
 
-// Returns the inverse incomplte gamma function
+// Returns the inverse of the lower regularized inomplete gamma function
 jStat.gammapinv = function gammapinv(p, a) {
   var j = 0;
   var a1 = a - 1;
@@ -1162,7 +1168,7 @@ jStat.gammapinv = function gammapinv(p, a) {
   for(; j < 12; j++) {
     if (x <= 0)
       return 0;
-    err = jStat.gammap(a, x) - p;
+    err = jStat.lowRegGamma(a, x) - p;
     if (a > 1)
       t = afac * Math.exp(-(x - a1) + a1 * (Math.log(x) - lna1));
     else
@@ -1517,6 +1523,12 @@ jStat.extend(jStat.centralF, {
       return undefined;
 
     if (df1 <= 2) {
+      if (df1 === 1 && df2 === 1) {
+        return Infinity;
+      }
+      if (df1 === 2 && df2 === 1) {
+        return 1;
+      }
       return Math.sqrt((Math.pow(df1 * x, df1) * Math.pow(df2, df2)) /
                        (Math.pow(df1 * x + df2, df1 + df2))) /
                        (x * jStat.betafn(df1/2, df2/2));
@@ -1599,7 +1611,7 @@ jStat.extend(jStat.chisquare, {
   },
 
   cdf: function cdf(x, dof) {
-    return jStat.gammap(dof / 2, x / 2);
+    return jStat.lowRegGamma(dof / 2, x / 2);
   },
 
   inv: function(p, dof) {
@@ -1675,7 +1687,7 @@ jStat.extend(jStat.gamma, {
   },
 
   cdf: function cdf(x, shape, scale) {
-    return jStat.gammap(shape, x / scale);
+    return jStat.lowRegGamma(shape, x / scale);
   },
 
   inv: function(p, shape, scale) {
@@ -1708,7 +1720,7 @@ jStat.extend(jStat.invgamma, {
   },
 
   cdf: function cdf(x, shape, scale) {
-    return 1 - jStat.gammap(shape, scale / x);
+    return 1 - jStat.lowRegGamma(shape, scale / x);
   },
 
   inv: function(p, shape, scale) {
