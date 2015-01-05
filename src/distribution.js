@@ -128,6 +128,12 @@ jStat.extend(jStat.centralF, {
       return undefined;
 
     if (df1 <= 2) {
+      if (df1 === 1 && df2 === 1) {
+        return Infinity;
+      }
+      if (df1 === 2 && df2 === 1) {
+        return 1;
+      }
       return Math.sqrt((Math.pow(df1 * x, df1) * Math.pow(df2, df2)) /
                        (Math.pow(df1 * x + df2, df1 + df2))) /
                        (x * jStat.betafn(df1/2, df2/2));
@@ -462,7 +468,7 @@ jStat.extend(jStat.normal, {
 // extend pareto function with static methods
 jStat.extend(jStat.pareto, {
   pdf: function pdf(x, scale, shape) {
-    if (x <= scale)
+    if (x < scale)
       return undefined;
     return (shape * Math.pow(scale, shape)) / Math.pow(x, shape + 1);
   },
