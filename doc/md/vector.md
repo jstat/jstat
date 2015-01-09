@@ -472,8 +472,8 @@ And the two can be combined.
 **variance( array[,flag])**
 
 Return the variance of a vector.
-By default, the sample variance is calculated.
-Passing true as the flag indicates computes the population variance instead.
+By default, the population variance is calculated.
+Passing true as the flag indicates computes the sample variance instead.
 
     jStat.variance([1,2,3,4]) === 1.25
     jStat.variance([1,2,3,4],true) === 1.66666...
@@ -509,8 +509,8 @@ And the two can be combined.
 **stdev( array[,flag])**
 
 Return the standard deviation of a vector.
-By defaut, the sample standard deviation is returned.
-Passing true for the flag parameter returns the population standard deviation.
+By defaut, the population standard deviation is returned.
+Passing true for the flag parameter returns the sample standard deviation.
 
 The 'sample' standard deviation is also called the 'corrected standard deviation', and is an unbiased estimator of the population standard deviation.
 The population standard deviation is also the 'uncorrected standard deviation', and is a biased but minimum-mean-squared-error estimator.
@@ -708,7 +708,7 @@ less or equal than (if `kind == 'weak'`) score. Default is `'weak'`.
 
 **histogram( dataArray, [numBins] )**
 
-The histogram data defined as the number of dataArray elements found in 
+The histogram data defined as the number of dataArray elements found in
 equally sized bins across the range of dataArray. Default number
 of bins is 4.
 

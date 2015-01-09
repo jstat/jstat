@@ -170,14 +170,14 @@ jStat.range = function range(arr) {
 };
 
 // variance of an array
-// flag indicates population vs sample
+// flag = true indicates sample instead of population
 jStat.variance = function variance(arr, flag) {
   return jStat.sumsqerr(arr) / (arr.length - (flag ? 1 : 0));
 };
 
 
 // standard deviation of an array
-// flag indicates population vs sample
+// flag = true indicates sample instead of population
 jStat.stdev = function stdev(arr, flag) {
   return Math.sqrt(jStat.variance(arr, flag));
 };
