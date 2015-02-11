@@ -909,7 +909,7 @@ jStat.extend(jStat.triangular, {
           else
             return (2 * (x - a)) / ((b - a) * (c - a));
         } else {
-          if (c === b) {
+          if (c === b)
             return 1;
           else
             return (2 * (b - x)) / ((b - a) * (b - c));
