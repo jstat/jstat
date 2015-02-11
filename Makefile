@@ -6,7 +6,7 @@ JS_TESTER = $(NODE_PATH)/vows/bin/vows
 DOC_DIR = doc
 BUILD_DIR = build
 DOC_LIST = `ls $(DOC_DIR)/md/`
-JS_ENGINE ?= $(shell which node nodejs 2>/dev/null | grep -Po -m 1 "(.+?)$$")
+JS_ENGINE ?= $(shell which node nodejs 2>/dev/null | head -1)
 
 all: clean core doc
 
