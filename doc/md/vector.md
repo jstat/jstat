@@ -27,7 +27,7 @@ If pass boolean true as first argument, then return sum of entire matrix.
 
 And the two can be combined.
 
-    jStat[[1,2],[3,4]]).sum(true,function( result ) {
+    jStat([[1,2],[3,4]]).sum(true,function( result ) {
         // result === 10
     });
 
@@ -58,7 +58,7 @@ If pass boolean true as first argument, then return sum squared of entire matrix
 
 And the two can be combined.
 
-    jStat[[1,2],[3,4]]).sumsqrd(true,function( result ) {
+    jStat([[1,2],[3,4]]).sumsqrd(true,function( result ) {
         // result === 650
     });
 
@@ -89,7 +89,7 @@ If pass boolean true as first argument, then return sum of squared errors of ent
 
 And the two can be combined.
 
-    jStat[[1,2],[3,4]]).sumsqerr(true,function( result ) {
+    jStat([[1,2],[3,4]]).sumsqerr(true,function( result ) {
         // result === 0
     });
 
@@ -120,7 +120,7 @@ If pass boolean true as first argument, then return sumsqerr of entire matrix.
 
 And the two can be combined.
 
-    jStat[[1,2],[3,4]]).product(true,function( result ) {
+    jStat([[1,2],[3,4]]).product(true,function( result ) {
         // result === 24
     });
 
@@ -151,7 +151,7 @@ If pass boolean true as first argument, then return minimum of entire matrix.
 
 And the two can be combined.
 
-    jStat[[1,2],[3,4]]).min(true,function( result ) {
+    jStat([[1,2],[3,4]]).min(true,function( result ) {
         // result === 1
     });
 
@@ -182,7 +182,7 @@ If pass boolean true as first argument, then return maximum of entire matrix.
 
 And the two can be combined.
 
-    jStat[[1,2],[3,4]]).max(true,function( result ) {
+    jStat([[1,2],[3,4]]).max(true,function( result ) {
         // result === 4
     });
 
@@ -213,7 +213,7 @@ If pass boolean true as first argument, then return mean of entire matrix.
 
 And the two can be combined.
 
-    jStat[[1,2],[3,4]]).mean(true,function( result ) {
+    jStat([[1,2],[3,4]]).mean(true,function( result ) {
         // result === 2.5
     });
 
@@ -244,7 +244,7 @@ If pass boolean true as first argument, then return mean squared error of entire
 
 And the two can be combined.
 
-    jStat[[1,2],[3,4]]).meansqerr(true,function( result ) {
+    jStat([[1,2],[3,4]]).meansqerr(true,function( result ) {
         // result === 0
     });
 
@@ -275,7 +275,7 @@ If pass boolean true as first argument, then return geometric mean of entire mat
 
 And the two can be combined.
 
-    jStat[[1,2],[3,4]]).geomean(true,function( result ) {
+    jStat([[1,2],[3,4]]).geomean(true,function( result ) {
         // result === 2.213...
     });
 
@@ -306,7 +306,7 @@ If pass boolean true as first argument, then return median of entire matrix.
 
 And the two can be combined.
 
-    jStat[[1,2],[3,4]]).median(true,function( result ) {
+    jStat([[1,2],[3,4]]).median(true,function( result ) {
         // result === 2.5
     });
 
@@ -432,7 +432,7 @@ If pass boolean true as first argument, then return mode of the matrix.
 
 And the two can be combined.
 
-    jStat[[1,2],[1,2]]).mode(true,function( result ) {
+    jStat([[1,2],[1,2]]).mode(true,function( result ) {
         // result === false
     });
 
@@ -463,7 +463,7 @@ If pass boolean true as first argument, then return range of the matrix.
 
 And the two can be combined.
 
-    jStat[[1,2],[3,5]]).range(true,function( result ) {
+    jStat([[1,2],[3,5]]).range(true,function( result ) {
         // result === 1
     });
 
@@ -500,7 +500,7 @@ If pass boolean true as first argument, then return variance of the matrix.
 
 And the two can be combined.
 
-    jStat[[1,2],[3,5]]).variance(true,function( result ) {
+    jStat([[1,2],[3,5]]).variance(true,function( result ) {
         // result === 0.140625
     });
 
@@ -544,7 +544,7 @@ If pass boolean true as first argument, then return variance of the matrix.
 
 And the two can be combined.
 
-    jStat[[1,2],[3,5]]).stdev(true,function( result ) {
+    jStat([[1,2],[3,5]]).stdev(true,function( result ) {
         // result === 0.25
     });
 
@@ -575,7 +575,7 @@ If pass boolean true as first argument, then return mean absolute deviation of t
 
 And the two can be combined.
 
-    jStat[[1,2],[3,5]]).meandev(true,function( result ) {
+    jStat([[1,2],[3,5]]).meandev(true,function( result ) {
         // result === 0.25
     });
 
@@ -653,7 +653,7 @@ If pass boolean true as first argument, then return coefficient of variation of 
 
 And the two can be combined.
 
-    jStat[[1,2],[3,5]]).coeffvar(true,function( result ) {
+    jStat([[1,2],[3,5]]).coeffvar(true,function( result ) {
         // result === 0.142...
     });
 
