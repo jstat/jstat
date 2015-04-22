@@ -88,3 +88,40 @@ url:
 ```
 //cdn.jsdelivr.net/jstat/<version>/jstat.min.js
 ```
+
+Module Loaders
+--------------
+
+Currently jStat is exposed as `j$` and `jStat` inside an object, rather than exported directly. This may confuse some 
+module loaders, however should be easily remedied with the correct configuration.
+
+NodeJS
+------
+
+When loading under Node be sure to reference the child object.
+
+`var jStat = require('jStat').jStat;`
+
+RequireJS Shim
+--------------
+
+For RequireJS not only `exports` but also `init` function must be specified.
+
+```
+requirejs.config({
+    paths: {
+        'jstat': 'path/to/jstat/dist/jstat.min'
+    },
+    shim: {
+        jstat: {
+            exports: ['j$', 'jStat'],
+            init: function () {
+                return {
+                    j$: j$,
+                    jStat: jStat
+                };
+            }
+        }
+    }
+});
+```
