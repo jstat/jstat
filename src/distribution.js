@@ -897,13 +897,25 @@ jStat.extend(jStat.poisson, {
 // extend triangular function with static methods
 jStat.extend(jStat.triangular, {
   pdf: function pdf(x, a, b, c) {
-    return (b <= a || c < a || c > b)
-      ? undefined
-      : (x < a || x > b)
-        ? 0
-        : (x <= c)
-          ? (2 * (x - a)) / ((b - a) * (c - a))
-          : (2 * (b - x)) / ((b - a) * (b - c));
+    if (b <= a || c < a || c > b) {
+      return undefined;
+    } else {
+      if (x < a || x > b) {
+        return 0;
+      } else {
+        if (x <= c) {
+          if ( c === a)
+            return 1;
+          else
+            return (2 * (x - a)) / ((b - a) * (c - a));
+        } else {
+          if (c === b)
+            return 1;
+          else
+            return (2 * (b - x)) / ((b - a) * (b - c));
+        }
+      }
+    }
   },
 
   cdf: function cdf(x, a, b, c) {
