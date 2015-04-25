@@ -38,6 +38,11 @@ suite.addBatch({
 
       assert.equal(jStat.beta.pdf(0, 1, 4), 4);
       assert.equal(jStat.beta.pdf(1, 4, 1), 4);
+    },
+    'check mode calculation': function(jStat) {
+      var tol = 0.0000001;
+      assert.epsilon(tol, jStat.beta.mode(5, 10), 0.307692);
+      assert.epsilon(tol, jStat.beta.moda(2.05, 2), 0.0523691);
     }
   }
 });

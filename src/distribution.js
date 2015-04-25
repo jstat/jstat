@@ -102,7 +102,7 @@ jStat.extend(jStat.beta, {
   },
 
   mode: function mode(alpha, beta) {
-    return (alpha * beta) / (Math.pow(alpha + beta, 2) * (alpha + beta + 1));
+    return (alpha - 1 ) / ( alpha + beta - 2);
   },
 
   // return a random sample
