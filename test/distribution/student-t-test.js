@@ -16,6 +16,9 @@ suite.addBatch({
       var df = 40;
       assert.epsilon(tol, jStat.studentt.pdf(x, df), 0.3489195);
     },
+    'check pdf calculation for large parameters': function(jStat) {
+      //TODO
+    },
     //Checked against R's pt(x, df)
     'check cdf calculation': function(jStat) {
       var tol = 0.0000001;
