@@ -12,9 +12,13 @@ suite.addBatch({
     //Checked against R dt(x,df)
     'check pdf calculation': function(jStat) {
       var tol = 0.0000001;
-      var x = 0.5;
-      var df = 40;
-      assert.epsilon(tol, jStat.studentt.pdf(x, df), 0.3489195);
+      assert.epsilon(tol, jStat.studentt.pdf(0.5, 40), 0.3489195);
+      assert.epsilon(tol, jStat.studentt.pdf(-1.0, 20), 0.2360456);
+    },
+    'check pdf calculation for large parameters': function(jStat) {
+      var tol = 0.0000001;
+      assert.epsilon(tol, jStat.studentt.pdf(0.45, 400), 0.3602198);
+      assert.epsilon(tol, jStat.studentt.pdf(2.95, 525), 0.005283244);
     },
     //Checked against R's pt(x, df)
     'check cdf calculation': function(jStat) {
