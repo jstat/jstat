@@ -71,6 +71,7 @@ Also, we'll be going through and reimplementing a good portion of the code to
 run faster. Hopefully it won't take too long to get the project on one basic
 standard.
 
+When submitting pull requests, no need to check in dist/*.js. They'll be recompiled for distribution anyway.
 
 Join the Community
 ------------------
