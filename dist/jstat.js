@@ -1454,8 +1454,8 @@ jStat.randg = function randg(shape, n, m) {
   })(list[i]);
 })((
   'beta centralF cauchy chisquare exponential gamma invgamma kumaraswamy ' +
-  'lognormal normal pareto studentt weibull uniform  binomial negbin hypgeom ' +
-  'poisson triangular'
+  'lognormal noncentralt normal pareto studentt weibull uniform  binomial ' +
+  'negbin hypgeom poisson triangular'
 ).split(' '));
 
 
@@ -1497,7 +1497,7 @@ jStat.extend(jStat.beta, {
   },
 
   mode: function mode(alpha, beta) {
-    return (alpha * beta) / (Math.pow(alpha + beta, 2) * (alpha + beta + 1));
+    return (alpha - 1 ) / ( alpha + beta - 2);
   },
 
   // return a random sample
@@ -1820,6 +1820,64 @@ jStat.extend(jStat.lognormal, {
   }
 });
 
+
+
+// extend noncentralt function with static methods
+jStat.extend(jStat.noncentralt, {
+  pdf: function pdf(x, dof, ncp) {
+    var tol = 1e-14;
+    if (Math.abs(ncp) < tol)  // ncp approx 0; use student-t
+      return jStat.studentt.pdf(x, dof)
+
+    if (Math.abs(x) < tol) {  // different formula for x == 0
+      return Math.exp(jStat.gammaln((dof + 1) / 2) - ncp * ncp / 2 -
+                      0.5 * Math.log(Math.PI * dof) - jStat.gammaln(dof / 2));
+    }
+
+    // formula for x != 0
+    return dof / x *
+        (jStat.noncentralt.cdf(x * Math.sqrt(1 + 2 / dof), dof+2, ncp) -
+         jStat.noncentralt.cdf(x, dof, ncp));
+  },
+
+  cdf: function cdf(x, dof, ncp) {
+    var tol = 1e-14;
+    var min_iterations = 200;
+
+    if (Math.abs(ncp) < tol)  // ncp approx 0; use student-t
+      return jStat.studentt.cdf(x, dof);
+
+    // turn negative x into positive and flip result afterwards
+    var flip = false;
+    if (x < 0) {
+      flip = true;
+      ncp = -ncp;
+    }
+
+    var prob = jStat.normal.cdf(-ncp, 0, 1);
+    var value = tol + 1;
+    // use value at last two steps to determine convergence
+    var lastvalue = value;
+    var y = x * x / (x * x + dof);
+    var j = 0;
+    var p = Math.exp(-ncp * ncp / 2);
+    var q = Math.exp(-ncp * ncp / 2 - 0.5 * Math.log(2) -
+                     jStat.gammaln(3 / 2)) * ncp;
+    while (j < min_iterations || lastvalue > tol || value > tol) {
+      lastvalue = value;
+      if (j > 0) {
+        p *= (ncp * ncp) / (2 * j);
+        q *= (ncp * ncp) / (2 * (j + 1 / 2));
+      }
+      value = p * jStat.beta.cdf(y, j + 0.5, dof / 2) +
+          q * jStat.beta.cdf(y, j+1, dof/2);
+      prob += 0.5 * value;
+      j++;
+    }
+
+    return flip ? (1 - prob) : prob;
+  }
+});
 
 
 // extend normal function with static methods
