@@ -561,6 +561,7 @@ jStat.extend(jStat.pareto, {
 // extend studentt function with static methods
 jStat.extend(jStat.studentt, {
   pdf: function pdf(x, dof) {
+    dof = dof > 300 ? 300 : dof;
     return (jStat.gammafn((dof + 1) / 2) / (Math.sqrt(dof * Math.PI) *
         jStat.gammafn(dof / 2))) *
         Math.pow(1 + ((x * x) / dof), -((dof + 1) / 2));
