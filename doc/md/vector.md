@@ -93,6 +93,38 @@ And the two can be combined.
         // result === 0
     });
 
+### sumrow()
+
+**sumrow( array )**
+
+Return the sum of a vector in row-based order.
+
+    jStat.sumrow([1,2,3]) === 6
+
+**fn.sumrow( [bool][,callback] )**
+
+Return the sum of a vector or matrix rows.
+
+    jStat( 1, 5, 5 ).sumrow() === 15
+    jStat([[1,2],[3,4]]).sumrow() === [ 3, 7 ]
+
+If callback is passed then will pass result as first argument.
+
+    jStat( 1, 5, 5 ).sumrow(function( result ) {
+        // result === 15
+    });
+
+If pass boolean true as first argument, then return sum of entire matrix.
+
+    jStat([[1,2],[3,4]]).sumrow( true ) === 10
+
+And the two can be combined.
+
+    jStat([[1,2],[3,4]]).sumrow(true,function( result ) {
+        // result === 10
+    });
+
+
 ### product()
 
 **product( array )**

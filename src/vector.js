@@ -14,7 +14,6 @@ function clip(arg, min, max) {
 jStat.sum = function sum(arr) {
   var sum = 0;
   var i = arr.length;
-  var tmp;
   while (--i >= 0)
     sum += arr[i];
   return sum;
@@ -44,6 +43,14 @@ jStat.sumsqerr = function sumsqerr(arr) {
   return sum;
 };
 
+// sum of an array in each row
+jStat.sumrow = function sumrow(arr) {
+  var sum = 0;
+  var i = arr.length;
+  while (--i >= 0)
+    sum += arr[i];
+  return sum;
+};
 
 // product of an array
 jStat.product = function product(arr) {
@@ -402,7 +409,8 @@ var jProto = jStat.prototype;
       }
       // Check if matrix and run calculations.
       if (this.length > 1) {
-        tmpthis = fullbool === true ? this : this.transpose();
+        if(passfunc !== 'sumrow')
+          tmpthis = fullbool === true ? this : this.transpose();
         for (; i < tmpthis.length; i++)
           arr[i] = jStat[passfunc](tmpthis[i]);
         return fullbool === true
@@ -413,7 +421,7 @@ var jProto = jStat.prototype;
       return jStat[passfunc](this[0], fullbool);
     };
   })(funcs[i]);
-})(('sum sumsqrd sumsqerr product min max mean meansqerr geomean median diff ' +
+})(('sum sumsqrd sumsqerr sumrow product min max mean meansqerr geomean median diff ' +
     'mode range variance stdev meandev meddev coeffvar quartiles histogram ' +
     'skewness kurtosis').split(' '));
 
