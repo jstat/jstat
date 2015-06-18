@@ -5,6 +5,11 @@ var concat = Array.prototype.concat;
 var slice = Array.prototype.slice;
 var toString = Object.prototype.toString;
 
+// Specify a version number
+function version() {
+  return "1.2.3";
+}
+
 // Calculate correction for IEEE error
 // TODO: This calculation can be improved.
 function calcRdx(n, m) {
