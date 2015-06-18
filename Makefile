@@ -11,34 +11,19 @@ JS_ENGINE ?= $(shell which node nodejs 2>/dev/null | head -1)
 all: clean core doc
 
 clean:
-	@echo 'Cleaning up build files'
-	@rm -rf dist
+	@npm run-script clean
 
-core: jstat.js jstat.min.js
+core:
+	@npm run-script jstatmin
 
-jstat.js: \
-	src/core.js \
-	src/vector.js \
-	src/special.js \
-	src/distribution.js \
-	src/linearalgebra.js \
-	src/test.js
-	@echo 'Building jStat'
-	@mkdir -p $(DIST_DIR)
-	@cat $^ > $(DIST_DIR)/$@
+jstat.js:
+	@npm run-script jstat
 
 jstat.min.js: jstat.js
-	@echo 'Minifying jStat'
-	@$(JS_COMPILER) < $(DIST_DIR)/$< > $(DIST_DIR)/$@
+	@npm run-script jstatmin
 
 doc:
-	@echo 'Generating documentation'
-	@mkdir -p $(DIST_DIR)/docs/assets
-	@cp $(DOC_DIR)/assets/*.css $(DIST_DIR)/docs/assets/
-	@cp $(DOC_DIR)/assets/*.js $(DIST_DIR)/docs/assets/
-	@for i in $(DOC_LIST); do \
-		$(JS_ENGINE) $(BUILD_DIR)/doctool.js $(DOC_DIR)/assets/template.html $(DOC_DIR)/md/$${i} $(DIST_DIR)/docs/$${i%.*}.html; \
-	done
+	@npm run-script doc
 
 jstat: jstat.js
 
@@ -48,7 +33,6 @@ install:
 	@npm install
 
 test: clean core
-	@echo 'Running jStat unit tests'
-	@$(JS_TESTER)
+	@npm run-script test
 
 .PHONY: clean core doc install test
