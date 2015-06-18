@@ -33,6 +33,15 @@ suite.addBatch({
     },
     'mode matrix cols callback': function(val, stat) {
       assert.deepEqual(val, [1, [2, 4]]);
+    },
+  },
+  'mode of a matrix': {
+    'topic': function() {
+      return jStat;
+    },
+    'mode matrix cols with true returns the "mode of the matrix"': function() {
+      assert.equal(jStat([[1, 2], [1, 4], [1, 4]]).mode(true), 1);
+      assert.equal(jStat([[5, 2], [5, 4], [5, 4]]).mode(true), 5);
     }
   }
 });

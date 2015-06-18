@@ -458,15 +458,10 @@ If callback is passed then will pass result as first argument.
         // result === false
     });
 
-If pass boolean true as first argument, then return mode of the matrix.
+If pass boolean true as first argument, then the matrix will be treated as one
+dimensional.
 
-    jStat([[1,2],[1,2]]).mode( true ) === [[1,2],[1,2]]
-
-And the two can be combined.
-
-    jStat([[1,2],[1,2]]).mode(true,function( result ) {
-        // result === false
-    });
+    jStat([[5,4],[5, 2], [5,2]]).mode( true ) === 5
 
 ### range()
 
