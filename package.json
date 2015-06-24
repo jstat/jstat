@@ -20,6 +20,9 @@
   "devDependencies" : {
     "uglify-js" : "1.2.3",
     "vows" : "https://github.com/flatiron/vows/archive/master.tar.gz"
+    "install": "^0.1.8",
+    "mkdirp": "^0.5.1",
+    "npm": "^2.11.3"  
   },
   "scripts" : {
     "clean": "echo 'Cleaning up build files'; rm -rf dist",
