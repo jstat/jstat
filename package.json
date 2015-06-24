@@ -26,6 +26,6 @@
     "doc"  : "echo 'Generating documentation'; mkdir -p ./dist/docs/assets; cp ./doc/assets/*.css ./dist/docs/assets; cp ./doc/assets/*.js ./dist/docs/assets; for i in `ls ./doc/md/`; do node build/doctool.js ./doc/assets/template.html ./doc/md/${i} ./dist/docs/${i%.*}.html; done",
     "jstat": "echo 'Building jstat'; mkdir -p ./dist; cat ./src/core.js ./src/vector.js ./src/special.js ./src/distribution.js ./src/linearalgebra.js ./src/test.js  > ./dist/jstat.js",
     "jstatmin" : "npm run-script jstat; echo 'Minifying jStat'; (./node_modules/uglify-js/bin/uglifyjs < ./dist/jstat.js) > ./dist/jstat.min.js;",
-    "test" : "npm run-script clean; npm run-script jstatmin; ./node_modules/vows/bin/vows --spec --isolate"
+    "test" : "npm run-script clean; npm run-script jstatmin; ./node_modules/vows/bin/vows"
   }
 }
