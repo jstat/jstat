@@ -476,7 +476,6 @@ function clip(arg, min, max) {
 jStat.sum = function sum(arr) {
   var sum = 0;
   var i = arr.length;
-  var tmp;
   while (--i >= 0)
     sum += arr[i];
   return sum;
@@ -506,6 +505,14 @@ jStat.sumsqerr = function sumsqerr(arr) {
   return sum;
 };
 
+// sum of an array in each row
+jStat.sumrow = function sumrow(arr) {
+  var sum = 0;
+  var i = arr.length;
+  while (--i >= 0)
+    sum += arr[i];
+  return sum;
+};
 
 // product of an array
 jStat.product = function product(arr) {
@@ -864,7 +871,8 @@ var jProto = jStat.prototype;
       }
       // Check if matrix and run calculations.
       if (this.length > 1) {
-        tmpthis = fullbool === true ? this : this.transpose();
+        if (passfunc !== 'sumrow')
+          tmpthis = fullbool === true ? this : this.transpose();
         for (; i < tmpthis.length; i++)
           arr[i] = jStat[passfunc](tmpthis[i]);
         return fullbool === true
@@ -875,9 +883,9 @@ var jProto = jStat.prototype;
       return jStat[passfunc](this[0], fullbool);
     };
   })(funcs[i]);
-})(('sum sumsqrd sumsqerr product min max mean meansqerr geomean median diff ' +
-    'mode range variance stdev meandev meddev coeffvar quartiles histogram ' +
-    'skewness kurtosis').split(' '));
+})(('sum sumsqrd sumsqerr sumrow product min max mean meansqerr geomean ' +
+    'median diff mode range variance stdev meandev meddev coeffvar quartiles ' +
+    'histogram skewness kurtosis').split(' '));
 
 
 // Extend jProto with functions that take arguments. Operations on matrices are
@@ -3202,6 +3210,7 @@ jStat.extend({
 
 var slice = [].slice;
 var isNumber = jStat.utils.isNumber;
+var isArray = jStat.utils.isArray;
 
 // flag==true denotes use of sample standard deviation
 // Z Statistics
@@ -3223,22 +3232,28 @@ jStat.extend({
   // (value, array, sides, flag)
   ztest: function ztest() {
     var args = slice.call(arguments);
-    if (args.length === 4) {
-      if(isNumber(args[1])) {
-        var z = jStat.zscore(args[0],args[1],args[2])
+    var z;
+    if (isArray(args[1])) {
+      // (value, array, sides, flag)
+      z = jStat.zscore(args[0],args[1],args[3]);
+      return (args[2] === 1) ?
+        (jStat.normal.cdf(-Math.abs(z), 0, 1)) :
+        (jStat.normal.cdf(-Math.abs(z), 0, 1)*2);
+    } else {
+      if (args.length > 2) {
+        // (value, mean, sd, sides)
+        z = jStat.zscore(args[0],args[1],args[2]);
         return (args[3] === 1) ?
           (jStat.normal.cdf(-Math.abs(z),0,1)) :
           (jStat.normal.cdf(-Math.abs(z),0,1)* 2);
+      } else {
+        // (zscore, sides)
+        z = args[0];
+        return (args[1] === 1) ?
+          (jStat.normal.cdf(-Math.abs(z),0,1)) :
+          (jStat.normal.cdf(-Math.abs(z),0,1)*2);
       }
-      var z = args[0]
-      return (args[2] === 1) ?
-        (jStat.normal.cdf(-Math.abs(z),0,1)) :
-        (jStat.normal.cdf(-Math.abs(z),0,1)*2);
     }
-    var z = jStat.zscore(args[0],args[1],args[3])
-    return (args[1] === 1) ?
-      (jStat.normal.cdf(-Math.abs(z), 0, 1)) :
-      (jStat.normal.cdf(-Math.abs(z), 0, 1)*2);
   }
 });
 
