@@ -364,6 +364,10 @@ jStat.extend(jStat.kumaraswamy, {
     return (1 - Math.pow(1 - Math.pow(x, alpha), beta));
   },
 
+  inv: function inv(p, alpha, beta) {
+    return Math.pow(1 - Math.pow(1 - p, 1 / beta), 1 / alpha);
+  },
+
   mean : function(alpha, beta) {
     return (beta * jStat.gammafn(1 + 1 / alpha) *
             jStat.gammafn(beta)) / (jStat.gammafn(1 + 1 / alpha + beta));
