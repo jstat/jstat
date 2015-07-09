@@ -98,7 +98,7 @@ jStat.extend(jStat.beta, {
   },
 
   median: function median(alpha, beta) {
-    throw new Error('median not yet implemented');
+    return jStat.ibetainv(0.5, alpha, beta);
   },
 
   mode: function mode(alpha, beta) {
