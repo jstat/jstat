@@ -39,10 +39,29 @@ suite.addBatch({
       assert.equal(jStat.beta.pdf(0, 1, 4), 4);
       assert.equal(jStat.beta.pdf(1, 4, 1), 4);
     },
+    // checked against R code:
+    //   options(digits=10)
+    //   # Using mode definition from: https://en.wikipedia.org/wiki/Beta_distribution
+    //   beta.mode <- function (a, b) {(a-1)/(a+b-2)}
+    //   beta.mode(2.05, 2)
+    //   beta.mode(5, 10)
+    //   beta.mode(3, 3)
     'check mode calculation': function(jStat) {
       var tol = 0.0000001;
-      assert.epsilon(tol, jStat.beta.mode(5, 10), 0.307692);
-      assert.epsilon(tol, jStat.beta.moda(2.05, 2), 0.0523691);
+      assert.epsilon(tol, jStat.beta.mode(5, 10), 0.3076923077);
+      assert.epsilon(tol, jStat.beta.mode(2.05, 2), 0.512195122);
+      assert.epsilon(tol, jStat.beta.mode(3, 3), 0.5);
+    },
+    // checked against R's qbeta(p, shape1, shape2, ncp=0, lower.tail=TRUE, log.p=FALSE) from package 'stats':
+    //   options(digits=10)
+    //   qbeta(0.5, 5, 10)
+    //   qbeta(0.5, 2.05, 2)
+    //   qbeta(0.5, 3, 3)
+    'check median calculation': function(jStat) {
+      var tol = 0.0000001;
+      assert.epsilon(tol, jStat.beta.median(5, 10), 0.3257511553);
+      assert.epsilon(tol, jStat.beta.median(2.05, 2), 0.5072797399);
+      assert.epsilon(tol, jStat.beta.median(3, 3), 0.5);
     }
   }
 });
