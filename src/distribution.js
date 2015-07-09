@@ -535,6 +535,10 @@ jStat.extend(jStat.pareto, {
     return 1 - Math.pow(scale / x, shape);
   },
 
+  inv: function inv(p, scale, shape) {
+    return scale / Math.pow(1 - p, 1 / shape);
+  },
+
   mean: function mean(scale, shape) {
     if (shape <= 1)
       return undefined;
