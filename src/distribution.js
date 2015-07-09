@@ -960,18 +960,12 @@ jStat.extend(jStat.triangular, {
     } else {
       if (x < a || x > b) {
         return 0;
-      } else {
-        if (x <= c) {
-          if ( c === a)
-            return 1;
-          else
-            return (2 * (x - a)) / ((b - a) * (c - a));
-        } else {
-          if (c === b)
-            return 1;
-          else
-            return (2 * (b - x)) / ((b - a) * (b - c));
-        }
+      } else if (x < c) {
+          return (2 * (x - a)) / ((b - a) * (c - a));
+      } else if (x === c) {
+          return (2 / (b - a));
+      } else { // x > c
+          return (2 * (b - x)) / ((b - a) * (b - c));
       }
     }
   },
