@@ -984,6 +984,18 @@ jStat.extend(jStat.triangular, {
     return 1;
   },
 
+  inv: function inv(p, a, b, c) {
+    if (b <= a || c < a || c > b) {
+      return undefined;
+    } else {
+      if (p <= ((c - a) / (b - a))) {
+        return a + (b - a) * Math.sqrt(p * ((c - a) / (b - a)));
+      } else { // p > ((c - a) / (b - a))
+        return a + (b - a) * (1 - Math.sqrt((1 - p) * (1 - ((c - a) / (b - a)))));
+      }
+    }
+  },
+
   mean: function mean(a, b, c) {
     return (a + b + c) / 3;
   },
