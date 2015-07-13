@@ -956,7 +956,7 @@ jStat.extend(jStat.poisson, {
 jStat.extend(jStat.triangular, {
   pdf: function pdf(x, a, b, c) {
     if (b <= a || c < a || c > b) {
-      return undefined;
+      return NaN;
     } else {
       if (x < a || x > b) {
         return 0;
