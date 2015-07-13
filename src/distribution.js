@@ -992,7 +992,7 @@ jStat.extend(jStat.triangular, {
 
   inv: function inv(p, a, b, c) {
     if (b <= a || c < a || c > b) {
-      return undefined;
+      return NaN;
     } else {
       if (p <= ((c - a) / (b - a))) {
         return a + (b - a) * Math.sqrt(p * ((c - a) / (b - a)));
