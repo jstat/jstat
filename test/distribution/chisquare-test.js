@@ -14,9 +14,15 @@ suite.addBatch({
       var tol = 0.0000001;
       assert.epsilon(tol, jStat.chisquare.pdf(3.5, 10), 0.03395437);
     },
+    // Checked against R dchisq(x,df)
+    //   dchisq(0, 5)
+    //   dchisq(0, 2)
+    //   dchisq(0, 1)
     'check pdf calculation at x = 0.0': function(jStat) {
       var tol = 0.0000001;
       assert.epsilon(tol, jStat.chisquare.pdf(0.0, 5), 0.0);
+      assert.epsilon(tol, jStat.chisquare.pdf(0.0, 2), 0.5);
+      assert.equal(jStat.chisquare.pdf(0.0, 1), Infinity);
     },
     //Checked against R's pchisq(x, df)
     'check cdf calculation': function(jStat) {
