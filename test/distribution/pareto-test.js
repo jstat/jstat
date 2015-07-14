@@ -5,7 +5,7 @@ var suite = vows.describe('jStat.distribution');
 require('../env.js');
 
 suite.addBatch({
-  'pareto inv': {
+  'pareto pdf': {
     'topic': function() {
       return jStat;
     },
@@ -16,7 +16,7 @@ suite.addBatch({
     //   dpareto(c(0, 1, 2), 1, 1)
     //   dpareto(c(-1, 1, 4), 1, 2)
     //   dpareto(c(1, 2, 10), 2, 2)
-    'check inv calculation': function(jStat) {
+    'check pdf calculation': function(jStat) {
       var tol = 0.0000001;
       assert.epsilon(tol, jStat.pareto.pdf(0, 1, 1), 0);
       assert.epsilon(tol, jStat.pareto.pdf(1, 1, 1), 1);
