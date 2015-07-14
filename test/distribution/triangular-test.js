@@ -77,7 +77,7 @@ suite.addBatch({
     //   ptriang(c(-1, 0, 4, 8, 10), 0, 8, 8)
     //   ptriang(6, 5, 4, 10)
     //   ptriang(30, 23, 50, 47)
-    //   ptriang(-10, -10, -10, -10) # NOTE: This returns: [1] 1, but we don't allow a = b = c!   
+    //   ptriang(-10, -10, -10, -10) # NOTE: This returns: [1] 1, but we don't allow a = b = c!
     'check cdf calculation, when a < c < b': function(jStat) {
       var tol = 0.0000001;
       assert.epsilon(tol, jStat.triangular.cdf(0, 1, 11, 5), 0);

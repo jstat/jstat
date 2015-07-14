@@ -24,6 +24,10 @@ suite.addBatch({
       assert.epsilon(tol, jStat.chisquare.pdf(0.0, 2), 0.5);
       assert.equal(jStat.chisquare.pdf(0.0, 1), Infinity);
     },
+    'check pdf calculation at x < 0': function(jStat) {
+      var tol = 0.0000001;
+      assert.epsilon(tol, jStat.chisquare.pdf(-10, 8), 0.0);
+    },
     //Checked against R's pchisq(x, df)
     'check cdf calculation': function(jStat) {
       var tol = 0.0000001;

@@ -37,6 +37,10 @@ suite.addBatch({
       var third_at_zero = jStat.centralF.pdf(0.0, 1, 1);
       assert.strictEqual(third_at_zero, Infinity);
 
+      // When x < 0 return 0
+      //   df(-3, 4, 11)
+      assert.epsilon(tol, jStat.centralF.pdf(-3, 4, 11), 0);
+
       // When x = 0, and df1 = 2, return 1
       //   df(0, 2, 15)
       assert.epsilon(tol, jStat.centralF.pdf(0, 2, 15), 1);

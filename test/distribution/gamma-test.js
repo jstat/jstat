@@ -29,6 +29,20 @@ suite.addBatch({
       }
     },
 
+    // Checked against R's dgamma(x, shape, rate = 1, scale = 1/rate, log = FALSE)
+    //   options(digits=10)
+    //   dgamma(2, 1, scale=1)
+    //   dgamma(5, 10, scale=2)
+    //   dgamma(18, 22, scale=0.8)
+    //   dgamma(-5, 7, scale=10)
+    'check pdf': function(jStat) {
+      tol = 0.000001;
+      assert.epsilon(tol, jStat.gamma.pdf(2, 1, 1), 0.1353352832);
+      assert.epsilon(tol, jStat.gamma.pdf(5, 10, 2), 0.000431450369);
+      assert.epsilon(tol, jStat.gamma.pdf(18, 22, 0.8), 0.1029848021);
+      assert.epsilon(tol, jStat.gamma.pdf(-5, 7, 10), 0);
+    },
+
     //Checked against R's pgamma(q, shape, rate = 1/scale)
     //That is, jStat.gamma.cdf(5, 10, 2) == pgamma(5, 10, 1/2)
     'check cdf': function(jStat) {
