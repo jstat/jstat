@@ -10,6 +10,21 @@ suite.addBatch({
       return jStat;
     },
 
+    // Checked against R's densigamma(x, alpha, beta) from pscl package
+    //    install.packages("pscl")
+    //    library("pscl")
+    //    densigamma(0.5, 1, 1)
+    //    densigamma(0.25, 10, 2)
+    //    densigamma(0.95, 18, 10)
+    //    densigamma(-5, 2, 4) # Note: This incorrectly throws an error!
+    'check pdf': function(jStat) {
+      tol = 0.000001;
+      assert.epsilon(tol, jStat.invgamma.pdf(0.5, 1, 1), 0.5413411329);
+      assert.epsilon(tol, jStat.invgamma.pdf(0.25, 10, 2), 3.970461353);
+      assert.epsilon(tol, jStat.invgamma.pdf(0.95, 18, 10), 0.1998306597);
+      assert.epsilon(tol, jStat.invgamma.pdf(-5, 2, 4), 0);
+    },
+
     //Checked against R's pigamma(q, shape, scale), which R calls alpha, beta
     //from the pscl package
     'check cdf': function(jStat) {
