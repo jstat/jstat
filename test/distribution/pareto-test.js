@@ -22,13 +22,13 @@ suite.addBatch({
       assert.epsilon(tol, jStat.pareto.pdf(1, 1, 1), 1);
       assert.epsilon(tol, jStat.pareto.pdf(2, 1, 1), 0.25);
 
-      assert.epsilon(tol, jStat.pareto.inv(-1, 1, 2), 0);
-      assert.epsilon(tol, jStat.pareto.inv(1, 1, 2), 2);
-      assert.epsilon(tol, jStat.pareto.inv(4, 1, 2), 0.03125);
+      assert.epsilon(tol, jStat.pareto.pdf(-1, 1, 2), 0);
+      assert.epsilon(tol, jStat.pareto.pdf(1, 1, 2), 2);
+      assert.epsilon(tol, jStat.pareto.pdf(4, 1, 2), 0.03125);
  
-      assert.epsilon(tol, jStat.pareto.inv(1, 2, 2), 0);
-      assert.epsilon(tol, jStat.pareto.inv(2, 2, 2), 1);
-      assert.epsilon(tol, jStat.pareto.inv(10, 2, 2), 0.008);
+      assert.epsilon(tol, jStat.pareto.pdf(1, 2, 2), 0);
+      assert.epsilon(tol, jStat.pareto.pdf(2, 2, 2), 1);
+      assert.epsilon(tol, jStat.pareto.pdf(10, 2, 2), 0.008);
     }
   },
 });
