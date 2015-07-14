@@ -355,6 +355,10 @@ jStat.extend(jStat.invgamma, {
 // extend kumaraswamy function with static methods
 jStat.extend(jStat.kumaraswamy, {
   pdf: function pdf(x, alpha, beta) {
+    if (x === 0 && alpha === 1)
+      return beta;
+    else if (x === 1 && beta === 1)
+      return alpha;
     return Math.exp(Math.log(alpha) + Math.log(beta) + (alpha - 1) *
                     Math.log(x) + (beta - 1) *
                     Math.log(1 - Math.pow(x, alpha)));
