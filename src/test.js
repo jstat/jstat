@@ -251,4 +251,27 @@ jStat.extend(jStat.fn, {
   }
 });
 
+// internal method for calculating the z-score for a difference of proportions test
+differenceOfProportions: function differenceOfProportions(p1, n1, p2, n2) {
+  if (p1 > 1 || p2 > 1) {
+    throw new Error("Proportions should be between 0 and 1")
+  }
+  var pooled = (p1 * n1 + p2 * n2) / (n1 + n2);
+  var se = Math.sqrt(pooled * (1 - pooled) * ((1/n1) + (1/n2)));
+  return (p1 - p2) / se;
+}
+
+// Difference of Proportions
+jStat.extend(jStat.fn, {
+  oneSidedDifferenceOfProportions: function oneSidedDifferenceOfProportions(p1, n1, p2, n2) {
+    var z = differenceOfProportions(p1, n1, p2, n2);
+    return jStat.ztest(z, 1);
+  },
+
+  twoSidedDifferenceOfProportions: function twoSidedDifferenceOfProportions(p1, n1, p2, n2) {
+    var z = differenceOfProportions(p1, n1, p2, n2);
+    return jStat.ztest(z, 2);
+  }
+});
+
 }(this.jStat, Math));
