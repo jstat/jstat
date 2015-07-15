@@ -146,6 +146,8 @@ jStat.extend(jStat.centralF, {
   },
 
   cdf: function cdf(x, df1, df2) {
+    if (x < 0)
+      return 0;
     return jStat.ibeta((df1 * x) / (df1 * x + df2), df1 / 2, df2 / 2);
   },
 
@@ -216,6 +218,8 @@ jStat.extend(jStat.chisquare, {
   },
 
   cdf: function cdf(x, dof) {
+    if (x < 0)
+      return 0;
     return jStat.lowRegGamma(dof / 2, x / 2);
   },
 
@@ -292,6 +296,8 @@ jStat.extend(jStat.gamma, {
   },
 
   cdf: function cdf(x, shape, scale) {
+    if (x < 0)
+      return 0;
     return jStat.lowRegGamma(shape, x / scale);
   },
 
@@ -325,6 +331,8 @@ jStat.extend(jStat.invgamma, {
   },
 
   cdf: function cdf(x, shape, scale) {
+    if (x <= 0)
+      return 0;
     return 1 - jStat.lowRegGamma(shape, scale / x);
   },
 
@@ -361,6 +369,10 @@ jStat.extend(jStat.kumaraswamy, {
   },
 
   cdf: function cdf(x, alpha, beta) {
+    if (x < 0)
+      return 0;
+    else if (x > 1)
+      return 1;
     return (1 - Math.pow(1 - Math.pow(x, alpha), beta));
   },
 
@@ -396,6 +408,8 @@ jStat.extend(jStat.lognormal, {
   },
 
   cdf: function cdf(x, mu, sigma) {
+    if (x < 0)
+      return 0;
     return 0.5 +
         (0.5 * jStat.erf((Math.log(x) - mu) / Math.sqrt(2 * sigma * sigma)));
   },
@@ -532,6 +546,8 @@ jStat.extend(jStat.pareto, {
   },
 
   cdf: function cdf(x, scale, shape) {
+    if (x < scale)
+      return 0;
     return 1 - Math.pow(scale / x, shape);
   },
 
@@ -978,16 +994,15 @@ jStat.extend(jStat.triangular, {
 
   cdf: function cdf(x, a, b, c) {
     if (b <= a || c < a || c > b)
-      return undefined;
-    if (x < a) {
+      return NaN;
+    if (x <= a)
       return 0;
-    } else {
-      if (x <= c)
-        return Math.pow(x - a, 2) / ((b - a) * (c - a));
+    else if (x >= b)
+      return 1;
+    if (x <= c)
+      return Math.pow(x - a, 2) / ((b - a) * (c - a));
+    else // x > c
       return 1 - Math.pow(b - x, 2) / ((b - a) * (b - c));
-    }
-    // never reach this
-    return 1;
   },
 
   mean: function mean(a, b, c) {
