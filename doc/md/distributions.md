@@ -328,6 +328,12 @@ Returns the value of the variance for the Normal distribution with parameters me
 
 Returns the value of x in the pdf of the Pareto distribution with parameters scale (x_m) and shape (alpha).
 
+#### jStat.pareto.inv( p, scale, shape )
+
+Returns the inverse of the Pareto distribution with probability p, scale, shape.
+
+This coresponds to `qpareto(p, scale, shape)` in R's VGAM package, and generally corresponds to the q<dist> function pattern in R.
+
 #### jStat.pareto.cdf( x, scale, shape )
 
 Returns the value of x in the cdf of the Pareto distribution with parameters scale (x_m) and shape (alpha).
@@ -339,7 +345,6 @@ Returns the value of the mean of the Pareto distribution with parameters scale (
 #### jStat.pareto.median( scale, shape )
 
 Returns the value of the median of the Pareto distribution with parameters scale (x_m) and shape (alpha).
-
 
 #### jStat.pareto.mode( scale, shape )
 
