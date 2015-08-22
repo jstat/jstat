@@ -238,6 +238,10 @@ Returns the value of x in the pdf of the Kumaraswamy distribution with parameter
 
 Returns the value of x in the cdf of the Kumaraswamy distribution with parameters a and b.
 
+#### jStat.kumaraswamy.inv( p, alpha, beta )
+
+Returns the inverse of the Kumaraswamy PDF. This function corresponds to qkumar(p, alpha, beta) in R's VGAM package.
+
 #### jStat.kumaraswamy.mean( alpha, beta )
 
 Returns the value of the mean of the Kumaraswamy distribution with parameters a and b.
