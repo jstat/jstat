@@ -717,6 +717,21 @@ jStat.quantiles = function quantiles(arr, quantilesArray, alphap, betap) {
   return quantileVals;
 };
 
+// Returns the k-th percentile of values in a range, where k is in the
+// range 0..1, exclusive.
+jStat.percentile = function percentile(arr, k) {
+  var _arr = arr.slice().sort(ascNum);
+  var realIndex = k * (_arr.length - 1);
+  var index = parseInt(realIndex);
+  var frac = realIndex - index;
+
+  if (index + 1 < _arr.length) {
+    return _arr[index] * (1 - frac) + _arr[index + 1] * frac;
+  } else {
+    return _arr[index];
+  }
+}
+
 
 // The percentile rank of score in a given array. Returns the percentage
 // of all values in the input array that are less than (kind='strict') or
@@ -1501,7 +1516,7 @@ jStat.extend(jStat.beta, {
   },
 
   median: function median(alpha, beta) {
-    throw new Error('median not yet implemented');
+    return jStat.ibetainv(0.5, alpha, beta);
   },
 
   mode: function mode(alpha, beta) {
@@ -1531,10 +1546,10 @@ jStat.extend(jStat.centralF, {
       return undefined;
 
     if (df1 <= 2) {
-      if (df1 === 1 && df2 === 1) {
+      if (x === 0 && df1 < 2) {
         return Infinity;
       }
-      if (df1 === 2 && df2 === 1) {
+      if (x === 0 && df1 === 2) {
         return 1;
       }
       return Math.sqrt((Math.pow(df1 * x, df1) * Math.pow(df2, df2)) /
@@ -1613,7 +1628,7 @@ jStat.extend(jStat.cauchy, {
 // extend chisquare function with static methods
 jStat.extend(jStat.chisquare, {
   pdf: function pdf(x, dof) {
-    return x === 0 ? 0 :
+    return (x === 0 && dof === 2) ? 0.5 :
         Math.exp((dof / 2 - 1) * Math.log(x) - x / 2 - (dof / 2) *
                  Math.log(2) - jStat.gammaln(dof / 2));
   },
@@ -1758,6 +1773,10 @@ jStat.extend(jStat.invgamma, {
 // extend kumaraswamy function with static methods
 jStat.extend(jStat.kumaraswamy, {
   pdf: function pdf(x, alpha, beta) {
+    if (x === 0 && alpha === 1)
+      return beta;
+    else if (x === 1 && beta === 1)
+      return alpha;
     return Math.exp(Math.log(alpha) + Math.log(beta) + (alpha - 1) *
                     Math.log(x) + (beta - 1) *
                     Math.log(1 - Math.pow(x, alpha)));
@@ -1765,6 +1784,10 @@ jStat.extend(jStat.kumaraswamy, {
 
   cdf: function cdf(x, alpha, beta) {
     return (1 - Math.pow(1 - Math.pow(x, alpha), beta));
+  },
+
+  inv: function inv(p, alpha, beta) {
+    return Math.pow(1 - Math.pow(1 - p, 1 / beta), 1 / alpha);
   },
 
   mean : function(alpha, beta) {
@@ -1936,6 +1959,10 @@ jStat.extend(jStat.pareto, {
 
   cdf: function cdf(x, scale, shape) {
     return 1 - Math.pow(scale / x, shape);
+  },
+
+  inv: function inv(p, scale, shape) {
+    return scale / Math.pow(1 - p, 1 / shape);
   },
 
   mean: function mean(scale, shape) {
@@ -2359,22 +2386,16 @@ jStat.extend(jStat.poisson, {
 jStat.extend(jStat.triangular, {
   pdf: function pdf(x, a, b, c) {
     if (b <= a || c < a || c > b) {
-      return undefined;
+      return NaN;
     } else {
       if (x < a || x > b) {
         return 0;
-      } else {
-        if (x <= c) {
-          if ( c === a)
-            return 1;
-          else
-            return (2 * (x - a)) / ((b - a) * (c - a));
-        } else {
-          if (c === b)
-            return 1;
-          else
-            return (2 * (b - x)) / ((b - a) * (b - c));
-        }
+      } else if (x < c) {
+          return (2 * (x - a)) / ((b - a) * (c - a));
+      } else if (x === c) {
+          return (2 / (b - a));
+      } else { // x > c
+          return (2 * (b - x)) / ((b - a) * (b - c));
       }
     }
   },
