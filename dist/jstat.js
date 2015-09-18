@@ -797,6 +797,42 @@ jStat.corrcoeff = function corrcoeff(arr1, arr2) {
       jStat.stdev(arr2, 1);
 };
 
+  // (spearman's) rank correlation coefficient, sp
+  jStat.spearmancoeff = function spearmancoeff(arr1, arr2) {
+
+    sortfunction = function(a,b) { return a[1]-b[1]};
+    var npoints = arr1.length;
+    if (arr1.length != arr2.length)
+      return 0.0;
+    if (npoints == 0)
+      return 0.0;
+    var arr1cp = new Array(npoints);
+    var arr2cp = new Array(npoints);
+    var arr1rank = new Array(npoints);
+    var arr2rank = new Array(npoints);
+    var arr1cps;
+    var arr2cps;
+    var dsqr = 0;
+    var i;
+    for (i = 0; i < npoints; i++){
+      arr1cp[i] = [i,arr1[i]];
+      arr2cp[i] = [i,arr2[i]];
+    }
+    var arr1cps = arr1cp.sort(sortfunction);
+    var arr2cps = arr2cp.sort(sortfunction);
+    for (i = 0; i < npoints; i++){
+      arr1rank[arr1cps[i][0]] = i;
+      arr2rank[arr2cps[i][0]] = i;
+    }
+    dsqr = 0;
+    for (i = 0; i < npoints; i++){
+      dsqr  += (arr1rank[i] - arr2rank[i])*(arr1rank[i] - arr2rank[i]);
+    }
+
+    return 1 - dsqr*6.0/(npoints*(npoints*npoints-1))
+  };
+
+
 // statistical standardized moments (general form of skew/kurt)
 jStat.stanMoment = function stanMoment(arr, n) {
   var mu = jStat.mean(arr);
