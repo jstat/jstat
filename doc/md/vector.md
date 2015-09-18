@@ -766,3 +766,10 @@ Return the population correlation coefficient of two vectors (Pearson's Rho).
 
     var seq = jStat.seq( 0, 10, 11 );
     jStat.corrcoeff( seq, seq ) === 1;
+
+
+**spearmancoeff( array, array )**
+
+Return the rank correlation coefficient of two vectors (Spearman's Rho).
+
+    jStat.spearmancoeff([1, 2, 3, 4], [5, 6, 9, 7]) == 0.8;
