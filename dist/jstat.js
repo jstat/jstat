@@ -1543,7 +1543,7 @@ jStat.extend(jStat.centralF, {
     var p, q, f;
 
     if (x < 0)
-      return undefined;
+      return 0;
 
     if (df1 <= 2) {
       if (x === 0 && df1 < 2) {
@@ -1630,6 +1630,8 @@ jStat.extend(jStat.cauchy, {
 // extend chisquare function with static methods
 jStat.extend(jStat.chisquare, {
   pdf: function pdf(x, dof) {
+    if (x < 0)
+      return 0;
     return (x === 0 && dof === 2) ? 0.5 :
         Math.exp((dof / 2 - 1) * Math.log(x) - x / 2 - (dof / 2) *
                  Math.log(2) - jStat.gammaln(dof / 2));
@@ -1709,7 +1711,10 @@ jStat.extend(jStat.exponential, {
 // extend gamma function with static methods
 jStat.extend(jStat.gamma, {
   pdf: function pdf(x, shape, scale) {
-    return Math.exp((shape - 1) * Math.log(x) - x / scale -
+    if (x < 0)
+      return 0;
+    return (x === 0 && shape === 1) ? 1 / scale :
+            Math.exp((shape - 1) * Math.log(x) - x / scale -
                     jStat.gammaln(shape) - shape * Math.log(scale));
   },
 
@@ -1744,6 +1749,8 @@ jStat.extend(jStat.gamma, {
 // extend inverse gamma function with static methods
 jStat.extend(jStat.invgamma, {
   pdf: function pdf(x, shape, scale) {
+    if (x <= 0)
+      return 0;
     return Math.exp(-(shape + 1) * Math.log(x) - scale / x -
                     jStat.gammaln(shape) + shape * Math.log(scale));
   },
@@ -1828,6 +1835,8 @@ jStat.extend(jStat.kumaraswamy, {
 // extend lognormal function with static methods
 jStat.extend(jStat.lognormal, {
   pdf: function pdf(x, mu, sigma) {
+    if (x <= 0)
+      return 0;
     return Math.exp(-Math.log(x) - 0.5 * Math.log(2 * Math.PI) -
                     Math.log(sigma) - Math.pow(Math.log(x) - mu, 2) /
                     (2 * sigma * sigma));
@@ -1967,7 +1976,7 @@ jStat.extend(jStat.normal, {
 jStat.extend(jStat.pareto, {
   pdf: function pdf(x, scale, shape) {
     if (x < scale)
-      return undefined;
+      return 0;
     return (shape * Math.pow(scale, shape)) / Math.pow(x, shape + 1);
   },
 
