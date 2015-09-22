@@ -44,6 +44,10 @@ suite.addBatch({
       // When x = 0, and df1 < 2, return Infinity
       //   df(0, 1, 20)
       assert.equal(jStat.centralF.pdf(0, 1, 20), Infinity);
+
+      // When x < 0 return 0
+      //   df(-3, 4, 11)
+      assert.epsilon(tol, jStat.centralF.pdf(-3, 4, 11), 0);
     },
     // Check against R's pf(q, df1, df2, ncp, lower.tail = TRUE, log.p = FALSE):
     //    options(digits=10)

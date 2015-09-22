@@ -83,6 +83,7 @@ suite.addBatch({
     //   dkumar(c(0, 0.5, 1), 1, 1.5) # Note: Incorrectly returns NaN for x = 0!
     //   dkumar(c(0, 0.5, 1), 1.5, 1.5)
     //   dkumar(c(0, 0.5, 1), 7, 25)
+    //   dkumar(c(-5, 5), 2, 2)
     'check pdf calculation': function(jStat) {
       var tol = 0.0000001;
       // 'U'-shaped distribution
@@ -134,6 +135,10 @@ suite.addBatch({
       assert.epsilon(tol, jStat.kumaraswamy.pdf(0, 7, 25), 0);
       assert.epsilon(tol, jStat.kumaraswamy.pdf(0.5, 7, 25), 2.265208101);
       assert.epsilon(tol, jStat.kumaraswamy.pdf(1, 7, 25), 0);
+
+      // outside support
+      assert.epsilon(tol, jStat.kumaraswamy.pdf(-5, 2, 2), 0);
+      assert.epsilon(tol, jStat.kumaraswamy.pdf(5, 2, 2), 0);
     }
   },
   'kumaraswamy cdf': {
