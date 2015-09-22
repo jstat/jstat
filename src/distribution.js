@@ -98,7 +98,7 @@ jStat.extend(jStat.beta, {
   },
 
   median: function median(alpha, beta) {
-    throw new Error('median not yet implemented');
+    return jStat.ibetainv(0.5, alpha, beta);
   },
 
   mode: function mode(alpha, beta) {
@@ -128,10 +128,10 @@ jStat.extend(jStat.centralF, {
       return 0;
 
     if (df1 <= 2) {
-      if (df1 === 1 && df2 === 1) {
+      if (x === 0 && df1 < 2) {
         return Infinity;
       }
-      if (df1 === 2 && df2 === 1) {
+      if (x === 0 && df1 === 2) {
         return 1;
       }
       return Math.sqrt((Math.pow(df1 * x, df1) * Math.pow(df2, df2)) /
@@ -146,6 +146,8 @@ jStat.extend(jStat.centralF, {
   },
 
   cdf: function cdf(x, df1, df2) {
+    if (x < 0)
+      return 0;
     return jStat.ibeta((df1 * x) / (df1 * x + df2), df1 / 2, df2 / 2);
   },
 
@@ -212,12 +214,14 @@ jStat.extend(jStat.chisquare, {
   pdf: function pdf(x, dof) {
     if (x < 0)
       return 0;
-    return x === 0 ? 0 :
+    return (x === 0 && dof === 2) ? 0.5 :
         Math.exp((dof / 2 - 1) * Math.log(x) - x / 2 - (dof / 2) *
                  Math.log(2) - jStat.gammaln(dof / 2));
   },
 
   cdf: function cdf(x, dof) {
+    if (x < 0)
+      return 0;
     return jStat.lowRegGamma(dof / 2, x / 2);
   },
 
@@ -297,6 +301,8 @@ jStat.extend(jStat.gamma, {
   },
 
   cdf: function cdf(x, shape, scale) {
+    if (x < 0)
+      return 0;
     return jStat.lowRegGamma(shape, x / scale);
   },
 
@@ -332,6 +338,8 @@ jStat.extend(jStat.invgamma, {
   },
 
   cdf: function cdf(x, shape, scale) {
+    if (x <= 0)
+      return 0;
     return 1 - jStat.lowRegGamma(shape, scale / x);
   },
 
@@ -364,13 +372,25 @@ jStat.extend(jStat.kumaraswamy, {
   pdf: function pdf(x, alpha, beta) {
     if (x < 0 || x > 1)
       return 0;    
+    if (x === 0 && alpha === 1)
+      return beta;
+    else if (x === 1 && beta === 1)
+      return alpha;
     return Math.exp(Math.log(alpha) + Math.log(beta) + (alpha - 1) *
                     Math.log(x) + (beta - 1) *
                     Math.log(1 - Math.pow(x, alpha)));
   },
 
   cdf: function cdf(x, alpha, beta) {
+    if (x < 0)
+      return 0;
+    else if (x > 1)
+      return 1;
     return (1 - Math.pow(1 - Math.pow(x, alpha), beta));
+  },
+
+  inv: function inv(p, alpha, beta) {
+    return Math.pow(1 - Math.pow(1 - p, 1 / beta), 1 / alpha);
   },
 
   mean : function(alpha, beta) {
@@ -407,6 +427,8 @@ jStat.extend(jStat.lognormal, {
   },
 
   cdf: function cdf(x, mu, sigma) {
+    if (x < 0)
+      return 0;
     return 0.5 +
         (0.5 * jStat.erf((Math.log(x) - mu) / Math.sqrt(2 * sigma * sigma)));
   },
@@ -543,7 +565,13 @@ jStat.extend(jStat.pareto, {
   },
 
   cdf: function cdf(x, scale, shape) {
+    if (x < scale)
+      return 0;
     return 1 - Math.pow(scale / x, shape);
+  },
+
+  inv: function inv(p, scale, shape) {
+    return scale / Math.pow(1 - p, 1 / shape);
   },
 
   mean: function mean(scale, shape) {
@@ -967,38 +995,31 @@ jStat.extend(jStat.poisson, {
 jStat.extend(jStat.triangular, {
   pdf: function pdf(x, a, b, c) {
     if (b <= a || c < a || c > b) {
-      return undefined;
+      return NaN;
     } else {
       if (x < a || x > b) {
         return 0;
-      } else {
-        if (x <= c) {
-          if ( c === a)
-            return 1;
-          else
-            return (2 * (x - a)) / ((b - a) * (c - a));
-        } else {
-          if (c === b)
-            return 1;
-          else
-            return (2 * (b - x)) / ((b - a) * (b - c));
-        }
+      } else if (x < c) {
+          return (2 * (x - a)) / ((b - a) * (c - a));
+      } else if (x === c) {
+          return (2 / (b - a));
+      } else { // x > c
+          return (2 * (b - x)) / ((b - a) * (b - c));
       }
     }
   },
 
   cdf: function cdf(x, a, b, c) {
     if (b <= a || c < a || c > b)
-      return undefined;
-    if (x < a) {
+      return NaN;
+    if (x <= a)
       return 0;
-    } else {
-      if (x <= c)
-        return Math.pow(x - a, 2) / ((b - a) * (c - a));
+    else if (x >= b)
+      return 1;
+    if (x <= c)
+      return Math.pow(x - a, 2) / ((b - a) * (c - a));
+    else // x > c
       return 1 - Math.pow(b - x, 2) / ((b - a) * (b - c));
-    }
-    // never reach this
-    return 1;
   },
 
   mean: function mean(a, b, c) {

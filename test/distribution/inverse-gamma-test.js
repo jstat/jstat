@@ -32,6 +32,7 @@ suite.addBatch({
       assert.epsilon(tol, jStat.invgamma.cdf(0.5, 1, 1), 0.1353353);
       assert.epsilon(tol, jStat.invgamma.cdf(0.25, 10, 2), 0.7166243);
       assert.epsilon(tol, jStat.invgamma.cdf(0.95, 18, 10), 0.9776673);
+      assert.epsilon(tol, jStat.invgamma.cdf(-5, 5, 20), 0);
     },
 
     //Checked against R's qigamma(p, shape, rate = 1/scale)

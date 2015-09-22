@@ -50,6 +50,7 @@ suite.addBatch({
       assert.epsilon(tol, jStat.gamma.cdf(2, 1, 1), 0.8646647);
       assert.epsilon(tol, jStat.gamma.cdf(5, 10, 2), 0.0002773);
       assert.epsilon(tol, jStat.gamma.cdf(18, 22, 0.8), 0.5701725);
+      assert.epsilon(tol, jStat.gamma.cdf(-1, 5, 5), 0);
     },
 
     //Checked against R's qgamma(p, shape, rate = 1/scale)

@@ -255,6 +255,21 @@ jStat.quantiles = function quantiles(arr, quantilesArray, alphap, betap) {
   return quantileVals;
 };
 
+// Returns the k-th percentile of values in a range, where k is in the
+// range 0..1, exclusive.
+jStat.percentile = function percentile(arr, k) {
+  var _arr = arr.slice().sort(ascNum);
+  var realIndex = k * (_arr.length - 1);
+  var index = parseInt(realIndex);
+  var frac = realIndex - index;
+
+  if (index + 1 < _arr.length) {
+    return _arr[index] * (1 - frac) + _arr[index + 1] * frac;
+  } else {
+    return _arr[index];
+  }
+}
+
 
 // The percentile rank of score in a given array. Returns the percentage
 // of all values in the input array that are less than (kind='strict') or

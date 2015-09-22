@@ -721,6 +721,14 @@ Optional parameters alphap and betap govern the quantile estimation method.
 For more details see the Wikipedia page on quantiles or scipy.stats.mstats.mquantiles
 documentation.
 
+### percentile()
+
+**percentile( dataArray, k )**
+
+Return the k-th percentile of values in a range, where k is in the range 0..1, exclusive.
+
+     jStat.percentile([1, 2, 3, 4], 0.3) === 1.9;
+
 ### percentileOfScore()
 
 **percentileOfScore( dataArray, score[, kind] )**
