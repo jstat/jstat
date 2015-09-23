@@ -717,6 +717,21 @@ jStat.quantiles = function quantiles(arr, quantilesArray, alphap, betap) {
   return quantileVals;
 };
 
+// Returns the k-th percentile of values in a range, where k is in the
+// range 0..1, exclusive.
+jStat.percentile = function percentile(arr, k) {
+  var _arr = arr.slice().sort(ascNum);
+  var realIndex = k * (_arr.length - 1);
+  var index = parseInt(realIndex);
+  var frac = realIndex - index;
+
+  if (index + 1 < _arr.length) {
+    return _arr[index] * (1 - frac) + _arr[index + 1] * frac;
+  } else {
+    return _arr[index];
+  }
+}
+
 
 // The percentile rank of score in a given array. Returns the percentage
 // of all values in the input array that are less than (kind='strict') or
@@ -1501,7 +1516,7 @@ jStat.extend(jStat.beta, {
   },
 
   median: function median(alpha, beta) {
-    throw new Error('median not yet implemented');
+    return jStat.ibetainv(0.5, alpha, beta);
   },
 
   mode: function mode(alpha, beta) {
@@ -1528,13 +1543,13 @@ jStat.extend(jStat.centralF, {
     var p, q, f;
 
     if (x < 0)
-      return undefined;
+      return 0;
 
     if (df1 <= 2) {
-      if (df1 === 1 && df2 === 1) {
+      if (x === 0 && df1 < 2) {
         return Infinity;
       }
-      if (df1 === 2 && df2 === 1) {
+      if (x === 0 && df1 === 2) {
         return 1;
       }
       return Math.sqrt((Math.pow(df1 * x, df1) * Math.pow(df2, df2)) /
@@ -1549,6 +1564,8 @@ jStat.extend(jStat.centralF, {
   },
 
   cdf: function cdf(x, df1, df2) {
+    if (x < 0)
+      return 0;
     return jStat.ibeta((df1 * x) / (df1 * x + df2), df1 / 2, df2 / 2);
   },
 
@@ -1613,12 +1630,16 @@ jStat.extend(jStat.cauchy, {
 // extend chisquare function with static methods
 jStat.extend(jStat.chisquare, {
   pdf: function pdf(x, dof) {
-    return x === 0 ? 0 :
+    if (x < 0)
+      return 0;
+    return (x === 0 && dof === 2) ? 0.5 :
         Math.exp((dof / 2 - 1) * Math.log(x) - x / 2 - (dof / 2) *
                  Math.log(2) - jStat.gammaln(dof / 2));
   },
 
   cdf: function cdf(x, dof) {
+    if (x < 0)
+      return 0;
     return jStat.lowRegGamma(dof / 2, x / 2);
   },
 
@@ -1690,11 +1711,16 @@ jStat.extend(jStat.exponential, {
 // extend gamma function with static methods
 jStat.extend(jStat.gamma, {
   pdf: function pdf(x, shape, scale) {
-    return Math.exp((shape - 1) * Math.log(x) - x / scale -
+    if (x < 0)
+      return 0;
+    return (x === 0 && shape === 1) ? 1 / scale :
+            Math.exp((shape - 1) * Math.log(x) - x / scale -
                     jStat.gammaln(shape) - shape * Math.log(scale));
   },
 
   cdf: function cdf(x, shape, scale) {
+    if (x < 0)
+      return 0;
     return jStat.lowRegGamma(shape, x / scale);
   },
 
@@ -1723,11 +1749,15 @@ jStat.extend(jStat.gamma, {
 // extend inverse gamma function with static methods
 jStat.extend(jStat.invgamma, {
   pdf: function pdf(x, shape, scale) {
+    if (x <= 0)
+      return 0;
     return Math.exp(-(shape + 1) * Math.log(x) - scale / x -
                     jStat.gammaln(shape) + shape * Math.log(scale));
   },
 
   cdf: function cdf(x, shape, scale) {
+    if (x <= 0)
+      return 0;
     return 1 - jStat.lowRegGamma(shape, scale / x);
   },
 
@@ -1758,13 +1788,25 @@ jStat.extend(jStat.invgamma, {
 // extend kumaraswamy function with static methods
 jStat.extend(jStat.kumaraswamy, {
   pdf: function pdf(x, alpha, beta) {
+    if (x === 0 && alpha === 1)
+      return beta;
+    else if (x === 1 && beta === 1)
+      return alpha;
     return Math.exp(Math.log(alpha) + Math.log(beta) + (alpha - 1) *
                     Math.log(x) + (beta - 1) *
                     Math.log(1 - Math.pow(x, alpha)));
   },
 
   cdf: function cdf(x, alpha, beta) {
+    if (x < 0)
+      return 0;
+    else if (x > 1)
+      return 1;
     return (1 - Math.pow(1 - Math.pow(x, alpha), beta));
+  },
+
+  inv: function inv(p, alpha, beta) {
+    return Math.pow(1 - Math.pow(1 - p, 1 / beta), 1 / alpha);
   },
 
   mean : function(alpha, beta) {
@@ -1793,12 +1835,16 @@ jStat.extend(jStat.kumaraswamy, {
 // extend lognormal function with static methods
 jStat.extend(jStat.lognormal, {
   pdf: function pdf(x, mu, sigma) {
+    if (x <= 0)
+      return 0;
     return Math.exp(-Math.log(x) - 0.5 * Math.log(2 * Math.PI) -
                     Math.log(sigma) - Math.pow(Math.log(x) - mu, 2) /
                     (2 * sigma * sigma));
   },
 
   cdf: function cdf(x, mu, sigma) {
+    if (x < 0)
+      return 0;
     return 0.5 +
         (0.5 * jStat.erf((Math.log(x) - mu) / Math.sqrt(2 * sigma * sigma)));
   },
@@ -1930,12 +1976,18 @@ jStat.extend(jStat.normal, {
 jStat.extend(jStat.pareto, {
   pdf: function pdf(x, scale, shape) {
     if (x < scale)
-      return undefined;
+      return 0;
     return (shape * Math.pow(scale, shape)) / Math.pow(x, shape + 1);
   },
 
   cdf: function cdf(x, scale, shape) {
+    if (x < scale)
+      return 0;
     return 1 - Math.pow(scale / x, shape);
+  },
+
+  inv: function inv(p, scale, shape) {
+    return scale / Math.pow(1 - p, 1 / shape);
   },
 
   mean: function mean(scale, shape) {
@@ -2359,38 +2411,31 @@ jStat.extend(jStat.poisson, {
 jStat.extend(jStat.triangular, {
   pdf: function pdf(x, a, b, c) {
     if (b <= a || c < a || c > b) {
-      return undefined;
+      return NaN;
     } else {
       if (x < a || x > b) {
         return 0;
-      } else {
-        if (x <= c) {
-          if ( c === a)
-            return 1;
-          else
-            return (2 * (x - a)) / ((b - a) * (c - a));
-        } else {
-          if (c === b)
-            return 1;
-          else
-            return (2 * (b - x)) / ((b - a) * (b - c));
-        }
+      } else if (x < c) {
+          return (2 * (x - a)) / ((b - a) * (c - a));
+      } else if (x === c) {
+          return (2 / (b - a));
+      } else { // x > c
+          return (2 * (b - x)) / ((b - a) * (b - c));
       }
     }
   },
 
   cdf: function cdf(x, a, b, c) {
     if (b <= a || c < a || c > b)
-      return undefined;
-    if (x < a) {
+      return NaN;
+    if (x <= a)
       return 0;
-    } else {
-      if (x <= c)
-        return Math.pow(x - a, 2) / ((b - a) * (c - a));
+    else if (x >= b)
+      return 1;
+    if (x <= c)
+      return Math.pow(x - a, 2) / ((b - a) * (c - a));
+    else // x > c
       return 1 - Math.pow(b - x, 2) / ((b - a) * (b - c));
-    }
-    // never reach this
-    return 1;
   },
 
   mean: function mean(a, b, c) {
@@ -3456,6 +3501,29 @@ jStat.extend(jStat.fn, {
 
   tci: function tci(value, alpha) {
     return jStat.tci(value, alpha, this.toArray());
+  }
+});
+
+// internal method for calculating the z-score for a difference of proportions test
+differenceOfProportions: function differenceOfProportions(p1, n1, p2, n2) {
+  if (p1 > 1 || p2 > 1 || p1 <= 0 || p2 <= 0) {
+    throw new Error("Proportions should be greater than 0 and less than 1")
+  }
+  var pooled = (p1 * n1 + p2 * n2) / (n1 + n2);
+  var se = Math.sqrt(pooled * (1 - pooled) * ((1/n1) + (1/n2)));
+  return (p1 - p2) / se;
+}
+
+// Difference of Proportions
+jStat.extend(jStat.fn, {
+  oneSidedDifferenceOfProportions: function oneSidedDifferenceOfProportions(p1, n1, p2, n2) {
+    var z = differenceOfProportions(p1, n1, p2, n2);
+    return jStat.ztest(z, 1);
+  },
+
+  twoSidedDifferenceOfProportions: function twoSidedDifferenceOfProportions(p1, n1, p2, n2) {
+    var z = differenceOfProportions(p1, n1, p2, n2);
+    return jStat.ztest(z, 2);
   }
 });
 

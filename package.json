@@ -1,6 +1,6 @@
 {
   "name" : "jStat",
-  "version" : "1.3.0",
+  "version" : "1.4.2",
   "description" : "Statistical Library for JavaScript",
   "homepage" : "http://github.com/jstat/jstat",
   "main" : "./dist/jstat.js",
