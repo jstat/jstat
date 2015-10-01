@@ -751,7 +751,7 @@ jStat.extend(jStat.binomial, {
 // extend uniform function with static methods
 jStat.extend(jStat.negbin, {
   pdf: function pdf(k, r, p) {
-    return k !== k | 0
+    return k !== (k | 0)
       ? false
       : k < 0
         ? 0
