@@ -522,6 +522,10 @@ Returns the value of the median of the Triangular distribution with the paramete
 
 Returns the value of the mode of the Triangular distribution with the parameters a, b, and c.
 
+#### jStat.triangular.sample( a, b, c )
+
+Returns a random number whose distribution is the Triangular distribution with the parameters a, b, and c.
+
 #### jStat.triangular.variance( a, b, c )
 
 Returns the value of the variance of the Triangular distribution with the parameters a, b, and c.
