@@ -1,9 +1,9 @@
 ## Table of Contents
 
-* [Overview](overview.md)
-* [Core](core.md)
-* [Vector](vector.md)
-* [Special Functions](special-functions.md)
-* [Distributions](distributions.md)
-* [Linear Algebra](linear-algebra.md)
-* [Statistical Tests](test.md)
+* [Overview](overview.html)
+* [Core](core.html)
+* [Vector](vector.html)
+* [Special Functions](special-functions.html)
+* [Distributions](distributions.html)
+* [Linear Algebra](linear-algebra.html)
+* [Statistical Tests](test.html)
