@@ -751,11 +751,12 @@ jStat.extend(jStat.binomial, {
 // extend uniform function with static methods
 jStat.extend(jStat.negbin, {
   pdf: function pdf(k, r, p) {
-    return k !== (k | 0)
-      ? false
-      : k < 0
-        ? 0
-        : jStat.combination(k + r - 1, r - 1) * Math.pow(1 - p, k) * Math.pow(p, r);
+    if (k !== k >>> 0)
+      return false;
+    if (k < 0)
+      return 0;
+    return jStat.combination(k + r - 1, r - 1) *
+        Math.pow(1 - p, k) * Math.pow(p, r);
   },
 
   cdf: function cdf(x, r, p) {
