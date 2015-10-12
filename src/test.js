@@ -252,7 +252,7 @@ jStat.extend(jStat.fn, {
 });
 
 // internal method for calculating the z-score for a difference of proportions test
-differenceOfProportions: function differenceOfProportions(p1, n1, p2, n2) {
+function differenceOfProportions(p1, n1, p2, n2) {
   if (p1 > 1 || p2 > 1 || p1 <= 0 || p2 <= 0) {
     throw new Error("Proportions should be greater than 0 and less than 1")
   }
