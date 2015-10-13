@@ -129,9 +129,11 @@ jStat.extend({
   // augment one matrix by another
   // Note: this function returns a matrix, not a jStat object
   aug: function aug(a, b) {
-    var newarr = a.slice(),
-    i = 0;
-    for (; i < newarr.length; i++) {
+    var newarr = [];
+    for (var i = 0; i < a.length; i++) {
+      newarr.push(a[i].slice());
+    }
+    for (var i = 0; i < newarr.length; i++) {
       push.apply(newarr[i], b[i]);
     }
     return newarr;
