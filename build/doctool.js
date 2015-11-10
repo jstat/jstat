@@ -85,6 +85,7 @@ function convertData(data) {
 	// Convert it to HTML from Markdown
 	var html = markdown.toHTML(markdown.parse(data), {xhtml:true})
 		.replace(/<hr><\/hr>/g, "<hr />")
+		.replace(/\.md/g, ".html")
 		.replace(/(\<h[2-6])\>([^<]+)(\<\/h[1-6]\>)/gmi, function(o, ts, c, te) {
 			return ts+' id="'+formatIdString(c)+'">'+c+te;
 		});
