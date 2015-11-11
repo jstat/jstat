@@ -84,6 +84,19 @@ jStat.max = function max(arr) {
 };
 
 
+// unique values of an array
+jStat.unique = function unique(arr) {
+  var hash = {}, _arr = [];
+  for(var i = 0; i < arr.length; i++) {
+    if (!hash[arr[i]]) {
+      hash[arr[i]] = true;
+      _arr.push(arr[i]);
+    }
+  }
+  return _arr;
+};
+
+
 // mean value of an array
 jStat.mean = function mean(arr) {
   return jStat.sum(arr) / arr.length;
@@ -470,7 +483,7 @@ var jProto = jStat.prototype;
       return jStat[passfunc](this[0], fullbool);
     };
   })(funcs[i]);
-})(('sum sumsqrd sumsqerr sumrow product min max mean meansqerr geomean ' +
+})(('sum sumsqrd sumsqerr sumrow product min max unique mean meansqerr geomean ' +
     'median diff mode range variance stdev meandev meddev coeffvar quartiles ' +
     'histogram skewness kurtosis').split(' '));
 
