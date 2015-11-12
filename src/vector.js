@@ -136,6 +136,25 @@ jStat.diff = function diff(arr) {
 };
 
 
+// ranks of an array
+jStat.rank = function (arr) {
+  var arrlen = arr.length;
+  var sorted = arr.slice().sort(ascNum);
+  var ranks = new Array(arrlen);
+  for (var i = 0; i < arrlen; i++) {
+    var first = sorted.indexOf(arr[i]);
+    var last = sorted.lastIndexOf(arr[i]);
+    if (first === last) {
+      var val = first;
+    } else {
+      var val = (first + last) / 2;
+    }
+    ranks[i] = val + 1;
+  }
+  return ranks;
+};
+
+
 // mode of an array
 // if there are multiple modes of an array, return all of them
 // is this the appropriate way of handling it?
@@ -182,6 +201,16 @@ jStat.variance = function variance(arr, flag) {
   return jStat.sumsqerr(arr) / (arr.length - (flag ? 1 : 0));
 };
 
+// deviation of an array
+jStat.deviation = function (arr) {
+  var mean = jStat.mean(arr);
+  var arrlen = arr.length;
+  var dev = new Array(arrlen);
+  for (var i = 0; i < arrlen; i++) {
+    dev[i] = arr[i] - mean;
+  }
+  return dev;
+};
 
 // standard deviation of an array
 // flag = true indicates sample instead of population
@@ -336,37 +365,21 @@ jStat.corrcoeff = function corrcoeff(arr1, arr2) {
 };
 
   // (spearman's) rank correlation coefficient, sp
-jStat.spearmancoeff = function spearmancoeff(arr1, arr2) {
-  sortfunction = function(a,b) { return a[1]-b[1]};
-  var npoints = arr1.length;
-  if (arr1.length != arr2.length)
-    return 0.0;
-  if (npoints == 0)
-    return 0.0;
-  var arr1cp = new Array(npoints);
-  var arr2cp = new Array(npoints);
-  var arr1rank = new Array(npoints);
-  var arr2rank = new Array(npoints);
-  var arr1cps;
-  var arr2cps;
-  var dsqr = 0;
-  var i;
-  for (i = 0; i < npoints; i++){
-    arr1cp[i] = [i,arr1[i]];
-    arr2cp[i] = [i,arr2[i]];
-  }
-  var arr1cps = arr1cp.sort(sortfunction);
-  var arr2cps = arr2cp.sort(sortfunction);
-  for (i = 0; i < npoints; i++){
-    arr1rank[arr1cps[i][0]] = i;
-    arr2rank[arr2cps[i][0]] = i;
-  }
-  dsqr = 0;
-  for (i = 0; i < npoints; i++){
-    dsqr  += (arr1rank[i] - arr2rank[i])*(arr1rank[i] - arr2rank[i]);
-  }
-  return 1 - dsqr*6.0/(npoints*(npoints*npoints-1))
-};
+jStat.spearmancoeff =  function (arr1, arr2) {
+  arr1 = jStat.rank(arr1);
+  arr2 = jStat.rank(arr2);
+  var arr1dev = jStat.deviation(arr1);
+  var arr2dev = jStat.deviation(arr2);
+  return jStat.sum(arr1dev.map(function (x, i) {
+    return x * arr2dev[i];
+  })) /
+  Math.sqrt(jStat.sum(arr1dev.map(function (x) {
+    return Math.pow(x, 2);
+    })) * jStat.sum(arr2dev.map(function (x) {
+      return Math.pow(x, 2);
+  }))
+  );
+}
 
 
 // statistical standardized moments (general form of skew/kurt)
@@ -471,8 +484,8 @@ var jProto = jStat.prototype;
     };
   })(funcs[i]);
 })(('sum sumsqrd sumsqerr sumrow product min max mean meansqerr geomean ' +
-    'median diff mode range variance stdev meandev meddev coeffvar quartiles ' +
-    'histogram skewness kurtosis').split(' '));
+    'median diff rank mode range variance deviation stdev meandev meddev ' +
+    'coeffvar quartiles histogram skewness kurtosis').split(' '));
 
 
 // Extend jProto with functions that take arguments. Operations on matrices are
