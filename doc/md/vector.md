@@ -435,6 +435,37 @@ And the two can be combined.
         // result === [0,2]
     });
 
+### rank()
+
+**rank( array )**
+
+Return an array of the ranks of the array.
+
+    jStat.rank([1, 2, 2, 3]) === [1, 2.5, 2.5, 4]
+
+**fn.rank( [bool][,callback] )**
+
+Return an array of ranks for a vector or matrix columns.
+
+    jStat([1, 2, 2, 3]).rank() === [1, 2.5, 2.5, 4]
+    jStat([[1, 2], [3, 4], [1, 4]]).rank() === [[1.5, 3, 1.5], [1, 2.5, 2.5]]
+
+If callback is passed then will pass result as first argument.
+
+    jStat([[1, 2], [3, 4], [1, 4]]).rank(function( result ) {
+        // result === [[1.5, 3, 1.5], [1, 2.5, 2.5]]
+    });
+
+If pass boolean true as first argument, then return rank for the whole matrix.
+
+    jStat([[1, 2], [3, 4], [1, 4]]).rank(true) === [2, 5, 2, 5, 2, 5]
+
+And the two can be combined.
+
+    jStat([[1, 2], [3, 4], [1, 4]]).rank(true, function( result ) {
+        // result === [2, 5, 2, 5, 2, 5]
+    });
+
 ### mode()
 
 **mode( array )**
@@ -529,6 +560,37 @@ And the two can be combined.
 
     jStat([[1,2],[3,5]]).variance(true,function( result ) {
         // result === 0.140625
+    });
+
+### deviation()
+
+**deviation( array )**
+
+Return the deviation of a vector.
+
+    jStat.deviation([1,2,3,4]) === [-1.5, -0.5, 0.5, 1.5]
+
+**fn.deviation( [bool][,callback] )**
+
+Return the deviation for a vector or matrix columns.
+
+    jStat([1,2,3,4]).deviation() === [-1.5, -0.5, 0.5, 1.5]
+    jStat([[1,2],[3,4]]).deviation() === [[-1,1],[-1,1]]
+
+If callback is passed then will pass result as first argument.
+
+    jStat( 1, 4, 4 ).deviation(function( result ) {
+        // result === [-1.5, -0.5, 0.5, 1.5]
+    });
+
+If pass boolean true as first argument, then return variance of the matrix.
+
+    jStat([[1,2],[3,5]]).deviation( true ) === [-0.5, 0.5, -1, 1]
+
+And the two can be combined.
+
+    jStat([[1,2],[3,5]]).deviation(true,function( result ) {
+        // result === [-0.5, 0.5, -1, 1]
     });
 
 ### stdev()
@@ -773,3 +835,4 @@ Return the population correlation coefficient of two vectors (Pearson's Rho).
 Return the rank correlation coefficient of two vectors (Spearman's Rho).
 
     jStat.spearmancoeff([1, 2, 3, 4], [5, 6, 9, 7]) == 0.8;
+    jStat.spearmancoeff([1, 2, 2, 4], [5, 2, 5, 7]) == 0.5;
