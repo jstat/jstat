@@ -6,13 +6,17 @@
 var push = Array.prototype.push;
 var isArray = jStat.utils.isArray;
 
+function isUsable(arg) {
+  return isArray(arg) || arg instanceof jStat;
+}
+
 jStat.extend({
 
   // add a vector/matrix to a vector/matrix or scalar
   add: function add(arr, arg) {
     // check if arg is a vector or scalar
-    if (isArray(arg)) {
-      if (!isArray(arg[0])) arg = [ arg ];
+    if (isUsable(arg)) {
+      if (!isUsable(arg[0])) arg = [ arg ];
       return jStat.map(arr, function(value, row, col) {
         return value + arg[row][col];
       });
@@ -23,8 +27,8 @@ jStat.extend({
   // subtract a vector or scalar from the vector
   subtract: function subtract(arr, arg) {
     // check if arg is a vector or scalar
-    if (isArray(arg)) {
-      if (!isArray(arg[0])) arg = [ arg ];
+    if (isUsable(arg)) {
+      if (!isUsable(arg[0])) arg = [ arg ];
       return jStat.map(arr, function(value, row, col) {
         return value - arg[row][col] || 0;
       });
@@ -34,8 +38,8 @@ jStat.extend({
 
   // matrix division
   divide: function divide(arr, arg) {
-    if (isArray(arg)) {
-      if (!isArray(arg[0])) arg = [ arg ];
+    if (isUsable(arg)) {
+      if (!isUsable(arg[0])) arg = [ arg ];
       return jStat.multiply(arr, jStat.inv(arg));
     }
     return jStat.map(arr, function(value) { return value / arg; });
@@ -46,9 +50,9 @@ jStat.extend({
     var row, col, nrescols, sum,
     nrow = arr.length,
     ncol = arr[0].length,
-    res = jStat.zeros(nrow, nrescols = (isArray(arg)) ? arg[0].length : ncol),
+    res = jStat.zeros(nrow, nrescols = (isUsable(arg)) ? arg[0].length : ncol),
     rescols = 0;
-    if (isArray(arg)) {
+    if (isUsable(arg)) {
       for (; rescols < nrescols; rescols++) {
         for (row = 0; row < nrow; row++) {
           sum = 0;
@@ -64,8 +68,8 @@ jStat.extend({
 
   // Returns the dot product of two matricies
   dot: function dot(arr, arg) {
-    if (!isArray(arr[0])) arr = [ arr ];
-    if (!isArray(arg[0])) arg = [ arg ];
+    if (!isUsable(arr[0])) arr = [ arr ];
+    if (!isUsable(arg[0])) arg = [ arg ];
     // convert column to row vector
     var left = (arr[0].length === 1 && arr.length !== 1) ? jStat.transpose(arr) : arr,
     right = (arg[0].length === 1 && arg.length !== 1) ? jStat.transpose(arg) : arg,
@@ -112,7 +116,7 @@ jStat.extend({
     // check the p-value of the norm, and set for most common case
     if (isNaN(p)) p = 2;
     // check if multi-dimensional array, and make vector correction
-    if (isArray(arr[0])) arr = arr[0];
+    if (isUsable(arr[0])) arr = arr[0];
     // vector norm
     for (; i < arr.length; i++) {
       nnorm += Math.pow(Math.abs(arr[i]), p);
