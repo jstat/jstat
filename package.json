@@ -17,7 +17,7 @@
     "type" : "git",
     "url" : "http://github.com/jstat/jstat.git"
   },
-  "dependencies" : {
+  "devDependencies" : {
     "uglify-js" : "1.2.3",
     "vows" : "https://github.com/flatiron/vows/archive/master.tar.gz"
   },
