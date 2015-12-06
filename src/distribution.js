@@ -59,8 +59,8 @@
   })(list[i]);
 })((
   'beta centralF cauchy chisquare exponential gamma invgamma kumaraswamy ' +
-  'lognormal noncentralt normal pareto studentt weibull uniform  binomial ' +
-  'negbin hypgeom poisson triangular'
+  'laplace lognormal noncentralt normal pareto studentt weibull uniform ' +
+  'binomial negbin hypgeom poisson triangular'
 ).split(' '));
 
 
@@ -1064,6 +1064,46 @@ jStat.extend(jStat.triangular, {
 
   variance: function variance(a, b, c) {
     return (a * a + b * b + c * c - a * b - a * c - b * c) / 18;
+  }
+});
+
+function laplaceSign(x) { return x / Math.abs(x); }
+
+jStat.extend(jStat.laplace, {
+  pdf: function pdf(x, mu, b) {
+    return (b <= 0) ? 0 : (Math.exp(-Math.abs(x - mu) / b)) / (2 * b);
+  },
+
+  cdf: function cdf(x, mu, b) {
+    if (b <= 0) { return 0; }
+
+    if(x < mu) {
+      return 0.5 * Math.exp((x - mu) / b);
+    } else {
+      return 1 - 0.5 * Math.exp(- (x - mu) / b);
+    }
+  },
+
+  mean: function(mu, b) {
+    return mu;
+  },
+
+  median: function(mu, b) {
+    return mu;
+  },
+
+  mode: function(mu, b) {
+    return mu;
+  },
+
+  variance: function(mu, b) {
+    return 2 * b * b;
+  },
+
+  sample: function sample(mu, b) {
+    var u = Math.random() - 0.5;
+
+    return mu - (b * laplaceSign(u) * Math.log(1 - (2 * Math.abs(u))));
   }
 });
 
