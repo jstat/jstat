@@ -182,6 +182,8 @@ jStat.extend(jStat.centralF, {
 // extend cauchy function with static methods
 jStat.extend(jStat.cauchy, {
   pdf: function pdf(x, local, scale) {
+    if(scale < 0) { return 0; }
+
     return (scale / (Math.pow(x - local, 2) + Math.pow(scale, 2))) / Math.PI;
   },
 
@@ -641,7 +643,7 @@ jStat.extend(jStat.studentt, {
 // extend weibull function with static methods
 jStat.extend(jStat.weibull, {
   pdf: function pdf(x, scale, shape) {
-    if (x < 0)
+    if (x < 0 || scale < 0 || shape < 0)
       return 0;
     return (shape / scale) * Math.pow((x / scale), (shape - 1)) *
         Math.exp(-(Math.pow((x / scale), shape)));
@@ -665,7 +667,7 @@ jStat.extend(jStat.weibull, {
 
   mode: function mode(scale, shape) {
     if (shape <= 1)
-      return undefined;
+      return 0;
     return scale * Math.pow((shape - 1) / shape, 1 / shape);
   },
 
@@ -675,7 +677,7 @@ jStat.extend(jStat.weibull, {
 
   variance: function variance(scale, shape) {
     return scale * scale * jStat.gammafn(1 + 2 / shape) -
-        Math.pow(this.mean(scale, shape), 2);
+        Math.pow(jStat.weibull.mean(scale, shape), 2);
   }
 });
 
@@ -959,6 +961,10 @@ jStat.extend(jStat.hypgeom, {
 // extend uniform function with static methods
 jStat.extend(jStat.poisson, {
   pdf: function pdf(k, l) {
+    if(l < 0 || (k % 1) !== 0 || k < 0) {
+      return 0;
+    }
+
     return Math.pow(l, k) * Math.exp(-l) / jStat.factorial(k);
   },
 
