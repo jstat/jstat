@@ -38,6 +38,7 @@ suite.addBatch({
 
       assert.equal(jStat.beta.pdf(0, 1, 4), 4);
       assert.equal(jStat.beta.pdf(1, 4, 1), 4);
+      assert.equal(jStat.beta.pdf(0.5, 200, 4000), 0);
     },
     // checked against R code:
     //   options(digits=10)
