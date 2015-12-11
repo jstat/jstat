@@ -1537,8 +1537,8 @@ jStat.randg = function randg(shape, n, m) {
   })(list[i]);
 })((
   'beta centralF cauchy chisquare exponential gamma invgamma kumaraswamy ' +
-  'lognormal noncentralt normal pareto studentt weibull uniform  binomial ' +
-  'negbin hypgeom poisson triangular'
+  'laplace lognormal noncentralt normal pareto studentt weibull uniform ' +
+  'binomial negbin hypgeom poisson triangular'
 ).split(' '));
 
 
@@ -1660,6 +1660,8 @@ jStat.extend(jStat.centralF, {
 // extend cauchy function with static methods
 jStat.extend(jStat.cauchy, {
   pdf: function pdf(x, local, scale) {
+    if (scale < 0) { return 0; }
+
     return (scale / (Math.pow(x - local, 2) + Math.pow(scale, 2))) / Math.PI;
   },
 
@@ -2119,7 +2121,7 @@ jStat.extend(jStat.studentt, {
 // extend weibull function with static methods
 jStat.extend(jStat.weibull, {
   pdf: function pdf(x, scale, shape) {
-    if (x < 0)
+    if (x < 0 || scale < 0 || shape < 0)
       return 0;
     return (shape / scale) * Math.pow((x / scale), (shape - 1)) *
         Math.exp(-(Math.pow((x / scale), shape)));
@@ -2143,7 +2145,7 @@ jStat.extend(jStat.weibull, {
 
   mode: function mode(scale, shape) {
     if (shape <= 1)
-      return undefined;
+      return 0;
     return scale * Math.pow((shape - 1) / shape, 1 / shape);
   },
 
@@ -2153,7 +2155,7 @@ jStat.extend(jStat.weibull, {
 
   variance: function variance(scale, shape) {
     return scale * scale * jStat.gammafn(1 + 2 / shape) -
-        Math.pow(this.mean(scale, shape), 2);
+        Math.pow(jStat.weibull.mean(scale, shape), 2);
   }
 });
 
@@ -2437,6 +2439,10 @@ jStat.extend(jStat.hypgeom, {
 // extend uniform function with static methods
 jStat.extend(jStat.poisson, {
   pdf: function pdf(k, l) {
+    if (l < 0 || (k % 1) !== 0 || k < 0) {
+      return 0;
+    }
+
     return Math.pow(l, k) * Math.exp(-l) / jStat.factorial(k);
   },
 
@@ -2536,6 +2542,46 @@ jStat.extend(jStat.triangular, {
 
   variance: function variance(a, b, c) {
     return (a * a + b * b + c * c - a * b - a * c - b * c) / 18;
+  }
+});
+
+function laplaceSign(x) { return x / Math.abs(x); }
+
+jStat.extend(jStat.laplace, {
+  pdf: function pdf(x, mu, b) {
+    return (b <= 0) ? 0 : (Math.exp(-Math.abs(x - mu) / b)) / (2 * b);
+  },
+
+  cdf: function cdf(x, mu, b) {
+    if (b <= 0) { return 0; }
+
+    if(x < mu) {
+      return 0.5 * Math.exp((x - mu) / b);
+    } else {
+      return 1 - 0.5 * Math.exp(- (x - mu) / b);
+    }
+  },
+
+  mean: function(mu, b) {
+    return mu;
+  },
+
+  median: function(mu, b) {
+    return mu;
+  },
+
+  mode: function(mu, b) {
+    return mu;
+  },
+
+  variance: function(mu, b) {
+    return 2 * b * b;
+  },
+
+  sample: function sample(mu, b) {
+    var u = Math.random() - 0.5;
+
+    return mu - (b * laplaceSign(u) * Math.log(1 - (2 * Math.abs(u))));
   }
 });
 
