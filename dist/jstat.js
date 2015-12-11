@@ -1553,7 +1553,7 @@ jStat.extend(jStat.beta, {
     if (alpha == 1 && beta == 1)
       return 1;
 
-    if (alpha < 512 || beta < 512) {
+    if (alpha < 512 && beta < 512) {
       return (Math.pow(x, alpha - 1) * Math.pow(1 - x, beta - 1)) /
           jStat.betafn(alpha, beta);
     } else {
