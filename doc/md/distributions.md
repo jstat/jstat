@@ -37,33 +37,45 @@ Returns the variance of the Beta distribution with parameters alpha and beta.
 
 ### jStat.centralF( df1, df2 )
 
+The F Distrbution is used frequently in in analyses of variance. The parameterized by two degrees of freedom. It is defined continuously on x in [0, infinity).
+
+In all cases, df1 is the "numerator degrees of freedom" and df2 is the "denominator degrees of freedom", which parameterize the distribtuion.
+
 #### jStat.centralF.pdf( x, df1, df2 )
 
-Returns the value of x in the pdf of the (Central) F distribution with numerator degrees of freedom df1 and denominator degrees of freedom df2.
+Given x in the range [0, infinity), returns the probability density of the (central) f distribution at x.
+
+This function corresponds to the df(x, df1, df2) function in R.
 
 #### jStat.centralF.cdf( x, df1, df2 )
 
-Returns the value of x in the cdf of the (Central) F distribution with numerator degrees of freedom df1 and denominator degrees of freedom df2.
+Given x in the range [0, infinity), returns the cumulative probability density of the central F distribution. That is, `jStat.centralF.cdf(2.5, 10, 20)` will return the probability that a number randomly selected from the central F distribution with df1 = 10 and df2 = 20 will be less than 5.5.
 
-#### jStat.centralF.inv( x, df1, df2 )
+This function corresponds to the pf(q, df1, df2) function in R.
 
-Returns the value of x in the inverse of the cdf for the (Central) F distribution with numerator degrees of freedom df1 and denominator degrees of freedom df2.
+#### jStat.centralF.inv(p, df1, df2 )
+
+Given p in [0, 1), returns the value of x for which the cumulative probability density of the central F distribution is p. That is, `jStat.centralF.inv(p, df1, df2) = x` if and only if `jStat.centralF.inv(x, df1, df2) = p`.
+
+This function corresponds to the `qf(p, df1, df2)` function in R.
 
 #### jStat.centralF.mean( df1, df2 )
 
-Returns the mean of the (Central) F distribution with numerator degrees of freedom df1 and denominator degrees of freedom df2.
+Returns the mean of the (Central) F distribution.
 
 #### jStat.centralF.mode( df1, df2 )
 
-Returns the mode of the (Central) F distribution with numerator degrees of freedom df1 and denominator degrees of freedom df2.
+Returns the mode of the (Central) F distribution.
 
 #### jStat.centralF.sample( df1, df2 )
 
-Returns a random number whose distribution is the (Central) F distribution with numerator degrees of freedom df1 and denominator degrees of freedom df2.
+Returns a random number whose distribution is the (Central) F distribution.
+
+This function corresponds to the `rf(n, df1, df2)` function in R.
 
 #### jStat.centralF.variance( df1, df2 )
 
-Returns the variance of the (Central) F distribution with numerator degrees of freedom df1 and denominator degrees of freedom df2.
+Returns the variance of the (Central) F distribution.
 
 ### jStat.cauchy( local, scale )
 
