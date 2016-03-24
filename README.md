@@ -1,6 +1,84 @@
 [jStat](http://www.jstat.org/) - JavaScript Statistical Library
 ===============================================================
 
+[![npm version](https://badge.fury.io/js/jStat.svg)](https://badge.fury.io/js/jStat)
+
+jStat provides native javascript implementations of statistical functions.
+Full details are available in the [docs](https://jstat.github.io/all.html).
+jStat provides more functions than most libraries, including the weibull, cauchy, poisson, hypergeometric, and beta distributions.
+For most distributions, jStat provides the pdf, cdf, inverse, mean, mode, variance, and a sample function, allowing for more complex calculations.
+
+Using jStat in a Browser
+------------------------
+
+jStat can be used in the browser. The `jStat` object will be added to the window. For example:
+
+```
+<script src="components/jstat.js"></script> <!-- include jStat, from the CDN or otherwise -->
+
+<script>
+...
+var jstat = this.jStat(dataset); // jStat will be added to the window
+...
+data[i]['cum'] = jstat.normal(jstat.mean(), jstat.stdev()).cdf(data[i].x);
+...
+</script>
+
+```
+
+CDN
+---
+
+The library is hosted on [jsDelivr](http://www.jsdelivr.com/) using the follwing
+url:
+```
+//cdn.jsdelivr.net/jstat/<version>/jstat.min.js
+```
+
+Module Loaders
+--------------
+
+Currently jStat is exposed as `j$` and `jStat` inside an object, rather than
+exported directly. This may confuse some module loaders, however should be
+easily remedied with the correct configuration.
+
+NodeJS & NPM
+------------
+To install via npm:
+
+```
+npm install --save jStat
+```
+
+When loading under Node be sure to reference the child object.
+
+```
+var jStat = require('jStat').jStat;
+```
+
+RequireJS Shim
+--------------
+
+For RequireJS not only `exports` but also `init` function must be specified.
+```
+requirejs.config({
+  paths: {
+    'jstat': 'path/to/jstat/dist/jstat.min'
+  },
+  shim: {
+    jstat: {
+      exports: ['j$', 'jStat'],
+      init: function () {
+        return {
+          j$: j$,
+          jStat: jStat
+        };
+      }
+    }
+  }
+});
+```
+
 Build Prerequisites
 -------------------
 
@@ -79,51 +157,3 @@ Join the Community
 We always like discussion of how to improve jStat.
 Join us at our [mailing list](http://groups.google.com/group/jstat-discuss/) and let us know what you'd like to see.
 Also come ask questions in the #jstat channel on irc.freenode.net.
-
-
-CDN
----
-
-The library is hosted on [jsDelivr](http://www.jsdelivr.com/) using the follwing
-url:
-```
-//cdn.jsdelivr.net/jstat/<version>/jstat.min.js
-```
-
-Module Loaders
---------------
-
-Currently jStat is exposed as `j$` and `jStat` inside an object, rather than
-exported directly. This may confuse some module loaders, however should be
-easily remedied with the correct configuration.
-
-NodeJS
-------
-
-When loading under Node be sure to reference the child object.
-```
-var jStat = require('jStat').jStat;
-```
-
-RequireJS Shim
---------------
-
-For RequireJS not only `exports` but also `init` function must be specified.
-```
-requirejs.config({
-  paths: {
-    'jstat': 'path/to/jstat/dist/jstat.min'
-  },
-  shim: {
-    jstat: {
-      exports: ['j$', 'jStat'],
-      init: function () {
-        return {
-          j$: j$,
-          jStat: jStat
-        };
-      }
-    }
-  }
-});
-```
