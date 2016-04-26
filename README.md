@@ -32,7 +32,7 @@ CDN
 The library is hosted on [jsDelivr](http://www.jsdelivr.com/) using the follwing
 url:
 ```
-//cdn.jsdelivr.net/jstat/<version>/jstat.min.js
+//cdn.jsdelivr.net/jstat/latest/jstat.min.js
 ```
 
 Module Loaders
