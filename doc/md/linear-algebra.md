@@ -86,6 +86,12 @@ Multiply all entries of the array by arg.
 
 Take dot product of array 1 and array 2.
 
+### outer( A, B )
+
+Take outer product of A and B.
+
+    outer([1,2,3],[4,5,6]) === [[4,5,6],[8,10,12],[12,15,18]]
+
 ### pow( arr, arg )
 
 Raise all entries of the array to the power of arg
@@ -131,13 +137,31 @@ Performs Gaussian Elimination on matrix A augmented by matrix B.
 
 Performs Gauss-Jordan Elimination on matrix A augmented by matrix B.
 
-### lu(A,B)
+### lu(A)
 
-Performs the LU-Decomposition on matrix A.
+Perform the LU decomposition on matrix A.
+
+A -> [L,U]
+
+st.
+
+A=LU
+
+L is lower triangular matrix
+
+U is upper triangular matrix
 
 ### cholesky(A)
 
 Performs the Cholesky decomposition on matrix A.
+
+A -> T
+
+st.
+
+A=TT'
+
+T is lower triangular matrix
 
 ### gauss_jacobi(A,b,x,r)
 
@@ -155,7 +179,26 @@ Solves the linear system Ax = b using the sucessive over-relaxation method with 
 
 Performs the householder transformation on the matrix A.
 
-### QR()
+### QR(A)
+
+Performs the Cholesky decomposition on matrix A.
+
+A -> [Q,R]
+
+Q is orthogonal matrix
+
+R is upper triangular
+
+### lstsq(A,b)
+
+solve least squard problem for Ax=b as QR decomposition way.
+
+if b is [[b1],[b2],[b3]] form will return [[x1],[x2],[x3]] array form solution.
+
+else b is [b1,b2,b3] form will return [x1,x2,x3] array form solution.
+
+
+
 
 ### jacobi()
 

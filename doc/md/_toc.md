@@ -7,3 +7,4 @@
 * [Distributions](distributions.md)
 * [Linear Algebra](linear-algebra.md)
 * [Statistical Tests](test.md)
+* [Regress Models](models.md)

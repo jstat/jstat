@@ -47,7 +47,11 @@ jStat.extend({
 
   // matrix multiplication
   multiply: function multiply(arr, arg) {
-    var row, col, nrescols, sum,
+    var row, col, nrescols, sum, nrow, ncol, res, rescols;
+    // eg: arr = 2 arg = 3 -> 6 for res[0][0] statement closure
+    if (arr.length === undefined && arg.length === undefined) {
+      return arr * arg;
+    }
     nrow = arr.length,
     ncol = arr[0].length,
     res = jStat.zeros(nrow, nrescols = (isUsable(arg)) ? arg[0].length : ncol),
@@ -65,6 +69,16 @@ jStat.extend({
     }
     return jStat.map(arr, function(value) { return value * arg; });
   },
+
+  // outer([1,2,3],[4,5,6])
+  // ===
+  // [[1],[2],[3]] times [[4,5,6]]
+  // ->
+  // [[4,5,6],[8,10,12],[12,15,18]]
+  outer:function outer(A, B) {
+    return jStat.multiply(A.map(function(t){ return [t] }), [B]);
+  },
+
 
   // Returns the dot product of two matricies
   dot: function dot(arr, arg) {
@@ -283,12 +297,113 @@ jStat.extend({
     return m;
   },
 
-  lu: function lu(a, b) {
-    throw new Error('lu not yet implemented');
+  // solve equation
+  // Ax=b
+  // A is upper triangular matrix
+  // A=[[1,2,3],[0,4,5],[0,6,7]]
+  // b=[1,2,3]
+  // triaUpSolve(A,b) // -> [2.666,0.1666,1.666]
+  // if you use matrix style
+  // A=[[1,2,3],[0,4,5],[0,6,7]]
+  // b=[[1],[2],[3]]
+  // will return [[2.666],[0.1666],[1.666]]
+  triaUpSolve: function triaUpSolve(A, b) {
+    var size = A[0].length;
+    var x = jStat.zeros(1, size)[0];
+    var parts;
+    var matrix_mode = false;
+
+    if (b[0].length != undefined) {
+      b = b.map(function(i){ return i[0] });
+      matrix_mode = true;
+    }
+
+    jStat.arange(size - 1, -1, -1).forEach(function(i) {
+      parts = jStat.arange(i + 1,size).map(function(j) {
+        return x[j] * A[i][j];
+      });
+      x[i] = (b[i] - jStat.sum(parts)) / A[i][i];
+    });
+
+    if (matrix_mode)
+      return x.map(function(i){ return [i] });
+    return x;
   },
 
-  cholesky: function cholesky(a, b) {
-    throw new Error('cholesky not yet implemented');
+  triaLowSolve: function triaLowSolve(A, b) {
+    // like to triaUpSolve but A is lower triangular matrix
+    var size = A[0].length;
+    var x = jStat.zeros(1, size)[0];
+    var parts;
+
+    var matrix_mode=false;
+    if (b[0].length != undefined) {
+      b = b.map(function(i){ return i[0] });
+      matrix_mode = true;
+    }
+
+    jStat.arange(size).forEach(function(i) {
+      parts = jStat.arange(i).map(function(j) {
+        return A[i][j] * x[j];
+      });
+      x[i] = (b[i] - jStat.sum(parts)) / A[i][i];
+    })
+
+    if (matrix_mode)
+      return x.map(function(i){ return [i] });
+    return x;
+  },
+
+  // A -> [L,U]
+  // A=LU
+  // L is lower triangular matrix
+  // U is upper triangular matrix
+  lu: function lu(A) {
+    var size = A.length;
+    //var L=jStat.diagonal(jStat.ones(1,size)[0]);
+    var L = jStat.identity(size);
+    var R = jStat.zeros(A.length, A[0].length);
+    var parts;
+    jStat.arange(size).forEach(function(t) {
+      R[0][t] = A[0][t];
+    });
+    jStat.arange(1, size).forEach(function(l) {
+      jStat.arange(l).forEach(function(i) {
+        parts = jStat.arange(i).map(function(jj) {
+          return L[l][jj] * R[jj][i];
+        });
+        L[l][i] = (A[l][i] - jStat.sum(parts)) / R[i][i];
+      });
+      jStat.arange(l, size).forEach(function(j) {
+        parts = jStat.arange(l).map(function(jj) {
+          return L[l][jj] * R[jj][j];
+        });
+        R[l][j] = A[i][j] - jStat.sum(parts);
+      });
+    });
+    return [L, R];
+  },
+
+  // A -> T
+  // A=TT'
+  // T is lower triangular matrix
+  cholesky: function cholesky(A) {
+    var size = A.length;
+    var T = jStat.zeros(A.length, A[0].length);
+    var parts;
+    jStat.arange(size).forEach(function(i) {
+      parts = jStat.arange(i).map(function(t) {
+        return Math.pow(T[i][t],2);
+      });
+      T[i][i] = Math.sqrt(A[i][i] - jStat.sum(parts));
+      jStat.arange(i + 1, size).forEach(function(j) {
+        parts = jStat.arange(i).map(function(t) {
+          return T[i][t] * T[j][t];
+        });
+        T[j][i] = (A[i][j] - jStat.sum(parts)) / T[i][i];
+      });
+    });
+    return T;
   },
 
   gauss_jacobi: function gauss_jacobi(a, b, x, r) {
@@ -430,39 +545,94 @@ jStat.extend({
     return a;
   },
 
-  // TODO: not working properly.
-  QR: function QR(a, b) {
-    var m = a.length;
-    var n = a[0].length;
-    var i = 0;
-    var w = [];
-    var p = [];
-    var x = [];
-    var j, alpha, r, k, factor, sum;
-    for (; i < m - 1; i++) {
-      alpha = 0;
-      for (j = i + 1; j < n; j++)
-        alpha += (a[j][i] * a[j][i]);
-      factor = (a[i + 1][i] > 0) ? -1 : 1;
-      alpha = factor * Math.sqrt(alpha);
-      r = Math.sqrt((((alpha * alpha) - a[i + 1][i] * alpha) / 2));
-      w = jStat.zeros(m, 1);
-      w[i + 1][0] = (a[i + 1][i] - alpha) / (2 * r);
-      for (k = i + 2; k < m; k++)
-        w[k][0] = a[k][i] / (2 * r);
-      p = jStat.subtract(jStat.identity(m, n),
-          jStat.multiply(jStat.multiply(w, jStat.transpose(w)), 2));
-      a = jStat.multiply(p, a);
-      b = jStat.multiply(p, b);
+  // A -> [Q,R]
+  // Q is orthogonal matrix
+  // R is upper triangular
+  QR: (function() {
+    // x -> Q
+    // find a orthogonal matrix Q st.
+    // Qx=y
+    // y is [||x||,0,0,...]
+    function get_Q1(x) {
+      var size = x.length;
+      var norm_x = jStat.norm(x,2);
+      var e1 = jStat.zeros(1, size)[0];
+      e1[0] = 1;
+      var u = jStat.add(jStat.multiply(jStat.multiply(e1, norm_x), -1), x);
+      var norm_u = jStat.norm(u, 2);
+      var v = jStat.divide(u, norm_u);
+      var Q = jStat.subtract(jStat.identity(size),
+                             jStat.multiply(jStat.outer(v, v), 2));
+      return Q;
     }
-    for (var i = m - 1; i >= 0; i--) {
-      sum = 0;
-      for (j = i + 1; j <= n - 1; j++)
-      sum = x[j] * a[i][j];
-      x[i] = b[i][0] / a[i][i];
+
+    function qr(A) {
+      var size = A[0].length;
+      var QList = [];
+      jStat.arange(size).forEach(function(i) {
+        var x = jStat.slice(A, { row: { start: i }, col: i });
+        var Q = get_Q1(x);
+        var Qn = jStat.identity(A.length);
+        Qn = jStat.sliceAssign(Qn, { row: { start: i }, col: { start: i }}, Q);
+        A = jStat.multiply(Qn, A);
+        QList.push(Qn);
+      });
+      var Q = QList.reduce(function(x, y){ return jStat.multiply(x,y) });
+      var R = A;
+      return [Q, R];
     }
-    return x;
-  },
+
+    return qr;
+  })(),
+
+  lstsq: (function(A, b) {
+    // solve least squard problem for Ax=b as QR decomposition way if b is
+    // [[b1],[b2],[b3]] form will return [[x1],[x2],[x3]] array form solution
+    // else b is [b1,b2,b3] form will return [x1,x2,x3] array form solution
+    function R_I(A) {
+      A = jStat.copy(A);
+      var size = A.length;
+      var I = jStat.identity(size);
+      jStat.arange(size - 1, -1, -1).forEach(function(i) {
+        jStat.sliceAssign(
+            I, { row: i }, jStat.divide(jStat.slice(I, { row: i }), A[i][i]));
+        jStat.sliceAssign(
+            A, { row: i }, jStat.divide(jStat.slice(A, { row: i }), A[i][i]));
+        jStat.arange(i).forEach(function(j) {
+          var c = jStat.multiply(A[j][i], -1);
+          var Aj = jStat.slice(A, { row: j });
+          var cAi = jStat.multiply(jStat.slice(A, { row: i }), c);
+          jStat.sliceAssign(A, { row: j }, jStat.add(Aj, cAi));
+          var Ij = jStat.slice(I, { row: j });
+          var cIi = jStat.multiply(jStat.slice(I, { row: i }), c);
+          jStat.sliceAssign(I, { row: j }, jStat.add(Ij, cIi));
+        })
+      });
+      return I;
+    }
+
+    function qr_solve(A, b){
+      var array_mode = false;
+      if (b[0].length === undefined) {
+        // [c1,c2,c3] mode
+        b = b.map(function(x){ return [x] });
+        array_mode = true;
+      }
+      var QR = jStat.QR(A);
+      var Q = QR[0];
+      var R = QR[1];
+      var attrs = A[0].length;
+      var Q1 = jStat.slice(Q,{col:{end:attrs}});
+      var R1 = jStat.slice(R,{row:{end:attrs}});
+      var RI = R_I(R1);
+      var x = jStat.multiply(jStat.multiply(RI, jStat.transpose(Q1)), b);
+      if (array_mode)
+        return x.map(function(i){ return i[0] });
+      return x;
+    }
+
+    return qr_solve;
+  })(),
 
   jacobi: function jacobi(a) {
     var condition = 1;

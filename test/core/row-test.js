@@ -12,6 +12,11 @@ suite.addBatch({
     'return row at index': function(jStat) {
       assert.deepEqual(jStat.row([[1, 2], [3, 4]], 1), [3, 4]);
       assert.deepEqual(jStat([[1, 2], [3, 4]]).row(1).toArray(), [3, 4]);
+    },
+	'return sub matrix at index list':function(jStat) {
+	  var A=[[1,2,3],[4,5,6],[7,8,9]];
+	  var B=jStat.row(A,[1,2]);
+	  assert.deepEqual(B,[[4,5,6],[7,8,9]]);
     }
   },
   '#row': {

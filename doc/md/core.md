@@ -79,6 +79,12 @@ Also note `this` within the callback refers to the calling jStat object.
         // d === 2
     });
 
+### rowa()
+
+Return a array from matrix row
+
+    rowa([[1,2],[3,4]]) === [1,2];
+
 ### cols()
 
 Returns the number of columns in a matrix.
@@ -99,6 +105,29 @@ Also note `this` within the callback refers to the calling jStat object.
     jStat( matrix ).cols(function( d ) {
         // d === 3
     });
+
+### cola()
+
+Return a array from matrix column (`col()` will return a matrix form instead of array form)
+
+    cola([[1,2],[3,4]]) === [1,3];
+
+### slice()
+
+Slice matrix as numpy style
+
+    A=[[1,2,3],[4,5,6],[7,8,9]];
+    slice(A,{row:{end:2},col:{start:1}}) === [[2,3],[5,6]];
+    slice(A,1,{start:1}) === [5,6];
+
+### sliceAssign()
+
+Do slice assign as numpy style
+
+    A = [[1,2,3],[4,5,6],[7,8,9]];
+    sliceAssign(A,{row : {start : 1}, col : {start : 1}},[[0,0],[0,0]]);
+    A = [[1,2,3],[4,0,0],[7,0,0]];
+
 
 ### dimensions()
 
@@ -127,8 +156,9 @@ Returns a specified row of a matrix.
 
 **row( array, index )**
 
-    var matrix = [[1,2,3],[4,5,6]];
+    var matrix = [[1,2,3],[4,5,6],[7,8,9]];
     jStat.row( matrix, 0 ) === [1,2,3];
+    jStat.row( matrix, [0,1] ) === [[1,2,3],[4,5,6]]
 
 **fn.row( index[, callback] )**
 
@@ -148,12 +178,13 @@ Returns the specified column as a column vector.
 
 **col( index )**
 
-    var matrix = [[1,2],[3,4]];
-    jStat.col( matrix, 0 ) === [[1],[3]];
+    var matrix = [[1,2,3],[4,5,6],[7,8,9]];
+    jStat.col( matrix, 0 ) === [[1],[4],[7]];
+    jStat.col( matrix,[0,1] ) === [[1,2],[4,5],[7,8]]
 
 **fn.col( index[, callback] )**
 
-    jStat( matrix ).col( 0 ) === jStat([[1],[3]]);
+    jStat( matrix ).col( 0 ) === jStat([[1],[4],[7]]);
 
 Or pass a callback to run the calculation asynchronously and pass on the calculation.
 This allows for continued chaining of methods to the jStat object.
@@ -204,6 +235,12 @@ Also note `this` within the callback refers to the calling jStat object.
     jStat( matrix ).antidiag(function( d ) {
         // d === jStat([[3],[5],[7]])
     });
+
+### diagonal()
+
+Create a new diagonal matrix by given 1d diag array
+
+    jStat.diagonal([1,2,3]) === [[1,0,0],[0,2,0],[0,0,3]];
 
 ### transpose()
 
@@ -351,6 +388,10 @@ Use this technique for creating matrices in jStat instances.
 
     jStat().rand( 3 );
 
+### copy()
+
+Return a copy from given matrix
+
 ### identity()
 
 Create an identity matrix of row by col.
@@ -366,6 +407,22 @@ If `col` is omitted then it will default to value `row`.
 Use this technique for creating matrices in jStat instances.
 
     jStat().identity( 2 );
+
+### seq()
+
+Create an arithmetic sequence by given length
+
+    jStat.seq(1,5,9) === [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
+
+### arange()
+
+Create an arithmetic sequence by given step
+
+    arange(5) === [0,1,2,3,4]
+    arange(1,5) === [1,2,3,4]
+    arange(5,1,-1) === [5,4,3,2]
+
+
 
 ### clear()
 

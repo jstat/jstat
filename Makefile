@@ -22,7 +22,8 @@ jstat.js: \
 	src/special.js \
 	src/distribution.js \
 	src/linearalgebra.js \
-	src/test.js
+	src/test.js \
+	src/models.js
 	@echo 'Building jStat'
 	@mkdir -p $(DIST_DIR)
 	@cat $^ > $(DIST_DIR)/$@

@@ -144,18 +144,49 @@ jStat.dimensions = function dimensions(arr) {
 };
 
 
-// Returns a specified row as a vector
+// Returns a specified row as a vector or return a sub matrix by pick some rows
 jStat.row = function row(arr, index) {
+  if (isArray(index)) {
+    return index.map(function(i) {
+      return jStat.row(arr, i);
+    })
+  }
   return arr[index];
 };
 
 
-// Returns the specified column as a vector
-jStat.col = function cols(arr, index) {
+// return row as array
+// rowa([[1,2],[3,4]],0) -> [1,2]
+jStat.rowa = function rowa(arr, i) {
+  return jStat.row(arr, i);
+};
+
+
+// Returns the specified column as a vector or return a sub matrix by pick some
+// columns
+jStat.col = function col(arr, index) {
+  if (isArray(index)) {
+    var submat = jStat.arange(arr.length).map(function(i) {
+      return new Array(index.length);
+    });
+    index.forEach(function(ind, i){
+      jStat.arange(arr.length).forEach(function(j) {
+        submat[j][i] = arr[j][ind];
+      });
+    });
+    return submat;
+  }
   var column = new Array(arr.length);
   for (var i = 0; i < arr.length; i++)
     column[i] = [arr[i][index]];
   return column;
+};
+
+
+// return column as array
+// cola([[1,2],[3,4]],0) -> [1,3]
+jStat.cola = function cola(arr, i) {
+  return jStat.col(arr, i).map(function(a){ return a[0] });
 };
 
 
@@ -362,6 +393,189 @@ jStat.seq = function seq(min, max, length, func) {
   }
 
   return arr;
+};
+
+
+// arange(5) -> [0,1,2,3,4]
+// arange(1,5) -> [1,2,3,4]
+// arange(5,1,-1) -> [5,4,3,2]
+jStat.arange = function arange(start, end, step) {
+  var rl = [];
+  step = step || 1;
+  if (end === undefined) {
+    end = start;
+    start = 0;
+  }
+  if (start === end || step === 0) {
+    return [];
+  }
+  if (start < end && step < 0) {
+    return [];
+  }
+  if (start > end && step > 0) {
+    return [];
+  }
+  if (step > 0) {
+    for (i = start; i < end; i += step) {
+      rl.push(i);
+    }
+  } else {
+    for (i = start; i > end; i += step) {
+      rl.push(i);
+    }
+  }
+  return rl;
+};
+
+
+// A=[[1,2,3],[4,5,6],[7,8,9]]
+// slice(A,{row:{end:2},col:{start:1}}) -> [[2,3],[5,6]]
+// slice(A,1,{start:1}) -> [5,6]
+// as numpy code A[:2,1:]
+jStat.slice = (function(){
+  function _slice(list, start, end, step) {
+    // note it's not equal to range.map mode it's a bug
+    var i;
+    var rl = [];
+    var length = list.length;
+    if (start === undefined && end === undefined && step === undefined) {
+      return jStat.copy(list);
+    }
+
+    start = start || 0;
+    end = end || list.length;
+    start = start >= 0 ? start : length + start;
+    end = end >= 0 ? end : length + end;
+    step = step || 1;
+    if (start === end || step === 0) {
+      return [];
+    }
+    if (start < end && step < 0) {
+      return [];
+    }
+    if (start > end && step > 0) {
+      return [];
+    }
+    if (step > 0) {
+      for (i = start; i < end; i += step) {
+        rl.push(list[i]);
+      }
+    } else {
+      for (i = start; i > end;i += step) {
+        rl.push(list[i]);
+      }
+    }
+    return rl;
+  }
+
+  function slice(list, rcSlice) {
+    rcSlice = rcSlice || {};
+    if (isNumber(rcSlice.row)) {
+      if (isNumber(rcSlice.col))
+        return list[rcSlice.row][rcSlice.col];
+      var row = jStat.rowa(list, rcSlice.row);
+      var colSlice = rcSlice.col || {};
+      return _slice(row, colSlice.start, colSlice.end, colSlice.step);
+    }
+
+    if (isNumber(rcSlice.col)) {
+      var col = jStat.cola(list, rcSlice.col);
+      var rowSlice = rcSlice.row || {};
+      return _slice(col, rowSlice.start, rowSlice.end, rowSlice.step);
+    }
+
+    var rowSlice = rcSlice.row || {};
+    var colSlice = rcSlice.col || {};
+    var rows = _slice(list, rowSlice.start, rowSlice.end, rowSlice.step);
+    return rows.map(function(row) {
+      return _slice(row, colSlice.start, colSlice.end, colSlice.step);
+    });
+  }
+
+  return slice;
+}());
+
+
+// A=[[1,2,3],[4,5,6],[7,8,9]]
+// sliceAssign(A,{row:{start:1},col:{start:1}},[[0,0],[0,0]])
+// A=[[1,2,3],[4,0,0],[7,0,0]]
+jStat.sliceAssign = function sliceAssign(A, rcSlice, B) {
+  if (isNumber(rcSlice.row)) {
+    if (isNumber(rcSlice.col))
+      return A[rcSlice.row][rcSlice.col] = B;
+    rcSlice.col = rcSlice.col || {};
+    rcSlice.col.start = rcSlice.col.start || 0;
+    rcSlice.col.end = rcSlice.col.end || A[0].length;
+    rcSlice.col.step = rcSlice.col.step || 1;
+    var nl = jStat.arange(rcSlice.col.start,
+                          Math.min(A.length, rcSlice.col.end),
+                          rcSlice.col.step);
+    var m = rcSlice.row;
+    nl.forEach(function(n, i) {
+      A[m][n] = B[i];
+    });
+    return A;
+  }
+
+  if (isNumber(rcSlice.col)) {
+    rcSlice.row = rcSlice.row || {};
+    rcSlice.row.start = rcSlice.row.start || 0;
+    rcSlice.row.end = rcSlice.row.end || A.length;
+    rcSlice.row.step = rcSlice.row.step || 1;
+    var ml = jStat.arange(rcSlice.row.start,
+                          Math.min(A[0].length, rcSlice.row.end),
+                          rcSlice.row.step);
+    var n = rcSlice.col;
+    ml.forEach(function(m, j) {
+      A[m][n] = B[j];
+    });
+    return A;
+  }
+
+  if (B[0].length === undefined) {
+    B = [B];
+  }
+  rcSlice.row.start = rcSlice.row.start || 0;
+  rcSlice.row.end = rcSlice.row.end || A.length;
+  rcSlice.row.step = rcSlice.row.step || 1;
+  rcSlice.col.start = rcSlice.col.start || 0;
+  rcSlice.col.end = rcSlice.col.end || A[0].length;
+  rcSlice.col.step = rcSlice.col.step || 1;
+  var ml = jStat.arange(rcSlice.row.start,
+                        Math.min(A.length, rcSlice.row.end),
+                        rcSlice.row.step);
+  var nl = jStat.arange(rcSlice.col.start,
+                        Math.min(A[0].length, rcSlice.col.end),
+                        rcSlice.col.step);
+  ml.forEach(function(m, i) {
+    nl.forEach(function(n, j) {
+      A[m][n] = B[i][j];
+    });
+  });
+  return A;
+};
+
+
+// [1,2,3] ->
+// [[1,0,0],[0,2,0],[0,0,3]]
+jStat.diagonal = function diagonal(diagArray) {
+  var mat = jStat.zeros(diagArray.length, diagArray.length);
+  diagArray.forEach(function(t, i) {
+    mat[i][i] = t;
+  });
+  return mat;
+};
+
+
+// return copy of A
+jStat.copy = function copy(A) {
+  return A.map(function(row) {
+    if (isNumber(row))
+      return row;
+    return row.map(function(t) {
+      return t;
+    });
+  });
 };
 
 
