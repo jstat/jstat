@@ -58,7 +58,7 @@ jStat._init = function _init(args) {
       if (isFunction(args[1]))
         args[0] = jStat.map(args[0], args[1]);
       // Iterate over each is faster than this.push.apply(this, args[0].
-      for (i = 0; i < args[0].length; i++)
+      for (var i = 0; i < args[0].length; i++)
         this[i] = args[0][i];
       this.length = args[0].length;
 
@@ -114,7 +114,7 @@ jStat.extend = function extend(obj) {
     return this;
   }
 
-  for (i = 1; i < arguments.length; i++) {
+  for (var i = 1; i < arguments.length; i++) {
     for (j in arguments[i])
       obj[j] = arguments[i][j];
   }
@@ -190,7 +190,7 @@ jStat.transpose = function transpose(arr) {
   rows = arr.length;
   cols = arr[0].length;
 
-  for (i = 0; i < cols; i++) {
+  for (var i = 0; i < cols; i++) {
     objArr = new Array(rows);
     for (j = 0; j < rows; j++)
       objArr[j] = arr[j][i];
@@ -266,7 +266,7 @@ jStat.create = function  create(rows, cols, func) {
     cols = rows;
   }
 
-  for (i = 0; i < rows; i++) {
+  for (var i = 0; i < rows; i++) {
     res[i] = new Array(cols);
     for (j = 0; j < cols; j++)
       res[i][j] = func(i, j);

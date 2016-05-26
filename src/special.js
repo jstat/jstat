@@ -48,7 +48,7 @@ jStat.gammafn = function gammafn(x) {
   } else {
     z = (y -= n = (y | 0) - 1) - 1;
   }
-  for (i = 0; i < 8; ++i) {
+  for (var i = 0; i < 8; ++i) {
     xnum = (xnum + p[i]) * z;
     xden = xden * z + q[i];
   }
@@ -56,7 +56,7 @@ jStat.gammafn = function gammafn(x) {
   if (yi < y) {
     res /= yi;
   } else if (yi > y) {
-    for (i = 0; i < n; ++i) {
+    for (var i = 0; i < n; ++i) {
       res *= y;
       y++;
     }
