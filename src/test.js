@@ -124,7 +124,7 @@ jStat.extend({
     expVar, sample, sampMean, sampSampMean, tmpargs, unexpVar, i, j;
     if (args.length === 1) {
       tmpargs = new Array(args[0].length);
-      for (i = 0; i < args[0].length; i++) {
+      for (var i = 0; i < args[0].length; i++) {
         tmpargs[i] = args[0][i];
       }
       args = tmpargs;
@@ -135,19 +135,19 @@ jStat.extend({
     }
     // Builds sample array
     sample = new Array();
-    for (i = 0; i < args.length; i++) {
+    for (var i = 0; i < args.length; i++) {
       sample = sample.concat(args[i]);
     }
     sampMean = jStat.mean(sample);
     // Computes the explained variance
     expVar = 0;
-    for (i = 0; i < args.length; i++) {
+    for (var i = 0; i < args.length; i++) {
       expVar = expVar + args[i].length * Math.pow(jStat.mean(args[i]) - sampMean, 2);
     }
     expVar /= (args.length - 1);
     // Computes unexplained variance
     unexpVar = 0;
-    for (i = 0; i < args.length; i++) {
+    for (var i = 0; i < args.length; i++) {
       sampSampMean = jStat.mean(args[i]);
       for (j = 0; j < args[i].length; j++) {
         unexpVar += Math.pow(args[i][j] - sampSampMean, 2);
@@ -169,7 +169,7 @@ jStat.extend({
     anovafscore = jStat.anovafscore(args);
     df1 = args.length - 1;
     n = 0;
-    for (i = 0; i < args.length; i++) {
+    for (var i = 0; i < args.length; i++) {
       n = n + args[i].length;
     }
     df2 = n - df1 - 1;
@@ -189,7 +189,7 @@ jStat.extend(jStat.fn, {
   anovaftes: function anovaftes() {
     var n = 0;
     var i;
-    for (i = 0; i < this.length; i++) {
+    for (var i = 0; i < this.length; i++) {
       n = n + this[i].length;
     }
     return jStat.ftest(this.anovafscore(), this.length - 1, n - this.length);

@@ -183,7 +183,7 @@ jStat.extend({
     for (; i < alend; i++) {
       vals[i] = 1;
     }
-    for (i = 0; i < alen; i++) {
+    for (var i = 0; i < alen; i++) {
       for (j = 0; j < alen; j++) {
         vals[(mrow < 0) ? mrow + alen : mrow ] *= a[i][j];
         vals[(mcol < alen) ? mcol + alen : mcol ] *= a[i][j];
@@ -193,7 +193,7 @@ jStat.extend({
       mrow = --rowshift - alen + 1;
       mcol = --colshift;
     }
-    for (i = 0; i < alen; i++) {
+    for (var i = 0; i < alen; i++) {
       result += vals[i];
     }
     for (; i < alend; i++) {
@@ -213,7 +213,7 @@ jStat.extend({
     maug, pivot, temp, k;
     a = jStat.aug(a, b);
     maug = a[0].length;
-    for(i = 0; i < n; i++) {
+    for(var i = 0; i < n; i++) {
       pivot = a[i][i];
       j = i;
       for (k = i + 1; k < m; k++) {
@@ -236,7 +236,7 @@ jStat.extend({
         }
       }
     }
-    for (i = n - 1; i >= 0; i--) {
+    for (var i = n - 1; i >= 0; i--) {
       sum = 0;
       for (j = i + 1; j<= n - 1; j++) {
         sum = sum + x[j] * a[i][j];
@@ -455,7 +455,7 @@ jStat.extend({
       a = jStat.multiply(p, a);
       b = jStat.multiply(p, b);
     }
-    for (i = m - 1; i >= 0; i--) {
+    for (var i = m - 1; i >= 0; i--) {
       sum = 0;
       for (j = i + 1; j <= n - 1; j++)
       sum = x[j] * a[i][j];
@@ -477,7 +477,7 @@ jStat.extend({
       maxim = a[0][1];
       p = 0;
       q = 1;
-      for (i = 0; i < n; i++) {
+      for (var i = 0; i < n; i++) {
         for (j = 0; j < n; j++) {
           if (i != j) {
             if (maxim < Math.abs(a[i][j])) {
@@ -502,7 +502,7 @@ jStat.extend({
       b = jStat.multiply(jStat.multiply(jStat.inv(s), a), s);
       a = b;
       condition = 0;
-      for (i = 1; i < n; i++) {
+      for (var i = 1; i < n; i++) {
         for (j = 1; j < n; j++) {
           if (i != j && Math.abs(a[i][j]) > 0.001) {
             condition = 1;
@@ -510,7 +510,7 @@ jStat.extend({
         }
       }
     }
-    for (i = 0; i < n; i++) ev.push(a[i][i]);
+    for (var i = 0; i < n; i++) ev.push(a[i][i]);
     //returns both the eigenvalue and eigenmatrix
     return [e, ev];
   },
@@ -679,11 +679,11 @@ jStat.extend({
     for (; i < n - 1; i++)
       h[i] = X[i + 1] - X[i];
     alpha[0] = 0;
-    for (i = 1; i < n - 1; i++) {
+    for (var i = 1; i < n - 1; i++) {
       alpha[i] = (3 / h[i]) * (F[i + 1] - F[i]) -
           (3 / h[i-1]) * (F[i] - F[i-1]);
     }
-    for (i = 1; i < n - 1; i++) {
+    for (var i = 1; i < n - 1; i++) {
       A[i] = [];
       B[i] = [];
       A[i][i-1] = h[i-1];
@@ -724,17 +724,17 @@ jStat.extend({
     var C = [];
     var V = [];
     var Vt = [];
-    for (i = 0; i < m; i++) {
+    for (var i = 0; i < m; i++) {
       u[i] = jStat.sum(X[i]) / n;
     }
-    for (i = 0; i < n; i++) {
+    for (var i = 0; i < n; i++) {
       B[i] = [];
       for(j = 0; j < m; j++) {
         B[i][j] = X[j][i] - u[j];
       }
     }
     B = jStat.transpose(B);
-    for (i = 0; i < m; i++) {
+    for (var i = 0; i < m; i++) {
       C[i] = [];
       for (j = 0; j < m; j++) {
         C[i][j] = (jStat.dot([B[i]], [B[j]])) / (n - 1);
@@ -744,7 +744,7 @@ jStat.extend({
     V = result[0];
     D = result[1];
     Vt = jStat.transpose(V);
-    for (i = 0; i < D.length; i++) {
+    for (var i = 0; i < D.length; i++) {
       for (j = i; j < D.length; j++) {
         if(D[i] < D[j])  {
           temp1 = D[i];
@@ -757,7 +757,7 @@ jStat.extend({
       }
     }
     Bt = jStat.transpose(B);
-    for (i = 0; i < m; i++) {
+    for (var i = 0; i < m; i++) {
       Y[i] = [];
       for (j = 0; j < Bt.length; j++) {
         Y[i][j] = jStat.dot([Vt[i]], [Bt[j]]);
