@@ -143,7 +143,7 @@ jStat.diff = function diff(arr) {
   var diffs = [];
   var arrLen = arr.length;
   var i;
-  for (i = 1; i < arrLen; i++)
+  for (var i = 1; i < arrLen; i++)
     diffs.push(arr[i] - arr[i - 1]);
   return diffs;
 };
@@ -180,7 +180,7 @@ jStat.mode = function mode(arr) {
   var mode_arr = [];
   var i;
 
-  for (i = 0; i < arrLen; i++) {
+  for (var i = 0; i < arrLen; i++) {
     if (_arr[i] === _arr[i + 1]) {
       count++;
     } else {
@@ -237,7 +237,7 @@ jStat.meandev = function meandev(arr) {
   var devSum = 0;
   var mean = jStat.mean(arr);
   var i;
-  for (i = arr.length - 1; i >= 0; i--)
+  for (var i = arr.length - 1; i >= 0; i--)
     devSum += Math.abs(arr[i] - mean);
   return devSum / arr.length;
 };
@@ -248,7 +248,7 @@ jStat.meddev = function meddev(arr) {
   var devSum = 0;
   var median = jStat.median(arr);
   var i;
-  for (i = arr.length - 1; i >= 0; i--)
+  for (var i = arr.length - 1; i >= 0; i--)
     devSum += Math.abs(arr[i] - median);
   return devSum / arr.length;
 };
@@ -285,7 +285,7 @@ jStat.quantiles = function quantiles(arr, quantilesArray, alphap, betap) {
   if (typeof betap === 'undefined')
     betap = 3 / 8;
 
-  for (i = 0; i < quantilesArray.length; i++) {
+  for (var i = 0; i < quantilesArray.length; i++) {
     p = quantilesArray[i];
     m = alphap + p * (1 - alphap - betap);
     aleph = n * p + m;
@@ -325,7 +325,7 @@ jStat.percentileOfScore = function percentileOfScore(arr, score, kind) {
   if (kind === 'strict')
     strict = true;
 
-  for (i = 0; i < len; i++) {
+  for (var i = 0; i < len; i++) {
     value = arr[i];
     if ((strict && value < score) ||
         (!strict && value <= score)) {
@@ -346,9 +346,9 @@ jStat.histogram = function histogram(arr, bins) {
   var bins = [];
   var i;
 
-  for (i = 0; i < binCnt; i++)
+  for (var i = 0; i < binCnt; i++)
     bins[i] = 0;
-  for (i = 0; i < len; i++)
+  for (var i = 0; i < len; i++)
     bins[Math.min(Math.floor(((arr[i] - first) / binWidth)), binCnt - 1)] += 1;
 
   return bins;
@@ -363,7 +363,7 @@ jStat.covariance = function covariance(arr1, arr2) {
   var sq_dev = new Array(arr1Len);
   var i;
 
-  for (i = 0; i < arr1Len; i++)
+  for (var i = 0; i < arr1Len; i++)
     sq_dev[i] = (arr1[i] - u) * (arr2[i] - v);
 
   return jStat.sum(sq_dev) / (arr1Len - 1);
@@ -402,7 +402,7 @@ jStat.stanMoment = function stanMoment(arr, n) {
   var len = arr.length;
   var skewSum = 0;
 
-  for (i = 0; i < len; i++)
+  for (var i = 0; i < len; i++)
     skewSum += Math.pow((arr[i] - mu) / sigma, n);
 
   return skewSum / arr.length;
