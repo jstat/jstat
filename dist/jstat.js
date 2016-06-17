@@ -58,7 +58,7 @@ jStat._init = function _init(args) {
       if (isFunction(args[1]))
         args[0] = jStat.map(args[0], args[1]);
       // Iterate over each is faster than this.push.apply(this, args[0].
-      for (i = 0; i < args[0].length; i++)
+      for (var i = 0; i < args[0].length; i++)
         this[i] = args[0][i];
       this.length = args[0].length;
 
@@ -114,7 +114,7 @@ jStat.extend = function extend(obj) {
     return this;
   }
 
-  for (i = 1; i < arguments.length; i++) {
+  for (var i = 1; i < arguments.length; i++) {
     for (j in arguments[i])
       obj[j] = arguments[i][j];
   }
@@ -144,18 +144,49 @@ jStat.dimensions = function dimensions(arr) {
 };
 
 
-// Returns a specified row as a vector
+// Returns a specified row as a vector or return a sub matrix by pick some rows
 jStat.row = function row(arr, index) {
+  if (isArray(index)) {
+    return index.map(function(i) {
+      return jStat.row(arr, i);
+    })
+  }
   return arr[index];
 };
 
 
-// Returns the specified column as a vector
-jStat.col = function cols(arr, index) {
+// return row as array
+// rowa([[1,2],[3,4]],0) -> [1,2]
+jStat.rowa = function rowa(arr, i) {
+  return jStat.row(arr, i);
+};
+
+
+// Returns the specified column as a vector or return a sub matrix by pick some
+// columns
+jStat.col = function col(arr, index) {
+  if (isArray(index)) {
+    var submat = jStat.arange(arr.length).map(function(i) {
+      return new Array(index.length);
+    });
+    index.forEach(function(ind, i){
+      jStat.arange(arr.length).forEach(function(j) {
+        submat[j][i] = arr[j][ind];
+      });
+    });
+    return submat;
+  }
   var column = new Array(arr.length);
   for (var i = 0; i < arr.length; i++)
     column[i] = [arr[i][index]];
   return column;
+};
+
+
+// return column as array
+// cola([[1,2],[3,4]],0) -> [1,3]
+jStat.cola = function cola(arr, i) {
+  return jStat.col(arr, i).map(function(a){ return a[0] });
 };
 
 
@@ -190,7 +221,7 @@ jStat.transpose = function transpose(arr) {
   rows = arr.length;
   cols = arr[0].length;
 
-  for (i = 0; i < cols; i++) {
+  for (var i = 0; i < cols; i++) {
     objArr = new Array(rows);
     for (j = 0; j < rows; j++)
       objArr[j] = arr[j][i];
@@ -266,7 +297,7 @@ jStat.create = function  create(rows, cols, func) {
     cols = rows;
   }
 
-  for (i = 0; i < rows; i++) {
+  for (var i = 0; i < rows; i++) {
     res[i] = new Array(cols);
     for (j = 0; j < cols; j++)
       res[i][j] = func(i, j);
@@ -362,6 +393,189 @@ jStat.seq = function seq(min, max, length, func) {
   }
 
   return arr;
+};
+
+
+// arange(5) -> [0,1,2,3,4]
+// arange(1,5) -> [1,2,3,4]
+// arange(5,1,-1) -> [5,4,3,2]
+jStat.arange = function arange(start, end, step) {
+  var rl = [];
+  step = step || 1;
+  if (end === undefined) {
+    end = start;
+    start = 0;
+  }
+  if (start === end || step === 0) {
+    return [];
+  }
+  if (start < end && step < 0) {
+    return [];
+  }
+  if (start > end && step > 0) {
+    return [];
+  }
+  if (step > 0) {
+    for (i = start; i < end; i += step) {
+      rl.push(i);
+    }
+  } else {
+    for (i = start; i > end; i += step) {
+      rl.push(i);
+    }
+  }
+  return rl;
+};
+
+
+// A=[[1,2,3],[4,5,6],[7,8,9]]
+// slice(A,{row:{end:2},col:{start:1}}) -> [[2,3],[5,6]]
+// slice(A,1,{start:1}) -> [5,6]
+// as numpy code A[:2,1:]
+jStat.slice = (function(){
+  function _slice(list, start, end, step) {
+    // note it's not equal to range.map mode it's a bug
+    var i;
+    var rl = [];
+    var length = list.length;
+    if (start === undefined && end === undefined && step === undefined) {
+      return jStat.copy(list);
+    }
+
+    start = start || 0;
+    end = end || list.length;
+    start = start >= 0 ? start : length + start;
+    end = end >= 0 ? end : length + end;
+    step = step || 1;
+    if (start === end || step === 0) {
+      return [];
+    }
+    if (start < end && step < 0) {
+      return [];
+    }
+    if (start > end && step > 0) {
+      return [];
+    }
+    if (step > 0) {
+      for (i = start; i < end; i += step) {
+        rl.push(list[i]);
+      }
+    } else {
+      for (i = start; i > end;i += step) {
+        rl.push(list[i]);
+      }
+    }
+    return rl;
+  }
+
+  function slice(list, rcSlice) {
+    rcSlice = rcSlice || {};
+    if (isNumber(rcSlice.row)) {
+      if (isNumber(rcSlice.col))
+        return list[rcSlice.row][rcSlice.col];
+      var row = jStat.rowa(list, rcSlice.row);
+      var colSlice = rcSlice.col || {};
+      return _slice(row, colSlice.start, colSlice.end, colSlice.step);
+    }
+
+    if (isNumber(rcSlice.col)) {
+      var col = jStat.cola(list, rcSlice.col);
+      var rowSlice = rcSlice.row || {};
+      return _slice(col, rowSlice.start, rowSlice.end, rowSlice.step);
+    }
+
+    var rowSlice = rcSlice.row || {};
+    var colSlice = rcSlice.col || {};
+    var rows = _slice(list, rowSlice.start, rowSlice.end, rowSlice.step);
+    return rows.map(function(row) {
+      return _slice(row, colSlice.start, colSlice.end, colSlice.step);
+    });
+  }
+
+  return slice;
+}());
+
+
+// A=[[1,2,3],[4,5,6],[7,8,9]]
+// sliceAssign(A,{row:{start:1},col:{start:1}},[[0,0],[0,0]])
+// A=[[1,2,3],[4,0,0],[7,0,0]]
+jStat.sliceAssign = function sliceAssign(A, rcSlice, B) {
+  if (isNumber(rcSlice.row)) {
+    if (isNumber(rcSlice.col))
+      return A[rcSlice.row][rcSlice.col] = B;
+    rcSlice.col = rcSlice.col || {};
+    rcSlice.col.start = rcSlice.col.start || 0;
+    rcSlice.col.end = rcSlice.col.end || A[0].length;
+    rcSlice.col.step = rcSlice.col.step || 1;
+    var nl = jStat.arange(rcSlice.col.start,
+                          Math.min(A.length, rcSlice.col.end),
+                          rcSlice.col.step);
+    var m = rcSlice.row;
+    nl.forEach(function(n, i) {
+      A[m][n] = B[i];
+    });
+    return A;
+  }
+
+  if (isNumber(rcSlice.col)) {
+    rcSlice.row = rcSlice.row || {};
+    rcSlice.row.start = rcSlice.row.start || 0;
+    rcSlice.row.end = rcSlice.row.end || A.length;
+    rcSlice.row.step = rcSlice.row.step || 1;
+    var ml = jStat.arange(rcSlice.row.start,
+                          Math.min(A[0].length, rcSlice.row.end),
+                          rcSlice.row.step);
+    var n = rcSlice.col;
+    ml.forEach(function(m, j) {
+      A[m][n] = B[j];
+    });
+    return A;
+  }
+
+  if (B[0].length === undefined) {
+    B = [B];
+  }
+  rcSlice.row.start = rcSlice.row.start || 0;
+  rcSlice.row.end = rcSlice.row.end || A.length;
+  rcSlice.row.step = rcSlice.row.step || 1;
+  rcSlice.col.start = rcSlice.col.start || 0;
+  rcSlice.col.end = rcSlice.col.end || A[0].length;
+  rcSlice.col.step = rcSlice.col.step || 1;
+  var ml = jStat.arange(rcSlice.row.start,
+                        Math.min(A.length, rcSlice.row.end),
+                        rcSlice.row.step);
+  var nl = jStat.arange(rcSlice.col.start,
+                        Math.min(A[0].length, rcSlice.col.end),
+                        rcSlice.col.step);
+  ml.forEach(function(m, i) {
+    nl.forEach(function(n, j) {
+      A[m][n] = B[i][j];
+    });
+  });
+  return A;
+};
+
+
+// [1,2,3] ->
+// [[1,0,0],[0,2,0],[0,0,3]]
+jStat.diagonal = function diagonal(diagArray) {
+  var mat = jStat.zeros(diagArray.length, diagArray.length);
+  diagArray.forEach(function(t, i) {
+    mat[i][i] = t;
+  });
+  return mat;
+};
+
+
+// return copy of A
+jStat.copy = function copy(A) {
+  return A.map(function(row) {
+    if (isNumber(row))
+      return row;
+    return row.map(function(t) {
+      return t;
+    });
+  });
 };
 
 
@@ -605,7 +819,7 @@ jStat.diff = function diff(arr) {
   var diffs = [];
   var arrLen = arr.length;
   var i;
-  for (i = 1; i < arrLen; i++)
+  for (var i = 1; i < arrLen; i++)
     diffs.push(arr[i] - arr[i - 1]);
   return diffs;
 };
@@ -642,7 +856,7 @@ jStat.mode = function mode(arr) {
   var mode_arr = [];
   var i;
 
-  for (i = 0; i < arrLen; i++) {
+  for (var i = 0; i < arrLen; i++) {
     if (_arr[i] === _arr[i + 1]) {
       count++;
     } else {
@@ -699,7 +913,7 @@ jStat.meandev = function meandev(arr) {
   var devSum = 0;
   var mean = jStat.mean(arr);
   var i;
-  for (i = arr.length - 1; i >= 0; i--)
+  for (var i = arr.length - 1; i >= 0; i--)
     devSum += Math.abs(arr[i] - mean);
   return devSum / arr.length;
 };
@@ -710,7 +924,7 @@ jStat.meddev = function meddev(arr) {
   var devSum = 0;
   var median = jStat.median(arr);
   var i;
-  for (i = arr.length - 1; i >= 0; i--)
+  for (var i = arr.length - 1; i >= 0; i--)
     devSum += Math.abs(arr[i] - median);
   return devSum / arr.length;
 };
@@ -747,7 +961,7 @@ jStat.quantiles = function quantiles(arr, quantilesArray, alphap, betap) {
   if (typeof betap === 'undefined')
     betap = 3 / 8;
 
-  for (i = 0; i < quantilesArray.length; i++) {
+  for (var i = 0; i < quantilesArray.length; i++) {
     p = quantilesArray[i];
     m = alphap + p * (1 - alphap - betap);
     aleph = n * p + m;
@@ -787,7 +1001,7 @@ jStat.percentileOfScore = function percentileOfScore(arr, score, kind) {
   if (kind === 'strict')
     strict = true;
 
-  for (i = 0; i < len; i++) {
+  for (var i = 0; i < len; i++) {
     value = arr[i];
     if ((strict && value < score) ||
         (!strict && value <= score)) {
@@ -808,9 +1022,9 @@ jStat.histogram = function histogram(arr, bins) {
   var bins = [];
   var i;
 
-  for (i = 0; i < binCnt; i++)
+  for (var i = 0; i < binCnt; i++)
     bins[i] = 0;
-  for (i = 0; i < len; i++)
+  for (var i = 0; i < len; i++)
     bins[Math.min(Math.floor(((arr[i] - first) / binWidth)), binCnt - 1)] += 1;
 
   return bins;
@@ -825,7 +1039,7 @@ jStat.covariance = function covariance(arr1, arr2) {
   var sq_dev = new Array(arr1Len);
   var i;
 
-  for (i = 0; i < arr1Len; i++)
+  for (var i = 0; i < arr1Len; i++)
     sq_dev[i] = (arr1[i] - u) * (arr2[i] - v);
 
   return jStat.sum(sq_dev) / (arr1Len - 1);
@@ -864,7 +1078,7 @@ jStat.stanMoment = function stanMoment(arr, n) {
   var len = arr.length;
   var skewSum = 0;
 
-  for (i = 0; i < len; i++)
+  for (var i = 0; i < len; i++)
     skewSum += Math.pow((arr[i] - mu) / sigma, n);
 
   return skewSum / arr.length;
@@ -1058,7 +1272,7 @@ jStat.gammafn = function gammafn(x) {
   } else {
     z = (y -= n = (y | 0) - 1) - 1;
   }
-  for (i = 0; i < 8; ++i) {
+  for (var i = 0; i < 8; ++i) {
     xnum = (xnum + p[i]) * z;
     xden = xden * z + q[i];
   }
@@ -1066,7 +1280,7 @@ jStat.gammafn = function gammafn(x) {
   if (yi < y) {
     res /= yi;
   } else if (yi > y) {
-    for (i = 0; i < n; ++i) {
+    for (var i = 0; i < n; ++i) {
       res *= y;
       y++;
     }
@@ -2635,7 +2849,11 @@ jStat.extend({
 
   // matrix multiplication
   multiply: function multiply(arr, arg) {
-    var row, col, nrescols, sum,
+    var row, col, nrescols, sum, nrow, ncol, res, rescols;
+    // eg: arr = 2 arg = 3 -> 6 for res[0][0] statement closure
+    if (arr.length === undefined && arg.length === undefined) {
+      return arr * arg;
+    }
     nrow = arr.length,
     ncol = arr[0].length,
     res = jStat.zeros(nrow, nrescols = (isUsable(arg)) ? arg[0].length : ncol),
@@ -2653,6 +2871,16 @@ jStat.extend({
     }
     return jStat.map(arr, function(value) { return value * arg; });
   },
+
+  // outer([1,2,3],[4,5,6])
+  // ===
+  // [[1],[2],[3]] times [[4,5,6]]
+  // ->
+  // [[4,5,6],[8,10,12],[12,15,18]]
+  outer:function outer(A, B) {
+    return jStat.multiply(A.map(function(t){ return [t] }), [B]);
+  },
+
 
   // Returns the dot product of two matricies
   dot: function dot(arr, arg) {
@@ -2771,7 +2999,7 @@ jStat.extend({
     for (; i < alend; i++) {
       vals[i] = 1;
     }
-    for (i = 0; i < alen; i++) {
+    for (var i = 0; i < alen; i++) {
       for (j = 0; j < alen; j++) {
         vals[(mrow < 0) ? mrow + alen : mrow ] *= a[i][j];
         vals[(mcol < alen) ? mcol + alen : mcol ] *= a[i][j];
@@ -2781,7 +3009,7 @@ jStat.extend({
       mrow = --rowshift - alen + 1;
       mcol = --colshift;
     }
-    for (i = 0; i < alen; i++) {
+    for (var i = 0; i < alen; i++) {
       result += vals[i];
     }
     for (; i < alend; i++) {
@@ -2801,7 +3029,7 @@ jStat.extend({
     maug, pivot, temp, k;
     a = jStat.aug(a, b);
     maug = a[0].length;
-    for(i = 0; i < n; i++) {
+    for(var i = 0; i < n; i++) {
       pivot = a[i][i];
       j = i;
       for (k = i + 1; k < m; k++) {
@@ -2824,7 +3052,7 @@ jStat.extend({
         }
       }
     }
-    for (i = n - 1; i >= 0; i--) {
+    for (var i = n - 1; i >= 0; i--) {
       sum = 0;
       for (j = i + 1; j<= n - 1; j++) {
         sum = sum + x[j] * a[i][j];
@@ -2871,12 +3099,113 @@ jStat.extend({
     return m;
   },
 
-  lu: function lu(a, b) {
-    throw new Error('lu not yet implemented');
+  // solve equation
+  // Ax=b
+  // A is upper triangular matrix
+  // A=[[1,2,3],[0,4,5],[0,6,7]]
+  // b=[1,2,3]
+  // triaUpSolve(A,b) // -> [2.666,0.1666,1.666]
+  // if you use matrix style
+  // A=[[1,2,3],[0,4,5],[0,6,7]]
+  // b=[[1],[2],[3]]
+  // will return [[2.666],[0.1666],[1.666]]
+  triaUpSolve: function triaUpSolve(A, b) {
+    var size = A[0].length;
+    var x = jStat.zeros(1, size)[0];
+    var parts;
+    var matrix_mode = false;
+
+    if (b[0].length != undefined) {
+      b = b.map(function(i){ return i[0] });
+      matrix_mode = true;
+    }
+
+    jStat.arange(size - 1, -1, -1).forEach(function(i) {
+      parts = jStat.arange(i + 1,size).map(function(j) {
+        return x[j] * A[i][j];
+      });
+      x[i] = (b[i] - jStat.sum(parts)) / A[i][i];
+    });
+
+    if (matrix_mode)
+      return x.map(function(i){ return [i] });
+    return x;
   },
 
-  cholesky: function cholesky(a, b) {
-    throw new Error('cholesky not yet implemented');
+  triaLowSolve: function triaLowSolve(A, b) {
+    // like to triaUpSolve but A is lower triangular matrix
+    var size = A[0].length;
+    var x = jStat.zeros(1, size)[0];
+    var parts;
+
+    var matrix_mode=false;
+    if (b[0].length != undefined) {
+      b = b.map(function(i){ return i[0] });
+      matrix_mode = true;
+    }
+
+    jStat.arange(size).forEach(function(i) {
+      parts = jStat.arange(i).map(function(j) {
+        return A[i][j] * x[j];
+      });
+      x[i] = (b[i] - jStat.sum(parts)) / A[i][i];
+    })
+
+    if (matrix_mode)
+      return x.map(function(i){ return [i] });
+    return x;
+  },
+
+  // A -> [L,U]
+  // A=LU
+  // L is lower triangular matrix
+  // U is upper triangular matrix
+  lu: function lu(A) {
+    var size = A.length;
+    //var L=jStat.diagonal(jStat.ones(1,size)[0]);
+    var L = jStat.identity(size);
+    var R = jStat.zeros(A.length, A[0].length);
+    var parts;
+    jStat.arange(size).forEach(function(t) {
+      R[0][t] = A[0][t];
+    });
+    jStat.arange(1, size).forEach(function(l) {
+      jStat.arange(l).forEach(function(i) {
+        parts = jStat.arange(i).map(function(jj) {
+          return L[l][jj] * R[jj][i];
+        });
+        L[l][i] = (A[l][i] - jStat.sum(parts)) / R[i][i];
+      });
+      jStat.arange(l, size).forEach(function(j) {
+        parts = jStat.arange(l).map(function(jj) {
+          return L[l][jj] * R[jj][j];
+        });
+        R[l][j] = A[i][j] - jStat.sum(parts);
+      });
+    });
+    return [L, R];
+  },
+
+  // A -> T
+  // A=TT'
+  // T is lower triangular matrix
+  cholesky: function cholesky(A) {
+    var size = A.length;
+    var T = jStat.zeros(A.length, A[0].length);
+    var parts;
+    jStat.arange(size).forEach(function(i) {
+      parts = jStat.arange(i).map(function(t) {
+        return Math.pow(T[i][t],2);
+      });
+      T[i][i] = Math.sqrt(A[i][i] - jStat.sum(parts));
+      jStat.arange(i + 1, size).forEach(function(j) {
+        parts = jStat.arange(i).map(function(t) {
+          return T[i][t] * T[j][t];
+        });
+        T[j][i] = (A[i][j] - jStat.sum(parts)) / T[i][i];
+      });
+    });
+    return T;
   },
 
   gauss_jacobi: function gauss_jacobi(a, b, x, r) {
@@ -3018,39 +3347,94 @@ jStat.extend({
     return a;
   },
 
-  // TODO: not working properly.
-  QR: function QR(a, b) {
-    var m = a.length;
-    var n = a[0].length;
-    var i = 0;
-    var w = [];
-    var p = [];
-    var x = [];
-    var j, alpha, r, k, factor, sum;
-    for (; i < m - 1; i++) {
-      alpha = 0;
-      for (j = i + 1; j < n; j++)
-        alpha += (a[j][i] * a[j][i]);
-      factor = (a[i + 1][i] > 0) ? -1 : 1;
-      alpha = factor * Math.sqrt(alpha);
-      r = Math.sqrt((((alpha * alpha) - a[i + 1][i] * alpha) / 2));
-      w = jStat.zeros(m, 1);
-      w[i + 1][0] = (a[i + 1][i] - alpha) / (2 * r);
-      for (k = i + 2; k < m; k++)
-        w[k][0] = a[k][i] / (2 * r);
-      p = jStat.subtract(jStat.identity(m, n),
-          jStat.multiply(jStat.multiply(w, jStat.transpose(w)), 2));
-      a = jStat.multiply(p, a);
-      b = jStat.multiply(p, b);
+  // A -> [Q,R]
+  // Q is orthogonal matrix
+  // R is upper triangular
+  QR: (function() {
+    // x -> Q
+    // find a orthogonal matrix Q st.
+    // Qx=y
+    // y is [||x||,0,0,...]
+    function get_Q1(x) {
+      var size = x.length;
+      var norm_x = jStat.norm(x,2);
+      var e1 = jStat.zeros(1, size)[0];
+      e1[0] = 1;
+      var u = jStat.add(jStat.multiply(jStat.multiply(e1, norm_x), -1), x);
+      var norm_u = jStat.norm(u, 2);
+      var v = jStat.divide(u, norm_u);
+      var Q = jStat.subtract(jStat.identity(size),
+                             jStat.multiply(jStat.outer(v, v), 2));
+      return Q;
     }
-    for (i = m - 1; i >= 0; i--) {
-      sum = 0;
-      for (j = i + 1; j <= n - 1; j++)
-      sum = x[j] * a[i][j];
-      x[i] = b[i][0] / a[i][i];
+
+    function qr(A) {
+      var size = A[0].length;
+      var QList = [];
+      jStat.arange(size).forEach(function(i) {
+        var x = jStat.slice(A, { row: { start: i }, col: i });
+        var Q = get_Q1(x);
+        var Qn = jStat.identity(A.length);
+        Qn = jStat.sliceAssign(Qn, { row: { start: i }, col: { start: i }}, Q);
+        A = jStat.multiply(Qn, A);
+        QList.push(Qn);
+      });
+      var Q = QList.reduce(function(x, y){ return jStat.multiply(x,y) });
+      var R = A;
+      return [Q, R];
     }
-    return x;
-  },
+
+    return qr;
+  })(),
+
+  lstsq: (function(A, b) {
+    // solve least squard problem for Ax=b as QR decomposition way if b is
+    // [[b1],[b2],[b3]] form will return [[x1],[x2],[x3]] array form solution
+    // else b is [b1,b2,b3] form will return [x1,x2,x3] array form solution
+    function R_I(A) {
+      A = jStat.copy(A);
+      var size = A.length;
+      var I = jStat.identity(size);
+      jStat.arange(size - 1, -1, -1).forEach(function(i) {
+        jStat.sliceAssign(
+            I, { row: i }, jStat.divide(jStat.slice(I, { row: i }), A[i][i]));
+        jStat.sliceAssign(
+            A, { row: i }, jStat.divide(jStat.slice(A, { row: i }), A[i][i]));
+        jStat.arange(i).forEach(function(j) {
+          var c = jStat.multiply(A[j][i], -1);
+          var Aj = jStat.slice(A, { row: j });
+          var cAi = jStat.multiply(jStat.slice(A, { row: i }), c);
+          jStat.sliceAssign(A, { row: j }, jStat.add(Aj, cAi));
+          var Ij = jStat.slice(I, { row: j });
+          var cIi = jStat.multiply(jStat.slice(I, { row: i }), c);
+          jStat.sliceAssign(I, { row: j }, jStat.add(Ij, cIi));
+        })
+      });
+      return I;
+    }
+
+    function qr_solve(A, b){
+      var array_mode = false;
+      if (b[0].length === undefined) {
+        // [c1,c2,c3] mode
+        b = b.map(function(x){ return [x] });
+        array_mode = true;
+      }
+      var QR = jStat.QR(A);
+      var Q = QR[0];
+      var R = QR[1];
+      var attrs = A[0].length;
+      var Q1 = jStat.slice(Q,{col:{end:attrs}});
+      var R1 = jStat.slice(R,{row:{end:attrs}});
+      var RI = R_I(R1);
+      var x = jStat.multiply(jStat.multiply(RI, jStat.transpose(Q1)), b);
+      if (array_mode)
+        return x.map(function(i){ return i[0] });
+      return x;
+    }
+
+    return qr_solve;
+  })(),
 
   jacobi: function jacobi(a) {
     var condition = 1;
@@ -3065,7 +3449,7 @@ jStat.extend({
       maxim = a[0][1];
       p = 0;
       q = 1;
-      for (i = 0; i < n; i++) {
+      for (var i = 0; i < n; i++) {
         for (j = 0; j < n; j++) {
           if (i != j) {
             if (maxim < Math.abs(a[i][j])) {
@@ -3090,7 +3474,7 @@ jStat.extend({
       b = jStat.multiply(jStat.multiply(jStat.inv(s), a), s);
       a = b;
       condition = 0;
-      for (i = 1; i < n; i++) {
+      for (var i = 1; i < n; i++) {
         for (j = 1; j < n; j++) {
           if (i != j && Math.abs(a[i][j]) > 0.001) {
             condition = 1;
@@ -3098,7 +3482,7 @@ jStat.extend({
         }
       }
     }
-    for (i = 0; i < n; i++) ev.push(a[i][i]);
+    for (var i = 0; i < n; i++) ev.push(a[i][i]);
     //returns both the eigenvalue and eigenmatrix
     return [e, ev];
   },
@@ -3267,11 +3651,11 @@ jStat.extend({
     for (; i < n - 1; i++)
       h[i] = X[i + 1] - X[i];
     alpha[0] = 0;
-    for (i = 1; i < n - 1; i++) {
+    for (var i = 1; i < n - 1; i++) {
       alpha[i] = (3 / h[i]) * (F[i + 1] - F[i]) -
           (3 / h[i-1]) * (F[i] - F[i-1]);
     }
-    for (i = 1; i < n - 1; i++) {
+    for (var i = 1; i < n - 1; i++) {
       A[i] = [];
       B[i] = [];
       A[i][i-1] = h[i-1];
@@ -3312,17 +3696,17 @@ jStat.extend({
     var C = [];
     var V = [];
     var Vt = [];
-    for (i = 0; i < m; i++) {
+    for (var i = 0; i < m; i++) {
       u[i] = jStat.sum(X[i]) / n;
     }
-    for (i = 0; i < n; i++) {
+    for (var i = 0; i < n; i++) {
       B[i] = [];
       for(j = 0; j < m; j++) {
         B[i][j] = X[j][i] - u[j];
       }
     }
     B = jStat.transpose(B);
-    for (i = 0; i < m; i++) {
+    for (var i = 0; i < m; i++) {
       C[i] = [];
       for (j = 0; j < m; j++) {
         C[i][j] = (jStat.dot([B[i]], [B[j]])) / (n - 1);
@@ -3332,7 +3716,7 @@ jStat.extend({
     V = result[0];
     D = result[1];
     Vt = jStat.transpose(V);
-    for (i = 0; i < D.length; i++) {
+    for (var i = 0; i < D.length; i++) {
       for (j = i; j < D.length; j++) {
         if(D[i] < D[j])  {
           temp1 = D[i];
@@ -3345,7 +3729,7 @@ jStat.extend({
       }
     }
     Bt = jStat.transpose(B);
-    for (i = 0; i < m; i++) {
+    for (var i = 0; i < m; i++) {
       Y[i] = [];
       for (j = 0; j < Bt.length; j++) {
         Y[i][j] = jStat.dot([Vt[i]], [Bt[j]]);
@@ -3502,7 +3886,7 @@ jStat.extend({
     expVar, sample, sampMean, sampSampMean, tmpargs, unexpVar, i, j;
     if (args.length === 1) {
       tmpargs = new Array(args[0].length);
-      for (i = 0; i < args[0].length; i++) {
+      for (var i = 0; i < args[0].length; i++) {
         tmpargs[i] = args[0][i];
       }
       args = tmpargs;
@@ -3513,19 +3897,19 @@ jStat.extend({
     }
     // Builds sample array
     sample = new Array();
-    for (i = 0; i < args.length; i++) {
+    for (var i = 0; i < args.length; i++) {
       sample = sample.concat(args[i]);
     }
     sampMean = jStat.mean(sample);
     // Computes the explained variance
     expVar = 0;
-    for (i = 0; i < args.length; i++) {
+    for (var i = 0; i < args.length; i++) {
       expVar = expVar + args[i].length * Math.pow(jStat.mean(args[i]) - sampMean, 2);
     }
     expVar /= (args.length - 1);
     // Computes unexplained variance
     unexpVar = 0;
-    for (i = 0; i < args.length; i++) {
+    for (var i = 0; i < args.length; i++) {
       sampSampMean = jStat.mean(args[i]);
       for (j = 0; j < args[i].length; j++) {
         unexpVar += Math.pow(args[i][j] - sampSampMean, 2);
@@ -3547,7 +3931,7 @@ jStat.extend({
     anovafscore = jStat.anovafscore(args);
     df1 = args.length - 1;
     n = 0;
-    for (i = 0; i < args.length; i++) {
+    for (var i = 0; i < args.length; i++) {
       n = n + args[i].length;
     }
     df2 = n - df1 - 1;
@@ -3567,7 +3951,7 @@ jStat.extend(jStat.fn, {
   anovaftes: function anovaftes() {
     var n = 0;
     var i;
-    for (i = 0; i < this.length; i++) {
+    for (var i = 0; i < this.length; i++) {
       n = n + this[i].length;
     }
     return jStat.ftest(this.anovafscore(), this.length - 1, n - this.length);
@@ -3653,3 +4037,119 @@ jStat.extend(jStat.fn, {
 });
 
 }(this.jStat, Math));
+this.jStat.models=(function(){
+
+  function sub_regress(endog, exog) {
+    return ols(endog, exog);
+  }
+
+  function sub_regress(exog) {
+    var var_count = exog[0].length;
+    var modelList = jStat.arange(var_count).map(function(endog_index) {
+      var exog_index =
+          jStat.arange(var_count).filter(function(i){return i!==endog_index});
+      return ols(jStat.col(exog, endog_index).map(function(x){ return x[0] }),
+                 jStat.col(exog, exog_index))
+    });
+    return modelList;
+  }
+
+  // do OLS model regress
+  // exog have include const columns ,it will not generate it .In fact, exog is
+  // "design matrix" look at
+  //https://en.wikipedia.org/wiki/Design_matrix
+  function ols(endog, exog) {
+    var nobs = endog.length;
+    var df_model = exog[0].length - 1;
+    var df_resid = nobs-df_model - 1;
+    var coef = jStat.lstsq(exog, endog);
+    var predict =
+        jStat.multiply(exog, coef.map(function(x) { return [x] }))
+            .map(function(p) { return p[0] });
+    var resid = jStat.subtract(endog, predict);
+    var ybar = jStat.mean(endog);
+    // constant cause problem
+    // var SST = jStat.sum(endog.map(function(y) {
+    //   return Math.pow(y-ybar,2);
+    // }));
+    var SSE = jStat.sum(predict.map(function(f) {
+      return Math.pow(f - ybar, 2);
+    }));
+    var SSR = jStat.sum(endog.map(function(y, i) {
+      return Math.pow(y - predict[i], 2);
+    }));
+    var SST = SSE + SSR;
+    var R2 = (SSE / SST);
+    return {
+        exog:exog,
+        endog:endog,
+        nobs:nobs,
+        df_model:df_model,
+        df_resid:df_resid,
+        coef:coef,
+        predict:predict,
+        resid:resid,
+        ybar:ybar,
+        SST:SST,
+        SSE:SSE,
+        SSR:SSR,
+        R2:R2
+    };
+  }
+
+  // H0: b_I=0
+  // H1: b_I!=0
+  function t_test(model) {
+    var subModelList = sub_regress(model.exog);
+    //var sigmaHat=jStat.stdev(model.resid);
+    var sigmaHat = Math.sqrt(model.SSR / (model.df_resid));
+    var seBetaHat = subModelList.map(function(mod) {
+      var SST = mod.SST;
+      var R2 = mod.R2;
+      return sigmaHat / Math.sqrt(SST * (1 - R2));
+    });
+    var tStatistic = model.coef.map(function(coef, i) {
+      return (coef - 0) / seBetaHat[i];
+    });
+    var pValue = tStatistic.map(function(t) {
+      var leftppf = jStat.studentt.cdf(t, model.df_resid);
+      return (leftppf > 0.5 ? 1 - leftppf : leftppf) * 2;
+    });
+    var c = jStat.studentt.inv(0.975, model.df_resid);
+    var interval95 = model.coef.map(function(coef, i) {
+      var d = c * seBetaHat[i];
+      return [coef - d, coef + d];
+    })
+    return {
+        se: seBetaHat,
+        t: tStatistic,
+        p: pValue,
+        sigmaHat: sigmaHat,
+        interval95: interval95
+    };
+  }
+
+  function F_test(model) {
+    var F_statistic =
+        (model.R2 / model.df_model) / ((1 - model.R2) / model.df_resid);
+    var fcdf = function(x, n1, n2) {
+      return jStat.beta.cdf(x / (n2 / n1 + x), n1 / 2, n2 / 2)
+    }
+    var pvalue = 1 - fcdf(F_statistic, model.df_model, model.df_resid);
+    return { F_statistic: F_statistic, pvalue: pvalue };
+  }
+
+  function ols_wrap(endog, exog) {
+    var model = ols(endog,exog);
+    var ttest = t_test(model);
+    var ftest = F_test(model);
+    var adjust_R2 =
+        1 - (1 - model.rsquared) * ((model.nobs - 1) / (model.df_resid));
+    model.t = ttest;
+    model.f = ftest;
+    model.adjust_R2 = adjust_R2;
+    return model;
+  }
+
+  return { ols: ols_wrap };
+})();
