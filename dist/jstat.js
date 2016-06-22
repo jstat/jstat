@@ -3109,125 +3109,6 @@ jStat.extend({
     }
     return m;
   },
-  
-   triaUpSolve:function(A,b){
-    /*
-    solve equation
-    Ax=b
-    A is upper triangular matrix
-    
-    A=[[1,2,3],[0,4,5],[0,6,7]]
-    b=[1,2,3]
-    triaUpSolve(A,b) // -> [2.666,0.1666,1.666]
-    
-    if you use matrix style
-    A=[[1,2,3],[0,4,5],[0,6,7]]
-    b=[[1],[2],[3]]
-    will return [[2.666],[0.1666],[1.666]]
-    */
-    var size=A[0].length;
-    var x=jStat.zeros(1,size)[0];
-    var parts;
-    var matrix_mode=false;
-    
-    if (b[0].length!=undefined){
-      b=b.map(function(i){return i[0]});
-      matrix_mode=true;
-    }
-    
-    jStat.arange(size-1,-1,-1).forEach(function(i){
-      parts=jStat.arange(i+1,size).map(function(j){
-        return x[j]*A[i][j];
-      });
-      x[i]=(b[i]-jStat.sum(parts))/A[i][i]
-    });
-    
-    if (matrix_mode){
-      return x.map(function(i){return [i]});
-    }
-    else{
-      return x;
-    }
-  },
-  
-  triaLowSolve:function(A,b){
-    // like to triaUpSolve but A is lower triangular matrix
-    var size=A[0].length;
-    var x=jStat.zeros(1,size)[0];
-    var parts;
-    
-    var matrix_mode=false;
-    if (b[0].length!=undefined){
-      b=b.map(function(i){return i[0]});
-      matrix_mode=true;
-    }
-    
-    jStat.arange(size).forEach(function(i){
-      parts=jStat.arange(i).map(function(j){
-        return A[i][j]*x[j];
-      })
-      x[i]=(b[i]-jStat.sum(parts))/A[i][i];
-    })
-    
-    if (matrix_mode){
-      return x.map(function(i){return [i]});
-    }
-    else{
-      return x;
-    }
-  },
-  
-  lu:function(A){
-    // A -> [L,U]
-    // A=LU
-    // L is lower triangular matrix
-    // U is upper triangular matrix
-    var size=A.length;
-    //var L=jStat.diagonal(jStat.ones(1,size)[0]);
-    var L=jStat.identity(size);
-    var R=jStat.zeros(A.length,A[0].length);
-    var parts;
-    jStat.arange(size).forEach(function(t){
-      R[0][t]=A[0][t];
-    });
-    jStat.arange(1,size).forEach(function(l){
-      jStat.arange(l).forEach(function(i){
-        parts=jStat.arange(i).map(function(jj){
-          return L[l][jj]*R[jj][i];
-        })
-        L[l][i]=(A[l][i]-jStat.sum(parts))/R[i][i];
-      });
-      jStat.arange(l,size).forEach(function(j){
-        parts=jStat.arange(l).map(function(jj){
-          return L[l][jj]*R[jj][j];
-        })
-        R[l][j]=A[i][j]-jStat.sum(parts);
-      })
-    })
-    return [L,R];
-  },
-  
-  cholesky:function(A){
-    // A -> T
-    // A=TT'
-    // T is lower triangular matrix
-    var size=A.length;
-    var T=jStat.zeros(A.length,A[0].length);
-    var parts;
-    jStat.arange(size).forEach(function(i){
-      parts=jStat.arange(i).map(function(t){
-        return Math.pow(T[i][t],2);
-      });
-      T[i][i]=Math.sqrt(A[i][i]-jStat.sum(parts));
-      jStat.arange(i+1,size).forEach(function(j){
-        parts=jStat.arange(i).map(function(t){
-          return T[i][t]*T[j][t];
-        });
-        T[j][i]=(A[i][j]-jStat.sum(parts))/T[i][i];
-      })
-    });
-    return T;
-  },
 
   // solve equation
   // Ax=b
@@ -3251,7 +3132,7 @@ jStat.extend({
     }
 
     jStat.arange(size - 1, -1, -1).forEach(function(i) {
-      parts = jStat.arange(i + 1,size).map(function(j) {
+      parts = jStat.arange(i + 1, size).map(function(j) {
         return x[j] * A[i][j];
       });
       x[i] = (b[i] - jStat.sum(parts)) / A[i][i];
