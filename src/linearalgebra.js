@@ -70,6 +70,17 @@ jStat.extend({
     return jStat.map(arr, function(value) { return value * arg; });
   },
 
+  outer:function(A,B){
+    /* outer([1,2,3],[4,5,6])
+    ===
+    [[1],[2],[3]] times [[4,5,6]]
+    ->
+    [[4,5,6],[8,10,12],[12,15,18]]
+    */
+    return jStat.multiply(A.map(function(t){return [t]}),[B]);
+  },
+
+
   // outer([1,2,3],[4,5,6])
   // ===
   // [[1],[2],[3]] times [[4,5,6]]
@@ -319,7 +330,7 @@ jStat.extend({
     }
 
     jStat.arange(size - 1, -1, -1).forEach(function(i) {
-      parts = jStat.arange(i + 1,size).map(function(j) {
+      parts = jStat.arange(i + 1, size).map(function(j) {
         return x[j] * A[i][j];
       });
       x[i] = (b[i] - jStat.sum(parts)) / A[i][i];
@@ -353,6 +364,7 @@ jStat.extend({
       return x.map(function(i){ return [i] });
     return x;
   },
+
 
   // A -> [L,U]
   // A=LU
@@ -405,6 +417,7 @@ jStat.extend({
     });
     return T;
   },
+
 
   gauss_jacobi: function gauss_jacobi(a, b, x, r) {
     var i = 0;
@@ -553,9 +566,14 @@ jStat.extend({
     // find a orthogonal matrix Q st.
     // Qx=y
     // y is [||x||,0,0,...]
+
+    // quick ref
+    var sum   = jStat.sum;
+    var range = jStat.arange;
+
     function get_Q1(x) {
       var size = x.length;
-      var norm_x = jStat.norm(x,2);
+      var norm_x = jStat.norm(x, 2);
       var e1 = jStat.zeros(1, size)[0];
       e1[0] = 1;
       var u = jStat.add(jStat.multiply(jStat.multiply(e1, norm_x), -1), x);
@@ -582,8 +600,38 @@ jStat.extend({
       return [Q, R];
     }
 
-    return qr;
-  })(),
+    function qr2(x) {
+      // quick impletation
+      // https://www.stat.wisc.edu/~larget/math496/qr.html
+
+      var n = x.length;
+      var p = x[0].length;
+
+      x = jStat.copy(x);
+      r = jStat.zeros(p, p);
+
+      var i,j,k;
+      for(j = 0; j < p; j++){
+        r[j][j] = Math.sqrt(sum(range(n).map(function(i){
+          return x[i][j] * x[i][j];
+        })));
+        for(i = 0; i < n; i++){
+          x[i][j] = x[i][j] / r[j][j];
+        }
+        for(k = j+1; k < p; k++){
+          r[j][k] = sum(range(n).map(function(i){
+            return x[i][j] * x[i][k];
+          }));
+          for(i = 0; i < n; i++){
+            x[i][k] = x[i][k] - x[i][j]*r[j][k];
+          }
+        }
+      }
+      return [x, r];
+    }
+
+    return qr2;
+  }()),
 
   lstsq: (function(A, b) {
     // solve least squard problem for Ax=b as QR decomposition way if b is
@@ -625,14 +673,26 @@ jStat.extend({
       var Q1 = jStat.slice(Q,{col:{end:attrs}});
       var R1 = jStat.slice(R,{row:{end:attrs}});
       var RI = R_I(R1);
-      var x = jStat.multiply(jStat.multiply(RI, jStat.transpose(Q1)), b);
+	  var Q2 = jStat.transpose(Q1);
+
+	  if(Q2[0].length === undefined){
+		  Q2 = [Q2]; // The confusing jStat.multifly implementation threat nature process again.
+	  }
+
+      var x = jStat.multiply(jStat.multiply(RI, Q2), b);
+
+	  if(x.length === undefined){
+		  x = [[x]]; // The confusing jStat.multifly implementation threat nature process again.
+	  }
+
+
       if (array_mode)
         return x.map(function(i){ return i[0] });
       return x;
     }
 
     return qr_solve;
-  })(),
+  }()),
 
   jacobi: function jacobi(a) {
     var condition = 1;
