@@ -1057,17 +1057,8 @@ jStat.corrcoeff = function corrcoeff(arr1, arr2) {
 jStat.spearmancoeff =  function (arr1, arr2) {
   arr1 = jStat.rank(arr1);
   arr2 = jStat.rank(arr2);
-  var arr1dev = jStat.deviation(arr1);
-  var arr2dev = jStat.deviation(arr2);
-  return jStat.sum(arr1dev.map(function (x, i) {
-    return x * arr2dev[i];
-  })) /
-  Math.sqrt(jStat.sum(arr1dev.map(function (x) {
-    return Math.pow(x, 2);
-    })) * jStat.sum(arr2dev.map(function (x) {
-      return Math.pow(x, 2);
-  }))
-  );
+  //return pearson's correlation of the ranks:
+  return jStat.corrcoeff(arr1, arr2);
 }
 
 
