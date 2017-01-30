@@ -4,18 +4,20 @@ var suite = vows.describe('jStat.spearmancoeff');
 
 require('../env.js');
 
+var tol = 0.0000001;
+
 suite.addBatch({
   'spearman': {
     'topic': function() {
       return jStat;
     },
     'return basic spearmancoeff': function(jStat) {
-      assert.equal(jStat.spearmancoeff([1, 2, 3, 4], [5, 6, 9, 7]),
-                   0.8);
+      assert.epsilon(tol, jStat.spearmancoeff([1, 2, 3, 4], [5, 6, 9, 7]), 0.8);
     },
     'return spearmancoeff with ties': function(jStat) {
-      assert.equal(jStat.spearmancoeff([1, 2, 3, 4], [5, 5, 9, 7]),
-                   0.7378647873726218);
+      assert.epsilon(tol,
+                     jStat.spearmancoeff([1, 2, 3, 4], [5, 5, 9, 7]),
+                     0.7378647873726218);
     },
     'return spearmancoeff all ties': function(jStat) {
       assert.equal(isNaN(jStat.spearmancoeff([1, 2, 3, 4], [5, 5, 5, 5])),
