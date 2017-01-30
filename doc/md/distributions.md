@@ -404,6 +404,17 @@ Returns a random number whose distribution is the Student's T distribution with 
 
 Returns the value of the variance for the Student's T distribution with degrees of freedom dof.
 
+### jStat.tukey( nmeans, dof )
+
+#### jStat.tukey.cdf( q, nmeans, dof )
+
+Returns the value of q in the cdf of the Studentized range distribution with number of groups nmeans and degrees of freedom dof.
+
+#### jStat.tukey.inv( p, nmeans, dof )
+
+Returns the value of p in the inverse of the cdf for the Studentized range distribution with number of groups nmeans and degrees of freedom dof.
+Only accurate to 4 decimal places.
+
 ### jStat.weibull( scale, shape )
 
 #### jStat.weibull.pdf( x, scale, shape )
