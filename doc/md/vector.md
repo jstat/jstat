@@ -562,6 +562,15 @@ And the two can be combined.
         // result === 0.140625
     });
 
+### pooledvariance()
+
+**pooledvariance( arrays )**
+
+Return the pooled (sample) variance of an array of vectors.
+Assumes the population variance of the vectors are the same.
+
+    jStat.pooledvariance([[1,2],[3,4]]) === 0.5
+
 ### deviation()
 
 **deviation( array )**
@@ -636,6 +645,15 @@ And the two can be combined.
     jStat([[1,2],[3,5]]).stdev(true,function( result ) {
         // result === 0.25
     });
+
+### pooledstdev()
+
+**pooledstdev( arrays )**
+
+Return the pooled (sample) standard deviation of an array of vectors.
+Assumes the population standard deviation of the vectors are the same.
+
+    jStat.pooledstdev([[1,2],[3,4]]) === 0.707...
 
 ### meandev()
 
