@@ -39,7 +39,7 @@ Returns the f-score of the ANOVA test on the arrays of the jStat object.
 
 Returns the p-value of an ANOVA test on the arrays of the jStat object.
 
-## Static Methods 
+## Static Methods
 
 ## Z Statistics
 
@@ -93,15 +93,15 @@ defaults to a two sided t-test.
 
 ### jStat.ttest( tscore, n, sides)
 
-Returns the p-value of the t-score given the sample size n. Sides 
-is an integer value 1 or 2 denoting a one or two sided t-test. 
-If sides is not specified the test defaults to a two sided t-test. 
+Returns the p-value of the t-score given the sample size n. Sides
+is an integer value 1 or 2 denoting a one or two sided t-test.
+If sides is not specified the test defaults to a two sided t-test.
 
 ### jStat.ttest( value, array, sides)
 
 Returns the p-value of the value given the data in the array.
-Sides is an integer value 1 or 2 denoting a one or two sided 
-t-test. If sides is not specified the test defaults to a two 
+Sides is an integer value 1 or 2 denoting a one or two sided
+t-test. If sides is not specified the test defaults to a two
 sided t-test.
 
 ## F Statistics
@@ -124,6 +124,52 @@ test on the arrays.
 Returns the p-value for the fscore with a numerator degress
 of freedom df1 and the denominator degrees of freedom df2
 
+## Tukey's Range Test
+
+### jStat.qscore( mean1, mean2, n1, n2, sd )
+
+Returns the q-score of a single pairwise comparison between arrays
+of mean mean1 and mean2, size n1 and n2, and standard deviation (of
+all vectors) sd.
+
+### jStat.qscore( array1, array2, sd )
+
+Same as above, but the means and sizes are calculated automatically
+from the arrays.
+
+### jStat.qtest( qscore, n, k )
+
+Returns the p-value of the q-score given the total sample size n
+and k number of populations.
+
+### jStat.qtest( mean1, mean2, n1, n2, sd, n, k )
+
+Returns the p-value of a single pairwise comparison between arrays
+of mean mean1 and mean2, size n1 and n2, and standard deviation (of
+all vectors) sd, where the total sample size is n and the number of
+populations is k.
+
+### jStat.qtest( array1, array2, sd, n, k )
+
+Same as above, but the means and sizes are calculated automatically
+from the arrays.
+
+### jStat.tukeyhsd( arrays )
+
+Performs the full Tukey's range test returning p-values for every
+pairwise combination of the arrays in the format of
+`[[[index1, index2], pvalue], ...]`
+
+For example:
+
+    > jStat.tukeyhsd([[1, 2], [3, 4, 5], [6], [7, 8]])
+    [ [ [ 0, 1 ], 0.10745283896120883 ],
+      [ [ 0, 2 ], 0.04374051946838586 ],
+      [ [ 0, 3 ], 0.007850804224287633 ],
+      [ [ 1, 2 ], 0.32191548545694226 ],
+      [ [ 1, 3 ], 0.03802747415485819 ],
+      [ [ 2, 3 ], 0.5528665999257486 ] ]
+
 ## Confidence Intervals
 
 ### jStat.normalci( value, alpha, sd, n)
@@ -131,7 +177,7 @@ of freedom df1 and the denominator degrees of freedom df2
 Returns a 1-alpha confidence interval for the value given
 a normal distribution with a standard deviation sd and a
 sample size n
-  
+
 ### jStat.normalci( value, alpha, array)
 
 Returns a 1-alpha confidence interval for the value given

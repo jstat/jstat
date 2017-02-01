@@ -214,6 +214,13 @@ jStat.variance = function variance(arr, flag) {
   return jStat.sumsqerr(arr) / (arr.length - (flag ? 1 : 0));
 };
 
+// pooled variance of an array of arrays
+jStat.pooledvariance = function pooledvariance(arr) {
+  var sumsqerr = arr.reduce(function (a, samples) {return a + jStat.sumsqerr(samples);}, 0);
+  var count = arr.reduce(function (a, samples) {return a + samples.length;}, 0);
+  return sumsqerr / (count - arr.length);
+};
+
 // deviation of an array
 jStat.deviation = function (arr) {
   var mean = jStat.mean(arr);
@@ -231,6 +238,10 @@ jStat.stdev = function stdev(arr, flag) {
   return Math.sqrt(jStat.variance(arr, flag));
 };
 
+// pooled standard deviation of an array of arrays
+jStat.pooledstdev = function pooledstdev(arr) {
+  return Math.sqrt(jStat.pooledvariance(arr));
+};
 
 // mean deviation (mean absolute deviation) of an array
 jStat.meandev = function meandev(arr) {
