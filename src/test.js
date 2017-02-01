@@ -196,6 +196,72 @@ jStat.extend(jStat.fn, {
   }
 });
 
+// Tukey's range test
+jStat.extend({
+  // 2 parameter lists
+  // (mean1, mean2, n1, n2, sd)
+  // (array1, array2, sd)
+  qscore: function qscore() {
+    var args = slice.call(arguments);
+    var mean1, mean2, n1, n2, sd;
+    if (isNumber(args[0])) {
+        mean1 = args[0];
+        mean2 = args[1];
+        n1 = args[2];
+        n2 = args[3];
+        sd = args[4];
+    } else {
+        mean1 = jStat.mean(args[0]);
+        mean2 = jStat.mean(args[1]);
+        n1 = args[0].length;
+        n2 = args[1].length;
+        sd = args[2];
+    }
+    return Math.abs(mean1 - mean2) / (sd * Math.sqrt((1 / n1 + 1 / n2) / 2));
+  },
+
+  // 3 different parameter lists:
+  // (qscore, n, k)
+  // (mean1, mean2, n1, n2, sd, n, k)
+  // (array1, array2, sd, n, k)
+  qtest: function qtest() {
+    var args = slice.call(arguments);
+
+    var qscore;
+    if (args.length === 3) {
+      qscore = args[0];
+      args = args.slice(1);
+    } else if (args.length === 7) {
+      qscore = jStat.qscore(args[0], args[1], args[2], args[3], args[4]);
+      args = args.slice(5);
+    } else {
+      qscore = jStat.qscore(args[0], args[1], args[2]);
+      args = args.slice(3);
+    }
+
+    var n = args[0];
+    var k = args[1];
+
+    return 1 - jStat.tukey.cdf(qscore, k, n - k);
+  },
+
+  tukeyhsd: function tukeyhsd(arrays) {
+    var sd = jStat.pooledstdev(arrays);
+    var means = arrays.map(function (arr) {return jStat.mean(arr);});
+    var n = arrays.reduce(function (n, arr) {return n + arr.length;}, 0);
+
+    var results = [];
+    for (var i = 0; i < arrays.length; ++i) {
+        for (var j = i + 1; j < arrays.length; ++j) {
+            var p = jStat.qtest(means[i], means[j], arrays[i].length, arrays[j].length, sd, n, arrays.length);
+            results.push([[i, j], p]);
+        }
+    }
+
+    return results;
+  }
+});
+
 // Error Bounds
 jStat.extend({
   // 2 different parameter setups
