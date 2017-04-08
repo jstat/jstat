@@ -553,3 +553,36 @@ Returns a random number whose distribution is the Triangular distribution with t
 
 Returns the value of the variance of the Triangular distribution with the parameters a, b, and c.
 
+### jStat.arcsine( a, b )
+
+#### jStat.arcsine.pdf( x, a, b )
+
+Returns the value of x in the pdf of the arcsine distribution from a to b.
+
+#### jStat.arcsine.cdf( x, a, b )
+
+Returns the value of x in the cdf of the arcsine distribution from a to b.
+
+#### jStat.arcsine.inv(p, a, b)
+
+Returns the inverse of the arcsine.cdf function; i.e. the value of x for which arcsine.cdf(x, a, b) == p.
+
+#### jStat.arcsine.mean( a, b )
+
+Returns the value of the mean of the arcsine distribution from a to b.
+
+#### jStat.arcsine.median( a, b )
+
+Returns the value of the median of the arcsine distribution from a to b.
+
+#### jStat.arcsine.mode( a, b )
+
+Returns the value of the mode of the arcsine distribution from a to b.
+
+#### jStat.arcsine.sample( a, b )
+
+Returns a random number whose distribution is the arcsine distribution from a to b.
+
+#### jStat.arcsine.variance( a, b )
+
+Returns the variance of the Uniform distribution from a to b.
