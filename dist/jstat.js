@@ -387,7 +387,7 @@ jStat.seq = function seq(min, max, length, func) {
   // Current is assigned using a technique to compensate for IEEE error.
   // TODO: Needs better implementation.
   for (cnt = 0;
-       current <= max;
+       current <= max && cnt < length;
        cnt++, current = (min * hival + step * hival * cnt) / hival) {
     arr.push((func ? func(current, cnt) : current));
   }
