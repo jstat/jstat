@@ -60,7 +60,7 @@
 })((
   'beta centralF cauchy chisquare exponential gamma invgamma kumaraswamy ' +
   'laplace lognormal noncentralt normal pareto studentt weibull uniform ' +
-  'binomial negbin hypgeom poisson triangular'
+  'binomial negbin hypgeom poisson triangular arcsine'
 ).split(' '));
 
 
@@ -1066,6 +1066,56 @@ jStat.extend(jStat.triangular, {
     return (a * a + b * b + c * c - a * b - a * c - b * c) / 18;
   }
 });
+
+
+// extend arcsine function with static methods
+jStat.extend(jStat.arcsine, {
+  pdf: function pdf(x, a, b) {
+    if (b <= a) return NaN;
+    
+    return (x <= a || x >= b) ? 0 :
+      (2 / Math.PI) * 
+        Math.pow(Math.pow(b - a, 2) - 
+                  Math.pow(2 * x - a - b, 2), -0.5);
+  },
+
+  cdf: function cdf(x, a, b) {
+    if (x < a)
+      return 0;
+    else if (x < b)
+      return (2 / Math.PI) * Math.asin(Math.sqrt((x - a)/(b - a)));
+    return 1;
+  },
+
+  inv: function(p, a, b) {
+    return a + (0.5 - 0.5 * Math.cos(Math.PI * p)) * (b - a);
+  },
+
+  mean: function mean(a, b) {
+    if (b <= a) return NaN;
+    return (a + b) / 2;
+  },
+
+  median: function median(a, b) {
+    if (b <= a) return NaN;
+    return (a + b) / 2;
+  },
+
+  mode: function mode(a, b) {
+    throw new Error('mode is not yet implemented');
+  },
+
+  sample: function sample(a, b) {
+    return ((a + b) / 2) + ((b - a) / 2) *
+      Math.sin(2 * Math.PI * jStat.uniform.sample(0, 1));
+  },
+
+  variance: function variance(a, b) {
+    if (b <= a) return NaN;
+    return Math.pow(b - a, 2) / 8;
+  }
+});
+
 
 function laplaceSign(x) { return x / Math.abs(x); }
 
