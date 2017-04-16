@@ -1106,10 +1106,7 @@ jStat.extend(jStat.arcsine, {
   },
 
   sample: function sample(a, b) {
-    return (
-        ((a + b) / 2) +
-        ((b - a) / 2)
-      ) *
+    return ((a + b) / 2) + ((b - a) / 2) *
       Math.sin(2 * Math.PI * jStat.uniform.sample(0, 1));
   },
 
