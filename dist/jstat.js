@@ -3475,7 +3475,19 @@ jStat.extend({
       var Q1 = jStat.slice(Q,{col:{end:attrs}});
       var R1 = jStat.slice(R,{row:{end:attrs}});
       var RI = R_I(R1);
-      var x = jStat.multiply(jStat.multiply(RI, jStat.transpose(Q1)), b);
+	  var Q2 = jStat.transpose(Q1);
+	  
+	  if(Q2[0].length === undefined){
+		  Q2 = [Q2]; // The confusing jStat.multifly implementation threat nature process again.
+	  }
+	  
+      var x = jStat.multiply(jStat.multiply(RI, Q2), b);
+	  
+	  if(x.length === undefined){
+		  x = [[x]]; // The confusing jStat.multifly implementation threat nature process again.
+	  }
+	  
+	  
       if (array_mode)
         return x.map(function(i){ return i[0] });
       return x;
