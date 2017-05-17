@@ -3486,6 +3486,7 @@ jStat.extend({
     var m = jStat.aug(a, b),
     h = m.length,
     w = m[0].length;
+    var c = 0;
     // find max pivot
     for (var y = 0; y < h; y++) {
       var maxrow = y;
