@@ -921,12 +921,12 @@ jStat.pooledstdev = function pooledstdev(arr) {
 
 // mean deviation (mean absolute deviation) of an array
 jStat.meandev = function meandev(arr) {
-  var devSum = 0;
-  var mean = jStat.mean(arr);
-  var i;
-  for (var i = arr.length - 1; i >= 0; i--)
-    devSum += Math.abs(arr[i] - mean);
-  return devSum / arr.length;
+  var med = jStat.median(arr);
+  var a = [];
+  for (var i = arr.length - 1; i >= 0; i--) {
+    a.push(Math.abs(arr[i] - med));
+  }
+  return jStat.median(a);
 };
 
 
