@@ -134,9 +134,10 @@ jStat.extend(jStat.centralF, {
       if (x === 0 && df1 === 2) {
         return 1;
       }
-      return Math.sqrt((Math.pow(df1 * x, df1) * Math.pow(df2, df2)) /
-                       (Math.pow(df1 * x + df2, df1 + df2))) /
-                       (x * jStat.betafn(df1/2, df2/2));
+      return (1 / jStat.betafn(df1 / 2, df2 / 2)) *
+              Math.pow(df1 / df2, df1 / 2) *
+              Math.pow(x, (df1/2) - 1) *
+              Math.pow((1 + (df1 / df2) * x), -(df1 + df2) / 2);
     }
 
     p = (df1 * x) / (df2 + x * df1);
