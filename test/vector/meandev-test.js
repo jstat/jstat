@@ -10,7 +10,7 @@ suite.addBatch({
       return jStat;
     },
     'return basic meandev': function(jStat) {
-      assert.equal(jStat.meandev([1, 2, 3, 4]), 1);
+      assert.equal(jStat.meandev([4, 5, 7, 22, 90, 1, 4, 5]), 19.375);
     },
     'meandev from instance': function(jStat) {
       assert.equal(jStat([1, 2, 3, 4]).meandev(), 1);

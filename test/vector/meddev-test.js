@@ -10,7 +10,7 @@ suite.addBatch({
       return jStat;
     },
     'return basic meddev': function(jStat) {
-      assert.equal(jStat.meddev([1, 2, 3, 4]), 1);
+      assert.equal(jStat.meddev([4, 5, 7, 22, 90, 1, 4, 5]), 1.5);
     },
     'meddev from instance': function(jStat) {
       assert.equal(jStat([1, 2, 3, 4]).meddev(), 1);
