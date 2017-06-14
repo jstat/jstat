@@ -245,23 +245,23 @@ jStat.pooledstdev = function pooledstdev(arr) {
 
 // mean deviation (mean absolute deviation) of an array
 jStat.meandev = function meandev(arr) {
-  var devSum = 0;
   var mean = jStat.mean(arr);
-  var i;
-  for (var i = arr.length - 1; i >= 0; i--)
-    devSum += Math.abs(arr[i] - mean);
-  return devSum / arr.length;
+  var a = [];
+  for (var i = arr.length - 1; i >= 0; i--) {
+    a.push(Math.abs(arr[i] - mean));
+  }
+  return jStat.mean(a);
 };
 
 
 // median deviation (median absolute deviation) of an array
 jStat.meddev = function meddev(arr) {
-  var devSum = 0;
   var median = jStat.median(arr);
-  var i;
-  for (var i = arr.length - 1; i >= 0; i--)
-    devSum += Math.abs(arr[i] - median);
-  return devSum / arr.length;
+  var a = [];
+  for (var i = arr.length - 1; i >= 0; i--) {
+    a.push(Math.abs(arr[i] - median));
+  }
+  return jStat.median(a);
 };
 
 
