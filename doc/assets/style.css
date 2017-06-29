@@ -1,7 +1,7 @@
 /*--------------------- Layout and Typography ----------------------------*/
 body {
   font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif;
-  font-size: 0.9375em;
+  font-size: 1.2em;
   line-height: 1.4667em;
   color: #222;
   margin: 0; padding: 0;
@@ -51,6 +51,7 @@ p {
   margin: 0 0 1.4667em 0;
   position: relative;
   text-rendering: optimizeLegibility;
+  font-size: 1em;
 }
 
 ol, ul, dl {
@@ -95,18 +96,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 2.55em;
+  font-size: 2em;
   line-height: 1.375em;
 }
 
 h2 {
-  font-size: 1.9em;
+  font-size: 1.4em;
   line-height: 1.227em;
   margin: 0 0 0.5em;
 }
 
 h3 {
-  font-size: 1.5em;
+  font-size: 1.3em;
   line-height: 1.0909em;
   margin: 1.5em 0 0.5em;
 }
@@ -116,7 +117,7 @@ h3 + h3 {
 }
 
 h4 {
-  font-size: 1.3em;
+  font-size: 1.2em;
   line-height: 1.1282em;
   margin: 2.2em 0 0.5em;
 }
@@ -127,7 +128,7 @@ h4 + h4 {
 
 h5 {
   font-size: 1.125em;
-  line-height: 1.4em;
+  line-height: 1.6em;
 }
 
 h6 {
@@ -136,7 +137,7 @@ h6 {
 }
 
   pre, tt, code {
-    font-size: 0.95em;
+    font-size: 0.9em;
     line-height: 1.5438em;
     font-family: Monaco, Consolas, "Lucida Console", monospace;
     margin: 0; padding: 0;
@@ -149,7 +150,7 @@ h6 {
   }
 
   pre {
-    padding: 2em 1.6em 2em 1.2em;
+    padding: 1em;
     vertical-align: top;
     background: #f8f8f8;
     border: 1px solid #e8e8e8;
@@ -194,8 +195,8 @@ hr {
 }
 
   #toc h2 {
-    font-size: 1em;
-    line-height: 1.4em;
+    font-size: 1.5em;
+    line-height: 1.6em;
   }
   
   #toc h2 a {
@@ -204,6 +205,15 @@ hr {
   
   #toc hr {
     margin: 1em 0 2em;
+  }
+
+  #toc > ul {
+    font-size: 0.9em;
+    line-height: 1.6em;
+  }
+
+  #toc > ul > li > ul > li {
+    padding-top: 0.5em;
   }
 
 p tt, p code {
