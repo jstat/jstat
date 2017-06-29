@@ -1,7 +1,6 @@
 /*--------------------- Layout and Typography ----------------------------*/
 body {
-//  font-family: "Helvetica Neue", Helvetica, FreeSans, Arial, sans-serif;
-  font-family: Georgia, FreeSerif, Times, serif;
+  font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif;
   font-size: 0.9375em;
   line-height: 1.4667em;
   color: #222;
@@ -89,7 +88,7 @@ dd + dt.pre {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Georgia, FreeSerif, Times, serif;
+  font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif;
   color: #000;
   text-rendering: optimizeLegibility;
   position: relative;
