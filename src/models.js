@@ -1,4 +1,4 @@
-this.jStat.models=(function(){
+jStat.models = (function(){
 
   function sub_regress(endog, exog) {
     return ols(endog, exog);
