@@ -547,4 +547,4 @@ var jProto = jStat.prototype;
   })(funcs[i]);
 })('quantiles percentileOfScore'.split(' '));
 
-}(this.jStat, Math));
+}(jStat, Math));

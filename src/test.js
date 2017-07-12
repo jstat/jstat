@@ -340,4 +340,4 @@ jStat.extend(jStat.fn, {
   }
 });
 
-}(this.jStat, Math));
+}(jStat, Math));

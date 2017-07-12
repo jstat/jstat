@@ -465,4 +465,4 @@ jStat.randg = function randg(shape, n, m) {
   })(funcs[i]);
 })('randn'.split(' '));
 
-}(this.jStat, Math));
+}(jStat, Math));

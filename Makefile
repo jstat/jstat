@@ -17,13 +17,15 @@ clean:
 core: jstat.js jstat.min.js
 
 jstat.js: \
+	src/_header.js \
 	src/core.js \
 	src/vector.js \
 	src/special.js \
 	src/distribution.js \
 	src/linearalgebra.js \
 	src/test.js \
-	src/models.js
+	src/models.js \
+	src/_footer.js
 	@echo 'Building jStat'
 	@mkdir -p $(DIST_DIR)
 	@cat $^ > $(DIST_DIR)/$@

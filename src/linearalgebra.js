@@ -1018,4 +1018,4 @@ jStat.extend({
   }(funcs[i]));
 }('add divide multiply subtract dot pow exp log abs norm angle'.split(' ')));
 
-}(this.jStat, Math));
+}(jStat, Math));
