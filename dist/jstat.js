@@ -1,4 +1,13 @@
-this.j$ = this.jStat = (function(Math, undefined) {
+(function (window, factory) {
+    if (typeof exports === 'object') {
+        module.exports = factory();
+    } else if (typeof define === 'function' && define.amd) {
+        define(factory);
+    } else {
+        window.jStat = factory();
+    }
+})(this, function () {
+var jStat = (function(Math, undefined) {
 
 // For quick reference.
 var concat = Array.prototype.concat;
@@ -1223,7 +1232,7 @@ var jProto = jStat.prototype;
   })(funcs[i]);
 })('quantiles percentileOfScore'.split(' '));
 
-}(this.jStat, Math));
+}(jStat, Math));
 // Special functions //
 (function(jStat, Math) {
 
@@ -1691,7 +1700,7 @@ jStat.randg = function randg(shape, n, m) {
   })(funcs[i]);
 })('randn'.split(' '));
 
-}(this.jStat, Math));
+}(jStat, Math));
 (function(jStat, Math) {
 
 // generate all distribution instance methods
@@ -3209,7 +3218,7 @@ jStat.extend(jStat.tukey, {
   }
 });
 
-}(this.jStat, Math));
+}(jStat, Math));
 /* Provides functions for the solution of linear system of equations, integration, extrapolation,
  * interpolation, eigenvalue problems, differential equations and PCA analysis. */
 
@@ -4230,7 +4239,7 @@ jStat.extend({
   }(funcs[i]));
 }('add divide multiply subtract dot pow exp log abs norm angle'.split(' ')));
 
-}(this.jStat, Math));
+}(jStat, Math));
 (function(jStat, Math) {
 
 var slice = [].slice;
@@ -4573,8 +4582,8 @@ jStat.extend(jStat.fn, {
   }
 });
 
-}(this.jStat, Math));
-this.jStat.models=(function(){
+}(jStat, Math));
+jStat.models = (function(){
 
   function sub_regress(endog, exog) {
     return ols(endog, exog);
@@ -4690,3 +4699,8 @@ this.jStat.models=(function(){
 
   return { ols: ols_wrap };
 })();
+  // Make it compatible with previous version.
+  jStat.jStat = jStat;
+
+  return jStat;
+});
