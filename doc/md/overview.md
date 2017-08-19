@@ -2,7 +2,7 @@
 
 ### Description
 
-jStat is a statistical library written in JavaScript that allows you to perform advanced statistical operations without the need of a dedicated statistical language (e.g. MATLAB or R).
+jStat is a statistical library written in JavaScript that allows you to perform advanced statistical operations without the need of a dedicated statistical language (e.g. MATLAB or R). It is available for download on [Github](http://github.com/jstat/jstat).
 
 ### Architecture
 
