@@ -142,7 +142,7 @@ Contribute
 ----------
 
 jStat is now going to follow most of the v8
-[JavaScript](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
+[JavaScript](https://google.github.io/styleguide/jsguide.html)
 guidelines. There will be plenty of source that uses the old style, but we're
 going to work away from that.
 
