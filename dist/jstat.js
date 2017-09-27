@@ -3291,17 +3291,6 @@ jStat.extend({
     return jStat.map(arr, function(value) { return value * arg; });
   },
 
-  outer:function(A,B){
-    /* outer([1,2,3],[4,5,6])
-    ===
-    [[1],[2],[3]] times [[4,5,6]]
-    ->
-    [[4,5,6],[8,10,12],[12,15,18]]
-    */
-    return jStat.multiply(A.map(function(t){return [t]}),[B]);
-  },
-
-
   // outer([1,2,3],[4,5,6])
   // ===
   // [[1],[2],[3]] times [[4,5,6]]
