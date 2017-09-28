@@ -42,3 +42,7 @@ exactly.
 
 		// f test P-value
 		model.f.pvalue // -> 0.3306363671859872
+
+The adjusted R^2 provided by jStat is the formula variously called the 'Wherry Formula',
+'Ezekiel Formula', 'Wherry/McNemar Formula', or the 'Cohen/Cohen Formula', and is the same
+as the adjusted R^2 value provided by R's `summary.lm` method on a linear model.
