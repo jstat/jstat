@@ -24,8 +24,18 @@ suite.addBatch({
         var b = [1, -2, 3, 4, -5, 6, 7, -8, 9];
         var model = jStat.models.ols(b, A);
         var tol = 0.01;
-        //R2
+        // R2
         assert.epsilon(tol, model.R2, 0.309);
+        // Adjusted R^2
+        // This Adjusted R^2 is variously called the:
+        // - Wherry Formula
+        // - Ezekiel Formula
+        // - Wherry/McNemar Formula
+        // - Cohen/Cohen Formula
+        //
+        // It is the same as the adjusted R^2 value given by R's linear model
+        // summary method
+        assert.epsilon(tol, model.adjust_R2, 0.078);
         // t test
         assert.epsilon(tol, model.t.p[0], 0.8377444317889267);
         assert.epsilon(tol, model.t.p[1], 0.1529673615844231);
