@@ -3291,17 +3291,6 @@ jStat.extend({
     return jStat.map(arr, function(value) { return value * arg; });
   },
 
-  outer:function(A,B){
-    /* outer([1,2,3],[4,5,6])
-    ===
-    [[1],[2],[3]] times [[4,5,6]]
-    ->
-    [[4,5,6],[8,10,12],[12,15,18]]
-    */
-    return jStat.multiply(A.map(function(t){return [t]}),[B]);
-  },
-
-
   // outer([1,2,3],[4,5,6])
   // ===
   // [[1],[2],[3]] times [[4,5,6]]
@@ -4689,8 +4678,10 @@ jStat.models = (function(){
     var model = ols(endog,exog);
     var ttest = t_test(model);
     var ftest = F_test(model);
+    // Provide the Wherry / Ezekiel / McNemar / Cohen Adjusted R^2
+    // Which matches the 'adjusted R^2' provided by R's lm package
     var adjust_R2 =
-        1 - (1 - model.rsquared) * ((model.nobs - 1) / (model.df_resid));
+        1 - (1 - model.R2) * ((model.nobs - 1) / (model.df_resid));
     model.t = ttest;
     model.f = ftest;
     model.adjust_R2 = adjust_R2;
