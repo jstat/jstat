@@ -26,7 +26,7 @@ data[i]['cum'] = jstat.normal(jstat.mean(), jstat.stdev()).cdf(data[i].x);
 
 ```
 
-CDN
+CDN [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/jstat/badge?style=rounded)](https://www.jsdelivr.com/package/npm/jstat)
 ---
 
 The library is hosted on [jsDelivr](http://www.jsdelivr.com/) using the follwing
