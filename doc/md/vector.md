@@ -803,11 +803,13 @@ documentation.
 
 ### percentile()
 
-**percentile( dataArray, k )**
+**percentile( dataArray, k, [exclusive] )**
 
 Returns the k-th percentile of values in the `dataArray` range, where k is in the range 0..1, exclusive.
+Passing true for the exclusive parameter excludes both endpoints of the range.
 
      jStat.percentile([1, 2, 3, 4], 0.3) === 1.9;
+     jStat.percentile([1, 2, 3, 4], 0.3, true) === 1.5;
 
 ### percentileOfScore()
 
