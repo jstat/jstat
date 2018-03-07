@@ -401,6 +401,7 @@ jStat.seq = function seq(min, max, length, func) {
 // arange(5,1,-1) -> [5,4,3,2]
 jStat.arange = function arange(start, end, step) {
   var rl = [];
+  var i;
   step = step || 1;
   if (end === undefined) {
     end = start;
