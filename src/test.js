@@ -129,10 +129,6 @@ jStat.extend({
       }
       args = tmpargs;
     }
-    // 2 sample case
-    if (args.length === 2) {
-      return jStat.variance(args[0]) / jStat.variance(args[1]);
-    }
     // Builds sample array
     sample = new Array();
     for (var i = 0; i < args.length; i++) {
