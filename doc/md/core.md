@@ -9,7 +9,7 @@ In all cases, jStat will always return an instance of itself.
 
 **jStat( array[, fn] )**
 
-Create a new jStat object from either an existing array or jStat object.
+Creates a new jStat object from either an existing array or jStat object.
 For example, create a new jStat matrix by doing the following:
 
     var matrix = jStat([[ 1, 2, 3 ],[ 4, 5, 6 ],[ 7, 8, 9 ]]);
@@ -81,7 +81,7 @@ Also note `this` within the callback refers to the calling jStat object.
 
 ### rowa()
 
-Return a array from matrix row
+Returns a array from matrix row.
 
     rowa([[1,2],[3,4]]) === [1,2];
 
@@ -108,13 +108,13 @@ Also note `this` within the callback refers to the calling jStat object.
 
 ### cola()
 
-Return a array from matrix column (`col()` will return a matrix form instead of array form)
+Returns an array from matrix column (`col()` will return a matrix form instead of an array form).
 
     cola([[1,2],[3,4]]) === [1,3];
 
 ### slice()
 
-Slice matrix as numpy style
+Slices matrix as numpy style.
 
     A=[[1,2,3],[4,5,6],[7,8,9]];
     slice(A,{row:{end:2},col:{start:1}}) === [[2,3],[5,6]];
@@ -122,7 +122,7 @@ Slice matrix as numpy style
 
 ### sliceAssign()
 
-Do slice assign as numpy style
+Do slice assign as numpy style.
 
     A = [[1,2,3],[4,5,6],[7,8,9]];
     sliceAssign(A,{row : {start : 1}, col : {start : 1}},[[0,0],[0,0]]);
@@ -131,7 +131,7 @@ Do slice assign as numpy style
 
 ### dimensions()
 
-Returns and object with the dimensions of a matrix.
+Returns an object with the dimensions of a matrix.
 
 **dimensions( array )**
 
@@ -238,13 +238,13 @@ Also note `this` within the callback refers to the calling jStat object.
 
 ### diagonal()
 
-Create a new diagonal matrix by given 1d diag array
+Creates a new diagonal matrix by given 1d diag array.
 
     jStat.diagonal([1,2,3]) === [[1,0,0],[0,2,0],[0,0,3]];
 
 ### transpose()
 
-Transpose a matrix.
+Transposes a matrix.
 
 **transpose( array )**
 
@@ -265,7 +265,7 @@ Also note `this` within the callback refers to the calling jStat object.
 
 ### map( func )
 
-Map a function to all values and return a new object.
+Maps a function to all values and return a new object.
 
 **map( array, fn )**
 
@@ -283,7 +283,7 @@ Map a function to all values and return a new object.
 
 ### cumreduce( func )
 
-Cumulatively reduce values using a function and return a new object.
+Cumulatively reduces values using a function and return a new object.
 
 **cumreduce( array, fn )**
 
@@ -301,7 +301,7 @@ Cumulatively reduce values using a function and return a new object.
 
 ### alter( func )
 
-Destructively map to an array.
+Destructively maps to an array.
 
 **alter( array, fn )**
 
@@ -320,7 +320,7 @@ Destructively map to an array.
 
 ### create()
 
-Create a row by col matrix using the supplied function
+Creates a row by col matrix using the supplied function.
 If `col` is omitted then it will default to value `row`.
 
 **create( row[, col], fn )**
@@ -332,7 +332,7 @@ If `col` is omitted then it will default to value `row`.
 
 **fn.create( row[, col], fn )**
 
-Use this technique for creating matrices in jStat instances.
+Use this technique to create matrices in jStat instances.
 
     jStat().create( 2, function( row, col ) {
         return row + col;
@@ -341,7 +341,7 @@ Use this technique for creating matrices in jStat instances.
 
 ### zeros()
 
-Create a row by col matrix of all zeros.
+Creates a row by col matrix of all zeros.
 If `col` is omitted then it will default to value `row`.
 
 **zeros( row[, col] )**
@@ -351,14 +351,14 @@ If `col` is omitted then it will default to value `row`.
 
 **fn.zeros( row[, col] )**
 
-Use this technique for creating matrices in jStat instances.
+Use this technique to create matrices in jStat instances.
 
     jStat().zeros( 2 );
     // returns jStat([[0,0],[0,0]])
 
 ### ones()
 
-Create a row by col matrix of all ones.
+Creates a row by col matrix of all ones.
 If `col` is omitted then it will default to value `row`.
 
 **ones( row[, col] )**
@@ -368,14 +368,14 @@ If `col` is omitted then it will default to value `row`.
 
 **fn.ones( row[, col] )**
 
-Use this technique for creating matrices in jStat instances.
+Use this technique to create matrices in jStat instances.
 
     jStat().ones( 2 );
     // returns jStat([[0,0],[0,0]])
 
 ### rand()
 
-Create a matrix of normally distributed random numbers.
+Creates a matrix of normally distributed random numbers.
 If `col` is omitted then it will default to value `row`.
 
 **rand( row[, col] )**
@@ -384,17 +384,17 @@ If `col` is omitted then it will default to value `row`.
 
 **fn.rand( row[, col] )**
 
-Use this technique for creating matrices in jStat instances.
+Use this technique to create matrices in jStat instances.
 
     jStat().rand( 3 );
 
 ### copy()
 
-Return a copy from given matrix
+Returns a copy of given matrix.
 
 ### identity()
 
-Create an identity matrix of row by col.
+Creates an identity matrix of row by col.
 If `col` is omitted then it will default to value `row`.
 
 **identity( row[, col] )**
@@ -404,19 +404,19 @@ If `col` is omitted then it will default to value `row`.
 
 **fn.identity( row[, col] )**
 
-Use this technique for creating matrices in jStat instances.
+Use this technique to create matrices in jStat instances.
 
     jStat().identity( 2 );
 
 ### seq()
 
-Create an arithmetic sequence by given length
+Creates an arithmetic sequence by given length.
 
     jStat.seq(1,5,9) === [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
 
 ### arange()
 
-Create an arithmetic sequence by given step
+Creates an arithmetic sequence by given step.
 
     arange(5) === [0,1,2,3,4]
     arange(1,5) === [1,2,3,4]
@@ -426,7 +426,7 @@ Create an arithmetic sequence by given step
 
 ### clear()
 
-Set all values in the vector or matrix to zero.
+Sets all values in the vector or matrix to zero.
 
 **clear( array )**
 
@@ -439,7 +439,7 @@ Set all values in the vector or matrix to zero.
     jStat( 0, 1, 3 ).clear();
     // returns [[0,0,0]]
 
-If a callback is passed then the original object is not altered
+If a callback is passed then the original object is not altered.
 
     var obj = jStat( 0, 1, 3 );
     obj.clear(function() {
@@ -455,11 +455,11 @@ Tests if a matrix is symmetric.
 
     jStat.symmetric([[1,2],[2,1]]) === true
 
-**fn.symmetric( callback )**
+**fn.symmetric( [callback] )**
 
     jStat([[1,2],[2,1]]).symmetric() === true
 
-Can pass a callback to maintain chainability
+Can pass a callback to maintain chainability.
 
     jStat([[1,2],[2,1]]).symmetric(function( result ) {
         // result === true
@@ -467,20 +467,20 @@ Can pass a callback to maintain chainability
 
 ## jStat Utility Methods
 
-Utilities that are used throughout the jStat library
+Utilities that are used throughout the jStat library.
 
 ### utils.calcRdx( num0, num1 )
 
-Calculate the decimal shift for the IEEE 754 floating point calculation correction.
+Calculates the decimal shift for the IEEE 754 floating point calculation correction.
 
 ### utils.isArray( arg )
 
-Test if `arg` is an array.
+Tests if `arg` is an array.
 
 ### utils.isFunction( arg )
 
-Test if `arg` is a function.
+Tests if `arg` is a function.
 
 ### utils.isNumber( arg )
 
-Test if `arg` is a number and not `NaN`.
+Tests if `arg` is a number and not `NaN`.

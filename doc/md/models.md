@@ -2,7 +2,7 @@
 
 ## Instance Functionality
 
-### ols(endog,exog)
+### ols( endog, exog )
 
 What's the `endog`, `exog`?
 

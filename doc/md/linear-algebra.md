@@ -4,198 +4,198 @@
 
 ### add( arg )
 
-Add value to all entries.
+Adds value to all entries.
 
     jStat([[1,2,3]]).add( 2 ) === [[3,4,5]];
 
 ### subtract( arg )
 
-Subtract all entries by value.
+Subtracts all entries by value.
 
     jStat([[4,5,6]]).subtract( 2 ) === [[2,3,4]];
 
 ### divide( arg )
 
-Divide all entries by value.
+Divides all entries by value.
 
     jStat([[2,4,6]]).divide( 2 ) === [[1,2,3]];
 
 ### multiply( arg )
 
-Multiply all entries by value.
+Multiplies all entries by value.
 
     jStat([[1,2,3]]).multiply( 2 ) === [[2,4,6]];
 
 ### dot( arg )
 
-Take dot product.
+Takes dot product.
 
 ### pow( arg )
 
-Raise all entries by value.
+Raises all entries by value.
 
     jStat([[1,2,3]]).pow( 2 ) === [[1,4,9]];
 
 ### exp()
 
-Exponentiate all entries.
+Exponentiates all entries.
 
     jStat([[0,1]]).exp() === [[1, 2.718281828459045]]
 
 ### log()
 
-Return the natural logarithm of all entries.
+Returns the natural logarithm of all entries.
 
     jStat([[1, 2.718281828459045]]).log() === [[0,1]];
 
 ### abs()
 
-Return the absolute values of all entries.
+Returns the absolute values of all entries.
 
     jStat([[1,-2,-3]]).abs() === [[1,2,3]];
 
 ### norm()
 
-Compulte the norm of a vector. Note that if a matrix is passed, then the
-first row of the matrix will be used as a vector for norm().
+Computes the norm of a vector. Note that if a matrix is passed, then the
+first row of the matrix will be used as a vector for `norm()`.
 
 ### angle( arg )
 
-Compute the angle between two vectors. Note that if a matrix is passed, then
-the first row of the matrix will be used as the vector for angle().
+Computes the angle between two vectors. Note that if a matrix is passed, then
+the first row of the matrix will be used as the vector for `angle()`.
 
 ## Static Functionality
 
 ### add( arr, arg )
 
-Add arg to all entries of the array
+Adds `arg` to all entries of `arr` array.
 
 ### subtract( arr, arg )
 
-Subtract all entries of the array by arg
+Subtracts all entries of the `arr` array by `arg`.
 
 ### divide( arr, arg )
 
-Divide all entries of the array by arg.
+Divides all entries of the `arr` array by `arg`.
 
 ### multiply( arr, arg )
 
-Multiply all entries of the array by arg.
+Multiplies all entries of the `arr` array by `arg`.
 
 ### dot( arr1, arr2 )
 
-Take dot product of array 1 and array 2.
+Takes the dot product of the `arr1` and `arr2` arrays.
 
 ### outer( A, B )
 
-Take outer product of A and B.
+Takes the outer product of the `A` and `B` arrays.
 
     outer([1,2,3],[4,5,6]) === [[4,5,6],[8,10,12],[12,15,18]]
 
 ### pow( arr, arg )
 
-Raise all entries of the array to the power of arg
+Raises all entries of the `arr` array to the power of `arg`.
 
-### exp(arr)
+### exp( arr )
 
-Exponentiate all entries in the array
+Exponentiates all entries in the `arr` array.
 
-### log(arr)
+### log( arr )
 
-Return the natural logarithm of all entries in the array
+Returns the natural logarithm of all entries in the `arr` array
 
-### abs(arr)
+### abs( arr )
 
-Return the absolute values of all entries in the array
+Returns the absolute values of all entries in the `arr` array
 
-### norm(arr)
+### norm( arr )
 
-Compulte the norm of a vector.
+Computes the norm of the `arr` vector.
 
 ### angle( arr1, arr2 )
 
-Compute the angle between two vectors.
+Computes the angle between the `arr1` and `arr2` vectors.
 
-### aug(A,B)
+### aug( A, B )
 
-Augments matrix A by matrix B. Note that this method returns a plain matrix,
+Augments matrix `A` by matrix `B`. Note that this method returns a plain matrix,
 not a jStat object.
 
-### det(A)
+### det( A )
 
-Calculates the determinant of matrix A.
+Calculates the determinant of matrix `A`.
 
-### inv(A)
+### inv( A )
 
-Returns the inverse of the matrix A.
+Returns the inverse of the matrix `A`.
 
-### gauss_elimination(A,B)
+### gauss_elimination( A, B )
 
-Performs Gaussian Elimination on matrix A augmented by matrix B.
+Performs Gaussian Elimination on matrix `A` augmented by matrix `B`.
 
-### gauss_jordan(A,B)
+### gauss_jordan( A, B )
 
-Performs Gauss-Jordan Elimination on matrix A augmented by matrix B.
+Performs Gauss-Jordan Elimination on matrix `A` augmented by matrix `B`.
 
-### lu(A)
+### lu( A )
 
-Perform the LU decomposition on matrix A.
+Perform the LU decomposition on matrix `A`.
 
-A -> [L,U]
-
-st.
-
-A=LU
-
-L is lower triangular matrix
-
-U is upper triangular matrix
-
-### cholesky(A)
-
-Performs the Cholesky decomposition on matrix A.
-
-A -> T
+`A` -> `[L,U]`
 
 st.
 
-A=TT'
+`A = LU`
 
-T is lower triangular matrix
+`L` is lower triangular matrix.
 
-### gauss_jacobi(A,b,x,r)
+`U` is upper triangular matrix.
 
-Solves the linear system Ax = b using the Gauss-Jacobi method with an initial guess of r.
+### cholesky( A )
 
-### gauss_seidel(A,b,x,r)
+Performs the Cholesky decomposition on matrix `A`.
 
-Solves the linear system Ax = b using the Gauss-Seidel method with an initial guess of r.
+`A` -> `T`
 
-### SOR(A,b,x,r,w)
+st.
 
-Solves the linear system Ax = b using the sucessive over-relaxation method with an initial guess of r and parameter w (omega).
+`A = TT'`
 
-### householder(A)
+`T` is lower triangular matrix.
 
-Performs the householder transformation on the matrix A.
+### gauss_jacobi( A, b, x, r )
 
-### QR(A)
+Solves the linear system `Ax = b` using the Gauss-Jacobi method with an initial guess of `r`.
 
-Performs the Cholesky decomposition on matrix A.
+### gauss_seidel( A, b, x, r )
 
-A -> [Q,R]
+Solves the linear system `Ax = b` using the Gauss-Seidel method with an initial guess of `r`.
 
-Q is orthogonal matrix
+### SOR( A, b, x, r, w )
 
-R is upper triangular
+Solves the linear system `Ax = b` using the sucessive over-relaxation method with an initial guess of `r` and parameter `w` (omega).
 
-### lstsq(A,b)
+### householder( A )
 
-solve least squard problem for Ax=b as QR decomposition way.
+Performs the householder transformation on the matrix `A`.
 
-if b is [[b1],[b2],[b3]] form will return [[x1],[x2],[x3]] array form solution.
+### QR( A )
 
-else b is [b1,b2,b3] form will return [x1,x2,x3] array form solution.
+Performs the Cholesky decomposition on matrix `A`.
+
+`A` -> `[Q,R]`
+
+`Q` is the orthogonal matrix.
+
+`R` is the upper triangular.
+
+### lstsq( A, b )
+
+Solves least squard problem for Ax=b as QR decomposition way.
+
+If `b` is of the `[[b1], [b2], [b3]]` form, the method will return an array of the `[[x1], [x2], [x3]]` form solution.
+
+Otherwise, if `b` is of the  `[b1, b2, b3]` form, the method will return an array of the `[x1,x2,x3]` form solution.
 
 
 
