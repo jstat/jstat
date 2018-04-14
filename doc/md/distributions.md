@@ -53,7 +53,7 @@ Given x in the range [0, infinity), returns the cumulative probability density o
 
 This function corresponds to the `pf(q, df1, df2)` function in R.
 
-#### jStat.centralF.inv(p, df1, df2 )
+#### jStat.centralF.inv( p, df1, df2 )
 
 Given `p` in [0, 1), returns the value of x for which the cumulative probability density of the central F distribution is p. That is, `jStat.centralF.inv(p, df1, df2) = x` if and only if `jStat.centralF.inv(x, df1, df2) = p`.
 
@@ -461,7 +461,7 @@ Returns the value of `x` in the pdf of the Uniform distribution from `a` to `b`.
 
 Returns the value of `x` in the cdf of the Uniform distribution from `a` to `b`.
 
-#### jStat.uniform.inv(p, a, b)
+#### jStat.uniform.inv( p, a, b)
 
 Returns the inverse of the `uniform.cdf` function; i.e. the value of `x` for which `uniform.cdf(x, a, b) == p`.
 
