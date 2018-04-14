@@ -455,7 +455,7 @@ Tests if a matrix is symmetric.
 
     jStat.symmetric([[1,2],[2,1]]) === true
 
-**fn.symmetric( callback )**
+**fn.symmetric( [callback] )**
 
     jStat([[1,2],[2,1]]).symmetric() === true
 
