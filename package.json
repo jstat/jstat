@@ -19,7 +19,7 @@
   },
   "devDependencies" : {
     "uglify-js" : "1.2.3",
-    "vows" : "https://github.com/flatiron/vows/archive/master.tar.gz"
+    "vows" : "0.8.1"
   },
   "scripts" : {
     "test" : "./node_modules/vows/bin/vows --spec --isolate"
