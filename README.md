@@ -29,7 +29,7 @@ data[i]['cum'] = jstat.normal(jstat.mean(), jstat.stdev()).cdf(data[i].x);
 CDN
 ---
 
-The library is hosted on [jsDelivr](http://www.jsdelivr.com/) using the follwing
+The library is hosted on [jsDelivr](http://www.jsdelivr.com/) using the following
 url:
 ```
 //cdn.jsdelivr.net/npm/jstat@latest/dist/jstat.min.js
