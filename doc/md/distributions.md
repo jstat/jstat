@@ -523,6 +523,10 @@ Returns the value of k in the pdf of the Poisson distribution with parameter l (
 
 Returns the value of x in the cdf of the Poisson distribution with parameter l (lambda).
 
+#### jStat.poisson.sample( l )
+
+Returns a random number whose distribution is the Poisson distribution with rate parameter l (lamda)
+
 ### jStat.triangular
 
 #### jStat.triangular.pdf( x, a, b, c )
