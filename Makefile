@@ -25,6 +25,7 @@ jstat.js: \
 	src/linearalgebra.js \
 	src/test.js \
 	src/models.js \
+	src/regression.js \
 	src/_footer.js
 	@echo 'Building jStat'
 	@mkdir -p $(DIST_DIR)
