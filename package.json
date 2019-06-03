@@ -1,6 +1,6 @@
 {
   "name" : "jStat",
-  "version" : "1.7.1",
+  "version" : "1.7.2",
   "description" : "Statistical Library for JavaScript",
   "homepage" : "http://github.com/jstat/jstat",
   "main" : "./dist/jstat.js",
@@ -18,8 +18,8 @@
     "url" : "http://github.com/jstat/jstat.git"
   },
   "devDependencies" : {
-    "uglify-js" : "1.2.3",
-    "vows" : "https://github.com/flatiron/vows/archive/master.tar.gz"
+    "uglify-js" : ">=2.6.0",
+    "vows" : "^0.8.2"
   },
   "scripts" : {
     "test" : "./node_modules/vows/bin/vows --spec --isolate"
