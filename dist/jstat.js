@@ -410,6 +410,7 @@ jStat.seq = function seq(min, max, length, func) {
 // arange(5,1,-1) -> [5,4,3,2]
 jStat.arange = function arange(start, end, step) {
   var rl = [];
+  var i;
   step = step || 1;
   if (end === undefined) {
     end = start;
@@ -994,21 +995,19 @@ jStat.quantiles = function quantiles(arr, quantilesArray, alphap, betap) {
   return quantileVals;
 };
 
-// Returns the k-th percentile of values in a range, where k is in the
-// range 0..1, exclusive.
-jStat.percentile = function percentile(arr, k) {
+// Return the k-th percentile of values in a range, where k is in the range 0..1, inclusive.
+// Passing true for the exclusive parameter excludes both endpoints of the range.
+jStat.percentile = function percentile(arr, k, exclusive) {
   var _arr = arr.slice().sort(ascNum);
-  var realIndex = k * (_arr.length - 1);
+  var realIndex = k * (_arr.length + (exclusive ? 1 : -1)) + (exclusive ? 0 : 1);
   var index = parseInt(realIndex);
   var frac = realIndex - index;
-
   if (index + 1 < _arr.length) {
-    return _arr[index] * (1 - frac) + _arr[index + 1] * frac;
+    return _arr[index - 1] + frac * (_arr[index] - _arr[index - 1]);
   } else {
-    return _arr[index];
+    return _arr[index - 1];
   }
 }
-
 
 // The percentile rank of score in a given array. Returns the percentage
 // of all values in the input array that are less than (kind='strict') or
@@ -4360,10 +4359,6 @@ jStat.extend({
         tmpargs[i] = args[0][i];
       }
       args = tmpargs;
-    }
-    // 2 sample case
-    if (args.length === 2) {
-      return jStat.variance(args[0]) / jStat.variance(args[1]);
     }
     // Builds sample array
     sample = new Array();
