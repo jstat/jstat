@@ -53,6 +53,6 @@ install:
 
 test: clean core
 	@echo 'Running jStat unit tests'
-	@$(JS_TESTER)
+	@$(JS_TESTER) test/*/*.js
 
 .PHONY: clean core doc install test
