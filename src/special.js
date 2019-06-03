@@ -399,8 +399,8 @@ jStat.randn = function randn(n, m) {
   if (n)
     return jStat.create(n, m, function() { return jStat.randn(); });
   do {
-    u = Math.random();
-    v = 1.7156 * (Math.random() - 0.5);
+    u = jStat._random_fn();
+    v = 1.7156 * (jStat._random_fn() - 0.5);
     x = u - 0.449871;
     y = Math.abs(v) + 0.386595;
     q = x * x + y * (0.19600 * y - 0.25472 * x);
@@ -432,7 +432,7 @@ jStat.randg = function randg(shape, n, m) {
       v = 1 + a2 * x;
     } while(v <= 0);
     v = v * v * v;
-    u = Math.random();
+    u = jStat._random_fn();
   } while(u > 1 - 0.331 * Math.pow(x, 4) &&
           Math.log(u) > 0.5 * x*x + a1 * (1 - v + Math.log(v)));
   // alpha > 1
@@ -440,7 +440,7 @@ jStat.randg = function randg(shape, n, m) {
     return a1 * v;
   // alpha < 1
   do {
-    u = Math.random();
+    u = jStat._random_fn();
   } while(u === 0);
   return Math.pow(u, 1 / oalph) * a1 * v;
 };

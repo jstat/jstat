@@ -283,7 +283,7 @@ jStat.extend(jStat.exponential, {
   },
 
   sample: function sample(rate) {
-    return -1 / rate * Math.log(Math.random());
+    return -1 / rate * Math.log(jStat._random_fn());
   },
 
   variance : function(rate) {
@@ -673,7 +673,7 @@ jStat.extend(jStat.weibull, {
   },
 
   sample: function sample(scale, shape) {
-    return scale * Math.pow(-Math.log(Math.random()), 1 / shape);
+    return scale * Math.pow(-Math.log(jStat._random_fn()), 1 / shape);
   },
 
   variance: function variance(scale, shape) {
@@ -715,7 +715,7 @@ jStat.extend(jStat.uniform, {
   },
 
   sample: function sample(a, b) {
-    return (a / 2 + b / 2) + (b / 2 - a / 2) * (2 * Math.random() - 1);
+    return (a / 2 + b / 2) + (b / 2 - a / 2) * (2 * jStat._random_fn() - 1);
   },
 
   variance: function variance(a, b) {
@@ -991,7 +991,7 @@ jStat.extend(jStat.poisson, {
     var p = 1, k = 0, L = Math.exp(-l);
     do {
       k++;
-      p *= Math.random();
+      p *= jStat._random_fn();
     } while (p > L);
     return k - 1;
   }
@@ -1057,7 +1057,7 @@ jStat.extend(jStat.triangular, {
   },
 
   sample: function sample(a, b, c) {
-    var u = Math.random();
+    var u = jStat._random_fn();
     if (u < ((c - a) / (b - a)))
       return a + Math.sqrt(u * (b - a) * (c - a))
     return b - Math.sqrt((1 - u) * (b - a) * (b - c));
@@ -1152,7 +1152,7 @@ jStat.extend(jStat.laplace, {
   },
 
   sample: function sample(mu, b) {
-    var u = Math.random() - 0.5;
+    var u = jStat._random_fn() - 0.5;
 
     return mu - (b * laplaceSign(u) * Math.log(1 - (2 * Math.abs(u))));
   }
