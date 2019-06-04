@@ -143,7 +143,7 @@ jStat.diff = function diff(arr) {
   var diffs = [];
   var arrLen = arr.length;
   var i;
-  for (var i = 1; i < arrLen; i++)
+  for (i = 1; i < arrLen; i++)
     diffs.push(arr[i] - arr[i - 1]);
   return diffs;
 };
@@ -154,13 +154,14 @@ jStat.rank = function (arr) {
   var arrlen = arr.length;
   var sorted = arr.slice().sort(ascNum);
   var ranks = new Array(arrlen);
+  var val;
   for (var i = 0; i < arrlen; i++) {
     var first = sorted.indexOf(arr[i]);
     var last = sorted.lastIndexOf(arr[i]);
     if (first === last) {
-      var val = first;
+      val = first;
     } else {
-      var val = (first + last) / 2;
+      val = (first + last) / 2;
     }
     ranks[i] = val + 1;
   }
@@ -180,7 +181,7 @@ jStat.mode = function mode(arr) {
   var mode_arr = [];
   var i;
 
-  for (var i = 0; i < arrLen; i++) {
+  for (i = 0; i < arrLen; i++) {
     if (_arr[i] === _arr[i + 1]) {
       count++;
     } else {
@@ -296,7 +297,7 @@ jStat.quantiles = function quantiles(arr, quantilesArray, alphap, betap) {
   if (typeof betap === 'undefined')
     betap = 3 / 8;
 
-  for (var i = 0; i < quantilesArray.length; i++) {
+  for (i = 0; i < quantilesArray.length; i++) {
     p = quantilesArray[i];
     m = alphap + p * (1 - alphap - betap);
     aleph = n * p + m;
@@ -334,7 +335,7 @@ jStat.percentileOfScore = function percentileOfScore(arr, score, kind) {
   if (kind === 'strict')
     strict = true;
 
-  for (var i = 0; i < len; i++) {
+  for (i = 0; i < len; i++) {
     value = arr[i];
     if ((strict && value < score) ||
         (!strict && value <= score)) {
@@ -347,17 +348,17 @@ jStat.percentileOfScore = function percentileOfScore(arr, score, kind) {
 
 
 // Histogram (bin count) data
-jStat.histogram = function histogram(arr, bins) {
+jStat.histogram = function histogram(arr, binCnt) {
+  binCnt = binCnt || 4;
   var first = jStat.min(arr);
-  var binCnt = bins || 4;
   var binWidth = (jStat.max(arr) - first) / binCnt;
   var len = arr.length;
   var bins = [];
   var i;
 
-  for (var i = 0; i < binCnt; i++)
+  for (i = 0; i < binCnt; i++)
     bins[i] = 0;
-  for (var i = 0; i < len; i++)
+  for (i = 0; i < len; i++)
     bins[Math.min(Math.floor(((arr[i] - first) / binWidth)), binCnt - 1)] += 1;
 
   return bins;
@@ -372,7 +373,7 @@ jStat.covariance = function covariance(arr1, arr2) {
   var sq_dev = new Array(arr1Len);
   var i;
 
-  for (var i = 0; i < arr1Len; i++)
+  for (i = 0; i < arr1Len; i++)
     sq_dev[i] = (arr1[i] - u) * (arr2[i] - v);
 
   return jStat.sum(sq_dev) / (arr1Len - 1);
@@ -510,11 +511,12 @@ var jProto = jStat.prototype;
       var i = 0;
       var tmpthis = this;
       var args = Array.prototype.slice.call(arguments);
+      var callbackFunction;
 
       // If the last argument is a function, we assume it's a callback; we
       // strip the callback out and call the function again.
       if (isFunction(args[args.length - 1])) {
-        var callbackFunction = args[args.length - 1];
+        callbackFunction = args[args.length - 1];
         var argsToPass = args.slice(0, args.length - 1);
 
         setTimeout(function() {
@@ -525,7 +527,7 @@ var jProto = jStat.prototype;
 
       // Otherwise we curry the function args and call normally.
       } else {
-        var callbackFunction = undefined;
+        callbackFunction = undefined;
         var curriedFunction = function curriedFunction(vector) {
           return jStat[passfunc].apply(tmpthis, [vector].concat(args));
         }

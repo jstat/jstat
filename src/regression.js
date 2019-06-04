@@ -55,14 +55,15 @@ jStat.extend({
   },
 
   matrixmult: function matrixmult(A,B){
+    var i, j, k, result, sum;
     if (A.cols() == B.rows()) {
       if(B.rows()>1){
-        var result = [];
-        for (var i = 0; i < A.rows(); i++) {
+        result = [];
+        for (i = 0; i < A.rows(); i++) {
           result[i] = [];
-          for (var j = 0; j < B.cols(); j++) {
-            var sum = 0;
-            for (var k = 0; k < A.cols(); k++) {
+          for (j = 0; j < B.cols(); j++) {
+            sum = 0;
+            for (k = 0; k < A.cols(); k++) {
               sum += A.toArray()[i][k] * B.toArray()[k][j];
             }
             result[i][j] = sum;
@@ -70,12 +71,12 @@ jStat.extend({
         }
         return jStat(result);
       }
-      var result = [];
-      for (var i = 0; i < A.rows(); i++) {
+      result = [];
+      for (i = 0; i < A.rows(); i++) {
         result[i] = [];
-        for (var j = 0; j < B.cols(); j++) {
-          var sum = 0;
-          for (var k = 0; k < A.cols(); k++) {
+        for (j = 0; j < B.cols(); j++) {
+          sum = 0;
+          for (k = 0; k < A.cols(); k++) {
             sum += A.toArray()[i][k] * B.toArray()[j];
           }
           result[i][j] = sum;

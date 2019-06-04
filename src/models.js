@@ -1,9 +1,4 @@
 jStat.models = (function(){
-
-  function sub_regress(endog, exog) {
-    return ols(endog, exog);
-  }
-
   function sub_regress(exog) {
     var var_count = exog[0].length;
     var modelList = jStat.arange(var_count).map(function(endog_index) {

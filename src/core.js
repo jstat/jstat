@@ -48,8 +48,6 @@ jStat.fn = jStat.prototype;
 // By separating the initializer from the constructor it's easier to handle
 // always returning a new instance whether "new" was used or not.
 jStat._init = function _init(args) {
-  var i;
-
   // If first argument is an array, must be vector or matrix.
   if (isArray(args[0])) {
     // Check if matrix.
@@ -122,7 +120,7 @@ jStat.extend = function extend(obj) {
     return this;
   }
 
-  for (var i = 1; i < arguments.length; i++) {
+  for (i = 1; i < arguments.length; i++) {
     for (j in arguments[i])
       obj[j] = arguments[i][j];
   }
@@ -174,7 +172,7 @@ jStat.rowa = function rowa(arr, i) {
 // columns
 jStat.col = function col(arr, index) {
   if (isArray(index)) {
-    var submat = jStat.arange(arr.length).map(function(i) {
+    var submat = jStat.arange(arr.length).map(function() {
       return new Array(index.length);
     });
     index.forEach(function(ind, i){
@@ -229,7 +227,7 @@ jStat.transpose = function transpose(arr) {
   rows = arr.length;
   cols = arr[0].length;
 
-  for (var i = 0; i < cols; i++) {
+  for (i = 0; i < cols; i++) {
     objArr = new Array(rows);
     for (j = 0; j < rows; j++)
       objArr[j] = arr[j][i];
@@ -305,7 +303,7 @@ jStat.create = function  create(rows, cols, func) {
     cols = rows;
   }
 
-  for (var i = 0; i < rows; i++) {
+  for (i = 0; i < rows; i++) {
     res[i] = new Array(cols);
     for (j = 0; j < cols; j++)
       res[i][j] = func(i, j);
@@ -358,7 +356,6 @@ jStat.identity = function identity(rows, cols) {
 
 // Tests whether a matrix is symmetric
 jStat.symmetric = function symmetric(arr) {
-  var issymmetric = true;
   var size = arr.length;
   var row, col;
 
@@ -478,23 +475,24 @@ jStat.slice = (function(){
   }
 
   function slice(list, rcSlice) {
+    var colSlice, rowSlice;
     rcSlice = rcSlice || {};
     if (isNumber(rcSlice.row)) {
       if (isNumber(rcSlice.col))
         return list[rcSlice.row][rcSlice.col];
       var row = jStat.rowa(list, rcSlice.row);
-      var colSlice = rcSlice.col || {};
+      colSlice = rcSlice.col || {};
       return _slice(row, colSlice.start, colSlice.end, colSlice.step);
     }
 
     if (isNumber(rcSlice.col)) {
       var col = jStat.cola(list, rcSlice.col);
-      var rowSlice = rcSlice.row || {};
+      rowSlice = rcSlice.row || {};
       return _slice(col, rowSlice.start, rowSlice.end, rowSlice.step);
     }
 
-    var rowSlice = rcSlice.row || {};
-    var colSlice = rcSlice.col || {};
+    rowSlice = rcSlice.row || {};
+    colSlice = rcSlice.col || {};
     var rows = _slice(list, rowSlice.start, rowSlice.end, rowSlice.step);
     return rows.map(function(row) {
       return _slice(row, colSlice.start, colSlice.end, colSlice.step);
@@ -509,6 +507,7 @@ jStat.slice = (function(){
 // sliceAssign(A,{row:{start:1},col:{start:1}},[[0,0],[0,0]])
 // A=[[1,2,3],[4,0,0],[7,0,0]]
 jStat.sliceAssign = function sliceAssign(A, rcSlice, B) {
+  var nl, ml;
   if (isNumber(rcSlice.row)) {
     if (isNumber(rcSlice.col))
       return A[rcSlice.row][rcSlice.col] = B;
@@ -516,7 +515,7 @@ jStat.sliceAssign = function sliceAssign(A, rcSlice, B) {
     rcSlice.col.start = rcSlice.col.start || 0;
     rcSlice.col.end = rcSlice.col.end || A[0].length;
     rcSlice.col.step = rcSlice.col.step || 1;
-    var nl = jStat.arange(rcSlice.col.start,
+    nl = jStat.arange(rcSlice.col.start,
                           Math.min(A.length, rcSlice.col.end),
                           rcSlice.col.step);
     var m = rcSlice.row;
@@ -531,7 +530,7 @@ jStat.sliceAssign = function sliceAssign(A, rcSlice, B) {
     rcSlice.row.start = rcSlice.row.start || 0;
     rcSlice.row.end = rcSlice.row.end || A.length;
     rcSlice.row.step = rcSlice.row.step || 1;
-    var ml = jStat.arange(rcSlice.row.start,
+    ml = jStat.arange(rcSlice.row.start,
                           Math.min(A[0].length, rcSlice.row.end),
                           rcSlice.row.step);
     var n = rcSlice.col;
@@ -550,10 +549,10 @@ jStat.sliceAssign = function sliceAssign(A, rcSlice, B) {
   rcSlice.col.start = rcSlice.col.start || 0;
   rcSlice.col.end = rcSlice.col.end || A[0].length;
   rcSlice.col.step = rcSlice.col.step || 1;
-  var ml = jStat.arange(rcSlice.row.start,
+  ml = jStat.arange(rcSlice.row.start,
                         Math.min(A.length, rcSlice.row.end),
                         rcSlice.row.step);
-  var nl = jStat.arange(rcSlice.col.start,
+  nl = jStat.arange(rcSlice.col.start,
                         Math.min(A[0].length, rcSlice.col.end),
                         rcSlice.col.step);
   ml.forEach(function(m, i) {

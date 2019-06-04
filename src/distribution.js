@@ -196,11 +196,11 @@ jStat.extend(jStat.cauchy, {
     return local + scale * Math.tan(Math.PI * (p - 0.5));
   },
 
-  median: function median(local, scale) {
+  median: function median(local/*, scale*/) {
     return local;
   },
 
-  mode: function mode(local, scale) {
+  mode: function mode(local/*, scale*/) {
     return local;
   },
 
@@ -278,7 +278,7 @@ jStat.extend(jStat.exponential, {
     return (1 / rate) * Math.log(2);
   },
 
-  mode: function mode(rate) {
+  mode: function mode(/*rate*/) {
     return 0;
   },
 
@@ -409,7 +409,7 @@ jStat.extend(jStat.kumaraswamy, {
     return Math.pow((alpha - 1) / (alpha * beta - 1), 1 / alpha);
   },
 
-  variance: function variance(alpha, beta) {
+  variance: function variance(/*alpha, beta*/) {
     throw new Error('variance not yet implemented');
     // TODO: complete this
   }
@@ -442,7 +442,7 @@ jStat.extend(jStat.lognormal, {
     return Math.exp(mu + sigma * sigma / 2);
   },
 
-  median: function median(mu, sigma) {
+  median: function median(mu/*, sigma*/) {
     return Math.exp(mu);
   },
 
@@ -534,15 +534,15 @@ jStat.extend(jStat.normal, {
     return -1.41421356237309505 * std * jStat.erfcinv(2 * p) + mean;
   },
 
-  mean : function(mean, std) {
+  mean : function(mean/*, std*/) {
     return mean;
   },
 
-  median: function median(mean, std) {
+  median: function median(mean/*, std*/) {
     return mean;
   },
 
-  mode: function (mean, std) {
+  mode: function (mean/*, std*/) {
     return mean;
   },
 
@@ -585,7 +585,7 @@ jStat.extend(jStat.pareto, {
     return scale * (shape * Math.SQRT2);
   },
 
-  mode: function mode(scale, shape) {
+  mode: function mode(scale/*, shape*/) {
     return scale;
   },
 
@@ -622,11 +622,11 @@ jStat.extend(jStat.studentt, {
     return (dof > 1) ? 0 : undefined;
   },
 
-  median: function median(dof) {
+  median: function median(/*dof*/) {
     return 0;
   },
 
-  mode: function mode(dof) {
+  mode: function mode(/*dof*/) {
     return 0;
   },
 
@@ -710,7 +710,7 @@ jStat.extend(jStat.uniform, {
     return jStat.mean(a, b);
   },
 
-  mode: function mode(a, b) {
+  mode: function mode(/*a, b*/) {
     throw new Error('mode is not yet implemented');
   },
 
@@ -1102,7 +1102,7 @@ jStat.extend(jStat.arcsine, {
     return (a + b) / 2;
   },
 
-  mode: function mode(a, b) {
+  mode: function mode(/*a, b*/) {
     throw new Error('mode is not yet implemented');
   },
 
@@ -1135,15 +1135,15 @@ jStat.extend(jStat.laplace, {
     }
   },
 
-  mean: function(mu, b) {
+  mean: function(mu/*, b*/) {
     return mu;
   },
 
-  median: function(mu, b) {
+  median: function(mu/*, b*/) {
     return mu;
   },
 
-  mode: function(mu, b) {
+  mode: function(mu/*, b*/) {
     return mu;
   },
 

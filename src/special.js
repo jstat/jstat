@@ -32,7 +32,7 @@ jStat.gammafn = function gammafn(x) {
   var xden = 0;
   var xnum = 0;
   var y = x;
-  var i, z, yi, res, sum, ysq;
+  var i, z, yi, res;
   if (y <= 0) {
     res = y % 1 + 3.6e-16;
     if (res) {
@@ -48,7 +48,7 @@ jStat.gammafn = function gammafn(x) {
   } else {
     z = (y -= n = (y | 0) - 1) - 1;
   }
-  for (var i = 0; i < 8; ++i) {
+  for (i = 0; i < 8; ++i) {
     xnum = (xnum + p[i]) * z;
     xden = xden * z + q[i];
   }
@@ -56,7 +56,7 @@ jStat.gammafn = function gammafn(x) {
   if (yi < y) {
     res /= yi;
   } else if (yi > y) {
-    for (var i = 0; i < n; ++i) {
+    for (i = 0; i < n; ++i) {
       res *= y;
       y++;
     }
@@ -88,7 +88,7 @@ jStat.lowRegGamma = function lowRegGamma(a, x) {
   var i = 1;
   // calculate maximum number of itterations required for a
   var ITMAX = -~(Math.log((a >= 1) ? a : 1 / a) * 8.5 + a * 0.4 + 17);
-  var an, endval;
+  var an;
 
   if (x < 0 || a <= 0) {
     return NaN;
@@ -393,7 +393,7 @@ jStat.ibeta = function ibeta(x, a, b) {
 // Returns a normal deviate (mu=0, sigma=1).
 // If n and m are specified it returns a object of normal deviates.
 jStat.randn = function randn(n, m) {
-  var u, v, x, y, q, mat;
+  var u, v, x, y, q;
   if (!m)
     m = n;
   if (n)
