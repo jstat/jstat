@@ -380,7 +380,7 @@ jStat.extend({
         parts = jStat.arange(l).map(function(jj) {
           return L[l][jj] * R[jj][j];
         });
-        R[l][j] = A[i][j] - jStat.sum(parts);
+        R[l][j] = A[parts.length][j] - jStat.sum(parts);
       });
     });
     return [L, R];
