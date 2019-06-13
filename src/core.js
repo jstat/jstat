@@ -1,5 +1,8 @@
 var jStat = (function(Math, undefined) {
 
+console.warn(`The npm package jStat is no longer maintained. Instead use jstat (lowercase).`);
+console.warn(`Visit https://www.npmjs.com/package/jstat for more information.`);
+
 // For quick reference.
 var concat = Array.prototype.concat;
 var slice = Array.prototype.slice;
