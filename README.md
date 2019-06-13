@@ -1,7 +1,7 @@
 [jStat](http://www.jstat.org/) - JavaScript Statistical Library
 ===============================================================
 
-[![npm version](https://badge.fury.io/js/jStat.svg)](https://badge.fury.io/js/jStat)
+[![npm version](https://badge.fury.io/js/jstat.svg)](https://badge.fury.io/js/jstat)
 
 jStat provides native javascript implementations of statistical functions.
 Full details are available in the [docs](https://jstat.github.io/all.html).
@@ -48,13 +48,13 @@ NodeJS & NPM
 To install via npm:
 
 ```
-npm install --save jStat
+npm install --save jstat
 ```
 
 When loading under Node be sure to reference the child object.
 
 ```
-var jStat = require('jStat').jStat;
+var jStat = require('jstat');
 ```
 
 RequireJS Shim
