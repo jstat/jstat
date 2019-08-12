@@ -40,6 +40,20 @@ suite.addBatch({
 
             assert.epsilon(tol, mean(1), 1);
             assert.epsilon(tol, mean(3.5), 3.5);
+        },
+        'check sample': function(jStat) {
+            var samplingTol = 10;
+            var lambdaToTest = [10, 100, 1000, 10000, 100000];
+            var sampleSize = 10000;
+            for(var i in lambdaToTest) {
+                var lambda = lambdaToTest[i];
+                var sum = 0;
+                for(let i = 0; i < sampleSize; i++) {
+                    sum += jStat.poisson.sample(lambda);
+                }
+                var mean = sum/sampleSize;
+                assert.epsilon(samplingTol, mean, lambda);
+            }
         }
     }
 });

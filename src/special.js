@@ -17,6 +17,45 @@ jStat.gammaln = function gammaln(x) {
   return Math.log(2.5066282746310005 * ser / xx) - tmp;
 };
 
+/*
+ * log-gamma function to support poisson distribution sampling. The
+ * algorithm comes from SPECFUN by Shanjie Zhang and Jianming Jin and their
+ * book "Computation of Special Functions", 1996, John Wiley & Sons, Inc.
+ */
+jStat.loggam = function loggam(x) {
+  var x0, x2, xp, gl, gl0;
+  var k, n;
+
+  var a = [8.333333333333333e-02, -2.777777777777778e-03,
+          7.936507936507937e-04, -5.952380952380952e-04,
+          8.417508417508418e-04, -1.917526917526918e-03,
+          6.410256410256410e-03, -2.955065359477124e-02,
+          1.796443723688307e-01, -1.39243221690590e+00];
+  x0 = x;
+  n = 0;
+  if ((x == 1.0) || (x == 2.0)) {
+      return 0.0;
+  }
+  if (x <= 7.0) {
+      n = Math.floor(7 - x);
+      x0 = x + n;
+  }
+  x2 = 1.0 / (x0 * x0);
+  xp = 2 * Math.PI;
+  gl0 = a[9];
+  for (k = 8; k >= 0; k--) {
+      gl0 *= x2;
+      gl0 += a[k];
+  }
+  gl = gl0 / x0 + 0.5 * Math.log(xp) + (x0 - 0.5) * Math.log(x0) - x0;
+  if (x <= 7.0) {
+      for (k = 1; k <= n; k++) {
+          gl -= Math.log(x0 - 1.0);
+          x0 -= 1.0;
+      }
+  }
+  return gl;
+}
 
 // gamma of x
 jStat.gammafn = function gammafn(x) {
