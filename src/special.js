@@ -35,12 +35,13 @@ jStat.loggam = function loggam(x) {
   n = 0;
   if ((x == 1.0) || (x == 2.0)) {
       return 0.0;
-  } else if (x <= 7.0) {
+  }
+  if (x <= 7.0) {
       n = Math.floor(7 - x);
       x0 = x + n;
   }
   x2 = 1.0 / (x0 * x0);
-  xp = 2 * 3.14159265358979323846264338327950288;
+  xp = 2 * Math.PI;
   gl0 = a[9];
   for (k = 8; k >= 0; k--) {
       gl0 *= x2;

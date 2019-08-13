@@ -1068,7 +1068,7 @@ jStat.extend(jStat.poisson, {
   },
 
   sample: function sample(l) {
-    if(l < 10)
+    if (l < 10)
       return this.sampleSmall(l);
     else
       return this.sampleLarge(l);
