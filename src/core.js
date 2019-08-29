@@ -25,7 +25,13 @@ function isFunction(arg) {
 
 
 function isNumber(arg) {
-  return typeof arg === 'number' && arg === arg;
+  if (typeof num === 'number') {
+    return num - num === 0;
+  }
+  if (typeof num === 'string' && num.trim() !== '') {
+    return Number.isFinite ? Number.isFinite(+num) : isFinite(+num);
+  }
+  return false;
 }
 
 
