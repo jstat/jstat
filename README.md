@@ -5,13 +5,20 @@
 
 jStat provides native javascript implementations of statistical functions.
 Full details are available in the [docs](https://jstat.github.io/all.html).
-jStat provides more functions than most libraries, including the weibull, cauchy, poisson, hypergeometric, and beta distributions.
-For most distributions, jStat provides the pdf, cdf, inverse, mean, mode, variance, and a sample function, allowing for more complex calculations.
+jStat provides more functions than most libraries, including the weibull,
+cauchy, poisson, hypergeometric, and beta distributions.  For most
+distributions, jStat provides the pdf, cdf, inverse, mean, mode, variance, and
+a sample function, allowing for more complex calculations.
+
+**NOTICE:** The previous case sensitive `jStat` module will no longer be
+updated. Instead use the all lowercase `jstat` when doing an `npm install` or
+similar.
 
 Using jStat in a Browser
 ------------------------
 
-jStat can be used in the browser. The `jStat` object will be added to the window. For example:
+jStat can be used in the browser. The `jStat` object will be added to the
+window. For example:
 
 ```
 <script src="components/jstat.js"></script> <!-- include jStat, from the CDN or otherwise -->
@@ -54,7 +61,7 @@ npm install --save jstat
 When loading under Node be sure to reference the child object.
 
 ```
-var jStat = require('jstat');
+var { jStat } = require('jstat').
 ```
 
 RequireJS Shim
@@ -83,8 +90,9 @@ requirejs.config({
 Build Prerequisites
 -------------------
 
-In order to build jStat, you need to have GNU make 3.8 or later, Node.js 0.2 or later, and git 1.7 or later.
-(Earlier versions might work OK, but are not tested.)
+In order to build jStat, you need to have GNU make 3.8 or later, Node.js 0.2 or
+later, and git 1.7 or later.  (Earlier versions might work OK, but are not
+tested.)
 
 Windows users have two options:
 
@@ -112,13 +120,15 @@ First, clone a copy of the jStat git repo by running `git clone git://github.com
 
 To download all necessary libraries run `npm install`.
 
-Then, to get a complete, minified version of jStat and all documentation, simply `cd` to the `jstat` directory and
-type `make`. If you don't have Node installed and/or want to make a basic, uncompressed, unlinted version of jstat,
+Then, to get a complete, minified version of jStat and all documentation,
+simply `cd` to the `jstat` directory and type `make`. If you don't have Node
+installed and/or want to make a basic, uncompressed, unlinted version of jstat,
 use `make jstat` instead of `make`.
 
 The built version of jStat will be put in the `dist/` subdirectory.
 
-Generate just the documentation by running `make doc`. Documentation will be placed in `dist/docs` by default.
+Generate just the documentation by running `make doc`. Documentation will be
+placed in `dist/docs` by default.
 
 To remove all built files, run `make clean`.
 
@@ -134,8 +144,8 @@ Or if you wish to run a specific test, `cd` to `test/<subdir>` and run `node <so
 Get the Code
 ------------
 
-Both the minified and unminified source are located in the `dist/` directory. For those who don't want to build
-it themselves.
+Both the minified and unminified source are located in the `dist/` directory.
+For those who don't want to build it themselves.
 
 
 Contribute
@@ -150,11 +160,13 @@ Also, we'll be going through and reimplementing a good portion of the code to
 run faster. Hopefully it won't take too long to get the project on one basic
 standard.
 
-When submitting pull requests, no need to check in `dist/*.js`. They'll be recompiled for distribution anyway.
+When submitting pull requests, no need to check in `dist/*.js`. They'll be
+recompiled for distribution anyway.
 
 Join the Community
 ------------------
 
 We always like discussion of how to improve jStat.
-Join us at our [mailing list](http://groups.google.com/group/jstat-discuss/) and let us know what you'd like to see.
-Also come ask questions in the #jstat channel on irc.freenode.net.
+Join us at our [mailing list](http://groups.google.com/group/jstat-discuss/)
+and let us know what you'd like to see.  Also come ask questions in the #jstat
+channel on irc.freenode.net.
