@@ -31,13 +31,39 @@ suite.addBatch({
       assert.isTrue(utils.isFunction(function() {}));
     },
     'isNumber': function(utils) {
-      assert.isFalse(utils.isNumber(true));
+      assert.isTrue(utils.isNumber(5e3));
+      assert.isTrue(utils.isNumber(0xff));
+      assert.isTrue(utils.isNumber(-1.1));
+      assert.isTrue(utils.isNumber(0));
+      assert.isTrue(utils.isNumber(1));
+      assert.isTrue(utils.isNumber(1.1));
+      assert.isTrue(utils.isNumber(10));
+      assert.isTrue(utils.isNumber(10.10));
+      assert.isTrue(utils.isNumber(100));
+      assert.isTrue(utils.isNumber(parseInt('012')));
+      assert.isTrue(utils.isNumber(parseFloat('012')));
+
+      assert.isFalse(utils.isNumber('-1.1'));
+      assert.isFalse(utils.isNumber('0'));
+      assert.isFalse(utils.isNumber('012'));
+      assert.isFalse(utils.isNumber('0xff'));
+      assert.isFalse(utils.isNumber('1'));
+      assert.isFalse(utils.isNumber('1.1'));
+      assert.isFalse(utils.isNumber('10'));
+      assert.isFalse(utils.isNumber('10.10'));
+      assert.isFalse(utils.isNumber('100'));
+      assert.isFalse(utils.isNumber('5e3'));
+      assert.isFalse(utils.isNumber(Infinity));
+      assert.isFalse(utils.isNumber(NaN));
+      assert.isFalse(utils.isNumber(null));
+      assert.isFalse(utils.isNumber(undefined));
+      assert.isFalse(utils.isNumber(''));
+      assert.isFalse(utils.isNumber('   '));
+      assert.isFalse(utils.isNumber('foo'));
+      assert.isFalse(utils.isNumber([1]));
       assert.isFalse(utils.isNumber([]));
+      assert.isFalse(utils.isNumber(function () {}));
       assert.isFalse(utils.isNumber({}));
-      assert.isFalse(utils.isNumber('123'));
-      assert.isFalse(utils.isNumber(/reg/));
-      assert.isFalse(utils.isNumber(function() {}));
-      assert.isTrue(utils.isNumber(1234));
     }
   }
 });
