@@ -1,7 +1,7 @@
 NODE_PATH ?= ./node_modules
 DIST_DIR = ./dist
-JS_COMPILER = $(NODE_PATH)/uglify-js/bin/uglifyjs
-JS_TESTER = $(NODE_PATH)/vows/bin/vows
+JS_COMPILER = node_modules/.bin/uglifyjs
+JS_TESTER = node_modules/.bin/vows
 
 DOC_DIR = doc
 BUILD_DIR = build

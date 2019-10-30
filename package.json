@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "uglify-js": ">=2.6.0",
-    "vows": "^0.8.2"
+    "vows": "^0.8.3"
   },
   "scripts": {
     "test": "./node_modules/vows/bin/vows --spec --isolate"
