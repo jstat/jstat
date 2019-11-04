@@ -33,14 +33,8 @@ function isFunction(arg) {
 }
 
 
-function isNumber(arg) {
-  if (typeof num === 'number') {
-    return num - num === 0;
-  }
-  if (typeof num === 'string' && num.trim() !== '') {
-    return Number.isFinite ? Number.isFinite(+num) : isFinite(+num);
-  }
-  return false;
+function isNumber(num) {
+  return (typeof num === 'number') ? num - num === 0 : false;
 }
 
 

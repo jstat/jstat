@@ -1,6 +1,6 @@
 {
   "name": "jstat",
-  "version": "1.9.1",
+  "version": "1.9.2",
   "description": "Statistical Library for JavaScript",
   "homepage": "http://github.com/jstat/jstat",
   "main": "./dist/jstat.js",
@@ -20,7 +20,7 @@
     "url": "http://github.com/jstat/jstat.git"
   },
   "devDependencies": {
-    "uglify-js": ">=2.6.0",
+    "uglify-js": "^3.6.7",
     "vows": "^0.8.3"
   },
   "scripts": {
