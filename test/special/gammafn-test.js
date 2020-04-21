@@ -16,6 +16,7 @@ suite.addBatch({
       assert.epsilon(tol, jStat.gammafn(0.00001), 99999.422794);
       assert.epsilon(tol, jStat.gammafn(0.2), 4.590843);
       assert.equal(jStat.gammafn(10), 362880);
+      assert.equal(jStat.gammafn(171.6243769536076), Infinity);
     }
   }
 });
