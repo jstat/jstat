@@ -103,35 +103,21 @@ jStat.extend(jStat.centralF, {
   variance: fVariance
 });
 
+var cauchyPDF = require( '@stdlib/stats/base/dists/cauchy/pdf' );
+var cauchyCDF = require( '@stdlib/stats/base/dists/cauchy/cdf' );
+var cauchyQuantile = require( '@stdlib/stats/base/dists/cauchy/quantile' );
+var cauchyMedian = require( '@stdlib/stats/base/dists/cauchy/median' );
+var cauchyMode = require( '@stdlib/stats/base/dists/cauchy/mode' );
+var cauchySample = require( '@stdlib/random/base/cauchy' );
 
 // extend cauchy function with static methods
 jStat.extend(jStat.cauchy, {
-  pdf: function pdf(x, local, scale) {
-    if (scale < 0) { return 0; }
-
-    return (scale / (Math.pow(x - local, 2) + Math.pow(scale, 2))) / Math.PI;
-  },
-
-  cdf: function cdf(x, local, scale) {
-    return Math.atan((x - local) / scale) / Math.PI + 0.5;
-  },
-
-  inv: function(p, local, scale) {
-    return local + scale * Math.tan(Math.PI * (p - 0.5));
-  },
-
-  median: function median(local/*, scale*/) {
-    return local;
-  },
-
-  mode: function mode(local/*, scale*/) {
-    return local;
-  },
-
-  sample: function sample(local, scale) {
-    return jStat.randn() *
-        Math.sqrt(1 / (2 * jStat.randg(0.5))) * scale + local;
-  }
+  pdf: cauchyPDF,
+  cdf: cauchyCDF,
+  inv: cauchyQuantile,
+  median: cauchyMedian,
+  mode: cauchyMode,
+  sample: cauchySample
 });
 
 
