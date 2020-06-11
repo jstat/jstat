@@ -63,57 +63,25 @@ var jStat = require( './core.js' );
   'binomial negbin hypgeom poisson triangular tukey arcsine'
 ).split(' '));
 
-
+var betaPDF = require( '@stdlib/stats/base/dists/beta/pdf' );
+var betaCDF = require( '@stdlib/stats/base/dists/beta/cdf' );
+var betaQuantile = require( '@stdlib/stats/base/dists/beta/quantile' );
+var betaMean = require( '@stdlib/stats/base/dists/beta/mean' );
+var betaMedian = require( '@stdlib/stats/base/dists/beta/median' );
+var betaMode = require( '@stdlib/stats/base/dists/beta/mode' );
+var betaSample = require( '@stdlib/random/base/beta' );
+var betaVariance = require( '@stdlib/stats/base/dists/beta/variance' );
 
 // extend beta function with static methods
 jStat.extend(jStat.beta, {
-  pdf: function pdf(x, alpha, beta) {
-    // PDF is zero outside the support
-    if (x > 1 || x < 0)
-      return 0;
-    // PDF is one for the uniform case
-    if (alpha == 1 && beta == 1)
-      return 1;
-
-    if (alpha < 512 && beta < 512) {
-      return (Math.pow(x, alpha - 1) * Math.pow(1 - x, beta - 1)) /
-          jStat.betafn(alpha, beta);
-    } else {
-      return Math.exp((alpha - 1) * Math.log(x) +
-                      (beta - 1) * Math.log(1 - x) -
-                      jStat.betaln(alpha, beta));
-    }
-  },
-
-  cdf: function cdf(x, alpha, beta) {
-    return (x > 1 || x < 0) ? (x > 1) * 1 : jStat.ibeta(x, alpha, beta);
-  },
-
-  inv: function inv(x, alpha, beta) {
-    return jStat.ibetainv(x, alpha, beta);
-  },
-
-  mean: function mean(alpha, beta) {
-    return alpha / (alpha + beta);
-  },
-
-  median: function median(alpha, beta) {
-    return jStat.ibetainv(0.5, alpha, beta);
-  },
-
-  mode: function mode(alpha, beta) {
-    return (alpha - 1 ) / ( alpha + beta - 2);
-  },
-
-  // return a random sample
-  sample: function sample(alpha, beta) {
-    var u = jStat.randg(alpha);
-    return u / (u + jStat.randg(beta));
-  },
-
-  variance: function variance(alpha, beta) {
-    return (alpha * beta) / (Math.pow(alpha + beta, 2) * (alpha + beta + 1));
-  }
+  pdf: betaPDF,
+  cdf: betaCDF,
+  inv: betaQuantile,
+  mean: betaMean,
+  median: betaMedian,
+  mode: betaMode,
+  sample: betaSample,
+  variance: betaVariance
 });
 
 // extend F function with static methods
