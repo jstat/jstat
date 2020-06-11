@@ -1,3 +1,5 @@
+var jStat = require( './core.js' );
+
 jStat.models = (function(){
   function sub_regress(exog) {
     var var_count = exog[0].length;

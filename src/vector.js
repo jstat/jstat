@@ -1,4 +1,4 @@
-(function(jStat, Math) {
+var jStat = require( './core.js' );
 
 var isFunction = jStat.utils.isFunction;
 
@@ -560,5 +560,3 @@ var jProto = jStat.prototype;
     };
   })(funcs[i]);
 })('quantiles percentileOfScore'.split(' '));
-
-}(jStat, Math));

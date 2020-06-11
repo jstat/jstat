@@ -1,7 +1,7 @@
-NODE_PATH ?= ./node_modules
 DIST_DIR = ./dist
-JS_COMPILER = node_modules/.bin/uglifyjs
-JS_TESTER = node_modules/.bin/vows
+JS_BUNDLER = ./node_modules/.bin/browserify
+JS_COMPILER = ./node_modules/.bin/uglifyjs
+JS_TESTER = ./node_modules/.bin/vows
 
 DOC_DIR = doc
 BUILD_DIR = build
@@ -17,7 +17,6 @@ clean:
 core: jstat.js jstat.min.js
 
 jstat.js: \
-	src/_header.js \
 	src/core.js \
 	src/vector.js \
 	src/special.js \
@@ -25,11 +24,10 @@ jstat.js: \
 	src/linearalgebra.js \
 	src/test.js \
 	src/models.js \
-	src/regression.js \
-	src/_footer.js
+	src/regression.js
 	@echo 'Building jStat'
 	@mkdir -p $(DIST_DIR)
-	@cat $^ > $(DIST_DIR)/$@
+	@$(JS_BUNDLER) --plugin=browser-pack-flat --standalone=jStat $^ > $(DIST_DIR)/$@
 
 jstat.min.js: jstat.js
 	@echo 'Minifying jStat'

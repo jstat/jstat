@@ -20,6 +20,8 @@
     "url": "http://github.com/jstat/jstat.git"
   },
   "devDependencies": {
+    "browser-pack-flat": "^3.4.2",
+    "browserify": "^16.5.1",
     "uglify-js": "^3.6.7",
     "vows": "^0.8.3"
   },

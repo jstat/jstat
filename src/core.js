@@ -1,5 +1,3 @@
-var jStat = (function(Math, undefined) {
-
 // For quick reference.
 var concat = Array.prototype.concat;
 var slice = Array.prototype.slice;
@@ -678,8 +676,8 @@ jProto.alter = function alter(func) {
   })(funcs[i]);
 })('create zeros ones rand identity'.split(' '));
 
+// Make it compatible with previous version.
+jStat.jStat = jStat;
 
 // Exposing jStat.
-return jStat;
-
-}(Math));
+module.exports = jStat;

@@ -1,4 +1,4 @@
-(function(jStat, Math) {
+var jStat = require( './core.js' );
 
 // generate all distribution instance methods
 (function(list) {
@@ -1592,5 +1592,3 @@ jStat.extend(jStat.tukey, {
     throw new Error('tukey.inv failed to converge');
   }
 });
-
-}(jStat, Math));

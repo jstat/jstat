@@ -1,7 +1,6 @@
 /* Provides functions for the solution of linear system of equations, integration, extrapolation,
  * interpolation, eigenvalue problems, differential equations and PCA analysis. */
-
-(function(jStat, Math) {
+var jStat = require( './core.js' );
 
 var push = Array.prototype.push;
 var isArray = jStat.utils.isArray;
@@ -975,5 +974,3 @@ jStat.extend({
     };
   }(funcs[i]));
 }('add divide multiply subtract dot pow exp log abs norm angle'.split(' ')));
-
-}(jStat, Math));
