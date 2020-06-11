@@ -120,48 +120,29 @@ jStat.extend(jStat.cauchy, {
   sample: cauchySample
 });
 
-
+var chisquarePDF = require( '@stdlib/stats/base/dists/chisquare/pdf' );
+var chisquareCDF = require( '@stdlib/stats/base/dists/chisquare/cdf' );
+var chisquareQuantile = require( '@stdlib/stats/base/dists/chisquare/quantile' );
+var chisquareMean = require( '@stdlib/stats/base/dists/chisquare/mean' );
+var chisquareMode = require( '@stdlib/stats/base/dists/chisquare/mode' );
+var chisquareSample = require( '@stdlib/random/base/chisquare' );
+var chisquareVariance = require( '@stdlib/stats/base/dists/chisquare/variance' );
 
 // extend chisquare function with static methods
 jStat.extend(jStat.chisquare, {
-  pdf: function pdf(x, dof) {
-    if (x < 0)
-      return 0;
-    return (x === 0 && dof === 2) ? 0.5 :
-        Math.exp((dof / 2 - 1) * Math.log(x) - x / 2 - (dof / 2) *
-                 Math.log(2) - jStat.gammaln(dof / 2));
-  },
-
-  cdf: function cdf(x, dof) {
-    if (x < 0)
-      return 0;
-    return jStat.lowRegGamma(dof / 2, x / 2);
-  },
-
-  inv: function(p, dof) {
-    return 2 * jStat.gammapinv(p, 0.5 * dof);
-  },
-
-  mean : function(dof) {
-    return dof;
-  },
+  pdf: chisquarePDF,
+  cdf: chisquareCDF,
+  inv: chisquareQuantile,
+  mean : chisquareMean,
 
   // TODO: this is an approximation (is there a better way?)
   median: function median(dof) {
     return dof * Math.pow(1 - (2 / (9 * dof)), 3);
   },
 
-  mode: function mode(dof) {
-    return (dof - 2 > 0) ? dof - 2 : 0;
-  },
-
-  sample: function sample(dof) {
-    return jStat.randg(dof / 2) * 2;
-  },
-
-  variance: function variance(dof) {
-    return 2 * dof;
-  }
+  mode: chisquareMode,
+  sample: chisquareSample,
+  variance: chisquareVariance
 });
 
 
