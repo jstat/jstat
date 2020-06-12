@@ -182,43 +182,36 @@ jStat.extend(jStat.exponential, {
   }
 });
 
-
+var gammaPDF = require( '@stdlib/stats/base/dists/gamma/pdf' );
+var gammaCDF = require( '@stdlib/stats/base/dists/gamma/cdf' );
+var gammaQuantile = require( '@stdlib/stats/base/dists/gamma/quantile' );
+var gammaMean = require( '@stdlib/stats/base/dists/gamma/mean' );
+var gammaMode = require( '@stdlib/stats/base/dists/gamma/mode' );
+var gammaSample = require( '@stdlib/random/base/gamma' );
+var gammaVariance = require( '@stdlib/stats/base/dists/gamma/variance' );
 
 // extend gamma function with static methods
 jStat.extend(jStat.gamma, {
   pdf: function pdf(x, shape, scale) {
-    if (x < 0)
-      return 0;
-    return (x === 0 && shape === 1) ? 1 / scale :
-            Math.exp((shape - 1) * Math.log(x) - x / scale -
-                    jStat.gammaln(shape) - shape * Math.log(scale));
+    return gammaPDF(x, shape, 1.0/scale);
   },
-
   cdf: function cdf(x, shape, scale) {
-    if (x < 0)
-      return 0;
-    return jStat.lowRegGamma(shape, x / scale);
+    return gammaCDF(x, shape, 1.0/scale);
   },
-
-  inv: function(p, shape, scale) {
-    return jStat.gammapinv(p, shape) * scale;
+  inv: function inv(x, shape, scale) {
+    return gammaQuantile(x, shape, 1.0/scale);
   },
-
-  mean : function(shape, scale) {
-    return shape * scale;
+  mean : function mean(x, shape, scale) {
+    return gammaMean(x, shape, 1.0/scale);
   },
-
-  mode: function mode(shape, scale) {
-    if(shape > 1) return (shape - 1) * scale;
-    return undefined;
+  mode: function mode(x, shape, scale) {
+    return gammaMode(x, shape, 1.0/scale);
   },
-
-  sample: function sample(shape, scale) {
-    return jStat.randg(shape) * scale;
+  sample: function sample(x, shape, scale) {
+    return gammaSample(x, shape, 1.0/scale);
   },
-
-  variance: function variance(shape, scale) {
-    return shape * scale * scale;
+  variance: function variance(x, shape, scale) {
+    return gammaVariance(x, shape, 1.0/scale);
   }
 });
 
