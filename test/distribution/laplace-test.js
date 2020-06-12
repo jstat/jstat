@@ -25,7 +25,7 @@ suite.addBatch({
             //Shape parameter
             assert.epsilon(tol, pdf(0, 0, 5), 0.1);
 
-            //Zero for invalid parameters
+            //NaN for invalid parameters
             assert.isNaN(pdf(0, 0, 0));
             assert.isNaN(pdf(0, 0, -3));
 
@@ -47,7 +47,7 @@ suite.addBatch({
             assert.epsilon(tol, cdf(3, 0, 3), 1 - (0.5 * Math.exp(-1)));
             assert.epsilon(tol, cdf(-2, 0, 4), 0.5 * Math.exp(-0.5));
 
-            //Zero returned for invalid parameters
+            //NaN returned for invalid parameters
             assert.isNaN(cdf(1, 1, 0));
             assert.isNaN(cdf(1, 1, -2));
         },
