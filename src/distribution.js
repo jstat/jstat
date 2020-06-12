@@ -535,6 +535,7 @@ var arcsineCDF = require( '@stdlib/stats/base/dists/arcsine/cdf' );
 var arcsineQuantile = require( '@stdlib/stats/base/dists/arcsine/quantile' );
 var arcsineMean = require( '@stdlib/stats/base/dists/arcsine/mean' );
 var arcsineMedian = require( '@stdlib/stats/base/dists/arcsine/median' );
+var arcsineMode = require( '@stdlib/stats/base/dists/arcsine/mode' );
 var arcsineSample = require( '@stdlib/random/base/arcsine' );
 var arcsineVariance = require( '@stdlib/stats/base/dists/arcsine/variance' );
 
@@ -545,11 +546,7 @@ jStat.extend(jStat.arcsine, {
   inv: arcsineQuantile,
   mean: arcsineMean,
   median: arcsineMedian,
-
-  mode: function mode(/*a, b*/) {
-    throw new Error('mode is not yet implemented');
-  },
-
+  mode: arcsineMode,
   sample: arcsineSample,
   variance: arcsineVariance
 });
