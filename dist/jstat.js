@@ -68890,16 +68890,36 @@ _$jStat_887.extend(_$jStat_887.normal, {
 
 // extend pareto function with static methods
 _$jStat_887.extend(_$jStat_887.pareto, {
-  pdf: _$pdf_799,
-  cdf: _$cdf_791,
-  inv: _$quantile_802,
-  mean: _$mean_792,
-  median: _$median_794,
-  mode: _$mode_796,
-  variance : _$variance_804
+  pdf: function pdf(x, scale, shape) {
+    return _$pdf_799(x, shape, scale);
+  },
+
+  cdf: function cdf(x, scale, shape) {
+    return _$cdf_791(x, shape, scale);
+  },
+
+  inv: function inv(x, scale, shape) {
+    return _$quantile_802(x, shape, scale);
+  },
+
+  mean: function mean(x, scale, shape) {
+    return _$mean_792(x, shape, scale);
+  },
+
+  median: function median(x, scale, shape) {
+    return _$median_794(x, shape, scale);
+  },
+
+  mode: function mode(x, scale, shape) {
+    return _$mode_796(x, shape, scale);
+  },
+
+  variance: function variance(x, scale, shape) {
+    return _$variance_804(x, shape, scale);
+  }
 });
 
-
+// FIXME: stdlib
 
 // extend studentt function with static methods
 _$jStat_887.extend(_$jStat_887.studentt, {

@@ -347,16 +347,36 @@ var paretoVariance = require( '@stdlib/stats/base/dists/pareto-type1/variance' )
 
 // extend pareto function with static methods
 jStat.extend(jStat.pareto, {
-  pdf: paretoPDF,
-  cdf: paretoCDF,
-  inv: paretoQuantile,
-  mean: paretoMean,
-  median: paretoMedian,
-  mode: paretoMode,
-  variance : paretoVariance
+  pdf: function pdf(x, scale, shape) {
+    return paretoPDF(x, shape, scale);
+  },
+
+  cdf: function cdf(x, scale, shape) {
+    return paretoCDF(x, shape, scale);
+  },
+
+  inv: function inv(x, scale, shape) {
+    return paretoQuantile(x, shape, scale);
+  },
+
+  mean: function mean(x, scale, shape) {
+    return paretoMean(x, shape, scale);
+  },
+
+  median: function median(x, scale, shape) {
+    return paretoMedian(x, shape, scale);
+  },
+
+  mode: function mode(x, scale, shape) {
+    return paretoMode(x, shape, scale);
+  },
+
+  variance: function variance(x, scale, shape) {
+    return paretoVariance(x, shape, scale);
+  }
 });
 
-
+// FIXME: stdlib
 
 // extend studentt function with static methods
 jStat.extend(jStat.studentt, {
