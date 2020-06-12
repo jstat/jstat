@@ -59,9 +59,10 @@ suite.addBatch({
     },
     'check pdf calculation, when a = b': function(jStat) {
       var tol = 0.0000001;
-      assert.isNaN(jStat.triangular.pdf(-17, -10, -10, -10));           // x < a
-      assert.isNaN(jStat.triangular.pdf(-10, -10, -10, -10));           // a = x = b
-      assert.isNaN(jStat.triangular.pdf(0, -10, -10, -10));             // b < x
+      // Degenerate distribution...
+      assert.epsilon(tol, jStat.triangular.pdf(-17, -10, -10, -10), 0);        // x < a
+      assert.epsilon(tol, jStat.triangular.pdf(-10, -10, -10, -10), Infinity); // a = x = b
+      assert.epsilon(tol, jStat.triangular.pdf(0, -10, -10, -10), 0);          // b < x
     }
   },
   'triangular cdf': {
@@ -165,9 +166,10 @@ suite.addBatch({
     },
     'check inv calculation, when a = b': function(jStat) {
       var tol = 0.0000001;
-      assert.isNaN(jStat.triangular.inv(0, -10, -10, -10));
-      assert.isNaN(jStat.triangular.inv(0.5, -10, -10, -10));
-      assert.isNaN(jStat.triangular.inv(1, -10, -10, -10));
+      // Degenerate distribution...
+      assert.epsilon(tol, jStat.triangular.inv(0, -10, -10, -10), -10);
+      assert.epsilon(tol, jStat.triangular.inv(0.5, -10, -10, -10), -10);
+      assert.epsilon(tol, jStat.triangular.inv(1, -10, -10, -10), -10);
     }
   }
 });
