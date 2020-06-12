@@ -458,7 +458,7 @@ jStat.extend(jStat.uniform, {
   median: uniformMedian,
 
   mode: function mode(/*a, b*/) {
-    throw new Error('mode is not yet implemented');
+    throw new Error('mode is not implemented');
   },
 
   sample: uniformSample,
@@ -494,41 +494,13 @@ function betinc(x, a, b, eps) {
   return a1 / a;
 }
 
+var binomialPMF = require( '@stdlib/stats/base/dists/binomial/pmf' );
+var binomialCDF = require( '@stdlib/stats/base/dists/binomial/cdf' );
 
-// extend uniform function with static methods
+// extend binomial function with static methods
 jStat.extend(jStat.binomial, {
-  pdf: function pdf(k, n, p) {
-    return (p === 0 || p === 1) ?
-      ((n * p) === k ? 1 : 0) :
-      jStat.combination(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k);
-  },
-
-  cdf: function cdf(x, n, p) {
-    var betacdf;
-    var eps = 1e-10;
-
-    if (x < 0)
-      return 0;
-    if (x >= n)
-      return 1;
-    if (p < 0 || p > 1 || n <= 0)
-      return NaN;
-
-    x = Math.floor(x);
-    var z = p;
-    var a = x + 1;
-    var b = n - x;
-    var s = a + b;
-    var bt = Math.exp(jStat.gammaln(s) - jStat.gammaln(b) -
-                      jStat.gammaln(a) + a * Math.log(z) + b * Math.log(1 - z));
-
-    if (z < (a + 1) / (s + 2))
-      betacdf = bt * betinc(z, a, b, eps);
-    else
-      betacdf = 1 - bt * betinc(1 - z, b, a, eps);
-
-    return Math.round((1 - betacdf) * (1 / eps)) / (1 / eps);
-  }
+  pdf: binomialPMF,
+  cdf: binomialCDF
 });
 
 
