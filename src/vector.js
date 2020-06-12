@@ -9,9 +9,11 @@ function clip(arg, min, max) {
   return Math.max(min, Math.min(arg, max));
 }
 
+// var gsumors = require( '@stdlib/blas/ext/base/gsumors' ); // FIXME
 
 // sum of an array
 jStat.sum = function sum(arr) {
+  // return gsumors(arr.length, arr, 1); // FIXME
   var sum = 0;
   var i = arr.length;
   while (--i >= 0)
@@ -45,6 +47,7 @@ jStat.sumsqerr = function sumsqerr(arr) {
 
 // sum of an array in each row
 jStat.sumrow = function sumrow(arr) {
+  // return gsumors(arr.length, arr, 1); // FIXME
   var sum = 0;
   var i = arr.length;
   while (--i >= 0)
@@ -61,9 +64,11 @@ jStat.product = function product(arr) {
   return prod;
 };
 
+// var gmin = require( '@stdlib/stats/base/min' ); // FIXME
 
 // minimum value of an array
 jStat.min = function min(arr) {
+  // return gmin(arr.length, arr, 1); // FIXME
   var low = arr[0];
   var i = 0;
   while (++i < arr.length)
@@ -72,9 +77,11 @@ jStat.min = function min(arr) {
   return low;
 };
 
+// var gmax = require( '@stdlib/stats/base/max' ); // FIXME
 
 // maximum value of an array
 jStat.max = function max(arr) {
+  // return gmax(arr.length, arr, 1); // FIXME
   var high = arr[0];
   var i = 0;
   while (++i < arr.length)
@@ -96,9 +103,11 @@ jStat.unique = function unique(arr) {
   return _arr;
 };
 
+// var gmeanors = require( '@stdlib/stats/base/meanors' ); // FIXME
 
 // mean value of an array
 jStat.mean = function mean(arr) {
+  // return gmeanors(arr.length, arr, 1); // FIXME
   return jStat.sum(arr) / arr.length;
 };
 
@@ -125,9 +134,11 @@ jStat.median = function median(arr) {
     : _arr[(arrlen / 2) | 0 ];
 };
 
+// var gcusumors = require( '@stdlib/blas/ext/base/cusumors' ); // FIXME
 
 // cumulative sum of an array
 jStat.cumsum = function cumsum(arr) {
+  // return gcusumors(arr.length, arr, 1); // FIXME
   return jStat.cumreduce(arr, function (a, b) { return a + b; });
 };
 
@@ -217,15 +228,20 @@ jStat.mode = function mode(arr) {
   return numMaxCount === 0 ? mode_arr[0] : mode_arr;
 };
 
+// var grange = require( '@stdlib/stats/base/range' ); // FIXME
 
 // range of an array
 jStat.range = function range(arr) {
+  // return grange(arr.length, arr, 1); // FIXME
   return jStat.max(arr) - jStat.min(arr);
 };
+
+// var gvariance = require( '@stdlib/stats/base/variance' ); // FIXME
 
 // variance of an array
 // flag = true indicates sample instead of population
 jStat.variance = function variance(arr, flag) {
+  // return gvariance(arr.length, flag ? 1 : 0, arr, 1); // FIXME
   return jStat.sumsqerr(arr) / (arr.length - (flag ? 1 : 0));
 };
 
@@ -247,9 +263,12 @@ jStat.deviation = function (arr) {
   return dev;
 };
 
+// var gstdev = require( '@stdlib/stats/base/stdev' ); // FIXME
+
 // standard deviation of an array
 // flag = true indicates sample instead of population
 jStat.stdev = function stdev(arr, flag) {
+  // return gstdev(arr.length, flag ? 1 : 0, arr, 1); // FIXME
   return Math.sqrt(jStat.variance(arr, flag));
 };
 
