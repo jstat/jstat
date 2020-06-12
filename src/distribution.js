@@ -397,46 +397,47 @@ jStat.extend(jStat.studentt, {
   variance: tVariance
 });
 
-
+var weibullPDF = require( '@stdlib/stats/base/dists/weibull/pdf' );
+var weibullCDF = require( '@stdlib/stats/base/dists/weibull/cdf' );
+var weibullQuantile = require( '@stdlib/stats/base/dists/weibull/quantile' );
+var weibullMean = require( '@stdlib/stats/base/dists/weibull/mean' );
+var weibullMedian = require( '@stdlib/stats/base/dists/weibull/median' );
+var weibullMode = require( '@stdlib/stats/base/dists/weibull/mode' );
+var weibullSample = require( '@stdlib/random/base/t' );
+var weibullVariance = require( '@stdlib/stats/base/dists/weibull/variance' );
 
 // extend weibull function with static methods
 jStat.extend(jStat.weibull, {
   pdf: function pdf(x, scale, shape) {
-    if (x < 0 || scale < 0 || shape < 0)
-      return 0;
-    return (shape / scale) * Math.pow((x / scale), (shape - 1)) *
-        Math.exp(-(Math.pow((x / scale), shape)));
+    return weibullPDF(x, shape, scale);
   },
 
   cdf: function cdf(x, scale, shape) {
-    return x < 0 ? 0 : 1 - Math.exp(-Math.pow((x / scale), shape));
+    return weibullCDF(x, shape, scale);
   },
 
   inv: function(p, scale, shape) {
-    return scale * Math.pow(-Math.log(1 - p), 1 / shape);
+    return weibullQuantile(p, shape, scale);
   },
 
   mean : function(scale, shape) {
-    return scale * jStat.gammafn(1 + 1 / shape);
+    return weibullMean(shape, scale);
   },
 
   median: function median(scale, shape) {
-    return scale * Math.pow(Math.log(2), 1 / shape);
+    return weibullMedian(shape, scale);
   },
 
   mode: function mode(scale, shape) {
-    if (shape <= 1)
-      return 0;
-    return scale * Math.pow((shape - 1) / shape, 1 / shape);
+    return weibullMode(shape, scale);
   },
 
   sample: function sample(scale, shape) {
-    return scale * Math.pow(-Math.log(jStat._random_fn()), 1 / shape);
+    return weibullSample(shape, scale);
   },
 
   variance: function variance(scale, shape) {
-    return scale * scale * jStat.gammafn(1 + 2 / shape) -
-        Math.pow(jStat.weibull.mean(scale, shape), 2);
+    return weibullVariance(shape, scale);
   }
 });
 
