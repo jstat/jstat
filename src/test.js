@@ -18,7 +18,7 @@ jStat.extend({
     return (args[0] - jStat.mean(args[1])) / jStat.stdev(args[1], args[2]);
   },
 
-  // 3 different paramter lists:
+  // 3 different parameter lists:
   // (value, mean, sd, sides)
   // (zscore, sides)
   // (value, array, sides, flag)
@@ -75,7 +75,7 @@ jStat.extend({
        (jStat.stdev(args[1], true) / Math.sqrt(args[1].length)));
   },
 
-  // 3 different paramter lists:
+  // 3 different parameter lists:
   // (value, mean, sd, n, sides)
   // (tscore, n, sides)
   // (value, array, sides)
@@ -115,7 +115,7 @@ jStat.extend(jStat.fn, {
 
 // F Statistics
 jStat.extend({
-  // Paramter list is as follows:
+  // Parameter list is as follows:
   // (array1, array2, array3, ...)
   // or it is an array of arrays
   // array of arrays conversion
@@ -153,7 +153,7 @@ jStat.extend({
     return expVar / unexpVar;
   },
 
-  // 2 different paramter setups
+  // 2 different parameter setups
   // (array1, array2, array3, ...)
   // (anovafscore, df1, df2)
   anovaftest: function anovaftest() {
