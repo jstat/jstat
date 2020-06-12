@@ -503,28 +503,13 @@ jStat.extend(jStat.binomial, {
   cdf: binomialCDF
 });
 
+var negativeBinomialPMF = require( '@stdlib/stats/base/dists/negative-binomial/pmf' );
+var negativeBinomialCDF = require( '@stdlib/stats/base/dists/negative-binomial/cdf' );
 
-
-// extend uniform function with static methods
+// extend negbin function with static methods
 jStat.extend(jStat.negbin, {
-  pdf: function pdf(k, r, p) {
-    if (k !== k >>> 0)
-      return false;
-    if (k < 0)
-      return 0;
-    return jStat.combination(k + r - 1, r - 1) *
-        Math.pow(1 - p, k) * Math.pow(p, r);
-  },
-
-  cdf: function cdf(x, r, p) {
-    var sum = 0,
-    k = 0;
-    if (x < 0) return 0;
-    for (; k <= x; k++) {
-      sum += jStat.negbin.pdf(k, r, p);
-    }
-    return sum;
-  }
+  pdf: negativeBinomialPMF,
+  cdf: negativeBinomialCDF
 });
 
 
