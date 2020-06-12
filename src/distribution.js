@@ -199,42 +199,23 @@ jStat.extend(jStat.gamma, {
   }
 });
 
+var invgammaPDF = require( '@stdlib/stats/base/dists/invgamma/pdf' );
+var invgammaCDF = require( '@stdlib/stats/base/dists/invgamma/cdf' );
+var invgammaQuantile = require( '@stdlib/stats/base/dists/invgamma/quantile' );
+var invgammaMean = require( '@stdlib/stats/base/dists/invgamma/mean' );
+var invgammaMode = require( '@stdlib/stats/base/dists/invgamma/mode' );
+var invgammaSample = require( '@stdlib/random/base/invgamma' );
+var invgammaVariance = require( '@stdlib/stats/base/dists/invgamma/variance' );
+
 // extend inverse gamma function with static methods
 jStat.extend(jStat.invgamma, {
-  pdf: function pdf(x, shape, scale) {
-    if (x <= 0)
-      return 0;
-    return Math.exp(-(shape + 1) * Math.log(x) - scale / x -
-                    jStat.gammaln(shape) + shape * Math.log(scale));
-  },
-
-  cdf: function cdf(x, shape, scale) {
-    if (x <= 0)
-      return 0;
-    return 1 - jStat.lowRegGamma(shape, scale / x);
-  },
-
-  inv: function(p, shape, scale) {
-    return scale / jStat.gammapinv(1 - p, shape);
-  },
-
-  mean : function(shape, scale) {
-    return (shape > 1) ? scale / (shape - 1) : undefined;
-  },
-
-  mode: function mode(shape, scale) {
-    return scale / (shape + 1);
-  },
-
-  sample: function sample(shape, scale) {
-    return scale / jStat.randg(shape);
-  },
-
-  variance: function variance(shape, scale) {
-    if (shape <= 2)
-      return undefined;
-    return scale * scale / ((shape - 1) * (shape - 1) * (shape - 2));
-  }
+  pdf: invgammaPDF,
+  cdf: invgammaCDF,
+  inv: invgammaQuantile,
+  mean: invgammaMean,
+  mode: invgammaMode,
+  sample: invgammaSample,
+  variance: invgammaVariance
 });
 
 
