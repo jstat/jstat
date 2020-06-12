@@ -86,20 +86,6 @@ suite.addBatch({
     'topic': function() {
       return jStat;
     },
-    // Checked against R's dkumar(p, shape1, shape2, log=FALSE) in package VGAM
-    //   install.packages("VGAM")
-    //   library("VGAM")
-    //   options(digits=10)
-    //   dkumar(c(0, 0.5, 1), 0.5, 0.5)
-    //   dkumar(c(0, 0.5, 1), 0.8, 1) # Note: Incorrectly returns NaN for x = 1!
-    //   dkumar(c(0, 0.5, 1), 1, 0.4) # Note: Incorrectly returns NaN for x = 0!
-    //   dkumar(c(0, 0.5, 1), 0.6, 1.2)
-    //   dkumar(c(0, 0.5, 1), 1.3, 0.5)
-    //   dkumar(c(0, 0.5, 1), 1, 1) # Note: Incorrectly returns NaN for x = 0 and x = 1!
-    //   dkumar(c(0, 0.5, 1), 2, 1) # Note: Incorrectly returns NaN for x = 1!
-    //   dkumar(c(0, 0.5, 1), 1, 1.5) # Note: Incorrectly returns NaN for x = 0!
-    //   dkumar(c(0, 0.5, 1), 1.5, 1.5)
-    //   dkumar(c(0, 0.5, 1), 7, 25)
     'check pdf calculation': function(jStat) {
       var tol = 0.0000001;
       // 'U'-shaped distribution
