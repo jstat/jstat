@@ -376,47 +376,25 @@ jStat.extend(jStat.pareto, {
   }
 });
 
-// FIXME: stdlib
+var tPDF = require( '@stdlib/stats/base/dists/t/pdf' );
+var tCDF = require( '@stdlib/stats/base/dists/t/cdf' );
+var tQuantile = require( '@stdlib/stats/base/dists/t/quantile' );
+var tMean = require( '@stdlib/stats/base/dists/t/mean' );
+var tMedian = require( '@stdlib/stats/base/dists/t/median' );
+var tMode = require( '@stdlib/stats/base/dists/t/mode' );
+var tSample = require( '@stdlib/random/base/t' );
+var tVariance = require( '@stdlib/stats/base/dists/t/variance' );
 
 // extend studentt function with static methods
 jStat.extend(jStat.studentt, {
-  pdf: function pdf(x, dof) {
-    dof = dof > 1e100 ? 1e100 : dof;
-    return (1/(Math.sqrt(dof) * jStat.betafn(0.5, dof/2))) *
-        Math.pow(1 + ((x * x) / dof), -((dof + 1) / 2));
-  },
-
-  cdf: function cdf(x, dof) {
-    var dof2 = dof / 2;
-    return jStat.ibeta((x + Math.sqrt(x * x + dof)) /
-                       (2 * Math.sqrt(x * x + dof)), dof2, dof2);
-  },
-
-  inv: function(p, dof) {
-    var x = jStat.ibetainv(2 * Math.min(p, 1 - p), 0.5 * dof, 0.5);
-    x = Math.sqrt(dof * (1 - x) / x);
-    return (p > 0.5) ? x : -x;
-  },
-
-  mean: function mean(dof) {
-    return (dof > 1) ? 0 : undefined;
-  },
-
-  median: function median(/*dof*/) {
-    return 0;
-  },
-
-  mode: function mode(/*dof*/) {
-    return 0;
-  },
-
-  sample: function sample(dof) {
-    return jStat.randn() * Math.sqrt(dof / (2 * jStat.randg(dof / 2)));
-  },
-
-  variance: function variance(dof) {
-    return (dof  > 2) ? dof / (dof - 2) : (dof > 1) ? Infinity : undefined;
-  }
+  pdf: tPDF,
+  cdf: tCDF,
+  inv: tQuantile,
+  mean: tMean,
+  median: tMedian,
+  mode: tMode,
+  sample: tSample,
+  variance: tVariance
 });
 
 
