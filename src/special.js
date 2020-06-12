@@ -8,14 +8,13 @@ jStat.loggam = jStat.gammaln;
 // gamma of x
 jStat.gammafn = require( '@stdlib/math/base/special/gamma' );
 
-
 var gammainc = require( '@stdlib/math/base/special/gammainc' );
+
 // lower incomplete gamma function, which is usually typeset with a
 // lower-case greek gamma as the function symbol
 jStat.gammap = function gammap(a, x) {
   return gammainc(x, a, false);
 };
-
 
 // The lower regularized incomplete gamma function, usually written P(a,x)
 jStat.lowRegGamma = function lowRegGamma(a, x) {
@@ -29,32 +28,19 @@ jStat.factorialln = require( '@stdlib/math/base/special/factorialln' );
 jStat.factorial = require( '@stdlib/math/base/special/factorial' );
 
 // combinations of n, m
-jStat.combination = function combination(n, m) {
-  // make sure n or m don't exceed the upper limit of usable values
-  return (n > 170 || m > 170)
-      ? Math.exp(jStat.combinationln(n, m))
-      : (jStat.factorial(n) / jStat.factorial(m)) / jStat.factorial(n - m);
-};
-
-
-jStat.combinationln = function combinationln(n, m){
-  return jStat.factorialln(n) - jStat.factorialln(m) - jStat.factorialln(n - m);
-};
-
+jStat.combination = require( '@stdlib/math/base/special/binomcoef' );
+jStat.combinationln = require( '@stdlib/math/base/special/binomcoefln' );
 
 // permutations of n, m
 jStat.permutation = function permutation(n, m) {
   return jStat.factorial(n) / jStat.factorial(n - m);
 };
 
-
 // beta function
 jStat.betafn = require( '@stdlib/math/base/special/beta' );
 
-
 // natural logarithm of beta function
 jStat.betaln = require( '@stdlib/math/base/special/betaln' );
-
 
 // Evaluates the continued fraction for incomplete beta function by modified
 // Lentz's method.
@@ -104,26 +90,20 @@ jStat.betacf = function betacf(x, a, b) {
   return h;
 };
 
-
 // Returns the inverse of the lower regularized inomplete gamma function
 jStat.gammapinv = require( '@stdlib/math/base/special/gammaincinv' );
-
 
 // Returns the error function erf(x)
 jStat.erf = require( '@stdlib/math/base/special/erf' );
 
-
 // Returns the complmentary error function erfc(x)
 jStat.erfc = require( '@stdlib/math/base/special/erfc' );
-
 
 // Returns the inverse of the complementary error function
 jStat.erfcinv = require( '@stdlib/math/base/special/erfcinv' );
 
-
 // Returns the inverse of the incomplete beta function
 jStat.ibetainv = require( '@stdlib/math/base/special/betaincinv' );
-
 
 // Returns the incomplete beta function I_x(a,b)
 jStat.ibeta = require( '@stdlib/math/base/special/betainc' );

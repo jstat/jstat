@@ -1,6 +1,8 @@
 /* Provides functions for the solution of linear system of equations, integration, extrapolation,
  * interpolation, eigenvalue problems, differential equations and PCA analysis. */
 var jStat = require( './core.js' );
+// var gdot = require( '@stdlib/blas/base/gdot' ); // FIXME
+// var gnrm2 = require( '@stdlib/blas/base/gnrm2' ); // FIXME
 
 var push = Array.prototype.push;
 var isArray = jStat.utils.isArray;
@@ -79,8 +81,20 @@ jStat.extend({
   },
 
 
-  // Returns the dot product of two matricies
-  dot: function dot(arr, arg) {
+  // Returns the dot product of two matrices
+  dot: function dot(arr, arg) { // FIXME
+    // if (!isUsable(arr[0])) arr = [ arr ];
+    // if (!isUsable(arg[0])) arg = [ arg ];
+    // // convert column to row vector
+    // var left = (arr[0].length === 1 && arr.length !== 1) ? jStat.transpose(arr) : arr,
+    // right = (arg[0].length === 1 && arg.length !== 1) ? jStat.transpose(arg) : arg,
+    // res = [],
+    // nrow = left.length,
+    // ncol = left[0].length;
+    // for (row = 0; row < nrow; row++) {
+    //   res.push(gdot(ncol, left[row], 1, right[row], 1));
+    // }
+    // return (res.length === 1) ? res[0] : res;
     if (!isUsable(arr[0])) arr = [ arr ];
     if (!isUsable(arg[0])) arg = [ arg ];
     // convert column to row vector
@@ -135,6 +149,8 @@ jStat.extend({
       nnorm += Math.pow(Math.abs(arr[i]), p);
     }
     return Math.pow(nnorm, 1 / p);
+
+    // FIXME: use gnrm2 for L2-norm
   },
 
   // computes the angle between two vectors in rads
@@ -596,7 +612,7 @@ jStat.extend({
   }()),
 
   lstsq: (function() {
-    // solve least squard problem for Ax=b as QR decomposition way if b is
+    // solve least squared problem for Ax=b as QR decomposition way if b is
     // [[b1],[b2],[b3]] form will return [[x1],[x2],[x3]] array form solution
     // else b is [b1,b2,b3] form will return [x1,x2,x3] array form solution
     function R_I(A) {

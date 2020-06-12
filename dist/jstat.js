@@ -6614,9 +6614,11 @@ function clip(arg, min, max) {
   return Math.max(min, Math.min(arg, max));
 }
 
+// var gsumors = require( '@stdlib/blas/ext/base/gsumors' ); // FIXME
 
 // sum of an array
 _$jStat_1059.sum = function sum(arr) {
+  // return gsumors(arr.length, arr, 1); // FIXME
   var sum = 0;
   var i = arr.length;
   while (--i >= 0)
@@ -6650,6 +6652,7 @@ _$jStat_1059.sumsqerr = function sumsqerr(arr) {
 
 // sum of an array in each row
 _$jStat_1059.sumrow = function sumrow(arr) {
+  // return gsumors(arr.length, arr, 1); // FIXME
   var sum = 0;
   var i = arr.length;
   while (--i >= 0)
@@ -6666,9 +6669,11 @@ _$jStat_1059.product = function product(arr) {
   return prod;
 };
 
+// var gmin = require( '@stdlib/stats/base/min' ); // FIXME
 
 // minimum value of an array
 _$jStat_1059.min = function min(arr) {
+  // return gmin(arr.length, arr, 1); // FIXME
   var low = arr[0];
   var i = 0;
   while (++i < arr.length)
@@ -6677,9 +6682,11 @@ _$jStat_1059.min = function min(arr) {
   return low;
 };
 
+// var gmax = require( '@stdlib/stats/base/max' ); // FIXME
 
 // maximum value of an array
 _$jStat_1059.max = function max(arr) {
+  // return gmax(arr.length, arr, 1); // FIXME
   var high = arr[0];
   var i = 0;
   while (++i < arr.length)
@@ -6701,9 +6708,11 @@ _$jStat_1059.unique = function unique(arr) {
   return _arr;
 };
 
+// var gmeanors = require( '@stdlib/stats/base/meanors' ); // FIXME
 
 // mean value of an array
 _$jStat_1059.mean = function mean(arr) {
+  // return gmeanors(arr.length, arr, 1); // FIXME
   return _$jStat_1059.sum(arr) / arr.length;
 };
 
@@ -6730,9 +6739,11 @@ _$jStat_1059.median = function median(arr) {
     : _arr[(arrlen / 2) | 0 ];
 };
 
+// var gcusumors = require( '@stdlib/blas/ext/base/cusumors' ); // FIXME
 
 // cumulative sum of an array
 _$jStat_1059.cumsum = function cumsum(arr) {
+  // return gcusumors(arr.length, arr, 1); // FIXME
   return _$jStat_1059.cumreduce(arr, function (a, b) { return a + b; });
 };
 
@@ -6822,15 +6833,20 @@ _$jStat_1059.mode = function mode(arr) {
   return numMaxCount === 0 ? mode_arr[0] : mode_arr;
 };
 
+// var grange = require( '@stdlib/stats/base/range' ); // FIXME
 
 // range of an array
 _$jStat_1059.range = function range(arr) {
+  // return grange(arr.length, arr, 1); // FIXME
   return _$jStat_1059.max(arr) - _$jStat_1059.min(arr);
 };
+
+// var gvariance = require( '@stdlib/stats/base/variance' ); // FIXME
 
 // variance of an array
 // flag = true indicates sample instead of population
 _$jStat_1059.variance = function variance(arr, flag) {
+  // return gvariance(arr.length, flag ? 1 : 0, arr, 1); // FIXME
   return _$jStat_1059.sumsqerr(arr) / (arr.length - (flag ? 1 : 0));
 };
 
@@ -6852,9 +6868,12 @@ _$jStat_1059.deviation = function (arr) {
   return dev;
 };
 
+// var gstdev = require( '@stdlib/stats/base/stdev' ); // FIXME
+
 // standard deviation of an array
 // flag = true indicates sample instead of population
 _$jStat_1059.stdev = function stdev(arr, flag) {
+  // return gstdev(arr.length, flag ? 1 : 0, arr, 1); // FIXME
   return Math.sqrt(_$jStat_1059.variance(arr, flag));
 };
 
@@ -25350,143 +25369,103 @@ var _$factorial_321 = _$factorial_319;
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the License for the specific language governing permissions and
 * limitations under the License.
-*
-*
-* ## Notice
-*
-* The original C++ code and copyright notice are from the [Boost library]{http://www.boost.org/doc/libs/1_64_0/boost/math/special_functions/beta.hpp}. The implementation has been modified for JavaScript.
-*
-* ```text
-* (C) Copyright John Maddock 2006.
-*
-* Use, modification and distribution are subject to the
-* Boost Software License, Version 1.0. (See accompanying file
-* LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
-* ```
 */
 
 'use strict';
 
 // MODULES //
 
+/* removed: var _$isInteger_229 = require( '@stdlib/math/base/assert/is-integer' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$log1p_469 = require( '@stdlib/math/base/special/log1p' ); */;
-/* removed: var _$sqrt_505 = require( '@stdlib/math/base/special/sqrt' ); */;
-/* removed: var _$abs_244 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$exp_314 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$pow_480 = require( '@stdlib/math/base/special/pow' ); */;
-/* removed: var _$E_187 = require( '@stdlib/constants/math/float64-e' ); */;
-/* removed: var _$FLOAT64_EPSILON_188 = require( '@stdlib/constants/math/float64-eps' ); */;
-/* removed: var _$evalrational_259 = require( './lanczos_sum_expg_scaled.js' ); */; // Lanczos approximation scaled by exp(G)
-
-
-// VARIABLES //
-
-var __G_257 = 10.90051099999999983936049829935654997826;
+/* removed: var _$isOdd_239 = require( '@stdlib/math/base/assert/is-odd' ); */;
+/* removed: var _$round_497 = require( '@stdlib/math/base/special/round' ); */;
 
 
 // MAIN //
 
 /**
-* Evaluate the beta function.
+* Computes the binomial coefficient of two integers.
 *
-* @param {NonNegativeNumber} a - input value
-* @param {NonNegativeNumber} b - input value
-* @returns {number} evaluated beta function
+* ## Method
+*
+* -   Instead of evaluating the factorial form, which is inefficient and prone to overflow for large inputs arguments, this module computes the following multiplicative representation of the binomial coefficient for integer arguments
+*
+*     ```tex
+*     \binom nk = \prod_{i=1}^k \frac{n+1-i}{i}
+*     ```
+*
+* @param {integer} n - input value
+* @param {integer} k - second input value
+* @returns {integer} function value
 *
 * @example
-* var v = beta( 0.0, 0.5 );
-* // returns Infinity
+* var v = binomcoef( 8, 2 );
+* // returns 28
 *
 * @example
-* var v = beta( 1.0, 1.0 );
-* // returns 1.0
+* var v = binomcoef( 0, 0 );
+* // returns 1
 *
 * @example
-* var v = beta( -1.0, 2.0 );
+* var v = binomcoef( -4, 2 );
+* // returns 10
+*
+* @example
+* var v = binomcoef( NaN, 3 );
 * // returns NaN
 *
 * @example
-* var v = beta( 5.0, 0.2 );
-* // returns ~3.382
+* var v = binomcoef( 5, NaN );
+* // returns NaN
 *
 * @example
-* var v = beta( 4.0, 1.0 );
-* // returns 0.25
-*
-* @example
-* var v = beta( NaN, 2.0 );
+* var v = binomcoef( NaN, NaN );
 * // returns NaN
 */
-function beta( a, b ) {
-	var ambh;
-	var agh;
-	var bgh;
-	var cgh;
+function binomcoef( n, k ) {
 	var res;
-	var tmp;
-	var c;
-
-	if ( _$isnan_231( a ) || _$isnan_231( b ) ) {
+	var j;
+	if ( _$isnan_231( n ) || _$isnan_231( k ) ) {
 		return NaN;
 	}
-	if ( a < 0.0 || b < 0.0 ) {
+	if ( !_$isInteger_229( n ) || !_$isInteger_229( k ) ) {
 		return NaN;
 	}
-	if ( b === 1.0 ) {
-		return 1.0 / a;
+	if ( k < 0 ) {
+		return 0;
 	}
-	if ( a === 1.0 ) {
-		return 1.0 / b;
-	}
-	c = a + b;
-	if ( c < _$FLOAT64_EPSILON_188 ) {
-		res = c / a;
-		res /= b;
+	if ( n < 0 ) {
+		res = binomcoef( -n + k - 1, k );
+		if ( _$isOdd_239( k ) ) {
+			res = -res;
+		}
 		return res;
 	}
-
-	// Special cases:
-	if ( c === a && b < _$FLOAT64_EPSILON_188 ) {
-		return 1.0 / b;
+	if ( k > n ) {
+		return 0;
 	}
-	if ( c === b && a < _$FLOAT64_EPSILON_188 ) {
-		return 1.0 / a;
+	if ( k === 0 || k === n ) {
+		return 1;
 	}
-
-	if ( a < b ) {
-		// Swap `a` and `b`:
-		tmp = b;
-		b = a;
-		a = tmp;
+	if ( k === 1 || k === n - 1 ) {
+		return n;
 	}
-
-	// Lanczos calculation:
-	agh = a + __G_257 - 0.5;
-	bgh = b + __G_257 - 0.5;
-	cgh = c + __G_257 - 0.5;
-	res = _$evalrational_259( a ) * ( _$evalrational_259( b )/_$evalrational_259( c ) ); // eslint-disable-line max-len
-	ambh = a - 0.5 - b;
-	if ( ( _$abs_244( b*ambh ) < ( cgh*100.0 ) ) && a > 100.0 ) {
-		// Special case where the base of the power term is close to 1; compute `(1+x)^y` instead:
-		res *= _$exp_314( ambh * _$log1p_469( -b/cgh ) );
-	} else {
-		res *= _$pow_480( agh/cgh, ambh );
+	if ( n - k < k ) {
+		k = n - k;
 	}
-	if ( cgh > 1.0e10 ) {
-		// This avoids possible overflow, but appears to be marginally less accurate:
-		res *= _$pow_480( (agh/cgh)*(bgh/cgh), b );
-	} else {
-		res *= _$pow_480( (agh*bgh)/(cgh*cgh), b );
+	// Use recursive definition...
+	res = n;
+	for ( j = 2; j <= k; j++ ) {
+		res *= ( n - j + 1 ) / j;
 	}
-	res *= _$sqrt_505( _$E_187/bgh);
-	return res;
+	// Correct for rounding errors...
+	return ( _$isInteger_229( res ) ) ? res : _$round_497( res );
 }
 
 
 // EXPORTS //
 
-var _$beta_257 = beta;
+var _$binomcoef_268 = binomcoef;
 
 /**
 * @license Apache-2.0
@@ -25509,40 +25488,43 @@ var _$beta_257 = beta;
 'use strict';
 
 /**
-* Evaluate the beta function.
+* Compute the binomial coefficient.
 *
-* @module @stdlib/math/base/special/beta
+* @module @stdlib/math/base/special/binomcoef
 *
 * @example
-* var beta = require( '@stdlib/math/base/special/beta' );
+* var binomcoef = require( '@stdlib/math/base/special/binomcoef' );
 *
-* var v = beta( 0.0, 0.5 );
-* // returns Infinity
+* var v = binomcoef( 8, 2 );
+* // returns 28
 *
-* v = beta( 1.0, 1.0 );
-* // returns 1.0
+* v = binomcoef( 0, 0 );
+* // returns 1
 *
-* v = beta( -1.0, 2.0 );
+* v = binomcoef( -4, 2 );
+* // returns 10
+*
+* v = binomcoef( 5, 3 );
+* // returns 10
+*
+* v = binomcoef( NaN, 3 );
 * // returns NaN
 *
-* v = beta( 5.0, 0.2 );
-* // returns ~3.382
+* v = binomcoef( 5, NaN );
+* // returns NaN
 *
-* v = beta( 4.0, 1.0 );
-* // returns 0.25
-*
-* v = beta( NaN, 2.0 );
+* v = binomcoef( NaN, NaN );
 * // returns NaN
 */
 
 // MODULES //
 
-/* removed: var _$beta_257 = require( './beta.js' ); */;
+/* removed: var _$binomcoef_268 = require( './binomcoef.js' ); */;
 
 
 // EXPORTS //
 
-var _$beta_258 = _$beta_257;
+var _$binomcoef_269 = _$binomcoef_268;
 
 /**
 * @license Apache-2.0
@@ -25921,6 +25903,376 @@ var _$betaln_264 = betaln;
 // EXPORTS //
 
 var _$betaln_267 = _$betaln_264;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$isInteger_229 = require( '@stdlib/math/base/assert/is-integer' ); */;
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$betaln_267 = require( '@stdlib/math/base/special/betaln' ); */;
+/* removed: var _$abs_244 = require( '@stdlib/math/base/special/abs' ); */;
+/* removed: var _$ln_465 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$FLOAT64_NINF_205 = require( '@stdlib/constants/math/float64-ninf' ); */;
+
+
+// MAIN //
+
+/**
+* Computes the natural logarithm of the binomial coefficient of two integers.
+*
+* @param {integer} n - input value
+* @param {integer} k - second input value
+* @returns {number} function value
+*
+* @example
+* var v = binomcoefln( 8, 2 );
+* // returns ~3.332
+*
+* @example
+* var v = binomcoefln( 0, 0 );
+* // returns 0.0
+*
+* @example
+* var v = binomcoefln( -4, 2 );
+* // returns ~2.303
+*
+* @example
+* var v = binomcoefln( 88, 3 );
+* // returns ~11.606
+*
+* @example
+* var v = binomcoefln( NaN, 3 );
+* // returns NaN
+*
+* @example
+* var v = binomcoefln( 5, NaN );
+* // returns NaN
+*
+* @example
+* var v = binomcoefln( NaN, NaN );
+* // returns NaN
+*/
+function binomcoefln( n, k ) {
+	if ( _$isnan_231( n ) || _$isnan_231( k ) ) {
+		return NaN;
+	}
+	if ( !_$isInteger_229( n ) || !_$isInteger_229( k ) ) {
+		return NaN;
+	}
+	if ( n < 0.0 ) {
+		return binomcoefln( -n + k - 1.0, k );
+	}
+	if ( k < 0 ) {
+		return _$FLOAT64_NINF_205;
+	}
+	if ( k === 0 ) {
+		return 0.0;
+	}
+	if ( k === 1 ) {
+		return _$ln_465( _$abs_244( n ) );
+	}
+	if ( n < k ) {
+		return _$FLOAT64_NINF_205;
+	}
+	if ( n - k < 2 ) {
+		return binomcoefln( n, n - k );
+	}
+	// Case: n - k >= 2
+	return -_$ln_465( n + 1 ) - _$betaln_267( n - k + 1, k + 1 );
+}
+
+
+// EXPORTS //
+
+var _$binomcoefln_270 = binomcoefln;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Compute the natural logarithm of the binomial coefficient.
+*
+* @module @stdlib/math/base/special/binomcoefln
+*
+* @example
+* var binomcoefln = require( '@stdlib/math/base/special/binomcoefln' );
+*
+* var v = binomcoefln( 8, 2 );
+* // returns ~3.332
+*
+* v = binomcoefln( 0, 0 );
+* // returns 0.0
+*
+* v = binomcoefln( -4, 2 );
+* // returns ~2.302
+*
+* v = binomcoefln( 88, 3 );
+* // returns ~11.606
+*
+* v = binomcoefln( NaN, 3 );
+* // returns NaN
+*
+* v = binomcoefln( 5, NaN );
+* // returns NaN
+*
+* v = binomcoefln( NaN, NaN );
+* // returns NaN
+*/
+
+// MODULES //
+
+/* removed: var _$binomcoefln_270 = require( './binomcoefln.js' ); */;
+
+
+// EXPORTS //
+
+var _$binomcoefln_271 = _$binomcoefln_270;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+*
+* ## Notice
+*
+* The original C++ code and copyright notice are from the [Boost library]{http://www.boost.org/doc/libs/1_64_0/boost/math/special_functions/beta.hpp}. The implementation has been modified for JavaScript.
+*
+* ```text
+* (C) Copyright John Maddock 2006.
+*
+* Use, modification and distribution are subject to the
+* Boost Software License, Version 1.0. (See accompanying file
+* LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
+* ```
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$log1p_469 = require( '@stdlib/math/base/special/log1p' ); */;
+/* removed: var _$sqrt_505 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$abs_244 = require( '@stdlib/math/base/special/abs' ); */;
+/* removed: var _$exp_314 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$pow_480 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$E_187 = require( '@stdlib/constants/math/float64-e' ); */;
+/* removed: var _$FLOAT64_EPSILON_188 = require( '@stdlib/constants/math/float64-eps' ); */;
+/* removed: var _$evalrational_259 = require( './lanczos_sum_expg_scaled.js' ); */; // Lanczos approximation scaled by exp(G)
+
+
+// VARIABLES //
+
+var __G_257 = 10.90051099999999983936049829935654997826;
+
+
+// MAIN //
+
+/**
+* Evaluate the beta function.
+*
+* @param {NonNegativeNumber} a - input value
+* @param {NonNegativeNumber} b - input value
+* @returns {number} evaluated beta function
+*
+* @example
+* var v = beta( 0.0, 0.5 );
+* // returns Infinity
+*
+* @example
+* var v = beta( 1.0, 1.0 );
+* // returns 1.0
+*
+* @example
+* var v = beta( -1.0, 2.0 );
+* // returns NaN
+*
+* @example
+* var v = beta( 5.0, 0.2 );
+* // returns ~3.382
+*
+* @example
+* var v = beta( 4.0, 1.0 );
+* // returns 0.25
+*
+* @example
+* var v = beta( NaN, 2.0 );
+* // returns NaN
+*/
+function beta( a, b ) {
+	var ambh;
+	var agh;
+	var bgh;
+	var cgh;
+	var res;
+	var tmp;
+	var c;
+
+	if ( _$isnan_231( a ) || _$isnan_231( b ) ) {
+		return NaN;
+	}
+	if ( a < 0.0 || b < 0.0 ) {
+		return NaN;
+	}
+	if ( b === 1.0 ) {
+		return 1.0 / a;
+	}
+	if ( a === 1.0 ) {
+		return 1.0 / b;
+	}
+	c = a + b;
+	if ( c < _$FLOAT64_EPSILON_188 ) {
+		res = c / a;
+		res /= b;
+		return res;
+	}
+
+	// Special cases:
+	if ( c === a && b < _$FLOAT64_EPSILON_188 ) {
+		return 1.0 / b;
+	}
+	if ( c === b && a < _$FLOAT64_EPSILON_188 ) {
+		return 1.0 / a;
+	}
+
+	if ( a < b ) {
+		// Swap `a` and `b`:
+		tmp = b;
+		b = a;
+		a = tmp;
+	}
+
+	// Lanczos calculation:
+	agh = a + __G_257 - 0.5;
+	bgh = b + __G_257 - 0.5;
+	cgh = c + __G_257 - 0.5;
+	res = _$evalrational_259( a ) * ( _$evalrational_259( b )/_$evalrational_259( c ) ); // eslint-disable-line max-len
+	ambh = a - 0.5 - b;
+	if ( ( _$abs_244( b*ambh ) < ( cgh*100.0 ) ) && a > 100.0 ) {
+		// Special case where the base of the power term is close to 1; compute `(1+x)^y` instead:
+		res *= _$exp_314( ambh * _$log1p_469( -b/cgh ) );
+	} else {
+		res *= _$pow_480( agh/cgh, ambh );
+	}
+	if ( cgh > 1.0e10 ) {
+		// This avoids possible overflow, but appears to be marginally less accurate:
+		res *= _$pow_480( (agh/cgh)*(bgh/cgh), b );
+	} else {
+		res *= _$pow_480( (agh*bgh)/(cgh*cgh), b );
+	}
+	res *= _$sqrt_505( _$E_187/bgh);
+	return res;
+}
+
+
+// EXPORTS //
+
+var _$beta_257 = beta;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Evaluate the beta function.
+*
+* @module @stdlib/math/base/special/beta
+*
+* @example
+* var beta = require( '@stdlib/math/base/special/beta' );
+*
+* var v = beta( 0.0, 0.5 );
+* // returns Infinity
+*
+* v = beta( 1.0, 1.0 );
+* // returns 1.0
+*
+* v = beta( -1.0, 2.0 );
+* // returns NaN
+*
+* v = beta( 5.0, 0.2 );
+* // returns ~3.382
+*
+* v = beta( 4.0, 1.0 );
+* // returns 0.25
+*
+* v = beta( NaN, 2.0 );
+* // returns NaN
+*/
+
+// MODULES //
+
+/* removed: var _$beta_257 = require( './beta.js' ); */;
+
+
+// EXPORTS //
+
+var _$beta_258 = _$beta_257;
 
 /**
  * Helpers.
@@ -31690,179 +32042,6 @@ function ibetaFraction2( a, b, x, y, normalized, out ) {
 // EXPORTS //
 
 var _$ibetaFraction2_409 = ibetaFraction2;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-/* removed: var _$isInteger_229 = require( '@stdlib/math/base/assert/is-integer' ); */;
-/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$isOdd_239 = require( '@stdlib/math/base/assert/is-odd' ); */;
-/* removed: var _$round_497 = require( '@stdlib/math/base/special/round' ); */;
-
-
-// MAIN //
-
-/**
-* Computes the binomial coefficient of two integers.
-*
-* ## Method
-*
-* -   Instead of evaluating the factorial form, which is inefficient and prone to overflow for large inputs arguments, this module computes the following multiplicative representation of the binomial coefficient for integer arguments
-*
-*     ```tex
-*     \binom nk = \prod_{i=1}^k \frac{n+1-i}{i}
-*     ```
-*
-* @param {integer} n - input value
-* @param {integer} k - second input value
-* @returns {integer} function value
-*
-* @example
-* var v = binomcoef( 8, 2 );
-* // returns 28
-*
-* @example
-* var v = binomcoef( 0, 0 );
-* // returns 1
-*
-* @example
-* var v = binomcoef( -4, 2 );
-* // returns 10
-*
-* @example
-* var v = binomcoef( NaN, 3 );
-* // returns NaN
-*
-* @example
-* var v = binomcoef( 5, NaN );
-* // returns NaN
-*
-* @example
-* var v = binomcoef( NaN, NaN );
-* // returns NaN
-*/
-function binomcoef( n, k ) {
-	var res;
-	var j;
-	if ( _$isnan_231( n ) || _$isnan_231( k ) ) {
-		return NaN;
-	}
-	if ( !_$isInteger_229( n ) || !_$isInteger_229( k ) ) {
-		return NaN;
-	}
-	if ( k < 0 ) {
-		return 0;
-	}
-	if ( n < 0 ) {
-		res = binomcoef( -n + k - 1, k );
-		if ( _$isOdd_239( k ) ) {
-			res = -res;
-		}
-		return res;
-	}
-	if ( k > n ) {
-		return 0;
-	}
-	if ( k === 0 || k === n ) {
-		return 1;
-	}
-	if ( k === 1 || k === n - 1 ) {
-		return n;
-	}
-	if ( n - k < k ) {
-		k = n - k;
-	}
-	// Use recursive definition...
-	res = n;
-	for ( j = 2; j <= k; j++ ) {
-		res *= ( n - j + 1 ) / j;
-	}
-	// Correct for rounding errors...
-	return ( _$isInteger_229( res ) ) ? res : _$round_497( res );
-}
-
-
-// EXPORTS //
-
-var _$binomcoef_268 = binomcoef;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Compute the binomial coefficient.
-*
-* @module @stdlib/math/base/special/binomcoef
-*
-* @example
-* var binomcoef = require( '@stdlib/math/base/special/binomcoef' );
-*
-* var v = binomcoef( 8, 2 );
-* // returns 28
-*
-* v = binomcoef( 0, 0 );
-* // returns 1
-*
-* v = binomcoef( -4, 2 );
-* // returns 10
-*
-* v = binomcoef( 5, 3 );
-* // returns 10
-*
-* v = binomcoef( NaN, 3 );
-* // returns NaN
-*
-* v = binomcoef( 5, NaN );
-* // returns NaN
-*
-* v = binomcoef( NaN, NaN );
-* // returns NaN
-*/
-
-// MODULES //
-
-/* removed: var _$binomcoef_268 = require( './binomcoef.js' ); */;
-
-
-// EXPORTS //
-
-var _$binomcoef_269 = _$binomcoef_268;
 
 /**
 * @license Apache-2.0
@@ -44137,14 +44316,13 @@ _$jStat_1059.loggam = _$jStat_1059.gammaln;
 // gamma of x
 _$jStat_1059.gammafn = _$gamma_336;
 
-
 /* removed: var _$gammainc_352 = require( '@stdlib/math/base/special/gammainc' ); */;
+
 // lower incomplete gamma function, which is usually typeset with a
 // lower-case greek gamma as the function symbol
 _$jStat_1059.gammap = function gammap(a, x) {
   return _$gammainc_352(x, a, false);
 };
-
 
 // The lower regularized incomplete gamma function, usually written P(a,x)
 _$jStat_1059.lowRegGamma = function lowRegGamma(a, x) {
@@ -44158,32 +44336,19 @@ _$jStat_1059.factorialln = _$factorialln_323;
 _$jStat_1059.factorial = _$factorial_321;
 
 // combinations of n, m
-_$jStat_1059.combination = function combination(n, m) {
-  // make sure n or m don't exceed the upper limit of usable values
-  return (n > 170 || m > 170)
-      ? Math.exp(_$jStat_1059.combinationln(n, m))
-      : (_$jStat_1059.factorial(n) / _$jStat_1059.factorial(m)) / _$jStat_1059.factorial(n - m);
-};
-
-
-_$jStat_1059.combinationln = function combinationln(n, m){
-  return _$jStat_1059.factorialln(n) - _$jStat_1059.factorialln(m) - _$jStat_1059.factorialln(n - m);
-};
-
+_$jStat_1059.combination = _$binomcoef_269;
+_$jStat_1059.combinationln = _$binomcoefln_271;
 
 // permutations of n, m
 _$jStat_1059.permutation = function permutation(n, m) {
   return _$jStat_1059.factorial(n) / _$jStat_1059.factorial(n - m);
 };
 
-
 // beta function
 _$jStat_1059.betafn = _$beta_258;
 
-
 // natural logarithm of beta function
 _$jStat_1059.betaln = _$betaln_267;
-
 
 // Evaluates the continued fraction for incomplete beta function by modified
 // Lentz's method.
@@ -44233,26 +44398,20 @@ _$jStat_1059.betacf = function betacf(x, a, b) {
   return h;
 };
 
-
 // Returns the inverse of the lower regularized inomplete gamma function
 _$jStat_1059.gammapinv = _$gammaincinv_377;
-
 
 // Returns the error function erf(x)
 _$jStat_1059.erf = _$erf_279;
 
-
 // Returns the complmentary error function erfc(x)
 _$jStat_1059.erfc = _$erfc_289;
-
 
 // Returns the inverse of the complementary error function
 _$jStat_1059.erfcinv = _$erfcinv_299;
 
-
 // Returns the inverse of the incomplete beta function
 _$jStat_1059.ibetainv = _$betaincinv_263;
-
 
 // Returns the incomplete beta function I_x(a,b)
 _$jStat_1059.ibeta = _$betainc_261;
@@ -73521,166 +73680,6 @@ var _$isNonNegativeInteger_237 = _$isNonNegativeInteger_238;
 
 // MODULES //
 
-/* removed: var _$isInteger_229 = require( '@stdlib/math/base/assert/is-integer' ); */;
-/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$betaln_267 = require( '@stdlib/math/base/special/betaln' ); */;
-/* removed: var _$abs_244 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$ln_465 = require( '@stdlib/math/base/special/ln' ); */;
-/* removed: var _$FLOAT64_NINF_205 = require( '@stdlib/constants/math/float64-ninf' ); */;
-
-
-// MAIN //
-
-/**
-* Computes the natural logarithm of the binomial coefficient of two integers.
-*
-* @param {integer} n - input value
-* @param {integer} k - second input value
-* @returns {number} function value
-*
-* @example
-* var v = binomcoefln( 8, 2 );
-* // returns ~3.332
-*
-* @example
-* var v = binomcoefln( 0, 0 );
-* // returns 0.0
-*
-* @example
-* var v = binomcoefln( -4, 2 );
-* // returns ~2.303
-*
-* @example
-* var v = binomcoefln( 88, 3 );
-* // returns ~11.606
-*
-* @example
-* var v = binomcoefln( NaN, 3 );
-* // returns NaN
-*
-* @example
-* var v = binomcoefln( 5, NaN );
-* // returns NaN
-*
-* @example
-* var v = binomcoefln( NaN, NaN );
-* // returns NaN
-*/
-function binomcoefln( n, k ) {
-	if ( _$isnan_231( n ) || _$isnan_231( k ) ) {
-		return NaN;
-	}
-	if ( !_$isInteger_229( n ) || !_$isInteger_229( k ) ) {
-		return NaN;
-	}
-	if ( n < 0.0 ) {
-		return binomcoefln( -n + k - 1.0, k );
-	}
-	if ( k < 0 ) {
-		return _$FLOAT64_NINF_205;
-	}
-	if ( k === 0 ) {
-		return 0.0;
-	}
-	if ( k === 1 ) {
-		return _$ln_465( _$abs_244( n ) );
-	}
-	if ( n < k ) {
-		return _$FLOAT64_NINF_205;
-	}
-	if ( n - k < 2 ) {
-		return binomcoefln( n, n - k );
-	}
-	// Case: n - k >= 2
-	return -_$ln_465( n + 1 ) - _$betaln_267( n - k + 1, k + 1 );
-}
-
-
-// EXPORTS //
-
-var _$binomcoefln_270 = binomcoefln;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Compute the natural logarithm of the binomial coefficient.
-*
-* @module @stdlib/math/base/special/binomcoefln
-*
-* @example
-* var binomcoefln = require( '@stdlib/math/base/special/binomcoefln' );
-*
-* var v = binomcoefln( 8, 2 );
-* // returns ~3.332
-*
-* v = binomcoefln( 0, 0 );
-* // returns 0.0
-*
-* v = binomcoefln( -4, 2 );
-* // returns ~2.302
-*
-* v = binomcoefln( 88, 3 );
-* // returns ~11.606
-*
-* v = binomcoefln( NaN, 3 );
-* // returns NaN
-*
-* v = binomcoefln( 5, NaN );
-* // returns NaN
-*
-* v = binomcoefln( NaN, NaN );
-* // returns NaN
-*/
-
-// MODULES //
-
-/* removed: var _$binomcoefln_270 = require( './binomcoefln.js' ); */;
-
-
-// EXPORTS //
-
-var _$binomcoefln_271 = _$binomcoefln_270;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
 /* removed: var _$isNonNegativeInteger_237 = require( '@stdlib/math/base/assert/is-nonnegative-integer' ); */;
 /* removed: var _$binomcoefln_271 = require( '@stdlib/math/base/special/binomcoefln' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
@@ -83256,6 +83255,8 @@ var _$linearalgebra_1061 = {};
 /* Provides functions for the solution of linear system of equations, integration, extrapolation,
  * interpolation, eigenvalue problems, differential equations and PCA analysis. */
 /* removed: var _$jStat_1059 = require( './core.js' ); */;
+// var gdot = require( '@stdlib/blas/base/gdot' ); // FIXME
+// var gnrm2 = require( '@stdlib/blas/base/gnrm2' ); // FIXME
 
 var push = Array.prototype.push;
 var __isArray_1061 = _$jStat_1059.utils.isArray;
@@ -83334,8 +83335,20 @@ _$jStat_1059.extend({
   },
 
 
-  // Returns the dot product of two matricies
-  dot: function dot(arr, arg) {
+  // Returns the dot product of two matrices
+  dot: function dot(arr, arg) { // FIXME
+    // if (!isUsable(arr[0])) arr = [ arr ];
+    // if (!isUsable(arg[0])) arg = [ arg ];
+    // // convert column to row vector
+    // var left = (arr[0].length === 1 && arr.length !== 1) ? jStat.transpose(arr) : arr,
+    // right = (arg[0].length === 1 && arg.length !== 1) ? jStat.transpose(arg) : arg,
+    // res = [],
+    // nrow = left.length,
+    // ncol = left[0].length;
+    // for (row = 0; row < nrow; row++) {
+    //   res.push(gdot(ncol, left[row], 1, right[row], 1));
+    // }
+    // return (res.length === 1) ? res[0] : res;
     if (!isUsable(arr[0])) arr = [ arr ];
     if (!isUsable(arg[0])) arg = [ arg ];
     // convert column to row vector
@@ -83390,6 +83403,8 @@ _$jStat_1059.extend({
       nnorm += Math.pow(Math.abs(arr[i]), p);
     }
     return Math.pow(nnorm, 1 / p);
+
+    // FIXME: use gnrm2 for L2-norm
   },
 
   // computes the angle between two vectors in rads
@@ -83851,7 +83866,7 @@ _$jStat_1059.extend({
   }()),
 
   lstsq: (function() {
-    // solve least squard problem for Ax=b as QR decomposition way if b is
+    // solve least squared problem for Ax=b as QR decomposition way if b is
     // [[b1],[b2],[b3]] form will return [[x1],[x2],[x3]] array form solution
     // else b is [b1,b2,b3] form will return [x1,x2,x3] array form solution
     function R_I(A) {
