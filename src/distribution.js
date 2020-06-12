@@ -337,45 +337,23 @@ jStat.extend(jStat.normal, {
   variance : normalVariance
 });
 
-
+var paretoPDF = require( '@stdlib/stats/base/dists/pareto-type1/pdf' );
+var paretoCDF = require( '@stdlib/stats/base/dists/pareto-type1/cdf' );
+var paretoQuantile = require( '@stdlib/stats/base/dists/pareto-type1/quantile' );
+var paretoMean = require( '@stdlib/stats/base/dists/pareto-type1/mean' );
+var paretoMedian = require( '@stdlib/stats/base/dists/pareto-type1/median' );
+var paretoMode = require( '@stdlib/stats/base/dists/pareto-type1/mode' );
+var paretoVariance = require( '@stdlib/stats/base/dists/pareto-type1/variance' );
 
 // extend pareto function with static methods
 jStat.extend(jStat.pareto, {
-  pdf: function pdf(x, scale, shape) {
-    if (x < scale)
-      return 0;
-    return (shape * Math.pow(scale, shape)) / Math.pow(x, shape + 1);
-  },
-
-  cdf: function cdf(x, scale, shape) {
-    if (x < scale)
-      return 0;
-    return 1 - Math.pow(scale / x, shape);
-  },
-
-  inv: function inv(p, scale, shape) {
-    return scale / Math.pow(1 - p, 1 / shape);
-  },
-
-  mean: function mean(scale, shape) {
-    if (shape <= 1)
-      return undefined;
-    return (shape * Math.pow(scale, shape)) / (shape - 1);
-  },
-
-  median: function median(scale, shape) {
-    return scale * (shape * Math.SQRT2);
-  },
-
-  mode: function mode(scale/*, shape*/) {
-    return scale;
-  },
-
-  variance : function(scale, shape) {
-    if (shape <= 2)
-      return undefined;
-    return (scale*scale * shape) / (Math.pow(shape - 1, 2) * (shape - 2));
-  }
+  pdf: paretoPDF,
+  cdf: paretoCDF,
+  inv: paretoQuantile,
+  mean: paretoMean,
+  median: paretoMedian,
+  mode: paretoMode,
+  variance : paretoVariance
 });
 
 

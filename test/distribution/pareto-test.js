@@ -23,8 +23,8 @@ suite.addBatch({
       assert.epsilon(tol, jStat.pareto.pdf(2, 1, 1), 0.25);
 
       assert.epsilon(tol, jStat.pareto.pdf(-1, 1, 2), 0);
-      assert.epsilon(tol, jStat.pareto.pdf(1, 1, 2), 2);
-      assert.epsilon(tol, jStat.pareto.pdf(4, 1, 2), 0.03125);
+      assert.epsilon(tol, jStat.pareto.pdf(1, 1, 2), 0);
+      assert.epsilon(tol, jStat.pareto.pdf(4, 1, 2), 0.125);
 
       assert.epsilon(tol, jStat.pareto.pdf(1, 2, 2), 0);
       assert.epsilon(tol, jStat.pareto.pdf(2, 2, 2), 1);
@@ -48,8 +48,8 @@ suite.addBatch({
       assert.epsilon(tol, jStat.pareto.inv(0.5, 1, 1), 2);
       assert.equal(jStat.pareto.inv(1, 1, 1), Infinity);
 
-      assert.epsilon(tol, jStat.pareto.inv(0, 1, 2), 1);
-      assert.epsilon(tol, jStat.pareto.inv(0.5, 1, 2), 1.414213562);
+      assert.epsilon(tol, jStat.pareto.inv(0, 1, 2), 2);
+      assert.epsilon(tol, jStat.pareto.inv(0.5, 1, 2), 4);
       assert.equal(jStat.pareto.inv(1, 1, 2), Infinity);
 
       assert.epsilon(tol, jStat.pareto.inv(0, 2, 2), 2);
@@ -76,7 +76,7 @@ suite.addBatch({
 
       assert.epsilon(tol, jStat.pareto.cdf(-1, 1, 2), 0);
       assert.epsilon(tol, jStat.pareto.cdf(1, 1, 2), 0);
-      assert.epsilon(tol, jStat.pareto.cdf(4, 1, 2), 0.9375);
+      assert.epsilon(tol, jStat.pareto.cdf(4, 1, 2), 0.5);
 
       assert.epsilon(tol, jStat.pareto.cdf(1, 2, 2), 0);
       assert.epsilon(tol, jStat.pareto.cdf(2, 2, 2), 0);
