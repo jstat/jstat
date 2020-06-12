@@ -1,6 +1,6 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.jStat = f()}})(function(){var define,module,exports;
 var createModuleFactory = function createModuleFactory(t){var e;return function(r){return e||t(e={exports:{},parent:r},e.exports),e.exports}};
-var _$buffer_813 = createModuleFactory(function (module, exports) {
+var _$buffer_864 = createModuleFactory(function (module, exports) {
 (function (Buffer){
 /*!
  * The buffer module from node.js, for the browser.
@@ -12,8 +12,8 @@ var _$buffer_813 = createModuleFactory(function (module, exports) {
 
 'use strict'
 
-/* removed: var _$base64Js_812 = require('base64-js') */;
-/* removed: var _$ieee754_816 = require('ieee754') */;
+/* removed: var _$base64Js_863 = require('base64-js') */;
+/* removed: var _$ieee754_867 = require('ieee754') */;
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -932,9 +932,9 @@ Buffer.prototype.toJSON = function toJSON () {
 
 function base64Slice (buf, start, end) {
   if (start === 0 && end === buf.length) {
-    return _$base64Js_812.fromByteArray(buf)
+    return _$base64Js_863.fromByteArray(buf)
   } else {
-    return _$base64Js_812.fromByteArray(buf.slice(start, end))
+    return _$base64Js_863.fromByteArray(buf.slice(start, end))
   }
 }
 
@@ -1260,25 +1260,25 @@ Buffer.prototype.readInt32BE = function readInt32BE (offset, noAssert) {
 Buffer.prototype.readFloatLE = function readFloatLE (offset, noAssert) {
   offset = offset >>> 0
   if (!noAssert) checkOffset(offset, 4, this.length)
-  return _$ieee754_816.read(this, offset, true, 23, 4)
+  return _$ieee754_867.read(this, offset, true, 23, 4)
 }
 
 Buffer.prototype.readFloatBE = function readFloatBE (offset, noAssert) {
   offset = offset >>> 0
   if (!noAssert) checkOffset(offset, 4, this.length)
-  return _$ieee754_816.read(this, offset, false, 23, 4)
+  return _$ieee754_867.read(this, offset, false, 23, 4)
 }
 
 Buffer.prototype.readDoubleLE = function readDoubleLE (offset, noAssert) {
   offset = offset >>> 0
   if (!noAssert) checkOffset(offset, 8, this.length)
-  return _$ieee754_816.read(this, offset, true, 52, 8)
+  return _$ieee754_867.read(this, offset, true, 52, 8)
 }
 
 Buffer.prototype.readDoubleBE = function readDoubleBE (offset, noAssert) {
   offset = offset >>> 0
   if (!noAssert) checkOffset(offset, 8, this.length)
-  return _$ieee754_816.read(this, offset, false, 52, 8)
+  return _$ieee754_867.read(this, offset, false, 52, 8)
 }
 
 function checkInt (buf, value, offset, ext, max, min) {
@@ -1480,7 +1480,7 @@ function writeFloat (buf, value, offset, littleEndian, noAssert) {
   if (!noAssert) {
     checkIEEE754(buf, value, offset, 4, 3.4028234663852886e+38, -3.4028234663852886e+38)
   }
-  _$ieee754_816.write(buf, value, offset, littleEndian, 23, 4)
+  _$ieee754_867.write(buf, value, offset, littleEndian, 23, 4)
   return offset + 4
 }
 
@@ -1498,7 +1498,7 @@ function writeDouble (buf, value, offset, littleEndian, noAssert) {
   if (!noAssert) {
     checkIEEE754(buf, value, offset, 8, 1.7976931348623157E+308, -1.7976931348623157E+308)
   }
-  _$ieee754_816.write(buf, value, offset, littleEndian, 52, 8)
+  _$ieee754_867.write(buf, value, offset, littleEndian, 52, 8)
   return offset + 8
 }
 
@@ -1756,7 +1756,7 @@ function utf16leToBytes (str, units) {
 }
 
 function base64ToBytes (str) {
-  return _$base64Js_812.toByteArray(base64clean(str))
+  return _$base64Js_863.toByteArray(base64clean(str))
 }
 
 function blitBuffer (src, dst, offset, length) {
@@ -1780,7 +1780,7 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-}).call(this,_$buffer_813({}).Buffer)
+}).call(this,_$buffer_864({}).Buffer)
 });
 /**
 * @license Apache-2.0
@@ -1984,7 +1984,7 @@ var toStr = Object.prototype.toString;
 
 // EXPORTS //
 
-var _$toStr_791 = toStr;
+var _$toStr_842 = toStr;
 
 /**
 * @license Apache-2.0
@@ -2008,7 +2008,7 @@ var _$toStr_791 = toStr;
 
 // MODULES //
 
-/* removed: var _$toStr_791 = require( './tostring.js' ); */;
+/* removed: var _$toStr_842 = require( './tostring.js' ); */;
 
 
 // MAIN //
@@ -2035,13 +2035,13 @@ var _$toStr_791 = toStr;
 * // returns '[object Object]'
 */
 function nativeClass( v ) {
-	return _$toStr_791.call( v );
+	return _$toStr_842.call( v );
 }
 
 
 // EXPORTS //
 
-var _$nativeClass_789 = nativeClass;
+var _$nativeClass_840 = nativeClass;
 
 /**
 * @license Apache-2.0
@@ -2183,7 +2183,7 @@ var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
 // EXPORTS //
 
-var _$toStrTag_792 = toStrTag;
+var _$toStrTag_843 = toStrTag;
 
 /**
 * @license Apache-2.0
@@ -2208,8 +2208,8 @@ var _$toStrTag_792 = toStrTag;
 // MODULES //
 
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$toStrTag_792 = require( './tostringtag.js' ); */;
-/* removed: var _$toStr_791 = require( './tostring.js' ); */;
+/* removed: var _$toStrTag_843 = require( './tostringtag.js' ); */;
+/* removed: var _$toStr_842 = require( './tostring.js' ); */;
 
 
 // MAIN //
@@ -2235,29 +2235,29 @@ var _$toStrTag_792 = toStrTag;
 * var str = nativeClass( new Beep() );
 * // returns '[object Object]'
 */
-function __nativeClass_790( v ) {
+function __nativeClass_841( v ) {
 	var isOwn;
 	var tag;
 	var out;
 
 	if ( v === null || v === void 0 ) {
-		return _$toStr_791.call( v );
+		return _$toStr_842.call( v );
 	}
-	tag = v[ _$toStrTag_792 ];
-	isOwn = _$hasOwnProp_58( v, _$toStrTag_792 );
+	tag = v[ _$toStrTag_843 ];
+	isOwn = _$hasOwnProp_58( v, _$toStrTag_843 );
 
 	// Attempt to override the `toStringTag` property. For built-ins having a `Symbol.toStringTag` property (e.g., `JSON`, `Math`, etc), the `Symbol.toStringTag` property is read-only (e.g., , so we need to wrap in a `try/catch`.
 	try {
-		v[ _$toStrTag_792 ] = void 0;
+		v[ _$toStrTag_843 ] = void 0;
 	} catch ( err ) { // eslint-disable-line no-unused-vars
-		return _$toStr_791.call( v );
+		return _$toStr_842.call( v );
 	}
-	out = _$toStr_791.call( v );
+	out = _$toStr_842.call( v );
 
 	if ( isOwn ) {
-		v[ _$toStrTag_792 ] = tag;
+		v[ _$toStrTag_843 ] = tag;
 	} else {
-		delete v[ _$toStrTag_792 ];
+		delete v[ _$toStrTag_843 ];
 	}
 	return out;
 }
@@ -2265,7 +2265,7 @@ function __nativeClass_790( v ) {
 
 // EXPORTS //
 
-var _$nativeClass_790 = __nativeClass_790;
+var _$nativeClass_841 = __nativeClass_841;
 
 /**
 * @license Apache-2.0
@@ -2311,23 +2311,23 @@ var _$nativeClass_790 = __nativeClass_790;
 // MODULES //
 
 /* removed: var _$hasToStringTagSupport_64 = require( '@stdlib/assert/has-tostringtag-support' ); */;
-/* removed: var _$nativeClass_789 = require( './native_class.js' ); */;
-/* removed: var _$nativeClass_790 = require( './polyfill.js' ); */;
+/* removed: var _$nativeClass_840 = require( './native_class.js' ); */;
+/* removed: var _$nativeClass_841 = require( './polyfill.js' ); */;
 
 
 // MAIN //
 
-var __nativeClass_788;
+var __nativeClass_839;
 if ( _$hasToStringTagSupport_64() ) {
-	__nativeClass_788 = _$nativeClass_790;
+	__nativeClass_839 = _$nativeClass_841;
 } else {
-	__nativeClass_788 = _$nativeClass_789;
+	__nativeClass_839 = _$nativeClass_840;
 }
 
 
 // EXPORTS //
 
-var _$nativeClass_788 = __nativeClass_788;
+var _$nativeClass_839 = __nativeClass_839;
 
 /**
 * @license Apache-2.0
@@ -2351,7 +2351,7 @@ var _$nativeClass_788 = __nativeClass_788;
 
 // MODULES //
 
-/* removed: var _$nativeClass_788 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_839 = require( '@stdlib/utils/native-class' ); */;
 
 
 // VARIABLES //
@@ -2376,7 +2376,7 @@ var f;
 * // returns false
 */
 function isArray( value ) {
-	return ( _$nativeClass_788( value ) === '[object Array]' );
+	return ( _$nativeClass_839( value ) === '[object Array]' );
 }
 
 
@@ -2462,7 +2462,7 @@ var RE = /./;
 
 // EXPORTS //
 
-var _$RE_807 = RE;
+var _$RE_858 = RE;
 
 /**
 * @license Apache-2.0
@@ -2646,12 +2646,12 @@ var _$hasDefinePropertySupport_33 = _$hasDefinePropertySupport_34;
 * var str = obj.foo;
 * // returns 'bar'
 */
-var __defineProperty_752 = Object.defineProperty;
+var __defineProperty_803 = Object.defineProperty;
 
 
 // EXPORTS //
 
-var _$defineProperty_752 = __defineProperty_752;
+var _$defineProperty_803 = __defineProperty_803;
 
 /**
 * @license Apache-2.0
@@ -2929,7 +2929,7 @@ var lookupSetter = objectProtoype.__lookupSetter__;
 * var str = obj.foo;
 * // returns 'bar'
 */
-function __defineProperty_754( obj, prop, descriptor ) {
+function __defineProperty_805( obj, prop, descriptor ) {
 	var prototype;
 	var hasValue;
 	var hasGet;
@@ -2980,7 +2980,7 @@ function __defineProperty_754( obj, prop, descriptor ) {
 
 // EXPORTS //
 
-var _$defineProperty_754 = __defineProperty_754;
+var _$defineProperty_805 = __defineProperty_805;
 
 /**
 * @license Apache-2.0
@@ -3023,23 +3023,23 @@ var _$defineProperty_754 = __defineProperty_754;
 // MODULES //
 
 /* removed: var _$hasDefinePropertySupport_33 = require( '@stdlib/assert/has-define-property-support' ); */;
-/* removed: var _$defineProperty_752 = require( './builtin.js' ); */;
-/* removed: var _$defineProperty_754 = require( './polyfill.js' ); */;
+/* removed: var _$defineProperty_803 = require( './builtin.js' ); */;
+/* removed: var _$defineProperty_805 = require( './polyfill.js' ); */;
 
 
 // MAIN //
 
-var __defineProperty_753;
+var __defineProperty_804;
 if ( _$hasDefinePropertySupport_33() ) {
-	__defineProperty_753 = _$defineProperty_752;
+	__defineProperty_804 = _$defineProperty_803;
 } else {
-	__defineProperty_753 = _$defineProperty_754;
+	__defineProperty_804 = _$defineProperty_805;
 }
 
 
 // EXPORTS //
 
-var _$defineProperty_753 = __defineProperty_753;
+var _$defineProperty_804 = __defineProperty_804;
 
 /**
 * @license Apache-2.0
@@ -3063,7 +3063,7 @@ var _$defineProperty_753 = __defineProperty_753;
 
 // MODULES //
 
-/* removed: var _$defineProperty_753 = require( '@stdlib/utils/define-property' ); */;
+/* removed: var _$defineProperty_804 = require( '@stdlib/utils/define-property' ); */;
 
 
 // MAIN //
@@ -3087,7 +3087,7 @@ var _$defineProperty_753 = __defineProperty_753;
 * }
 */
 function setNonEnumerableReadOnly( obj, prop, value ) {
-	_$defineProperty_753( obj, prop, {
+	_$defineProperty_804( obj, prop, {
 		'configurable': false,
 		'enumerable': false,
 		'writable': false,
@@ -3098,7 +3098,7 @@ function setNonEnumerableReadOnly( obj, prop, value ) {
 
 // EXPORTS //
 
-var _$setNonEnumerableReadOnly_749 = setNonEnumerableReadOnly;
+var _$setNonEnumerableReadOnly_800 = setNonEnumerableReadOnly;
 
 /**
 * @license Apache-2.0
@@ -3141,12 +3141,12 @@ var _$setNonEnumerableReadOnly_749 = setNonEnumerableReadOnly;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_749 = require( './main.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_800 = require( './main.js' ); */;
 
 
 // EXPORTS //
 
-var _$setNonEnumerableReadOnly_748 = _$setNonEnumerableReadOnly_749;
+var _$setNonEnumerableReadOnly_799 = _$setNonEnumerableReadOnly_800;
 
 /**
 * @license Apache-2.0
@@ -3294,7 +3294,7 @@ var _$test_91 = test;
 // MODULES //
 
 /* removed: var _$hasToStringTagSupport_64 = require( '@stdlib/assert/has-tostringtag-support' ); */;
-/* removed: var _$nativeClass_788 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_839 = require( '@stdlib/utils/native-class' ); */;
 /* removed: var _$test_91 = require( './try2serialize.js' ); */;
 
 
@@ -3327,7 +3327,7 @@ function __isBoolean_88( value ) {
 		if ( __FLG_88 ) {
 			return _$test_91( value );
 		}
-		return ( _$nativeClass_788( value ) === '[object Boolean]' );
+		return ( _$nativeClass_839( value ) === '[object Boolean]' );
 	}
 	return false;
 }
@@ -3453,7 +3453,7 @@ var _$isBoolean_87 = __isBoolean_87;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$isBoolean_87 = require( './main.js' ); */;
 /* removed: var _$isBoolean_89 = require( './primitive.js' ); */;
 /* removed: var _$isBoolean_88 = require( './object.js' ); */;
@@ -3461,8 +3461,8 @@ var _$isBoolean_87 = __isBoolean_87;
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$isBoolean_87, 'isPrimitive', _$isBoolean_89 );
-_$setNonEnumerableReadOnly_748( _$isBoolean_87, 'isObject', _$isBoolean_88 );
+_$setNonEnumerableReadOnly_799( _$isBoolean_87, 'isPrimitive', _$isBoolean_89 );
+_$setNonEnumerableReadOnly_799( _$isBoolean_87, 'isObject', _$isBoolean_88 );
 
 
 // EXPORTS //
@@ -3504,7 +3504,7 @@ function getGlobal() {
 
 // EXPORTS //
 
-var _$getGlobal_764 = getGlobal;
+var _$getGlobal_815 = getGlobal;
 
 /**
 * @license Apache-2.0
@@ -3533,7 +3533,7 @@ var obj = ( typeof self === 'object' ) ? self : null;
 
 // EXPORTS //
 
-var _$obj_768 = obj;
+var _$obj_819 = obj;
 
 /**
 * @license Apache-2.0
@@ -3557,14 +3557,14 @@ var _$obj_768 = obj;
 
 // MAIN //
 
-var __obj_769 = ( typeof window === 'object' ) ? window : null;
+var __obj_820 = ( typeof window === 'object' ) ? window : null;
 
 
 // EXPORTS //
 
-var _$obj_769 = __obj_769;
+var _$obj_820 = __obj_820;
 
-var _$obj_765 = {};
+var _$obj_816 = {};
 (function (global){
 /**
 * @license Apache-2.0
@@ -3593,7 +3593,7 @@ var obj = ( typeof global === 'object' ) ? global : null;
 
 // EXPORTS //
 
-_$obj_765 = obj;
+_$obj_816 = obj;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 /**
@@ -3618,11 +3618,11 @@ _$obj_765 = obj;
 
 // MODULES //
 
-var __isBoolean_767 = _$isBoolean_86.isPrimitive;
-/* removed: var _$getGlobal_764 = require( './codegen.js' ); */;
-/* removed: var _$obj_768 = require( './self.js' ); */;
-/* removed: var _$obj_769 = require( './window.js' ); */;
-/* removed: var _$obj_765 = require( './global.js' ); */;
+var __isBoolean_818 = _$isBoolean_86.isPrimitive;
+/* removed: var _$getGlobal_815 = require( './codegen.js' ); */;
+/* removed: var _$obj_819 = require( './self.js' ); */;
+/* removed: var _$obj_820 = require( './window.js' ); */;
+/* removed: var _$obj_816 = require( './global.js' ); */;
 
 
 // MAIN //
@@ -3643,27 +3643,27 @@ var __isBoolean_767 = _$isBoolean_86.isPrimitive;
 * var g = getGlobal();
 * // returns {...}
 */
-function __getGlobal_767( codegen ) {
+function __getGlobal_818( codegen ) {
 	if ( arguments.length ) {
-		if ( !__isBoolean_767( codegen ) ) {
+		if ( !__isBoolean_818( codegen ) ) {
 			throw new TypeError( 'invalid argument. Must provide a boolean primitive. Value: `'+codegen+'`.' );
 		}
 		if ( codegen ) {
-			return _$getGlobal_764();
+			return _$getGlobal_815();
 		}
 		// Fall through...
 	}
 	// Case: browsers and web workers
-	if ( _$obj_768 ) {
-		return _$obj_768;
+	if ( _$obj_819 ) {
+		return _$obj_819;
 	}
 	// Case: browsers
-	if ( _$obj_769 ) {
-		return _$obj_769;
+	if ( _$obj_820 ) {
+		return _$obj_820;
 	}
 	// Case: Node.js
-	if ( _$obj_765 ) {
-		return _$obj_765;
+	if ( _$obj_816 ) {
+		return _$obj_816;
 	}
 	// Case: unknown
 	throw new Error( 'unexpected error. Unable to resolve global object.' );
@@ -3672,7 +3672,7 @@ function __getGlobal_767( codegen ) {
 
 // EXPORTS //
 
-var _$getGlobal_767 = __getGlobal_767;
+var _$getGlobal_818 = __getGlobal_818;
 
 /**
 * @license Apache-2.0
@@ -3708,12 +3708,12 @@ var _$getGlobal_767 = __getGlobal_767;
 
 // MODULES //
 
-/* removed: var _$getGlobal_767 = require( './main.js' ); */;
+/* removed: var _$getGlobal_818 = require( './main.js' ); */;
 
 
 // EXPORTS //
 
-var _$getGlobal_766 = _$getGlobal_767;
+var _$getGlobal_817 = _$getGlobal_818;
 
 /**
 * @license Apache-2.0
@@ -3737,18 +3737,18 @@ var _$getGlobal_766 = _$getGlobal_767;
 
 // MODULES //
 
-/* removed: var _$getGlobal_766 = require( '@stdlib/utils/global' ); */;
+/* removed: var _$getGlobal_817 = require( '@stdlib/utils/global' ); */;
 
 
 // MAIN //
 
-var root = _$getGlobal_766();
+var root = _$getGlobal_817();
 var nodeList = root.document && root.document.childNodes;
 
 
 // EXPORTS //
 
-var _$nodeList_806 = nodeList;
+var _$nodeList_857 = nodeList;
 
 /**
 * @license Apache-2.0
@@ -3775,7 +3775,7 @@ var typedarray = Int8Array; // eslint-disable-line stdlib/require-globals
 
 // EXPORTS //
 
-var _$typedarray_808 = typedarray;
+var _$typedarray_859 = typedarray;
 
 /**
 * @license Apache-2.0
@@ -3799,9 +3799,9 @@ var _$typedarray_808 = typedarray;
 
 // MODULES //
 
-/* removed: var _$RE_807 = require( './fixtures/re.js' ); */;
-/* removed: var _$nodeList_806 = require( './fixtures/nodelist.js' ); */;
-/* removed: var _$typedarray_808 = require( './fixtures/typedarray.js' ); */;
+/* removed: var _$RE_858 = require( './fixtures/re.js' ); */;
+/* removed: var _$nodeList_857 = require( './fixtures/nodelist.js' ); */;
+/* removed: var _$typedarray_859 = require( './fixtures/typedarray.js' ); */;
 
 
 // MAIN //
@@ -3815,13 +3815,13 @@ var _$typedarray_808 = typedarray;
 function check() {
 	if (
 		// Chrome 1-12 returns 'function' for regular expression instances (see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof):
-		typeof _$RE_807 === 'function' ||
+		typeof _$RE_858 === 'function' ||
 
 		// Safari 8 returns 'object' for typed array and weak map constructors (underscore #1929):
-		typeof _$typedarray_808 === 'object' ||
+		typeof _$typedarray_859 === 'object' ||
 
 		// PhantomJS 1.9 returns 'function' for `NodeList` instances (underscore #2236):
-		typeof _$nodeList_806 === 'function'
+		typeof _$nodeList_857 === 'function'
 	) {
 		return true;
 	}
@@ -3831,7 +3831,7 @@ function check() {
 
 // EXPORTS //
 
-var _$check_805 = check;
+var _$check_856 = check;
 
 /**
 * @license Apache-2.0
@@ -3914,7 +3914,7 @@ var RE_FUNCTION_NAME = /^\s*function\s*([^(]*)/i;
 
 // EXPORTS //
 
-var _$RE_FUNCTION_NAME_599 = RE_FUNCTION_NAME;
+var _$RE_FUNCTION_NAME_616 = RE_FUNCTION_NAME;
 
 /**
 * @license Apache-2.0
@@ -4150,14 +4150,14 @@ var _$isObjectLike_141 = isObjectLike;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$arrayfcn_173 = require( '@stdlib/assert/tools/array-function' ); */;
 /* removed: var _$isObjectLike_141 = require( './main.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$isObjectLike_141, 'isObjectLikeArray', _$arrayfcn_173( _$isObjectLike_141 ) );
+_$setNonEnumerableReadOnly_799( _$isObjectLike_141, 'isObjectLikeArray', _$arrayfcn_173( _$isObjectLike_141 ) );
 
 
 // EXPORTS //
@@ -4301,8 +4301,8 @@ var _$isBuffer_92 = _$isBuffer_93;
 
 // MODULES //
 
-/* removed: var _$nativeClass_788 = require( '@stdlib/utils/native-class' ); */;
-/* removed: var _$RE_FUNCTION_NAME_599 = require( '@stdlib/regexp/function-name' ); */;
+/* removed: var _$nativeClass_839 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$RE_FUNCTION_NAME_616 = require( '@stdlib/regexp/function-name' ); */;
 /* removed: var _$isBuffer_92 = require( '@stdlib/assert/is-buffer' ); */;
 
 
@@ -4338,13 +4338,13 @@ function constructorName( v ) {
 	var match;
 	var name;
 	var ctor;
-	name = _$nativeClass_788( v ).slice( 8, -1 );
+	name = _$nativeClass_839( v ).slice( 8, -1 );
 	if ( (name === 'Object' || name === 'Error') && v.constructor ) {
 		ctor = v.constructor;
 		if ( typeof ctor.name === 'string' ) {
 			return ctor.name;
 		}
-		match = _$RE_FUNCTION_NAME_599.exec( ctor.toString() );
+		match = _$RE_FUNCTION_NAME_616.exec( ctor.toString() );
 		if ( match ) {
 			return match[ 1 ];
 		}
@@ -4358,7 +4358,7 @@ function constructorName( v ) {
 
 // EXPORTS //
 
-var _$constructorName_741 = constructorName;
+var _$constructorName_792 = constructorName;
 
 /**
 * @license Apache-2.0
@@ -4400,12 +4400,12 @@ var _$constructorName_741 = constructorName;
 
 // MODULES //
 
-/* removed: var _$constructorName_741 = require( './main.js' ); */;
+/* removed: var _$constructorName_792 = require( './main.js' ); */;
 
 
 // EXPORTS //
 
-var _$constructorName_740 = _$constructorName_741;
+var _$constructorName_791 = _$constructorName_792;
 
 /**
 * @license Apache-2.0
@@ -4429,7 +4429,7 @@ var _$constructorName_740 = _$constructorName_741;
 
 // MODULES //
 
-/* removed: var _$constructorName_740 = require( '@stdlib/utils/constructor-name' ); */;
+/* removed: var _$constructorName_791 = require( '@stdlib/utils/constructor-name' ); */;
 
 
 // NOTES //
@@ -4474,7 +4474,7 @@ function typeOf( v ) {
 
 	// If the `typeof` operator returned something other than `object`, we are done. Otherwise, we need to check for an internal class name or search for a constructor.
 	if ( type === 'object' ) {
-		return _$constructorName_740( v ).toLowerCase();
+		return _$constructorName_791( v ).toLowerCase();
 	}
 	return type;
 }
@@ -4482,7 +4482,7 @@ function typeOf( v ) {
 
 // EXPORTS //
 
-var _$typeOf_811 = typeOf;
+var _$typeOf_862 = typeOf;
 
 /**
 * @license Apache-2.0
@@ -4506,7 +4506,7 @@ var _$typeOf_811 = typeOf;
 
 // MODULES //
 
-/* removed: var _$constructorName_740 = require( '@stdlib/utils/constructor-name' ); */;
+/* removed: var _$constructorName_791 = require( '@stdlib/utils/constructor-name' ); */;
 
 
 // MAIN //
@@ -4517,14 +4517,14 @@ var _$typeOf_811 = typeOf;
 * @param {*} v - input value
 * @returns {string} string indicating the value's type
 */
-function __typeOf_810( v ) {
-	return _$constructorName_740( v ).toLowerCase();
+function __typeOf_861( v ) {
+	return _$constructorName_791( v ).toLowerCase();
 }
 
 
 // EXPORTS //
 
-var _$typeOf_810 = __typeOf_810;
+var _$typeOf_861 = __typeOf_861;
 
 /**
 * @license Apache-2.0
@@ -4563,19 +4563,19 @@ var _$typeOf_810 = __typeOf_810;
 
 // MODULES //
 
-/* removed: var _$check_805 = require( './check.js' ); */;
-/* removed: var _$typeOf_811 = require( './typeof.js' ); */;
-/* removed: var _$typeOf_810 = require( './polyfill.js' ); */;
+/* removed: var _$check_856 = require( './check.js' ); */;
+/* removed: var _$typeOf_862 = require( './typeof.js' ); */;
+/* removed: var _$typeOf_861 = require( './polyfill.js' ); */;
 
 
 // MAIN //
 
-var __main_809 = ( _$check_805() ) ? _$typeOf_810 : _$typeOf_811;
+var __main_860 = ( _$check_856() ) ? _$typeOf_861 : _$typeOf_862;
 
 
 // EXPORTS //
 
-var _$main_809 = __main_809;
+var _$main_860 = __main_860;
 
 /**
 * @license Apache-2.0
@@ -4599,7 +4599,7 @@ var _$main_809 = __main_809;
 
 // MODULES //
 
-/* removed: var _$main_809 = require( '@stdlib/utils/type-of' ); */;
+/* removed: var _$main_860 = require( '@stdlib/utils/type-of' ); */;
 
 
 // MAIN //
@@ -4620,7 +4620,7 @@ var _$main_809 = __main_809;
 */
 function isFunction( value ) {
 	// Note: cannot use `typeof` directly, as various browser engines incorrectly return `'function'` when operating on non-function objects, such as regular expressions and NodeLists.
-	return ( _$main_809( value ) === 'function' );
+	return ( _$main_860( value ) === 'function' );
 }
 
 
@@ -4742,7 +4742,7 @@ var _$isNumber_137 = isNumber;
 
 // EXPORTS //
 
-var _$Number_514 = Number; // eslint-disable-line stdlib/require-globals
+var _$Number_521 = Number; // eslint-disable-line stdlib/require-globals
 
 /**
 * @license Apache-2.0
@@ -4778,12 +4778,12 @@ var _$Number_514 = Number; // eslint-disable-line stdlib/require-globals
 
 // MODULES //
 
-/* removed: var _$Number_514 = require( './number.js' ); */;
+/* removed: var _$Number_521 = require( './number.js' ); */;
 
 
 // EXPORTS //
 
-var _$Number_513 = _$Number_514;
+var _$Number_520 = _$Number_521;
 
 /**
 * @license Apache-2.0
@@ -4807,13 +4807,13 @@ var _$Number_513 = _$Number_514;
 
 // MODULES //
 
-/* removed: var _$Number_513 = require( '@stdlib/number/ctor' ); */;
+/* removed: var _$Number_520 = require( '@stdlib/number/ctor' ); */;
 
 
 // MAIN //
 
 // eslint-disable-next-line stdlib/no-redeclare
-var __toString_138 = _$Number_513.prototype.toString; // non-generic
+var __toString_138 = _$Number_520.prototype.toString; // non-generic
 
 
 // EXPORTS //
@@ -4891,8 +4891,8 @@ var _$test_139 = __test_139;
 // MODULES //
 
 /* removed: var _$hasToStringTagSupport_64 = require( '@stdlib/assert/has-tostringtag-support' ); */;
-/* removed: var _$nativeClass_788 = require( '@stdlib/utils/native-class' ); */;
-/* removed: var _$Number_513 = require( '@stdlib/number/ctor' ); */;
+/* removed: var _$nativeClass_839 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$Number_520 = require( '@stdlib/number/ctor' ); */;
 /* removed: var _$test_139 = require( './try2serialize.js' ); */;
 
 
@@ -4919,13 +4919,13 @@ var __FLG_136 = _$hasToStringTagSupport_64();
 */
 function __isNumber_136( value ) {
 	if ( typeof value === 'object' ) {
-		if ( value instanceof _$Number_513 ) {
+		if ( value instanceof _$Number_520 ) {
 			return true;
 		}
 		if ( __FLG_136 ) {
 			return _$test_139( value );
 		}
-		return ( _$nativeClass_788( value ) === '[object Number]' );
+		return ( _$nativeClass_839( value ) === '[object Number]' );
 	}
 	return false;
 }
@@ -5058,7 +5058,7 @@ var _$isNumber_135 = __isNumber_135;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$isNumber_135 = require( './main.js' ); */;
 /* removed: var _$isNumber_137 = require( './primitive.js' ); */;
 /* removed: var _$isNumber_136 = require( './object.js' ); */;
@@ -5066,8 +5066,8 @@ var _$isNumber_135 = __isNumber_135;
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$isNumber_135, 'isPrimitive', _$isNumber_137 );
-_$setNonEnumerableReadOnly_748( _$isNumber_135, 'isObject', _$isNumber_136 );
+_$setNonEnumerableReadOnly_799( _$isNumber_135, 'isPrimitive', _$isNumber_137 );
+_$setNonEnumerableReadOnly_799( _$isNumber_135, 'isObject', _$isNumber_136 );
 
 
 // EXPORTS //
@@ -5164,7 +5164,7 @@ var _$FLOAT64_PINF_207 = FLOAT64_PINF;
 
 // MODULES //
 
-/* removed: var _$Number_513 = require( '@stdlib/number/ctor' ); */;
+/* removed: var _$Number_520 = require( '@stdlib/number/ctor' ); */;
 
 
 // MAIN //
@@ -5185,7 +5185,7 @@ var _$FLOAT64_PINF_207 = FLOAT64_PINF;
 * @default Number.NEGATIVE_INFINITY
 * @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
 */
-var FLOAT64_NINF = _$Number_513.NEGATIVE_INFINITY;
+var FLOAT64_NINF = _$Number_520.NEGATIVE_INFINITY;
 
 
 // EXPORTS //
@@ -5544,7 +5544,7 @@ var _$isFinite_103 = __isFinite_103;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$isFinite_103 = require( './main.js' ); */;
 /* removed: var _$isFinite_105 = require( './primitive.js' ); */;
 /* removed: var _$isFinite_104 = require( './object.js' ); */;
@@ -5552,8 +5552,8 @@ var _$isFinite_103 = __isFinite_103;
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$isFinite_103, 'isPrimitive', _$isFinite_105 );
-_$setNonEnumerableReadOnly_748( _$isFinite_103, 'isObject', _$isFinite_104 );
+_$setNonEnumerableReadOnly_799( _$isFinite_103, 'isPrimitive', _$isFinite_105 );
+_$setNonEnumerableReadOnly_799( _$isFinite_103, 'isObject', _$isFinite_104 );
 
 
 // EXPORTS //
@@ -5835,7 +5835,7 @@ var _$UINT32_MAX_221 = UINT32_MAX;
 // MODULES //
 
 /* removed: var _$ceil_269 = require( '@stdlib/math/base/special/ceil' ); */;
-var __isNumber_511 = _$isNumber_134.isPrimitive;
+var __isNumber_518 = _$isNumber_134.isPrimitive;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$UINT32_MAX_221 = require( '@stdlib/constants/math/uint32-max' ); */;
 
@@ -5863,17 +5863,17 @@ function incrspace( x1, x2, increment ) {
 	var len;
 	var inc;
 	var i;
-	if ( !__isNumber_511( x1 ) || _$isnan_231( x1 ) ) {
+	if ( !__isNumber_518( x1 ) || _$isnan_231( x1 ) ) {
 		throw new TypeError( 'invalid argument. Start must be numeric. Value: `' + x1 + '`.' );
 	}
-	if ( !__isNumber_511( x2 ) || _$isnan_231( x2 ) ) {
+	if ( !__isNumber_518( x2 ) || _$isnan_231( x2 ) ) {
 		throw new TypeError( 'invalid argument. Stop must be numeric. Value: `' + x2 + '`.' );
 	}
 	if ( arguments.length < 3 ) {
 		inc = 1;
 	} else {
 		inc = increment;
-		if ( !__isNumber_511( inc ) || _$isnan_231( inc ) ) {
+		if ( !__isNumber_518( inc ) || _$isnan_231( inc ) ) {
 			throw new TypeError( 'invalid argument. Increment must be numeric. Value: `' + inc + '`.' );
 		}
 	}
@@ -5896,7 +5896,7 @@ function incrspace( x1, x2, increment ) {
 
 // EXPORTS //
 
-var _$incrspace_511 = incrspace;
+var _$incrspace_518 = incrspace;
 
 /**
 * @license Apache-2.0
@@ -5932,21 +5932,21 @@ var _$incrspace_511 = incrspace;
 
 // MODULES //
 
-/* removed: var _$incrspace_511 = require( './incrspace.js' ); */;
+/* removed: var _$incrspace_518 = require( './incrspace.js' ); */;
 
 
 // EXPORTS //
 
-var _$incrspace_512 = _$incrspace_511;
+var _$incrspace_519 = _$incrspace_518;
 
 /* removed: var _$isArray_84 = require( '@stdlib/assert/is-array' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
-var __isNumber_819 = _$isFinite_102.isPrimitive;
+var __isNumber_870 = _$isFinite_102.isPrimitive;
 
 // For quick reference.
 var concat = Array.prototype.concat;
 var slice = Array.prototype.slice;
-var __toString_819 = Object.prototype.toString;
+var __toString_870 = Object.prototype.toString;
 
 // Calculate correction for IEEE error
 // TODO: This calculation can be improved.
@@ -5995,7 +5995,7 @@ jStat._init = function _init(args) {
     }
 
   // If first argument is number, assume creation of sequence.
-  } else if (__isNumber_819(args[0])) {
+  } else if (__isNumber_870(args[0])) {
     this[0] = jStat.seq.apply(null, args);
     this.length = 1;
 
@@ -6024,7 +6024,7 @@ jStat.utils = {
   calcRdx: calcRdx,
   isArray: _$isArray_84,
   isFunction: _$isFunction_110,
-  isNumber: __isNumber_819,
+  isNumber: __isNumber_870,
   toVector: toVector
 };
 
@@ -6246,7 +6246,7 @@ function retZero() { return 0; }
 
 // Generate a rows x cols matrix of zeros.
 jStat.zeros = function zeros(rows, cols) {
-  if (!__isNumber_819(cols))
+  if (!__isNumber_870(cols))
     cols = rows;
   return jStat.create(rows, cols, retZero);
 };
@@ -6257,7 +6257,7 @@ function retOne() { return 1; }
 
 // Generate a rows x cols matrix of ones.
 jStat.ones = function ones(rows, cols) {
-  if (!__isNumber_819(cols))
+  if (!__isNumber_870(cols))
     cols = rows;
   return jStat.create(rows, cols, retOne);
 };
@@ -6265,7 +6265,7 @@ jStat.ones = function ones(rows, cols) {
 
 // Generate a rows x cols matrix of uniformly random numbers.
 jStat.rand = function rand(rows, cols) {
-  if (!__isNumber_819(cols))
+  if (!__isNumber_870(cols))
     cols = rows;
   return jStat.create(rows, cols, jStat._random_fn);
 };
@@ -6276,7 +6276,7 @@ function retIdent(i, j) { return i === j ? 1 : 0; }
 
 // Generate an identity matrix of size row x cols.
 jStat.identity = function identity(rows, cols) {
-  if (!__isNumber_819(cols))
+  if (!__isNumber_870(cols))
     cols = rows;
   return jStat.create(rows, cols, retIdent);
 };
@@ -6328,7 +6328,7 @@ jStat.seq = function seq(min, max, length, func) {
   return arr;
 };
 
-/* removed: var _$incrspace_512 = require( '@stdlib/math/utils/incrspace' ); */;
+/* removed: var _$incrspace_519 = require( '@stdlib/math/utils/incrspace' ); */;
 
 // arange(5) -> [0,1,2,3,4]
 // arange(1,5) -> [1,2,3,4]
@@ -6348,7 +6348,7 @@ jStat.arange = function arange(start, end, step) {
   if (start > end && step > 0) {
     return [];
   }
-  return _$incrspace_512( start, end, step );
+  return _$incrspace_519( start, end, step );
 };
 
 
@@ -6395,15 +6395,15 @@ jStat.slice = (function(){
   function slice(list, rcSlice) {
     var colSlice, rowSlice;
     rcSlice = rcSlice || {};
-    if (__isNumber_819(rcSlice.row)) {
-      if (__isNumber_819(rcSlice.col))
+    if (__isNumber_870(rcSlice.row)) {
+      if (__isNumber_870(rcSlice.col))
         return list[rcSlice.row][rcSlice.col];
       var row = jStat.rowa(list, rcSlice.row);
       colSlice = rcSlice.col || {};
       return _slice(row, colSlice.start, colSlice.end, colSlice.step);
     }
 
-    if (__isNumber_819(rcSlice.col)) {
+    if (__isNumber_870(rcSlice.col)) {
       var col = jStat.cola(list, rcSlice.col);
       rowSlice = rcSlice.row || {};
       return _slice(col, rowSlice.start, rowSlice.end, rowSlice.step);
@@ -6426,8 +6426,8 @@ jStat.slice = (function(){
 // A=[[1,2,3],[4,0,0],[7,0,0]]
 jStat.sliceAssign = function sliceAssign(A, rcSlice, B) {
   var nl, ml;
-  if (__isNumber_819(rcSlice.row)) {
-    if (__isNumber_819(rcSlice.col))
+  if (__isNumber_870(rcSlice.row)) {
+    if (__isNumber_870(rcSlice.col))
       return A[rcSlice.row][rcSlice.col] = B;
     rcSlice.col = rcSlice.col || {};
     rcSlice.col.start = rcSlice.col.start || 0;
@@ -6443,7 +6443,7 @@ jStat.sliceAssign = function sliceAssign(A, rcSlice, B) {
     return A;
   }
 
-  if (__isNumber_819(rcSlice.col)) {
+  if (__isNumber_870(rcSlice.col)) {
     rcSlice.row = rcSlice.row || {};
     rcSlice.row.start = rcSlice.row.start || 0;
     rcSlice.row.end = rcSlice.row.end || A.length;
@@ -6496,7 +6496,7 @@ jStat.diagonal = function diagonal(diagArray) {
 // return copy of A
 jStat.copy = function copy(A) {
   return A.map(function(row) {
-    if (__isNumber_819(row))
+    if (__isNumber_870(row))
       return row;
     return row.map(function(t) {
       return t;
@@ -6600,12 +6600,12 @@ jProto.alter = function alter(func) {
 jStat.jStat = jStat;
 
 // Exposing jStat.
-var _$jStat_819 = jStat;
+var _$jStat_870 = jStat;
 
-var _$vector_826 = {};
-/* removed: var _$jStat_819 = require( './core.js' ); */;
+var _$vector_877 = {};
+/* removed: var _$jStat_870 = require( './core.js' ); */;
 
-var __isFunction_826 = _$jStat_819.utils.isFunction;
+var __isFunction_877 = _$jStat_870.utils.isFunction;
 
 // Ascending functions for sort
 function ascNum(a, b) { return a - b; }
@@ -6616,7 +6616,7 @@ function clip(arg, min, max) {
 
 
 // sum of an array
-_$jStat_819.sum = function sum(arr) {
+_$jStat_870.sum = function sum(arr) {
   var sum = 0;
   var i = arr.length;
   while (--i >= 0)
@@ -6626,7 +6626,7 @@ _$jStat_819.sum = function sum(arr) {
 
 
 // sum squared
-_$jStat_819.sumsqrd = function sumsqrd(arr) {
+_$jStat_870.sumsqrd = function sumsqrd(arr) {
   var sum = 0;
   var i = arr.length;
   while (--i >= 0)
@@ -6636,8 +6636,8 @@ _$jStat_819.sumsqrd = function sumsqrd(arr) {
 
 
 // sum of squared errors of prediction (SSE)
-_$jStat_819.sumsqerr = function sumsqerr(arr) {
-  var mean = _$jStat_819.mean(arr);
+_$jStat_870.sumsqerr = function sumsqerr(arr) {
+  var mean = _$jStat_870.mean(arr);
   var sum = 0;
   var i = arr.length;
   var tmp;
@@ -6649,7 +6649,7 @@ _$jStat_819.sumsqerr = function sumsqerr(arr) {
 };
 
 // sum of an array in each row
-_$jStat_819.sumrow = function sumrow(arr) {
+_$jStat_870.sumrow = function sumrow(arr) {
   var sum = 0;
   var i = arr.length;
   while (--i >= 0)
@@ -6658,7 +6658,7 @@ _$jStat_819.sumrow = function sumrow(arr) {
 };
 
 // product of an array
-_$jStat_819.product = function product(arr) {
+_$jStat_870.product = function product(arr) {
   var prod = 1;
   var i = arr.length;
   while (--i >= 0)
@@ -6668,7 +6668,7 @@ _$jStat_819.product = function product(arr) {
 
 
 // minimum value of an array
-_$jStat_819.min = function min(arr) {
+_$jStat_870.min = function min(arr) {
   var low = arr[0];
   var i = 0;
   while (++i < arr.length)
@@ -6679,7 +6679,7 @@ _$jStat_819.min = function min(arr) {
 
 
 // maximum value of an array
-_$jStat_819.max = function max(arr) {
+_$jStat_870.max = function max(arr) {
   var high = arr[0];
   var i = 0;
   while (++i < arr.length)
@@ -6690,7 +6690,7 @@ _$jStat_819.max = function max(arr) {
 
 
 // unique values of an array
-_$jStat_819.unique = function unique(arr) {
+_$jStat_870.unique = function unique(arr) {
   var hash = {}, _arr = [];
   for(var i = 0; i < arr.length; i++) {
     if (!hash[arr[i]]) {
@@ -6703,25 +6703,25 @@ _$jStat_819.unique = function unique(arr) {
 
 
 // mean value of an array
-_$jStat_819.mean = function mean(arr) {
-  return _$jStat_819.sum(arr) / arr.length;
+_$jStat_870.mean = function mean(arr) {
+  return _$jStat_870.sum(arr) / arr.length;
 };
 
 
 // mean squared error (MSE)
-_$jStat_819.meansqerr = function meansqerr(arr) {
-  return _$jStat_819.sumsqerr(arr) / arr.length;
+_$jStat_870.meansqerr = function meansqerr(arr) {
+  return _$jStat_870.sumsqerr(arr) / arr.length;
 };
 
 
 // geometric mean of an array
-_$jStat_819.geomean = function geomean(arr) {
-  return Math.pow(_$jStat_819.product(arr), 1 / arr.length);
+_$jStat_870.geomean = function geomean(arr) {
+  return Math.pow(_$jStat_870.product(arr), 1 / arr.length);
 };
 
 
 // median of an array
-_$jStat_819.median = function median(arr) {
+_$jStat_870.median = function median(arr) {
   var arrlen = arr.length;
   var _arr = arr.slice().sort(ascNum);
   // check if array is even or odd, then return the appropriate
@@ -6732,19 +6732,19 @@ _$jStat_819.median = function median(arr) {
 
 
 // cumulative sum of an array
-_$jStat_819.cumsum = function cumsum(arr) {
-  return _$jStat_819.cumreduce(arr, function (a, b) { return a + b; });
+_$jStat_870.cumsum = function cumsum(arr) {
+  return _$jStat_870.cumreduce(arr, function (a, b) { return a + b; });
 };
 
 
 // cumulative product of an array
-_$jStat_819.cumprod = function cumprod(arr) {
-  return _$jStat_819.cumreduce(arr, function (a, b) { return a * b; });
+_$jStat_870.cumprod = function cumprod(arr) {
+  return _$jStat_870.cumreduce(arr, function (a, b) { return a * b; });
 };
 
 
 // successive differences of a sequence
-_$jStat_819.diff = function diff(arr) {
+_$jStat_870.diff = function diff(arr) {
   var diffs = [];
   var arrLen = arr.length;
   var i;
@@ -6755,7 +6755,7 @@ _$jStat_819.diff = function diff(arr) {
 
 
 // ranks of an array
-_$jStat_819.rank = function (arr) {
+_$jStat_870.rank = function (arr) {
   var i;
   var distinctNumbers = [];
   var numberCounts = {};
@@ -6791,7 +6791,7 @@ _$jStat_819.rank = function (arr) {
 // mode of an array
 // if there are multiple modes of an array, return all of them
 // is this the appropriate way of handling it?
-_$jStat_819.mode = function mode(arr) {
+_$jStat_870.mode = function mode(arr) {
   var arrLen = arr.length;
   var _arr = arr.slice().sort(ascNum);
   var count = 1;
@@ -6824,26 +6824,26 @@ _$jStat_819.mode = function mode(arr) {
 
 
 // range of an array
-_$jStat_819.range = function range(arr) {
-  return _$jStat_819.max(arr) - _$jStat_819.min(arr);
+_$jStat_870.range = function range(arr) {
+  return _$jStat_870.max(arr) - _$jStat_870.min(arr);
 };
 
 // variance of an array
 // flag = true indicates sample instead of population
-_$jStat_819.variance = function variance(arr, flag) {
-  return _$jStat_819.sumsqerr(arr) / (arr.length - (flag ? 1 : 0));
+_$jStat_870.variance = function variance(arr, flag) {
+  return _$jStat_870.sumsqerr(arr) / (arr.length - (flag ? 1 : 0));
 };
 
 // pooled variance of an array of arrays
-_$jStat_819.pooledvariance = function pooledvariance(arr) {
-  var sumsqerr = arr.reduce(function (a, samples) {return a + _$jStat_819.sumsqerr(samples);}, 0);
+_$jStat_870.pooledvariance = function pooledvariance(arr) {
+  var sumsqerr = arr.reduce(function (a, samples) {return a + _$jStat_870.sumsqerr(samples);}, 0);
   var count = arr.reduce(function (a, samples) {return a + samples.length;}, 0);
   return sumsqerr / (count - arr.length);
 };
 
 // deviation of an array
-_$jStat_819.deviation = function (arr) {
-  var mean = _$jStat_819.mean(arr);
+_$jStat_870.deviation = function (arr) {
+  var mean = _$jStat_870.mean(arr);
   var arrlen = arr.length;
   var dev = new Array(arrlen);
   for (var i = 0; i < arrlen; i++) {
@@ -6854,45 +6854,45 @@ _$jStat_819.deviation = function (arr) {
 
 // standard deviation of an array
 // flag = true indicates sample instead of population
-_$jStat_819.stdev = function stdev(arr, flag) {
-  return Math.sqrt(_$jStat_819.variance(arr, flag));
+_$jStat_870.stdev = function stdev(arr, flag) {
+  return Math.sqrt(_$jStat_870.variance(arr, flag));
 };
 
 // pooled standard deviation of an array of arrays
-_$jStat_819.pooledstdev = function pooledstdev(arr) {
-  return Math.sqrt(_$jStat_819.pooledvariance(arr));
+_$jStat_870.pooledstdev = function pooledstdev(arr) {
+  return Math.sqrt(_$jStat_870.pooledvariance(arr));
 };
 
 // mean deviation (mean absolute deviation) of an array
-_$jStat_819.meandev = function meandev(arr) {
-  var mean = _$jStat_819.mean(arr);
+_$jStat_870.meandev = function meandev(arr) {
+  var mean = _$jStat_870.mean(arr);
   var a = [];
   for (var i = arr.length - 1; i >= 0; i--) {
     a.push(Math.abs(arr[i] - mean));
   }
-  return _$jStat_819.mean(a);
+  return _$jStat_870.mean(a);
 };
 
 
 // median deviation (median absolute deviation) of an array
-_$jStat_819.meddev = function meddev(arr) {
-  var median = _$jStat_819.median(arr);
+_$jStat_870.meddev = function meddev(arr) {
+  var median = _$jStat_870.median(arr);
   var a = [];
   for (var i = arr.length - 1; i >= 0; i--) {
     a.push(Math.abs(arr[i] - median));
   }
-  return _$jStat_819.median(a);
+  return _$jStat_870.median(a);
 };
 
 
 // coefficient of variation
-_$jStat_819.coeffvar = function coeffvar(arr) {
-  return _$jStat_819.stdev(arr) / _$jStat_819.mean(arr);
+_$jStat_870.coeffvar = function coeffvar(arr) {
+  return _$jStat_870.stdev(arr) / _$jStat_870.mean(arr);
 };
 
 
 // quartiles of an array
-_$jStat_819.quartiles = function quartiles(arr) {
+_$jStat_870.quartiles = function quartiles(arr) {
   var arrlen = arr.length;
   var _arr = arr.slice().sort(ascNum);
   return [
@@ -6905,7 +6905,7 @@ _$jStat_819.quartiles = function quartiles(arr) {
 
 // Arbitary quantiles of an array. Direct port of the scipy.stats
 // implementation by Pierre GF Gerard-Marchant.
-_$jStat_819.quantiles = function quantiles(arr, quantilesArray, alphap, betap) {
+_$jStat_870.quantiles = function quantiles(arr, quantilesArray, alphap, betap) {
   var sortedArray = arr.slice().sort(ascNum);
   var quantileVals = [quantilesArray.length];
   var n = arr.length;
@@ -6930,7 +6930,7 @@ _$jStat_819.quantiles = function quantiles(arr, quantilesArray, alphap, betap) {
 
 // Return the k-th percentile of values in a range, where k is in the range 0..1, inclusive.
 // Passing true for the exclusive parameter excludes both endpoints of the range.
-_$jStat_819.percentile = function percentile(arr, k, exclusive) {
+_$jStat_870.percentile = function percentile(arr, k, exclusive) {
   var _arr = arr.slice().sort(ascNum);
   var realIndex = k * (_arr.length + (exclusive ? 1 : -1)) + (exclusive ? 0 : 1);
   var index = parseInt(realIndex);
@@ -6945,7 +6945,7 @@ _$jStat_819.percentile = function percentile(arr, k, exclusive) {
 // The percentile rank of score in a given array. Returns the percentage
 // of all values in the input array that are less than (kind='strict') or
 // less or equal than (kind='weak') score. Default is weak.
-_$jStat_819.percentileOfScore = function percentileOfScore(arr, score, kind) {
+_$jStat_870.percentileOfScore = function percentileOfScore(arr, score, kind) {
   var counter = 0;
   var len = arr.length;
   var strict = false;
@@ -6967,10 +6967,10 @@ _$jStat_819.percentileOfScore = function percentileOfScore(arr, score, kind) {
 
 
 // Histogram (bin count) data
-_$jStat_819.histogram = function histogram(arr, binCnt) {
+_$jStat_870.histogram = function histogram(arr, binCnt) {
   binCnt = binCnt || 4;
-  var first = _$jStat_819.min(arr);
-  var binWidth = (_$jStat_819.max(arr) - first) / binCnt;
+  var first = _$jStat_870.min(arr);
+  var binWidth = (_$jStat_870.max(arr) - first) / binCnt;
   var len = arr.length;
   var bins = [];
   var i;
@@ -6985,9 +6985,9 @@ _$jStat_819.histogram = function histogram(arr, binCnt) {
 
 
 // covariance of two arrays
-_$jStat_819.covariance = function covariance(arr1, arr2) {
-  var u = _$jStat_819.mean(arr1);
-  var v = _$jStat_819.mean(arr2);
+_$jStat_870.covariance = function covariance(arr1, arr2) {
+  var u = _$jStat_870.mean(arr1);
+  var v = _$jStat_870.mean(arr2);
   var arr1Len = arr1.length;
   var sq_dev = new Array(arr1Len);
   var i;
@@ -6995,30 +6995,30 @@ _$jStat_819.covariance = function covariance(arr1, arr2) {
   for (i = 0; i < arr1Len; i++)
     sq_dev[i] = (arr1[i] - u) * (arr2[i] - v);
 
-  return _$jStat_819.sum(sq_dev) / (arr1Len - 1);
+  return _$jStat_870.sum(sq_dev) / (arr1Len - 1);
 };
 
 
 // (pearson's) population correlation coefficient, rho
-_$jStat_819.corrcoeff = function corrcoeff(arr1, arr2) {
-  return _$jStat_819.covariance(arr1, arr2) /
-      _$jStat_819.stdev(arr1, 1) /
-      _$jStat_819.stdev(arr2, 1);
+_$jStat_870.corrcoeff = function corrcoeff(arr1, arr2) {
+  return _$jStat_870.covariance(arr1, arr2) /
+      _$jStat_870.stdev(arr1, 1) /
+      _$jStat_870.stdev(arr2, 1);
 };
 
   // (spearman's) rank correlation coefficient, sp
-_$jStat_819.spearmancoeff =  function (arr1, arr2) {
-  arr1 = _$jStat_819.rank(arr1);
-  arr2 = _$jStat_819.rank(arr2);
+_$jStat_870.spearmancoeff =  function (arr1, arr2) {
+  arr1 = _$jStat_870.rank(arr1);
+  arr2 = _$jStat_870.rank(arr2);
   //return pearson's correlation of the ranks:
-  return _$jStat_819.corrcoeff(arr1, arr2);
+  return _$jStat_870.corrcoeff(arr1, arr2);
 }
 
 
 // statistical standardized moments (general form of skew/kurt)
-_$jStat_819.stanMoment = function stanMoment(arr, n) {
-  var mu = _$jStat_819.mean(arr);
-  var sigma = _$jStat_819.stdev(arr);
+_$jStat_870.stanMoment = function stanMoment(arr, n) {
+  var mu = _$jStat_870.mean(arr);
+  var sigma = _$jStat_870.stdev(arr);
   var len = arr.length;
   var skewSum = 0;
 
@@ -7029,17 +7029,17 @@ _$jStat_819.stanMoment = function stanMoment(arr, n) {
 };
 
 // (pearson's) moment coefficient of skewness
-_$jStat_819.skewness = function skewness(arr) {
-  return _$jStat_819.stanMoment(arr, 3);
+_$jStat_870.skewness = function skewness(arr) {
+  return _$jStat_870.stanMoment(arr, 3);
 };
 
 // (pearson's) (excess) kurtosis
-_$jStat_819.kurtosis = function kurtosis(arr) {
-  return _$jStat_819.stanMoment(arr, 4) - 3;
+_$jStat_870.kurtosis = function kurtosis(arr) {
+  return _$jStat_870.stanMoment(arr, 4) - 3;
 };
 
 
-var __jProto_826 = _$jStat_819.prototype;
+var __jProto_877 = _$jStat_870.prototype;
 
 
 // Extend jProto with method for calculating cumulative sums and products.
@@ -7051,19 +7051,19 @@ var __jProto_826 = _$jStat_819.prototype;
   for (var i = 0; i < funcs.length; i++) (function(passfunc) {
     // If a matrix is passed, automatically assume operation should be done on
     // the columns.
-    __jProto_826[passfunc] = function(fullbool, func) {
+    __jProto_877[passfunc] = function(fullbool, func) {
       var arr = [];
       var i = 0;
       var tmpthis = this;
       // Assignment reassignation depending on how parameters were passed in.
-      if (__isFunction_826(fullbool)) {
+      if (__isFunction_877(fullbool)) {
         func = fullbool;
         fullbool = false;
       }
       // Check if a callback was passed with the function.
       if (func) {
         setTimeout(function() {
-          func.call(tmpthis, __jProto_826[passfunc].call(tmpthis, fullbool));
+          func.call(tmpthis, __jProto_877[passfunc].call(tmpthis, fullbool));
         });
         return this;
       }
@@ -7071,11 +7071,11 @@ var __jProto_826 = _$jStat_819.prototype;
       if (this.length > 1) {
         tmpthis = fullbool === true ? this : this.transpose();
         for (; i < tmpthis.length; i++)
-          arr[i] = _$jStat_819[passfunc](tmpthis[i]);
+          arr[i] = _$jStat_870[passfunc](tmpthis[i]);
         return arr;
       }
       // Pass fullbool if only vector, not a matrix. for variance and stdev.
-      return _$jStat_819[passfunc](this[0], fullbool);
+      return _$jStat_870[passfunc](this[0], fullbool);
     };
   })(funcs[i]);
 })(('cumsum cumprod').split(' '));
@@ -7086,19 +7086,19 @@ var __jProto_826 = _$jStat_819.prototype;
   for (var i = 0; i < funcs.length; i++) (function(passfunc) {
     // If a matrix is passed, automatically assume operation should be done on
     // the columns.
-    __jProto_826[passfunc] = function(fullbool, func) {
+    __jProto_877[passfunc] = function(fullbool, func) {
       var arr = [];
       var i = 0;
       var tmpthis = this;
       // Assignment reassignation depending on how parameters were passed in.
-      if (__isFunction_826(fullbool)) {
+      if (__isFunction_877(fullbool)) {
         func = fullbool;
         fullbool = false;
       }
       // Check if a callback was passed with the function.
       if (func) {
         setTimeout(function() {
-          func.call(tmpthis, __jProto_826[passfunc].call(tmpthis, fullbool));
+          func.call(tmpthis, __jProto_877[passfunc].call(tmpthis, fullbool));
         });
         return this;
       }
@@ -7107,13 +7107,13 @@ var __jProto_826 = _$jStat_819.prototype;
         if (passfunc !== 'sumrow')
           tmpthis = fullbool === true ? this : this.transpose();
         for (; i < tmpthis.length; i++)
-          arr[i] = _$jStat_819[passfunc](tmpthis[i]);
+          arr[i] = _$jStat_870[passfunc](tmpthis[i]);
         return fullbool === true
-            ? _$jStat_819[passfunc](_$jStat_819.utils.toVector(arr))
+            ? _$jStat_870[passfunc](_$jStat_870.utils.toVector(arr))
             : arr;
       }
       // Pass fullbool if only vector, not a matrix. for variance and stdev.
-      return _$jStat_819[passfunc](this[0], fullbool);
+      return _$jStat_870[passfunc](this[0], fullbool);
     };
   })(funcs[i]);
 })(('sum sumsqrd sumsqerr sumrow product min max unique mean meansqerr ' +
@@ -7125,7 +7125,7 @@ var __jProto_826 = _$jStat_819.prototype;
 // done on columns.
 (function(funcs) {
   for (var i = 0; i < funcs.length; i++) (function(passfunc) {
-    __jProto_826[passfunc] = function() {
+    __jProto_877[passfunc] = function() {
       var arr = [];
       var i = 0;
       var tmpthis = this;
@@ -7134,13 +7134,13 @@ var __jProto_826 = _$jStat_819.prototype;
 
       // If the last argument is a function, we assume it's a callback; we
       // strip the callback out and call the function again.
-      if (__isFunction_826(args[args.length - 1])) {
+      if (__isFunction_877(args[args.length - 1])) {
         callbackFunction = args[args.length - 1];
         var argsToPass = args.slice(0, args.length - 1);
 
         setTimeout(function() {
           callbackFunction.call(tmpthis,
-                                __jProto_826[passfunc].apply(tmpthis, argsToPass));
+                                __jProto_877[passfunc].apply(tmpthis, argsToPass));
         });
         return this;
 
@@ -7148,7 +7148,7 @@ var __jProto_826 = _$jStat_819.prototype;
       } else {
         callbackFunction = undefined;
         var curriedFunction = function curriedFunction(vector) {
-          return _$jStat_819[passfunc].apply(tmpthis, [vector].concat(args));
+          return _$jStat_870[passfunc].apply(tmpthis, [vector].concat(args));
         }
       }
 
@@ -7411,7 +7411,7 @@ var _$abs_242 = _$abs_241;
 
 // MODULES //
 
-/* removed: var _$nativeClass_788 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_839 = require( '@stdlib/utils/native-class' ); */;
 
 
 // VARIABLES //
@@ -7438,7 +7438,7 @@ var hasUint32Array = ( typeof Uint32Array === 'function' ); // eslint-disable-li
 function isUint32Array( value ) {
 	return (
 		( hasUint32Array && value instanceof Uint32Array ) || // eslint-disable-line stdlib/require-globals
-		_$nativeClass_788( value ) === '[object Uint32Array]'
+		_$nativeClass_839( value ) === '[object Uint32Array]'
 	);
 }
 
@@ -7771,7 +7771,7 @@ var _$ctor_23 = __ctor_23;
 
 // MODULES //
 
-/* removed: var _$nativeClass_788 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_839 = require( '@stdlib/utils/native-class' ); */;
 
 
 // VARIABLES //
@@ -7798,7 +7798,7 @@ var hasFloat64Array = ( typeof Float64Array === 'function' ); // eslint-disable-
 function isFloat64Array( value ) {
 	return (
 		( hasFloat64Array && value instanceof Float64Array ) || // eslint-disable-line stdlib/require-globals
-		_$nativeClass_788( value ) === '[object Float64Array]'
+		_$nativeClass_839( value ) === '[object Float64Array]'
 	);
 }
 
@@ -8128,7 +8128,7 @@ var _$ctor_5 = __ctor_5;
 
 // MODULES //
 
-/* removed: var _$nativeClass_788 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_839 = require( '@stdlib/utils/native-class' ); */;
 
 
 // VARIABLES //
@@ -8155,7 +8155,7 @@ var hasUint8Array = ( typeof Uint8Array === 'function' ); // eslint-disable-line
 function isUint8Array( value ) {
 	return (
 		( hasUint8Array && value instanceof Uint8Array ) || // eslint-disable-line stdlib/require-globals
-		_$nativeClass_788( value ) === '[object Uint8Array]'
+		_$nativeClass_839( value ) === '[object Uint8Array]'
 	);
 }
 
@@ -8550,7 +8550,7 @@ var _$ctor_26 = __ctor_26;
 
 // MODULES //
 
-/* removed: var _$nativeClass_788 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_839 = require( '@stdlib/utils/native-class' ); */;
 
 
 // VARIABLES //
@@ -8577,7 +8577,7 @@ var hasUint16Array = ( typeof Uint16Array === 'function' ); // eslint-disable-li
 function isUint16Array( value ) {
 	return (
 		( hasUint16Array && value instanceof Uint16Array ) || // eslint-disable-line stdlib/require-globals
-		_$nativeClass_788( value ) === '[object Uint16Array]'
+		_$nativeClass_839( value ) === '[object Uint16Array]'
 	);
 }
 
@@ -9138,7 +9138,7 @@ if ( _$IS_LITTLE_ENDIAN_124 === true ) {
 
 // EXPORTS //
 
-var _$HIGH_520 = HIGH;
+var _$HIGH_527 = HIGH;
 
 /**
 * @license Apache-2.0
@@ -9164,7 +9164,7 @@ var _$HIGH_520 = HIGH;
 
 /* removed: var _$ctor_23 = require( '@stdlib/array/uint32' ); */;
 /* removed: var _$ctor_5 = require( '@stdlib/array/float64' ); */;
-/* removed: var _$HIGH_520 = require( './high.js' ); */;
+/* removed: var _$HIGH_527 = require( './high.js' ); */;
 
 
 // VARIABLES //
@@ -9225,13 +9225,13 @@ var UINT32_VIEW = new _$ctor_23( FLOAT64_VIEW.buffer );
 */
 function getHighWord( x ) {
 	FLOAT64_VIEW[ 0 ] = x;
-	return UINT32_VIEW[ _$HIGH_520 ];
+	return UINT32_VIEW[ _$HIGH_527 ];
 }
 
 
 // EXPORTS //
 
-var _$getHighWord_522 = getHighWord;
+var _$getHighWord_529 = getHighWord;
 
 /**
 * @license Apache-2.0
@@ -9267,12 +9267,12 @@ var _$getHighWord_522 = getHighWord;
 
 // MODULES //
 
-/* removed: var _$getHighWord_522 = require( './main.js' ); */;
+/* removed: var _$getHighWord_529 = require( './main.js' ); */;
 
 
 // EXPORTS //
 
-var _$getHighWord_521 = _$getHighWord_522;
+var _$getHighWord_528 = _$getHighWord_529;
 
 /**
 * @license Apache-2.0
@@ -9301,17 +9301,17 @@ var _$getHighWord_521 = _$getHighWord_522;
 
 // MAIN //
 
-var __HIGH_529;
+var __HIGH_536;
 if ( _$IS_LITTLE_ENDIAN_124 === true ) {
-	__HIGH_529 = 1; // second index
+	__HIGH_536 = 1; // second index
 } else {
-	__HIGH_529 = 0; // first index
+	__HIGH_536 = 0; // first index
 }
 
 
 // EXPORTS //
 
-var _$HIGH_529 = __HIGH_529;
+var _$HIGH_536 = __HIGH_536;
 
 /**
 * @license Apache-2.0
@@ -9337,13 +9337,13 @@ var _$HIGH_529 = __HIGH_529;
 
 /* removed: var _$ctor_23 = require( '@stdlib/array/uint32' ); */;
 /* removed: var _$ctor_5 = require( '@stdlib/array/float64' ); */;
-/* removed: var _$HIGH_529 = require( './high.js' ); */;
+/* removed: var _$HIGH_536 = require( './high.js' ); */;
 
 
 // VARIABLES //
 
-var __FLOAT64_VIEW_531 = new _$ctor_5( 1 );
-var __UINT32_VIEW_531 = new _$ctor_23( __FLOAT64_VIEW_531.buffer );
+var __FLOAT64_VIEW_538 = new _$ctor_5( 1 );
+var __UINT32_VIEW_538 = new _$ctor_23( __FLOAT64_VIEW_538.buffer );
 
 
 // MAIN //
@@ -9409,15 +9409,15 @@ var __UINT32_VIEW_531 = new _$ctor_23( __FLOAT64_VIEW_531.buffer );
 * // returns 1.0
 */
 function setHighWord( x, high ) {
-	__FLOAT64_VIEW_531[ 0 ] = x;
-	__UINT32_VIEW_531[ _$HIGH_529 ] = ( high >>> 0 ); // identity bit shift to ensure integer
-	return __FLOAT64_VIEW_531[ 0 ];
+	__FLOAT64_VIEW_538[ 0 ] = x;
+	__UINT32_VIEW_538[ _$HIGH_536 ] = ( high >>> 0 ); // identity bit shift to ensure integer
+	return __FLOAT64_VIEW_538[ 0 ];
 }
 
 
 // EXPORTS //
 
-var _$setHighWord_531 = setHighWord;
+var _$setHighWord_538 = setHighWord;
 
 /**
 * @license Apache-2.0
@@ -9465,12 +9465,12 @@ var _$setHighWord_531 = setHighWord;
 
 // MODULES //
 
-/* removed: var _$setHighWord_531 = require( './main.js' ); */;
+/* removed: var _$setHighWord_538 = require( './main.js' ); */;
 
 
 // EXPORTS //
 
-var _$setHighWord_530 = _$setHighWord_531;
+var _$setHighWord_537 = _$setHighWord_538;
 
 /**
 * @license Apache-2.0
@@ -9578,7 +9578,7 @@ function evalpoly( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_456 = evalpoly;
+var _$evalpoly_463 = evalpoly;
 
 /**
 * @license Apache-2.0
@@ -9617,7 +9617,7 @@ var _$evalpoly_456 = evalpoly;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_457( x ) {
+function __evalpoly_464( x ) {
 	if ( x === 0.0 ) {
 		return 0.6666666666666735;
 	}
@@ -9627,7 +9627,7 @@ function __evalpoly_457( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_457 = __evalpoly_457;
+var _$evalpoly_464 = __evalpoly_464;
 
 /**
 * @license Apache-2.0
@@ -9665,13 +9665,13 @@ var _$evalpoly_457 = __evalpoly_457;
 
 // MODULES //
 
-/* removed: var _$getHighWord_521 = require( '@stdlib/number/float64/base/get-high-word' ); */;
-/* removed: var _$setHighWord_530 = require( '@stdlib/number/float64/base/set-high-word' ); */;
+/* removed: var _$getHighWord_528 = require( '@stdlib/number/float64/base/get-high-word' ); */;
+/* removed: var _$setHighWord_537 = require( '@stdlib/number/float64/base/set-high-word' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$FLOAT64_EXPONENT_BIAS_190 = require( '@stdlib/constants/math/float64-exponent-bias' ); */;
 /* removed: var _$FLOAT64_NINF_205 = require( '@stdlib/constants/math/float64-ninf' ); */;
-/* removed: var _$evalpoly_456 = require( './polyval_p.js' ); */;
-/* removed: var _$evalpoly_457 = require( './polyval_q.js' ); */;
+/* removed: var _$evalpoly_463 = require( './polyval_p.js' ); */;
+/* removed: var _$evalpoly_464 = require( './polyval_q.js' ); */;
 
 
 // VARIABLES //
@@ -9742,7 +9742,7 @@ function ln( x ) {
 	if ( _$isnan_231( x ) || x < 0.0 ) {
 		return NaN;
 	}
-	hx = _$getHighWord_521( x );
+	hx = _$getHighWord_528( x );
 	k = 0|0; // asm type annotation
 	if ( hx < HIGH_MIN_NORMAL_EXP ) {
 		// Case: 0 < x < 2**-1022
@@ -9750,7 +9750,7 @@ function ln( x ) {
 
 		// Subnormal number, scale up `x`:
 		x *= TWO54;
-		hx = _$getHighWord_521( x );
+		hx = _$getHighWord_528( x );
 	}
 	if ( hx >= HIGH_MAX_NORMAL_EXP ) {
 		return x + x;
@@ -9760,7 +9760,7 @@ function ln( x ) {
 	i = ( (hx+0x95f64) & 0x100000 )|0; // asm type annotation
 
 	// Normalize `x` or `x/2`...
-	x = _$setHighWord_530( x, hx|(i^HIGH_BIASED_EXP_0) );
+	x = _$setHighWord_537( x, hx|(i^HIGH_BIASED_EXP_0) );
 	k += ( i>>20 )|0; // asm type annotation
 	f = x - 1.0;
 	if ( (HIGH_SIGNIFICAND_MASK&(2+hx)) < 3 ) {
@@ -9782,8 +9782,8 @@ function ln( x ) {
 	i = ( hx - 0x6147a )|0; // asm type annotation
 	w = z * z;
 	j = ( 0x6b851 - hx )|0; // asm type annotation
-	t1 = w * _$evalpoly_456( w );
-	t2 = z * _$evalpoly_457( w );
+	t1 = w * _$evalpoly_463( w );
+	t2 = z * _$evalpoly_464( w );
 	i |= j;
 	R = t2 + t1;
 	if ( i > 0 ) {
@@ -9802,7 +9802,7 @@ function ln( x ) {
 
 // EXPORTS //
 
-var _$ln_455 = ln;
+var _$ln_462 = ln;
 
 /**
 * @license Apache-2.0
@@ -9850,12 +9850,12 @@ var _$ln_455 = ln;
 
 // MODULES //
 
-/* removed: var _$ln_455 = require( './ln.js' ); */;
+/* removed: var _$ln_462 = require( './ln.js' ); */;
 
 
 // EXPORTS //
 
-var _$ln_454 = _$ln_455;
+var _$ln_461 = _$ln_462;
 
 /**
 * @license Apache-2.0
@@ -9906,7 +9906,7 @@ var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
 
 // EXPORTS //
 
-var _$floor_313 = floor;
+var _$floor_320 = floor;
 
 /**
 * @license Apache-2.0
@@ -9951,12 +9951,12 @@ var _$floor_313 = floor;
 
 // MODULES //
 
-/* removed: var _$floor_313 = require( './floor.js' ); */;
+/* removed: var _$floor_320 = require( './floor.js' ); */;
 
 
 // EXPORTS //
 
-var _$floor_314 = _$floor_313;
+var _$floor_321 = _$floor_320;
 
 /**
 * @license Apache-2.0
@@ -9980,7 +9980,7 @@ var _$floor_314 = _$floor_313;
 
 // MODULES //
 
-/* removed: var _$floor_314 = require( '@stdlib/math/base/special/floor' ); */;
+/* removed: var _$floor_321 = require( '@stdlib/math/base/special/floor' ); */;
 /* removed: var _$ceil_269 = require( '@stdlib/math/base/special/ceil' ); */;
 
 
@@ -10024,13 +10024,13 @@ function trunc( x ) {
 	if ( x < 0.0 ) {
 		return _$ceil_269( x );
 	}
-	return _$floor_314( x );
+	return _$floor_321( x );
 }
 
 
 // EXPORTS //
 
-var _$trunc_499 = trunc;
+var _$trunc_506 = trunc;
 
 /**
 * @license Apache-2.0
@@ -10084,12 +10084,12 @@ var _$trunc_499 = trunc;
 
 // MODULES //
 
-/* removed: var _$trunc_499 = require( './trunc.js' ); */;
+/* removed: var _$trunc_506 = require( './trunc.js' ); */;
 
 
 // EXPORTS //
 
-var _$trunc_498 = _$trunc_499;
+var _$trunc_505 = _$trunc_506;
 
 /**
 * @license Apache-2.0
@@ -10128,7 +10128,7 @@ var _$trunc_498 = _$trunc_499;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_444( x ) {
+function __evalpoly_451( x ) {
 	if ( x === 0.0 ) {
 		return 0.0416666666666666;
 	}
@@ -10138,7 +10138,7 @@ function __evalpoly_444( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_444 = __evalpoly_444;
+var _$evalpoly_451 = __evalpoly_451;
 
 /**
 * @license Apache-2.0
@@ -10177,7 +10177,7 @@ var _$evalpoly_444 = __evalpoly_444;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_445( x ) {
+function __evalpoly_452( x ) {
 	if ( x === 0.0 ) {
 		return -2.7557314351390663e-7;
 	}
@@ -10187,7 +10187,7 @@ function __evalpoly_445( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_445 = __evalpoly_445;
+var _$evalpoly_452 = __evalpoly_452;
 
 /**
 * @license Apache-2.0
@@ -10225,8 +10225,8 @@ var _$evalpoly_445 = __evalpoly_445;
 
 // MODULES //
 
-/* removed: var _$evalpoly_444 = require( './polyval_c13.js' ); */;
-/* removed: var _$evalpoly_445 = require( './polyval_c46.js' ); */;
+/* removed: var _$evalpoly_451 = require( './polyval_c13.js' ); */;
+/* removed: var _$evalpoly_452 = require( './polyval_c46.js' ); */;
 
 
 // MAIN //
@@ -10307,8 +10307,8 @@ function kernelCos( x, y ) {
 
 	z = x * x;
 	w = z * z;
-	r = z * _$evalpoly_444( z );
-	r += w * w * _$evalpoly_445( z );
+	r = z * _$evalpoly_451( z );
+	r += w * w * _$evalpoly_452( z );
 	hz = 0.5 * z;
 	w = 1.0 - hz;
 	return w + ( ((1.0-w) - hz) + ((z*r) - (x*y)) );
@@ -10317,7 +10317,7 @@ function kernelCos( x, y ) {
 
 // EXPORTS //
 
-var _$kernelCos_443 = kernelCos;
+var _$kernelCos_450 = kernelCos;
 
 /**
 * @license Apache-2.0
@@ -10362,12 +10362,12 @@ var _$kernelCos_443 = kernelCos;
 
 // MODULES //
 
-/* removed: var _$kernelCos_443 = require( './kernel_cos.js' ); */;
+/* removed: var _$kernelCos_450 = require( './kernel_cos.js' ); */;
 
 
 // EXPORTS //
 
-var _$kernelCos_442 = _$kernelCos_443;
+var _$kernelCos_449 = _$kernelCos_450;
 
 /**
 * @license Apache-2.0
@@ -10502,7 +10502,7 @@ function kernelSin( x, y ) {
 
 // EXPORTS //
 
-var _$kernelSin_447 = kernelSin;
+var _$kernelSin_454 = kernelSin;
 
 /**
 * @license Apache-2.0
@@ -10553,12 +10553,12 @@ var _$kernelSin_447 = kernelSin;
 
 // MODULES //
 
-/* removed: var _$kernelSin_447 = require( './kernel_sin.js' ); */;
+/* removed: var _$kernelSin_454 = require( './kernel_sin.js' ); */;
 
 
 // EXPORTS //
 
-var _$kernelSin_446 = _$kernelSin_447;
+var _$kernelSin_453 = _$kernelSin_454;
 
 /**
 * @license Apache-2.0
@@ -10597,7 +10597,7 @@ if ( _$IS_LITTLE_ENDIAN_124 === true ) {
 
 // EXPORTS //
 
-var _$LOW_524 = LOW;
+var _$LOW_531 = LOW;
 
 /**
 * @license Apache-2.0
@@ -10623,13 +10623,13 @@ var _$LOW_524 = LOW;
 
 /* removed: var _$ctor_23 = require( '@stdlib/array/uint32' ); */;
 /* removed: var _$ctor_5 = require( '@stdlib/array/float64' ); */;
-/* removed: var _$LOW_524 = require( './low.js' ); */;
+/* removed: var _$LOW_531 = require( './low.js' ); */;
 
 
 // VARIABLES //
 
-var __FLOAT64_VIEW_525 = new _$ctor_5( 1 );
-var __UINT32_VIEW_525 = new _$ctor_23( __FLOAT64_VIEW_525.buffer );
+var __FLOAT64_VIEW_532 = new _$ctor_5( 1 );
+var __UINT32_VIEW_532 = new _$ctor_23( __FLOAT64_VIEW_532.buffer );
 
 
 // MAIN //
@@ -10683,14 +10683,14 @@ var __UINT32_VIEW_525 = new _$ctor_23( __FLOAT64_VIEW_525.buffer );
 * // returns 2479577218
 */
 function getLowWord( x ) {
-	__FLOAT64_VIEW_525[ 0 ] = x;
-	return __UINT32_VIEW_525[ _$LOW_524 ];
+	__FLOAT64_VIEW_532[ 0 ] = x;
+	return __UINT32_VIEW_532[ _$LOW_531 ];
 }
 
 
 // EXPORTS //
 
-var _$getLowWord_525 = getLowWord;
+var _$getLowWord_532 = getLowWord;
 
 /**
 * @license Apache-2.0
@@ -10726,12 +10726,12 @@ var _$getLowWord_525 = getLowWord;
 
 // MODULES //
 
-/* removed: var _$getLowWord_525 = require( './main.js' ); */;
+/* removed: var _$getLowWord_532 = require( './main.js' ); */;
 
 
 // EXPORTS //
 
-var _$getLowWord_523 = _$getLowWord_525;
+var _$getLowWord_530 = _$getLowWord_532;
 
 /**
 * @license Apache-2.0
@@ -10761,25 +10761,25 @@ var _$getLowWord_523 = _$getLowWord_525;
 // MAIN //
 
 var indices;
-var __HIGH_518;
-var __LOW_518;
+var __HIGH_525;
+var __LOW_525;
 
 if ( _$IS_LITTLE_ENDIAN_124 === true ) {
-	__HIGH_518 = 1; // second index
-	__LOW_518 = 0; // first index
+	__HIGH_525 = 1; // second index
+	__LOW_525 = 0; // first index
 } else {
-	__HIGH_518 = 0; // first index
-	__LOW_518 = 1; // second index
+	__HIGH_525 = 0; // first index
+	__LOW_525 = 1; // second index
 }
 indices = {
-	'HIGH': __HIGH_518,
-	'LOW': __LOW_518
+	'HIGH': __HIGH_525,
+	'LOW': __LOW_525
 };
 
 
 // EXPORTS //
 
-var _$indices_518 = indices;
+var _$indices_525 = indices;
 
 /**
 * @license Apache-2.0
@@ -10805,16 +10805,16 @@ var _$indices_518 = indices;
 
 /* removed: var _$ctor_23 = require( '@stdlib/array/uint32' ); */;
 /* removed: var _$ctor_5 = require( '@stdlib/array/float64' ); */;
-/* removed: var _$indices_518 = require( './indices.js' ); */;
+/* removed: var _$indices_525 = require( './indices.js' ); */;
 
 
 // VARIABLES //
 
-var __FLOAT64_VIEW_519 = new _$ctor_5( 1 );
-var __UINT32_VIEW_519 = new _$ctor_23( __FLOAT64_VIEW_519.buffer );
+var __FLOAT64_VIEW_526 = new _$ctor_5( 1 );
+var __UINT32_VIEW_526 = new _$ctor_23( __FLOAT64_VIEW_526.buffer );
 
-var __HIGH_519 = _$indices_518.HIGH;
-var __LOW_519 = _$indices_518.LOW;
+var __HIGH_526 = _$indices_525.HIGH;
+var __LOW_526 = _$indices_525.LOW;
 
 
 // MAIN //
@@ -10894,15 +10894,15 @@ var __LOW_519 = _$indices_518.LOW;
 * // returns -Infinity
 */
 function fromWords( high, low ) {
-	__UINT32_VIEW_519[ __HIGH_519 ] = high;
-	__UINT32_VIEW_519[ __LOW_519 ] = low;
-	return __FLOAT64_VIEW_519[ 0 ];
+	__UINT32_VIEW_526[ __HIGH_526 ] = high;
+	__UINT32_VIEW_526[ __LOW_526 ] = low;
+	return __FLOAT64_VIEW_526[ 0 ];
 }
 
 
 // EXPORTS //
 
-var _$fromWords_519 = fromWords;
+var _$fromWords_526 = fromWords;
 
 /**
 * @license Apache-2.0
@@ -10956,12 +10956,12 @@ var _$fromWords_519 = fromWords;
 
 // MODULES //
 
-/* removed: var _$fromWords_519 = require( './main.js' ); */;
+/* removed: var _$fromWords_526 = require( './main.js' ); */;
 
 
 // EXPORTS //
 
-var _$fromWords_517 = _$fromWords_519;
+var _$fromWords_524 = _$fromWords_526;
 
 /**
 * @license Apache-2.0
@@ -11155,26 +11155,26 @@ var _$FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL_203 = FLOAT64_MIN_BASE2_EXPONENT_SUBN
 
 // MAIN //
 
-var __indices_538;
-var __HIGH_538;
-var __LOW_538;
+var __indices_545;
+var __HIGH_545;
+var __LOW_545;
 
 if ( _$IS_LITTLE_ENDIAN_124 === true ) {
-	__HIGH_538 = 1; // second index
-	__LOW_538 = 0; // first index
+	__HIGH_545 = 1; // second index
+	__LOW_545 = 0; // first index
 } else {
-	__HIGH_538 = 0; // first index
-	__LOW_538 = 1; // second index
+	__HIGH_545 = 0; // first index
+	__LOW_545 = 1; // second index
 }
-__indices_538 = {
-	'HIGH': __HIGH_538,
-	'LOW': __LOW_538
+__indices_545 = {
+	'HIGH': __HIGH_545,
+	'LOW': __LOW_545
 };
 
 
 // EXPORTS //
 
-var _$indices_538 = __indices_538;
+var _$indices_545 = __indices_545;
 
 /**
 * @license Apache-2.0
@@ -11200,16 +11200,16 @@ var _$indices_538 = __indices_538;
 
 /* removed: var _$ctor_23 = require( '@stdlib/array/uint32' ); */;
 /* removed: var _$ctor_5 = require( '@stdlib/array/float64' ); */;
-/* removed: var _$indices_538 = require( './indices.js' ); */;
+/* removed: var _$indices_545 = require( './indices.js' ); */;
 
 
 // VARIABLES //
 
-var __FLOAT64_VIEW_540 = new _$ctor_5( 1 );
-var __UINT32_VIEW_540 = new _$ctor_23( __FLOAT64_VIEW_540.buffer );
+var __FLOAT64_VIEW_547 = new _$ctor_5( 1 );
+var __UINT32_VIEW_547 = new _$ctor_23( __FLOAT64_VIEW_547.buffer );
 
-var __HIGH_540 = _$indices_538.HIGH;
-var __LOW_540 = _$indices_538.LOW;
+var __HIGH_547 = _$indices_545.HIGH;
+var __LOW_547 = _$indices_545.LOW;
 
 
 // MAIN //
@@ -11273,16 +11273,16 @@ var __LOW_540 = _$indices_538.LOW;
 * // returns true
 */
 function toWords( out, x ) {
-	__FLOAT64_VIEW_540[ 0 ] = x;
-	out[ 0 ] = __UINT32_VIEW_540[ __HIGH_540 ];
-	out[ 1 ] = __UINT32_VIEW_540[ __LOW_540 ];
+	__FLOAT64_VIEW_547[ 0 ] = x;
+	out[ 0 ] = __UINT32_VIEW_547[ __HIGH_547 ];
+	out[ 1 ] = __UINT32_VIEW_547[ __LOW_547 ];
 	return out;
 }
 
 
 // EXPORTS //
 
-var _$toWords_540 = toWords;
+var _$toWords_547 = toWords;
 
 /**
 * @license Apache-2.0
@@ -11306,7 +11306,7 @@ var _$toWords_540 = toWords;
 
 // MODULES //
 
-/* removed: var _$toWords_540 = require( './to_words.js' ); */;
+/* removed: var _$toWords_547 = require( './to_words.js' ); */;
 
 
 // MAIN //
@@ -11333,17 +11333,17 @@ var _$toWords_540 = toWords;
 * var bool = ( w === out );
 * // returns true
 */
-function __toWords_539( out, x ) {
+function __toWords_546( out, x ) {
 	if ( arguments.length === 1 ) {
-		return _$toWords_540( [ 0, 0 ], out );
+		return _$toWords_547( [ 0, 0 ], out );
 	}
-	return _$toWords_540( out, x );
+	return _$toWords_547( out, x );
 }
 
 
 // EXPORTS //
 
-var _$toWords_539 = __toWords_539;
+var _$toWords_546 = __toWords_546;
 
 /**
 * @license Apache-2.0
@@ -11391,12 +11391,12 @@ var _$toWords_539 = __toWords_539;
 
 // MODULES //
 
-/* removed: var _$toWords_539 = require( './main.js' ); */;
+/* removed: var _$toWords_546 = require( './main.js' ); */;
 
 
 // EXPORTS //
 
-var _$toWords_537 = _$toWords_539;
+var _$toWords_544 = _$toWords_546;
 
 /**
 * @license Apache-2.0
@@ -11420,9 +11420,9 @@ var _$toWords_537 = _$toWords_539;
 
 // MODULES //
 
-/* removed: var _$toWords_537 = require( '@stdlib/number/float64/base/to-words' ); */;
-/* removed: var _$getHighWord_521 = require( '@stdlib/number/float64/base/get-high-word' ); */;
-/* removed: var _$fromWords_517 = require( '@stdlib/number/float64/base/from-words' ); */;
+/* removed: var _$toWords_544 = require( '@stdlib/number/float64/base/to-words' ); */;
+/* removed: var _$getHighWord_528 = require( '@stdlib/number/float64/base/get-high-word' ); */;
+/* removed: var _$fromWords_524 = require( '@stdlib/number/float64/base/from-words' ); */;
 
 
 // VARIABLES //
@@ -11471,14 +11471,14 @@ function copysign( x, y ) {
 	var hy;
 
 	// Split `x` into higher and lower order words:
-	_$toWords_537( WORDS, x );
+	_$toWords_544( WORDS, x );
 	hx = WORDS[ 0 ];
 
 	// Turn off the sign bit of `x`:
 	hx &= MAGNITUDE_MASK;
 
 	// Extract the higher order word from `y`:
-	hy = _$getHighWord_521( y );
+	hy = _$getHighWord_528( y );
 
 	// Leave only the sign bit of `y` turned on:
 	hy &= SIGN_MASK;
@@ -11487,7 +11487,7 @@ function copysign( x, y ) {
 	hx |= hy;
 
 	// Return a new value having the same magnitude as `x`, but with the sign of `y`:
-	return _$fromWords_517( hx, WORDS[ 1 ] );
+	return _$fromWords_524( hx, WORDS[ 1 ] );
 }
 
 
@@ -11702,7 +11702,7 @@ function normalize( out, x ) {
 
 // EXPORTS //
 
-var _$normalize_528 = normalize;
+var _$normalize_535 = normalize;
 
 /**
 * @license Apache-2.0
@@ -11726,7 +11726,7 @@ var _$normalize_528 = normalize;
 
 // MODULES //
 
-/* removed: var _$normalize_528 = require( './normalize.js' ); */;
+/* removed: var _$normalize_535 = require( './normalize.js' ); */;
 
 
 // MAIN //
@@ -11778,17 +11778,17 @@ var _$normalize_528 = normalize;
 * var out = normalize( new Array( 2 ), NaN );
 * // returns [ NaN, 0 ]
 */
-function __normalize_527( out, x ) {
+function __normalize_534( out, x ) {
 	if ( arguments.length === 1 ) {
-		return _$normalize_528( [ 0.0, 0 ], out );
+		return _$normalize_535( [ 0.0, 0 ], out );
 	}
-	return _$normalize_528( out, x );
+	return _$normalize_535( out, x );
 }
 
 
 // EXPORTS //
 
-var _$normalize_527 = __normalize_527;
+var _$normalize_534 = __normalize_534;
 
 /**
 * @license Apache-2.0
@@ -11843,12 +11843,12 @@ var _$normalize_527 = __normalize_527;
 
 // MODULES //
 
-/* removed: var _$normalize_527 = require( './main.js' ); */;
+/* removed: var _$normalize_534 = require( './main.js' ); */;
 
 
 // EXPORTS //
 
-var _$normalize_526 = _$normalize_527;
+var _$normalize_533 = _$normalize_534;
 
 /**
 * @license Apache-2.0
@@ -11929,7 +11929,7 @@ var _$FLOAT64_HIGH_WORD_EXPONENT_MASK_195 = FLOAT64_HIGH_WORD_EXPONENT_MASK;
 
 // MODULES //
 
-/* removed: var _$getHighWord_521 = require( '@stdlib/number/float64/base/get-high-word' ); */;
+/* removed: var _$getHighWord_528 = require( '@stdlib/number/float64/base/get-high-word' ); */;
 /* removed: var _$FLOAT64_HIGH_WORD_EXPONENT_MASK_195 = require( '@stdlib/constants/math/float64-high-word-exponent-mask' ); */;
 /* removed: var _$FLOAT64_EXPONENT_BIAS_190 = require( '@stdlib/constants/math/float64-exponent-bias' ); */;
 
@@ -11960,7 +11960,7 @@ var _$FLOAT64_HIGH_WORD_EXPONENT_MASK_195 = FLOAT64_HIGH_WORD_EXPONENT_MASK;
 */
 function exponent( x ) {
 	// Extract from the input value a higher order word (unsigned 32-bit integer) which contains the exponent:
-	var high = _$getHighWord_521( x );
+	var high = _$getHighWord_528( x );
 
 	// Apply a mask to isolate only the exponent bits and then shift off all bits which are part of the fraction:
 	high = ( high & _$FLOAT64_HIGH_WORD_EXPONENT_MASK_195 ) >>> 20;
@@ -11972,7 +11972,7 @@ function exponent( x ) {
 
 // EXPORTS //
 
-var _$exponent_516 = exponent;
+var _$exponent_523 = exponent;
 
 /**
 * @license Apache-2.0
@@ -12017,12 +12017,12 @@ var _$exponent_516 = exponent;
 
 // MODULES //
 
-/* removed: var _$exponent_516 = require( './main.js' ); */;
+/* removed: var _$exponent_523 = require( './main.js' ); */;
 
 
 // EXPORTS //
 
-var _$exponent_515 = _$exponent_516;
+var _$exponent_522 = _$exponent_523;
 
 /**
 * @license Apache-2.0
@@ -12062,10 +12062,10 @@ var _$exponent_515 = _$exponent_516;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$isInfinite_227 = require( '@stdlib/math/base/assert/is-infinite' ); */;
 /* removed: var _$copysign_271 = require( '@stdlib/math/base/special/copysign' ); */;
-/* removed: var _$normalize_526 = require( '@stdlib/number/float64/base/normalize' ); */;
-/* removed: var _$exponent_515 = require( '@stdlib/number/float64/base/exponent' ); */;
-/* removed: var _$toWords_537 = require( '@stdlib/number/float64/base/to-words' ); */;
-/* removed: var _$fromWords_517 = require( '@stdlib/number/float64/base/from-words' ); */;
+/* removed: var _$normalize_533 = require( '@stdlib/number/float64/base/normalize' ); */;
+/* removed: var _$exponent_522 = require( '@stdlib/number/float64/base/exponent' ); */;
+/* removed: var _$toWords_544 = require( '@stdlib/number/float64/base/to-words' ); */;
+/* removed: var _$fromWords_524 = require( '@stdlib/number/float64/base/from-words' ); */;
 
 
 // VARIABLES //
@@ -12080,7 +12080,7 @@ var CLEAR_EXP_MASK = 0x800fffff>>>0; // asm type annotation
 var FRAC = [ 0.0, 0.0 ]; // WARNING: not thread safe
 
 // High/low words workspace:
-var __WORDS_453 = [ 0, 0 ]; // WARNING: not thread safe
+var __WORDS_460 = [ 0, 0 ]; // WARNING: not thread safe
 
 
 // MAIN //
@@ -12131,12 +12131,12 @@ function ldexp( frac, exp ) {
 		return frac;
 	}
 	// Normalize the input fraction:
-	_$normalize_526( FRAC, frac );
+	_$normalize_533( FRAC, frac );
 	frac = FRAC[ 0 ];
 	exp += FRAC[ 1 ];
 
 	// Extract the exponent from `frac` and add it to `exp`:
-	exp += _$exponent_515( frac );
+	exp += _$exponent_522( frac );
 
 	// Check for underflow/overflow...
 	if ( exp < _$FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL_203 ) {
@@ -12156,8 +12156,8 @@ function ldexp( frac, exp ) {
 		m = 1.0;
 	}
 	// Split the fraction into higher and lower order words:
-	_$toWords_537( __WORDS_453, frac );
-	high = __WORDS_453[ 0 ];
+	_$toWords_544( __WORDS_460, frac );
+	high = __WORDS_460[ 0 ];
 
 	// Clear the exponent bits within the higher order word:
 	high &= CLEAR_EXP_MASK;
@@ -12166,13 +12166,13 @@ function ldexp( frac, exp ) {
 	high |= ((exp+_$FLOAT64_EXPONENT_BIAS_190) << 20);
 
 	// Create a new floating-point number:
-	return m * _$fromWords_517( high, __WORDS_453[ 1 ] );
+	return m * _$fromWords_524( high, __WORDS_460[ 1 ] );
 }
 
 
 // EXPORTS //
 
-var _$ldexp_453 = ldexp;
+var _$ldexp_460 = ldexp;
 
 /**
 * @license Apache-2.0
@@ -12226,12 +12226,12 @@ var _$ldexp_453 = ldexp;
 
 // MODULES //
 
-/* removed: var _$ldexp_453 = require( './ldexp.js' ); */;
+/* removed: var _$ldexp_460 = require( './ldexp.js' ); */;
 
 
 // EXPORTS //
 
-var _$ldexp_452 = _$ldexp_453;
+var _$ldexp_459 = _$ldexp_460;
 
 /**
 * @license Apache-2.0
@@ -12271,8 +12271,8 @@ var _$ldexp_452 = _$ldexp_453;
 
 // MODULES //
 
-/* removed: var _$floor_314 = require( '@stdlib/math/base/special/floor' ); */;
-/* removed: var _$ldexp_452 = require( '@stdlib/math/base/special/ldexp' ); */;
+/* removed: var _$floor_321 = require( '@stdlib/math/base/special/floor' ); */;
+/* removed: var _$ldexp_459 = require( '@stdlib/math/base/special/ldexp' ); */;
 
 
 // VARIABLES //
@@ -12380,8 +12380,8 @@ function compute( x, y, jz, q, q0, jk, jv, jx, f ) {
 		j -= 1;
 	}
 	// Compute `n`...
-	z = _$ldexp_452( z, q0 );
-	z -= 8.0 * _$floor_314( z*0.125 ); // Trim off integer >= 8
+	z = _$ldexp_459( z, q0 );
+	z -= 8.0 * _$floor_321( z*0.125 ); // Trim off integer >= 8
 	n = z|0;
 	z -= n;
 	ih = 0;
@@ -12429,7 +12429,7 @@ function compute( x, y, jz, q, q0, jk, jv, jx, f ) {
 		if ( ih === 2 ) {
 			z = 1.0 - z;
 			if ( carry !== 0 ) {
-				z -= _$ldexp_452( 1.0, q0 );
+				z -= _$ldexp_459( 1.0, q0 );
 			}
 		}
 	}
@@ -12467,7 +12467,7 @@ function compute( x, y, jz, q, q0, jk, jv, jx, f ) {
 		}
 	} else {
 		// Break `z` into 24-bit if necessary...
-		z = _$ldexp_452( z, -q0 );
+		z = _$ldexp_459( z, -q0 );
 		if ( z >= TWO24 ) {
 			fw = (TWON24*z)|0;
 			IQ[ jz ] = ( z - (TWO24*fw) )|0;
@@ -12479,7 +12479,7 @@ function compute( x, y, jz, q, q0, jk, jv, jx, f ) {
 		}
 	}
 	// Convert integer "bit" chunk to floating-point value...
-	fw = _$ldexp_452( 1.0, q0 );
+	fw = _$ldexp_459( 1.0, q0 );
 	for ( i = jz; i >= 0; i-- ) {
 		q[ i ] = fw * IQ[i];
 		fw *= TWON24;
@@ -12579,7 +12579,7 @@ function kernelRempio2( x, y, e0, nx ) {
 
 // EXPORTS //
 
-var _$kernelRempio2_483 = kernelRempio2;
+var _$kernelRempio2_490 = kernelRempio2;
 
 /**
 * @license Apache-2.0
@@ -12658,7 +12658,7 @@ var round = Math.round; // eslint-disable-line stdlib/no-builtin-math
 
 // EXPORTS //
 
-var _$round_487 = round;
+var _$round_494 = round;
 
 /**
 * @license Apache-2.0
@@ -12726,12 +12726,12 @@ var _$round_487 = round;
 
 // MODULES //
 
-/* removed: var _$round_487 = require( './round.js' ); */;
+/* removed: var _$round_494 = require( './round.js' ); */;
 
 
 // EXPORTS //
 
-var _$round_486 = _$round_487;
+var _$round_493 = _$round_494;
 
 /**
 * @license Apache-2.0
@@ -12769,8 +12769,8 @@ var _$round_486 = _$round_487;
 
 // MODULES //
 
-/* removed: var _$round_486 = require( '@stdlib/math/base/special/round' ); */;
-/* removed: var _$getHighWord_521 = require( '@stdlib/number/float64/base/get-high-word' ); */;
+/* removed: var _$round_493 = require( '@stdlib/math/base/special/round' ); */;
+/* removed: var _$getHighWord_528 = require( '@stdlib/number/float64/base/get-high-word' ); */;
 
 
 // VARIABLES //
@@ -12820,14 +12820,14 @@ function rempio2Medium( x, ix, y ) {
 	var i;
 	var j;
 
-	n = _$round_486( x * INVPIO2 );
+	n = _$round_493( x * INVPIO2 );
 	r = x - ( n * PIO2_1 );
 	w = n * PIO2_1T;
 
 	// First rounding (good to 85 bits)...
 	j = (ix >> 20)|0; // asm type annotation
 	y[ 0 ] = r - w;
-	high = _$getHighWord_521( y[0] );
+	high = _$getHighWord_528( y[0] );
 	i = j - ( (high >> 20) & EXPONENT_MASK );
 
 	// Check if a second iteration is needed (good to 118 bits)...
@@ -12837,7 +12837,7 @@ function rempio2Medium( x, ix, y ) {
 		r = t - w;
 		w = (n * PIO2_2T) - ((t-r) - w);
 		y[ 0 ] = r - w;
-		high = _$getHighWord_521( y[0] );
+		high = _$getHighWord_528( y[0] );
 		i = j - ( (high >> 20) & EXPONENT_MASK );
 
 		// Check if a third iteration is needed (151 bits accumulated)...
@@ -12856,7 +12856,7 @@ function rempio2Medium( x, ix, y ) {
 
 // EXPORTS //
 
-var _$rempio2Medium_485 = rempio2Medium;
+var _$rempio2Medium_492 = rempio2Medium;
 
 /**
 * @license Apache-2.0
@@ -12896,32 +12896,32 @@ var _$rempio2Medium_485 = rempio2Medium;
 
 // MODULES //
 
-/* removed: var _$getHighWord_521 = require( '@stdlib/number/float64/base/get-high-word' ); */;
-/* removed: var _$getLowWord_523 = require( '@stdlib/number/float64/base/get-low-word' ); */;
-/* removed: var _$fromWords_517 = require( '@stdlib/number/float64/base/from-words' ); */;
-/* removed: var _$kernelRempio2_483 = require( './kernel_rempio2.js' ); */;
-/* removed: var _$rempio2Medium_485 = require( './rempio2_medium.js' ); */;
+/* removed: var _$getHighWord_528 = require( '@stdlib/number/float64/base/get-high-word' ); */;
+/* removed: var _$getLowWord_530 = require( '@stdlib/number/float64/base/get-low-word' ); */;
+/* removed: var _$fromWords_524 = require( '@stdlib/number/float64/base/from-words' ); */;
+/* removed: var _$kernelRempio2_490 = require( './kernel_rempio2.js' ); */;
+/* removed: var _$rempio2Medium_492 = require( './rempio2_medium.js' ); */;
 
 
 // VARIABLES //
 
 var ZERO = 0.00000000000000000000e+00;    // 0x00000000, 0x00000000
-var __TWO24_484 = 1.67772160000000000000e+07;   // 0x41700000, 0x00000000
+var __TWO24_491 = 1.67772160000000000000e+07;   // 0x41700000, 0x00000000
 
 // 33 bits of π/2:
-var __PIO2_1_484 = 1.57079632673412561417e+00;  // 0x3FF921FB, 0x54400000
+var __PIO2_1_491 = 1.57079632673412561417e+00;  // 0x3FF921FB, 0x54400000
 
 // PIO2_1T = π/2 - PIO2_1:
-var __PIO2_1T_484 = 6.07710050650619224932e-11; // 0x3DD0B461, 0x1A626331
-var TWO_PIO2_1T = 2.0 * __PIO2_1T_484;
-var THREE_PIO2_1T = 3.0 * __PIO2_1T_484;
-var FOUR_PIO2_1T = 4.0 * __PIO2_1T_484;
+var __PIO2_1T_491 = 6.07710050650619224932e-11; // 0x3DD0B461, 0x1A626331
+var TWO_PIO2_1T = 2.0 * __PIO2_1T_491;
+var THREE_PIO2_1T = 3.0 * __PIO2_1T_491;
+var FOUR_PIO2_1T = 4.0 * __PIO2_1T_491;
 
 // Absolute value mask: 0x7fffffff = 2147483647 => 01111111111111111111111111111111
 var ABS_MASK = 0x7fffffff|0; // asm type annotation
 
 // Exponent mask: 0x7ff00000 = 2146435072 => 01111111111100000000000000000000
-var __EXPONENT_MASK_484 = 0x7ff00000|0; // asm type annotation
+var __EXPONENT_MASK_491 = 0x7ff00000|0; // asm type annotation
 
 // High word significand mask: 0xfffff = 1048575 => 00000000000011111111111111111111
 var SIGNIFICAND_MASK = 0xfffff|0; // asm type annotation
@@ -13004,7 +13004,7 @@ function rempio2( x, y ) {
 	var n;
 	var z;
 
-	hx = _$getHighWord_521( x );
+	hx = _$getHighWord_528( x );
 	ix = (hx & ABS_MASK)|0; // asm type annotation
 
 	// Case: |x| ~<= π/4 (no need for reduction)
@@ -13018,28 +13018,28 @@ function rempio2( x, y ) {
 		// Case: |x| ~= π/2 or π
 		if ( (ix & SIGNIFICAND_MASK) === PI_HIGH_WORD_SIGNIFICAND ) {
 			// Cancellation => use medium case
-			return _$rempio2Medium_485( x, ix, y );
+			return _$rempio2Medium_492( x, ix, y );
 		}
 		// Case: |x| ~<= 3π/4
 		if ( ix <= THREE_PIO4_HIGH_WORD ) {
 			if ( x > 0.0 ) {
-				z = x - __PIO2_1_484;
-				y[ 0 ] = z - __PIO2_1T_484;
-				y[ 1 ] = (z - y[0]) - __PIO2_1T_484;
+				z = x - __PIO2_1_491;
+				y[ 0 ] = z - __PIO2_1T_491;
+				y[ 1 ] = (z - y[0]) - __PIO2_1T_491;
 				return 1;
 			}
-			z = x + __PIO2_1_484;
-			y[ 0 ] = z + __PIO2_1T_484;
-			y[ 1 ] = (z - y[0]) + __PIO2_1T_484;
+			z = x + __PIO2_1_491;
+			y[ 0 ] = z + __PIO2_1T_491;
+			y[ 1 ] = (z - y[0]) + __PIO2_1T_491;
 			return -1;
 		}
 		if ( x > 0.0 ) {
-			z = x - ( 2.0*__PIO2_1_484 );
+			z = x - ( 2.0*__PIO2_1_491 );
 			y[ 0 ] = z - TWO_PIO2_1T;
 			y[ 1 ] = (z - y[0]) - TWO_PIO2_1T;
 			return 2;
 		}
-		z = x + ( 2.0*__PIO2_1_484 );
+		z = x + ( 2.0*__PIO2_1_491 );
 		y[ 0 ] = z + TWO_PIO2_1T;
 		y[ 1 ] = (z - y[0]) + TWO_PIO2_1T;
 		return -2;
@@ -13050,51 +13050,51 @@ function rempio2( x, y ) {
 		if ( ix <= SEVEN_PIO4_HIGH_WORD ) {
 			// Case: |x| ~= 3π/2
 			if ( ix === THREE_PIO2_HIGH_WORD ) {
-				return _$rempio2Medium_485( x, ix, y );
+				return _$rempio2Medium_492( x, ix, y );
 			}
 			if ( x > 0.0 ) {
-				z = x - ( 3.0*__PIO2_1_484 );
+				z = x - ( 3.0*__PIO2_1_491 );
 				y[ 0 ] = z - THREE_PIO2_1T;
 				y[ 1 ] = (z - y[0]) - THREE_PIO2_1T;
 				return 3;
 			}
-			z = x + ( 3.0*__PIO2_1_484 );
+			z = x + ( 3.0*__PIO2_1_491 );
 			y[ 0 ] = z + THREE_PIO2_1T;
 			y[ 1 ] = (z - y[0]) + THREE_PIO2_1T;
 			return -3;
 		}
 		// Case: |x| ~= 4π/2
 		if ( ix === TWO_PI_HIGH_WORD ) {
-			return _$rempio2Medium_485( x, ix, y );
+			return _$rempio2Medium_492( x, ix, y );
 		}
 		if ( x > 0.0 ) {
-			z = x - ( 4.0*__PIO2_1_484 );
+			z = x - ( 4.0*__PIO2_1_491 );
 			y[ 0 ] = z - FOUR_PIO2_1T;
 			y[ 1 ] = (z - y[0]) - FOUR_PIO2_1T;
 			return 4;
 		}
-		z = x + ( 4.0*__PIO2_1_484 );
+		z = x + ( 4.0*__PIO2_1_491 );
 		y[ 0 ] = z + FOUR_PIO2_1T;
 		y[ 1 ] = (z - y[0]) + FOUR_PIO2_1T;
 		return -4;
 	}
 	// Case: |x| ~< 2^20*π/2 (medium size)
 	if ( ix < MEDIUM ) {
-		return _$rempio2Medium_485( x, ix, y );
+		return _$rempio2Medium_492( x, ix, y );
 	}
 	// Case: x is NaN or infinity
-	if ( ix >= __EXPONENT_MASK_484 ) {
+	if ( ix >= __EXPONENT_MASK_491 ) {
 		y[ 0 ] = NaN;
 		y[ 1 ] = NaN;
 		return 0.0;
 	}
 	// Set z = scalbn(|x|, ilogb(x)-23)...
-	low = _$getLowWord_523( x );
+	low = _$getLowWord_530( x );
 	e0 = (ix >> 20) - 1046; // `e0 = ilogb(z) - 23` => unbiased exponent minus 23
-	z = _$fromWords_517( ix - ((e0 << 20)|0), low );
+	z = _$fromWords_524( ix - ((e0 << 20)|0), low );
 	for ( i = 0; i < 2; i++ ) {
 		TX[ i ] = z|0;
-		z = (z - TX[i]) * __TWO24_484;
+		z = (z - TX[i]) * __TWO24_491;
 	}
 	TX[ 2 ] = z;
 	nx = 3;
@@ -13102,7 +13102,7 @@ function rempio2( x, y ) {
 		// Skip zero term...
 		nx -= 1;
 	}
-	n = _$kernelRempio2_483( TX, TY, e0, nx, 1 );
+	n = _$kernelRempio2_490( TX, TY, e0, nx, 1 );
 	if ( x < 0.0 ) {
 		y[ 0 ] = -TY[ 0 ];
 		y[ 1 ] = -TY[ 1 ];
@@ -13116,7 +13116,7 @@ function rempio2( x, y ) {
 
 // EXPORTS //
 
-var _$rempio2_484 = rempio2;
+var _$rempio2_491 = rempio2;
 
 /**
 * @license Apache-2.0
@@ -13159,12 +13159,12 @@ var _$rempio2_484 = rempio2;
 
 // MODULES //
 
-/* removed: var _$rempio2_484 = require( './rempio2.js' ); */;
+/* removed: var _$rempio2_491 = require( './rempio2.js' ); */;
 
 
 // EXPORTS //
 
-var _$rempio2_482 = _$rempio2_484;
+var _$rempio2_489 = _$rempio2_491;
 
 /**
 * @license Apache-2.0
@@ -13202,10 +13202,10 @@ var _$rempio2_482 = _$rempio2_484;
 
 // MODULES //
 
-/* removed: var _$getHighWord_521 = require( '@stdlib/number/float64/base/get-high-word' ); */;
-/* removed: var _$kernelCos_442 = require( '@stdlib/math/base/special/kernel-cos' ); */;
-/* removed: var _$kernelSin_446 = require( '@stdlib/math/base/special/kernel-sin' ); */;
-/* removed: var _$rempio2_482 = require( '@stdlib/math/base/special/rempio2' ); */;
+/* removed: var _$getHighWord_528 = require( '@stdlib/number/float64/base/get-high-word' ); */;
+/* removed: var _$kernelCos_449 = require( '@stdlib/math/base/special/kernel-cos' ); */;
+/* removed: var _$kernelSin_453 = require( '@stdlib/math/base/special/kernel-sin' ); */;
+/* removed: var _$rempio2_489 = require( '@stdlib/math/base/special/rempio2' ); */;
 
 
 // VARIABLES //
@@ -13254,7 +13254,7 @@ function cos( x ) {
 	var ix;
 	var n;
 
-	ix = _$getHighWord_521( x );
+	ix = _$getHighWord_528( x );
 	ix &= HIGH_WORD_ABS_MASK;
 
 	// Case: |x| ~< pi/4
@@ -13263,23 +13263,23 @@ function cos( x ) {
 		if ( ix < HIGH_WORD_TWO_NEG_27 ) {
 			return 1.0;
 		}
-		return _$kernelCos_442( x, 0.0 );
+		return _$kernelCos_449( x, 0.0 );
 	}
 	// Case: cos(Inf or NaN) is NaN */
 	if ( ix >= HIGH_WORD_EXPONENT_MASK ) {
 		return NaN;
 	}
 	// Case: Argument reduction needed...
-	n = _$rempio2_482( x, buffer );
+	n = _$rempio2_489( x, buffer );
 	switch ( n & 3 ) {
 	case 0:
-		return _$kernelCos_442( buffer[ 0 ], buffer[ 1 ] );
+		return _$kernelCos_449( buffer[ 0 ], buffer[ 1 ] );
 	case 1:
-		return -_$kernelSin_446( buffer[ 0 ], buffer[ 1 ] );
+		return -_$kernelSin_453( buffer[ 0 ], buffer[ 1 ] );
 	case 2:
-		return -_$kernelCos_442( buffer[ 0 ], buffer[ 1 ] );
+		return -_$kernelCos_449( buffer[ 0 ], buffer[ 1 ] );
 	default:
-		return _$kernelSin_446( buffer[ 0 ], buffer[ 1 ] );
+		return _$kernelSin_453( buffer[ 0 ], buffer[ 1 ] );
 	}
 }
 
@@ -13371,22 +13371,22 @@ var _$cos_273 = _$cos_272;
 
 // MODULES //
 
-/* removed: var _$getHighWord_521 = require( '@stdlib/number/float64/base/get-high-word' ); */;
-/* removed: var _$kernelCos_442 = require( '@stdlib/math/base/special/kernel-cos' ); */;
-/* removed: var _$kernelSin_446 = require( '@stdlib/math/base/special/kernel-sin' ); */;
-/* removed: var _$rempio2_482 = require( '@stdlib/math/base/special/rempio2' ); */;
+/* removed: var _$getHighWord_528 = require( '@stdlib/number/float64/base/get-high-word' ); */;
+/* removed: var _$kernelCos_449 = require( '@stdlib/math/base/special/kernel-cos' ); */;
+/* removed: var _$kernelSin_453 = require( '@stdlib/math/base/special/kernel-sin' ); */;
+/* removed: var _$rempio2_489 = require( '@stdlib/math/base/special/rempio2' ); */;
 
 
 // VARIABLES //
 
 // Absolute value mask: 0x7fffffff = 2147483647 => 01111111111111111111111111111111
-var __ABS_MASK_491 = 0x7fffffff|0; // asm type annotation
+var __ABS_MASK_498 = 0x7fffffff|0; // asm type annotation
 
 // Exponent mask: 0x7ff00000 = 2146435072 => 01111111111100000000000000000000
-var __EXPONENT_MASK_491 = 0x7ff00000|0; // asm type annotation
+var __EXPONENT_MASK_498 = 0x7ff00000|0; // asm type annotation
 
 // High word for PI/4: 0x3fe921fb = 1072243195 => 00111111111010010010000111111011
-var __PIO4_HIGH_WORD_491 = 0x3fe921fb|0; // asm type annotation
+var __PIO4_HIGH_WORD_498 = 0x3fe921fb|0; // asm type annotation
 
 // 2^-26 = 1.4901161193847656e-8 => 0011111001010000000000000000000000000000000000000000000000000000 => high word => 00111110010100000000000000000000 => 0x3e500000 = 1045430272
 var SMALL_HIGH_WORD = 0x3e500000|0; // asm type annotation
@@ -13439,39 +13439,39 @@ function sin( x ) {
 	var ix;
 	var n;
 
-	ix = _$getHighWord_521( x );
-	ix &= __ABS_MASK_491;
+	ix = _$getHighWord_528( x );
+	ix &= __ABS_MASK_498;
 
 	// Case: |x| ~< π/4
-	if ( ix <= __PIO4_HIGH_WORD_491 ) {
+	if ( ix <= __PIO4_HIGH_WORD_498 ) {
 		// Case: |x| ~< 2^-26
 		if ( ix < SMALL_HIGH_WORD ) {
 			return x;
 		}
-		return _$kernelSin_446( x, 0.0 );
+		return _$kernelSin_453( x, 0.0 );
 	}
 	// Case: x is NaN or infinity
-	if ( ix >= __EXPONENT_MASK_491 ) {
+	if ( ix >= __EXPONENT_MASK_498 ) {
 		return NaN;
 	}
 	// Argument reduction...
-	n = _$rempio2_482( x, Y );
+	n = _$rempio2_489( x, Y );
 	switch ( n & 3 ) {
 	case 0:
-		return _$kernelSin_446( Y[ 0 ], Y[ 1 ] );
+		return _$kernelSin_453( Y[ 0 ], Y[ 1 ] );
 	case 1:
-		return _$kernelCos_442( Y[ 0 ], Y[ 1 ] );
+		return _$kernelCos_449( Y[ 0 ], Y[ 1 ] );
 	case 2:
-		return -_$kernelSin_446( Y[ 0 ], Y[ 1 ] );
+		return -_$kernelSin_453( Y[ 0 ], Y[ 1 ] );
 	default:
-		return -_$kernelCos_442( Y[ 0 ], Y[ 1 ] );
+		return -_$kernelCos_449( Y[ 0 ], Y[ 1 ] );
 	}
 }
 
 
 // EXPORTS //
 
-var _$sin_491 = sin;
+var _$sin_498 = sin;
 
 /**
 * @license Apache-2.0
@@ -13516,12 +13516,12 @@ var _$sin_491 = sin;
 
 // MODULES //
 
-/* removed: var _$sin_491 = require( './sin.js' ); */;
+/* removed: var _$sin_498 = require( './sin.js' ); */;
 
 
 // EXPORTS //
 
-var _$sin_490 = _$sin_491;
+var _$sin_497 = _$sin_498;
 
 /**
 * @license Apache-2.0
@@ -13606,7 +13606,7 @@ var _$PI_206 = PI;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$isInfinite_227 = require( '@stdlib/math/base/assert/is-infinite' ); */;
 /* removed: var _$cos_273 = require( '@stdlib/math/base/special/cos' ); */;
-/* removed: var _$sin_490 = require( '@stdlib/math/base/special/sin' ); */;
+/* removed: var _$sin_497 = require( '@stdlib/math/base/special/sin' ); */;
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
 /* removed: var _$copysign_271 = require( '@stdlib/math/base/special/copysign' ); */;
 /* removed: var _$PI_206 = require( '@stdlib/constants/math/float64-pi' ); */;
@@ -13654,7 +13654,7 @@ function sinpi( x ) {
 		return _$copysign_271( 0.0, r );
 	}
 	if ( ar < 0.25 ) {
-		return _$sin_490( _$PI_206*r );
+		return _$sin_497( _$PI_206*r );
 	}
 	// In each of the following, we further reduce to [-π/4,π/4)...
 	if ( ar < 0.75 ) {
@@ -13663,20 +13663,20 @@ function sinpi( x ) {
 	}
 	if ( ar < 1.25 ) {
 		r = _$copysign_271( 1.0, r ) - r;
-		return _$sin_490( _$PI_206*r );
+		return _$sin_497( _$PI_206*r );
 	}
 	if ( ar < 1.75 ) {
 		ar -= 1.5;
 		return -_$copysign_271( _$cos_273( _$PI_206*ar ), r );
 	}
 	r -= _$copysign_271( 2.0, r );
-	return _$sin_490( _$PI_206*r );
+	return _$sin_497( _$PI_206*r );
 }
 
 
 // EXPORTS //
 
-var _$sinpi_493 = sinpi;
+var _$sinpi_500 = sinpi;
 
 /**
 * @license Apache-2.0
@@ -13721,355 +13721,12 @@ var _$sinpi_493 = sinpi;
 
 // MODULES //
 
-/* removed: var _$sinpi_493 = require( './sinpi.js' ); */;
+/* removed: var _$sinpi_500 = require( './sinpi.js' ); */;
 
 
 // EXPORTS //
 
-var _$sinpi_492 = _$sinpi_493;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function __evalpoly_384( x ) {
-	if ( x === 0.0 ) {
-		return 0.06735230105312927;
-	}
-	return 0.06735230105312927 + (x * (0.007385550860814029 + (x * (0.0011927076318336207 + (x * (0.00022086279071390839 + (x * 0.000025214456545125733))))))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-var _$evalpoly_384 = __evalpoly_384;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function __evalpoly_385( x ) {
-	if ( x === 0.0 ) {
-		return 0.020580808432516733;
-	}
-	return 0.020580808432516733 + (x * (0.0028905138367341563 + (x * (0.0005100697921535113 + (x * (0.00010801156724758394 + (x * 0.000044864094961891516))))))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-var _$evalpoly_385 = __evalpoly_385;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function __evalpoly_386( x ) {
-	if ( x === 0.0 ) {
-		return 1.3920053346762105;
-	}
-	return 1.3920053346762105 + (x * (0.7219355475671381 + (x * (0.17193386563280308 + (x * (0.01864591917156529 + (x * (0.0007779424963818936 + (x * 0.000007326684307446256))))))))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-var _$evalpoly_386 = __evalpoly_386;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function __evalpoly_387( x ) {
-	if ( x === 0.0 ) {
-		return 0.21498241596060885;
-	}
-	return 0.21498241596060885 + (x * (0.325778796408931 + (x * (0.14635047265246445 + (x * (0.02664227030336386 + (x * (0.0018402845140733772 + (x * 0.00003194753265841009))))))))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-var _$evalpoly_387 = __evalpoly_387;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function __evalpoly_388( x ) {
-	if ( x === 0.0 ) {
-		return -0.032788541075985965;
-	}
-	return -0.032788541075985965 + (x * (0.006100538702462913 + (x * (-0.0014034646998923284 + (x * 0.00031563207090362595))))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-var _$evalpoly_388 = __evalpoly_388;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function __evalpoly_389( x ) {
-	if ( x === 0.0 ) {
-		return 0.01797067508118204;
-	}
-	return 0.01797067508118204 + (x * (-0.0036845201678113826 + (x * (0.000881081882437654 + (x * -0.00031275416837512086))))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-var _$evalpoly_389 = __evalpoly_389;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function __evalpoly_390( x ) {
-	if ( x === 0.0 ) {
-		return -0.010314224129834144;
-	}
-	return -0.010314224129834144 + (x * (0.0022596478090061247 + (x * (-0.0005385953053567405 + (x * 0.0003355291926355191))))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-var _$evalpoly_390 = __evalpoly_390;
+var _$sinpi_499 = _$sinpi_500;
 
 /**
 * @license Apache-2.0
@@ -14110,9 +13767,9 @@ var _$evalpoly_390 = __evalpoly_390;
 */
 function __evalpoly_391( x ) {
 	if ( x === 0.0 ) {
-		return 0.6328270640250934;
+		return 0.06735230105312927;
 	}
-	return 0.6328270640250934 + (x * (1.4549225013723477 + (x * (0.9777175279633727 + (x * (0.22896372806469245 + (x * 0.013381091853678766))))))); // eslint-disable-line max-len
+	return 0.06735230105312927 + (x * (0.007385550860814029 + (x * (0.0011927076318336207 + (x * (0.00022086279071390839 + (x * 0.000025214456545125733))))))); // eslint-disable-line max-len
 }
 
 
@@ -14159,9 +13816,9 @@ var _$evalpoly_391 = __evalpoly_391;
 */
 function __evalpoly_392( x ) {
 	if ( x === 0.0 ) {
-		return 2.4559779371304113;
+		return 0.020580808432516733;
 	}
-	return 2.4559779371304113 + (x * (2.128489763798934 + (x * (0.7692851504566728 + (x * (0.10422264559336913 + (x * 0.003217092422824239))))))); // eslint-disable-line max-len
+	return 0.020580808432516733 + (x * (0.0028905138367341563 + (x * (0.0005100697921535113 + (x * (0.00010801156724758394 + (x * 0.000044864094961891516))))))); // eslint-disable-line max-len
 }
 
 
@@ -14208,6 +13865,349 @@ var _$evalpoly_392 = __evalpoly_392;
 */
 function __evalpoly_393( x ) {
 	if ( x === 0.0 ) {
+		return 1.3920053346762105;
+	}
+	return 1.3920053346762105 + (x * (0.7219355475671381 + (x * (0.17193386563280308 + (x * (0.01864591917156529 + (x * (0.0007779424963818936 + (x * 0.000007326684307446256))))))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+var _$evalpoly_393 = __evalpoly_393;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function __evalpoly_394( x ) {
+	if ( x === 0.0 ) {
+		return 0.21498241596060885;
+	}
+	return 0.21498241596060885 + (x * (0.325778796408931 + (x * (0.14635047265246445 + (x * (0.02664227030336386 + (x * (0.0018402845140733772 + (x * 0.00003194753265841009))))))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+var _$evalpoly_394 = __evalpoly_394;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function __evalpoly_395( x ) {
+	if ( x === 0.0 ) {
+		return -0.032788541075985965;
+	}
+	return -0.032788541075985965 + (x * (0.006100538702462913 + (x * (-0.0014034646998923284 + (x * 0.00031563207090362595))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+var _$evalpoly_395 = __evalpoly_395;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function __evalpoly_396( x ) {
+	if ( x === 0.0 ) {
+		return 0.01797067508118204;
+	}
+	return 0.01797067508118204 + (x * (-0.0036845201678113826 + (x * (0.000881081882437654 + (x * -0.00031275416837512086))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+var _$evalpoly_396 = __evalpoly_396;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function __evalpoly_397( x ) {
+	if ( x === 0.0 ) {
+		return -0.010314224129834144;
+	}
+	return -0.010314224129834144 + (x * (0.0022596478090061247 + (x * (-0.0005385953053567405 + (x * 0.0003355291926355191))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+var _$evalpoly_397 = __evalpoly_397;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function __evalpoly_398( x ) {
+	if ( x === 0.0 ) {
+		return 0.6328270640250934;
+	}
+	return 0.6328270640250934 + (x * (1.4549225013723477 + (x * (0.9777175279633727 + (x * (0.22896372806469245 + (x * 0.013381091853678766))))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+var _$evalpoly_398 = __evalpoly_398;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function __evalpoly_399( x ) {
+	if ( x === 0.0 ) {
+		return 2.4559779371304113;
+	}
+	return 2.4559779371304113 + (x * (2.128489763798934 + (x * (0.7692851504566728 + (x * (0.10422264559336913 + (x * 0.003217092422824239))))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+var _$evalpoly_399 = __evalpoly_399;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function __evalpoly_400( x ) {
+	if ( x === 0.0 ) {
 		return 0.08333333333333297;
 	}
 	return 0.08333333333333297 + (x * (-0.0027777777772877554 + (x * (0.0007936505586430196 + (x * (-0.00059518755745034 + (x * (0.0008363399189962821 + (x * -0.0016309293409657527))))))))); // eslint-disable-line max-len
@@ -14216,7 +14216,7 @@ function __evalpoly_393( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_393 = __evalpoly_393;
+var _$evalpoly_400 = __evalpoly_400;
 
 /**
 * @license Apache-2.0
@@ -14257,21 +14257,21 @@ var _$evalpoly_393 = __evalpoly_393;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$isInfinite_227 = require( '@stdlib/math/base/assert/is-infinite' ); */;
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
-/* removed: var _$trunc_498 = require( '@stdlib/math/base/special/trunc' ); */;
-/* removed: var _$sinpi_492 = require( '@stdlib/math/base/special/sinpi' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$trunc_505 = require( '@stdlib/math/base/special/trunc' ); */;
+/* removed: var _$sinpi_499 = require( '@stdlib/math/base/special/sinpi' ); */;
 /* removed: var _$PI_206 = require( '@stdlib/constants/math/float64-pi' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
-/* removed: var _$evalpoly_384 = require( './polyval_a1.js' ); */;
-/* removed: var _$evalpoly_385 = require( './polyval_a2.js' ); */;
-/* removed: var _$evalpoly_386 = require( './polyval_r.js' ); */;
-/* removed: var _$evalpoly_387 = require( './polyval_s.js' ); */;
-/* removed: var _$evalpoly_388 = require( './polyval_t1.js' ); */;
-/* removed: var _$evalpoly_389 = require( './polyval_t2.js' ); */;
-/* removed: var _$evalpoly_390 = require( './polyval_t3.js' ); */;
-/* removed: var _$evalpoly_391 = require( './polyval_u.js' ); */;
-/* removed: var _$evalpoly_392 = require( './polyval_v.js' ); */;
-/* removed: var _$evalpoly_393 = require( './polyval_w.js' ); */;
+/* removed: var _$evalpoly_391 = require( './polyval_a1.js' ); */;
+/* removed: var _$evalpoly_392 = require( './polyval_a2.js' ); */;
+/* removed: var _$evalpoly_393 = require( './polyval_r.js' ); */;
+/* removed: var _$evalpoly_394 = require( './polyval_s.js' ); */;
+/* removed: var _$evalpoly_395 = require( './polyval_t1.js' ); */;
+/* removed: var _$evalpoly_396 = require( './polyval_t2.js' ); */;
+/* removed: var _$evalpoly_397 = require( './polyval_t3.js' ); */;
+/* removed: var _$evalpoly_398 = require( './polyval_u.js' ); */;
+/* removed: var _$evalpoly_399 = require( './polyval_v.js' ); */;
+/* removed: var _$evalpoly_400 = require( './polyval_w.js' ); */;
 
 
 // VARIABLES //
@@ -14493,18 +14493,18 @@ function gammaln( x ) {
 	}
 	// If |x| < 2**-70, return -ln(|x|)
 	if ( x < TINY ) {
-		return -_$ln_454( x );
+		return -_$ln_461( x );
 	}
 	if ( isNegative ) {
 		// If |x| >= 2**52, must be -integer
 		if ( x >= TWO52 ) {
 			return _$FLOAT64_PINF_207;
 		}
-		t = _$sinpi_492( x );
+		t = _$sinpi_499( x );
 		if ( t === 0.0 ) {
 			return _$FLOAT64_PINF_207;
 		}
-		nadj = _$ln_454( _$PI_206 / _$abs_242( t*x ) );
+		nadj = _$ln_461( _$PI_206 / _$abs_242( t*x ) );
 	}
 	// If x equals 1 or 2, return 0
 	if ( x === 1.0 || x === 2.0 ) {
@@ -14513,7 +14513,7 @@ function gammaln( x ) {
 	// If x < 2, use lgamma(x) = lgamma(x+1) - log(x)
 	if ( x < 2.0 ) {
 		if ( x <= 0.9 ) {
-			r = -_$ln_454( x );
+			r = -_$ln_461( x );
 
 			// 0.7316 <= x <=  0.9
 			if ( x >= ( YMIN - 1.0 + 0.27 ) ) {
@@ -14552,33 +14552,33 @@ function gammaln( x ) {
 		switch ( flg ) { // eslint-disable-line default-case
 		case 0:
 			z = y * y;
-			p1 = A1C + (z*_$evalpoly_384( z ));
-			p2 = z * (A2C + (z*_$evalpoly_385( z )));
+			p1 = A1C + (z*_$evalpoly_391( z ));
+			p2 = z * (A2C + (z*_$evalpoly_392( z )));
 			p = (y*p1) + p2;
 			r += ( p - (0.5*y) );
 			break;
 		case 1:
 			z = y * y;
 			w = z * y;
-			p1 = T1C + (w*_$evalpoly_388( w ));
-			p2 = T2C + (w*_$evalpoly_389( w ));
-			p3 = T3C + (w*_$evalpoly_390( w ));
+			p1 = T1C + (w*_$evalpoly_395( w ));
+			p2 = T2C + (w*_$evalpoly_396( w ));
+			p3 = T3C + (w*_$evalpoly_397( w ));
 			p = (z*p1) - (TT - (w*(p2+(y*p3))));
 			r += ( TF + p );
 			break;
 		case 2:
-			p1 = y * (UC + (y*_$evalpoly_391( y )));
-			p2 = VC + (y*_$evalpoly_392( y ));
+			p1 = y * (UC + (y*_$evalpoly_398( y )));
+			p2 = VC + (y*_$evalpoly_399( y ));
 			r += (-0.5*y) + (p1/p2);
 			break;
 		}
 	}
 	// 2 <= x < 8
 	else if ( x < 8.0 ) {
-		flg = _$trunc_498( x );
+		flg = _$trunc_505( x );
 		y = x - flg;
-		p = y * (SC + (y*_$evalpoly_387( y )));
-		q = RC + (y*_$evalpoly_386( y ));
+		p = y * (SC + (y*_$evalpoly_394( y )));
+		q = RC + (y*_$evalpoly_393( y ));
 		r = (0.5*y) + (p/q);
 		z = 1.0; // gammaln(1+s) = ln(s) + gammaln(s)
 		switch ( flg ) { // eslint-disable-line default-case
@@ -14600,20 +14600,20 @@ function gammaln( x ) {
 			/* falls through */
 		case 3:
 			z *= y + 2.0;
-			r += _$ln_454( z );
+			r += _$ln_461( z );
 		}
 	}
 	// 8 <= x < 2**58
 	else if ( x < TWO58 ) {
-		t = _$ln_454( x );
+		t = _$ln_461( x );
 		z = 1.0 / x;
 		y = z * z;
-		w = WC + (z*_$evalpoly_393( y ));
+		w = WC + (z*_$evalpoly_400( y ));
 		r = ((x-0.5)*(t-1.0)) + w;
 	}
 	// 2**58 <= x <= Inf
 	else {
-		r = x * ( _$ln_454(x)-1.0 );
+		r = x * ( _$ln_461(x)-1.0 );
 	}
 	if ( isNegative ) {
 		r = nadj - r;
@@ -14624,7 +14624,7 @@ function gammaln( x ) {
 
 // EXPORTS //
 
-var _$gammaln_382 = gammaln;
+var _$gammaln_389 = gammaln;
 
 /**
 * @license Apache-2.0
@@ -14678,12 +14678,12 @@ var _$gammaln_382 = gammaln;
 
 // MODULES //
 
-/* removed: var _$gammaln_382 = require( './gammaln.js' ); */;
+/* removed: var _$gammaln_389 = require( './gammaln.js' ); */;
 
 
 // EXPORTS //
 
-var _$gammaln_383 = _$gammaln_382;
+var _$gammaln_390 = _$gammaln_389;
 
 /**
 * @license Apache-2.0
@@ -14707,7 +14707,7 @@ var _$gammaln_383 = _$gammaln_382;
 
 // MODULES //
 
-/* removed: var _$floor_314 = require( '@stdlib/math/base/special/floor' ); */;
+/* removed: var _$floor_321 = require( '@stdlib/math/base/special/floor' ); */;
 
 
 // MAIN //
@@ -14727,7 +14727,7 @@ var _$gammaln_383 = _$gammaln_382;
 * // returns false
 */
 function isInteger( x ) {
-	return (_$floor_314(x) === x);
+	return (_$floor_321(x) === x);
 }
 
 
@@ -15192,7 +15192,7 @@ var sqrt = Math.sqrt; // eslint-disable-line stdlib/no-builtin-math
 
 // EXPORTS //
 
-var _$sqrt_495 = sqrt;
+var _$sqrt_502 = sqrt;
 
 /**
 * @license Apache-2.0
@@ -15240,12 +15240,12 @@ var _$sqrt_495 = sqrt;
 
 // MODULES //
 
-/* removed: var _$sqrt_495 = require( './main.js' ); */;
+/* removed: var _$sqrt_502 = require( './main.js' ); */;
 
 
 // EXPORTS //
 
-var _$sqrt_494 = _$sqrt_495;
+var _$sqrt_501 = _$sqrt_502;
 
 /**
 * @license Apache-2.0
@@ -15274,17 +15274,17 @@ var _$sqrt_494 = _$sqrt_495;
 
 // MAIN //
 
-var __LOW_533;
+var __LOW_540;
 if ( _$IS_LITTLE_ENDIAN_124 === true ) {
-	__LOW_533 = 0; // first index
+	__LOW_540 = 0; // first index
 } else {
-	__LOW_533 = 1; // second index
+	__LOW_540 = 1; // second index
 }
 
 
 // EXPORTS //
 
-var _$LOW_533 = __LOW_533;
+var _$LOW_540 = __LOW_540;
 
 /**
 * @license Apache-2.0
@@ -15310,13 +15310,13 @@ var _$LOW_533 = __LOW_533;
 
 /* removed: var _$ctor_23 = require( '@stdlib/array/uint32' ); */;
 /* removed: var _$ctor_5 = require( '@stdlib/array/float64' ); */;
-/* removed: var _$LOW_533 = require( './low.js' ); */;
+/* removed: var _$LOW_540 = require( './low.js' ); */;
 
 
 // VARIABLES //
 
-var __FLOAT64_VIEW_534 = new _$ctor_5( 1 );
-var __UINT32_VIEW_534 = new _$ctor_23( __FLOAT64_VIEW_534.buffer );
+var __FLOAT64_VIEW_541 = new _$ctor_5( 1 );
+var __UINT32_VIEW_541 = new _$ctor_23( __FLOAT64_VIEW_541.buffer );
 
 
 // MAIN //
@@ -15390,15 +15390,15 @@ var __UINT32_VIEW_534 = new _$ctor_23( __FLOAT64_VIEW_534.buffer );
 * // returns NaN
 */
 function setLowWord( x, low ) {
-	__FLOAT64_VIEW_534[ 0 ] = x;
-	__UINT32_VIEW_534[ _$LOW_533 ] = ( low >>> 0 ); // identity bit shift to ensure integer
-	return __FLOAT64_VIEW_534[ 0 ];
+	__FLOAT64_VIEW_541[ 0 ] = x;
+	__UINT32_VIEW_541[ _$LOW_540 ] = ( low >>> 0 ); // identity bit shift to ensure integer
+	return __FLOAT64_VIEW_541[ 0 ];
 }
 
 
 // EXPORTS //
 
-var _$setLowWord_534 = setLowWord;
+var _$setLowWord_541 = setLowWord;
 
 /**
 * @license Apache-2.0
@@ -15454,12 +15454,12 @@ var _$setLowWord_534 = setLowWord;
 
 // MODULES //
 
-/* removed: var _$setLowWord_534 = require( './main.js' ); */;
+/* removed: var _$setLowWord_541 = require( './main.js' ); */;
 
 
 // EXPORTS //
 
-var _$setLowWord_532 = _$setLowWord_534;
+var _$setLowWord_539 = _$setLowWord_541;
 
 /**
 * @license Apache-2.0
@@ -15507,7 +15507,7 @@ function uint32ToInt32( x ) {
 
 // EXPORTS //
 
-var _$uint32ToInt32_542 = uint32ToInt32;
+var _$uint32ToInt32_549 = uint32ToInt32;
 
 /**
 * @license Apache-2.0
@@ -15547,12 +15547,12 @@ var _$uint32ToInt32_542 = uint32ToInt32;
 
 // MODULES //
 
-/* removed: var _$uint32ToInt32_542 = require( './main.js' ); */;
+/* removed: var _$uint32ToInt32_549 = require( './main.js' ); */;
 
 
 // EXPORTS //
 
-var _$uint32ToInt32_541 = _$uint32ToInt32_542;
+var _$uint32ToInt32_548 = _$uint32ToInt32_549;
 
 /**
 * @license Apache-2.0
@@ -15653,7 +15653,7 @@ function pow( x, y ) {
 
 // EXPORTS //
 
-var _$pow_477 = pow;
+var _$pow_484 = pow;
 
 /**
 * @license Apache-2.0
@@ -15691,19 +15691,19 @@ var _$pow_477 = pow;
 
 // MODULES //
 
-/* removed: var _$getHighWord_521 = require( '@stdlib/number/float64/base/get-high-word' ); */;
+/* removed: var _$getHighWord_528 = require( '@stdlib/number/float64/base/get-high-word' ); */;
 
 
 // VARIABLES //
 
 // 0x7fffffff = 2147483647 => 0 11111111111 11111111111111111111
-var __ABS_MASK_478 = 0x7fffffff|0; // asm type annotation
+var __ABS_MASK_485 = 0x7fffffff|0; // asm type annotation
 
 // 0x3fefffff = 1072693247 => 0 01111111110 11111111111111111111 => biased exponent: 1022 = -1+1023 => 2^-1
 var HIGH_MAX_NEAR_UNITY = 0x3fefffff|0; // asm type annotation
 
 var HUGE = 1.0e300;
-var __TINY_478 = 1.0e-300;
+var __TINY_485 = 1.0e-300;
 
 
 // MAIN //
@@ -15724,12 +15724,12 @@ var __TINY_478 = 1.0e-300;
 * var v = pow( -3.14, -3.6893488147419103e19 );
 * // returns 0.0
 */
-function __pow_478( x, y ) {
+function __pow_485( x, y ) {
 	var ahx;
 	var hx;
 
-	hx = _$getHighWord_521( x );
-	ahx = (hx & __ABS_MASK_478);
+	hx = _$getHighWord_528( x );
+	ahx = (hx & __ABS_MASK_485);
 
 	if ( ahx <= HIGH_MAX_NEAR_UNITY ) {
 		if ( y < 0 ) {
@@ -15737,7 +15737,7 @@ function __pow_478( x, y ) {
 			return HUGE * HUGE;
 		}
 		// signal underflow...
-		return __TINY_478 * __TINY_478;
+		return __TINY_485 * __TINY_485;
 	}
 	// `x` has a biased exponent greater than or equal to `0`...
 
@@ -15746,13 +15746,13 @@ function __pow_478( x, y ) {
 		return HUGE * HUGE;
 	}
 	// signal underflow...
-	return __TINY_478 * __TINY_478;
+	return __TINY_485 * __TINY_485;
 }
 
 
 // EXPORTS //
 
-var _$pow_478 = __pow_478;
+var _$pow_485 = __pow_485;
 
 /**
 * @license Apache-2.0
@@ -15822,7 +15822,7 @@ var _$pow_478 = __pow_478;
 * var v = pow( 1.5, Infinity );
 * // returns Infinity
 */
-function __pow_479( x, y ) {
+function __pow_486( x, y ) {
 	if ( x === -1.0 ) {
 		// Julia (0.4.2) and Python (2.7.9) return `1.0` (WTF???). JavaScript (`Math.pow`), R, and libm return `NaN`. We choose `NaN`, as the value is indeterminate; i.e., we cannot determine whether `y` is odd, even, or somewhere in between.
 		return (x-x)/(x-x); // signal NaN
@@ -15841,7 +15841,7 @@ function __pow_479( x, y ) {
 
 // EXPORTS //
 
-var _$pow_479 = __pow_479;
+var _$pow_486 = __pow_486;
 
 /**
 * @license Apache-2.0
@@ -15880,7 +15880,7 @@ var _$pow_479 = __pow_479;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_472( x ) {
+function __evalpoly_479( x ) {
 	if ( x === 0.0 ) {
 		return 0.5999999999999946;
 	}
@@ -15890,7 +15890,7 @@ function __evalpoly_472( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_472 = __evalpoly_472;
+var _$evalpoly_479 = __evalpoly_479;
 
 /**
 * @license Apache-2.0
@@ -15928,23 +15928,23 @@ var _$evalpoly_472 = __evalpoly_472;
 
 // MODULES //
 
-/* removed: var _$getHighWord_521 = require( '@stdlib/number/float64/base/get-high-word' ); */;
-/* removed: var _$setLowWord_532 = require( '@stdlib/number/float64/base/set-low-word' ); */;
-/* removed: var _$setHighWord_530 = require( '@stdlib/number/float64/base/set-high-word' ); */;
+/* removed: var _$getHighWord_528 = require( '@stdlib/number/float64/base/get-high-word' ); */;
+/* removed: var _$setLowWord_539 = require( '@stdlib/number/float64/base/set-low-word' ); */;
+/* removed: var _$setHighWord_537 = require( '@stdlib/number/float64/base/set-high-word' ); */;
 /* removed: var _$FLOAT64_EXPONENT_BIAS_190 = require( '@stdlib/constants/math/float64-exponent-bias' ); */;
-/* removed: var _$evalpoly_472 = require( './polyval_l.js' ); */;
+/* removed: var _$evalpoly_479 = require( './polyval_l.js' ); */;
 
 
 // VARIABLES //
 
 // 0x000fffff = 1048575 => 0 00000000000 11111111111111111111
-var __HIGH_SIGNIFICAND_MASK_470 = 0x000fffff|0; // asm type annotation
+var __HIGH_SIGNIFICAND_MASK_477 = 0x000fffff|0; // asm type annotation
 
 // 0x00100000 = 1048576 => 0 00000000001 00000000000000000000 => biased exponent: 1 = -1022+1023 => 2^-1022
-var __HIGH_MIN_NORMAL_EXP_470 = 0x00100000|0; // asm type annotation
+var __HIGH_MIN_NORMAL_EXP_477 = 0x00100000|0; // asm type annotation
 
 // 0x3ff00000 = 1072693248 => 0 01111111111 00000000000000000000 => biased exponent: 1023 = 0+1023 => 2^0 = 1
-var __HIGH_BIASED_EXP_0_470 = 0x3ff00000|0; // asm type annotation
+var __HIGH_BIASED_EXP_0_477 = 0x3ff00000|0; // asm type annotation
 
 // 0x20000000 = 536870912 => 0 01000000000 00000000000000000000 => biased exponent: 512 = -511+1023
 var HIGH_BIASED_EXP_NEG_512 = 0x20000000|0; // asm type annotation
@@ -16022,19 +16022,19 @@ function log2ax( out, ax, ahx ) {
 	n = 0|0; // asm type annotation
 
 	// Check if `x` is subnormal...
-	if ( ahx < __HIGH_MIN_NORMAL_EXP_470 ) {
+	if ( ahx < __HIGH_MIN_NORMAL_EXP_477 ) {
 		ax *= TWO53;
 		n -= 53|0; // asm type annotation
-		ahx = _$getHighWord_521( ax );
+		ahx = _$getHighWord_528( ax );
 	}
 	// Extract the unbiased exponent of `x`:
 	n += ((ahx >> HIGH_NUM_SIGNIFICAND_BITS) - _$FLOAT64_EXPONENT_BIAS_190)|0; // asm type annotation
 
 	// Isolate the significand bits of `x`:
-	j = (ahx & __HIGH_SIGNIFICAND_MASK_470)|0; // asm type annotation
+	j = (ahx & __HIGH_SIGNIFICAND_MASK_477)|0; // asm type annotation
 
 	// Normalize `ahx` by setting the (biased) exponent to `1023`:
-	ahx = (j | __HIGH_BIASED_EXP_0_470)|0; // asm type annotation
+	ahx = (j | __HIGH_BIASED_EXP_0_477)|0; // asm type annotation
 
 	// Determine the interval of `|x|` by comparing significand bits...
 
@@ -16050,33 +16050,33 @@ function log2ax( out, ax, ahx ) {
 	else {
 		k = 0;
 		n += 1|0; // asm type annotation
-		ahx -= __HIGH_MIN_NORMAL_EXP_470;
+		ahx -= __HIGH_MIN_NORMAL_EXP_477;
 	}
 	// Load the normalized high word into `|x|`:
-	ax = _$setHighWord_530( ax, ahx );
+	ax = _$setHighWord_537( ax, ahx );
 
 	// Compute `ss = hs + ls = (x-1)/(x+1)` or `(x-1.5)/(x+1.5)`:
 	bp = BP[ k ]; // BP[0] = 1.0, BP[1] = 1.5
 	u = ax - bp; // (x-1) || (x-1.5)
 	v = 1.0 / (ax + bp); // 1/(x+1) || 1/(x+1.5)
 	ss = u * v;
-	hs = _$setLowWord_532( ss, 0 ); // set all low word (less significant significand) bits to 0s
+	hs = _$setLowWord_539( ss, 0 ); // set all low word (less significant significand) bits to 0s
 
 	// Compute `ht = ax + bp` (via manipulation, i.e., bit flipping, of the high word):
 	tmp = ((ahx>>1) | HIGH_BIASED_EXP_NEG_512) + HIGH_SIGNIFICAND_HALF;
 	tmp += (k << 18); // `(k<<18)` can be considered the word equivalent of `1.0` or `1.5`
-	ht = _$setHighWord_530( 0.0, tmp );
+	ht = _$setHighWord_537( 0.0, tmp );
 	lt = ax - (ht - bp);
 	ls = v * ( ( u - (hs*ht) ) - ( hs*lt ) );
 
 	// Compute `log(ax)`...
 
 	s2 = ss * ss;
-	r = s2 * s2 * _$evalpoly_472( s2 );
+	r = s2 * s2 * _$evalpoly_479( s2 );
 	r += ls * (hs + ss);
 	s2 = hs * hs;
 	ht = 3.0 + s2 + r;
-	ht = _$setLowWord_532( ht, 0 );
+	ht = _$setLowWord_539( ht, 0 );
 	lt = r - ((ht-3.0) - s2);
 
 	// u+v = ss*(1+...):
@@ -16085,7 +16085,7 @@ function log2ax( out, ax, ahx ) {
 
 	// 2/(3LN2) * (ss+...):
 	hp = u + v;
-	hp = _$setLowWord_532( hp, 0 );
+	hp = _$setLowWord_539( hp, 0 );
 	lp = v - (hp - u);
 	hz = CP_HI * hp; // CP_HI+CP_LO = 2/(3*LN2)
 	lz = ( CP_LO*hp ) + ( lp*CP ) + DP_LO[ k ];
@@ -16094,7 +16094,7 @@ function log2ax( out, ax, ahx ) {
 	dp = DP_HI[ k ];
 	t = n;
 	t1 = ((hz+lz) + dp) + t; // log2(ax)
-	t1 = _$setLowWord_532( t1, 0 );
+	t1 = _$setLowWord_539( t1, 0 );
 	t2 = lz - (((t1-t) - dp) - hz);
 
 	out[ 0 ] = t1;
@@ -16105,7 +16105,7 @@ function log2ax( out, ax, ahx ) {
 
 // EXPORTS //
 
-var _$log2ax_470 = log2ax;
+var _$log2ax_477 = log2ax;
 
 /**
 * @license Apache-2.0
@@ -16144,7 +16144,7 @@ var _$log2ax_470 = log2ax;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_474( x ) {
+function __evalpoly_481( x ) {
 	if ( x === 0.0 ) {
 		return 0.5;
 	}
@@ -16154,7 +16154,7 @@ function __evalpoly_474( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_474 = __evalpoly_474;
+var _$evalpoly_481 = __evalpoly_481;
 
 /**
 * @license Apache-2.0
@@ -16192,8 +16192,8 @@ var _$evalpoly_474 = __evalpoly_474;
 
 // MODULES //
 
-/* removed: var _$setLowWord_532 = require( '@stdlib/number/float64/base/set-low-word' ); */;
-/* removed: var _$evalpoly_474 = require( './polyval_w.js' ); */;
+/* removed: var _$setLowWord_539 = require( '@stdlib/number/float64/base/set-low-word' ); */;
+/* removed: var _$evalpoly_481 = require( './polyval_w.js' ); */;
 
 
 // VARIABLES //
@@ -16231,11 +16231,11 @@ function logx( out, ax ) {
 	var v;
 
 	t = ax - 1.0; // `t` has `20` trailing zeros
-	w = t * t * _$evalpoly_474( t );
+	w = t * t * _$evalpoly_481( t );
 	u = INV_LN2_HI * t; // `INV_LN2_HI` has `21` significant bits
 	v = ( t*INV_LN2_LO ) - ( w*INV_LN2 );
 	t1 = u + v;
-	t1 = _$setLowWord_532( t1, 0 );
+	t1 = _$setLowWord_539( t1, 0 );
 	t2 = v - (t1 - u);
 
 	out[ 0 ] = t1;
@@ -16246,7 +16246,7 @@ function logx( out, ax ) {
 
 // EXPORTS //
 
-var _$logx_471 = logx;
+var _$logx_478 = logx;
 
 /**
 * @license Apache-2.0
@@ -16337,7 +16337,7 @@ var _$LN2_197 = LN2;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_304( x ) {
+function __evalpoly_311( x ) {
 	if ( x === 0.0 ) {
 		return 0.16666666666666602;
 	}
@@ -16347,7 +16347,7 @@ function __evalpoly_304( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_304 = __evalpoly_304;
+var _$evalpoly_311 = __evalpoly_311;
 
 /**
 * @license Apache-2.0
@@ -16386,7 +16386,7 @@ var _$evalpoly_304 = __evalpoly_304;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_473( x ) {
+function __evalpoly_480( x ) {
 	if ( x === 0.0 ) {
 		return 0.16666666666666602;
 	}
@@ -16396,7 +16396,7 @@ function __evalpoly_473( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_473 = __evalpoly_473;
+var _$evalpoly_480 = __evalpoly_480;
 
 /**
 * @license Apache-2.0
@@ -16434,38 +16434,38 @@ var _$evalpoly_473 = __evalpoly_473;
 
 // MODULES //
 
-/* removed: var _$getHighWord_521 = require( '@stdlib/number/float64/base/get-high-word' ); */;
-/* removed: var _$setHighWord_530 = require( '@stdlib/number/float64/base/set-high-word' ); */;
-/* removed: var _$setLowWord_532 = require( '@stdlib/number/float64/base/set-low-word' ); */;
-/* removed: var _$uint32ToInt32_541 = require( '@stdlib/number/uint32/base/to-int32' ); */;
-/* removed: var _$ldexp_452 = require( '@stdlib/math/base/special/ldexp' ); */;
+/* removed: var _$getHighWord_528 = require( '@stdlib/number/float64/base/get-high-word' ); */;
+/* removed: var _$setHighWord_537 = require( '@stdlib/number/float64/base/set-high-word' ); */;
+/* removed: var _$setLowWord_539 = require( '@stdlib/number/float64/base/set-low-word' ); */;
+/* removed: var _$uint32ToInt32_548 = require( '@stdlib/number/uint32/base/to-int32' ); */;
+/* removed: var _$ldexp_459 = require( '@stdlib/math/base/special/ldexp' ); */;
 /* removed: var _$LN2_197 = require( '@stdlib/constants/math/float64-ln-two' ); */;
 /* removed: var _$FLOAT64_EXPONENT_BIAS_190 = require( '@stdlib/constants/math/float64-exponent-bias' ); */;
-/* removed: var _$evalpoly_473 = require( './polyval_p.js' ); */;
+/* removed: var _$evalpoly_480 = require( './polyval_p.js' ); */;
 
 
 // VARIABLES //
 
 // 0x7fffffff = 2147483647 => 0 11111111111 11111111111111111111
-var __ABS_MASK_476 = 0x7fffffff|0; // asm type annotation
+var __ABS_MASK_483 = 0x7fffffff|0; // asm type annotation
 
 // 0x000fffff = 1048575 => 0 00000000000 11111111111111111111
-var __HIGH_SIGNIFICAND_MASK_476 = 0x000fffff|0; // asm type annotation
+var __HIGH_SIGNIFICAND_MASK_483 = 0x000fffff|0; // asm type annotation
 
 // 0x00100000 = 1048576 => 0 00000000001 00000000000000000000 => biased exponent: 1 = -1022+1023 => 2^-1022
-var __HIGH_MIN_NORMAL_EXP_476 = 0x00100000|0; // asm type annotation
+var __HIGH_MIN_NORMAL_EXP_483 = 0x00100000|0; // asm type annotation
 
 // 0x3fe00000 = 1071644672 => 0 01111111110 00000000000000000000 => biased exponent: 1022 = -1+1023 => 2^-1
 var HIGH_BIASED_EXP_NEG_1 = 0x3fe00000|0; // asm type annotation
 
 // TODO: consider making into an external constant
-var __HIGH_NUM_SIGNIFICAND_BITS_476 = 20|0; // asm type annotation
+var __HIGH_NUM_SIGNIFICAND_BITS_483 = 20|0; // asm type annotation
 
 // High: LN2
-var __LN2_HI_476 = 6.93147182464599609375e-01; // 0x3FE62E43, 0x00000000
+var __LN2_HI_483 = 6.93147182464599609375e-01; // 0x3FE62E43, 0x00000000
 
 // Low: LN2
-var __LN2_LO_476 = -1.90465429995776804525e-09; // 0xBE205C61, 0x0CA86C39
+var __LN2_LO_483 = -1.90465429995776804525e-09; // 0xBE205C61, 0x0CA86C39
 
 
 // MAIN //
@@ -16496,41 +16496,41 @@ function pow2( j, hp, lp ) {
 	var i;
 	var k;
 
-	i = (j & __ABS_MASK_476)|0; // asm type annotation
-	k = ((i>>__HIGH_NUM_SIGNIFICAND_BITS_476) - _$FLOAT64_EXPONENT_BIAS_190)|0; // asm type annotation
+	i = (j & __ABS_MASK_483)|0; // asm type annotation
+	k = ((i>>__HIGH_NUM_SIGNIFICAND_BITS_483) - _$FLOAT64_EXPONENT_BIAS_190)|0; // asm type annotation
 	n = 0;
 
 	// `|z| > 0.5`, set `n = z+0.5`
 	if ( i > HIGH_BIASED_EXP_NEG_1 ) {
-		n = (j + (__HIGH_MIN_NORMAL_EXP_476>>(k+1)))>>>0; // asm type annotation
-		k = (((n & __ABS_MASK_476)>>__HIGH_NUM_SIGNIFICAND_BITS_476) - _$FLOAT64_EXPONENT_BIAS_190)|0; // new k for n
-		tmp = ((n & ~(__HIGH_SIGNIFICAND_MASK_476 >> k)))>>>0; // asm type annotation
-		t = _$setHighWord_530( 0.0, tmp );
-		n = (((n & __HIGH_SIGNIFICAND_MASK_476)|__HIGH_MIN_NORMAL_EXP_476) >> (__HIGH_NUM_SIGNIFICAND_BITS_476-k))>>>0; // eslint-disable-line max-len
+		n = (j + (__HIGH_MIN_NORMAL_EXP_483>>(k+1)))>>>0; // asm type annotation
+		k = (((n & __ABS_MASK_483)>>__HIGH_NUM_SIGNIFICAND_BITS_483) - _$FLOAT64_EXPONENT_BIAS_190)|0; // new k for n
+		tmp = ((n & ~(__HIGH_SIGNIFICAND_MASK_483 >> k)))>>>0; // asm type annotation
+		t = _$setHighWord_537( 0.0, tmp );
+		n = (((n & __HIGH_SIGNIFICAND_MASK_483)|__HIGH_MIN_NORMAL_EXP_483) >> (__HIGH_NUM_SIGNIFICAND_BITS_483-k))>>>0; // eslint-disable-line max-len
 		if ( j < 0 ) {
 			n = -n;
 		}
 		hp -= t;
 	}
 	t = lp + hp;
-	t = _$setLowWord_532( t, 0 );
-	u = t * __LN2_HI_476;
-	v = ( (lp - (t-hp))*_$LN2_197 ) + ( t*__LN2_LO_476 );
+	t = _$setLowWord_539( t, 0 );
+	u = t * __LN2_HI_483;
+	v = ( (lp - (t-hp))*_$LN2_197 ) + ( t*__LN2_LO_483 );
 	z = u + v;
 	w = v - (z - u);
 	t = z * z;
-	t1 = z - ( t*_$evalpoly_473( t ) );
+	t1 = z - ( t*_$evalpoly_480( t ) );
 	r = ( (z*t1) / (t1-2.0) ) - ( w + (z*w) );
 	z = 1.0 - (r - z);
-	j = _$getHighWord_521( z );
-	j = _$uint32ToInt32_541( j );
-	j += (n << __HIGH_NUM_SIGNIFICAND_BITS_476)>>>0; // asm type annotation
+	j = _$getHighWord_528( z );
+	j = _$uint32ToInt32_548( j );
+	j += (n << __HIGH_NUM_SIGNIFICAND_BITS_483)>>>0; // asm type annotation
 
 	// Check for subnormal output...
-	if ( (j>>__HIGH_NUM_SIGNIFICAND_BITS_476) <= 0 ) {
-		z = _$ldexp_452( z, n );
+	if ( (j>>__HIGH_NUM_SIGNIFICAND_BITS_483) <= 0 ) {
+		z = _$ldexp_459( z, n );
 	} else {
-		z = _$setHighWord_530( z, j );
+		z = _$setHighWord_537( z, j );
 	}
 	return z;
 }
@@ -16538,7 +16538,7 @@ function pow2( j, hp, lp ) {
 
 // EXPORTS //
 
-var _$pow2_476 = pow2;
+var _$pow2_483 = pow2;
 
 /**
 * @license Apache-2.0
@@ -16580,28 +16580,28 @@ var _$pow2_476 = pow2;
 /* removed: var _$isOdd_237 = require( '@stdlib/math/base/assert/is-odd' ); */;
 /* removed: var _$isInfinite_227 = require( '@stdlib/math/base/assert/is-infinite' ); */;
 /* removed: var _$isInteger_229 = require( '@stdlib/math/base/assert/is-integer' ); */;
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$toWords_537 = require( '@stdlib/number/float64/base/to-words' ); */;
-/* removed: var _$setLowWord_532 = require( '@stdlib/number/float64/base/set-low-word' ); */;
-/* removed: var _$uint32ToInt32_541 = require( '@stdlib/number/uint32/base/to-int32' ); */;
+/* removed: var _$toWords_544 = require( '@stdlib/number/float64/base/to-words' ); */;
+/* removed: var _$setLowWord_539 = require( '@stdlib/number/float64/base/set-low-word' ); */;
+/* removed: var _$uint32ToInt32_548 = require( '@stdlib/number/uint32/base/to-int32' ); */;
 /* removed: var _$FLOAT64_NINF_205 = require( '@stdlib/constants/math/float64-ninf' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
-/* removed: var _$pow_477 = require( './x_is_zero.js' ); */;
-/* removed: var _$pow_478 = require( './y_is_huge.js' ); */;
-/* removed: var _$pow_479 = require( './y_is_infinite.js' ); */;
-/* removed: var _$log2ax_470 = require( './log2ax.js' ); */;
-/* removed: var _$logx_471 = require( './logx.js' ); */;
-/* removed: var _$pow2_476 = require( './pow2.js' ); */;
+/* removed: var _$pow_484 = require( './x_is_zero.js' ); */;
+/* removed: var _$pow_485 = require( './y_is_huge.js' ); */;
+/* removed: var _$pow_486 = require( './y_is_infinite.js' ); */;
+/* removed: var _$log2ax_477 = require( './log2ax.js' ); */;
+/* removed: var _$logx_478 = require( './logx.js' ); */;
+/* removed: var _$pow2_483 = require( './pow2.js' ); */;
 
 
 // VARIABLES //
 
 // 0x7fffffff = 2147483647 => 0 11111111111 11111111111111111111
-var __ABS_MASK_475 = 0x7fffffff|0; // asm type annotation
+var __ABS_MASK_482 = 0x7fffffff|0; // asm type annotation
 
 // 0x3fefffff = 1072693247 => 0 01111111110 11111111111111111111 => biased exponent: 1022 = -1+1023 => 2^-1
-var __HIGH_MAX_NEAR_UNITY_475 = 0x3fefffff|0; // asm type annotation
+var __HIGH_MAX_NEAR_UNITY_482 = 0x3fefffff|0; // asm type annotation
 
 // 0x41e00000 = 1105199104 => 0 10000011110 00000000000000000000 => biased exponent: 1054 = 31+1023 => 2^31
 var HIGH_BIASED_EXP_31 = 0x41e00000|0; // asm type annotation
@@ -16613,7 +16613,7 @@ var HIGH_BIASED_EXP_64 = 0x43f00000|0; // asm type annotation
 var HIGH_BIASED_EXP_10 = 0x40900000|0; // asm type annotation
 
 // 0x3ff00000 = 1072693248 => 0 01111111111 00000000000000000000 => biased exponent: 1023 = 0+1023 => 2^0 = 1
-var __HIGH_BIASED_EXP_0_475 = 0x3ff00000|0; // asm type annotation
+var __HIGH_BIASED_EXP_0_482 = 0x3ff00000|0; // asm type annotation
 
 // 0x4090cc00 = 1083231232 => 0 10000001001 00001100110000000000
 var HIGH_1075 = 0x4090cc00|0; // asm type annotation
@@ -16623,14 +16623,14 @@ var HIGH_NEG_1075 = 0xc090cc00>>>0; // asm type annotation
 
 var HIGH_NUM_NONSIGN_BITS = 31|0; // asm type annotation
 
-var __HUGE_475 = 1.0e300;
-var __TINY_475 = 1.0e-300;
+var __HUGE_482 = 1.0e300;
+var __TINY_482 = 1.0e-300;
 
 // -(1024-log2(ovfl+.5ulp))
 var OVT = 8.0085662595372944372e-17;
 
 // High/low words workspace:
-var __WORDS_475 = [ 0|0, 0|0 ]; // WARNING: not thread safe
+var __WORDS_482 = [ 0|0, 0|0 ]; // WARNING: not thread safe
 
 // Log workspace:
 var LOG_WORKSPACE = [ 0.0, 0.0 ]; // WARNING: not thread safe
@@ -16738,7 +16738,7 @@ var LOG_WORKSPACE = [ 0.0, 0.0 ]; // WARNING: not thread safe
 * var v = pow( NaN, NaN );
 * // returns NaN
 */
-function __pow_475( x, y ) {
+function __pow_482( x, y ) {
 	var ahx; // absolute value high word `x`
 	var ahy; // absolute value high word `y`
 	var ax;  // absolute value `x`
@@ -16759,9 +16759,9 @@ function __pow_475( x, y ) {
 		return NaN;
 	}
 	// Split `y` into high and low words:
-	_$toWords_537( __WORDS_475, y );
-	hy = __WORDS_475[ 0 ];
-	ly = __WORDS_475[ 1 ];
+	_$toWords_544( __WORDS_482, y );
+	hy = __WORDS_482[ 0 ];
+	ly = __WORDS_482[ 1 ];
 
 	// Special cases `y`...
 	if ( ly === 0 ) {
@@ -16775,10 +16775,10 @@ function __pow_475( x, y ) {
 			return 1.0 / x;
 		}
 		if ( y === 0.5 ) {
-			return _$sqrt_494( x );
+			return _$sqrt_501( x );
 		}
 		if ( y === -0.5 ) {
-			return 1.0 / _$sqrt_494( x );
+			return 1.0 / _$sqrt_501( x );
 		}
 		if ( y === 2.0 ) {
 			return x * x;
@@ -16791,18 +16791,18 @@ function __pow_475( x, y ) {
 			return x * x;
 		}
 		if ( _$isInfinite_227( y ) ) {
-			return _$pow_479( x, y );
+			return _$pow_486( x, y );
 		}
 	}
 	// Split `x` into high and low words:
-	_$toWords_537( __WORDS_475, x );
-	hx = __WORDS_475[ 0 ];
-	lx = __WORDS_475[ 1 ];
+	_$toWords_544( __WORDS_482, x );
+	hx = __WORDS_482[ 0 ];
+	lx = __WORDS_482[ 1 ];
 
 	// Special cases `x`...
 	if ( lx === 0 ) {
 		if ( hx === 0 ) {
-			return _$pow_477( x, y );
+			return _$pow_484( x, y );
 		}
 		if ( x === 1.0 ) {
 			return 1.0;
@@ -16816,7 +16816,7 @@ function __pow_475( x, y ) {
 		if ( _$isInfinite_227( x ) ) {
 			if ( x === _$FLOAT64_NINF_205 ) {
 				// `pow( 1/x, -y )`
-				return __pow_475( -0.0, -y );
+				return __pow_482( -0.0, -y );
 			}
 			if ( y < 0.0 ) {
 				return 0.0;
@@ -16834,8 +16834,8 @@ function __pow_475( x, y ) {
 	ax = _$abs_242( x );
 
 	// Remove the sign bits (i.e., get absolute values):
-	ahx = (hx & __ABS_MASK_475)|0; // asm type annotation
-	ahy = (hy & __ABS_MASK_475)|0; // asm type annotation
+	ahx = (hx & __ABS_MASK_482)|0; // asm type annotation
+	ahy = (hy & __ABS_MASK_482)|0; // asm type annotation
 
 	// Extract the sign bits:
 	sx = (hx >>> HIGH_NUM_NONSIGN_BITS)|0; // asm type annotation
@@ -16853,72 +16853,72 @@ function __pow_475( x, y ) {
 	if ( ahy > HIGH_BIASED_EXP_31 ) {
 		// `|y| > 2^64`, then must over- or underflow...
 		if ( ahy > HIGH_BIASED_EXP_64 ) {
-			return _$pow_478( x, y );
+			return _$pow_485( x, y );
 		}
 		// Over- or underflow if `x` is not close to unity...
 
-		if ( ahx < __HIGH_MAX_NEAR_UNITY_475 ) {
+		if ( ahx < __HIGH_MAX_NEAR_UNITY_482 ) {
 			// y < 0
 			if ( sy === 1 ) {
 				// Signal overflow...
-				return sx * __HUGE_475 * __HUGE_475;
+				return sx * __HUGE_482 * __HUGE_482;
 			}
 			// Signal underflow...
-			return sx * __TINY_475 * __TINY_475;
+			return sx * __TINY_482 * __TINY_482;
 		}
-		if ( ahx > __HIGH_BIASED_EXP_0_475 ) {
+		if ( ahx > __HIGH_BIASED_EXP_0_482 ) {
 			// y > 0
 			if ( sy === 0 ) {
 				// Signal overflow...
-				return sx * __HUGE_475 * __HUGE_475;
+				return sx * __HUGE_482 * __HUGE_482;
 			}
 			// Signal underflow...
-			return sx * __TINY_475 * __TINY_475;
+			return sx * __TINY_482 * __TINY_482;
 		}
 		// At this point, `|1-x|` is tiny (`<= 2^-20`). Suffice to compute `log(x)` by `x - x^2/2 + x^3/3 - x^4/4`.
-		t = _$logx_471( LOG_WORKSPACE, ax );
+		t = _$logx_478( LOG_WORKSPACE, ax );
 	}
 	// Case 2: `|y|` is not huge...
 	else {
-		t = _$log2ax_470( LOG_WORKSPACE, ax, ahx );
+		t = _$log2ax_477( LOG_WORKSPACE, ax, ahx );
 	}
 	// Split `y` into `y1 + y2` and compute `(y1+y2) * (t1+t2)`...
-	y1 = _$setLowWord_532( y, 0 );
+	y1 = _$setLowWord_539( y, 0 );
 	lp = ( (y-y1)*t[0] ) + ( y*t[1] );
 	hp = y1 * t[0];
 	z = lp + hp;
 
 	// Note: *can* be more performant to use `getHighWord` and `getLowWord` directly, but using `toWords` looks cleaner.
-	_$toWords_537( __WORDS_475, z );
-	j = _$uint32ToInt32_541( __WORDS_475[0] );
-	i = _$uint32ToInt32_541( __WORDS_475[1] );
+	_$toWords_544( __WORDS_482, z );
+	j = _$uint32ToInt32_548( __WORDS_482[0] );
+	i = _$uint32ToInt32_548( __WORDS_482[1] );
 
 	// z >= 1024
 	if ( j >= HIGH_BIASED_EXP_10 ) {
 		// z > 1024
 		if ( ((j-HIGH_BIASED_EXP_10)|i) !== 0 ) {
 			// Signal overflow...
-			return sx * __HUGE_475 * __HUGE_475;
+			return sx * __HUGE_482 * __HUGE_482;
 		}
 		if ( (lp+OVT) > (z-hp) ) {
 			// Signal overflow...
-			return sx * __HUGE_475 * __HUGE_475;
+			return sx * __HUGE_482 * __HUGE_482;
 		}
 	}
 	// z <= -1075
-	else if ( (j&__ABS_MASK_475) >= HIGH_1075 ) {
+	else if ( (j&__ABS_MASK_482) >= HIGH_1075 ) {
 		// z < -1075
 		if ( ((j-HIGH_NEG_1075)|i) !== 0 ) {
 			// signal underflow...
-			return sx * __TINY_475 * __TINY_475;
+			return sx * __TINY_482 * __TINY_482;
 		}
 		if ( lp <= (z-hp) ) {
 			// signal underflow...
-			return sx * __TINY_475 * __TINY_475;
+			return sx * __TINY_482 * __TINY_482;
 		}
 	}
 	// Compute `2^(hp+lp)`...
-	z = _$pow2_476( j, hp, lp );
+	z = _$pow2_483( j, hp, lp );
 
 	return sx * z;
 }
@@ -16926,7 +16926,7 @@ function __pow_475( x, y ) {
 
 // EXPORTS //
 
-var _$pow_475 = __pow_475;
+var _$pow_482 = __pow_482;
 
 /**
 * @license Apache-2.0
@@ -16983,12 +16983,12 @@ var _$pow_475 = __pow_475;
 
 // MODULES //
 
-/* removed: var _$pow_475 = require( './pow.js' ); */;
+/* removed: var _$pow_482 = require( './pow.js' ); */;
 
 
 // EXPORTS //
 
-var _$pow_469 = _$pow_475;
+var _$pow_476 = _$pow_482;
 
 /**
 * @license Apache-2.0
@@ -17026,8 +17026,8 @@ var _$pow_469 = _$pow_475;
 
 // MODULES //
 
-/* removed: var _$ldexp_452 = require( '@stdlib/math/base/special/ldexp' ); */;
-/* removed: var _$evalpoly_304 = require( './polyval_p.js' ); */;
+/* removed: var _$ldexp_459 = require( '@stdlib/math/base/special/ldexp' ); */;
+/* removed: var _$evalpoly_311 = require( './polyval_p.js' ); */;
 
 
 // MAIN //
@@ -17049,16 +17049,16 @@ function expmulti( hi, lo, k ) {
 
 	r = hi - lo;
 	t = r * r;
-	c = r - ( t*_$evalpoly_304( t ) );
+	c = r - ( t*_$evalpoly_311( t ) );
 	y = 1.0 - ( lo - ( (r*c)/(2.0-c) ) - hi);
 
-	return _$ldexp_452( y, k );
+	return _$ldexp_459( y, k );
 }
 
 
 // EXPORTS //
 
-var _$expmulti_302 = expmulti;
+var _$expmulti_309 = expmulti;
 
 /**
 * @license Apache-2.0
@@ -17097,16 +17097,16 @@ var _$expmulti_302 = expmulti;
 // MODULES //
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$trunc_498 = require( '@stdlib/math/base/special/trunc' ); */;
+/* removed: var _$trunc_505 = require( '@stdlib/math/base/special/trunc' ); */;
 /* removed: var _$FLOAT64_NINF_205 = require( '@stdlib/constants/math/float64-ninf' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
-/* removed: var _$expmulti_302 = require( './expmulti.js' ); */;
+/* removed: var _$expmulti_309 = require( './expmulti.js' ); */;
 
 
 // VARIABLES //
 
-var __LN2_HI_301 = 6.93147180369123816490e-01;
-var __LN2_LO_301 = 1.90821492927058770002e-10;
+var __LN2_HI_308 = 6.93147180369123816490e-01;
+var __LN2_LO_308 = 1.90821492927058770002e-10;
 var LOG2_E = 1.44269504088896338700e+00;
 var OVERFLOW = 7.09782712893383973096e+02;
 var UNDERFLOW = -7.45133219101941108420e+02;
@@ -17252,20 +17252,20 @@ function exp( x ) {
 	}
 	// Reduce and compute `r = hi - lo` for extra precision.
 	if ( x < 0.0 ) {
-		k = _$trunc_498( (LOG2_E*x) - 0.5 );
+		k = _$trunc_505( (LOG2_E*x) - 0.5 );
 	} else {
-		k = _$trunc_498( (LOG2_E*x) + 0.5 );
+		k = _$trunc_505( (LOG2_E*x) + 0.5 );
 	}
-	hi = x - (k*__LN2_HI_301);
-	lo = k * __LN2_LO_301;
+	hi = x - (k*__LN2_HI_308);
+	lo = k * __LN2_LO_308;
 
-	return _$expmulti_302( hi, lo, k );
+	return _$expmulti_309( hi, lo, k );
 }
 
 
 // EXPORTS //
 
-var _$exp_301 = exp;
+var _$exp_308 = exp;
 
 /**
 * @license Apache-2.0
@@ -17310,12 +17310,12 @@ var _$exp_301 = exp;
 
 // MODULES //
 
-/* removed: var _$exp_301 = require( './exp.js' ); */;
+/* removed: var _$exp_308 = require( './exp.js' ); */;
 
 
 // EXPORTS //
 
-var _$exp_303 = _$exp_301;
+var _$exp_310 = _$exp_308;
 
 /**
 * @license Apache-2.0
@@ -17354,7 +17354,7 @@ var _$exp_303 = _$exp_301;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_326( x ) {
+function __evalpoly_333( x ) {
 	if ( x === 0.0 ) {
 		return 0.08333333333334822;
 	}
@@ -17364,7 +17364,7 @@ function __evalpoly_326( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_326 = __evalpoly_326;
+var _$evalpoly_333 = __evalpoly_333;
 
 /**
 * @license Apache-2.0
@@ -17403,9 +17403,9 @@ var _$evalpoly_326 = __evalpoly_326;
 // MODULES //
 
 /* removed: var _$SQRT_TWO_PI_211 = require( '@stdlib/constants/math/float64-sqrt-two-pi' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$evalpoly_326 = require( './polyval_s.js' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$evalpoly_333 = require( './polyval_s.js' ); */;
 
 
 // VARIABLES //
@@ -17428,15 +17428,15 @@ function gamma( x ) {
 	var v;
 
 	w = 1.0 / x;
-	w = 1.0 + ( w * _$evalpoly_326( w ) );
-	y = _$exp_303( x );
+	w = 1.0 + ( w * _$evalpoly_333( w ) );
+	y = _$exp_310( x );
 
 	// Check `x` to avoid `pow()` overflow...
 	if ( x > MAX_STIRLING ) {
-		v = _$pow_469( x, ( 0.5*x ) - 0.25 );
+		v = _$pow_476( x, ( 0.5*x ) - 0.25 );
 		y = v * (v/y);
 	} else {
-		y = _$pow_469( x, x-0.5 ) / y;
+		y = _$pow_476( x, x-0.5 ) / y;
 	}
 	return _$SQRT_TWO_PI_211 * y * w;
 }
@@ -17444,7 +17444,7 @@ function gamma( x ) {
 
 // EXPORTS //
 
-var _$gamma_329 = gamma;
+var _$gamma_336 = gamma;
 
 /**
 * @license Apache-2.0
@@ -17545,14 +17545,14 @@ var _$GAMMA_189 = GAMMA;
 * @param {number} z - scale factor
 * @returns {number} function value
 */
-function __gamma_328( x, z ) {
+function __gamma_335( x, z ) {
 	return z / ( (1.0+( _$GAMMA_189*x )) * x );
 }
 
 
 // EXPORTS //
 
-var _$gamma_328 = __gamma_328;
+var _$gamma_335 = __gamma_335;
 
 /**
 * @license Apache-2.0
@@ -17618,7 +17618,7 @@ function evalrational( x ) {
 
 // EXPORTS //
 
-var _$evalrational_327 = evalrational;
+var _$evalrational_334 = evalrational;
 
 /**
 * @license Apache-2.0
@@ -17660,14 +17660,14 @@ var _$evalrational_327 = evalrational;
 /* removed: var _$isInteger_229 = require( '@stdlib/math/base/assert/is-integer' ); */;
 /* removed: var _$isNegativeZero_235 = require( '@stdlib/math/base/assert/is-negative-zero' ); */;
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$floor_314 = require( '@stdlib/math/base/special/floor' ); */;
-/* removed: var _$sin_490 = require( '@stdlib/math/base/special/sin' ); */;
+/* removed: var _$floor_321 = require( '@stdlib/math/base/special/floor' ); */;
+/* removed: var _$sin_497 = require( '@stdlib/math/base/special/sin' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
 /* removed: var _$FLOAT64_NINF_205 = require( '@stdlib/constants/math/float64-ninf' ); */;
 /* removed: var _$PI_206 = require( '@stdlib/constants/math/float64-pi' ); */;
-/* removed: var _$gamma_329 = require( './stirling_approximation.js' ); */;
-/* removed: var _$gamma_328 = require( './small_approximation.js' ); */;
-/* removed: var _$evalrational_327 = require( './rational_pq.js' ); */;
+/* removed: var _$gamma_336 = require( './stirling_approximation.js' ); */;
+/* removed: var _$gamma_335 = require( './small_approximation.js' ); */;
+/* removed: var _$evalrational_334 = require( './rational_pq.js' ); */;
 
 
 // MAIN //
@@ -17727,7 +17727,7 @@ var _$evalrational_327 = evalrational;
 * var v = gamma( NaN );
 * // returns NaN
 */
-function __gamma_324( x ) {
+function __gamma_331( x ) {
 	var sign;
 	var q;
 	var p;
@@ -17754,9 +17754,9 @@ function __gamma_324( x ) {
 	q = _$abs_242( x );
 	if ( q > 33.0 ) {
 		if ( x >= 0.0 ) {
-			return _$gamma_329( x );
+			return _$gamma_336( x );
 		}
-		p = _$floor_314( q );
+		p = _$floor_321( q );
 
 		// Check whether `x` is even...
 		if ( (p&1) === 0 ) {
@@ -17769,8 +17769,8 @@ function __gamma_324( x ) {
 			p += 1.0;
 			z = q - p;
 		}
-		z = q * _$sin_490( _$PI_206 * z );
-		return sign * _$PI_206 / ( _$abs_242(z)*_$gamma_329(q) );
+		z = q * _$sin_497( _$PI_206 * z );
+		return sign * _$PI_206 / ( _$abs_242(z)*_$gamma_336(q) );
 	}
 	// Reduce `x`...
 	z = 1.0;
@@ -17780,14 +17780,14 @@ function __gamma_324( x ) {
 	}
 	while ( x < 0.0 ) {
 		if ( x > -1.0e-9 ) {
-			return _$gamma_328( x, z );
+			return _$gamma_335( x, z );
 		}
 		z /= x;
 		x += 1.0;
 	}
 	while ( x < 2.0 ) {
 		if ( x < 1.0e-9 ) {
-			return _$gamma_328( x, z );
+			return _$gamma_335( x, z );
 		}
 		z /= x;
 		x += 1.0;
@@ -17796,13 +17796,13 @@ function __gamma_324( x ) {
 		return z;
 	}
 	x -= 2.0;
-	return z * _$evalrational_327( x );
+	return z * _$evalrational_334( x );
 }
 
 
 // EXPORTS //
 
-var _$gamma_324 = __gamma_324;
+var _$gamma_331 = __gamma_331;
 
 /**
 * @license Apache-2.0
@@ -17856,12 +17856,12 @@ var _$gamma_324 = __gamma_324;
 
 // MODULES //
 
-/* removed: var _$gamma_324 = require( './gamma.js' ); */;
+/* removed: var _$gamma_331 = require( './gamma.js' ); */;
 
 
 // EXPORTS //
 
-var _$gamma_325 = _$gamma_324;
+var _$gamma_332 = _$gamma_331;
 
 /**
 * @license Apache-2.0
@@ -18067,7 +18067,7 @@ var _$FLOAT64_MAX_LN_200 = FLOAT64_MAX_LN;
 
 // MODULES //
 
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
 
 
 // MAIN //
@@ -18086,7 +18086,7 @@ function finiteGammaQ( a, x ) {
 	var e;
 	var n;
 
-	e = _$exp_303( -x );
+	e = _$exp_310( -x );
 	sum = e;
 	if ( sum !== 0.0 ) {
 		term = sum;
@@ -18102,7 +18102,7 @@ function finiteGammaQ( a, x ) {
 
 // EXPORTS //
 
-var _$finiteGammaQ_336 = finiteGammaQ;
+var _$finiteGammaQ_343 = finiteGammaQ;
 
 /**
 * @license Apache-2.0
@@ -18925,8 +18925,8 @@ var _$evalpoly_293 = __evalpoly_293;
 // MODULES //
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$setLowWord_532 = require( '@stdlib/number/float64/base/set-low-word' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$setLowWord_539 = require( '@stdlib/number/float64/base/set-low-word' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
 /* removed: var _$FLOAT64_NINF_205 = require( '@stdlib/constants/math/float64-ninf' ); */;
 /* removed: var _$evalpoly_287 = require( './polyval_pp.js' ); */;
@@ -19283,8 +19283,8 @@ function erfc( x ) {
 			r = RBC + ( s*_$evalpoly_291( s ) );
 			s = SBC + ( s*_$evalpoly_293( s ) );
 		}
-		z = _$setLowWord_532( ax, 0 ); // pseudo-single (20-bit) precision x
-		r = _$exp_303( -(z*z) - 0.5625 ) * _$exp_303( ((z-ax)*(z+ax)) + (r/s) );
+		z = _$setLowWord_539( ax, 0 ); // pseudo-single (20-bit) precision x
+		r = _$exp_310( -(z*z) - 0.5625 ) * _$exp_310( ((z-ax)*(z+ax)) + (r/s) );
 		if ( sign ) {
 			return 2.0 - (r/ax);
 		}
@@ -19394,8 +19394,8 @@ var _$erfc_285 = _$erfc_284;
 // MODULES //
 
 /* removed: var _$erfc_285 = require( '@stdlib/math/base/special/erfc' ); */;
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
 /* removed: var _$PI_206 = require( '@stdlib/constants/math/float64-pi' ); */;
 
 
@@ -19416,9 +19416,9 @@ function finiteHalfGammaQ( a, x ) {
 	var e;
 	var n;
 
-	e = _$erfc_285( _$sqrt_494(x) );
+	e = _$erfc_285( _$sqrt_501(x) );
 	if ( e !== 0 && a > 1.0 ) {
-		term = _$exp_303( -x ) / _$sqrt_494( _$PI_206 * x );
+		term = _$exp_310( -x ) / _$sqrt_501( _$PI_206 * x );
 		term *= x;
 		half = 0.5;
 		term /= half;
@@ -19436,7 +19436,7 @@ function finiteHalfGammaQ( a, x ) {
 
 // EXPORTS //
 
-var _$finiteHalfGammaQ_337 = finiteHalfGammaQ;
+var _$finiteHalfGammaQ_344 = finiteHalfGammaQ;
 
 /**
 * @license Apache-2.0
@@ -19531,9 +19531,9 @@ var _$FLOAT64_MIN_LN_204 = FLOAT64_MIN_LN;
 
 // MODULES //
 
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$FLOAT64_MAX_LN_200 = require( '@stdlib/constants/math/float64-max-ln' ); */;
 /* removed: var _$FLOAT64_MIN_LN_204 = require( '@stdlib/constants/math/float64-min-ln' ); */;
 
@@ -19552,27 +19552,27 @@ function fullIGammaPrefix( a, z ) {
 	var prefix;
 	var alz;
 
-	alz = a * _$ln_454( z );
+	alz = a * _$ln_461( z );
 	if ( z >= 1.0 ) {
 		if ( ( alz < _$FLOAT64_MAX_LN_200 ) && ( -z > _$FLOAT64_MIN_LN_204 ) ) {
-			prefix = _$pow_469( z, a ) * _$exp_303( -z );
+			prefix = _$pow_476( z, a ) * _$exp_310( -z );
 		}
 		else if ( a >= 1.0 ) {
-			prefix = _$pow_469( z / _$exp_303(z/a), a );
+			prefix = _$pow_476( z / _$exp_310(z/a), a );
 		}
 		else {
-			prefix = _$exp_303( alz - z );
+			prefix = _$exp_310( alz - z );
 		}
 	}
 	else {
 		/* eslint-disable no-lonely-if */
 		if ( alz > _$FLOAT64_MIN_LN_204 ) {
-			prefix = _$pow_469( z, a ) * _$exp_303( -z );
+			prefix = _$pow_476( z, a ) * _$exp_310( -z );
 		}
 		else if ( z/a < _$FLOAT64_MAX_LN_200 ) {
-			prefix = _$pow_469( z / _$exp_303(z/a), a );
+			prefix = _$pow_476( z / _$exp_310(z/a), a );
 		} else {
-			prefix = _$exp_303( alz - z );
+			prefix = _$exp_310( alz - z );
 		}
 	}
 	return prefix;
@@ -19581,7 +19581,7 @@ function fullIGammaPrefix( a, z ) {
 
 // EXPORTS //
 
-var _$fullIGammaPrefix_338 = fullIGammaPrefix;
+var _$fullIGammaPrefix_345 = fullIGammaPrefix;
 
 /**
 * @license Apache-2.0
@@ -19623,7 +19623,7 @@ var _$fullIGammaPrefix_338 = fullIGammaPrefix;
 * var v = evalpoly( [3.0,2.0,1.0], 10.0 ); // 3*10^0 + 2*10^1 + 1*10^2
 * // returns 123.0
 */
-function __evalpoly_505( c, x ) {
+function __evalpoly_512( c, x ) {
 	var p;
 	var i;
 
@@ -19647,7 +19647,7 @@ function __evalpoly_505( c, x ) {
 
 // EXPORTS //
 
-var _$evalpoly_505 = __evalpoly_505;
+var _$evalpoly_512 = __evalpoly_512;
 
 /**
 * @license Apache-2.0
@@ -19671,7 +19671,7 @@ var _$evalpoly_505 = __evalpoly_505;
 
 // MODULES //
 
-/* removed: var _$evalpoly_505 = require( './evalpoly.js' ); */;
+/* removed: var _$evalpoly_512 = require( './evalpoly.js' ); */;
 
 
 // MAIN //
@@ -19769,14 +19769,14 @@ function factory( c ) {
 	* @returns {number} evaluated polynomial
 	*/
 	function polyval( x ) {
-		return _$evalpoly_505( c, x );
+		return _$evalpoly_512( c, x );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_506 = factory;
+var _$factory_513 = factory;
 
 /**
 * @license Apache-2.0
@@ -19823,19 +19823,19 @@ var _$factory_506 = factory;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$evalpoly_505 = require( './evalpoly.js' ); */;
-/* removed: var _$factory_506 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$evalpoly_512 = require( './evalpoly.js' ); */;
+/* removed: var _$factory_513 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$evalpoly_505, 'factory', _$factory_506 );
+_$setNonEnumerableReadOnly_799( _$evalpoly_512, 'factory', _$factory_513 );
 
 
 // EXPORTS //
 
-var _$evalpoly_507 = _$evalpoly_505;
+var _$evalpoly_514 = _$evalpoly_512;
 
 /**
 * @license Apache-2.0
@@ -19923,354 +19923,11 @@ var _$TWO_PI_213 = TWO_PI;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_344( x ) {
+function __evalpoly_351( x ) {
 	if ( x === 0.0 ) {
 		return -0.3333333333333333;
 	}
 	return -0.3333333333333333 + (x * (0.08333333333333333 + (x * (-0.014814814814814815 + (x * (0.0011574074074074073 + (x * (0.0003527336860670194 + (x * (-0.0001787551440329218 + (x * (0.00003919263178522438 + (x * (-0.0000021854485106799924 + (x * (-0.00000185406221071516 + (x * (8.296711340953087e-7 + (x * (-1.7665952736826078e-7 + (x * (6.707853543401498e-9 + (x * (1.0261809784240309e-8 + (x * (-4.382036018453353e-9 + (x * 9.14769958223679e-10))))))))))))))))))))))))))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-var _$evalpoly_344 = __evalpoly_344;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function __evalpoly_345( x ) {
-	if ( x === 0.0 ) {
-		return -0.001851851851851852;
-	}
-	return -0.001851851851851852 + (x * (-0.003472222222222222 + (x * (0.0026455026455026454 + (x * (-0.0009902263374485596 + (x * (0.00020576131687242798 + (x * (-4.018775720164609e-7 + (x * (-0.000018098550334489977 + (x * (0.00000764916091608111 + (x * (-0.0000016120900894563446 + (x * (4.647127802807434e-9 + (x * (1.378633446915721e-7 + (x * (-5.752545603517705e-8 + (x * 1.1951628599778148e-8))))))))))))))))))))))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-var _$evalpoly_345 = __evalpoly_345;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function __evalpoly_346( x ) {
-	if ( x === 0.0 ) {
-		return 0.004133597883597883;
-	}
-	return 0.004133597883597883 + (x * (-0.0026813271604938273 + (x * (0.0007716049382716049 + (x * (0.0000020093878600823047 + (x * (-0.00010736653226365161 + (x * (0.000052923448829120125 + (x * (-0.000012760635188618728 + (x * (3.423578734096138e-8 + (x * (0.0000013721957309062932 + (x * (-6.298992138380055e-7 + (x * 1.4280614206064242e-7))))))))))))))))))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-var _$evalpoly_346 = __evalpoly_346;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function __evalpoly_347( x ) {
-	if ( x === 0.0 ) {
-		return 0.0006494341563786008;
-	}
-	return 0.0006494341563786008 + (x * (0.00022947209362139917 + (x * (-0.0004691894943952557 + (x * (0.00026772063206283885 + (x * (-0.00007561801671883977 + (x * (-2.396505113867297e-7 + (x * (0.000011082654115347302 + (x * (-0.0000056749528269915965 + (x * 0.0000014230900732435883))))))))))))))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-var _$evalpoly_347 = __evalpoly_347;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function __evalpoly_348( x ) {
-	if ( x === 0.0 ) {
-		return -0.0008618882909167117;
-	}
-	return -0.0008618882909167117 + (x * (0.0007840392217200666 + (x * (-0.0002990724803031902 + (x * (-0.0000014638452578843418 + (x * (0.00006641498215465122 + (x * (-0.00003968365047179435 + (x * 0.000011375726970678419))))))))))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-var _$evalpoly_348 = __evalpoly_348;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function __evalpoly_349( x ) {
-	if ( x === 0.0 ) {
-		return -0.00033679855336635813;
-	}
-	return -0.00033679855336635813 + (x * (-0.00006972813758365858 + (x * (0.0002772753244959392 + (x * (-0.00019932570516188847 + (x * (0.00006797780477937208 + (x * (1.419062920643967e-7 + (x * (-0.000013594048189768693 + (x * (0.000008018470256334202 + (x * -0.000002291481176508095))))))))))))))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-var _$evalpoly_349 = __evalpoly_349;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function __evalpoly_350( x ) {
-	if ( x === 0.0 ) {
-		return 0.0005313079364639922;
-	}
-	return 0.0005313079364639922 + (x * (-0.0005921664373536939 + (x * (0.0002708782096718045 + (x * (7.902353232660328e-7 + (x * (-0.00008153969367561969 + (x * (0.0000561168275310625 + (x * -0.000018329116582843375))))))))))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-var _$evalpoly_350 = __evalpoly_350;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function __evalpoly_351( x ) {
-	if ( x === 0.0 ) {
-		return 0.00034436760689237765;
-	}
-	return 0.00034436760689237765 + (x * (0.00005171790908260592 + (x * (-0.00033493161081142234 + (x * (0.0002812695154763237 + (x * -0.00010976582244684731))))))); // eslint-disable-line max-len
 }
 
 
@@ -20317,6 +19974,349 @@ var _$evalpoly_351 = __evalpoly_351;
 */
 function __evalpoly_352( x ) {
 	if ( x === 0.0 ) {
+		return -0.001851851851851852;
+	}
+	return -0.001851851851851852 + (x * (-0.003472222222222222 + (x * (0.0026455026455026454 + (x * (-0.0009902263374485596 + (x * (0.00020576131687242798 + (x * (-4.018775720164609e-7 + (x * (-0.000018098550334489977 + (x * (0.00000764916091608111 + (x * (-0.0000016120900894563446 + (x * (4.647127802807434e-9 + (x * (1.378633446915721e-7 + (x * (-5.752545603517705e-8 + (x * 1.1951628599778148e-8))))))))))))))))))))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+var _$evalpoly_352 = __evalpoly_352;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function __evalpoly_353( x ) {
+	if ( x === 0.0 ) {
+		return 0.004133597883597883;
+	}
+	return 0.004133597883597883 + (x * (-0.0026813271604938273 + (x * (0.0007716049382716049 + (x * (0.0000020093878600823047 + (x * (-0.00010736653226365161 + (x * (0.000052923448829120125 + (x * (-0.000012760635188618728 + (x * (3.423578734096138e-8 + (x * (0.0000013721957309062932 + (x * (-6.298992138380055e-7 + (x * 1.4280614206064242e-7))))))))))))))))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+var _$evalpoly_353 = __evalpoly_353;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function __evalpoly_354( x ) {
+	if ( x === 0.0 ) {
+		return 0.0006494341563786008;
+	}
+	return 0.0006494341563786008 + (x * (0.00022947209362139917 + (x * (-0.0004691894943952557 + (x * (0.00026772063206283885 + (x * (-0.00007561801671883977 + (x * (-2.396505113867297e-7 + (x * (0.000011082654115347302 + (x * (-0.0000056749528269915965 + (x * 0.0000014230900732435883))))))))))))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+var _$evalpoly_354 = __evalpoly_354;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function __evalpoly_355( x ) {
+	if ( x === 0.0 ) {
+		return -0.0008618882909167117;
+	}
+	return -0.0008618882909167117 + (x * (0.0007840392217200666 + (x * (-0.0002990724803031902 + (x * (-0.0000014638452578843418 + (x * (0.00006641498215465122 + (x * (-0.00003968365047179435 + (x * 0.000011375726970678419))))))))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+var _$evalpoly_355 = __evalpoly_355;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function __evalpoly_356( x ) {
+	if ( x === 0.0 ) {
+		return -0.00033679855336635813;
+	}
+	return -0.00033679855336635813 + (x * (-0.00006972813758365858 + (x * (0.0002772753244959392 + (x * (-0.00019932570516188847 + (x * (0.00006797780477937208 + (x * (1.419062920643967e-7 + (x * (-0.000013594048189768693 + (x * (0.000008018470256334202 + (x * -0.000002291481176508095))))))))))))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+var _$evalpoly_356 = __evalpoly_356;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function __evalpoly_357( x ) {
+	if ( x === 0.0 ) {
+		return 0.0005313079364639922;
+	}
+	return 0.0005313079364639922 + (x * (-0.0005921664373536939 + (x * (0.0002708782096718045 + (x * (7.902353232660328e-7 + (x * (-0.00008153969367561969 + (x * (0.0000561168275310625 + (x * -0.000018329116582843375))))))))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+var _$evalpoly_357 = __evalpoly_357;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function __evalpoly_358( x ) {
+	if ( x === 0.0 ) {
+		return 0.00034436760689237765;
+	}
+	return 0.00034436760689237765 + (x * (0.00005171790908260592 + (x * (-0.00033493161081142234 + (x * (0.0002812695154763237 + (x * -0.00010976582244684731))))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+var _$evalpoly_358 = __evalpoly_358;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function __evalpoly_359( x ) {
+	if ( x === 0.0 ) {
 		return -0.0006526239185953094;
 	}
 	return -0.0006526239185953094 + (x * (0.0008394987206720873 + (x * -0.000438297098541721))); // eslint-disable-line max-len
@@ -20325,7 +20325,7 @@ function __evalpoly_352( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_352 = __evalpoly_352;
+var _$evalpoly_359 = __evalpoly_359;
 
 /**
 * @license Apache-2.0
@@ -20363,21 +20363,21 @@ var _$evalpoly_352 = __evalpoly_352;
 
 // MODULES //
 
-/* removed: var _$evalpoly_507 = require( '@stdlib/math/base/tools/evalpoly' ); */;
+/* removed: var _$evalpoly_514 = require( '@stdlib/math/base/tools/evalpoly' ); */;
 /* removed: var _$erfc_285 = require( '@stdlib/math/base/special/erfc' ); */;
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$TWO_PI_213 = require( '@stdlib/constants/math/float64-two-pi' ); */;
-/* removed: var _$evalpoly_344 = require( './polyval_c0.js' ); */;
-/* removed: var _$evalpoly_345 = require( './polyval_c1.js' ); */;
-/* removed: var _$evalpoly_346 = require( './polyval_c2.js' ); */;
-/* removed: var _$evalpoly_347 = require( './polyval_c3.js' ); */;
-/* removed: var _$evalpoly_348 = require( './polyval_c4.js' ); */;
-/* removed: var _$evalpoly_349 = require( './polyval_c5.js' ); */;
-/* removed: var _$evalpoly_350 = require( './polyval_c6.js' ); */;
-/* removed: var _$evalpoly_351 = require( './polyval_c7.js' ); */;
-/* removed: var _$evalpoly_352 = require( './polyval_c8.js' ); */;
+/* removed: var _$evalpoly_351 = require( './polyval_c0.js' ); */;
+/* removed: var _$evalpoly_352 = require( './polyval_c1.js' ); */;
+/* removed: var _$evalpoly_353 = require( './polyval_c2.js' ); */;
+/* removed: var _$evalpoly_354 = require( './polyval_c3.js' ); */;
+/* removed: var _$evalpoly_355 = require( './polyval_c4.js' ); */;
+/* removed: var _$evalpoly_356 = require( './polyval_c5.js' ); */;
+/* removed: var _$evalpoly_357 = require( './polyval_c6.js' ); */;
+/* removed: var _$evalpoly_358 = require( './polyval_c7.js' ); */;
+/* removed: var _$evalpoly_359 = require( './polyval_c8.js' ); */;
 
 
 // VARIABLES //
@@ -20404,35 +20404,35 @@ function igammaTemmeLarge( a, x ) {
 	var z;
 
 	sigma = ( x-a ) / a;
-	phi = -_$ln_454( 1.0 + sigma ) + sigma;
+	phi = -_$ln_461( 1.0 + sigma ) + sigma;
 	y = a * phi;
-	z = _$sqrt_494( 2.0 * phi );
+	z = _$sqrt_501( 2.0 * phi );
 	if ( x < a ) {
 		z = -z;
 	}
-	workspace[ 0 ] = _$evalpoly_344( z );
-	workspace[ 1 ] = _$evalpoly_345( z );
-	workspace[ 2 ] = _$evalpoly_346( z );
-	workspace[ 3 ] = _$evalpoly_347( z );
-	workspace[ 4 ] = _$evalpoly_348( z );
-	workspace[ 5 ] = _$evalpoly_349( z );
-	workspace[ 6 ] = _$evalpoly_350( z );
-	workspace[ 7 ] = _$evalpoly_351( z );
-	workspace[ 8 ] = _$evalpoly_352( z );
+	workspace[ 0 ] = _$evalpoly_351( z );
+	workspace[ 1 ] = _$evalpoly_352( z );
+	workspace[ 2 ] = _$evalpoly_353( z );
+	workspace[ 3 ] = _$evalpoly_354( z );
+	workspace[ 4 ] = _$evalpoly_355( z );
+	workspace[ 5 ] = _$evalpoly_356( z );
+	workspace[ 6 ] = _$evalpoly_357( z );
+	workspace[ 7 ] = _$evalpoly_358( z );
+	workspace[ 8 ] = _$evalpoly_359( z );
 	workspace[ 9 ] = -0.00059676129019274625;
-	result = _$evalpoly_507( workspace, 1.0/a );
-	result *= _$exp_303( -y ) / _$sqrt_494( _$TWO_PI_213 * a );
+	result = _$evalpoly_514( workspace, 1.0/a );
+	result *= _$exp_310( -y ) / _$sqrt_501( _$TWO_PI_213 * a );
 	if ( x < a ) {
 		result = -result;
 	}
-	result += _$erfc_285( _$sqrt_494(y) ) / 2.0;
+	result += _$erfc_285( _$sqrt_501(y) ) / 2.0;
 	return result;
 }
 
 
 // EXPORTS //
 
-var _$igammaTemmeLarge_340 = igammaTemmeLarge;
+var _$igammaTemmeLarge_347 = igammaTemmeLarge;
 
 /**
 * @license Apache-2.0
@@ -20473,7 +20473,7 @@ var evil = eval; // eslint-disable-line no-eval
 
 // EXPORTS //
 
-var _$evil_755 = evil;
+var _$evil_806 = evil;
 
 /**
 * @license Apache-2.0
@@ -20497,7 +20497,7 @@ var _$evil_755 = evil;
 
 // MODULES //
 
-/* removed: var _$evil_755 = require( '@stdlib/utils/eval' ); */;
+/* removed: var _$evil_806 = require( '@stdlib/utils/eval' ); */;
 
 
 // MAIN //
@@ -20514,7 +20514,7 @@ var _$evil_755 = evil;
 function hasGeneratorSupport() {
 	var bool;
 	try {
-		_$evil_755( '"use strict"; (function* () {})' );
+		_$evil_806( '"use strict"; (function* () {})' );
 		bool = true;
 	} catch ( err ) { // eslint-disable-line no-unused-vars
 		bool = false;
@@ -20724,7 +20724,7 @@ function sumSeries( generator, options ) {
 
 // EXPORTS //
 
-var _$sumSeries_509 = sumSeries;
+var _$sumSeries_516 = sumSeries;
 
 /**
 * @license Apache-2.0
@@ -20754,7 +20754,7 @@ var _$sumSeries_509 = sumSeries;
 
 // VARIABLES //
 
-var __MAX_TERMS_508 = 1000000;
+var __MAX_TERMS_515 = 1000000;
 
 
 // MAIN //
@@ -20782,7 +20782,7 @@ var __MAX_TERMS_508 = 1000000;
 *     };
 * }
 */
-function __sumSeries_508( generator, options ) {
+function __sumSeries_515( generator, options ) {
 	var tolerance;
 	var nextTerm;
 	var counter;
@@ -20795,7 +20795,7 @@ function __sumSeries_508( generator, options ) {
 		opts = options;
 	}
 	tolerance = opts.tolerance || _$FLOAT64_EPSILON_188;
-	counter = opts.maxTerms || __MAX_TERMS_508;
+	counter = opts.maxTerms || __MAX_TERMS_515;
 	result = opts.initialValue || 0;
 
 	// Repeatedly call function...
@@ -20811,7 +20811,7 @@ function __sumSeries_508( generator, options ) {
 
 // EXPORTS //
 
-var _$sumSeries_508 = __sumSeries_508;
+var _$sumSeries_515 = __sumSeries_515;
 
 /**
 * @license Apache-2.0
@@ -20857,23 +20857,23 @@ var _$sumSeries_508 = __sumSeries_508;
 // MODULES //
 
 /* removed: var _$hasGeneratorSupport_44 = require( '@stdlib/assert/has-generator-support' ); */;
-/* removed: var _$sumSeries_509 = require( './generators.js' ); */;
-/* removed: var _$sumSeries_508 = require( './basic.js' ); */;
+/* removed: var _$sumSeries_516 = require( './generators.js' ); */;
+/* removed: var _$sumSeries_515 = require( './basic.js' ); */;
 
 
 // MAIN //
 
-var __sumSeries_510;
+var __sumSeries_517;
 if ( _$hasGeneratorSupport_44() ) {
-	__sumSeries_510 = _$sumSeries_509;
+	__sumSeries_517 = _$sumSeries_516;
 } else {
-	__sumSeries_510 = _$sumSeries_508;
+	__sumSeries_517 = _$sumSeries_515;
 }
 
 
 // EXPORTS //
 
-var _$sumSeries_510 = __sumSeries_510;
+var _$sumSeries_517 = __sumSeries_517;
 
 /**
 * @license Apache-2.0
@@ -20942,7 +20942,7 @@ function lowerIncompleteGammaSeries( a1, z1 ) {
 
 // EXPORTS //
 
-var _$lowerIncompleteGammaSeries_343 = lowerIncompleteGammaSeries;
+var _$lowerIncompleteGammaSeries_350 = lowerIncompleteGammaSeries;
 
 /**
 * @license Apache-2.0
@@ -20980,8 +20980,8 @@ var _$lowerIncompleteGammaSeries_343 = lowerIncompleteGammaSeries;
 
 // MODULES //
 
-/* removed: var _$sumSeries_510 = require( '@stdlib/math/base/tools/sum-series' ); */;
-/* removed: var _$lowerIncompleteGammaSeries_343 = require( './lower_incomplete_gamma_series' ); */;
+/* removed: var _$sumSeries_517 = require( '@stdlib/math/base/tools/sum-series' ); */;
+/* removed: var _$lowerIncompleteGammaSeries_350 = require( './lower_incomplete_gamma_series' ); */;
 
 
 // MAIN //
@@ -21005,8 +21005,8 @@ function lowerGammaSeries( a, z, initialValue ) {
 	var s;
 
 	initialValue = initialValue || 0.0;
-	s = _$lowerIncompleteGammaSeries_343( a, z );
-	result = _$sumSeries_510( s, {
+	s = _$lowerIncompleteGammaSeries_350( a, z );
+	result = _$sumSeries_517( s, {
 		'initialValue': initialValue
 	});
 	return result;
@@ -21015,7 +21015,7 @@ function lowerGammaSeries( a, z, initialValue ) {
 
 // EXPORTS //
 
-var _$lowerGammaSeries_342 = lowerGammaSeries;
+var _$lowerGammaSeries_349 = lowerGammaSeries;
 
 /**
 * @license Apache-2.0
@@ -21121,7 +21121,7 @@ var _$evalrational_257 = __evalrational_257;
 * @param {number} x - value at which to evaluate the rational function
 * @returns {number} evaluated rational function
 */
-function __evalrational_320( x ) {
+function __evalrational_327( x ) {
 	var ax;
 	var s1;
 	var s2;
@@ -21147,7 +21147,7 @@ function __evalrational_320( x ) {
 
 // EXPORTS //
 
-var _$evalrational_320 = __evalrational_320;
+var _$evalrational_327 = __evalrational_327;
 
 /**
 * @license Apache-2.0
@@ -21216,12 +21216,12 @@ var _$evalrational_320 = __evalrational_320;
 * var v = gammaLanczosSumExpGScaled( NaN );
 * // returns NaN
 */
-/* removed: var _$evalrational_320 = require( './rational_pq.js' ); */;
+/* removed: var _$evalrational_327 = require( './rational_pq.js' ); */;
 
 
 // EXPORTS //
 
-var _$gammaLanczosSumExpGScaled_318 = _$evalrational_320;
+var _$gammaLanczosSumExpGScaled_325 = _$evalrational_327;
 
 /**
 * @license Apache-2.0
@@ -21272,12 +21272,12 @@ var _$gammaLanczosSumExpGScaled_318 = _$evalrational_320;
 
 // MODULES //
 
-/* removed: var _$gammaLanczosSumExpGScaled_318 = require( './gamma_lanczos_sum_expg_scaled.js' ); */;
+/* removed: var _$gammaLanczosSumExpGScaled_325 = require( './gamma_lanczos_sum_expg_scaled.js' ); */;
 
 
 // EXPORTS //
 
-var _$gammaLanczosSumExpGScaled_319 = _$gammaLanczosSumExpGScaled_318;
+var _$gammaLanczosSumExpGScaled_326 = _$gammaLanczosSumExpGScaled_325;
 
 /**
 * @license Apache-2.0
@@ -21316,7 +21316,7 @@ var _$gammaLanczosSumExpGScaled_319 = _$gammaLanczosSumExpGScaled_318;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_460( x ) {
+function __evalpoly_467( x ) {
 	if ( x === 0.0 ) {
 		return 0.6666666666666735;
 	}
@@ -21326,7 +21326,7 @@ function __evalpoly_460( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_460 = __evalpoly_460;
+var _$evalpoly_467 = __evalpoly_467;
 
 /**
 * @license Apache-2.0
@@ -21365,19 +21365,19 @@ var _$evalpoly_460 = __evalpoly_460;
 // MODULES //
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$getHighWord_521 = require( '@stdlib/number/float64/base/get-high-word' ); */;
-/* removed: var _$setHighWord_530 = require( '@stdlib/number/float64/base/set-high-word' ); */;
+/* removed: var _$getHighWord_528 = require( '@stdlib/number/float64/base/get-high-word' ); */;
+/* removed: var _$setHighWord_537 = require( '@stdlib/number/float64/base/set-high-word' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
 /* removed: var _$FLOAT64_NINF_205 = require( '@stdlib/constants/math/float64-ninf' ); */;
 /* removed: var _$FLOAT64_EXPONENT_BIAS_190 = require( '@stdlib/constants/math/float64-exponent-bias' ); */;
-/* removed: var _$evalpoly_460 = require( './polyval_lp.js' ); */;
+/* removed: var _$evalpoly_467 = require( './polyval_lp.js' ); */;
 
 
 // VARIABLES //
 
 // High and low words of ln(2):
-var __LN2_HI_459 = 6.93147180369123816490e-01; // 0x3fe62e42 0xfee00000
-var __LN2_LO_459 = 1.90821492927058770002e-10; // 0x3dea39ef 0x35793c76
+var __LN2_HI_466 = 6.93147180369123816490e-01; // 0x3fe62e42 0xfee00000
+var __LN2_LO_466 = 1.90821492927058770002e-10; // 0x3dea39ef 0x35793c76
 
 // sqrt(2)-1:
 var SQRT2M1 = 4.142135623730950488017e-01; // 0x3fda8279 0x99fcef34
@@ -21386,13 +21386,13 @@ var SQRT2M1 = 4.142135623730950488017e-01; // 0x3fda8279 0x99fcef34
 var SQRT2HALFM1 = -2.928932188134524755992e-01; // 0xbfd2bec3 0x33018866
 
 // 2**-29:
-var __SMALL_459 = 1.862645149230957e-09; // 0x3e200000 0x00000000
+var __SMALL_466 = 1.862645149230957e-09; // 0x3e200000 0x00000000
 
 // 2**-54:
-var __TINY_459 = 5.551115123125783e-17;
+var __TINY_466 = 5.551115123125783e-17;
 
 // Max integer (unsafe) => 2**53:
-var __TWO53_459 = 9007199254740992;
+var __TWO53_466 = 9007199254740992;
 
 // 2/3:
 var TWO_THIRDS = 6.666666666666666666e-01;
@@ -21604,8 +21604,8 @@ function log1p( x ) {
 
 	// Check if argument reduction is needed and if we can just return a small value approximation requiring less computation but with equivalent accuracy...
 	if ( y < SQRT2M1 ) { // if |x| < sqrt(2)-1 => ~0.41422
-		if ( y < __SMALL_459 ) { // if |x| < 2**-29
-			if ( y < __TINY_459 ) { // if |x| < 2**-54
+		if ( y < __SMALL_466 ) { // if |x| < 2**-29
+			if ( y < __TINY_466 ) { // if |x| < 2**-54
 				return x;
 			}
 			// Use a simple two-term Taylor series...
@@ -21621,9 +21621,9 @@ function log1p( x ) {
 	}
 	// Address case where `f` cannot be represented exactly...
 	if ( k !== 0 ) {
-		if ( y < __TWO53_459 ) {
+		if ( y < __TWO53_466 ) {
 			u = 1.0 + x;
-			hu = _$getHighWord_521( u );
+			hu = _$getHighWord_528( u );
 
 			// Bit shift to isolate the exponent and then subtract the bias:
 			k = (hu>>20) - _$FLOAT64_EXPONENT_BIAS_190;
@@ -21637,7 +21637,7 @@ function log1p( x ) {
 			c /= u;
 		} else {
 			u = x;
-			hu = _$getHighWord_521( u );
+			hu = _$getHighWord_528( u );
 
 			// Bit shift to isolate the exponent and then subtract the bias:
 			k = (hu>>20) - _$FLOAT64_EXPONENT_BIAS_190;
@@ -21651,12 +21651,12 @@ function log1p( x ) {
 		// Check if u significand is less than sqrt(2) significand => 0x6a09e => 01101010000010011110
 		if ( hu < 434334 ) {
 			// Normalize u by setting the exponent to 1023 (bias) => 0x3ff00000 => 0 01111111111 00000000000000000000
-			u = _$setHighWord_530( u, hu|0x3ff00000 );
+			u = _$setHighWord_537( u, hu|0x3ff00000 );
 		} else {
 			k += 1;
 
 			// Normalize u/2 by setting the exponent to 1022 (bias-1 => 2**-1 = 1/2) => 0x3fe00000 => 0 01111111110 00000000000000000000
-			u = _$setHighWord_530( u, hu|0x3fe00000 );
+			u = _$setHighWord_537( u, hu|0x3fe00000 );
 
 			// Subtract hu significand from next largest hu => 0 00000000001 00000000000000000000 => 0x00100000 => 1048576
 			hu = (1048576-hu)>>2;
@@ -21667,27 +21667,27 @@ function log1p( x ) {
 	hfsq = 0.5 * f * f;
 	if ( hu === 0 ) { // if |f| < 2**-20
 		if ( f === 0.0 ) {
-			c += k * __LN2_LO_459;
-			return ( k * __LN2_HI_459 ) + c;
+			c += k * __LN2_LO_466;
+			return ( k * __LN2_HI_466 ) + c;
 		}
 		R = hfsq * (1.0 - ( TWO_THIRDS*f ) ); // avoid division
-		return ( k*__LN2_HI_459 ) - ( (R - ( (k*__LN2_LO_459) + c)) - f );
+		return ( k*__LN2_HI_466 ) - ( (R - ( (k*__LN2_LO_466) + c)) - f );
 	}
 	s = f / (2.0 + f);
 	z = s * s;
 
-	R = z * _$evalpoly_460( z );
+	R = z * _$evalpoly_467( z );
 
 	if ( k === 0 ) {
 		return f - ( hfsq - ( s*(hfsq+R) ) );
 	}
-	return ( k*__LN2_HI_459 ) - ( (hfsq - ( (s*(hfsq+R)) + ((k*__LN2_LO_459) + c))) - f );
+	return ( k*__LN2_HI_466 ) - ( (hfsq - ( (s*(hfsq+R)) + ((k*__LN2_LO_466) + c))) - f );
 }
 
 
 // EXPORTS //
 
-var _$log1p_459 = log1p;
+var _$log1p_466 = log1p;
 
 /**
 * @license Apache-2.0
@@ -21738,12 +21738,12 @@ var _$log1p_459 = log1p;
 
 // MODULES //
 
-/* removed: var _$log1p_459 = require( './log1p.js' ); */;
+/* removed: var _$log1p_466 = require( './log1p.js' ); */;
 
 
 // EXPORTS //
 
-var _$log1p_458 = _$log1p_459;
+var _$log1p_465 = _$log1p_466;
 
 /**
 * @license Apache-2.0
@@ -21940,7 +21940,7 @@ function max( x, y ) {
 
 // EXPORTS //
 
-var _$max_462 = max;
+var _$max_469 = max;
 
 /**
 * @license Apache-2.0
@@ -21985,12 +21985,12 @@ var _$max_462 = max;
 
 // MODULES //
 
-/* removed: var _$max_462 = require( './max.js' ); */;
+/* removed: var _$max_469 = require( './max.js' ); */;
 
 
 // EXPORTS //
 
-var _$max_461 = _$max_462;
+var _$max_468 = _$max_469;
 
 /**
 * @license Apache-2.0
@@ -22093,7 +22093,7 @@ function min( x, y ) {
 
 // EXPORTS //
 
-var _$min_466 = min;
+var _$min_473 = min;
 
 /**
 * @license Apache-2.0
@@ -22138,12 +22138,12 @@ var _$min_466 = min;
 
 // MODULES //
 
-/* removed: var _$min_466 = require( './min.js' ); */;
+/* removed: var _$min_473 = require( './min.js' ); */;
 
 
 // EXPORTS //
 
-var _$min_465 = _$min_466;
+var _$min_472 = _$min_473;
 
 /**
 * @license Apache-2.0
@@ -22282,17 +22282,17 @@ var _$E_187 = E;
 
 // MODULES //
 
-/* removed: var _$gammaLanczosSumExpGScaled_319 = require( '@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled' ); */;
-/* removed: var _$gammaln_383 = require( '@stdlib/math/base/special/gammaln' ); */;
-/* removed: var _$gamma_325 = require( '@stdlib/math/base/special/gamma' ); */;
-/* removed: var _$log1p_458 = require( '@stdlib/math/base/special/log1p' ); */;
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$gammaLanczosSumExpGScaled_326 = require( '@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled' ); */;
+/* removed: var _$gammaln_390 = require( '@stdlib/math/base/special/gammaln' ); */;
+/* removed: var _$gamma_332 = require( '@stdlib/math/base/special/gamma' ); */;
+/* removed: var _$log1p_465 = require( '@stdlib/math/base/special/log1p' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
-/* removed: var _$max_461 = require( '@stdlib/math/base/special/max' ); */;
-/* removed: var _$min_465 = require( '@stdlib/math/base/special/min' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$max_468 = require( '@stdlib/math/base/special/max' ); */;
+/* removed: var _$min_472 = require( '@stdlib/math/base/special/min' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$FLOAT64_MAX_LN_200 = require( '@stdlib/constants/math/float64-max-ln' ); */;
 /* removed: var _$FLOAT64_MIN_LN_204 = require( '@stdlib/constants/math/float64-min-ln' ); */;
 /* removed: var _$FLOAT64_GAMMA_LANCZOS_G_192 = require( '@stdlib/constants/math/float64-gamma-lanczos-g' ); */;
@@ -22324,40 +22324,40 @@ function regularisedGammaPrefix( a, z ) {
 		// Treat a < 1 as a special case because our Lanczos approximations are optimized against the factorials with a > 1, and for high precision types very small values of `a` can give rather erroneous results for gamma:
 		if ( z <= _$FLOAT64_MIN_LN_204 ) {
 			// Use logs, so should be free of cancellation errors:
-			return _$exp_303( ( a * _$ln_454(z) ) - z - _$gammaln_383( a ) );
+			return _$exp_310( ( a * _$ln_461(z) ) - z - _$gammaln_390( a ) );
 		}
 		// No danger of overflow as gamma(a) < 1/a for small a, so direct calculation:
-		return _$pow_469( z, a ) * _$exp_303( -z ) / _$gamma_325( a );
+		return _$pow_476( z, a ) * _$exp_310( -z ) / _$gamma_332( a );
 	}
 	if ( _$abs_242(d*d*a) <= 100.0 && a > 150.0 ) {
 		// Special case for large a and a ~ z:
-		prefix = ( a * ( _$log1p_458( d ) - d ) ) + ( z * ( 0.5-_$FLOAT64_GAMMA_LANCZOS_G_192 ) / agh );
-		prefix = _$exp_303( prefix );
+		prefix = ( a * ( _$log1p_465( d ) - d ) ) + ( z * ( 0.5-_$FLOAT64_GAMMA_LANCZOS_G_192 ) / agh );
+		prefix = _$exp_310( prefix );
 	}
 	else {
 		// General case. Direct computation is most accurate, but use various fallbacks for different parts of the problem domain:
-		alz = a * _$ln_454(z / agh);
+		alz = a * _$ln_461(z / agh);
 		amz = a - z;
 		if (
-			_$min_465(alz, amz) <= _$FLOAT64_MIN_LN_204 ||
-			_$max_461(alz, amz) >= _$FLOAT64_MAX_LN_200
+			_$min_472(alz, amz) <= _$FLOAT64_MIN_LN_204 ||
+			_$max_468(alz, amz) >= _$FLOAT64_MAX_LN_200
 		) {
 			amza = amz / a;
 			if (
-				_$min_465(alz, amz)/2.0 > _$FLOAT64_MIN_LN_204 &&
-				_$max_461(alz, amz)/2.0 < _$FLOAT64_MAX_LN_200
+				_$min_472(alz, amz)/2.0 > _$FLOAT64_MIN_LN_204 &&
+				_$max_468(alz, amz)/2.0 < _$FLOAT64_MAX_LN_200
 			) {
 				// Compute square root of the result and then square it:
-				sq = _$pow_469( z / agh, a / 2.0 ) * _$exp_303( amz / 2.0 );
+				sq = _$pow_476( z / agh, a / 2.0 ) * _$exp_310( amz / 2.0 );
 				prefix = sq * sq;
 			}
 			else if (
-				_$min_465(alz, amz)/4.0 > _$FLOAT64_MIN_LN_204 &&
-				_$max_461(alz, amz)/4.0 < _$FLOAT64_MAX_LN_200 &&
+				_$min_472(alz, amz)/4.0 > _$FLOAT64_MIN_LN_204 &&
+				_$max_468(alz, amz)/4.0 < _$FLOAT64_MAX_LN_200 &&
 				z > a
 			) {
 				// Compute the 4th root of the result then square it twice:
-				sq = _$pow_469( z / agh, a / 4.0 ) * _$exp_303( amz / 4.0 );
+				sq = _$pow_476( z / agh, a / 4.0 ) * _$exp_310( amz / 4.0 );
 				prefix = sq * sq;
 				prefix *= prefix;
 			}
@@ -22365,25 +22365,25 @@ function regularisedGammaPrefix( a, z ) {
 				amza > _$FLOAT64_MIN_LN_204 &&
 				amza < _$FLOAT64_MAX_LN_200
 			) {
-				prefix = _$pow_469( (z * _$exp_303(amza)) / agh, a );
+				prefix = _$pow_476( (z * _$exp_310(amza)) / agh, a );
 			}
 			else {
-				prefix = _$exp_303( alz + amz );
+				prefix = _$exp_310( alz + amz );
 			}
 		}
 		else
 		{
-			prefix = _$pow_469( z / agh, a ) * _$exp_303( amz );
+			prefix = _$pow_476( z / agh, a ) * _$exp_310( amz );
 		}
 	}
-	prefix *= _$sqrt_494( agh / _$E_187 ) / _$gammaLanczosSumExpGScaled_319( a );
+	prefix *= _$sqrt_501( agh / _$E_187 ) / _$gammaLanczosSumExpGScaled_326( a );
 	return prefix;
 }
 
 
 // EXPORTS //
 
-var _$regularisedGammaPrefix_353 = regularisedGammaPrefix;
+var _$regularisedGammaPrefix_360 = regularisedGammaPrefix;
 
 /**
 * @license Apache-2.0
@@ -22473,7 +22473,7 @@ var _$HALF_LN2_193 = HALF_LN2;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_307( x ) {
+function __evalpoly_314( x ) {
 	if ( x === 0.0 ) {
 		return -0.03333333333333313;
 	}
@@ -22483,7 +22483,7 @@ function __evalpoly_307( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_307 = __evalpoly_307;
+var _$evalpoly_314 = __evalpoly_314;
 
 /**
 * @license Apache-2.0
@@ -22522,13 +22522,13 @@ var _$evalpoly_307 = __evalpoly_307;
 // MODULES //
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$getHighWord_521 = require( '@stdlib/number/float64/base/get-high-word' ); */;
-/* removed: var _$setHighWord_530 = require( '@stdlib/number/float64/base/set-high-word' ); */;
+/* removed: var _$getHighWord_528 = require( '@stdlib/number/float64/base/get-high-word' ); */;
+/* removed: var _$setHighWord_537 = require( '@stdlib/number/float64/base/set-high-word' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
 /* removed: var _$FLOAT64_NINF_205 = require( '@stdlib/constants/math/float64-ninf' ); */;
 /* removed: var _$FLOAT64_EXPONENT_BIAS_190 = require( '@stdlib/constants/math/float64-exponent-bias' ); */;
 /* removed: var _$HALF_LN2_193 = require( '@stdlib/constants/math/float64-half-ln-two' ); */;
-/* removed: var _$evalpoly_307 = require( './polyval_q.js' ); */;
+/* removed: var _$evalpoly_314 = require( './polyval_q.js' ); */;
 
 
 // VARIABLES //
@@ -22536,8 +22536,8 @@ var _$evalpoly_307 = __evalpoly_307;
 var OVERFLOW_THRESHOLD = 7.09782712893383973096e+02; // 0x40862E42 0xFEFA39EF
 
 // High and low words of ln(2):
-var __LN2_HI_305 = 6.93147180369123816490e-01; // 0x3FE62E42 0xFEE00000
-var __LN2_LO_305 = 1.90821492927058770002e-10; // 0x3DEA39EF 0x35793C76
+var __LN2_HI_312 = 6.93147180369123816490e-01; // 0x3FE62E42 0xFEE00000
+var __LN2_LO_312 = 1.90821492927058770002e-10; // 0x3DEA39EF 0x35793C76
 
 // 1 / ln(2):
 var LN2_INV = 1.44269504088896338700e+00; // 0x3FF71547 0x652B82FE
@@ -22756,18 +22756,18 @@ function expm1( x ) {
 		}
 	}
 	// Extract the more significant bits from |x|:
-	hx = _$getHighWord_521( y )|0; // asm type annotation
+	hx = _$getHighWord_528( y )|0; // asm type annotation
 
 	// Argument reduction...
 	if ( y > _$HALF_LN2_193 ) { // if |x| > 0.5*ln(2)
 		if ( y < LN2_HALFX3 ) { // if |x| < 1.5*ln(2)
 			if ( sign ) {
-				hi = x + __LN2_HI_305;
-				lo = -__LN2_LO_305;
+				hi = x + __LN2_HI_312;
+				lo = -__LN2_LO_312;
 				k = -1;
 			} else {
-				hi = x - __LN2_HI_305;
-				lo = __LN2_LO_305;
+				hi = x - __LN2_HI_312;
+				lo = __LN2_LO_312;
 				k = 1;
 			}
 		} else {
@@ -22778,8 +22778,8 @@ function expm1( x ) {
 			}
 			k |= 0; // use a bitwise OR to cast `k` to an integer (see also asm.js type annotations: http://asmjs.org/spec/latest/#annotations)
 			t = k;
-			hi = x - (t*__LN2_HI_305); // t*ln2_hi is exact here
-			lo = t * __LN2_LO_305;
+			hi = x - (t*__LN2_HI_312); // t*ln2_hi is exact here
+			lo = t * __LN2_LO_312;
 		}
 		x = hi - lo;
 		c = (hi-x) - lo;
@@ -22795,7 +22795,7 @@ function expm1( x ) {
 	halfX = 0.5 * x;
 	z = x * halfX;
 
-	r1 = 1.0 + ( z * _$evalpoly_307( z ) );
+	r1 = 1.0 + ( z * _$evalpoly_314( z ) );
 
 	t = 3.0 - (r1*halfX);
 	e = z * ( (r1-t) / (6.0 - (x*t)) );
@@ -22817,8 +22817,8 @@ function expm1( x ) {
 		y = 1.0 - (e-x);
 
 		// Add k to y's exponent:
-		hi = (_$getHighWord_521( y ) + (k<<20))|0; // asm type annotation
-		y = _$setHighWord_530( y, hi );
+		hi = (_$getHighWord_528( y ) + (k<<20))|0; // asm type annotation
+		y = _$setHighWord_537( y, hi );
 
 		return y - 1.0;
 	}
@@ -22826,23 +22826,23 @@ function expm1( x ) {
 	if ( k < 20 ) {
 		// 0x3ff00000 - (0x200000>>k) = 1072693248 - (0x200000>>k) => 0x200000 = 0 00000000010 00000000000000000000
 		hi = (1072693248 - (0x200000>>k))|0; // asm type annotation
-		t = _$setHighWord_530( t, hi ); // t=1-2^-k
+		t = _$setHighWord_537( t, hi ); // t=1-2^-k
 		y = t - (e-x);
 	} else {
 		hi = ( (_$FLOAT64_EXPONENT_BIAS_190-k)<<20 )|0; // asm type annotation
-		t = _$setHighWord_530( t, hi ); // t=2^-k
+		t = _$setHighWord_537( t, hi ); // t=2^-k
 		y = x - (e+t);
 		y += 1.0;
 	}
 	// Add k to y's exponent:
-	hi = (_$getHighWord_521( y ) + (k<<20))|0; // asm type annotation
-	return _$setHighWord_530( y, hi );
+	hi = (_$getHighWord_528( y ) + (k<<20))|0; // asm type annotation
+	return _$setHighWord_537( y, hi );
 }
 
 
 // EXPORTS //
 
-var _$expm1_305 = expm1;
+var _$expm1_312 = expm1;
 
 /**
 * @license Apache-2.0
@@ -22887,12 +22887,12 @@ var _$expm1_305 = expm1;
 
 // MODULES //
 
-/* removed: var _$expm1_305 = require( './expm1.js' ); */;
+/* removed: var _$expm1_312 = require( './expm1.js' ); */;
 
 
 // EXPORTS //
 
-var _$expm1_306 = _$expm1_305;
+var _$expm1_313 = _$expm1_312;
 
 /**
 * @license Apache-2.0
@@ -22931,10 +22931,10 @@ var _$expm1_306 = _$expm1_305;
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$expm1_306 = require( '@stdlib/math/base/special/expm1' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
-/* removed: var _$trunc_498 = require( '@stdlib/math/base/special/trunc' ); */;
+/* removed: var _$expm1_313 = require( '@stdlib/math/base/special/expm1' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$trunc_505 = require( '@stdlib/math/base/special/trunc' ); */;
 
 
 // MAIN //
@@ -23004,22 +23004,22 @@ function powm1( b, x ) {
 			_$abs_242( x ) < 0.2
 		) {
 			// No good/quick approximation for ln(b)*x, so we have to evaluate...
-			y = _$ln_454( b ) * x;
+			y = _$ln_461( b ) * x;
 			if ( y < 0.5 ) {
-				return _$expm1_306( y );
+				return _$expm1_313( y );
 			}
 		}
-	} else if ( _$trunc_498( x ) !== x ) {
+	} else if ( _$trunc_505( x ) !== x ) {
 		// Exponentiation would yield a complex result...
 		return NaN;
 	}
-	return _$pow_469( b, x ) - 1.0;
+	return _$pow_476( b, x ) - 1.0;
 }
 
 
 // EXPORTS //
 
-var _$powm1_481 = powm1;
+var _$powm1_488 = powm1;
 
 /**
 * @license Apache-2.0
@@ -23076,12 +23076,12 @@ var _$powm1_481 = powm1;
 
 // MODULES //
 
-/* removed: var _$powm1_481 = require( './powm1.js' ); */;
+/* removed: var _$powm1_488 = require( './powm1.js' ); */;
 
 
 // EXPORTS //
 
-var _$powm1_480 = _$powm1_481;
+var _$powm1_487 = _$powm1_488;
 
 /**
 * @license Apache-2.0
@@ -23121,7 +23121,7 @@ var _$powm1_480 = _$powm1_481;
 * @param {number} x - value at which to evaluate the rational function
 * @returns {number} evaluated rational function
 */
-function __evalrational_333( x ) {
+function __evalrational_340( x ) {
 	var ax;
 	var s1;
 	var s2;
@@ -23147,7 +23147,7 @@ function __evalrational_333( x ) {
 
 // EXPORTS //
 
-var _$evalrational_333 = __evalrational_333;
+var _$evalrational_340 = __evalrational_340;
 
 /**
 * @license Apache-2.0
@@ -23187,7 +23187,7 @@ var _$evalrational_333 = __evalrational_333;
 * @param {number} x - value at which to evaluate the rational function
 * @returns {number} evaluated rational function
 */
-function __evalrational_334( x ) {
+function __evalrational_341( x ) {
 	var ax;
 	var s1;
 	var s2;
@@ -23213,7 +23213,7 @@ function __evalrational_334( x ) {
 
 // EXPORTS //
 
-var _$evalrational_334 = __evalrational_334;
+var _$evalrational_341 = __evalrational_341;
 
 /**
 * @license Apache-2.0
@@ -23253,7 +23253,7 @@ var _$evalrational_334 = __evalrational_334;
 * @param {number} x - value at which to evaluate the rational function
 * @returns {number} evaluated rational function
 */
-function __evalrational_335( x ) {
+function __evalrational_342( x ) {
 	var ax;
 	var s1;
 	var s2;
@@ -23279,7 +23279,7 @@ function __evalrational_335( x ) {
 
 // EXPORTS //
 
-var _$evalrational_335 = __evalrational_335;
+var _$evalrational_342 = __evalrational_342;
 
 /**
 * @license Apache-2.0
@@ -23319,11 +23319,11 @@ var _$evalrational_335 = __evalrational_335;
 
 // MODULES //
 
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$FLOAT64_EPSILON_188 = require( '@stdlib/constants/math/float64-eps' ); */;
-/* removed: var _$evalrational_333 = require( './rational_p1q1.js' ); */;
-/* removed: var _$evalrational_334 = require( './rational_p2q2.js' ); */;
-/* removed: var _$evalrational_335 = require( './rational_p3q3.js' ); */;
+/* removed: var _$evalrational_340 = require( './rational_p1q1.js' ); */;
+/* removed: var _$evalrational_341 = require( './rational_p2q2.js' ); */;
+/* removed: var _$evalrational_342 = require( './rational_p3q3.js' ); */;
 
 
 // VARIABLES //
@@ -23391,7 +23391,7 @@ function lgammaSmallImp( z, zm1, zm2 ) {
 	var R;
 
 	if ( z < _$FLOAT64_EPSILON_188 ) {
-		return -_$ln_454( z );
+		return -_$ln_461( z );
 	}
 	if ( zm1 === 0.0 || zm2 === 0.0 ) {
 		return 0.0;
@@ -23402,30 +23402,30 @@ function lgammaSmallImp( z, zm1, zm2 ) {
 			do {
 				z -= 1.0;
 				zm2 -= 1.0;
-				result += _$ln_454(z);
+				result += _$ln_461(z);
 			} while ( z >= 3.0 );
 			zm2 = z - 2.0;
 		}
 		r = zm2 * ( z+1.0 );
-		R = _$evalrational_333( zm2 );
+		R = _$evalrational_340( zm2 );
 		result += ( r*Y1 ) + ( r*R );
 		return result;
 	}
 	if ( z < 1.0 ) {
-		result += -_$ln_454(z);
+		result += -_$ln_461(z);
 		zm2 = zm1;
 		zm1 = z;
 		z += 1.0;
 	}
 	if ( z <= 1.5 ) {
-		r = _$evalrational_334( zm1 );
+		r = _$evalrational_341( zm1 );
 		prefix = zm1 * zm2;
 		result += ( prefix*Y2 ) + ( prefix*r );
 		return result;
 	}
 	// Case: 1.5 < z <= 2
 	r = zm2 * zm1;
-	R = _$evalrational_335( -zm2 );
+	R = _$evalrational_342( -zm2 );
 	result += ( r*Y3 ) + ( r*R );
 	return result;
 }
@@ -23433,7 +23433,7 @@ function lgammaSmallImp( z, zm1, zm2 ) {
 
 // EXPORTS //
 
-var _$lgammaSmallImp_332 = lgammaSmallImp;
+var _$lgammaSmallImp_339 = lgammaSmallImp;
 
 /**
 * @license Apache-2.0
@@ -23473,11 +23473,11 @@ var _$lgammaSmallImp_332 = lgammaSmallImp;
 
 // MODULES //
 
-/* removed: var _$gamma_325 = require( '@stdlib/math/base/special/gamma' ); */;
-/* removed: var _$expm1_306 = require( '@stdlib/math/base/special/expm1' ); */;
-/* removed: var _$log1p_458 = require( '@stdlib/math/base/special/log1p' ); */;
+/* removed: var _$gamma_332 = require( '@stdlib/math/base/special/gamma' ); */;
+/* removed: var _$expm1_313 = require( '@stdlib/math/base/special/expm1' ); */;
+/* removed: var _$log1p_465 = require( '@stdlib/math/base/special/log1p' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$lgammaSmallImp_332 = require( './lgamma_small_imp.js' ); */;
+/* removed: var _$lgammaSmallImp_339 = require( './lgamma_small_imp.js' ); */;
 
 
 // MAIN //
@@ -23515,23 +23515,23 @@ function gammap1m1( x ) {
 	if ( x < 0.0 ) {
 		if ( x < -0.5 ) {
 			// Best method is simply to subtract 1 from gamma:
-			return _$gamma_325( 1.0+x ) - 1.0;
+			return _$gamma_332( 1.0+x ) - 1.0;
 		}
 		// Use expm1 on the logarithm of gamma:
-		return _$expm1_306( -_$log1p_458( x ) + _$lgammaSmallImp_332( x+2.0, x+1.0, x ) );
+		return _$expm1_313( -_$log1p_465( x ) + _$lgammaSmallImp_339( x+2.0, x+1.0, x ) );
 	}
 	if ( x < 2.0 ) {
 		// Use expm1 on the logarithm of gamma:
-		return _$expm1_306( _$lgammaSmallImp_332( x+1.0, x, x-1.0 ) );
+		return _$expm1_313( _$lgammaSmallImp_339( x+1.0, x, x-1.0 ) );
 	}
 	// Best method is simply to subtract 1 from gamma:
-	return _$gamma_325( 1.0+x ) - 1.0;
+	return _$gamma_332( 1.0+x ) - 1.0;
 }
 
 
 // EXPORTS //
 
-var _$gammap1m1_330 = gammap1m1;
+var _$gammap1m1_337 = gammap1m1;
 
 /**
 * @license Apache-2.0
@@ -23576,12 +23576,12 @@ var _$gammap1m1_330 = gammap1m1;
 
 // MODULES //
 
-/* removed: var _$gammap1m1_330 = require( './gamma1pm1.js' ); */;
+/* removed: var _$gammap1m1_337 = require( './gamma1pm1.js' ); */;
 
 
 // EXPORTS //
 
-var _$gamma1pm1_331 = _$gammap1m1_330;
+var _$gamma1pm1_338 = _$gammap1m1_337;
 
 /**
 * @license Apache-2.0
@@ -23656,7 +23656,7 @@ function smallGamma2Series( a, x ) {
 
 // EXPORTS //
 
-var _$smallGamma2Series_354 = smallGamma2Series;
+var _$smallGamma2Series_361 = smallGamma2Series;
 
 /**
 * @license Apache-2.0
@@ -23694,10 +23694,10 @@ var _$smallGamma2Series_354 = smallGamma2Series;
 
 // MODULES //
 
-/* removed: var _$powm1_480 = require( '@stdlib/math/base/special/powm1' ); */;
-/* removed: var _$sumSeries_510 = require( '@stdlib/math/base/tools/sum-series' ); */;
-/* removed: var _$gamma1pm1_331 = require( '@stdlib/math/base/special/gamma1pm1' ); */;
-/* removed: var _$smallGamma2Series_354 = require( './small_gamma2_series.js' ); */;
+/* removed: var _$powm1_487 = require( '@stdlib/math/base/special/powm1' ); */;
+/* removed: var _$sumSeries_517 = require( '@stdlib/math/base/tools/sum-series' ); */;
+/* removed: var _$gamma1pm1_338 = require( '@stdlib/math/base/special/gamma1pm1' ); */;
+/* removed: var _$smallGamma2Series_361 = require( './small_gamma2_series.js' ); */;
 
 
 // MAIN //
@@ -23718,15 +23718,15 @@ function tgammaSmallUpperPart( a, x, invert ) {
 	var p;
 	var s;
 
-	result = _$gamma1pm1_331( a );
+	result = _$gamma1pm1_338( a );
 	pgam = ( result + 1.0 ) / a;
-	p = _$powm1_480( x, a );
+	p = _$powm1_487( x, a );
 	result -= p;
 	result /= a;
-	s = _$smallGamma2Series_354( a, x );
+	s = _$smallGamma2Series_361( a, x );
 	p += 1.0;
 	initialValue = ( invert ) ? pgam : 0.0;
-	result = -p * _$sumSeries_510( s, {
+	result = -p * _$sumSeries_517( s, {
 		'initialValue': (initialValue - result) / p
 	});
 	if ( invert ) {
@@ -23738,7 +23738,7 @@ function tgammaSmallUpperPart( a, x, invert ) {
 
 // EXPORTS //
 
-var _$tgammaSmallUpperPart_355 = tgammaSmallUpperPart;
+var _$tgammaSmallUpperPart_362 = tgammaSmallUpperPart;
 
 /**
 * @license Apache-2.0
@@ -24037,7 +24037,7 @@ function continuedFraction( generator, options ) {
 
 // EXPORTS //
 
-var _$continuedFraction_503 = continuedFraction;
+var _$continuedFraction_510 = continuedFraction;
 
 /**
 * @license Apache-2.0
@@ -24068,7 +24068,7 @@ var _$continuedFraction_503 = continuedFraction;
 
 // VARIABLES //
 
-var __MAX_ITER_502 = 1000000;
+var __MAX_ITER_509 = 1000000;
 
 
 // FUNCTIONS //
@@ -24092,7 +24092,7 @@ var __MAX_ITER_502 = 1000000;
 * @param {PositiveInteger} maxIter - maximum number of iterations
 * @returns {number} evaluated expansion
 */
-function __continuedFractionA_502( gen, factor, maxIter ) {
+function __continuedFractionA_509( gen, factor, maxIter ) {
 	var delta;
 	var a0;
 	var C;
@@ -24148,7 +24148,7 @@ function __continuedFractionA_502( gen, factor, maxIter ) {
 * @param {PositiveInteger} maxIter - maximum number of iterations
 * @returns {number} evaluated expansion
 */
-function __continuedFractionB_502( gen, factor, maxIter ) {
+function __continuedFractionB_509( gen, factor, maxIter ) {
 	var delta;
 	var C;
 	var D;
@@ -24212,7 +24212,7 @@ function __continuedFractionB_502( gen, factor, maxIter ) {
 *    };
 * }
 */
-function __continuedFraction_502( generator, options ) {
+function __continuedFraction_509( generator, options ) {
 	var maxIter;
 	var opts;
 	var eps;
@@ -24222,18 +24222,18 @@ function __continuedFraction_502( generator, options ) {
 		opts = options;
 	}
 	eps = opts.tolerance || _$FLOAT64_EPSILON_188;
-	maxIter = opts.maxIter || __MAX_ITER_502;
+	maxIter = opts.maxIter || __MAX_ITER_509;
 
 	if ( opts.keep ) {
-		return __continuedFractionB_502( generator, eps, maxIter );
+		return __continuedFractionB_509( generator, eps, maxIter );
 	}
-	return __continuedFractionA_502( generator, eps, maxIter );
+	return __continuedFractionA_509( generator, eps, maxIter );
 }
 
 
 // EXPORTS //
 
-var _$continuedFraction_502 = __continuedFraction_502;
+var _$continuedFraction_509 = __continuedFraction_509;
 
 /**
 * @license Apache-2.0
@@ -24280,23 +24280,23 @@ var _$continuedFraction_502 = __continuedFraction_502;
 // MODULES //
 
 /* removed: var _$hasGeneratorSupport_44 = require( '@stdlib/assert/has-generator-support' ); */;
-/* removed: var _$continuedFraction_503 = require( './generators.js' ); */;
-/* removed: var _$continuedFraction_502 = require( './basic.js' ); */;
+/* removed: var _$continuedFraction_510 = require( './generators.js' ); */;
+/* removed: var _$continuedFraction_509 = require( './basic.js' ); */;
 
 
 // MAIN //
 
-var __continuedFraction_504;
+var __continuedFraction_511;
 if ( _$hasGeneratorSupport_44() ) {
-	__continuedFraction_504 = _$continuedFraction_503;
+	__continuedFraction_511 = _$continuedFraction_510;
 } else {
-	__continuedFraction_504 = _$continuedFraction_502;
+	__continuedFraction_511 = _$continuedFraction_509;
 }
 
 
 // EXPORTS //
 
-var _$continuedFraction_504 = __continuedFraction_504;
+var _$continuedFraction_511 = __continuedFraction_511;
 
 /**
 * @license Apache-2.0
@@ -24367,7 +24367,7 @@ function upperIncompleteGammaFract( a1, z1 ) {
 
 // EXPORTS //
 
-var _$upperIncompleteGammaFract_357 = upperIncompleteGammaFract;
+var _$upperIncompleteGammaFract_364 = upperIncompleteGammaFract;
 
 /**
 * @license Apache-2.0
@@ -24405,8 +24405,8 @@ var _$upperIncompleteGammaFract_357 = upperIncompleteGammaFract;
 
 // MODULES //
 
-/* removed: var _$continuedFraction_504 = require( '@stdlib/math/base/tools/continued-fraction' ); */;
-/* removed: var _$upperIncompleteGammaFract_357 = require( './upper_incomplete_gamma_fract' ); */;
+/* removed: var _$continuedFraction_511 = require( '@stdlib/math/base/tools/continued-fraction' ); */;
+/* removed: var _$upperIncompleteGammaFract_364 = require( './upper_incomplete_gamma_fract' ); */;
 
 
 // MAIN //
@@ -24420,14 +24420,14 @@ var _$upperIncompleteGammaFract_357 = upperIncompleteGammaFract;
 * @returns {number} function value
 */
 function upperGammaFraction( a, z ) {
-	var f = _$upperIncompleteGammaFract_357( a, z );
-	return 1.0 / ( z - a + 1.0 + _$continuedFraction_504( f ) );
+	var f = _$upperIncompleteGammaFract_364( a, z );
+	return 1.0 / ( z - a + 1.0 + _$continuedFraction_511( f ) );
 }
 
 
 // EXPORTS //
 
-var _$upperGammaFraction_356 = upperGammaFraction;
+var _$upperGammaFraction_363 = upperGammaFraction;
 
 /**
 * @license Apache-2.0
@@ -24467,26 +24467,26 @@ var _$upperGammaFraction_356 = upperGammaFraction;
 
 // MODULES //
 
-/* removed: var _$gammaln_383 = require( '@stdlib/math/base/special/gammaln' ); */;
-/* removed: var _$floor_314 = require( '@stdlib/math/base/special/floor' ); */;
-/* removed: var _$gamma_325 = require( '@stdlib/math/base/special/gamma' ); */;
+/* removed: var _$gammaln_390 = require( '@stdlib/math/base/special/gammaln' ); */;
+/* removed: var _$floor_321 = require( '@stdlib/math/base/special/floor' ); */;
+/* removed: var _$gamma_332 = require( '@stdlib/math/base/special/gamma' ); */;
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$FLOAT64_SQRT_EPSILON_210 = require( '@stdlib/constants/math/float64-sqrt-eps' ); */;
 /* removed: var _$FLOAT64_MAX_202 = require( '@stdlib/constants/math/float64-max' ); */;
 /* removed: var _$SQRT_TWO_PI_211 = require( '@stdlib/constants/math/float64-sqrt-two-pi' ); */;
 /* removed: var _$FLOAT64_MAX_LN_200 = require( '@stdlib/constants/math/float64-max-ln' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
-/* removed: var _$finiteGammaQ_336 = require( './finite_gamma_q.js' ); */;
-/* removed: var _$finiteHalfGammaQ_337 = require( './finite_half_gamma_q.js' ); */;
-/* removed: var _$fullIGammaPrefix_338 = require( './full_igamma_prefix.js' ); */;
-/* removed: var _$igammaTemmeLarge_340 = require( './igamma_temme_large.js' ); */;
-/* removed: var _$lowerGammaSeries_342 = require( './lower_gamma_series.js' ); */;
-/* removed: var _$regularisedGammaPrefix_353 = require( './regularised_gamma_prefix.js' ); */;
-/* removed: var _$tgammaSmallUpperPart_355 = require( './tgamma_small_upper_part.js' ); */;
-/* removed: var _$upperGammaFraction_356 = require( './upper_gamma_fraction.js' ); */;
+/* removed: var _$finiteGammaQ_343 = require( './finite_gamma_q.js' ); */;
+/* removed: var _$finiteHalfGammaQ_344 = require( './finite_half_gamma_q.js' ); */;
+/* removed: var _$fullIGammaPrefix_345 = require( './full_igamma_prefix.js' ); */;
+/* removed: var _$igammaTemmeLarge_347 = require( './igamma_temme_large.js' ); */;
+/* removed: var _$lowerGammaSeries_349 = require( './lower_gamma_series.js' ); */;
+/* removed: var _$regularisedGammaPrefix_360 = require( './regularised_gamma_prefix.js' ); */;
+/* removed: var _$tgammaSmallUpperPart_362 = require( './tgamma_small_upper_part.js' ); */;
+/* removed: var _$upperGammaFraction_363 = require( './upper_gamma_fraction.js' ); */;
 
 
 // VARIABLES //
@@ -24536,14 +24536,14 @@ function gammainc( x, a, regularized, upper ) {
 	if ( a >= MAX_FACTORIAL && !normalized ) {
 		if ( invert && ( a * 4.0 < x ) ) {
 			// This is method 4 below, done in logs:
-			result = ( a * _$ln_454(x) ) - x;
-			result += _$ln_454( _$upperGammaFraction_356( a, x ) );
+			result = ( a * _$ln_461(x) ) - x;
+			result += _$ln_461( _$upperGammaFraction_363( a, x ) );
 		}
 		else if ( !invert && ( a > 4.0 * x ) ) {
 			// This is method 2 below, done in logs:
-			result = ( a * _$ln_454(x) ) - x;
+			result = ( a * _$ln_461(x) ) - x;
 			initValue = 0;
-			result += _$ln_454( _$lowerGammaSeries_342( a, x, initValue ) / a );
+			result += _$ln_461( _$lowerGammaSeries_349( a, x, initValue ) / a );
 		}
 		else {
 			result = gammainc( a, x, true, invert );
@@ -24551,27 +24551,27 @@ function gammainc( x, a, regularized, upper ) {
 				if ( invert ) {
 					// Try http://functions.wolfram.com/06.06.06.0039.01
 					result = 1.0 + ( 1.0 / (12.0*a) ) + ( 1.0 / (288.0*a*a) );
-					result = _$ln_454( result ) - a + ( ( a-0.5 ) * _$ln_454(a) );
-					result += _$ln_454( _$SQRT_TWO_PI_211 );
+					result = _$ln_461( result ) - a + ( ( a-0.5 ) * _$ln_461(a) );
+					result += _$ln_461( _$SQRT_TWO_PI_211 );
 				} else {
 					// This is method 2 below, done in logs, we're really outside the range of this method, but since the result is almost certainly infinite, we should probably be OK:
-					result = ( a * _$ln_454( x ) ) - x;
+					result = ( a * _$ln_461( x ) ) - x;
 					initValue = 0.0;
-					result += _$ln_454( _$lowerGammaSeries_342( a, x, initValue ) / a);
+					result += _$ln_461( _$lowerGammaSeries_349( a, x, initValue ) / a);
 				}
 			}
 			else {
-				result = _$ln_454( result ) + _$gammaln_383( a );
+				result = _$ln_461( result ) + _$gammaln_390( a );
 			}
 		}
 		if ( result > _$FLOAT64_MAX_LN_200 ) {
 			return _$FLOAT64_PINF_207;
 		}
-		return _$exp_303( result );
+		return _$exp_310( result );
 	}
 	isSmallA = ( a < 30 ) && ( a <= x + 1.0 ) && ( x < _$FLOAT64_MAX_LN_200 );
 	if ( isSmallA ) {
-		fa = _$floor_314( a );
+		fa = _$floor_321( a );
 		isInt = ( fa === a );
 		isHalfInt = ( isInt ) ? false : ( _$abs_242( fa - a ) === 0.5 );
 	} else {
@@ -24592,7 +24592,7 @@ function gammainc( x, a, regularized, upper ) {
 	}
 	else if ( x < 0.5 ) {
 		// Changeover criterion chosen to give a changeover at Q ~ 0.33:
-		if ( -0.4 / _$ln_454( x ) < a ) {
+		if ( -0.4 / _$ln_461( x ) < a ) {
 			evalMethod = 2;
 		} else {
 			evalMethod = 3;
@@ -24635,27 +24635,27 @@ function gammainc( x, a, regularized, upper ) {
 	/* eslint-disable default-case */
 	switch ( evalMethod ) {
 	case 0:
-		result = _$finiteGammaQ_336( a, x );
+		result = _$finiteGammaQ_343( a, x );
 		if (normalized === false ) {
-			result *= _$gamma_325( a );
+			result *= _$gamma_332( a );
 		}
 		break;
 	case 1:
-		result = _$finiteHalfGammaQ_337( a, x );
+		result = _$finiteHalfGammaQ_344( a, x );
 		if ( normalized === false ) {
-			result *= _$gamma_325( a );
+			result *= _$gamma_332( a );
 		}
 		break;
 	case 2:
 		// Compute P:
 		result = ( normalized ) ?
-			_$regularisedGammaPrefix_353( a, x ) :
-			_$fullIGammaPrefix_338( a, x );
+			_$regularisedGammaPrefix_360( a, x ) :
+			_$fullIGammaPrefix_345( a, x );
 		if ( result !== 0.0 ) {
 			initValue = 0.0;
 			optimisedInvert = false;
 			if ( invert ) {
-				initValue = ( normalized ) ? 1.0 : _$gamma_325(a);
+				initValue = ( normalized ) ? 1.0 : _$gamma_332(a);
 				if (
 					normalized ||
 					result >= 1.0 ||
@@ -24679,7 +24679,7 @@ function gammainc( x, a, regularized, upper ) {
 				}
 			}
 		}
-		result *= _$lowerGammaSeries_342( a, x, initValue ) / a;
+		result *= _$lowerGammaSeries_349( a, x, initValue ) / a;
 		if ( optimisedInvert ) {
 			invert = false;
 			result = -result;
@@ -24688,7 +24688,7 @@ function gammainc( x, a, regularized, upper ) {
 	case 3:
 		// Compute Q:
 		invert = !invert;
-		res = _$tgammaSmallUpperPart_355( a, x, invert );
+		res = _$tgammaSmallUpperPart_362( a, x, invert );
 		result = res[ 0 ];
 		g = res[ 1 ];
 		invert = false;
@@ -24699,14 +24699,14 @@ function gammainc( x, a, regularized, upper ) {
 	case 4:
 		// Compute Q:
 		result = ( normalized ) ?
-			_$regularisedGammaPrefix_353( a, x ) :
-			_$fullIGammaPrefix_338( a, x );
+			_$regularisedGammaPrefix_360( a, x ) :
+			_$fullIGammaPrefix_345( a, x );
 		if ( result !== 0 ) {
-			result *= _$upperGammaFraction_356( a, x );
+			result *= _$upperGammaFraction_363( a, x );
 		}
 		break;
 	case 5:
-		result = _$igammaTemmeLarge_340( a, x );
+		result = _$igammaTemmeLarge_347( a, x );
 		if ( x >= a ) {
 			invert = !invert;
 		}
@@ -24714,8 +24714,8 @@ function gammainc( x, a, regularized, upper ) {
 	case 6:
 		// Since x is so small that P is necessarily very small too, use http://functions.wolfram.com/GammaBetaErf/GammaRegularized/06/01/05/01/01/
 		result = ( normalized ) ?
-			_$pow_469(x, a) / _$gamma_325( a + 1.0 ) :
-			_$pow_469( x, a ) / a;
+			_$pow_476(x, a) / _$gamma_332( a + 1.0 ) :
+			_$pow_476( x, a ) / a;
 		result *= 1.0 - ( a * x / ( a + 1.0 ) );
 		break;
 	}
@@ -24723,7 +24723,7 @@ function gammainc( x, a, regularized, upper ) {
 		result = 1.0;
 	}
 	if ( invert ) {
-		gam = ( normalized ) ? 1.0 : _$gamma_325( a );
+		gam = ( normalized ) ? 1.0 : _$gamma_332( a );
 		result = gam - result;
 	}
 	return result;
@@ -24732,7 +24732,7 @@ function gammainc( x, a, regularized, upper ) {
 
 // EXPORTS //
 
-var _$gammainc_339 = gammainc;
+var _$gammainc_346 = gammainc;
 
 /**
 * @license Apache-2.0
@@ -24783,12 +24783,12 @@ var _$gammainc_339 = gammainc;
 
 // MODULES //
 
-/* removed: var _$gammainc_339 = require( './gammainc.js' ); */;
+/* removed: var _$gammainc_346 = require( './gammainc.js' ); */;
 
 
 // EXPORTS //
 
-var _$gammainc_341 = _$gammainc_339;
+var _$gammainc_348 = _$gammainc_346;
 
 /**
 * @license Apache-2.0
@@ -24812,7 +24812,7 @@ var _$gammainc_341 = _$gammainc_339;
 
 // MODULES //
 
-/* removed: var _$floor_314 = require( '@stdlib/math/base/special/floor' ); */;
+/* removed: var _$floor_321 = require( '@stdlib/math/base/special/floor' ); */;
 
 
 // MAIN //
@@ -24836,7 +24836,7 @@ var _$gammainc_341 = _$gammainc_339;
 * // returns false
 */
 function isNegativeInteger( x ) {
-	return (_$floor_314(x) === x && x < 0.0);
+	return (_$floor_321(x) === x && x < 0.0);
 }
 
 
@@ -24914,7 +24914,7 @@ var _$isNegativeInteger_233 = _$isNegativeInteger_234;
 // MODULES //
 
 /* removed: var _$isNegativeInteger_233 = require( '@stdlib/math/base/assert/is-negative-integer' ); */;
-/* removed: var _$gammaln_383 = require( '@stdlib/math/base/special/gammaln' ); */;
+/* removed: var _$gammaln_390 = require( '@stdlib/math/base/special/gammaln' ); */;
 
 
 // MAIN //
@@ -24949,13 +24949,13 @@ function factorialln( x ) {
 	if ( _$isNegativeInteger_233( x ) ) {
 		return NaN;
 	}
-	return _$gammaln_383( x + 1.0 );
+	return _$gammaln_390( x + 1.0 );
 }
 
 
 // EXPORTS //
 
-var _$factorialln_311 = factorialln;
+var _$factorialln_318 = factorialln;
 
 /**
 * @license Apache-2.0
@@ -25003,14 +25003,14 @@ var _$factorialln_311 = factorialln;
 
 // MODULES //
 
-/* removed: var _$factorialln_311 = require( './factorialln.js' ); */;
+/* removed: var _$factorialln_318 = require( './factorialln.js' ); */;
 
 
 // EXPORTS //
 
-var _$factorialln_312 = _$factorialln_311;
+var _$factorialln_319 = _$factorialln_318;
 
-var _$factorials_309=[
+var _$factorials_316=[
 	1,
 	1,
 	2,
@@ -25208,14 +25208,14 @@ var _$factorials_309=[
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$isInteger_229 = require( '@stdlib/math/base/assert/is-integer' ); */;
-/* removed: var _$gamma_325 = require( '@stdlib/math/base/special/gamma' ); */;
+/* removed: var _$gamma_332 = require( '@stdlib/math/base/special/gamma' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
-/* removed: var _$factorials_309 = require( './factorials.json' ); */;
+/* removed: var _$factorials_316 = require( './factorials.json' ); */;
 
 
 // VARIABLES //
 
-var __MAX_FACTORIAL_308 = 170; // TODO: consider extracting as a constant
+var __MAX_FACTORIAL_315 = 170; // TODO: consider extracting as a constant
 
 
 // MAIN //
@@ -25262,18 +25262,18 @@ function factorial( x ) {
 		if ( x < 0 ) {
 			return NaN;
 		}
-		if ( x <= __MAX_FACTORIAL_308 ) {
-			return _$factorials_309[ x ];
+		if ( x <= __MAX_FACTORIAL_315 ) {
+			return _$factorials_316[ x ];
 		}
 		return _$FLOAT64_PINF_207;
 	}
-	return _$gamma_325( x + 1.0 );
+	return _$gamma_332( x + 1.0 );
 }
 
 
 // EXPORTS //
 
-var _$factorial_308 = factorial;
+var _$factorial_315 = factorial;
 
 /**
 * @license Apache-2.0
@@ -25327,12 +25327,12 @@ var _$factorial_308 = factorial;
 
 // MODULES //
 
-/* removed: var _$factorial_308 = require( './factorial.js' ); */;
+/* removed: var _$factorial_315 = require( './factorial.js' ); */;
 
 
 // EXPORTS //
 
-var _$factorial_310 = _$factorial_308;
+var _$factorial_317 = _$factorial_315;
 
 /**
 * @license Apache-2.0
@@ -25370,11 +25370,11 @@ var _$factorial_310 = _$factorial_308;
 // MODULES //
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$log1p_458 = require( '@stdlib/math/base/special/log1p' ); */;
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$log1p_465 = require( '@stdlib/math/base/special/log1p' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
 /* removed: var _$E_187 = require( '@stdlib/constants/math/float64-e' ); */;
 /* removed: var _$FLOAT64_EPSILON_188 = require( '@stdlib/constants/math/float64-eps' ); */;
 /* removed: var _$evalrational_257 = require( './lanczos_sum_expg_scaled.js' ); */; // Lanczos approximation scaled by exp(G)
@@ -25469,17 +25469,17 @@ function beta( a, b ) {
 	ambh = a - 0.5 - b;
 	if ( ( _$abs_242( b*ambh ) < ( cgh*100.0 ) ) && a > 100.0 ) {
 		// Special case where the base of the power term is close to 1; compute `(1+x)^y` instead:
-		res *= _$exp_303( ambh * _$log1p_458( -b/cgh ) );
+		res *= _$exp_310( ambh * _$log1p_465( -b/cgh ) );
 	} else {
-		res *= _$pow_469( agh/cgh, ambh );
+		res *= _$pow_476( agh/cgh, ambh );
 	}
 	if ( cgh > 1.0e10 ) {
 		// This avoids possible overflow, but appears to be marginally less accurate:
-		res *= _$pow_469( (agh/cgh)*(bgh/cgh), b );
+		res *= _$pow_476( (agh/cgh)*(bgh/cgh), b );
 	} else {
-		res *= _$pow_469( (agh*bgh)/(cgh*cgh), b );
+		res *= _$pow_476( (agh*bgh)/(cgh*cgh), b );
 	}
-	res *= _$sqrt_494( _$E_187/bgh);
+	res *= _$sqrt_501( _$E_187/bgh);
 	return res;
 }
 
@@ -25714,7 +25714,7 @@ var _$dcseval_263 = dcseval;
 
 // MODULES //
 
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
 /* removed: var _$dcseval_263 = require( './dceval.js' ); */;
 
 
@@ -25746,7 +25746,7 @@ function gammaCorrection( x ) {
 		return 0.0;
 	}
 	if ( x < XBIG ) {
-		return _$dcseval_263( (2.0*_$pow_469( 10.0/x, 2.0 )) - 1.0 ) / x;
+		return _$dcseval_263( (2.0*_$pow_476( 10.0/x, 2.0 )) - 1.0 ) / x;
 	}
 	return 1.0 / (x * 12.0);
 }
@@ -25785,12 +25785,12 @@ var _$gammaCorrection_264 = gammaCorrection;
 
 // MODULES //
 
-/* removed: var _$gammaln_383 = require( '@stdlib/math/base/special/gammaln' ); */;
-/* removed: var _$log1p_458 = require( '@stdlib/math/base/special/log1p' ); */;
-/* removed: var _$gamma_325 = require( '@stdlib/math/base/special/gamma' ); */;
-/* removed: var _$max_461 = require( '@stdlib/math/base/special/max' ); */;
-/* removed: var _$min_465 = require( '@stdlib/math/base/special/min' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$gammaln_390 = require( '@stdlib/math/base/special/gammaln' ); */;
+/* removed: var _$log1p_465 = require( '@stdlib/math/base/special/log1p' ); */;
+/* removed: var _$gamma_332 = require( '@stdlib/math/base/special/gamma' ); */;
+/* removed: var _$max_468 = require( '@stdlib/math/base/special/max' ); */;
+/* removed: var _$min_472 = require( '@stdlib/math/base/special/min' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$LN_SQRT_TWO_PI_196 = require( '@stdlib/constants/math/float64-ln-sqrt-two-pi' ); */;
 /* removed: var _$FLOAT64_NINF_205 = require( '@stdlib/constants/math/float64-ninf' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
@@ -25835,8 +25835,8 @@ function betaln( a, b ) {
 	var p;
 	var q;
 
-	p = _$min_465( a, b );
-	q = _$max_461( a, b );
+	p = _$min_472( a, b );
+	q = _$max_468( a, b );
 
 	if ( p < 0.0 ) {
 		return NaN;
@@ -25850,15 +25850,15 @@ function betaln( a, b ) {
 	// Case: p and q are big
 	if ( p >= 10.0 ) {
 		corr = _$gammaCorrection_264( p ) + _$gammaCorrection_264( q ) - _$gammaCorrection_264( p+q );
-		return ( -0.5*_$ln_454( q ) ) + _$LN_SQRT_TWO_PI_196 + corr + ( (p-0.5) * _$ln_454( p/(p+q) ) ) + ( q*_$log1p_458( -p/(p+q) ) ); // eslint-disable-line max-len
+		return ( -0.5*_$ln_461( q ) ) + _$LN_SQRT_TWO_PI_196 + corr + ( (p-0.5) * _$ln_461( p/(p+q) ) ) + ( q*_$log1p_465( -p/(p+q) ) ); // eslint-disable-line max-len
 	}
 	// Case: p is small, but q is big
 	if ( q >= 10.0 ) {
 		corr = _$gammaCorrection_264( q ) - _$gammaCorrection_264( p+q );
-		return _$gammaln_383( p ) + corr + p - (p*_$ln_454( p+q )) + ( (q-0.5)*_$log1p_458( -p/(p+q) ) ); // eslint-disable-line max-len
+		return _$gammaln_390( p ) + corr + p - (p*_$ln_461( p+q )) + ( (q-0.5)*_$log1p_465( -p/(p+q) ) ); // eslint-disable-line max-len
 	}
 	// Case: p and q are small
-	return _$ln_454( _$gamma_325( p ) * ( _$gamma_325( q ) / _$gamma_325( p+q ) ) );
+	return _$ln_461( _$gamma_332( p ) * ( _$gamma_332( q ) / _$gamma_332( p+q ) ) );
 }
 
 
@@ -25946,7 +25946,7 @@ var y = d * 365.25;
  * @api public
  */
 
-var _$ms_817 = function(val, options) {
+var _$ms_868 = function(val, options) {
   options = options || {};
   var type = typeof val;
   if (type === 'string' && val.length > 0) {
@@ -26075,7 +26075,7 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's';
 }
 
-var _$debug_815 = {};
+var _$debug_866 = {};
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -26084,19 +26084,19 @@ var _$debug_815 = {};
  * Expose `debug()` as the module.
  */
 
-_$debug_815 = _$debug_815 = createDebug.debug = createDebug['default'] = createDebug;
-_$debug_815.coerce = coerce;
-_$debug_815.disable = disable;
-_$debug_815.enable = enable;
-_$debug_815.enabled = enabled;
-_$debug_815.humanize = _$ms_817;
+_$debug_866 = _$debug_866 = createDebug.debug = createDebug['default'] = createDebug;
+_$debug_866.coerce = coerce;
+_$debug_866.disable = disable;
+_$debug_866.enable = enable;
+_$debug_866.enabled = enabled;
+_$debug_866.humanize = _$ms_868;
 
 /**
  * The currently active debug mode names, and names to skip.
  */
 
-_$debug_815.names = [];
-_$debug_815.skips = [];
+_$debug_866.names = [];
+_$debug_866.skips = [];
 
 /**
  * Map of special "%n" handling functions, for the debug "format" argument.
@@ -26104,7 +26104,7 @@ _$debug_815.skips = [];
  * Valid key names are a single, lower or upper-case letter, i.e. "n" and "N".
  */
 
-_$debug_815.formatters = {};
+_$debug_866.formatters = {};
 
 /**
  * Previous log timestamp.
@@ -26127,7 +26127,7 @@ function selectColor(namespace) {
     hash |= 0; // Convert to 32bit integer
   }
 
-  return _$debug_815.colors[Math.abs(hash) % _$debug_815.colors.length];
+  return _$debug_866.colors[Math.abs(hash) % _$debug_866.colors.length];
 }
 
 /**
@@ -26160,7 +26160,7 @@ function createDebug(namespace) {
       args[i] = arguments[i];
     }
 
-    args[0] = _$debug_815.coerce(args[0]);
+    args[0] = _$debug_866.coerce(args[0]);
 
     if ('string' !== typeof args[0]) {
       // anything else let's inspect with %O
@@ -26173,7 +26173,7 @@ function createDebug(namespace) {
       // if we encounter an escaped % then don't increase the array index
       if (match === '%%') return match;
       index++;
-      var formatter = _$debug_815.formatters[format];
+      var formatter = _$debug_866.formatters[format];
       if ('function' === typeof formatter) {
         var val = args[index];
         match = formatter.call(self, val);
@@ -26186,20 +26186,20 @@ function createDebug(namespace) {
     });
 
     // apply env-specific formatting (colors, etc.)
-    _$debug_815.formatArgs.call(self, args);
+    _$debug_866.formatArgs.call(self, args);
 
-    var logFn = debug.log || _$debug_815.log || console.log.bind(console);
+    var logFn = debug.log || _$debug_866.log || console.log.bind(console);
     logFn.apply(self, args);
   }
 
   debug.namespace = namespace;
-  debug.enabled = _$debug_815.enabled(namespace);
-  debug.useColors = _$debug_815.useColors();
+  debug.enabled = _$debug_866.enabled(namespace);
+  debug.useColors = _$debug_866.useColors();
   debug.color = selectColor(namespace);
 
   // env-specific initialization logic for debug instances
-  if ('function' === typeof _$debug_815.init) {
-    _$debug_815.init(debug);
+  if ('function' === typeof _$debug_866.init) {
+    _$debug_866.init(debug);
   }
 
   return debug;
@@ -26214,10 +26214,10 @@ function createDebug(namespace) {
  */
 
 function enable(namespaces) {
-  _$debug_815.save(namespaces);
+  _$debug_866.save(namespaces);
 
-  _$debug_815.names = [];
-  _$debug_815.skips = [];
+  _$debug_866.names = [];
+  _$debug_866.skips = [];
 
   var split = (typeof namespaces === 'string' ? namespaces : '').split(/[\s,]+/);
   var len = split.length;
@@ -26226,9 +26226,9 @@ function enable(namespaces) {
     if (!split[i]) continue; // ignore empty strings
     namespaces = split[i].replace(/\*/g, '.*?');
     if (namespaces[0] === '-') {
-      _$debug_815.skips.push(new RegExp('^' + namespaces.substr(1) + '$'));
+      _$debug_866.skips.push(new RegExp('^' + namespaces.substr(1) + '$'));
     } else {
-      _$debug_815.names.push(new RegExp('^' + namespaces + '$'));
+      _$debug_866.names.push(new RegExp('^' + namespaces + '$'));
     }
   }
 }
@@ -26240,7 +26240,7 @@ function enable(namespaces) {
  */
 
 function disable() {
-  _$debug_815.enable('');
+  _$debug_866.enable('');
 }
 
 /**
@@ -26253,13 +26253,13 @@ function disable() {
 
 function enabled(name) {
   var i, len;
-  for (i = 0, len = _$debug_815.skips.length; i < len; i++) {
-    if (_$debug_815.skips[i].test(name)) {
+  for (i = 0, len = _$debug_866.skips.length; i < len; i++) {
+    if (_$debug_866.skips[i].test(name)) {
       return false;
     }
   }
-  for (i = 0, len = _$debug_815.names.length; i < len; i++) {
-    if (_$debug_815.names[i].test(name)) {
+  for (i = 0, len = _$debug_866.names.length; i < len; i++) {
+    if (_$debug_866.names[i].test(name)) {
       return true;
     }
   }
@@ -26279,9 +26279,9 @@ function coerce(val) {
   return val;
 }
 
-var _$browser_818 = {};
+var _$browser_869 = {};
 // shim for using process in browser
-var process = _$browser_818 = {};
+var process = _$browser_869 = {};
 
 // cached from whatever global is present so that test runners that stub it
 // don't break things.  But we need to wrap it in a try catch in case it is
@@ -26465,7 +26465,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-var _$browser_814 = {};
+var _$browser_865 = {};
 (function (process){
 /**
  * This is the web browser implementation of `debug()`.
@@ -26473,13 +26473,13 @@ var _$browser_814 = {};
  * Expose `debug()` as the module.
  */
 
-_$browser_814 = _$browser_814 = _$debug_815;
-_$browser_814.log = log;
-_$browser_814.formatArgs = formatArgs;
-_$browser_814.save = save;
-_$browser_814.load = load;
-_$browser_814.useColors = useColors;
-_$browser_814.storage = 'undefined' != typeof chrome
+_$browser_865 = _$browser_865 = _$debug_866;
+_$browser_865.log = log;
+_$browser_865.formatArgs = formatArgs;
+_$browser_865.save = save;
+_$browser_865.load = load;
+_$browser_865.useColors = useColors;
+_$browser_865.storage = 'undefined' != typeof chrome
                && 'undefined' != typeof chrome.storage
                   ? chrome.storage.local
                   : localstorage();
@@ -26488,7 +26488,7 @@ _$browser_814.storage = 'undefined' != typeof chrome
  * Colors.
  */
 
-_$browser_814.colors = [
+_$browser_865.colors = [
   'lightseagreen',
   'forestgreen',
   'goldenrod',
@@ -26529,7 +26529,7 @@ function useColors() {
  * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
  */
 
-_$browser_814.formatters.j = function(v) {
+_$browser_865.formatters.j = function(v) {
   try {
     return JSON.stringify(v);
   } catch (err) {
@@ -26552,7 +26552,7 @@ function formatArgs(args) {
     + (useColors ? ' %c' : ' ')
     + args[0]
     + (useColors ? '%c ' : ' ')
-    + '+' + _$browser_814.humanize(this.diff);
+    + '+' + _$browser_865.humanize(this.diff);
 
   if (!useColors) return;
 
@@ -26602,9 +26602,9 @@ function log() {
 function save(namespaces) {
   try {
     if (null == namespaces) {
-      _$browser_814.storage.removeItem('debug');
+      _$browser_865.storage.removeItem('debug');
     } else {
-      _$browser_814.storage.debug = namespaces;
+      _$browser_865.storage.debug = namespaces;
     }
   } catch(e) {}
 }
@@ -26619,7 +26619,7 @@ function save(namespaces) {
 function load() {
   var r;
   try {
-    r = _$browser_814.storage.debug;
+    r = _$browser_865.storage.debug;
   } catch(e) {}
 
   // If debug isn't set in LS, and we're in Electron, try to load $DEBUG
@@ -26634,7 +26634,7 @@ function load() {
  * Enable namespaces listed in `localStorage.debug` initially.
  */
 
-_$browser_814.enable(load());
+_$browser_865.enable(load());
 
 /**
  * Localstorage attempts to return the localstorage.
@@ -26653,7 +26653,7 @@ function localstorage() {
   } catch (e) {}
 }
 
-}).call(this,_$browser_818)
+}).call(this,_$browser_869)
 /**
 * @license Apache-2.0
 *
@@ -27020,8 +27020,8 @@ var _$evalrational_300 = __evalrational_300;
 // MODULES //
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
 /* removed: var _$FLOAT64_NINF_205 = require( '@stdlib/constants/math/float64-ninf' ); */;
 /* removed: var _$evalrational_296 = require( './rational_p1q1.js' ); */;
@@ -27181,12 +27181,12 @@ function erfcinv( x ) {
 	}
 	// q >= 0.25
 	if ( q >= 0.25 ) {
-		g = _$sqrt_494( -2.0 * _$ln_454(q) );
+		g = _$sqrt_501( -2.0 * _$ln_461(q) );
 		q -= 0.25;
 		r = _$evalrational_297( q );
 		return sign * ( g / (__Y2_294+r) );
 	}
-	q = _$sqrt_494( -_$ln_454( q ) );
+	q = _$sqrt_501( -_$ln_461( q ) );
 
 	// q < 3
 	if ( q < 3.0 ) {
@@ -27343,17 +27343,17 @@ var _$FLOAT32_MAX_185 = FLOAT32_MAX;
 
 // MODULES //
 
-/* removed: var _$browser_814 = require( 'debug' ); */;
-/* removed: var _$gammainc_341 = require( '@stdlib/math/base/special/gammainc' ); */;
+/* removed: var _$browser_865 = require( 'debug' ); */;
+/* removed: var _$gammainc_348 = require( '@stdlib/math/base/special/gammainc' ); */;
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$FLOAT32_MAX_185 = require( '@stdlib/constants/math/float32-max' ); */;
 
 
 // VARIABLES //
 
-var debug = _$browser_814( 'gammaincinv:higher_newton' );
+var debug = _$browser_865( 'gammaincinv:higher_newton' );
 
 
 // MAIN //
@@ -27397,22 +27397,22 @@ function higherNewton( x0, a, m, p, q, lgama, invfp, pcase ) {
 		x = x0;
 		x2 = x * x;
 		if ( m === 0 ) {
-			dlnr = ( ( 1.0-a ) * _$ln_454( x ) ) + x + lgama;
-			if ( dlnr > _$ln_454( _$FLOAT32_MAX_185 ) ) {
+			dlnr = ( ( 1.0-a ) * _$ln_461( x ) ) + x + lgama;
+			if ( dlnr > _$ln_461( _$FLOAT32_MAX_185 ) ) {
 				debug( 'Warning: overflow problems in one or more steps of the computation. The initial approximation to the root is returned.' );
 				return xini;
 			}
-			r = _$exp_303( dlnr );
+			r = _$exp_310( dlnr );
 		} else {
 			r = -invfp * x;
 		}
 		if ( pcase ) {
 			// Call: gammainc( x, s[, regularized = true ][, upper = false ] )
-			px = _$gammainc_341( x, a, true, false );
+			px = _$gammainc_348( x, a, true, false );
 			ck0 = -r * ( px - p );
 		} else {
 			// Call: gammainc( x, s[, regularized = true ][, upper = true ] )
-			qx = _$gammainc_341( x, a, true, true );
+			qx = _$gammainc_348( x, a, true, true );
 			ck0 = r * ( qx - q );
 		}
 		r = ck0;
@@ -27442,7 +27442,7 @@ function higherNewton( x0, a, m, p, q, lgama, invfp, pcase ) {
 
 // EXPORTS //
 
-var _$higherNewton_365 = higherNewton;
+var _$higherNewton_372 = higherNewton;
 
 /**
 * @license Apache-2.0
@@ -27481,7 +27481,7 @@ var _$higherNewton_365 = higherNewton;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_368( x ) {
+function __evalpoly_375( x ) {
 	if ( x === 0.0 ) {
 		return 0.0;
 	}
@@ -27491,7 +27491,7 @@ function __evalpoly_368( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_368 = __evalpoly_368;
+var _$evalpoly_375 = __evalpoly_375;
 
 /**
 * @license Apache-2.0
@@ -27530,7 +27530,7 @@ var _$evalpoly_368 = __evalpoly_368;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_369( x ) {
+function __evalpoly_376( x ) {
 	if ( x === 0.0 ) {
 		return 1.0;
 	}
@@ -27540,7 +27540,7 @@ function __evalpoly_369( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_369 = __evalpoly_369;
+var _$evalpoly_376 = __evalpoly_376;
 
 /**
 * @license Apache-2.0
@@ -27565,11 +27565,11 @@ var _$evalpoly_369 = __evalpoly_369;
 // MODULES //
 
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
-/* removed: var _$evalpoly_507 = require( '@stdlib/math/base/tools/evalpoly' ); */;
-/* removed: var _$evalpoly_368 = require( './polyval_ak1.js' ); */;
-/* removed: var _$evalpoly_369 = require( './polyval_ak2.js' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$evalpoly_514 = require( '@stdlib/math/base/tools/evalpoly' ); */;
+/* removed: var _$evalpoly_375 = require( './polyval_ak1.js' ); */;
+/* removed: var _$evalpoly_376 = require( './polyval_ak2.js' ); */;
 
 
 // VARIABLES //
@@ -27607,16 +27607,16 @@ function lambdaeta( eta ) {
 		la = 0.0;
 	}
 	else if ( eta < -1.0 ) {
-		r = _$exp_303( -1.0 - s );
-		la = _$evalpoly_368( r );
+		r = _$exp_310( -1.0 - s );
+		la = _$evalpoly_375( r );
 	}
 	else if ( eta < 1.0 ) {
 		r = eta;
-		la = _$evalpoly_369( r );
+		la = _$evalpoly_376( r );
 	}
 	else {
 		r = 11.0 + s;
-		L = _$ln_454( r );
+		L = _$ln_461( r );
 		la = r + L;
 		r = 1.0 / r;
 		L2 = L * L;
@@ -27628,7 +27628,7 @@ function lambdaeta( eta ) {
 		AK[ 3 ] = -( (3*L3)+ (36*L) - (22*L2) - 12 ) * ONEO12;
 		AK[ 4 ] = ( 60.0 + (350.0*L2) - (300.0*L) - (125.0*L3) + (12.0*L4) ) / 60.0; // eslint-disable-line max-len
 		AK[ 5 ] = -(-120 - (274*L4) + (900*L) - (1700*L2) + (1125*L3) + (20*L5)) * ONEO120; // eslint-disable-line max-len
-		la += ( L * r * _$evalpoly_507( AK, r ) );
+		la += ( L * r * _$evalpoly_514( AK, r ) );
 	}
 	r = 1.0;
 	if (
@@ -27638,7 +27638,7 @@ function lambdaeta( eta ) {
 		r = 1.0;
 		q = la;
 		do {
-			la = q * ( s+_$ln_454(q) ) / ( q-1.0 );
+			la = q * ( s+_$ln_461(q) ) / ( q-1.0 );
 			r = _$abs_242( ( q/la ) - 1.0 );
 			q = la;
 		} while ( r > THRESHOLD );
@@ -27649,7 +27649,7 @@ function lambdaeta( eta ) {
 
 // EXPORTS //
 
-var _$lambdaeta_367 = lambdaeta;
+var _$lambdaeta_374 = lambdaeta;
 
 /**
 * @license Apache-2.0
@@ -27729,7 +27729,7 @@ function chepolsum( n, t ) {
 
 // EXPORTS //
 
-var _$chepolsum_358 = chepolsum;
+var _$chepolsum_365 = chepolsum;
 
 /**
 * @license Apache-2.0
@@ -27768,7 +27768,7 @@ var _$chepolsum_358 = chepolsum;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_370( x ) {
+function __evalpoly_377( x ) {
 	if ( x === 0.0 ) {
 		return 0.025721014990011306;
 	}
@@ -27778,7 +27778,7 @@ function __evalpoly_370( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_370 = __evalpoly_370;
+var _$evalpoly_377 = __evalpoly_377;
 
 /**
 * @license Apache-2.0
@@ -27817,7 +27817,7 @@ var _$evalpoly_370 = __evalpoly_370;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_371( x ) {
+function __evalpoly_378( x ) {
 	if ( x === 0.0 ) {
 		return 0.08333333333333333;
 	}
@@ -27827,7 +27827,7 @@ function __evalpoly_371( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_371 = __evalpoly_371;
+var _$evalpoly_378 = __evalpoly_378;
 
 /**
 * @license Apache-2.0
@@ -27851,14 +27851,14 @@ var _$evalpoly_371 = __evalpoly_371;
 
 // MODULES //
 
-/* removed: var _$gammaln_383 = require( '@stdlib/math/base/special/gammaln' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$gammaln_390 = require( '@stdlib/math/base/special/gammaln' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$LN_SQRT_TWO_PI_196 = require( '@stdlib/constants/math/float64-ln-sqrt-two-pi' ); */;
 /* removed: var _$FLOAT32_SMALLEST_NORMAL_186 = require( '@stdlib/constants/math/float32-smallest-normal' ); */;
 /* removed: var _$FLOAT32_MAX_185 = require( '@stdlib/constants/math/float32-max' ); */;
-/* removed: var _$chepolsum_358 = require( './chepolsum.js' ); */;
-/* removed: var _$evalpoly_370 = require( './polyval_c.js' ); */;
-/* removed: var _$evalpoly_371 = require( './polyval_d.js' ); */;
+/* removed: var _$chepolsum_365 = require( './chepolsum.js' ); */;
+/* removed: var _$evalpoly_377 = require( './polyval_c.js' ); */;
+/* removed: var _$evalpoly_378 = require( './polyval_d.js' ); */;
 
 
 // VARIABLES //
@@ -27885,29 +27885,29 @@ function stirling( x ) {
 		return _$FLOAT32_MAX_185;
 	}
 	if ( x < 1.0 ) {
-		return _$gammaln_383( x+1.0 ) - ( (x+0.5) * _$ln_454(x) ) + x - _$LN_SQRT_TWO_PI_196;
+		return _$gammaln_390( x+1.0 ) - ( (x+0.5) * _$ln_461(x) ) + x - _$LN_SQRT_TWO_PI_196;
 	}
 	if ( x < 2.0 ) {
-		return _$gammaln_383( x ) - ( (x-0.5) * _$ln_454(x) ) + x - _$LN_SQRT_TWO_PI_196;
+		return _$gammaln_390( x ) - ( (x-0.5) * _$ln_461(x) ) + x - _$LN_SQRT_TWO_PI_196;
 	}
 	if ( x < 3.0 ) {
-		return _$gammaln_383( x-1.0 ) - ( (x-0.5) * _$ln_454(x) ) + x - _$LN_SQRT_TWO_PI_196 + _$ln_454( x-1.0 ); // eslint-disable-line max-len
+		return _$gammaln_390( x-1.0 ) - ( (x-0.5) * _$ln_461(x) ) + x - _$LN_SQRT_TWO_PI_196 + _$ln_461( x-1.0 ); // eslint-disable-line max-len
 	}
 	if ( x < 12.0 ) {
 		z = ( 18.0/( x*x ) ) - 1.0;
-		return _$chepolsum_358( 17, z ) / ( 12.0*x );
+		return _$chepolsum_365( 17, z ) / ( 12.0*x );
 	}
 	z = 1.0 / ( x * x );
 	if ( x < 1000.0 ) {
-		return _$evalpoly_370( z ) / ( C6+z ) / x;
+		return _$evalpoly_377( z ) / ( C6+z ) / x;
 	}
-	return _$evalpoly_371( z ) / x;
+	return _$evalpoly_378( z ) / x;
 }
 
 
 // EXPORTS //
 
-var _$stirling_381 = stirling;
+var _$stirling_388 = stirling;
 
 /**
 * @license Apache-2.0
@@ -27931,12 +27931,12 @@ var _$stirling_381 = stirling;
 
 // MODULES //
 
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$gamma_325 = require( '@stdlib/math/base/special/gamma' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$gamma_332 = require( '@stdlib/math/base/special/gamma' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$FLOAT32_MAX_185 = require( '@stdlib/constants/math/float32-max' ); */;
 /* removed: var _$SQRT_TWO_PI_211 = require( '@stdlib/constants/math/float64-sqrt-two-pi' ); */;
-/* removed: var _$stirling_381 = require( './stirling.js' ); */;
+/* removed: var _$stirling_388 = require( './stirling.js' ); */;
 
 
 // MAIN //
@@ -27950,10 +27950,10 @@ var _$stirling_381 = stirling;
 */
 function gamstar( x ) {
 	if ( x >= 3.0 ) {
-		return _$exp_303( _$stirling_381(x) );
+		return _$exp_310( _$stirling_388(x) );
 	}
 	if ( x > 0.0 ) {
-		return _$gamma_325(x) / ( _$exp_303( -x + ( ( x-0.5 ) * _$ln_454(x) ) ) * _$SQRT_TWO_PI_211 );
+		return _$gamma_332(x) / ( _$exp_310( -x + ( ( x-0.5 ) * _$ln_461(x) ) ) * _$SQRT_TWO_PI_211 );
 	}
 	// Case: x <= 0.0
 	return _$FLOAT32_MAX_185;
@@ -27962,583 +27962,7 @@ function gamstar( x ) {
 
 // EXPORTS //
 
-var _$gamstar_364 = gamstar;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
-*
-* ## Notes
-*
-* -   Coefficients should be sorted in ascending degree.
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the rational function
-* @returns {number} evaluated rational function
-*/
-function __evalrational_372( x ) {
-	var ax;
-	var s1;
-	var s2;
-	if ( x === 0.0 ) {
-		return -0.3333333333438;
-	}
-	if ( x < 0.0 ) {
-		ax = -x;
-	} else {
-		ax = x;
-	}
-	if ( ax <= 1.0 ) {
-		s1 = -0.3333333333438 + (x * (-0.2070740359969 + (x * (-0.05041806657154 + (x * (-0.004923635739372 + (x * -0.00004293658292782))))))); // eslint-disable-line max-len
-		s2 = 1.0 + (x * (0.7045554412463 + (x * (0.2118190062224 + (x * (0.03048648397436 + (x * 0.001605037988091))))))); // eslint-disable-line max-len
-	} else {
-		x = 1.0 / x;
-		s1 = -0.00004293658292782 + (x * (-0.004923635739372 + (x * (-0.05041806657154 + (x * (-0.2070740359969 + (x * -0.3333333333438))))))); // eslint-disable-line max-len
-		s2 = 0.001605037988091 + (x * (0.03048648397436 + (x * (0.2118190062224 + (x * (0.7045554412463 + (x * 1.0))))))); // eslint-disable-line max-len
-	}
-	return s1 / s2;
-}
-
-
-// EXPORTS //
-
-var _$evalrational_372 = __evalrational_372;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-/* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
-/* removed: var _$lambdaeta_367 = require( './lambdaeta.js' ); */;
-/* removed: var _$evalrational_372 = require( './rational_ak0bk0.js' ); */;
-
-
-// MAIN //
-
-/**
-* Evaluates the `eps1` function.
-*
-* @private
-* @param {number} eta - eta value
-* @returns {number} function value
-*/
-function eps1( eta ) {
-	var la;
-	if ( _$abs_242( eta ) < 1.0 ) {
-		return _$evalrational_372( eta );
-	}
-	la = _$lambdaeta_367( eta );
-	return _$ln_454( eta / ( la - 1.0 ) ) / eta;
-}
-
-
-// EXPORTS //
-
-var _$eps1_360 = eps1;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
-*
-* ## Notes
-*
-* -   Coefficients should be sorted in ascending degree.
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the rational function
-* @returns {number} evaluated rational function
-*/
-function __evalrational_373( x ) {
-	var ax;
-	var s1;
-	var s2;
-	if ( x === 0.0 ) {
-		return -0.0172847633523;
-	}
-	if ( x < 0.0 ) {
-		ax = -x;
-	} else {
-		ax = x;
-	}
-	if ( ax <= 1.0 ) {
-		s1 = -0.0172847633523 + (x * (-0.0159372646475 + (x * (-0.00464910887221 + (x * (-0.00060683488776 + (x * -0.00000614830384279))))))); // eslint-disable-line max-len
-		s2 = 1.0 + (x * (0.764050615669 + (x * (0.297143406325 + (x * (0.0579490176079 + (x * 0.00574558524851))))))); // eslint-disable-line max-len
-	} else {
-		x = 1.0 / x;
-		s1 = -0.00000614830384279 + (x * (-0.00060683488776 + (x * (-0.00464910887221 + (x * (-0.0159372646475 + (x * -0.0172847633523))))))); // eslint-disable-line max-len
-		s2 = 0.00574558524851 + (x * (0.0579490176079 + (x * (0.297143406325 + (x * (0.764050615669 + (x * 1.0))))))); // eslint-disable-line max-len
-	}
-	return s1 / s2;
-}
-
-
-// EXPORTS //
-
-var _$evalrational_373 = __evalrational_373;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
-*
-* ## Notes
-*
-* -   Coefficients should be sorted in ascending degree.
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the rational function
-* @returns {number} evaluated rational function
-*/
-function __evalrational_374( x ) {
-	var ax;
-	var s1;
-	var s2;
-	if ( x === 0.0 ) {
-		return -0.0172839517431;
-	}
-	if ( x < 0.0 ) {
-		ax = -x;
-	} else {
-		ax = x;
-	}
-	if ( ax <= 1.0 ) {
-		s1 = -0.0172839517431 + (x * (-0.0146362417966 + (x * (-0.00357406772616 + (x * (-0.000391032032692 + (x * 0.00000249634036069))))))); // eslint-disable-line max-len
-		s2 = 1.0 + (x * (0.690560400696 + (x * (0.249962384741 + (x * (0.0443843438769 + (x * 0.00424073217211))))))); // eslint-disable-line max-len
-	} else {
-		x = 1.0 / x;
-		s1 = 0.00000249634036069 + (x * (-0.000391032032692 + (x * (-0.00357406772616 + (x * (-0.0146362417966 + (x * -0.0172839517431))))))); // eslint-disable-line max-len
-		s2 = 0.00424073217211 + (x * (0.0443843438769 + (x * (0.249962384741 + (x * (0.690560400696 + (x * 1.0))))))); // eslint-disable-line max-len
-	}
-	return s1 / s2;
-}
-
-
-// EXPORTS //
-
-var _$evalrational_374 = __evalrational_374;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
-*
-* ## Notes
-*
-* -   Coefficients should be sorted in ascending degree.
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the rational function
-* @returns {number} evaluated rational function
-*/
-function __evalrational_375( x ) {
-	var ax;
-	var s1;
-	var s2;
-	if ( x === 0.0 ) {
-		return 0.99994466948;
-	}
-	if ( x < 0.0 ) {
-		ax = -x;
-	} else {
-		ax = x;
-	}
-	if ( ax <= 1.0 ) {
-		s1 = 0.99994466948 + (x * (104.649839762 + (x * (857.204033806 + (x * (731.901559577 + (x * 45.5174411671))))))); // eslint-disable-line max-len
-		s2 = 1.0 + (x * (104.526456943 + (x * (823.313447808 + (x * (3119.93802124 + (x * 3970.03311219))))))); // eslint-disable-line max-len
-	} else {
-		x = 1.0 / x;
-		s1 = 45.5174411671 + (x * (731.901559577 + (x * (857.204033806 + (x * (104.649839762 + (x * 0.99994466948))))))); // eslint-disable-line max-len
-		s2 = 3970.03311219 + (x * (3119.93802124 + (x * (823.313447808 + (x * (104.526456943 + (x * 1.0))))))); // eslint-disable-line max-len
-	}
-	return s1 / s2;
-}
-
-
-// EXPORTS //
-
-var _$evalrational_375 = __evalrational_375;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
-/* removed: var _$evalrational_373 = require( './rational_ak1bk1.js' ); */;
-/* removed: var _$evalrational_374 = require( './rational_ak2bk2.js' ); */;
-/* removed: var _$evalrational_375 = require( './rational_ak3bk3.js' ); */;
-
-
-// MAIN //
-
-/**
-* Evaluates the `eps2` function.
-*
-* @private
-* @param {number} eta - eta value
-* @returns {number} function value
-*/
-function eps2( eta ) {
-	var lnmeta;
-	var x;
-	if ( eta < -5.0 ) {
-		x = eta * eta;
-		lnmeta = _$ln_454( -eta );
-		return ( 12.0 - x - ( 6.0*( lnmeta*lnmeta ) ) ) / ( 12.0*x*eta );
-	}
-	if ( eta < -2.0 ) {
-		return _$evalrational_373( eta );
-	}
-	if ( eta < 2.0 ) {
-		return _$evalrational_374( eta );
-	}
-	if ( eta < 1000.0 ) {
-		x = 1.0 / eta;
-		return _$evalrational_375( eta ) / ( -12.0*eta );
-	}
-	return -1.0 / ( 12.0 * eta );
-}
-
-
-// EXPORTS //
-
-var _$eps2_361 = eps2;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
-*
-* ## Notes
-*
-* -   Coefficients should be sorted in ascending degree.
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the rational function
-* @returns {number} evaluated rational function
-*/
-function __evalrational_376( x ) {
-	var ax;
-	var s1;
-	var s2;
-	if ( x === 0.0 ) {
-		return 0.0495346498136;
-	}
-	if ( x < 0.0 ) {
-		ax = -x;
-	} else {
-		ax = x;
-	}
-	if ( ax <= 1.0 ) {
-		s1 = 0.0495346498136 + (x * (0.0299521337141 + (x * (0.00688296911516 + (x * (0.000512634846317 + (x * -0.0000201411722031))))))); // eslint-disable-line max-len
-		s2 = 1.0 + (x * (0.759803615283 + (x * (0.261547111595 + (x * (0.0464854522477 + (x * 0.00403751193496))))))); // eslint-disable-line max-len
-	} else {
-		x = 1.0 / x;
-		s1 = -0.0000201411722031 + (x * (0.000512634846317 + (x * (0.00688296911516 + (x * (0.0299521337141 + (x * 0.0495346498136))))))); // eslint-disable-line max-len
-		s2 = 0.00403751193496 + (x * (0.0464854522477 + (x * (0.261547111595 + (x * (0.759803615283 + (x * 1.0))))))); // eslint-disable-line max-len
-	}
-	return s1 / s2;
-}
-
-
-// EXPORTS //
-
-var _$evalrational_376 = __evalrational_376;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
-*
-* ## Notes
-*
-* -   Coefficients should be sorted in ascending degree.
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the rational function
-* @returns {number} evaluated rational function
-*/
-function __evalrational_377( x ) {
-	var ax;
-	var s1;
-	var s2;
-	if ( x === 0.0 ) {
-		return 0.00452313583942;
-	}
-	if ( x < 0.0 ) {
-		ax = -x;
-	} else {
-		ax = x;
-	}
-	if ( ax <= 1.0 ) {
-		s1 = 0.00452313583942 + (x * (0.00120744920113 + (x * (-0.0000789724156582 + (x * (-0.0000504476066942 + (x * -0.00000535770949796))))))); // eslint-disable-line max-len
-		s2 = 1.0 + (x * (0.912203410349 + (x * (0.405368773071 + (x * (0.0901638932349 + (x * 0.00948935714996))))))); // eslint-disable-line max-len
-	} else {
-		x = 1.0 / x;
-		s1 = -0.00000535770949796 + (x * (-0.0000504476066942 + (x * (-0.0000789724156582 + (x * (0.00120744920113 + (x * 0.00452313583942))))))); // eslint-disable-line max-len
-		s2 = 0.00948935714996 + (x * (0.0901638932349 + (x * (0.405368773071 + (x * (0.912203410349 + (x * 1.0))))))); // eslint-disable-line max-len
-	}
-	return s1 / s2;
-}
-
-
-// EXPORTS //
-
-var _$evalrational_377 = __evalrational_377;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
-*
-* ## Notes
-*
-* -   Coefficients should be sorted in ascending degree.
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the rational function
-* @returns {number} evaluated rational function
-*/
-function __evalrational_378( x ) {
-	var ax;
-	var s1;
-	var s2;
-	if ( x === 0.0 ) {
-		return 0.00439937562904;
-	}
-	if ( x < 0.0 ) {
-		ax = -x;
-	} else {
-		ax = x;
-	}
-	if ( ax <= 1.0 ) {
-		s1 = 0.00439937562904 + (x * (0.000487225670639 + (x * (-0.000128470657374 + (x * (0.00000529110969589 + (x * 1.5716677175e-7))))))); // eslint-disable-line max-len
-		s2 = 1.0 + (x * (0.794435257415 + (x * (0.333094721709 + (x * (0.0703527806143 + (x * 0.00806110846078))))))); // eslint-disable-line max-len
-	} else {
-		x = 1.0 / x;
-		s1 = 1.5716677175e-7 + (x * (0.00000529110969589 + (x * (-0.000128470657374 + (x * (0.000487225670639 + (x * 0.00439937562904))))))); // eslint-disable-line max-len
-		s2 = 0.00806110846078 + (x * (0.0703527806143 + (x * (0.333094721709 + (x * (0.794435257415 + (x * 1.0))))))); // eslint-disable-line max-len
-	}
-	return s1 / s2;
-}
-
-
-// EXPORTS //
-
-var _$evalrational_378 = __evalrational_378;
+var _$gamstar_371 = gamstar;
 
 /**
 * @license Apache-2.0
@@ -28583,7 +28007,7 @@ function __evalrational_379( x ) {
 	var s1;
 	var s2;
 	if ( x === 0.0 ) {
-		return -0.0011481191232;
+		return -0.3333333333438;
 	}
 	if ( x < 0.0 ) {
 		ax = -x;
@@ -28591,12 +28015,12 @@ function __evalrational_379( x ) {
 		ax = x;
 	}
 	if ( ax <= 1.0 ) {
-		s1 = -0.0011481191232 + (x * (-0.112850923276 + (x * (1.51623048511 + (x * (-0.218472031183 + (x * 0.0730002451555))))))); // eslint-disable-line max-len
-		s2 = 1.0 + (x * (14.2482206905 + (x * (69.7360396285 + (x * (218.938950816 + (x * 277.067027185))))))); // eslint-disable-line max-len
+		s1 = -0.3333333333438 + (x * (-0.2070740359969 + (x * (-0.05041806657154 + (x * (-0.004923635739372 + (x * -0.00004293658292782))))))); // eslint-disable-line max-len
+		s2 = 1.0 + (x * (0.7045554412463 + (x * (0.2118190062224 + (x * (0.03048648397436 + (x * 0.001605037988091))))))); // eslint-disable-line max-len
 	} else {
 		x = 1.0 / x;
-		s1 = 0.0730002451555 + (x * (-0.218472031183 + (x * (1.51623048511 + (x * (-0.112850923276 + (x * -0.0011481191232))))))); // eslint-disable-line max-len
-		s2 = 277.067027185 + (x * (218.938950816 + (x * (69.7360396285 + (x * (14.2482206905 + (x * 1.0))))))); // eslint-disable-line max-len
+		s1 = -0.00004293658292782 + (x * (-0.004923635739372 + (x * (-0.05041806657154 + (x * (-0.2070740359969 + (x * -0.3333333333438))))))); // eslint-disable-line max-len
+		s2 = 0.001605037988091 + (x * (0.03048648397436 + (x * (0.2118190062224 + (x * (0.7045554412463 + (x * 1.0))))))); // eslint-disable-line max-len
 	}
 	return s1 / s2;
 }
@@ -28605,6 +28029,57 @@ function __evalrational_379( x ) {
 // EXPORTS //
 
 var _$evalrational_379 = __evalrational_379;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$lambdaeta_374 = require( './lambdaeta.js' ); */;
+/* removed: var _$evalrational_379 = require( './rational_ak0bk0.js' ); */;
+
+
+// MAIN //
+
+/**
+* Evaluates the `eps1` function.
+*
+* @private
+* @param {number} eta - eta value
+* @returns {number} function value
+*/
+function eps1( eta ) {
+	var la;
+	if ( _$abs_242( eta ) < 1.0 ) {
+		return _$evalrational_379( eta );
+	}
+	la = _$lambdaeta_374( eta );
+	return _$ln_461( eta / ( la - 1.0 ) ) / eta;
+}
+
+
+// EXPORTS //
+
+var _$eps1_367 = eps1;
 
 /**
 * @license Apache-2.0
@@ -28649,7 +28124,7 @@ function __evalrational_380( x ) {
 	var s1;
 	var s2;
 	if ( x === 0.0 ) {
-		return -0.000145727889667;
+		return -0.0172847633523;
 	}
 	if ( x < 0.0 ) {
 		ax = -x;
@@ -28657,12 +28132,12 @@ function __evalrational_380( x ) {
 		ax = x;
 	}
 	if ( ax <= 1.0 ) {
-		s1 = -0.000145727889667 + (x * (-0.290806748131 + (x * (-13.308504545 + (x * (199.722374056 + (x * -11.4311378756))))))); // eslint-disable-line max-len
-		s2 = 1.0 + (x * (139.612587808 + (x * (2189.01116348 + (x * (7115.24019009 + (x * 45574.6081453))))))); // eslint-disable-line max-len
+		s1 = -0.0172847633523 + (x * (-0.0159372646475 + (x * (-0.00464910887221 + (x * (-0.00060683488776 + (x * -0.00000614830384279))))))); // eslint-disable-line max-len
+		s2 = 1.0 + (x * (0.764050615669 + (x * (0.297143406325 + (x * (0.0579490176079 + (x * 0.00574558524851))))))); // eslint-disable-line max-len
 	} else {
 		x = 1.0 / x;
-		s1 = -11.4311378756 + (x * (199.722374056 + (x * (-13.308504545 + (x * (-0.290806748131 + (x * -0.000145727889667))))))); // eslint-disable-line max-len
-		s2 = 45574.6081453 + (x * (7115.24019009 + (x * (2189.01116348 + (x * (139.612587808 + (x * 1.0))))))); // eslint-disable-line max-len
+		s1 = -0.00000614830384279 + (x * (-0.00060683488776 + (x * (-0.00464910887221 + (x * (-0.0159372646475 + (x * -0.0172847633523))))))); // eslint-disable-line max-len
+		s2 = 0.00574558524851 + (x * (0.0579490176079 + (x * (0.297143406325 + (x * (0.764050615669 + (x * 1.0))))))); // eslint-disable-line max-len
 	}
 	return s1 / s2;
 }
@@ -28690,16 +28165,541 @@ var _$evalrational_380 = __evalrational_380;
 * limitations under the License.
 */
 
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+*
+* ## Notes
+*
+* -   Coefficients should be sorted in ascending degree.
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the rational function
+* @returns {number} evaluated rational function
+*/
+function __evalrational_381( x ) {
+	var ax;
+	var s1;
+	var s2;
+	if ( x === 0.0 ) {
+		return -0.0172839517431;
+	}
+	if ( x < 0.0 ) {
+		ax = -x;
+	} else {
+		ax = x;
+	}
+	if ( ax <= 1.0 ) {
+		s1 = -0.0172839517431 + (x * (-0.0146362417966 + (x * (-0.00357406772616 + (x * (-0.000391032032692 + (x * 0.00000249634036069))))))); // eslint-disable-line max-len
+		s2 = 1.0 + (x * (0.690560400696 + (x * (0.249962384741 + (x * (0.0443843438769 + (x * 0.00424073217211))))))); // eslint-disable-line max-len
+	} else {
+		x = 1.0 / x;
+		s1 = 0.00000249634036069 + (x * (-0.000391032032692 + (x * (-0.00357406772616 + (x * (-0.0146362417966 + (x * -0.0172839517431))))))); // eslint-disable-line max-len
+		s2 = 0.00424073217211 + (x * (0.0443843438769 + (x * (0.249962384741 + (x * (0.690560400696 + (x * 1.0))))))); // eslint-disable-line max-len
+	}
+	return s1 / s2;
+}
+
+
+// EXPORTS //
+
+var _$evalrational_381 = __evalrational_381;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+*
+* ## Notes
+*
+* -   Coefficients should be sorted in ascending degree.
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the rational function
+* @returns {number} evaluated rational function
+*/
+function __evalrational_382( x ) {
+	var ax;
+	var s1;
+	var s2;
+	if ( x === 0.0 ) {
+		return 0.99994466948;
+	}
+	if ( x < 0.0 ) {
+		ax = -x;
+	} else {
+		ax = x;
+	}
+	if ( ax <= 1.0 ) {
+		s1 = 0.99994466948 + (x * (104.649839762 + (x * (857.204033806 + (x * (731.901559577 + (x * 45.5174411671))))))); // eslint-disable-line max-len
+		s2 = 1.0 + (x * (104.526456943 + (x * (823.313447808 + (x * (3119.93802124 + (x * 3970.03311219))))))); // eslint-disable-line max-len
+	} else {
+		x = 1.0 / x;
+		s1 = 45.5174411671 + (x * (731.901559577 + (x * (857.204033806 + (x * (104.649839762 + (x * 0.99994466948))))))); // eslint-disable-line max-len
+		s2 = 3970.03311219 + (x * (3119.93802124 + (x * (823.313447808 + (x * (104.526456943 + (x * 1.0))))))); // eslint-disable-line max-len
+	}
+	return s1 / s2;
+}
+
+
+// EXPORTS //
+
+var _$evalrational_382 = __evalrational_382;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
 'use strict';
 
 // MODULES //
 
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
-/* removed: var _$evalrational_376 = require( './rational_ak4bk4.js' ); */;
-/* removed: var _$evalrational_377 = require( './rational_ak5bk5.js' ); */;
-/* removed: var _$evalrational_378 = require( './rational_ak6bk6.js' ); */;
-/* removed: var _$evalrational_379 = require( './rational_ak7bk7.js' ); */;
-/* removed: var _$evalrational_380 = require( './rational_ak8bk8.js' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$evalrational_380 = require( './rational_ak1bk1.js' ); */;
+/* removed: var _$evalrational_381 = require( './rational_ak2bk2.js' ); */;
+/* removed: var _$evalrational_382 = require( './rational_ak3bk3.js' ); */;
+
+
+// MAIN //
+
+/**
+* Evaluates the `eps2` function.
+*
+* @private
+* @param {number} eta - eta value
+* @returns {number} function value
+*/
+function eps2( eta ) {
+	var lnmeta;
+	var x;
+	if ( eta < -5.0 ) {
+		x = eta * eta;
+		lnmeta = _$ln_461( -eta );
+		return ( 12.0 - x - ( 6.0*( lnmeta*lnmeta ) ) ) / ( 12.0*x*eta );
+	}
+	if ( eta < -2.0 ) {
+		return _$evalrational_380( eta );
+	}
+	if ( eta < 2.0 ) {
+		return _$evalrational_381( eta );
+	}
+	if ( eta < 1000.0 ) {
+		x = 1.0 / eta;
+		return _$evalrational_382( eta ) / ( -12.0*eta );
+	}
+	return -1.0 / ( 12.0 * eta );
+}
+
+
+// EXPORTS //
+
+var _$eps2_368 = eps2;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+*
+* ## Notes
+*
+* -   Coefficients should be sorted in ascending degree.
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the rational function
+* @returns {number} evaluated rational function
+*/
+function __evalrational_383( x ) {
+	var ax;
+	var s1;
+	var s2;
+	if ( x === 0.0 ) {
+		return 0.0495346498136;
+	}
+	if ( x < 0.0 ) {
+		ax = -x;
+	} else {
+		ax = x;
+	}
+	if ( ax <= 1.0 ) {
+		s1 = 0.0495346498136 + (x * (0.0299521337141 + (x * (0.00688296911516 + (x * (0.000512634846317 + (x * -0.0000201411722031))))))); // eslint-disable-line max-len
+		s2 = 1.0 + (x * (0.759803615283 + (x * (0.261547111595 + (x * (0.0464854522477 + (x * 0.00403751193496))))))); // eslint-disable-line max-len
+	} else {
+		x = 1.0 / x;
+		s1 = -0.0000201411722031 + (x * (0.000512634846317 + (x * (0.00688296911516 + (x * (0.0299521337141 + (x * 0.0495346498136))))))); // eslint-disable-line max-len
+		s2 = 0.00403751193496 + (x * (0.0464854522477 + (x * (0.261547111595 + (x * (0.759803615283 + (x * 1.0))))))); // eslint-disable-line max-len
+	}
+	return s1 / s2;
+}
+
+
+// EXPORTS //
+
+var _$evalrational_383 = __evalrational_383;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+*
+* ## Notes
+*
+* -   Coefficients should be sorted in ascending degree.
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the rational function
+* @returns {number} evaluated rational function
+*/
+function __evalrational_384( x ) {
+	var ax;
+	var s1;
+	var s2;
+	if ( x === 0.0 ) {
+		return 0.00452313583942;
+	}
+	if ( x < 0.0 ) {
+		ax = -x;
+	} else {
+		ax = x;
+	}
+	if ( ax <= 1.0 ) {
+		s1 = 0.00452313583942 + (x * (0.00120744920113 + (x * (-0.0000789724156582 + (x * (-0.0000504476066942 + (x * -0.00000535770949796))))))); // eslint-disable-line max-len
+		s2 = 1.0 + (x * (0.912203410349 + (x * (0.405368773071 + (x * (0.0901638932349 + (x * 0.00948935714996))))))); // eslint-disable-line max-len
+	} else {
+		x = 1.0 / x;
+		s1 = -0.00000535770949796 + (x * (-0.0000504476066942 + (x * (-0.0000789724156582 + (x * (0.00120744920113 + (x * 0.00452313583942))))))); // eslint-disable-line max-len
+		s2 = 0.00948935714996 + (x * (0.0901638932349 + (x * (0.405368773071 + (x * (0.912203410349 + (x * 1.0))))))); // eslint-disable-line max-len
+	}
+	return s1 / s2;
+}
+
+
+// EXPORTS //
+
+var _$evalrational_384 = __evalrational_384;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+*
+* ## Notes
+*
+* -   Coefficients should be sorted in ascending degree.
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the rational function
+* @returns {number} evaluated rational function
+*/
+function __evalrational_385( x ) {
+	var ax;
+	var s1;
+	var s2;
+	if ( x === 0.0 ) {
+		return 0.00439937562904;
+	}
+	if ( x < 0.0 ) {
+		ax = -x;
+	} else {
+		ax = x;
+	}
+	if ( ax <= 1.0 ) {
+		s1 = 0.00439937562904 + (x * (0.000487225670639 + (x * (-0.000128470657374 + (x * (0.00000529110969589 + (x * 1.5716677175e-7))))))); // eslint-disable-line max-len
+		s2 = 1.0 + (x * (0.794435257415 + (x * (0.333094721709 + (x * (0.0703527806143 + (x * 0.00806110846078))))))); // eslint-disable-line max-len
+	} else {
+		x = 1.0 / x;
+		s1 = 1.5716677175e-7 + (x * (0.00000529110969589 + (x * (-0.000128470657374 + (x * (0.000487225670639 + (x * 0.00439937562904))))))); // eslint-disable-line max-len
+		s2 = 0.00806110846078 + (x * (0.0703527806143 + (x * (0.333094721709 + (x * (0.794435257415 + (x * 1.0))))))); // eslint-disable-line max-len
+	}
+	return s1 / s2;
+}
+
+
+// EXPORTS //
+
+var _$evalrational_385 = __evalrational_385;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+*
+* ## Notes
+*
+* -   Coefficients should be sorted in ascending degree.
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the rational function
+* @returns {number} evaluated rational function
+*/
+function __evalrational_386( x ) {
+	var ax;
+	var s1;
+	var s2;
+	if ( x === 0.0 ) {
+		return -0.0011481191232;
+	}
+	if ( x < 0.0 ) {
+		ax = -x;
+	} else {
+		ax = x;
+	}
+	if ( ax <= 1.0 ) {
+		s1 = -0.0011481191232 + (x * (-0.112850923276 + (x * (1.51623048511 + (x * (-0.218472031183 + (x * 0.0730002451555))))))); // eslint-disable-line max-len
+		s2 = 1.0 + (x * (14.2482206905 + (x * (69.7360396285 + (x * (218.938950816 + (x * 277.067027185))))))); // eslint-disable-line max-len
+	} else {
+		x = 1.0 / x;
+		s1 = 0.0730002451555 + (x * (-0.218472031183 + (x * (1.51623048511 + (x * (-0.112850923276 + (x * -0.0011481191232))))))); // eslint-disable-line max-len
+		s2 = 277.067027185 + (x * (218.938950816 + (x * (69.7360396285 + (x * (14.2482206905 + (x * 1.0))))))); // eslint-disable-line max-len
+	}
+	return s1 / s2;
+}
+
+
+// EXPORTS //
+
+var _$evalrational_386 = __evalrational_386;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+*
+* ## Notes
+*
+* -   Coefficients should be sorted in ascending degree.
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the rational function
+* @returns {number} evaluated rational function
+*/
+function __evalrational_387( x ) {
+	var ax;
+	var s1;
+	var s2;
+	if ( x === 0.0 ) {
+		return -0.000145727889667;
+	}
+	if ( x < 0.0 ) {
+		ax = -x;
+	} else {
+		ax = x;
+	}
+	if ( ax <= 1.0 ) {
+		s1 = -0.000145727889667 + (x * (-0.290806748131 + (x * (-13.308504545 + (x * (199.722374056 + (x * -11.4311378756))))))); // eslint-disable-line max-len
+		s2 = 1.0 + (x * (139.612587808 + (x * (2189.01116348 + (x * (7115.24019009 + (x * 45574.6081453))))))); // eslint-disable-line max-len
+	} else {
+		x = 1.0 / x;
+		s1 = -11.4311378756 + (x * (199.722374056 + (x * (-13.308504545 + (x * (-0.290806748131 + (x * -0.000145727889667))))))); // eslint-disable-line max-len
+		s2 = 45574.6081453 + (x * (7115.24019009 + (x * (2189.01116348 + (x * (139.612587808 + (x * 1.0))))))); // eslint-disable-line max-len
+	}
+	return s1 / s2;
+}
+
+
+// EXPORTS //
+
+var _$evalrational_387 = __evalrational_387;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$evalrational_383 = require( './rational_ak4bk4.js' ); */;
+/* removed: var _$evalrational_384 = require( './rational_ak5bk5.js' ); */;
+/* removed: var _$evalrational_385 = require( './rational_ak6bk6.js' ); */;
+/* removed: var _$evalrational_386 = require( './rational_ak7bk7.js' ); */;
+/* removed: var _$evalrational_387 = require( './rational_ak8bk8.js' ); */;
 
 
 // MAIN //
@@ -28717,33 +28717,33 @@ function eps3( eta ) {
 
 	if ( eta < -8.0 ) {
 		x = eta * eta;
-		y = _$ln_454( -eta ) / eta;
+		y = _$ln_461( -eta ) / eta;
 		return ( -30.0 + ( eta*y*( (6.0*x*y*y)-12.0+x ) ) ) / ( 12.0*eta*x*x );
 	}
 	if ( eta < -4.0 ) {
-		return _$evalrational_376( eta ) / ( eta*eta );
+		return _$evalrational_383( eta ) / ( eta*eta );
 	}
 	if ( eta < -2.0 ) {
-		return _$evalrational_377( eta );
+		return _$evalrational_384( eta );
 	}
 	if ( eta < 2.0 ) {
-		return _$evalrational_378( eta );
+		return _$evalrational_385( eta );
 	}
 	if ( eta < 10.0 ) {
 		x = 1.0 / eta;
-		return _$evalrational_379( x ) / ( eta*eta );
+		return _$evalrational_386( x ) / ( eta*eta );
 	}
 	if ( eta < 100.0 ) {
 		x = 1.0 / eta;
-		return _$evalrational_380( x ) / ( eta*eta );
+		return _$evalrational_387( x ) / ( eta*eta );
 	}
-	return -_$ln_454( eta ) / ( 12.0*eta*eta*eta );
+	return -_$ln_461( eta ) / ( 12.0*eta*eta*eta );
 }
 
 
 // EXPORTS //
 
-var _$eps3_362 = eps3;
+var _$eps3_369 = eps3;
 
 /**
 * @license Apache-2.0
@@ -28769,37 +28769,37 @@ var _$eps3_362 = eps3;
 
 // MODULES //
 
-/* removed: var _$browser_814 = require( 'debug' ); */;
-/* removed: var _$evalpoly_507 = require( '@stdlib/math/base/tools/evalpoly' ); */;
-/* removed: var _$gammaln_383 = require( '@stdlib/math/base/special/gammaln' ); */;
+/* removed: var _$browser_865 = require( 'debug' ); */;
+/* removed: var _$evalpoly_514 = require( '@stdlib/math/base/tools/evalpoly' ); */;
+/* removed: var _$gammaln_390 = require( '@stdlib/math/base/special/gammaln' ); */;
 /* removed: var _$erfcinv_295 = require( '@stdlib/math/base/special/erfcinv' ); */;
-/* removed: var _$gamma_325 = require( '@stdlib/math/base/special/gamma' ); */;
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$gamma_332 = require( '@stdlib/math/base/special/gamma' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$min_465 = require( '@stdlib/math/base/special/min' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$min_472 = require( '@stdlib/math/base/special/min' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$SQRT_TWO_PI_211 = require( '@stdlib/constants/math/float64-sqrt-two-pi' ); */;
 /* removed: var _$FLOAT32_MAX_185 = require( '@stdlib/constants/math/float32-max' ); */;
 /* removed: var _$TWO_PI_213 = require( '@stdlib/constants/math/float64-two-pi' ); */;
-/* removed: var _$higherNewton_365 = require( './higher_newton.js' ); */;
-/* removed: var _$lambdaeta_367 = require( './lambdaeta.js' ); */;
-/* removed: var _$gamstar_364 = require( './gamstar.js' ); */;
-/* removed: var _$eps1_360 = require( './eps1.js' ); */;
-/* removed: var _$eps2_361 = require( './eps2.js' ); */;
-/* removed: var _$eps3_362 = require( './eps3.js' ); */;
+/* removed: var _$higherNewton_372 = require( './higher_newton.js' ); */;
+/* removed: var _$lambdaeta_374 = require( './lambdaeta.js' ); */;
+/* removed: var _$gamstar_371 = require( './gamstar.js' ); */;
+/* removed: var _$eps1_367 = require( './eps1.js' ); */;
+/* removed: var _$eps2_368 = require( './eps2.js' ); */;
+/* removed: var _$eps3_369 = require( './eps3.js' ); */;
 
 
 // VARIABLES //
 
-var __debug_359 = _$browser_814( 'gammaincinv:compute' );
+var __debug_366 = _$browser_865( 'gammaincinv:compute' );
 var HALF = 0.5;
 var ONEO3 = 0.333333333333333333333333333333;
 var ONEO4 = 0.25;
 var ONEO5 = 0.2;
 var ONEO6 = 0.166666666666666666666666666667;
-var __ONEO12_359 = 0.0833333333333333333333333333333;
+var __ONEO12_366 = 0.0833333333333333333333333333333;
 var ONEO24 = 0.0416666666666666666666666666667;
 
 // Coefficient workspace:
@@ -28821,7 +28821,7 @@ var CK = [ 0.0, 0.0, 0.0, 0.0, 0.0 ]; // WARNING: not thread safe
 * @param {Probability} q - probability value
 * @returns {number} solution of the equations `P(a,xr) = p` and `Q(a,xr) = q` where `a` is a positive parameter
 */
-function __compute_359( a, p, q ) {
+function __compute_366( a, p, q ) {
 	var ap1inv;
 	var invfp;
 	var lgama;
@@ -28888,42 +28888,42 @@ function __compute_359( a, p, q ) {
 				p6 = p5 * p;
 				x0 = p + ( p2*HALF ) + ( p3*(ONEO3) ) + ( p4*ONEO4 ) + ( p5*ONEO5 ) + ( p6*(ONEO6) ); // eslint-disable-line max-len
 			} else {
-				x0 = -_$ln_454( 1.0-p );
+				x0 = -_$ln_461( 1.0-p );
 			}
 		} else {
-			x0 = -_$ln_454( q );
+			x0 = -_$ln_461( q );
 		}
 		if ( a === 1.0 ) {
 			k = 2;
 			xr = x0;
 		} else {
-			lgama = _$gammaln_383( a );
+			lgama = _$gammaln_390( a );
 			k = 1;
 		}
 	}
 	if ( q < 1.0e-30 && a < HALF ) {
 		m = 0;
-		x0 = -_$ln_454( q*_$gamma_325(a) ) + ( ( a-1.0 ) * _$ln_454( -_$ln_454( q*_$gamma_325(a) ) ));
+		x0 = -_$ln_461( q*_$gamma_332(a) ) + ( ( a-1.0 ) * _$ln_461( -_$ln_461( q*_$gamma_332(a) ) ));
 		k = 1;
-		lgama = _$gammaln_383( a );
+		lgama = _$gammaln_390( a );
 	}
 	if ( a > 1.0 && a < 500.0 && p < 1.0e-80 ) {
 		m = 0;
 		ainv = 1.0 / a;
 		ap1inv = 1.0 / ( a+1.0 );
-		x0 = ( _$gammaln_383( a+1.0 ) + _$ln_454( p ) ) * ainv;
-		x0 = _$exp_303( x0 );
+		x0 = ( _$gammaln_390( a+1.0 ) + _$ln_461( p ) ) * ainv;
+		x0 = _$exp_310( x0 );
 		xini = x0;
 		for ( i = 0; i < 10; i++ ) {
-			x0 = xini * _$exp_303( x0*ainv ) * _$pow_469( 1.0-( x0*ap1inv ), ainv );
+			x0 = xini * _$exp_310( x0*ainv ) * _$pow_476( 1.0-( x0*ap1inv ), ainv );
 		}
 		k = 1;
-		lgama = _$gammaln_383( a );
+		lgama = _$gammaln_390( a );
 	}
 
-	logr = (1.0/a) * ( _$ln_454(p) + _$gammaln_383( a+1.0 ) );
-	if ( ( logr < _$ln_454( ONEO5 * ( 1.0+a ) ) ) && ( k === 0 ) ) {
-		r = _$exp_303( logr );
+	logr = (1.0/a) * ( _$ln_461(p) + _$gammaln_390( a+1.0 ) );
+	if ( ( logr < _$ln_461( ONEO5 * ( 1.0+a ) ) ) && ( k === 0 ) ) {
+		r = _$exp_310( logr );
 		m = 0;
 		a2 = a * a;
 		a3 = a2 * a;
@@ -28940,21 +28940,21 @@ function __compute_359( a, p, q ) {
 		CK[ 2 ] = HALF * ( ( 3.0*a ) + 5.0 ) / ( ap12*ap2 );
 		CK[ 3 ] = ONEO3 * ( 31.0 + (8.0*a2) + (33.0*a) ) / ( ap13*ap2*ap3 );
 		CK[ 4 ] = ONEO24 * ( 2888.0 + (1179.0*a3) + (125.0*a4) + (3971.0*a2) + (5661.0*a) ) / ( ap14*ap22*ap3*( a+4.0 ) ); // eslint-disable-line max-len
-		x0 = r * _$evalpoly_507( CK, r );
-		lgama = _$gammaln_383( a );
+		x0 = r * _$evalpoly_514( CK, r );
+		lgama = _$gammaln_390( a );
 		k = 1;
 	}
 	if ( ( a < 10.0 ) && ( k === 0 ) ) {
-		vgam = _$sqrt_494( a ) / ( _$gamstar_364(a)*_$SQRT_TWO_PI_211 );
-		vmin = _$min_465( 0.02, vgam );
+		vgam = _$sqrt_501( a ) / ( _$gamstar_371(a)*_$SQRT_TWO_PI_211 );
+		vmin = _$min_472( 0.02, vgam );
 		if ( q < vmin ) {
 			m = 0;
 			b = 1.0 - a;
 			b2 = b * b;
 			b3 = b2 * b;
-			eta = _$sqrt_494( -2.0/a * _$ln_454( q/vgam ) );
-			x0 = a * _$lambdaeta_367( eta );
-			L = _$ln_454( x0 );
+			eta = _$sqrt_501( -2.0/a * _$ln_461( q/vgam ) );
+			x0 = a * _$lambdaeta_374( eta );
+			L = _$ln_461( x0 );
 			if ( x0 > 5.0 ) {
 				L2 = L * L;
 				L3 = L2 * L;
@@ -28963,9 +28963,9 @@ function __compute_359( a, p, q ) {
 				CK[ 0 ] = L - 1.0;
 				CK[ 1 ] = ( (3.0*b) - (2.0*b*L) + L2 - ( 2.0*L ) + 2.0 ) * HALF;
 				CK[ 2 ] =( (24.0*b*L) - (11.0*b2) - (24.0*b) - (6.0*L2) + (12.0*L) - 12.0 - (9.0*b*L2) + (6.0*b2*L) + (2.0*L3) ) * ONEO6; // eslint-disable-line max-len
-				CK[ 3 ] = ( (-12.0*b3*L) + (8.04*b*L2) - (114.0*b2*L) + (72.0+(36.0*L2)) + (((3.0*L4)-(72.0*L)+162.0) * (b-(168.0*b*L))) - ((12.0*L3)+(25.0*b3)) - ( (22.0*b*L3)+(36.0*b2*L2)+(120.0*b2) ) ) * __ONEO12_359; // eslint-disable-line max-len
+				CK[ 3 ] = ( (-12.0*b3*L) + (8.04*b*L2) - (114.0*b2*L) + (72.0+(36.0*L2)) + (((3.0*L4)-(72.0*L)+162.0) * (b-(168.0*b*L))) - ((12.0*L3)+(25.0*b3)) - ( (22.0*b*L3)+(36.0*b2*L2)+(120.0*b2) ) ) * __ONEO12_366; // eslint-disable-line max-len
 				CK[ 4 ] = 0.0;
-				x0 = x0 - L + ( b*r*_$evalpoly_507( CK, r ) );
+				x0 = x0 - L + ( b*r*_$evalpoly_514( CK, r ) );
 			} else {
 				r = 1.0 / x0;
 				L2 = L * L;
@@ -28975,7 +28975,7 @@ function __compute_359( a, p, q ) {
 					x0 -= t;
 				}
 			}
-			lgama = _$gammaln_383( a );
+			lgama = _$gammaln_390( a );
 			k = 1;
 		}
 	}
@@ -28984,37 +28984,37 @@ function __compute_359( a, p, q ) {
 		ainv = 1.0 / a;
 		x0 = a - ONEO3 + ( ( 0.0197530864197530864197530864198 +
 			( 0.00721144424848128551832255535959*ainv ) ) * ainv );
-		lgama = _$gammaln_383( a );
+		lgama = _$gammaln_390( a );
 		k = 1;
 	}
 	if ( ( a < 1.0 ) && ( k === 0 ) ) {
 		m = 0;
 		if (pcase) {
-			x0 = _$exp_303( (1.0/a) * ( _$ln_454(porq) + _$gammaln_383(a+1.0) ) );
+			x0 = _$exp_310( (1.0/a) * ( _$ln_461(porq) + _$gammaln_390(a+1.0) ) );
 		} else {
-			x0 = _$exp_303( (1.0/a) * ( _$ln_454(1.0-porq) + _$gammaln_383(a+1.0) ) );
+			x0 = _$exp_310( (1.0/a) * ( _$ln_461(1.0-porq) + _$gammaln_390(a+1.0) ) );
 		}
-		lgama = _$gammaln_383( a );
+		lgama = _$gammaln_390( a );
 		k = 1;
 	}
 	if ( k === 0 ) {
 		m = 1;
 		ainv = 1.0 / a;
 		r = _$erfcinv_295( 2.0 * porq );
-		eta = s * r / _$sqrt_494( a*HALF );
+		eta = s * r / _$sqrt_501( a*HALF );
 		if ( r < _$FLOAT32_MAX_185 ) {
-			eta += ( _$eps1_360(eta) + ( (_$eps2_361(eta)+(_$eps3_362(eta)*ainv))*ainv ) ) * ainv;
-			x0 = a * _$lambdaeta_367(eta);
+			eta += ( _$eps1_367(eta) + ( (_$eps2_368(eta)+(_$eps3_369(eta)*ainv))*ainv ) ) * ainv;
+			x0 = a * _$lambdaeta_374(eta);
 			y = eta;
-			fp = -_$sqrt_494( a/_$TWO_PI_213 ) * _$exp_303( -HALF*a*y*y ) / ( _$gamstar_364(a) );
+			fp = -_$sqrt_501( a/_$TWO_PI_213 ) * _$exp_310( -HALF*a*y*y ) / ( _$gamstar_371(a) );
 			invfp = 1.0 / fp;
 		} else {
-			__debug_359( 'Warning: Overflow problems in one or more steps of the computation.' );
+			__debug_366( 'Warning: Overflow problems in one or more steps of the computation.' );
 			return NaN;
 		}
 	}
 	if ( k < 2 ) {
-		xr = _$higherNewton_365( x0, a, m, p, q, lgama, invfp, pcase );
+		xr = _$higherNewton_372( x0, a, m, p, q, lgama, invfp, pcase );
 	}
 	return xr;
 }
@@ -29022,7 +29022,7 @@ function __compute_359( a, p, q ) {
 
 // EXPORTS //
 
-var _$compute_359 = __compute_359;
+var _$compute_366 = __compute_366;
 
 /**
 * @license Apache-2.0
@@ -29062,7 +29062,7 @@ var _$compute_359 = __compute_359;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$FLOAT32_SMALLEST_NORMAL_186 = require( '@stdlib/constants/math/float32-smallest-normal' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
-/* removed: var _$compute_359 = require( './compute.js' ); */;
+/* removed: var _$compute_366 = require( './compute.js' ); */;
 
 
 // MAIN //
@@ -29107,7 +29107,7 @@ function gammaincinv( p, a, upper ) {
 		if ( p === 1.0 ) {
 			return 0.0;
 		}
-		return _$compute_359( a, 1.0-p, p );
+		return _$compute_366( a, 1.0-p, p );
 	}
 	// Default: invert lower gamma function
 	if ( p === 0.0 ) {
@@ -29116,13 +29116,13 @@ function gammaincinv( p, a, upper ) {
 	if ( p === 1.0 ) {
 		return _$FLOAT64_PINF_207;
 	}
-	return _$compute_359( a, p, 1.0-p );
+	return _$compute_366( a, p, 1.0-p );
 }
 
 
 // EXPORTS //
 
-var _$gammaincinv_363 = gammaincinv;
+var _$gammaincinv_370 = gammaincinv;
 
 /**
 * @license Apache-2.0
@@ -29173,12 +29173,12 @@ var _$gammaincinv_363 = gammaincinv;
 
 // MODULES //
 
-/* removed: var _$gammaincinv_363 = require( './gammaincinv.js' ); */;
+/* removed: var _$gammaincinv_370 = require( './gammaincinv.js' ); */;
 
 
 // EXPORTS //
 
-var _$gammaincinv_366 = _$gammaincinv_363;
+var _$gammaincinv_373 = _$gammaincinv_370;
 
 /**
 * @license Apache-2.0
@@ -29217,8 +29217,8 @@ var _$gammaincinv_366 = _$gammaincinv_363;
 // MODULES //
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$setLowWord_532 = require( '@stdlib/number/float64/base/set-low-word' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$setLowWord_539 = require( '@stdlib/number/float64/base/set-low-word' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
 /* removed: var _$FLOAT64_NINF_205 = require( '@stdlib/constants/math/float64-ninf' ); */;
 /* removed: var _$evalpoly_277 = require( './polyval_pp.js' ); */;
@@ -29568,8 +29568,8 @@ function erf( x ) {
 		r = __RBC_274 + ( s*_$evalpoly_281( s ) );
 		s = __SBC_274 + ( s*_$evalpoly_283( s ) );
 	}
-	z = _$setLowWord_532( ax, 0 ); // pseudo-single (20-bit) precision x
-	r = _$exp_303( -(z*z) - 0.5625 ) * _$exp_303( ( (z-ax) * (z+ax) ) + (r/s) );
+	z = _$setLowWord_539( ax, 0 ); // pseudo-single (20-bit) precision x
+	r = _$exp_310( -(z*z) - 0.5625 ) * _$exp_310( ( (z-ax) * (z+ax) ) + (r/s) );
 	if ( sign ) {
 		return (r/ax) - 1.0;
 	}
@@ -29849,7 +29849,7 @@ var _$evalrational_248 = __evalrational_248;
 // MODULES //
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
 /* removed: var _$FOURTH_PI_191 = require( '@stdlib/constants/math/float64-fourth-pi' ); */;
 /* removed: var _$evalrational_247 = require( './rational_pq.js' ); */;
 /* removed: var _$evalrational_248 = require( './rational_rs.js' ); */;
@@ -29930,7 +29930,7 @@ function asin( x ) {
 		// arcsin(1-x) = pi/2 - sqrt(2x)(1+R(x))
 		zz = 1.0 - a;
 		p = zz * _$evalrational_248( zz );
-		zz = _$sqrt_494( zz + zz );
+		zz = _$sqrt_501( zz + zz );
 		z = _$FOURTH_PI_191 - zz;
 		zz = ( zz*p ) - MOREBITS;
 		z -= zz;
@@ -30150,7 +30150,7 @@ var _$HALF_PI_194 = HALF_PI;
 * @param {number} x - value at which to evaluate the rational function
 * @returns {number} evaluated rational function
 */
-function __evalrational_323( x ) {
+function __evalrational_330( x ) {
 	var ax;
 	var s1;
 	var s2;
@@ -30176,7 +30176,7 @@ function __evalrational_323( x ) {
 
 // EXPORTS //
 
-var _$evalrational_323 = __evalrational_323;
+var _$evalrational_330 = __evalrational_330;
 
 /**
 * @license Apache-2.0
@@ -30245,12 +30245,12 @@ var _$evalrational_323 = __evalrational_323;
 * var v = gammaLanczosSum( NaN );
 * // returns NaN
 */
-/* removed: var _$evalrational_323 = require( './rational_pq.js' ); */;
+/* removed: var _$evalrational_330 = require( './rational_pq.js' ); */;
 
 
 // EXPORTS //
 
-var _$gammaLanczosSum_321 = _$evalrational_323;
+var _$gammaLanczosSum_328 = _$evalrational_330;
 
 /**
 * @license Apache-2.0
@@ -30301,12 +30301,12 @@ var _$gammaLanczosSum_321 = _$evalrational_323;
 
 // MODULES //
 
-/* removed: var _$gammaLanczosSum_321 = require( './gamma_lanczos_sum.js' ); */;
+/* removed: var _$gammaLanczosSum_328 = require( './gamma_lanczos_sum.js' ); */;
 
 
 // EXPORTS //
 
-var _$gammaLanczosSum_322 = _$gammaLanczosSum_321;
+var _$gammaLanczosSum_329 = _$gammaLanczosSum_328;
 
 /**
 * @license Apache-2.0
@@ -30346,12 +30346,12 @@ var _$gammaLanczosSum_322 = _$gammaLanczosSum_321;
 
 // MODULES //
 
-/* removed: var _$gammaLanczosSum_322 = require( '@stdlib/math/base/special/gamma-lanczos-sum' ); */;
-/* removed: var _$gamma_325 = require( '@stdlib/math/base/special/gamma' ); */;
-/* removed: var _$log1p_458 = require( '@stdlib/math/base/special/log1p' ); */;
+/* removed: var _$gammaLanczosSum_329 = require( '@stdlib/math/base/special/gamma-lanczos-sum' ); */;
+/* removed: var _$gamma_332 = require( '@stdlib/math/base/special/gamma' ); */;
+/* removed: var _$log1p_465 = require( '@stdlib/math/base/special/log1p' ); */;
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
 /* removed: var _$FLOAT64_EPSILON_188 = require( '@stdlib/constants/math/float64-eps' ); */;
 /* removed: var _$E_187 = require( '@stdlib/constants/math/float64-e' ); */;
 /* removed: var _$FLOAT64_GAMMA_LANCZOS_G_192 = require( '@stdlib/constants/math/float64-gamma-lanczos-g' ); */;
@@ -30359,7 +30359,7 @@ var _$gammaLanczosSum_322 = _$gammaLanczosSum_321;
 
 // VARIABLES //
 
-var __MAX_FACTORIAL_316 = 170; // TODO: consider moving to pkg
+var __MAX_FACTORIAL_323 = 170; // TODO: consider moving to pkg
 var FACTORIAL_169 = 4.269068009004705e+304;
 
 
@@ -30390,38 +30390,38 @@ function gammaDeltaRatioLanczos( z, delta ) {
 	var zgh;
 
 	if ( z < _$FLOAT64_EPSILON_188 ) {
-		if ( delta > __MAX_FACTORIAL_316 ) {
-			ratio = gammaDeltaRatioLanczos( delta, __MAX_FACTORIAL_316-delta );
+		if ( delta > __MAX_FACTORIAL_323 ) {
+			ratio = gammaDeltaRatioLanczos( delta, __MAX_FACTORIAL_323-delta );
 			ratio *= z;
 			ratio *= FACTORIAL_169;
 			return 1.0 / ratio;
 		}
-		return 1.0 / ( z * _$gamma_325( z+delta ) );
+		return 1.0 / ( z * _$gamma_332( z+delta ) );
 	}
 	zgh = z + _$FLOAT64_GAMMA_LANCZOS_G_192 - 0.5;
 	if ( z + delta === z ) {
 		if ( _$abs_242(delta) < 10.0 ) {
-			result = _$exp_303( ( 0.5-z ) * _$log1p_458( delta/zgh ) );
+			result = _$exp_310( ( 0.5-z ) * _$log1p_465( delta/zgh ) );
 		} else {
 			result = 1.0;
 		}
 	} else {
 		if ( _$abs_242(delta) < 10.0 ) {
-			result = _$exp_303( ( 0.5-z ) * _$log1p_458( delta/zgh ));
+			result = _$exp_310( ( 0.5-z ) * _$log1p_465( delta/zgh ));
 		} else {
-			result = _$pow_469( zgh / (zgh+delta), z-0.5 );
+			result = _$pow_476( zgh / (zgh+delta), z-0.5 );
 		}
 		// Split up the calculation to avoid spurious overflow:
-		result *= _$gammaLanczosSum_322( z ) / _$gammaLanczosSum_322( z + delta );
+		result *= _$gammaLanczosSum_329( z ) / _$gammaLanczosSum_329( z + delta );
 	}
-	result *= _$pow_469( _$E_187 / ( zgh+delta ), delta );
+	result *= _$pow_476( _$E_187 / ( zgh+delta ), delta );
 	return result;
 }
 
 
 // EXPORTS //
 
-var _$gammaDeltaRatioLanczos_316 = gammaDeltaRatioLanczos;
+var _$gammaDeltaRatioLanczos_323 = gammaDeltaRatioLanczos;
 
 /**
 * @license Apache-2.0
@@ -30462,15 +30462,15 @@ var _$gammaDeltaRatioLanczos_316 = gammaDeltaRatioLanczos;
 // MODULES //
 
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$floor_314 = require( '@stdlib/math/base/special/floor' ); */;
-/* removed: var _$gamma_325 = require( '@stdlib/math/base/special/gamma' ); */;
-/* removed: var _$factorial_310 = require( '@stdlib/math/base/special/factorial' ); */;
-/* removed: var _$gammaDeltaRatioLanczos_316 = require( './gamma_delta_ratio_lanczos.js' ); */;
+/* removed: var _$floor_321 = require( '@stdlib/math/base/special/floor' ); */;
+/* removed: var _$gamma_332 = require( '@stdlib/math/base/special/gamma' ); */;
+/* removed: var _$factorial_317 = require( '@stdlib/math/base/special/factorial' ); */;
+/* removed: var _$gammaDeltaRatioLanczos_323 = require( './gamma_delta_ratio_lanczos.js' ); */;
 
 
 // VARIABLES //
 
-var __MAX_FACTORIAL_315 = 170; // TODO: consider moving to pkg
+var __MAX_FACTORIAL_322 = 170; // TODO: consider moving to pkg
 
 
 // MAIN //
@@ -30509,15 +30509,15 @@ function gammaDeltaRatio( z, delta ) {
 
 	if ( z <= 0.0 || z + delta <= 0.0 ) {
 		// This isn't very sophisticated, or accurate, but it does work:
-		return _$gamma_325( z ) / _$gamma_325( z + delta );
+		return _$gamma_332( z ) / _$gamma_332( z + delta );
 	}
-	idelta = _$floor_314( delta );
+	idelta = _$floor_321( delta );
 	if ( idelta === delta ) {
-		iz = _$floor_314( z );
+		iz = _$floor_321( z );
 		if ( iz === z ) {
 			// As both `z` and `delta` are integers, see if we can use a table lookup:
-			if ( z <= __MAX_FACTORIAL_315 && ( z + delta <= __MAX_FACTORIAL_315 ) ) {
-				return _$factorial_310( iz - 1.0 ) / _$factorial_310( idelta + iz - 1.0 );
+			if ( z <= __MAX_FACTORIAL_322 && ( z + delta <= __MAX_FACTORIAL_322 ) ) {
+				return _$factorial_317( iz - 1.0 ) / _$factorial_317( idelta + iz - 1.0 );
 			}
 		}
 		if ( _$abs_242(delta) < 20.0 ) {
@@ -30546,13 +30546,13 @@ function gammaDeltaRatio( z, delta ) {
 			return result;
 		}
 	}
-	return _$gammaDeltaRatioLanczos_316( z, delta );
+	return _$gammaDeltaRatioLanczos_323( z, delta );
 }
 
 
 // EXPORTS //
 
-var _$gammaDeltaRatio_315 = gammaDeltaRatio;
+var _$gammaDeltaRatio_322 = gammaDeltaRatio;
 
 /**
 * @license Apache-2.0
@@ -30594,12 +30594,12 @@ var _$gammaDeltaRatio_315 = gammaDeltaRatio;
 
 // MODULES //
 
-/* removed: var _$gammaDeltaRatio_315 = require( './gamma_delta_ratio.js' ); */;
+/* removed: var _$gammaDeltaRatio_322 = require( './gamma_delta_ratio.js' ); */;
 
 
 // EXPORTS //
 
-var _$gammaDeltaRatio_317 = _$gammaDeltaRatio_315;
+var _$gammaDeltaRatio_324 = _$gammaDeltaRatio_322;
 
 /**
 * @license Apache-2.0
@@ -30637,9 +30637,9 @@ var _$gammaDeltaRatio_317 = _$gammaDeltaRatio_315;
 
 // MODULES //
 
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$FLOAT64_MAX_LN_200 = require( '@stdlib/constants/math/float64-max-ln' ); */;
 /* removed: var _$FLOAT64_MIN_LN_204 = require( '@stdlib/constants/math/float64-min-ln' ); */;
 
@@ -30654,30 +30654,30 @@ var _$gammaDeltaRatio_317 = _$gammaDeltaRatio_315;
 * @param {number} z - function parameter
 * @returns {number} power term prefix
 */
-function __fullIGammaPrefix_396( a, z ) {
+function __fullIGammaPrefix_403( a, z ) {
 	var prefix;
 	var alz;
 
-	alz = a * _$ln_454( z );
+	alz = a * _$ln_461( z );
 	if ( z >= 1.0 ) {
 		if ( ( alz < _$FLOAT64_MAX_LN_200 ) && ( -z > _$FLOAT64_MIN_LN_204 ) ) {
-			prefix = _$pow_469( z, a ) * _$exp_303( -z );
+			prefix = _$pow_476( z, a ) * _$exp_310( -z );
 		}
 		else if ( a >= 1.0 ) {
-			prefix = _$pow_469( z / _$exp_303(z/a), a );
+			prefix = _$pow_476( z / _$exp_310(z/a), a );
 		}
 		else {
-			prefix = _$exp_303( alz - z );
+			prefix = _$exp_310( alz - z );
 		}
 	}
 	else if ( alz > _$FLOAT64_MIN_LN_204 ) {
-		prefix = _$pow_469( z, a ) * _$exp_303( -z );
+		prefix = _$pow_476( z, a ) * _$exp_310( -z );
 	}
 	else if ( z/a < _$FLOAT64_MAX_LN_200 ) {
-		prefix = _$pow_469( z / _$exp_303(z/a), a );
+		prefix = _$pow_476( z / _$exp_310(z/a), a );
 	}
 	else {
-		prefix = _$exp_303( alz - z );
+		prefix = _$exp_310( alz - z );
 	}
 	return prefix;
 }
@@ -30685,7 +30685,7 @@ function __fullIGammaPrefix_396( a, z ) {
 
 // EXPORTS //
 
-var _$fullIGammaPrefix_396 = __fullIGammaPrefix_396;
+var _$fullIGammaPrefix_403 = __fullIGammaPrefix_403;
 
 /**
 * @license Apache-2.0
@@ -30725,17 +30725,17 @@ var _$fullIGammaPrefix_396 = __fullIGammaPrefix_396;
 
 // MODULES //
 
-/* removed: var _$gammaLanczosSumExpGScaled_319 = require( '@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled' ); */;
-/* removed: var _$gammaln_383 = require( '@stdlib/math/base/special/gammaln' ); */;
-/* removed: var _$gamma_325 = require( '@stdlib/math/base/special/gamma' ); */;
-/* removed: var _$log1p_458 = require( '@stdlib/math/base/special/log1p' ); */;
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$gammaLanczosSumExpGScaled_326 = require( '@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled' ); */;
+/* removed: var _$gammaln_390 = require( '@stdlib/math/base/special/gammaln' ); */;
+/* removed: var _$gamma_332 = require( '@stdlib/math/base/special/gamma' ); */;
+/* removed: var _$log1p_465 = require( '@stdlib/math/base/special/log1p' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
-/* removed: var _$max_461 = require( '@stdlib/math/base/special/max' ); */;
-/* removed: var _$min_465 = require( '@stdlib/math/base/special/min' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$max_468 = require( '@stdlib/math/base/special/max' ); */;
+/* removed: var _$min_472 = require( '@stdlib/math/base/special/min' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$FLOAT64_MAX_LN_200 = require( '@stdlib/constants/math/float64-max-ln' ); */;
 /* removed: var _$FLOAT64_MIN_LN_204 = require( '@stdlib/constants/math/float64-min-ln' ); */;
 /* removed: var _$FLOAT64_GAMMA_LANCZOS_G_192 = require( '@stdlib/constants/math/float64-gamma-lanczos-g' ); */;
@@ -30767,40 +30767,40 @@ function regularizedGammaPrefix( a, z ) {
 		// Treat a < 1 as a special case because our Lanczos approximations are optimized against the factorials with a > 1, and for high precision types very small values of `a` can give rather erroneous results for gamma:
 		if ( z <= _$FLOAT64_MIN_LN_204 ) {
 			// Use logs, so should be free of cancellation errors:
-			return _$exp_303( ( a * _$ln_454(z) ) - z - _$gammaln_383( a ) );
+			return _$exp_310( ( a * _$ln_461(z) ) - z - _$gammaln_390( a ) );
 		}
 		// No danger of overflow as gamma(a) < 1/a for small a, so direct calculation:
-		return _$pow_469( z, a ) * _$exp_303( -z ) / _$gamma_325( a );
+		return _$pow_476( z, a ) * _$exp_310( -z ) / _$gamma_332( a );
 	}
 	if ( _$abs_242(d*d*a) <= 100.0 && a > 150.0 ) {
 		// Special case for large a and a ~ z:
-		prefix = ( a * ( _$log1p_458( d ) - d ) ) + ( z * ( 0.5-_$FLOAT64_GAMMA_LANCZOS_G_192 ) / agh );
-		prefix = _$exp_303( prefix );
+		prefix = ( a * ( _$log1p_465( d ) - d ) ) + ( z * ( 0.5-_$FLOAT64_GAMMA_LANCZOS_G_192 ) / agh );
+		prefix = _$exp_310( prefix );
 	}
 	else {
 		// General case. Direct computation is most accurate, but use various fallbacks for different parts of the problem domain:
-		alz = a * _$ln_454(z / agh);
+		alz = a * _$ln_461(z / agh);
 		amz = a - z;
 		if (
-			_$min_465(alz, amz) <= _$FLOAT64_MIN_LN_204 ||
-			_$max_461(alz, amz) >= _$FLOAT64_MAX_LN_200
+			_$min_472(alz, amz) <= _$FLOAT64_MIN_LN_204 ||
+			_$max_468(alz, amz) >= _$FLOAT64_MAX_LN_200
 		) {
 			amza = amz / a;
 			if (
-				_$min_465(alz, amz)/2.0 > _$FLOAT64_MIN_LN_204 &&
-				_$max_461(alz, amz)/2.0 < _$FLOAT64_MAX_LN_200
+				_$min_472(alz, amz)/2.0 > _$FLOAT64_MIN_LN_204 &&
+				_$max_468(alz, amz)/2.0 < _$FLOAT64_MAX_LN_200
 			) {
 				// Compute square root of the result and then square it:
-				sq = _$pow_469( z/agh, a/2.0 ) * _$exp_303( amz/2.0 );
+				sq = _$pow_476( z/agh, a/2.0 ) * _$exp_310( amz/2.0 );
 				prefix = sq * sq;
 			}
 			else if (
-				_$min_465(alz, amz)/4.0 > _$FLOAT64_MIN_LN_204 &&
-				_$max_461(alz, amz)/4.0 < _$FLOAT64_MAX_LN_200 &&
+				_$min_472(alz, amz)/4.0 > _$FLOAT64_MIN_LN_204 &&
+				_$max_468(alz, amz)/4.0 < _$FLOAT64_MAX_LN_200 &&
 				z > a
 			) {
 				// Compute the 4th root of the result then square it twice:
-				sq = _$pow_469( z/agh, a/4.0 ) * _$exp_303( amz/4.0 );
+				sq = _$pow_476( z/agh, a/4.0 ) * _$exp_310( amz/4.0 );
 				prefix = sq * sq;
 				prefix *= prefix;
 			}
@@ -30808,25 +30808,25 @@ function regularizedGammaPrefix( a, z ) {
 				amza > _$FLOAT64_MIN_LN_204 &&
 				amza < _$FLOAT64_MAX_LN_200
 			) {
-				prefix = _$pow_469( (z * _$exp_303(amza)) / agh, a );
+				prefix = _$pow_476( (z * _$exp_310(amza)) / agh, a );
 			}
 			else {
-				prefix = _$exp_303( alz + amz );
+				prefix = _$exp_310( alz + amz );
 			}
 		}
 		else
 		{
-			prefix = _$pow_469( z/agh, a ) * _$exp_303( amz );
+			prefix = _$pow_476( z/agh, a ) * _$exp_310( amz );
 		}
 	}
-	prefix *= _$sqrt_494( agh/_$E_187 ) / _$gammaLanczosSumExpGScaled_319( a );
+	prefix *= _$sqrt_501( agh/_$E_187 ) / _$gammaLanczosSumExpGScaled_326( a );
 	return prefix;
 }
 
 
 // EXPORTS //
 
-var _$regularizedGammaPrefix_404 = regularizedGammaPrefix;
+var _$regularizedGammaPrefix_411 = regularizedGammaPrefix;
 
 /**
 * @license Apache-2.0
@@ -30863,17 +30863,17 @@ var _$regularizedGammaPrefix_404 = regularizedGammaPrefix;
 
 // MODULES //
 
-/* removed: var _$gammaDeltaRatio_317 = require( '@stdlib/math/base/special/gamma-delta-ratio' ); */;
-/* removed: var _$factorial_310 = require( '@stdlib/math/base/special/factorial' ); */;
-/* removed: var _$gammainc_341 = require( '@stdlib/math/base/special/gammainc' ); */;
-/* removed: var _$log1p_458 = require( '@stdlib/math/base/special/log1p' ); */;
+/* removed: var _$gammaDeltaRatio_324 = require( '@stdlib/math/base/special/gamma-delta-ratio' ); */;
+/* removed: var _$factorial_317 = require( '@stdlib/math/base/special/factorial' ); */;
+/* removed: var _$gammainc_348 = require( '@stdlib/math/base/special/gammainc' ); */;
+/* removed: var _$log1p_465 = require( '@stdlib/math/base/special/log1p' ); */;
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$FLOAT64_SMALLEST_NORMAL_208 = require( '@stdlib/constants/math/float64-smallest-normal' ); */;
 /* removed: var _$FLOAT64_EPSILON_188 = require( '@stdlib/constants/math/float64-eps' ); */;
-/* removed: var _$fullIGammaPrefix_396 = require( './full_igamma_prefix.js' ); */;
-/* removed: var _$regularizedGammaPrefix_404 = require( './regularized_gamma_prefix.js' ); */;
+/* removed: var _$fullIGammaPrefix_403 = require( './full_igamma_prefix.js' ); */;
+/* removed: var _$regularizedGammaPrefix_411 = require( './regularized_gamma_prefix.js' ); */;
 
 
 // VARIABLES //
@@ -30920,22 +30920,22 @@ function betaSmallBLargeASeries( a, b, x, y, s0, mult, normalized ) {
 	bm1 = b - 1.0;
 	t = a + ( bm1 / 2.0 );
 	if ( y < 0.35 ) {
-		lx = _$log1p_458( -y );
+		lx = _$log1p_465( -y );
 	} else {
-		lx = _$ln_454( x );
+		lx = _$ln_461( x );
 	}
 	u = -t * lx;
 
 	// And from from 9.2:
-	h = _$regularizedGammaPrefix_404( b, u );
+	h = _$regularizedGammaPrefix_411( b, u );
 	if ( h <= _$FLOAT64_SMALLEST_NORMAL_208 ) {
 		return s0;
 	}
 	if ( normalized ) {
-		prefix = h / _$gammaDeltaRatio_317( a, b );
-		prefix /= _$pow_469( t, b );
+		prefix = h / _$gammaDeltaRatio_324( a, b );
+		prefix /= _$pow_476( t, b );
 	} else {
-		prefix = _$fullIGammaPrefix_396( b, u ) / _$pow_469( t, b );
+		prefix = _$fullIGammaPrefix_403( b, u ) / _$pow_476( t, b );
 	}
 	prefix *= mult;
 
@@ -30943,7 +30943,7 @@ function betaSmallBLargeASeries( a, b, x, y, s0, mult, normalized ) {
 	p[ 0 ] = 1;  // see 9.3.
 
 	// Now an initial value for J, see 9.6: gammainc( u, b, regularized, upper )
-	j = _$gammainc_341( u, b, true, true );
+	j = _$gammainc_348( u, b, true, true );
 	j /= h;
 
 	// Now we can start to pull things together and evaluate the sum in Eq 9:
@@ -30964,11 +30964,11 @@ function betaSmallBLargeASeries( a, b, x, y, s0, mult, normalized ) {
 		tmp1 = 3;
 		for ( m = 1; m < n; ++m ) {
 			mbn = ( m * b ) - n;
-			p[ n ] += mbn * p[ n-m ] / _$factorial_310( tmp1 );
+			p[ n ] += mbn * p[ n-m ] / _$factorial_317( tmp1 );
 			tmp1 += 2;
 		}
 		p[ n ] /= n;
-		p[ n ] += bm1 / _$factorial_310( tnp1 );
+		p[ n ] += bm1 / _$factorial_317( tnp1 );
 
 		// Now we want Jn from Jn-1 using Eq 9.6:
 		j = ( ( b2n * ( b2n+1.0 ) * j ) + ( ( u+b2n+1.0 ) * lxp ) ) / t4;
@@ -30992,7 +30992,7 @@ function betaSmallBLargeASeries( a, b, x, y, s0, mult, normalized ) {
 
 // EXPORTS //
 
-var _$betaSmallBLargeASeries_394 = betaSmallBLargeASeries;
+var _$betaSmallBLargeASeries_401 = betaSmallBLargeASeries;
 
 /**
 * @license Apache-2.0
@@ -31064,7 +31064,7 @@ function risingFactorialRatio( a, b, k ) {
 
 // EXPORTS //
 
-var _$risingFactorialRatio_405 = risingFactorialRatio;
+var _$risingFactorialRatio_412 = risingFactorialRatio;
 
 /**
 * @license Apache-2.0
@@ -31089,7 +31089,7 @@ var _$risingFactorialRatio_405 = risingFactorialRatio;
 // MODULES //
 
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$max_461 = require( '@stdlib/math/base/special/max' ); */;
+/* removed: var _$max_468 = require( '@stdlib/math/base/special/max' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
 
 
@@ -31129,19 +31129,19 @@ function maxabs( x, y ) {
 		return _$FLOAT64_PINF_207;
 	}
 	if ( nargs === 2 ) {
-		return _$max_461( _$abs_242( x ), _$abs_242( y ) );
+		return _$max_468( _$abs_242( x ), _$abs_242( y ) );
 	}
 	args = new Array( nargs );
 	for ( i = 0; i < nargs; i++ ) {
 		args[ i ] = _$abs_242( arguments[ i ] );
 	}
-	return _$max_461.apply( null, args );
+	return _$max_468.apply( null, args );
 }
 
 
 // EXPORTS //
 
-var _$maxabs_464 = maxabs;
+var _$maxabs_471 = maxabs;
 
 /**
 * @license Apache-2.0
@@ -31186,12 +31186,12 @@ var _$maxabs_464 = maxabs;
 
 // MODULES //
 
-/* removed: var _$maxabs_464 = require( './maxabs.js' ); */;
+/* removed: var _$maxabs_471 = require( './maxabs.js' ); */;
 
 
 // EXPORTS //
 
-var _$maxabs_463 = _$maxabs_464;
+var _$maxabs_470 = _$maxabs_471;
 
 /**
 * @license Apache-2.0
@@ -31216,7 +31216,7 @@ var _$maxabs_463 = _$maxabs_464;
 // MODULES //
 
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$min_465 = require( '@stdlib/math/base/special/min' ); */;
+/* removed: var _$min_472 = require( '@stdlib/math/base/special/min' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
 
 
@@ -31256,19 +31256,19 @@ function minabs( x, y ) {
 		return _$FLOAT64_PINF_207;
 	}
 	if ( nargs === 2 ) {
-		return _$min_465( _$abs_242( x ), _$abs_242( y ) );
+		return _$min_472( _$abs_242( x ), _$abs_242( y ) );
 	}
 	args = new Array( nargs );
 	for ( i = 0; i < nargs; i++ ) {
 		args[ i ] = _$abs_242( arguments[ i ] );
 	}
-	return _$min_465.apply( null, args );
+	return _$min_472.apply( null, args );
 }
 
 
 // EXPORTS //
 
-var _$minabs_468 = minabs;
+var _$minabs_475 = minabs;
 
 /**
 * @license Apache-2.0
@@ -31313,12 +31313,12 @@ var _$minabs_468 = minabs;
 
 // MODULES //
 
-/* removed: var _$minabs_468 = require( './minabs.js' ); */;
+/* removed: var _$minabs_475 = require( './minabs.js' ); */;
 
 
 // EXPORTS //
 
-var _$minabs_467 = _$minabs_468;
+var _$minabs_474 = _$minabs_475;
 
 /**
 * @license Apache-2.0
@@ -31355,17 +31355,17 @@ var _$minabs_467 = _$minabs_468;
 
 // MODULES //
 
-/* removed: var _$gammaLanczosSumExpGScaled_319 = require( '@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled' ); */;
-/* removed: var _$maxabs_463 = require( '@stdlib/math/base/special/maxabs' ); */;
-/* removed: var _$minabs_467 = require( '@stdlib/math/base/special/minabs' ); */;
-/* removed: var _$expm1_306 = require( '@stdlib/math/base/special/expm1' ); */;
-/* removed: var _$log1p_458 = require( '@stdlib/math/base/special/log1p' ); */;
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$gammaLanczosSumExpGScaled_326 = require( '@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled' ); */;
+/* removed: var _$maxabs_470 = require( '@stdlib/math/base/special/maxabs' ); */;
+/* removed: var _$minabs_474 = require( '@stdlib/math/base/special/minabs' ); */;
+/* removed: var _$expm1_313 = require( '@stdlib/math/base/special/expm1' ); */;
+/* removed: var _$log1p_465 = require( '@stdlib/math/base/special/log1p' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
-/* removed: var _$min_465 = require( '@stdlib/math/base/special/min' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$min_472 = require( '@stdlib/math/base/special/min' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$FLOAT64_MAX_LN_200 = require( '@stdlib/constants/math/float64-max-ln' ); */;
 /* removed: var _$FLOAT64_MIN_LN_204 = require( '@stdlib/constants/math/float64-min-ln' ); */;
 /* removed: var _$FLOAT64_GAMMA_LANCZOS_G_192 = require( '@stdlib/constants/math/float64-gamma-lanczos-g' ); */;
@@ -31438,7 +31438,7 @@ function ibetaPowerTerms( a, b, x, y, normalized ) {
 
 	if ( !normalized ) {
 		// Can we do better here?
-		return _$pow_469( x, a ) * _$pow_469( y, b );
+		return _$pow_476( x, a ) * _$pow_476( y, b );
 	}
 	c = a + b;
 
@@ -31446,73 +31446,73 @@ function ibetaPowerTerms( a, b, x, y, normalized ) {
 	agh = a + _$FLOAT64_GAMMA_LANCZOS_G_192 - 0.5;
 	bgh = b + _$FLOAT64_GAMMA_LANCZOS_G_192 - 0.5;
 	cgh = c + _$FLOAT64_GAMMA_LANCZOS_G_192 - 0.5;
-	result = _$gammaLanczosSumExpGScaled_319( c );
-	result /= _$gammaLanczosSumExpGScaled_319( a ) * _$gammaLanczosSumExpGScaled_319( b );
+	result = _$gammaLanczosSumExpGScaled_326( c );
+	result /= _$gammaLanczosSumExpGScaled_326( a ) * _$gammaLanczosSumExpGScaled_326( b );
 
 	// Combine with the leftover terms from the Lanczos approximation:
-	result *= _$sqrt_494( bgh / _$E_187 );
-	result *= _$sqrt_494( agh / cgh );
+	result *= _$sqrt_501( bgh / _$E_187 );
+	result *= _$sqrt_501( agh / cgh );
 
 	// `l1` and `l2` are the base of the exponents minus one:
 	l1 = ( ( x * b ) - ( y * agh ) ) / agh;
 	l2 = ( ( y * a ) - ( x * bgh ) ) / bgh;
-	if ( _$minabs_467( l1, l2 ) < 0.2 ) {
+	if ( _$minabs_474( l1, l2 ) < 0.2 ) {
 		// When the base of the exponent is very near 1 we get really gross errors unless extra care is taken:
-		if ( l1 * l2 > 0 || _$min_465( a, b ) < 1 ) {
+		if ( l1 * l2 > 0 || _$min_472( a, b ) < 1 ) {
 			if ( _$abs_242(l1) < 0.1 ) {
-				result *= _$exp_303( a * _$log1p_458( l1 ) );
+				result *= _$exp_310( a * _$log1p_465( l1 ) );
 			} else {
-				result *= _$pow_469( ( x*cgh ) / agh, a );
+				result *= _$pow_476( ( x*cgh ) / agh, a );
 			}
 			if ( _$abs_242(l2) < 0.1 ) {
-				result *= _$exp_303( b * _$log1p_458( l2 ) );
+				result *= _$exp_310( b * _$log1p_465( l2 ) );
 			} else {
-				result *= _$pow_469((y * cgh) / bgh, b);
+				result *= _$pow_476((y * cgh) / bgh, b);
 			}
 		}
-		else if ( _$maxabs_463( l1, l2 ) < 0.5 ) {
+		else if ( _$maxabs_470( l1, l2 ) < 0.5 ) {
 			smallA = a < b;
 			ratio = b / a;
 			if (
 				(smallA && (ratio * l2 < 0.1)) ||
 				(!smallA && (l1 / ratio > 0.1))
 			) {
-				l3 = _$expm1_306( ratio * _$log1p_458( l2 ) );
+				l3 = _$expm1_313( ratio * _$log1p_465( l2 ) );
 				l3 = l1 + l3 + ( l3 * l1 );
-				l3 = a * _$log1p_458( l3 );
-				result *= _$exp_303( l3 );
+				l3 = a * _$log1p_465( l3 );
+				result *= _$exp_310( l3 );
 			}
 			else {
-				l3 = _$expm1_306( _$log1p_458( l1 ) / ratio );
+				l3 = _$expm1_313( _$log1p_465( l1 ) / ratio );
 				l3 = l2 + l3 + ( l3 * l2 );
-				l3 = b * _$log1p_458( l3 );
-				result *= _$exp_303( l3 );
+				l3 = b * _$log1p_465( l3 );
+				result *= _$exp_310( l3 );
 			}
 		}
 		else if ( _$abs_242(l1) < _$abs_242(l2) ) {
 			// First base near 1 only:
-			l = ( a * _$log1p_458( l1 ) ) + ( b * _$ln_454( ( y*cgh ) / bgh ) );
+			l = ( a * _$log1p_465( l1 ) ) + ( b * _$ln_461( ( y*cgh ) / bgh ) );
 			if ( l <= _$FLOAT64_MIN_LN_204 || l >= _$FLOAT64_MAX_LN_200 ) {
-				l += _$ln_454(result);
+				l += _$ln_461(result);
 				if ( l >= _$FLOAT64_MAX_LN_200 ) {
 					return NaN;
 				}
-				result = _$exp_303( l );
+				result = _$exp_310( l );
 			} else {
-				result *= _$exp_303( l );
+				result *= _$exp_310( l );
 			}
 		}
 		else {
 			// Second base near 1 only:
-			l = ( b * _$log1p_458( l2 ) ) + ( a * _$ln_454( (x*cgh) / agh ) );
+			l = ( b * _$log1p_465( l2 ) ) + ( a * _$ln_461( (x*cgh) / agh ) );
 			if ( l <= _$FLOAT64_MIN_LN_204 || l >= _$FLOAT64_MAX_LN_200 ) {
-				l += _$ln_454(result);
+				l += _$ln_461(result);
 				if ( l >= _$FLOAT64_MAX_LN_200 ) {
 					return NaN;
 				}
-				result = _$exp_303( l );
+				result = _$exp_310( l );
 			} else {
-				result *= _$exp_303( l );
+				result *= _$exp_310( l );
 			}
 		}
 	}
@@ -31520,8 +31520,8 @@ function ibetaPowerTerms( a, b, x, y, normalized ) {
 		// General case:
 		b1 = (x * cgh) / agh;
 		b2 = (y * cgh) / bgh;
-		l1 = a * _$ln_454(b1);
-		l2 = b * _$ln_454(b2);
+		l1 = a * _$ln_461(b1);
+		l2 = b * _$ln_461(b2);
 		if (
 			l1 >= _$FLOAT64_MAX_LN_200 ||
 			l1 <= _$FLOAT64_MIN_LN_204 ||
@@ -31530,35 +31530,35 @@ function ibetaPowerTerms( a, b, x, y, normalized ) {
 		) {
 			// Oops, under/overflow, sidestep if we can:
 			if ( a < b ) {
-				p1 = _$pow_469( b2, b / a );
-				l3 = a * ( _$ln_454(b1) + _$ln_454(p1) );
+				p1 = _$pow_476( b2, b / a );
+				l3 = a * ( _$ln_461(b1) + _$ln_461(p1) );
 				if ( l3 < _$FLOAT64_MAX_LN_200 && l3 > _$FLOAT64_MIN_LN_204 ) {
-					result *= _$pow_469( p1 * b1, a );
+					result *= _$pow_476( p1 * b1, a );
 				} else {
-					l2 += l1 + _$ln_454(result);
+					l2 += l1 + _$ln_461(result);
 					if ( l2 >= _$FLOAT64_MAX_LN_200 ) {
 						return NaN;
 					}
-					result = _$exp_303( l2 );
+					result = _$exp_310( l2 );
 				}
 			}
 			else {
-				p1 = _$pow_469( b1, a / b );
-				l3 = ( _$ln_454(p1) + _$ln_454(b2) ) * b;
+				p1 = _$pow_476( b1, a / b );
+				l3 = ( _$ln_461(p1) + _$ln_461(b2) ) * b;
 				if ( l3 < _$FLOAT64_MAX_LN_200 && l3 > _$FLOAT64_MIN_LN_204 ) {
-					result *= _$pow_469( p1 * b2, b );
+					result *= _$pow_476( p1 * b2, b );
 				} else {
-					l2 += l1 + _$ln_454( result );
+					l2 += l1 + _$ln_461( result );
 					if (l2 >= _$FLOAT64_MAX_LN_200) {
 						return NaN;
 					}
-					result = _$exp_303( l2 );
+					result = _$exp_310( l2 );
 				}
 			}
 		}
 		else {
 			// Finally the normal case:
-			result *= _$pow_469( b1, a ) * _$pow_469( b2, b );
+			result *= _$pow_476( b1, a ) * _$pow_476( b2, b );
 		}
 	}
 	return result;
@@ -31567,7 +31567,7 @@ function ibetaPowerTerms( a, b, x, y, normalized ) {
 
 // EXPORTS //
 
-var _$ibetaPowerTerms_399 = ibetaPowerTerms;
+var _$ibetaPowerTerms_406 = ibetaPowerTerms;
 
 /**
 * @license Apache-2.0
@@ -31604,8 +31604,8 @@ var _$ibetaPowerTerms_399 = ibetaPowerTerms;
 
 // MODULES //
 
-/* removed: var _$continuedFraction_504 = require( '@stdlib/math/base/tools/continued-fraction' ); */;
-/* removed: var _$ibetaPowerTerms_399 = require( './ibeta_power_terms.js' ); */;
+/* removed: var _$continuedFraction_511 = require( '@stdlib/math/base/tools/continued-fraction' ); */;
+/* removed: var _$ibetaPowerTerms_406 = require( './ibeta_power_terms.js' ); */;
 
 
 // VARIABLES //
@@ -31674,7 +31674,7 @@ function ibetaFraction2( a, b, x, y, normalized, out ) {
 	var fract;
 	var f;
 
-	result = _$ibetaPowerTerms_399( a, b, x, y, normalized );
+	result = _$ibetaPowerTerms_406( a, b, x, y, normalized );
 	if ( out ) {
 		out[ 1 ] = result;
 	}
@@ -31682,14 +31682,14 @@ function ibetaFraction2( a, b, x, y, normalized, out ) {
 		return result;
 	}
 	f = ibetaFraction2t( a, b, x, y );
-	fract = _$continuedFraction_504( f, OPTS );
+	fract = _$continuedFraction_511( f, OPTS );
 	return result / fract;
 }
 
 
 // EXPORTS //
 
-var _$ibetaFraction2_398 = ibetaFraction2;
+var _$ibetaFraction2_405 = ibetaFraction2;
 
 /**
 * @license Apache-2.0
@@ -31716,7 +31716,7 @@ var _$ibetaFraction2_398 = ibetaFraction2;
 /* removed: var _$isInteger_229 = require( '@stdlib/math/base/assert/is-integer' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$isOdd_237 = require( '@stdlib/math/base/assert/is-odd' ); */;
-/* removed: var _$round_486 = require( '@stdlib/math/base/special/round' ); */;
+/* removed: var _$round_493 = require( '@stdlib/math/base/special/round' ); */;
 
 
 // MAIN //
@@ -31797,7 +31797,7 @@ function binomcoef( n, k ) {
 		res *= ( n - j + 1 ) / j;
 	}
 	// Correct for rounding errors...
-	return ( _$isInteger_229( res ) ) ? res : _$round_486( res );
+	return ( _$isInteger_229( res ) ) ? res : _$round_493( res );
 }
 
 
@@ -31900,8 +31900,8 @@ var _$binomcoef_267 = _$binomcoef_266;
 // MODULES //
 
 /* removed: var _$binomcoef_267 = require( '@stdlib/math/base/special/binomcoef' ); */;
-/* removed: var _$floor_314 = require( '@stdlib/math/base/special/floor' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$floor_321 = require( '@stdlib/math/base/special/floor' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
 /* removed: var _$FLOAT64_SMALLEST_NORMAL_208 = require( '@stdlib/constants/math/float64-smallest-normal' ); */;
 
 
@@ -31924,26 +31924,26 @@ function binomialCCDF( n, k, x, y ) {
 	var term;
 	var i;
 
-	result = _$pow_469( x, n );
+	result = _$pow_476( x, n );
 	if ( result > _$FLOAT64_SMALLEST_NORMAL_208 ) {
 		term = result;
-		for ( i = _$floor_314( n - 1 ); i > k; i-- ) {
+		for ( i = _$floor_321( n - 1 ); i > k; i-- ) {
 			term *= ((i + 1) * y) / ((n - i) * x);
 			result += term;
 		}
 	} else {
 		// First term underflows so we need to start at the mode of the distribution and work outwards:
-		start = _$floor_314( n * x );
+		start = _$floor_321( n * x );
 		if ( start <= k + 1 ) {
-			start = _$floor_314( k + 2 );
+			start = _$floor_321( k + 2 );
 		}
-		result = _$pow_469( x, start ) * _$pow_469( y, n - start );
-		result *= _$binomcoef_267( _$floor_314(n), _$floor_314(start) );
+		result = _$pow_476( x, start ) * _$pow_476( y, n - start );
+		result *= _$binomcoef_267( _$floor_321(n), _$floor_321(start) );
 		if ( result === 0.0 ) {
 			// OK, starting slightly above the mode didn't work, we'll have to sum the terms the old fashioned way:
 			for ( i = start - 1; i > k; i-- ) {
-				result += _$pow_469( x, i ) * _$pow_469( y, n - i );
-				result *= _$binomcoef_267( _$floor_314(n), _$floor_314(i) );
+				result += _$pow_476( x, i ) * _$pow_476( y, n - i );
+				result *= _$binomcoef_267( _$floor_321(n), _$floor_321(i) );
 			}
 		} else {
 			term = result;
@@ -31965,7 +31965,7 @@ function binomialCCDF( n, k, x, y ) {
 
 // EXPORTS //
 
-var _$binomialCCDF_395 = binomialCCDF;
+var _$binomialCCDF_402 = binomialCCDF;
 
 /**
 * @license Apache-2.0
@@ -32002,7 +32002,7 @@ var _$binomialCCDF_395 = binomialCCDF;
 
 // MODULES //
 
-/* removed: var _$ibetaPowerTerms_399 = require( './ibeta_power_terms.js' ); */;
+/* removed: var _$ibetaPowerTerms_406 = require( './ibeta_power_terms.js' ); */;
 
 
 // MAIN //
@@ -32026,7 +32026,7 @@ function ibetaAStep( a, b, x, y, k, normalized, out ) {
 	var sum;
 	var i;
 
-	prefix = _$ibetaPowerTerms_399( a, b, x, y, normalized );
+	prefix = _$ibetaPowerTerms_406( a, b, x, y, normalized );
 	if ( out ) {
 		out[ 1 ] = prefix;
 	}
@@ -32049,7 +32049,7 @@ function ibetaAStep( a, b, x, y, k, normalized, out ) {
 
 // EXPORTS //
 
-var _$ibetaAStep_397 = ibetaAStep;
+var _$ibetaAStep_404 = ibetaAStep;
 
 /**
 * @license Apache-2.0
@@ -32086,13 +32086,13 @@ var _$ibetaAStep_397 = ibetaAStep;
 
 // MODULES //
 
-/* removed: var _$gammaLanczosSumExpGScaled_319 = require( '@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled' ); */;
-/* removed: var _$sumSeries_510 = require( '@stdlib/math/base/tools/sum-series' ); */;
-/* removed: var _$log1p_458 = require( '@stdlib/math/base/special/log1p' ); */;
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$gammaLanczosSumExpGScaled_326 = require( '@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled' ); */;
+/* removed: var _$sumSeries_517 = require( '@stdlib/math/base/tools/sum-series' ); */;
+/* removed: var _$log1p_465 = require( '@stdlib/math/base/special/log1p' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$FLOAT64_SMALLEST_NORMAL_208 = require( '@stdlib/constants/math/float64-smallest-normal' ); */;
 /* removed: var _$FLOAT64_MAX_LN_200 = require( '@stdlib/constants/math/float64-max-ln' ); */;
 /* removed: var _$FLOAT64_MIN_LN_204 = require( '@stdlib/constants/math/float64-min-ln' ); */;
@@ -32173,10 +32173,10 @@ function ibetaSeries( a, b, x, s0, normalized, out, y ) {
 		agh = a + _$FLOAT64_GAMMA_LANCZOS_G_192 - 0.5;
 		bgh = b + _$FLOAT64_GAMMA_LANCZOS_G_192 - 0.5;
 		cgh = c + _$FLOAT64_GAMMA_LANCZOS_G_192 - 0.5;
-		result = _$gammaLanczosSumExpGScaled_319( c ) / ( _$gammaLanczosSumExpGScaled_319( a ) * _$gammaLanczosSumExpGScaled_319( b ) ); // eslint-disable-line max-len
+		result = _$gammaLanczosSumExpGScaled_326( c ) / ( _$gammaLanczosSumExpGScaled_326( a ) * _$gammaLanczosSumExpGScaled_326( b ) ); // eslint-disable-line max-len
 
-		l1 = _$ln_454( cgh / bgh ) * ( b - 0.5 );
-		l2 = _$ln_454( x * cgh / agh ) * a;
+		l1 = _$ln_461( cgh / bgh ) * ( b - 0.5 );
+		l2 = _$ln_461( x * cgh / agh ) * a;
 
 		// Check for over/underflow in the power terms:
 		if (
@@ -32186,42 +32186,42 @@ function ibetaSeries( a, b, x, s0, normalized, out, y ) {
 			l2 < _$FLOAT64_MAX_LN_200
 		) {
 			if ( a * b < bgh * 10.0 ) {
-				result *= _$exp_303( ( b-0.5 ) * _$log1p_458( a / bgh ) );
+				result *= _$exp_310( ( b-0.5 ) * _$log1p_465( a / bgh ) );
 			} else {
-				result *= _$pow_469( cgh / bgh, b - 0.5 );
+				result *= _$pow_476( cgh / bgh, b - 0.5 );
 			}
-			result *= _$pow_469( x * cgh / agh, a );
-			result *= _$sqrt_494( agh / _$E_187 );
+			result *= _$pow_476( x * cgh / agh, a );
+			result *= _$sqrt_501( agh / _$E_187 );
 
 			if ( out ) {
-				out[ 1 ] = result * _$pow_469( y, b );
+				out[ 1 ] = result * _$pow_476( y, b );
 			}
 		}
 		else {
 			// We need logs, and this *will* cancel:
-			result = _$ln_454( result ) + l1 + l2 + ( ( _$ln_454( agh ) - 1.0 ) / 2.0 );
+			result = _$ln_461( result ) + l1 + l2 + ( ( _$ln_461( agh ) - 1.0 ) / 2.0 );
 			if ( out ) {
-				out[ 1 ] = _$exp_303( result + ( b * _$ln_454( y ) ) );
+				out[ 1 ] = _$exp_310( result + ( b * _$ln_461( y ) ) );
 			}
-			result = _$exp_303( result );
+			result = _$exp_310( result );
 		}
 	}
 	else {
 		// Non-normalized, just compute the power:
-		result = _$pow_469( x, a );
+		result = _$pow_476( x, a );
 	}
 	if ( result < _$FLOAT64_SMALLEST_NORMAL_208 ) {
 		return s0; // Safeguard: series can't cope with denorms.
 	}
 	s = ibetaSeriesT( a, b, x, result );
 	opts.initialValue = s0;
-	return _$sumSeries_510( s, opts );
+	return _$sumSeries_517( s, opts );
 }
 
 
 // EXPORTS //
 
-var _$ibetaSeries_400 = ibetaSeries;
+var _$ibetaSeries_407 = ibetaSeries;
 
 /* eslint-disable max-statements, max-lines */
 
@@ -32262,28 +32262,28 @@ var _$ibetaSeries_400 = ibetaSeries;
 // MODULES //
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$expm1_306 = require( '@stdlib/math/base/special/expm1' ); */;
-/* removed: var _$floor_314 = require( '@stdlib/math/base/special/floor' ); */;
-/* removed: var _$log1p_458 = require( '@stdlib/math/base/special/log1p' ); */;
+/* removed: var _$expm1_313 = require( '@stdlib/math/base/special/expm1' ); */;
+/* removed: var _$floor_321 = require( '@stdlib/math/base/special/floor' ); */;
+/* removed: var _$log1p_465 = require( '@stdlib/math/base/special/log1p' ); */;
 /* removed: var _$asin_246 = require( '@stdlib/math/base/special/asin' ); */;
 /* removed: var _$beta_256 = require( '@stdlib/math/base/special/beta' ); */;
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
-/* removed: var _$max_461 = require( '@stdlib/math/base/special/max' ); */;
-/* removed: var _$min_465 = require( '@stdlib/math/base/special/min' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$max_468 = require( '@stdlib/math/base/special/max' ); */;
+/* removed: var _$min_472 = require( '@stdlib/math/base/special/min' ); */;
 /* removed: var _$FLOAT64_MAX_202 = require( '@stdlib/constants/math/float64-max' ); */;
 /* removed: var _$FLOAT64_SMALLEST_NORMAL_208 = require( '@stdlib/constants/math/float64-smallest-normal' ); */;
 /* removed: var _$INT32_MAX_216 = require( '@stdlib/constants/math/int32-max' ); */;
 /* removed: var _$HALF_PI_194 = require( '@stdlib/constants/math/float64-half-pi' ); */;
 /* removed: var _$PI_206 = require( '@stdlib/constants/math/float64-pi' ); */;
-/* removed: var _$betaSmallBLargeASeries_394 = require( './beta_small_b_large_a_series.js' ); */;
-/* removed: var _$risingFactorialRatio_405 = require( './rising_factorial_ratio.js' ); */;
-/* removed: var _$ibetaPowerTerms_399 = require( './ibeta_power_terms.js' ); */;
-/* removed: var _$ibetaFraction2_398 = require( './ibeta_fraction2.js'); */;
-/* removed: var _$binomialCCDF_395 = require( './binomial_ccdf.js' ); */;
-/* removed: var _$ibetaAStep_397 = require( './ibeta_a_step.js' ); */;
-/* removed: var _$ibetaSeries_400 = require( './ibeta_series.js' ); */;
+/* removed: var _$betaSmallBLargeASeries_401 = require( './beta_small_b_large_a_series.js' ); */;
+/* removed: var _$risingFactorialRatio_412 = require( './rising_factorial_ratio.js' ); */;
+/* removed: var _$ibetaPowerTerms_406 = require( './ibeta_power_terms.js' ); */;
+/* removed: var _$ibetaFraction2_405 = require( './ibeta_fraction2.js'); */;
+/* removed: var _$binomialCCDF_402 = require( './binomial_ccdf.js' ); */;
+/* removed: var _$ibetaAStep_404 = require( './ibeta_a_step.js' ); */;
+/* removed: var _$ibetaSeries_407 = require( './ibeta_series.js' ); */;
 
 
 // VARIABLES //
@@ -32392,10 +32392,10 @@ function ibetaImp( out, x, a, b, invert, normalized ) {
 		return out;
 	}
 	if ( a === 0.5 && b === 0.5 ) {
-		out[ 1 ] = ONE_OVER_PI * _$sqrt_494( y * x );
+		out[ 1 ] = ONE_OVER_PI * _$sqrt_501( y * x );
 
 		// We have an arcsine distribution:
-		p = ( invert ) ? _$asin_246( _$sqrt_494(y) ) : _$asin_246( _$sqrt_494(x) );
+		p = ( invert ) ? _$asin_246( _$sqrt_501(y) ) : _$asin_246( _$sqrt_501(x) );
 		p /= _$HALF_PI_194;
 		if ( !normalized ) {
 			p *= _$PI_206;
@@ -32421,11 +32421,11 @@ function ibetaImp( out, x, a, b, invert, normalized ) {
 			out[ 0 ] = ( invert ) ? y : x;
 			return out;
 		}
-		out[ 1 ] = a * _$pow_469( x, a - 1.0 );
+		out[ 1 ] = a * _$pow_476( x, a - 1.0 );
 		if ( y < 0.5 ) {
-			p = ( invert ) ? -_$expm1_306( a * _$log1p_458(-y) ) : _$exp_303( a * _$log1p_458(-y) );
+			p = ( invert ) ? -_$expm1_313( a * _$log1p_465(-y) ) : _$exp_310( a * _$log1p_465(-y) );
 		} else {
-			p = ( invert ) ? -( _$pow_469( x, a ) - 1.0 ) : _$pow_469( x, a );
+			p = ( invert ) ? -( _$pow_476( x, a ) - 1.0 ) : _$pow_476( x, a );
 		}
 		if ( !normalized ) {
 			p /= a;
@@ -32433,7 +32433,7 @@ function ibetaImp( out, x, a, b, invert, normalized ) {
 		out[ 0 ] = p;
 		return out;
 	}
-	if ( _$min_465( a, b ) <= 1.0 ) {
+	if ( _$min_472( a, b ) <= 1.0 ) {
 		if ( x > 0.5 ) {
 			tmp = b;
 			b = a;
@@ -32445,15 +32445,15 @@ function ibetaImp( out, x, a, b, invert, normalized ) {
 
 			invert = !invert;
 		}
-		if ( _$max_461( a, b ) <= 1.0 ) {
+		if ( _$max_468( a, b ) <= 1.0 ) {
 			// Both a,b < 1:
-			if ( (a >= _$min_465( 0.2, b ) ) || ( _$pow_469(x, a) <= 0.9 ) ) {
+			if ( (a >= _$min_472( 0.2, b ) ) || ( _$pow_476(x, a) <= 0.9 ) ) {
 				if ( invert ) {
 					fract = -( ( normalized ) ? 1.0 : _$beta_256( a, b ) );
 					invert = false;
-					fract = -_$ibetaSeries_400( a, b, x, fract, normalized, out, y );
+					fract = -_$ibetaSeries_407( a, b, x, fract, normalized, out, y );
 				} else {
-					fract = _$ibetaSeries_400( a, b, x, 0, normalized, out, y );
+					fract = _$ibetaSeries_407( a, b, x, 0, normalized, out, y );
 				}
 			} else {
 				tmp = b;
@@ -32469,34 +32469,34 @@ function ibetaImp( out, x, a, b, invert, normalized ) {
 					if ( invert ) {
 						fract = -( ( normalized ) ? 1.0 : _$beta_256( a, b ) );
 						invert = false;
-						fract = -_$ibetaSeries_400( a, b, x, fract, normalized, out, y ); // eslint-disable-line max-len
+						fract = -_$ibetaSeries_407( a, b, x, fract, normalized, out, y ); // eslint-disable-line max-len
 					} else {
-						fract = _$ibetaSeries_400( a, b, x, 0, normalized, out, y );
+						fract = _$ibetaSeries_407( a, b, x, 0, normalized, out, y );
 					}
 				} else {
 					// Sidestep on a, and then use the series representation:
 					if ( normalized ) {
 						prefix = 1;
 					} else {
-						prefix = _$risingFactorialRatio_405( a + b, a, 20 );
+						prefix = _$risingFactorialRatio_412( a + b, a, 20 );
 					}
-					fract = _$ibetaAStep_397( a, b, x, y, 20, normalized, out );
+					fract = _$ibetaAStep_404( a, b, x, y, 20, normalized, out );
 					if ( invert ) {
 						fract -= ( ( normalized ) ? 1 : _$beta_256( a, b ) );
 						invert = false;
-						fract = -_$betaSmallBLargeASeries_394( a + 20.0, b, x, y, fract, prefix, normalized ); // eslint-disable-line max-len
+						fract = -_$betaSmallBLargeASeries_401( a + 20.0, b, x, y, fract, prefix, normalized ); // eslint-disable-line max-len
 					} else {
-						fract = _$betaSmallBLargeASeries_394( a + 20.0, b, x, y, fract, prefix, normalized ); // eslint-disable-line max-len
+						fract = _$betaSmallBLargeASeries_401( a + 20.0, b, x, y, fract, prefix, normalized ); // eslint-disable-line max-len
 					}
 				}
 			}
-		} else if ( b <= 1.0 || ( x < 0.1 && ( _$pow_469( b * x, a ) <= 0.7 ) ) ) {
+		} else if ( b <= 1.0 || ( x < 0.1 && ( _$pow_476( b * x, a ) <= 0.7 ) ) ) {
 			if ( invert ) {
 				fract = -( ( normalized ) ? 1 : _$beta_256( a, b ) );
 				invert = false;
-				fract = -_$ibetaSeries_400( a, b, x, fract, normalized, out, y );
+				fract = -_$ibetaSeries_407( a, b, x, fract, normalized, out, y );
 			} else {
-				fract = _$ibetaSeries_400( a, b, x, 0.0, normalized, out, y );
+				fract = _$ibetaSeries_407( a, b, x, 0.0, normalized, out, y );
 			}
 		} else {
 			tmp = b;
@@ -32512,18 +32512,18 @@ function ibetaImp( out, x, a, b, invert, normalized ) {
 				if (invert) {
 					fract = -(( normalized ) ? 1.0 : _$beta_256( a, b ));
 					invert = false;
-					fract = -_$ibetaSeries_400( a, b, x, fract, normalized, out, y );
+					fract = -_$ibetaSeries_407( a, b, x, fract, normalized, out, y );
 				} else {
-					fract = _$ibetaSeries_400( a, b, x, 0.0, normalized, out, y );
+					fract = _$ibetaSeries_407( a, b, x, 0.0, normalized, out, y );
 				}
 			}
 			else if ( a >= 15.0 ) {
 				if ( invert ) {
 					fract = -(( normalized ) ? 1.0 : _$beta_256( a, b ));
 					invert = false;
-					fract = -_$betaSmallBLargeASeries_394( a, b, x, y, fract, 1.0, normalized ); // eslint-disable-line max-len
+					fract = -_$betaSmallBLargeASeries_401( a, b, x, y, fract, 1.0, normalized ); // eslint-disable-line max-len
 				} else {
-					fract = _$betaSmallBLargeASeries_394( a, b, x, y, 0.0, 1.0, normalized ); // eslint-disable-line max-len
+					fract = _$betaSmallBLargeASeries_401( a, b, x, y, 0.0, 1.0, normalized ); // eslint-disable-line max-len
 				}
 			}
 			else {
@@ -32531,15 +32531,15 @@ function ibetaImp( out, x, a, b, invert, normalized ) {
 					prefix = 1;
 				} else {
 					// Sidestep to improve errors:
-					prefix = _$risingFactorialRatio_405( a + b, a, 20.0 );
+					prefix = _$risingFactorialRatio_412( a + b, a, 20.0 );
 				}
-				fract = _$ibetaAStep_397( a, b, x, y, 20.0, normalized, out );
+				fract = _$ibetaAStep_404( a, b, x, y, 20.0, normalized, out );
 				if ( invert ) {
 					fract -= ( ( normalized ) ? 1.0 : _$beta_256( a, b ) );
 					invert = false;
-					fract = -_$betaSmallBLargeASeries_394( a + 20.0, b, x, y, fract, prefix, normalized ); // eslint-disable-line max-len
+					fract = -_$betaSmallBLargeASeries_401( a + 20.0, b, x, y, fract, prefix, normalized ); // eslint-disable-line max-len
 				} else {
-					fract = _$betaSmallBLargeASeries_394( a + 20.0, b, x, y, fract, prefix, normalized ); // eslint-disable-line max-len
+					fract = _$betaSmallBLargeASeries_401( a + 20.0, b, x, y, fract, prefix, normalized ); // eslint-disable-line max-len
 				}
 			}
 		}
@@ -32562,14 +32562,14 @@ function ibetaImp( out, x, a, b, invert, normalized ) {
 		}
 		if ( b < 40.0 ) {
 			if (
-				_$floor_314(a) === a &&
-				_$floor_314(b) === b &&
+				_$floor_321(a) === a &&
+				_$floor_321(b) === b &&
 				a < _$INT32_MAX_216 - 100
 			) {
 				// Relate to the binomial distribution and use a finite sum:
 				k = a - 1.0;
 				n = b + k;
-				fract = _$binomialCCDF_395( n, k, x, y );
+				fract = _$binomialCCDF_402( n, k, x, y );
 				if ( !normalized ) {
 					fract *= _$beta_256( a, b );
 				}
@@ -32578,14 +32578,14 @@ function ibetaImp( out, x, a, b, invert, normalized ) {
 				if ( invert ) {
 					fract = -( ( normalized ) ? 1.0 : _$beta_256( a, b ) );
 					invert = false;
-					fract = -_$ibetaSeries_400( a, b, x, fract, normalized, out, y );
+					fract = -_$ibetaSeries_407( a, b, x, fract, normalized, out, y );
 				} else {
-					fract = _$ibetaSeries_400( a, b, x, 0.0, normalized, out, y );
+					fract = _$ibetaSeries_407( a, b, x, 0.0, normalized, out, y );
 				}
 			}
 			else if ( a > 15.0 ) {
 				// Sidestep so we can use the series representation:
-				n = _$floor_314( b );
+				n = _$floor_321( b );
 				if ( n === b ) {
 					n -= 1;
 				}
@@ -32593,39 +32593,39 @@ function ibetaImp( out, x, a, b, invert, normalized ) {
 				if ( normalized ) {
 					prefix = 1;
 				} else {
-					prefix = _$risingFactorialRatio_405( a + bbar, bbar, n );
+					prefix = _$risingFactorialRatio_412( a + bbar, bbar, n );
 				}
-				fract = _$ibetaAStep_397( bbar, a, y, x, n, normalized );
-				fract = _$betaSmallBLargeASeries_394( a, bbar, x, y, fract, 1.0, normalized ); // eslint-disable-line max-len
+				fract = _$ibetaAStep_404( bbar, a, y, x, n, normalized );
+				fract = _$betaSmallBLargeASeries_401( a, bbar, x, y, fract, 1.0, normalized ); // eslint-disable-line max-len
 				fract /= prefix;
 			}
 			else if ( normalized ) {
-				n = _$floor_314( b );
+				n = _$floor_321( b );
 				bbar = b - n;
 				if ( bbar <= 0 ) {
 					n -= 1;
 					bbar += 1;
 				}
-				fract = _$ibetaAStep_397( bbar, a, y, x, n, normalized );
-				fract += _$ibetaAStep_397( a, bbar, x, y, 20.0, normalized );
+				fract = _$ibetaAStep_404( bbar, a, y, x, n, normalized );
+				fract += _$ibetaAStep_404( a, bbar, x, y, 20.0, normalized );
 				if ( invert ) {
 					fract -= 1;
 				}
-				fract = _$betaSmallBLargeASeries_394( a + 20.0, bbar, x, y, fract, 1, normalized ); // eslint-disable-line max-len
+				fract = _$betaSmallBLargeASeries_401( a + 20.0, bbar, x, y, fract, 1, normalized ); // eslint-disable-line max-len
 				if ( invert ) {
 					fract = -fract;
 					invert = false;
 				}
 			}
 			else {
-				fract = _$ibetaFraction2_398( a, b, x, y, normalized, out );
+				fract = _$ibetaFraction2_405( a, b, x, y, normalized, out );
 			}
 		} else {
-			fract = _$ibetaFraction2_398( a, b, x, y, normalized, out );
+			fract = _$ibetaFraction2_405( a, b, x, y, normalized, out );
 		}
 	}
 	if ( out[ 1 ] < 0.0 ) {
-		out[ 1 ] = _$ibetaPowerTerms_399( a, b, x, y, true );
+		out[ 1 ] = _$ibetaPowerTerms_406( a, b, x, y, true );
 	}
 	div = y * x;
 	if ( out[ 1 ] !== 0.0 ) {
@@ -32643,7 +32643,7 @@ function ibetaImp( out, x, a, b, invert, normalized ) {
 
 // EXPORTS //
 
-var _$ibetaImp_402 = ibetaImp;
+var _$ibetaImp_409 = ibetaImp;
 
 /**
 * @license Apache-2.0
@@ -32667,7 +32667,7 @@ var _$ibetaImp_402 = ibetaImp;
 
 // MODULES //
 
-/* removed: var _$ibetaImp_402 = require( './kernel_betainc.js' ); */;
+/* removed: var _$ibetaImp_409 = require( './kernel_betainc.js' ); */;
 
 
 // MAIN //
@@ -32701,15 +32701,15 @@ var _$ibetaImp_402 = ibetaImp;
 */
 function kernelBetainc( out, x, a, b, invert, normalized ) {
 	if ( arguments.length === 5 ) {
-		return _$ibetaImp_402( new Array( 2 ), out, x, a, b, invert );
+		return _$ibetaImp_409( new Array( 2 ), out, x, a, b, invert );
 	}
-	return _$ibetaImp_402( out, x, a, b, invert, normalized );
+	return _$ibetaImp_409( out, x, a, b, invert, normalized );
 }
 
 
 // EXPORTS //
 
-var _$kernelBetainc_403 = kernelBetainc;
+var _$kernelBetainc_410 = kernelBetainc;
 
 /**
 * @license Apache-2.0
@@ -32755,12 +32755,12 @@ var _$kernelBetainc_403 = kernelBetainc;
 
 // MODULES //
 
-/* removed: var _$kernelBetainc_403 = require( './main.js' ); */;
+/* removed: var _$kernelBetainc_410 = require( './main.js' ); */;
 
 
 // EXPORTS //
 
-var _$kernelBetainc_401 = _$kernelBetainc_403;
+var _$kernelBetainc_408 = _$kernelBetainc_410;
 
 /**
 * @license Apache-2.0
@@ -32784,7 +32784,7 @@ var _$kernelBetainc_401 = _$kernelBetainc_403;
 
 // MODULES //
 
-/* removed: var _$kernelBetainc_401 = require( '@stdlib/math/base/special/kernel-betainc' ); */;
+/* removed: var _$kernelBetainc_408 = require( '@stdlib/math/base/special/kernel-betainc' ); */;
 
 
 // VARIABLES //
@@ -32820,7 +32820,7 @@ function betainc( x, a, b, regularized, upper ) {
 	/* eslint-disable no-unneeded-ternary */
 	regularized = ( regularized === false ) ? false : true;
 	upper = ( upper === true ) ? true : false;
-	out = _$kernelBetainc_401( out, x, a, b, upper, regularized );
+	out = _$kernelBetainc_408( out, x, a, b, upper, regularized );
 	return out[ 0 ];
 }
 
@@ -32917,7 +32917,7 @@ var _$betainc_259 = _$betainc_258;
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$asin_246 = require( '@stdlib/math/base/special/asin' ); */;
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
 /* removed: var _$FOURTH_PI_191 = require( '@stdlib/constants/math/float64-fourth-pi' ); */;
 
 
@@ -32985,7 +32985,7 @@ function acos( x ) {
 		return NaN;
 	}
 	if ( x > 0.5 ) {
-		return 2.0 * _$asin_246( _$sqrt_494( 0.5 - (0.5*x) ) );
+		return 2.0 * _$asin_246( _$sqrt_501( 0.5 - (0.5*x) ) );
 	}
 	z = _$FOURTH_PI_191 - _$asin_246( x );
 	z += __MOREBITS_243;
@@ -33134,305 +33134,11 @@ var _$SQRT2_212 = SQRT2;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_421( x ) {
+function __evalpoly_428( x ) {
 	if ( x === 0.0 ) {
 		return 0.16666666666666666;
 	}
 	return 0.16666666666666666 + (x * 0.16666666666666666);
-}
-
-
-// EXPORTS //
-
-var _$evalpoly_421 = __evalpoly_421;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function __evalpoly_422( x ) {
-	if ( x === 0.0 ) {
-		return 0.058333333333333334;
-	}
-	return 0.058333333333333334 + (x * (0.06666666666666667 + (x * 0.008333333333333333))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-var _$evalpoly_422 = __evalpoly_422;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function __evalpoly_423( x ) {
-	if ( x === 0.0 ) {
-		return 0.0251984126984127;
-	}
-	return 0.0251984126984127 + (x * (0.026785714285714284 + (x * (0.0017857142857142857 + (x * 0.0001984126984126984))))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-var _$evalpoly_423 = __evalpoly_423;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function __evalpoly_424( x ) {
-	if ( x === 0.0 ) {
-		return 0.012039792768959435;
-	}
-	return 0.012039792768959435 + (x * (0.010559964726631394 + (x * (-0.0011078042328042327 + (x * (0.0003747795414462081 + (x * 0.0000027557319223985893))))))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-var _$evalpoly_424 = __evalpoly_424;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function __evalpoly_425( x ) {
-	if ( x === 0.0 ) {
-		return 0.003837005972422639;
-	}
-	return 0.003837005972422639 + (x * (0.00610392115600449 + (x * (-0.0016095979637646305 + (x * (0.0005945867404200738 + (x * (-0.00006270542728876062 + (x * 2.505210838544172e-8))))))))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-var _$evalpoly_425 = __evalpoly_425;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function __evalpoly_426( x ) {
-	if ( x === 0.0 ) {
-		return 0.0032177478835464946;
-	}
-	return 0.0032177478835464946 + (x * (0.0010898206731540065 + (x * (-0.0012579159844784845 + (x * (0.0006908420797309686 + (x * (-0.00016376804137220805 + (x * (0.0000154012654012654 + (x * 1.6059043836821613e-10))))))))))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-var _$evalpoly_426 = __evalpoly_426;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function __evalpoly_428( x ) {
-	if ( x === 0.0 ) {
-		return 0.001743826229834001;
-	}
-	return 0.001743826229834001 + (x * (0.00003353097688001788 + (x * (-0.0007624513544032393 + (x * (0.0006451304695145635 + (x * (-0.000249472580470431 + (x * (0.000049255746366361444 + (x * (-0.0000039851014346715405 + (x * 7.647163731819816e-13))))))))))))); // eslint-disable-line max-len
 }
 
 
@@ -33479,9 +33185,9 @@ var _$evalpoly_428 = __evalpoly_428;
 */
 function __evalpoly_429( x ) {
 	if ( x === 0.0 ) {
-		return 0.0009647274732138864;
+		return 0.058333333333333334;
 	}
-	return 0.0009647274732138864 + (x * (-0.0003110108632631878 + (x * (-0.00036307660358786886 + (x * (0.0005140660578834113 + (x * (-0.00029133414466938067 + (x * (0.00009086710793521991 + (x * (-0.000015303004486655377 + (x * (0.0000010914179173496788 + (x * 2.8114572543455206e-15))))))))))))))); // eslint-disable-line max-len
+	return 0.058333333333333334 + (x * (0.06666666666666667 + (x * 0.008333333333333333))); // eslint-disable-line max-len
 }
 
 
@@ -33528,6 +33234,300 @@ var _$evalpoly_429 = __evalpoly_429;
 */
 function __evalpoly_430( x ) {
 	if ( x === 0.0 ) {
+		return 0.0251984126984127;
+	}
+	return 0.0251984126984127 + (x * (0.026785714285714284 + (x * (0.0017857142857142857 + (x * 0.0001984126984126984))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+var _$evalpoly_430 = __evalpoly_430;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function __evalpoly_431( x ) {
+	if ( x === 0.0 ) {
+		return 0.012039792768959435;
+	}
+	return 0.012039792768959435 + (x * (0.010559964726631394 + (x * (-0.0011078042328042327 + (x * (0.0003747795414462081 + (x * 0.0000027557319223985893))))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+var _$evalpoly_431 = __evalpoly_431;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function __evalpoly_432( x ) {
+	if ( x === 0.0 ) {
+		return 0.003837005972422639;
+	}
+	return 0.003837005972422639 + (x * (0.00610392115600449 + (x * (-0.0016095979637646305 + (x * (0.0005945867404200738 + (x * (-0.00006270542728876062 + (x * 2.505210838544172e-8))))))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+var _$evalpoly_432 = __evalpoly_432;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function __evalpoly_433( x ) {
+	if ( x === 0.0 ) {
+		return 0.0032177478835464946;
+	}
+	return 0.0032177478835464946 + (x * (0.0010898206731540065 + (x * (-0.0012579159844784845 + (x * (0.0006908420797309686 + (x * (-0.00016376804137220805 + (x * (0.0000154012654012654 + (x * 1.6059043836821613e-10))))))))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+var _$evalpoly_433 = __evalpoly_433;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function __evalpoly_435( x ) {
+	if ( x === 0.0 ) {
+		return 0.001743826229834001;
+	}
+	return 0.001743826229834001 + (x * (0.00003353097688001788 + (x * (-0.0007624513544032393 + (x * (0.0006451304695145635 + (x * (-0.000249472580470431 + (x * (0.000049255746366361444 + (x * (-0.0000039851014346715405 + (x * 7.647163731819816e-13))))))))))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+var _$evalpoly_435 = __evalpoly_435;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function __evalpoly_436( x ) {
+	if ( x === 0.0 ) {
+		return 0.0009647274732138864;
+	}
+	return 0.0009647274732138864 + (x * (-0.0003110108632631878 + (x * (-0.00036307660358786886 + (x * (0.0005140660578834113 + (x * (-0.00029133414466938067 + (x * (0.00009086710793521991 + (x * (-0.000015303004486655377 + (x * (0.0000010914179173496788 + (x * 2.8114572543455206e-15))))))))))))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+var _$evalpoly_436 = __evalpoly_436;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function __evalpoly_437( x ) {
+	if ( x === 0.0 ) {
 		return 0.0005422926281312969;
 	}
 	return 0.0005422926281312969 + (x * (-0.0003694266780000966 + (x * (-0.00010230378073700413 + (x * (0.00035764655430568635 + (x * (-0.00028690924218514614 + (x * (0.00012645437628698076 + (x * (-0.000033202652391372056 + (x * (0.000004890304529197534 + (x * (-3.123956959982987e-7 + (x * 8.22063524662433e-18))))))))))))))))); // eslint-disable-line max-len
@@ -33536,7 +33536,7 @@ function __evalpoly_430( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_430 = __evalpoly_430;
+var _$evalpoly_437 = __evalpoly_437;
 
 /**
 * @license Apache-2.0
@@ -33574,19 +33574,19 @@ var _$evalpoly_430 = __evalpoly_430;
 
 // MODULES //
 
-/* removed: var _$gammaDeltaRatio_317 = require( '@stdlib/math/base/special/gamma-delta-ratio' ); */;
-/* removed: var _$evalpoly_507 = require( '@stdlib/math/base/tools/evalpoly' ); */;
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$gammaDeltaRatio_324 = require( '@stdlib/math/base/special/gamma-delta-ratio' ); */;
+/* removed: var _$evalpoly_514 = require( '@stdlib/math/base/tools/evalpoly' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
 /* removed: var _$PI_206 = require( '@stdlib/constants/math/float64-pi' ); */;
-/* removed: var _$evalpoly_421 = require( './polyval_co14.js' ); */;
-/* removed: var _$evalpoly_422 = require( './polyval_co15.js' ); */;
-/* removed: var _$evalpoly_423 = require( './polyval_co16.js' ); */;
-/* removed: var _$evalpoly_424 = require( './polyval_co17.js' ); */;
-/* removed: var _$evalpoly_425 = require( './polyval_co18.js' ); */;
-/* removed: var _$evalpoly_426 = require( './polyval_co19.js' ); */;
-/* removed: var _$evalpoly_428 = require( './polyval_co20.js' ); */;
-/* removed: var _$evalpoly_429 = require( './polyval_co21.js' ); */;
-/* removed: var _$evalpoly_430 = require( './polyval_co22.js' ); */;
+/* removed: var _$evalpoly_428 = require( './polyval_co14.js' ); */;
+/* removed: var _$evalpoly_429 = require( './polyval_co15.js' ); */;
+/* removed: var _$evalpoly_430 = require( './polyval_co16.js' ); */;
+/* removed: var _$evalpoly_431 = require( './polyval_co17.js' ); */;
+/* removed: var _$evalpoly_432 = require( './polyval_co18.js' ); */;
+/* removed: var _$evalpoly_433 = require( './polyval_co19.js' ); */;
+/* removed: var _$evalpoly_435 = require( './polyval_co20.js' ); */;
+/* removed: var _$evalpoly_436 = require( './polyval_co21.js' ); */;
+/* removed: var _$evalpoly_437 = require( './polyval_co22.js' ); */;
 
 
 // VARIABLES //
@@ -33616,28 +33616,28 @@ function inverseStudentsTBodySeries( df, u ) {
 	var v;
 
 	// Body series for small N, start with Eq 56 of Shaw:
-	v = _$gammaDeltaRatio_317( df/2, 0.5 ) * _$sqrt_494( df*_$PI_206 ) * ( u-0.5 );
+	v = _$gammaDeltaRatio_324( df/2, 0.5 ) * _$sqrt_501( df*_$PI_206 ) * ( u-0.5 );
 
 	// Figure out what the coefficients are. They depend only on the degrees of freedom (Eq 57 of Shaw):
 	idf = 1.0 / df;
-	c[ 1 ] = _$evalpoly_421( idf );
-	c[ 2 ] = _$evalpoly_422( idf );
-	c[ 3 ] = _$evalpoly_423( idf );
-	c[ 4 ] = _$evalpoly_424( idf );
-	c[ 5 ] = _$evalpoly_425( idf );
-	c[ 6 ] = _$evalpoly_426( idf );
-	c[ 7 ] = _$evalpoly_428( idf );
-	c[ 8 ] = _$evalpoly_429( idf );
-	c[ 9 ] = _$evalpoly_430( idf );
+	c[ 1 ] = _$evalpoly_428( idf );
+	c[ 2 ] = _$evalpoly_429( idf );
+	c[ 3 ] = _$evalpoly_430( idf );
+	c[ 4 ] = _$evalpoly_431( idf );
+	c[ 5 ] = _$evalpoly_432( idf );
+	c[ 6 ] = _$evalpoly_433( idf );
+	c[ 7 ] = _$evalpoly_435( idf );
+	c[ 8 ] = _$evalpoly_436( idf );
+	c[ 9 ] = _$evalpoly_437( idf );
 
 	// Result is then an odd polynomial in v (see Eq 56 of Shaw)...
-	return c0 + ( v*_$evalpoly_507( c, v*v ) );
+	return c0 + ( v*_$evalpoly_514( c, v*v ) );
 }
 
 
 // EXPORTS //
 
-var _$inverseStudentsTBodySeries_411 = inverseStudentsTBodySeries;
+var _$inverseStudentsTBodySeries_418 = inverseStudentsTBodySeries;
 
 /**
 * @license Apache-2.0
@@ -33675,17 +33675,17 @@ var _$inverseStudentsTBodySeries_411 = inverseStudentsTBodySeries;
 
 // MODULES //
 
-/* removed: var _$gammaDeltaRatio_317 = require( '@stdlib/math/base/special/gamma-delta-ratio' ); */;
-/* removed: var _$evalpoly_507 = require( '@stdlib/math/base/tools/evalpoly' ); */;
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$gammaDeltaRatio_324 = require( '@stdlib/math/base/special/gamma-delta-ratio' ); */;
+/* removed: var _$evalpoly_514 = require( '@stdlib/math/base/tools/evalpoly' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
 /* removed: var _$PI_206 = require( '@stdlib/constants/math/float64-pi' ); */;
 
 
 // VARIABLES //
 
 // Array for the coefficients d(k), these depend only on the number of degrees of freedom df, so at least in theory we could tabulate these for fixed df, see p15 of Shaw:
-var __d_413 = [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]; // WARNING: not thread safe
+var __d_420 = [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]; // WARNING: not thread safe
 
 
 // MAIN //
@@ -33713,34 +33713,34 @@ function inverseStudentsTTailSeries( df, v ) { // eslint-disable-line id-length
 	var w;
 
 	// Tail series expansion, see section 6 of Shaw's paper. `w` is calculated using Eq 60:
-	w = _$gammaDeltaRatio_317( df/2.0, 0.5 ) * _$sqrt_494( df*_$PI_206 ) * v;
+	w = _$gammaDeltaRatio_324( df/2.0, 0.5 ) * _$sqrt_501( df*_$PI_206 ) * v;
 
 	// Define some variables:
 	np2 = df + 2.0;
 	np4 = df + 4.0;
 	np6 = df + 6.0;
 
-	__d_413[ 0 ] = 1.0;
-	__d_413[ 1 ] = -(df+1.0) / (2.0*np2);
+	__d_420[ 0 ] = 1.0;
+	__d_420[ 1 ] = -(df+1.0) / (2.0*np2);
 	np2 *= (df + 2.0);
-	__d_413[ 2 ] = -df * (df+1.0) * (df+3.0) / (8.0*np2*np4);
+	__d_420[ 2 ] = -df * (df+1.0) * (df+3.0) / (8.0*np2*np4);
 	np2 *= df + 2.0;
-	__d_413[ 3 ] = -df * (df+1.0) * (df+5.0) * (((3.0*df) + 7.0) * df - 2.0) / (48.0*np2*np4*np6); // eslint-disable-line max-len, no-mixed-operators
+	__d_420[ 3 ] = -df * (df+1.0) * (df+5.0) * (((3.0*df) + 7.0) * df - 2.0) / (48.0*np2*np4*np6); // eslint-disable-line max-len, no-mixed-operators
 	np2 *= (df + 2.0);
 	np4 *= (df + 4.0);
-	__d_413[ 4 ] = -df * (df+1.0) * (df+7.0) * ( (((((15.0*df) + 154.0) * df + 465.0) * df + 286.0) * df - 336.0) * df + 64.0) / (384.0*np2*np4*np6*(df+8.0)); // eslint-disable-line max-len, no-mixed-operators
+	__d_420[ 4 ] = -df * (df+1.0) * (df+7.0) * ( (((((15.0*df) + 154.0) * df + 465.0) * df + 286.0) * df - 336.0) * df + 64.0) / (384.0*np2*np4*np6*(df+8.0)); // eslint-disable-line max-len, no-mixed-operators
 	np2 *= (df + 2.0);
-	__d_413[ 5 ] = -df * (df+1.0) * (df+3.0) * (df+9.0) * (((((((35.0 * df + 452.0) * df+1573.0) * df + 600.0) * df - 2020.0) * df) + 928.0) * df - 128.0) / (1280.0*np2*np4*np6*(df+8.0) * (df+10.0)); // eslint-disable-line max-len, no-mixed-operators
+	__d_420[ 5 ] = -df * (df+1.0) * (df+3.0) * (df+9.0) * (((((((35.0 * df + 452.0) * df+1573.0) * df + 600.0) * df - 2020.0) * df) + 928.0) * df - 128.0) / (1280.0*np2*np4*np6*(df+8.0) * (df+10.0)); // eslint-disable-line max-len, no-mixed-operators
 	np2 *= (df + 2.0);
 	np4 *= (df + 4.0);
 	np6 *= (df + 6.0);
-	__d_413[ 6 ] = -df * (df+1.0) * (df+11.0) * ((((((((((((945.0*df) + 31506.0) * df + 425858.0) * df + 2980236.0) * df + 11266745.0) * df + 20675018.0) * df + 7747124.0) * df - 22574632.0) * df - 8565600.0) * df + 18108416.0) * df - 7099392.0) * df + 884736.0) / (46080.0*np2*np4*np6*(df+8.0) * (df+10.0) * (df+12.0)); // eslint-disable-line max-len, no-mixed-operators
+	__d_420[ 6 ] = -df * (df+1.0) * (df+11.0) * ((((((((((((945.0*df) + 31506.0) * df + 425858.0) * df + 2980236.0) * df + 11266745.0) * df + 20675018.0) * df + 7747124.0) * df - 22574632.0) * df - 8565600.0) * df + 18108416.0) * df - 7099392.0) * df + 884736.0) / (46080.0*np2*np4*np6*(df+8.0) * (df+10.0) * (df+12.0)); // eslint-disable-line max-len, no-mixed-operators
 
 	// Now bring everything together to provide the result this is Eq 62 of Shaw:
-	rn = _$sqrt_494( df );
-	div = _$pow_469( rn*w, 1.0/df );
+	rn = _$sqrt_501( df );
+	div = _$pow_476( rn*w, 1.0/df );
 	power = div * div;
-	result = _$evalpoly_507( __d_413, power );
+	result = _$evalpoly_514( __d_420, power );
 	result *= rn;
 	result /= div;
 	return -result;
@@ -33749,7 +33749,7 @@ function inverseStudentsTTailSeries( df, v ) { // eslint-disable-line id-length
 
 // EXPORTS //
 
-var _$inverseStudentsTTailSeries_413 = inverseStudentsTTailSeries;
+var _$inverseStudentsTTailSeries_420 = inverseStudentsTTailSeries;
 
 /**
 * @license Apache-2.0
@@ -33790,9 +33790,9 @@ var _$inverseStudentsTTailSeries_413 = inverseStudentsTTailSeries;
 // MODULES //
 
 /* removed: var _$erfcinv_295 = require( '@stdlib/math/base/special/erfcinv' ); */;
-/* removed: var _$expm1_306 = require( '@stdlib/math/base/special/expm1' ); */;
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$expm1_313 = require( '@stdlib/math/base/special/expm1' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
 /* removed: var _$HALF_PI_194 = require( '@stdlib/constants/math/float64-half-pi' ); */;
 /* removed: var _$SQRT2_212 = require( '@stdlib/constants/math/float64-sqrt-two' ); */;
 
@@ -33826,8 +33826,8 @@ function inverseStudentsTHill( ndf, u ) {
 	a = 1.0 / ( ndf - 0.5 );
 	b = 48.0 / (a * a);
 	c = ( ( ( ( (20700.0*a/b) - 98.0 ) * a ) - 16.0 ) * a ) + 96.36;
-	d = ( ( ( (94.5/(b+c)) - 3.0 ) / b ) + 1.0 ) * _$sqrt_494( a * _$HALF_PI_194 ) * ndf;
-	y = _$pow_469( d * 2.0 * u, 2.0 / ndf );
+	d = ( ( ( (94.5/(b+c)) - 3.0 ) / b ) + 1.0 ) * _$sqrt_501( a * _$HALF_PI_194 ) * ndf;
+	y = _$pow_476( d * 2.0 * u, 2.0 / ndf );
 
 	if ( y > ( 0.05 + a ) ) {
 		// Asymptotic inverse expansion about normal:
@@ -33839,20 +33839,20 @@ function inverseStudentsTHill( ndf, u ) {
 		}
 		c += ( ( ( ( ( ( (0.05*d*x)-5.0 ) * x ) - 7.0 ) * x )- 2.0 ) * x ) + b;
 		y = ((((((0.4*y+6.3)*y)+36.0) * y + 94.5) / c - y - 3.0) / b + 1.0) * x;
-		y = _$expm1_306( a * y * y );
+		y = _$expm1_313( a * y * y );
 	} else {
 		y = ((1.0 / ( ( (ndf+6.0) / (ndf*y) - 0.089 * d - 0.822 ) *
 		(ndf+2.0) * 3.0 ) + 0.5 / (ndf+4.0)) * y - 1.0) *
 		(ndf+1.0) / (ndf+2.0) + 1.0 / y;
 	}
-	q = _$sqrt_494( ndf * y );
+	q = _$sqrt_501( ndf * y );
 	return -q;
 }
 
 
 // EXPORTS //
 
-var _$inverseStudentsTHill_412 = inverseStudentsTHill;
+var _$inverseStudentsTHill_419 = inverseStudentsTHill;
 
 /**
 * @license Apache-2.0
@@ -33891,26 +33891,26 @@ var _$inverseStudentsTHill_412 = inverseStudentsTHill;
 // MODULES //
 
 /* removed: var _$erfcinv_295 = require( '@stdlib/math/base/special/erfcinv' ); */;
-/* removed: var _$floor_314 = require( '@stdlib/math/base/special/floor' ); */;
-/* removed: var _$ldexp_452 = require( '@stdlib/math/base/special/ldexp' ); */;
-/* removed: var _$round_486 = require( '@stdlib/math/base/special/round' ); */;
+/* removed: var _$floor_321 = require( '@stdlib/math/base/special/floor' ); */;
+/* removed: var _$ldexp_459 = require( '@stdlib/math/base/special/ldexp' ); */;
+/* removed: var _$round_493 = require( '@stdlib/math/base/special/round' ); */;
 /* removed: var _$acos_244 = require( '@stdlib/math/base/special/acos' ); */;
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
 /* removed: var _$cos_273 = require( '@stdlib/math/base/special/cos' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
-/* removed: var _$sin_490 = require( '@stdlib/math/base/special/sin' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$sin_497 = require( '@stdlib/math/base/special/sin' ); */;
 /* removed: var _$SQRT2_212 = require( '@stdlib/constants/math/float64-sqrt-two' ); */;
 /* removed: var _$PI_206 = require( '@stdlib/constants/math/float64-pi' ); */;
-/* removed: var _$inverseStudentsTBodySeries_411 = require( './inverse_students_t_body_series.js' ); */;
-/* removed: var _$inverseStudentsTTailSeries_413 = require( './inverse_students_t_tail_series.js' ); */;
-/* removed: var _$inverseStudentsTHill_412 = require( './inverse_students_t_hill.js' ); */;
+/* removed: var _$inverseStudentsTBodySeries_418 = require( './inverse_students_t_body_series.js' ); */;
+/* removed: var _$inverseStudentsTTailSeries_420 = require( './inverse_students_t_tail_series.js' ); */;
+/* removed: var _$inverseStudentsTHill_419 = require( './inverse_students_t_hill.js' ); */;
 
 
 // VARIABLES //
 
 var DF_THRESHOLD = 0x10000000; // 2^28
-var __ONE_THIRD_410 = 1.0 / 3.0;
+var __ONE_THIRD_417 = 1.0 / 3.0;
 var EXP = ( 2.0 * 53.0 ) / 3.0;
 var C = 0.85498797333834849467655443627193;
 
@@ -33954,39 +33954,39 @@ function inverseStudentsT( df, u, v ) {
 	} else {
 		invert = false;
 	}
-	if ( _$floor_314(df) === df && df < 20 ) {
+	if ( _$floor_321(df) === df && df < 20 ) {
 		// We have integer degrees of freedom, try for the special cases first:
-		tolerance = _$ldexp_452( 1.0, EXP );
+		tolerance = _$ldexp_459( 1.0, EXP );
 
-		switch ( _$floor_314( df ) ) {
+		switch ( _$floor_321( df ) ) {
 		case 1:
 			// `df = 1` is the same as the Cauchy distribution, see Shaw Eq 35:
 			if ( u === 0.5 ) {
 				result = 0.0;
 			} else {
-				result = -_$cos_273( _$PI_206 * u ) / _$sin_490( _$PI_206 * u );
+				result = -_$cos_273( _$PI_206 * u ) / _$sin_497( _$PI_206 * u );
 			}
 			break;
 		case 2:
 			// `df = 2` has an exact result, see Shaw Eq 36:
-			result = ( (2.0*u) - 1.0 ) / _$sqrt_494( 2.0 * u * v );
+			result = ( (2.0*u) - 1.0 ) / _$sqrt_501( 2.0 * u * v );
 			break;
 		case 4:
 			// `df = 4` has an exact result, see Shaw Eq 38 & 39:
 			alpha = 4.0 * u * v;
-			rootAlpha = _$sqrt_494( alpha );
+			rootAlpha = _$sqrt_501( alpha );
 			r = 4 * _$cos_273( _$acos_244( rootAlpha ) / 3.0 ) / rootAlpha;
-			x = _$sqrt_494( r - 4.0 );
+			x = _$sqrt_501( r - 4.0 );
 			result = ( u - 0.5 < 0.0 ) ? -x : x;
 			break;
 		case 6:
 			// We get numeric overflow in this area:
 			if ( u < 1.0e-150 ) {
-				return ( ( invert ) ? -1 : 1 ) * _$inverseStudentsTHill_412( df, u );
+				return ( ( invert ) ? -1 : 1 ) * _$inverseStudentsTHill_419( df, u );
 			}
 			// Newton-Raphson iteration of a polynomial case, choice of seed value is taken from Shaw's online supplement:
 			a = 4.0 * ( u - (u*u) );// 1 - 4 * (u - 0.5f) * (u - 0.5f);
-			b = _$pow_469( a, __ONE_THIRD_410 );
+			b = _$pow_476( a, __ONE_THIRD_417 );
 			p = 6.0 * ( 1.0 + ( C * ( (1.0/b) - 1.0 ) ) );
 			do {
 				p2 = p * p;
@@ -34000,7 +34000,7 @@ function inverseStudentsT( df, u, v ) {
 			} while ( _$abs_242( (p - p0) / p ) > tolerance );
 
 			// Use Eq 45 to extract the result:
-			p = _$sqrt_494( p - df );
+			p = _$sqrt_501( p - df );
 			result = ( u - 0.5 < 0.0 ) ? -p : p;
 			break;
 		default:
@@ -34010,17 +34010,17 @@ function inverseStudentsT( df, u, v ) {
 				// Use a roughly linear scheme to choose between Shaw's tail series and body series:
 				crossover = 0.2742 - ( df * 0.0242143 );
 				if ( u > crossover ) {
-					result = _$inverseStudentsTBodySeries_411( df, u );
+					result = _$inverseStudentsTBodySeries_418( df, u );
 				} else {
-					result = _$inverseStudentsTTailSeries_413( df, u );
+					result = _$inverseStudentsTTailSeries_420( df, u );
 				}
 			} else {
 				// Use Hill's method except in the extreme tails where we use Shaw's tail series. The crossover point is roughly exponential in -df:
-				crossover = _$ldexp_452( 1.0, _$round_486( df / -0.654 ) );
+				crossover = _$ldexp_459( 1.0, _$round_493( df / -0.654 ) );
 				if ( u > crossover ) {
-					result = _$inverseStudentsTHill_412( df, u );
+					result = _$inverseStudentsTHill_419( df, u );
 				} else {
-					result = _$inverseStudentsTTailSeries_413( df, u );
+					result = _$inverseStudentsTTailSeries_420( df, u );
 				}
 			}
 		}
@@ -34030,17 +34030,17 @@ function inverseStudentsT( df, u, v ) {
 		// Use a roughly linear scheme to choose between Shaw's tail series and body series:
 		crossover = 0.2742 - ( df * 0.0242143 );
 		if ( u > crossover ) {
-			result = _$inverseStudentsTBodySeries_411( df, u );
+			result = _$inverseStudentsTBodySeries_418( df, u );
 		} else {
-			result = _$inverseStudentsTTailSeries_413( df, u );
+			result = _$inverseStudentsTTailSeries_420( df, u );
 		}
 	} else {
 		// Use Hill's method except in the extreme tails where we use Shaw's tail series. The crossover point is roughly exponential in -df:
-		crossover = _$ldexp_452( 1.0, _$round_486( df / -0.654 ) );
+		crossover = _$ldexp_459( 1.0, _$round_493( df / -0.654 ) );
 		if ( u > crossover ) {
-			result = _$inverseStudentsTHill_412( df, u );
+			result = _$inverseStudentsTHill_419( df, u );
 		} else {
-			result = _$inverseStudentsTTailSeries_413( df, u );
+			result = _$inverseStudentsTTailSeries_420( df, u );
 		}
 	}
 	return ( invert ) ? -result : result;
@@ -34049,7 +34049,7 @@ function inverseStudentsT( df, u, v ) {
 
 // EXPORTS //
 
-var _$inverseStudentsT_410 = inverseStudentsT;
+var _$inverseStudentsT_417 = inverseStudentsT;
 
 /**
 * @license Apache-2.0
@@ -34087,7 +34087,7 @@ var _$inverseStudentsT_410 = inverseStudentsT;
 
 // MODULES //
 
-/* removed: var _$inverseStudentsT_410 = require( './inverse_students_t.js' ); */;
+/* removed: var _$inverseStudentsT_417 = require( './inverse_students_t.js' ); */;
 
 
 // MAIN //
@@ -34110,7 +34110,7 @@ function findIBetaInvFromTDist( a, p, py ) {
 	u = p / 2.0;
 	v = 1.0 - u;
 	df = a * 2.0;
-	t = _$inverseStudentsT_410( df, u, v );
+	t = _$inverseStudentsT_417( df, u, v );
 	if ( py ) {
 		py.value = t * t / ( df + ( t*t ) );
 	}
@@ -34120,7 +34120,7 @@ function findIBetaInvFromTDist( a, p, py ) {
 
 // EXPORTS //
 
-var _$findIBetaInvFromTDist_406 = findIBetaInvFromTDist;
+var _$findIBetaInvFromTDist_413 = findIBetaInvFromTDist;
 
 /**
 * @license Apache-2.0
@@ -34158,17 +34158,17 @@ var _$findIBetaInvFromTDist_406 = findIBetaInvFromTDist;
 
 // MODULES //
 
-/* removed: var _$evalpoly_507 = require( '@stdlib/math/base/tools/evalpoly' ); */;
+/* removed: var _$evalpoly_514 = require( '@stdlib/math/base/tools/evalpoly' ); */;
 /* removed: var _$erfcinv_295 = require( '@stdlib/math/base/special/erfcinv' ); */;
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
 /* removed: var _$SQRT2_212 = require( '@stdlib/constants/math/float64-sqrt-two' ); */;
 
 
 // VARIABLES //
 
 // Workspaces for the polynomial coefficients:
-var __workspace_439 = [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
+var __workspace_446 = [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
 var terms = [ 0.0, 0.0, 0.0, 0.0 ];
 
 
@@ -34198,7 +34198,7 @@ function temme1( a, b, z ) {
 
 	// Get the first approximation for eta from the inverse error function (Eq: 2.9 and 2.10):
 	eta0 = _$erfcinv_295( 2.0 * z );
-	eta0 /= -_$sqrt_494( a / 2.0 );
+	eta0 /= -_$sqrt_501( a / 2.0 );
 
 	terms[ 0 ] = eta0;
 
@@ -34210,51 +34210,51 @@ function temme1( a, b, z ) {
 	// Calculate correction terms:
 
 	// See eq following 2.15:
-	__workspace_439[ 0 ] = -B * _$SQRT2_212 / 2;
-	__workspace_439[ 1 ] = ( 1 - (2.0*B) ) / 8.0;
-	__workspace_439[ 2 ] = -(B * _$SQRT2_212 / 48.0);
-	__workspace_439[ 3 ] = -1.0 / 192.0;
-	__workspace_439[ 4 ] = -B * _$SQRT2_212 / 3840.0;
-	__workspace_439[ 5 ] = 0.0;
-	__workspace_439[ 6 ] = 0.0;
-	terms[ 1 ] = _$evalpoly_507( __workspace_439, eta0 );
+	__workspace_446[ 0 ] = -B * _$SQRT2_212 / 2;
+	__workspace_446[ 1 ] = ( 1 - (2.0*B) ) / 8.0;
+	__workspace_446[ 2 ] = -(B * _$SQRT2_212 / 48.0);
+	__workspace_446[ 3 ] = -1.0 / 192.0;
+	__workspace_446[ 4 ] = -B * _$SQRT2_212 / 3840.0;
+	__workspace_446[ 5 ] = 0.0;
+	__workspace_446[ 6 ] = 0.0;
+	terms[ 1 ] = _$evalpoly_514( __workspace_446, eta0 );
 
 	// Eq Following 2.17:
-	__workspace_439[ 0 ] = B * _$SQRT2_212 * ( (3.0*B) - 2.0) / 12.0;
-	__workspace_439[ 1 ] = ( (20.0*B2) - (12.0*B) + 1.0 ) / 128.0;
-	__workspace_439[ 2 ] = B * _$SQRT2_212 * ( (20.0*B) - 1.0) / 960.0;
-	__workspace_439[ 3 ] = ( (16.0*B2) + (30.0*B) - 15.0) / 4608.0;
-	__workspace_439[ 4 ] = B * _$SQRT2_212 * ( (21.0*B) + 32) / 53760.0;
-	__workspace_439[ 5 ] = (-(32.0*B2) + 63.0) / 368640.0;
-	__workspace_439[ 6 ] = -B * _$SQRT2_212 * ( (120.0*B) + 17.0) / 25804480.0;
-	terms[ 2 ] = _$evalpoly_507( __workspace_439, eta0 );
+	__workspace_446[ 0 ] = B * _$SQRT2_212 * ( (3.0*B) - 2.0) / 12.0;
+	__workspace_446[ 1 ] = ( (20.0*B2) - (12.0*B) + 1.0 ) / 128.0;
+	__workspace_446[ 2 ] = B * _$SQRT2_212 * ( (20.0*B) - 1.0) / 960.0;
+	__workspace_446[ 3 ] = ( (16.0*B2) + (30.0*B) - 15.0) / 4608.0;
+	__workspace_446[ 4 ] = B * _$SQRT2_212 * ( (21.0*B) + 32) / 53760.0;
+	__workspace_446[ 5 ] = (-(32.0*B2) + 63.0) / 368640.0;
+	__workspace_446[ 6 ] = -B * _$SQRT2_212 * ( (120.0*B) + 17.0) / 25804480.0;
+	terms[ 2 ] = _$evalpoly_514( __workspace_446, eta0 );
 
 	// Eq Following 2.17:
-	__workspace_439[ 0 ] = B * _$SQRT2_212 * ( (-75*B2) + (80.0*B) - 16.0) / 480.0;
-	__workspace_439[ 1 ] = ( (-1080.0*B3) + (868.0*B2) - (90.0*B) - 45.0) / 9216.0;
-	__workspace_439[ 2 ] = B * _$SQRT2_212 * ( (-1190.0*B2) + (84.0*B) + 373.0) / 53760.0;
-	__workspace_439[ 3 ] = ( (-2240.0*B3)-(2508.0*B2)+(2100.0*B)-165.0 ) / 368640.0;
-	__workspace_439[ 4 ] = 0.0;
-	__workspace_439[ 5 ] = 0.0;
-	__workspace_439[ 6 ] = 0.0;
-	terms[ 3 ] = _$evalpoly_507( __workspace_439, eta0 );
+	__workspace_446[ 0 ] = B * _$SQRT2_212 * ( (-75*B2) + (80.0*B) - 16.0) / 480.0;
+	__workspace_446[ 1 ] = ( (-1080.0*B3) + (868.0*B2) - (90.0*B) - 45.0) / 9216.0;
+	__workspace_446[ 2 ] = B * _$SQRT2_212 * ( (-1190.0*B2) + (84.0*B) + 373.0) / 53760.0;
+	__workspace_446[ 3 ] = ( (-2240.0*B3)-(2508.0*B2)+(2100.0*B)-165.0 ) / 368640.0;
+	__workspace_446[ 4 ] = 0.0;
+	__workspace_446[ 5 ] = 0.0;
+	__workspace_446[ 6 ] = 0.0;
+	terms[ 3 ] = _$evalpoly_514( __workspace_446, eta0 );
 
 	// Bring them together to get a final estimate for eta:
-	eta = _$evalpoly_507( terms, 1.0/a );
+	eta = _$evalpoly_514( terms, 1.0/a );
 
 	// Now we need to convert eta to the return value `x`, by solving the appropriate quadratic equation:
 	eta2 = eta * eta;
-	c = -_$exp_303( -eta2 / 2.0 );
+	c = -_$exp_310( -eta2 / 2.0 );
 	if ( eta2 === 0.0 ) {
 		return 0.5;
 	}
-	return ( 1.0 + ( eta * _$sqrt_494( ( 1.0+c ) / eta2 ) ) ) / 2.0;
+	return ( 1.0 + ( eta * _$sqrt_501( ( 1.0+c ) / eta2 ) ) ) / 2.0;
 }
 
 
 // EXPORTS //
 
-var _$temme1_439 = temme1;
+var _$temme1_446 = temme1;
 
 /**
 * @license Apache-2.0
@@ -34292,7 +34292,7 @@ var _$temme1_439 = temme1;
 
 // MODULES //
 
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$FLOAT64_MAX_202 = require( '@stdlib/constants/math/float64-max' ); */;
 
 
@@ -34333,7 +34333,7 @@ function temmeRootFinder( t, a ) {
 		if ( x === 0.0 ) {
 			return [ -BIG, -BIG ];
 		}
-		f = _$ln_454( x ) + ( a * _$ln_454( y ) ) + t;
+		f = _$ln_461( x ) + ( a * _$ln_461( y ) ) + t;
 		f1 = ( 1.0 / x ) - ( a / y );
 		return [ f, f1 ];
 	}
@@ -34342,7 +34342,7 @@ function temmeRootFinder( t, a ) {
 
 // EXPORTS //
 
-var _$temmeRootFinder_438 = temmeRootFinder;
+var _$temmeRootFinder_445 = temmeRootFinder;
 
 /**
 * @license Apache-2.0
@@ -34407,7 +34407,7 @@ function signum( x ) {
 
 // EXPORTS //
 
-var _$signum_489 = signum;
+var _$signum_496 = signum;
 
 /**
 * @license Apache-2.0
@@ -34455,12 +34455,12 @@ var _$signum_489 = signum;
 
 // MODULES //
 
-/* removed: var _$signum_489 = require( './signum.js' ); */;
+/* removed: var _$signum_496 = require( './signum.js' ); */;
 
 
 // EXPORTS //
 
-var _$signum_488 = _$signum_489;
+var _$signum_495 = _$signum_496;
 
 /**
 * @license Apache-2.0
@@ -34497,9 +34497,9 @@ var _$signum_488 = _$signum_489;
 
 // MODULES //
 
-/* removed: var _$signum_488 = require( '@stdlib/math/base/special/signum' ); */;
+/* removed: var _$signum_495 = require( '@stdlib/math/base/special/signum' ); */;
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$ldexp_452 = require( '@stdlib/math/base/special/ldexp' ); */;
+/* removed: var _$ldexp_459 = require( '@stdlib/math/base/special/ldexp' ); */;
 /* removed: var _$FLOAT64_MAX_202 = require( '@stdlib/constants/math/float64-max' ); */;
 
 
@@ -34533,7 +34533,7 @@ function newtonRaphsonIterate( fun, guess, min, max, digits, maxIter ) {
 	f0last = 0.0;
 	result = guess;
 
-	factor = _$ldexp_452( 1.0, 1.0 - digits );
+	factor = _$ldexp_459( 1.0, 1.0 - digits );
 	delta = _$FLOAT64_MAX_202;
 	delta1 = _$FLOAT64_MAX_202;
 	delta2 = _$FLOAT64_MAX_202;
@@ -34562,7 +34562,7 @@ function newtonRaphsonIterate( fun, guess, min, max, digits, maxIter ) {
 				f0last = fun( guess );
 				delta = guess - result;
 			}
-			if ( _$signum_488(f0last) * _$signum_488(f0) < 0 ) {
+			if ( _$signum_495(f0last) * _$signum_495(f0) < 0 ) {
 				// We've crossed over so move in opposite direction to last step:
 				if ( delta < 0 ) {
 					delta = (result - min) / 2.0;
@@ -34611,7 +34611,7 @@ function newtonRaphsonIterate( fun, guess, min, max, digits, maxIter ) {
 
 // EXPORTS //
 
-var _$newtonRaphsonIterate_415 = newtonRaphsonIterate;
+var _$newtonRaphsonIterate_422 = newtonRaphsonIterate;
 
 /**
 * @license Apache-2.0
@@ -34650,7 +34650,7 @@ var _$newtonRaphsonIterate_415 = newtonRaphsonIterate;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_416( x ) {
+function __evalpoly_423( x ) {
 	if ( x === 0.0 ) {
 		return -1.0;
 	}
@@ -34660,56 +34660,7 @@ function __evalpoly_416( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_416 = __evalpoly_416;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function __evalpoly_420( x ) {
-	if ( x === 0.0 ) {
-		return 1.0;
-	}
-	return 1.0 + (x * (21.0 + (x * (-69.0 + (x * 46.0)))));
-}
-
-
-// EXPORTS //
-
-var _$evalpoly_420 = __evalpoly_420;
+var _$evalpoly_423 = __evalpoly_423;
 
 /**
 * @license Apache-2.0
@@ -34797,158 +34748,11 @@ var _$evalpoly_427 = __evalpoly_427;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_431( x ) {
-	if ( x === 0.0 ) {
-		return 7.0;
-	}
-	return 7.0 + (x * (-2.0 + (x * (33.0 + (x * (-62.0 + (x * 31.0)))))));
-}
-
-
-// EXPORTS //
-
-var _$evalpoly_431 = __evalpoly_431;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function __evalpoly_432( x ) {
-	if ( x === 0.0 ) {
-		return 25.0;
-	}
-	return 25.0 + (x * (-52.0 + (x * (-17.0 + (x * (88.0 + (x * (-115.0 + (x * 46.0))))))))); // eslint-disable-line max-len
-}
-
-
-// EXPORTS //
-
-var _$evalpoly_432 = __evalpoly_432;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
-function __evalpoly_433( x ) {
-	if ( x === 0.0 ) {
-		return 7.0;
-	}
-	return 7.0 + (x * (12.0 + (x * (-78.0 + (x * 52.0)))));
-}
-
-
-// EXPORTS //
-
-var _$evalpoly_433 = __evalpoly_433;
-
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* This is a generated file. Do not edit directly. */
-'use strict';
-
-// MAIN //
-
-/**
-* Evaluates a polynomial.
-*
-* ## Notes
-*
-* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
-*
-* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
-*
-*
-* @private
-* @param {number} x - value at which to evaluate the polynomial
-* @returns {number} evaluated polynomial
-*/
 function __evalpoly_434( x ) {
 	if ( x === 0.0 ) {
-		return -7.0;
+		return 1.0;
 	}
-	return -7.0 + (x * (2.0 + (x * (183.0 + (x * (-370.0 + (x * 185.0)))))));
+	return 1.0 + (x * (21.0 + (x * (-69.0 + (x * 46.0)))));
 }
 
 
@@ -34993,7 +34797,203 @@ var _$evalpoly_434 = __evalpoly_434;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_435( x ) {
+function __evalpoly_438( x ) {
+	if ( x === 0.0 ) {
+		return 7.0;
+	}
+	return 7.0 + (x * (-2.0 + (x * (33.0 + (x * (-62.0 + (x * 31.0)))))));
+}
+
+
+// EXPORTS //
+
+var _$evalpoly_438 = __evalpoly_438;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function __evalpoly_439( x ) {
+	if ( x === 0.0 ) {
+		return 25.0;
+	}
+	return 25.0 + (x * (-52.0 + (x * (-17.0 + (x * (88.0 + (x * (-115.0 + (x * 46.0))))))))); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+var _$evalpoly_439 = __evalpoly_439;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function __evalpoly_440( x ) {
+	if ( x === 0.0 ) {
+		return 7.0;
+	}
+	return 7.0 + (x * (12.0 + (x * (-78.0 + (x * 52.0)))));
+}
+
+
+// EXPORTS //
+
+var _$evalpoly_440 = __evalpoly_440;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function __evalpoly_441( x ) {
+	if ( x === 0.0 ) {
+		return -7.0;
+	}
+	return -7.0 + (x * (2.0 + (x * (183.0 + (x * (-370.0 + (x * 185.0)))))));
+}
+
+
+// EXPORTS //
+
+var _$evalpoly_441 = __evalpoly_441;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a polynomial.
+*
+* ## Notes
+*
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the polynomial
+* @returns {number} evaluated polynomial
+*/
+function __evalpoly_442( x ) {
 	if ( x === 0.0 ) {
 		return -533.0;
 	}
@@ -35003,7 +35003,7 @@ function __evalpoly_435( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_435 = __evalpoly_435;
+var _$evalpoly_442 = __evalpoly_442;
 
 /**
 * @license Apache-2.0
@@ -35042,7 +35042,7 @@ var _$evalpoly_435 = __evalpoly_435;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_436( x ) {
+function __evalpoly_443( x ) {
 	if ( x === 0.0 ) {
 		return -1579.0;
 	}
@@ -35052,7 +35052,7 @@ function __evalpoly_436( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_436 = __evalpoly_436;
+var _$evalpoly_443 = __evalpoly_443;
 
 /**
 * @license Apache-2.0
@@ -35091,7 +35091,7 @@ var _$evalpoly_436 = __evalpoly_436;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_437( x ) {
+function __evalpoly_444( x ) {
 	if ( x === 0.0 ) {
 		return 449.0;
 	}
@@ -35101,7 +35101,7 @@ function __evalpoly_437( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_437 = __evalpoly_437;
+var _$evalpoly_444 = __evalpoly_444;
 
 /**
 * @license Apache-2.0
@@ -35140,7 +35140,7 @@ var _$evalpoly_437 = __evalpoly_437;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_417( x ) {
+function __evalpoly_424( x ) {
 	if ( x === 0.0 ) {
 		return 63149.0;
 	}
@@ -35150,7 +35150,7 @@ function __evalpoly_417( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_417 = __evalpoly_417;
+var _$evalpoly_424 = __evalpoly_424;
 
 /**
 * @license Apache-2.0
@@ -35189,7 +35189,7 @@ var _$evalpoly_417 = __evalpoly_417;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_418( x ) {
+function __evalpoly_425( x ) {
 	if ( x === 0.0 ) {
 		return 29233.0;
 	}
@@ -35199,7 +35199,7 @@ function __evalpoly_418( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_418 = __evalpoly_418;
+var _$evalpoly_425 = __evalpoly_425;
 
 /**
 * @license Apache-2.0
@@ -35238,7 +35238,7 @@ var _$evalpoly_418 = __evalpoly_418;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_419( x ) {
+function __evalpoly_426( x ) {
 	if ( x === 0.0 ) {
 		return 1.0;
 	}
@@ -35248,7 +35248,7 @@ function __evalpoly_419( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_419 = __evalpoly_419;
+var _$evalpoly_426 = __evalpoly_426;
 
 /**
 * @license Apache-2.0
@@ -35286,36 +35286,36 @@ var _$evalpoly_419 = __evalpoly_419;
 
 // MODULES //
 
-/* removed: var _$evalpoly_507 = require( '@stdlib/math/base/tools/evalpoly' ); */;
+/* removed: var _$evalpoly_514 = require( '@stdlib/math/base/tools/evalpoly' ); */;
 /* removed: var _$erfcinv_295 = require( '@stdlib/math/base/special/erfcinv' ); */;
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
-/* removed: var _$sin_490 = require( '@stdlib/math/base/special/sin' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$sin_497 = require( '@stdlib/math/base/special/sin' ); */;
 /* removed: var _$cos_273 = require( '@stdlib/math/base/special/cos' ); */;
-/* removed: var _$temmeRootFinder_438 = require( './root_finder.js'); */;
-/* removed: var _$newtonRaphsonIterate_415 = require( './newton_raphson.js' ); */;
-/* removed: var _$evalpoly_416 = require( './polyval_co1.js' ); */;
-/* removed: var _$evalpoly_427 = require( './polyval_co2.js' ); */;
-/* removed: var _$evalpoly_431 = require( './polyval_co3.js' ); */;
-/* removed: var _$evalpoly_432 = require( './polyval_co4.js' ); */;
-/* removed: var _$evalpoly_433 = require( './polyval_co5.js' ); */;
-/* removed: var _$evalpoly_434 = require( './polyval_co6.js' ); */;
-/* removed: var _$evalpoly_435 = require( './polyval_co7.js' ); */;
-/* removed: var _$evalpoly_436 = require( './polyval_co8.js' ); */;
-/* removed: var _$evalpoly_437 = require( './polyval_co9.js' ); */;
-/* removed: var _$evalpoly_417 = require( './polyval_co10.js' ); */;
-/* removed: var _$evalpoly_418 = require( './polyval_co11.js' ); */;
-/* removed: var _$evalpoly_419 = require( './polyval_co12.js' ); */;
-/* removed: var _$evalpoly_420 = require( './polyval_co13.js' ); */;
+/* removed: var _$temmeRootFinder_445 = require( './root_finder.js'); */;
+/* removed: var _$newtonRaphsonIterate_422 = require( './newton_raphson.js' ); */;
+/* removed: var _$evalpoly_423 = require( './polyval_co1.js' ); */;
+/* removed: var _$evalpoly_434 = require( './polyval_co2.js' ); */;
+/* removed: var _$evalpoly_438 = require( './polyval_co3.js' ); */;
+/* removed: var _$evalpoly_439 = require( './polyval_co4.js' ); */;
+/* removed: var _$evalpoly_440 = require( './polyval_co5.js' ); */;
+/* removed: var _$evalpoly_441 = require( './polyval_co6.js' ); */;
+/* removed: var _$evalpoly_442 = require( './polyval_co7.js' ); */;
+/* removed: var _$evalpoly_443 = require( './polyval_co8.js' ); */;
+/* removed: var _$evalpoly_444 = require( './polyval_co9.js' ); */;
+/* removed: var _$evalpoly_424 = require( './polyval_co10.js' ); */;
+/* removed: var _$evalpoly_425 = require( './polyval_co11.js' ); */;
+/* removed: var _$evalpoly_426 = require( './polyval_co12.js' ); */;
+/* removed: var _$evalpoly_427 = require( './polyval_co13.js' ); */;
 
 
 // VARIABLES //
 
 // Workspaces for polynomial coefficients:
-var __workspace_440 = [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
-var __terms_440 = [ 0.0, 0.0, 0.0, 0.0 ];
+var __workspace_447 = [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
+var __terms_447 = [ 0.0, 0.0, 0.0, 0.0 ];
 
 
 // MAIN //
@@ -35356,13 +35356,13 @@ function temme2( z, r, theta ) {
 	var x;
 
 	// Get first estimate for eta, see Eq 3.9 and 3.10, but note there is a typo in Eq 3.10:
-	eta0 = _$erfcinv_295( 2.0*z ) / (-_$sqrt_494( r/2.0 ));
+	eta0 = _$erfcinv_295( 2.0*z ) / (-_$sqrt_501( r/2.0 ));
 
-	s = _$sin_490( theta );
+	s = _$sin_497( theta );
 	c = _$cos_273( theta );
 
 	// Now we need to perturb eta0 to get eta, which we do by evaluating the polynomial in 1/r at the bottom of page 151, to do this we first need the error terms e1, e2 e3 which we'll fill into the array "terms".  Since these terms are themselves polynomials, we'll need another array "workspace" to calculate those...
-	__terms_440[ 0 ] = eta0;
+	__terms_447[ 0 ] = eta0;
 
 	// Some powers of sin(theta) cos(theta) that we'll need later:
 	s2 = s * s;
@@ -35376,60 +35376,60 @@ function temme2( z, r, theta ) {
 	sc7 = sc4 * sc3;
 
 	// Calculate e1 and put it in terms[1], see the middle of page 151:
-	__workspace_440[ 0 ] = ((2.0*s2) - 1.0) / ( 3.0*sc );
-	__workspace_440[ 1 ] = -_$evalpoly_416( s2 ) / (36.0*sc2);
-	__workspace_440[ 2 ] = _$evalpoly_427( s2 ) / (1620.0*sc3);
-	__workspace_440[ 3 ] = _$evalpoly_431( s2 ) / (6480.0*sc4);
-	__workspace_440[ 4 ] = _$evalpoly_432( s2 ) / (90720.0*sc5);
-	__workspace_440[ 5 ] = 0.0;
-	__terms_440[ 1 ] = _$evalpoly_507( __workspace_440, eta0 );
+	__workspace_447[ 0 ] = ((2.0*s2) - 1.0) / ( 3.0*sc );
+	__workspace_447[ 1 ] = -_$evalpoly_423( s2 ) / (36.0*sc2);
+	__workspace_447[ 2 ] = _$evalpoly_434( s2 ) / (1620.0*sc3);
+	__workspace_447[ 3 ] = _$evalpoly_438( s2 ) / (6480.0*sc4);
+	__workspace_447[ 4 ] = _$evalpoly_439( s2 ) / (90720.0*sc5);
+	__workspace_447[ 5 ] = 0.0;
+	__terms_447[ 1 ] = _$evalpoly_514( __workspace_447, eta0 );
 
 	// Now evaluate e2 and put it in terms[2]:
-	__workspace_440[ 0 ] = -_$evalpoly_433( s2 ) / (405.0*sc3);
-	__workspace_440[ 1 ] = _$evalpoly_434( s2 ) / (2592.0*sc4);
-	__workspace_440[ 2 ] = -_$evalpoly_435( s2 ) / (204120.0*sc5);
-	__workspace_440[ 3 ] = -_$evalpoly_436( s2 ) / (2099520.0*sc6);
-	__workspace_440[ 4 ] = 0.0;
-	__workspace_440[ 5 ] = 0.0;
-	__terms_440[ 2 ] = _$evalpoly_507( __workspace_440, eta0 );
+	__workspace_447[ 0 ] = -_$evalpoly_440( s2 ) / (405.0*sc3);
+	__workspace_447[ 1 ] = _$evalpoly_441( s2 ) / (2592.0*sc4);
+	__workspace_447[ 2 ] = -_$evalpoly_442( s2 ) / (204120.0*sc5);
+	__workspace_447[ 3 ] = -_$evalpoly_443( s2 ) / (2099520.0*sc6);
+	__workspace_447[ 4 ] = 0.0;
+	__workspace_447[ 5 ] = 0.0;
+	__terms_447[ 2 ] = _$evalpoly_514( __workspace_447, eta0 );
 
 	// And e3, and put it in terms[3]:
-	__workspace_440[ 0 ] = _$evalpoly_437( s2 ) / (102060.0*sc5);
-	__workspace_440[ 1 ] = -_$evalpoly_417( s2 ) / (20995200.0*sc6);
-	__workspace_440[ 2 ] = _$evalpoly_418( s2 ) / (36741600.0*sc7);
-	__workspace_440[ 3 ] = 0.0;
-	__workspace_440[ 4 ] = 0.0;
-	__workspace_440[ 5 ] = 0.0;
-	__terms_440[ 3 ] = _$evalpoly_507( __workspace_440, eta0 );
+	__workspace_447[ 0 ] = _$evalpoly_444( s2 ) / (102060.0*sc5);
+	__workspace_447[ 1 ] = -_$evalpoly_424( s2 ) / (20995200.0*sc6);
+	__workspace_447[ 2 ] = _$evalpoly_425( s2 ) / (36741600.0*sc7);
+	__workspace_447[ 3 ] = 0.0;
+	__workspace_447[ 4 ] = 0.0;
+	__workspace_447[ 5 ] = 0.0;
+	__terms_447[ 3 ] = _$evalpoly_514( __workspace_447, eta0 );
 
 	// Bring the correction terms together to evaluate eta; this is the last equation on page 151:
-	eta = _$evalpoly_507( __terms_440, 1.0/r );
+	eta = _$evalpoly_514( __terms_447, 1.0/r );
 
 	// Now that we have eta we need to back solve for x, we seek the value of x that gives eta in Eq 3.2. The two methods used are described in section 5. Begin by defining a few variables we'll need later:
 	alpha = c / s;
 	alpha *= alpha;
-	lu = ( -( eta*eta )/( 2.0*s2 ) ) + _$ln_454(s2) + ( c2*_$ln_454(c2)/s2 );
+	lu = ( -( eta*eta )/( 2.0*s2 ) ) + _$ln_461(s2) + ( c2*_$ln_461(c2)/s2 );
 
 	// Temme doesn't specify what value to switch on here, but this seems to work pretty well:
 	if ( _$abs_242(eta) < 0.7 ) {
 		// Small eta use the expansion Temme gives in the second equation of section 5, it's a polynomial in eta:
-		__workspace_440[ 0 ] = s2;
-		__workspace_440[ 1 ] = sc;
-		__workspace_440[ 2 ] = (1.0-(2.0*s2)) / 3.0;
-		__workspace_440[ 3 ] = _$evalpoly_419( s2 ) / ( 36.0*sc );
-		__workspace_440[ 4 ] = _$evalpoly_420( s2 ) / ( 270.0*sc2 );
-		__workspace_440[ 5 ] = 0.0;
-		x = _$evalpoly_507( __workspace_440, eta );
+		__workspace_447[ 0 ] = s2;
+		__workspace_447[ 1 ] = sc;
+		__workspace_447[ 2 ] = (1.0-(2.0*s2)) / 3.0;
+		__workspace_447[ 3 ] = _$evalpoly_426( s2 ) / ( 36.0*sc );
+		__workspace_447[ 4 ] = _$evalpoly_427( s2 ) / ( 270.0*sc2 );
+		__workspace_447[ 5 ] = 0.0;
+		x = _$evalpoly_514( __workspace_447, eta );
 	} else {
 		// If eta is large we need to solve Eq 3.2 more directly, begin by getting an initial approximation for x from the last equation on page 155, this is a polynomial in u:
-		u = _$exp_303( lu );
-		__workspace_440[ 0 ] = u;
-		__workspace_440[ 1 ] = alpha;
-		__workspace_440[ 2 ] = 0.0;
-		__workspace_440[ 3 ] = 3.0 * alpha * ((3.0*alpha)+1.0) / 6.0;
-		__workspace_440[ 4 ] = 4.0 * alpha * ((4.0*alpha)+1.0) * ((4.0*alpha)+2.0) / 24.0; // eslint-disable-line max-len
-		__workspace_440[ 5 ] = 5.0 * alpha * ((5.0*alpha)+1.0) * ((5.0*alpha)+2.0) * ((5.0*alpha)+3.0) / 120.0; // eslint-disable-line max-len
-		x = _$evalpoly_507( __workspace_440, u );
+		u = _$exp_310( lu );
+		__workspace_447[ 0 ] = u;
+		__workspace_447[ 1 ] = alpha;
+		__workspace_447[ 2 ] = 0.0;
+		__workspace_447[ 3 ] = 3.0 * alpha * ((3.0*alpha)+1.0) / 6.0;
+		__workspace_447[ 4 ] = 4.0 * alpha * ((4.0*alpha)+1.0) * ((4.0*alpha)+2.0) / 24.0; // eslint-disable-line max-len
+		__workspace_447[ 5 ] = 5.0 * alpha * ((5.0*alpha)+1.0) * ((5.0*alpha)+2.0) * ((5.0*alpha)+3.0) / 120.0; // eslint-disable-line max-len
+		x = _$evalpoly_514( __workspace_447, u );
 
 		// At this point we may or may not have the right answer, Eq-3.2 has two solutions for x for any given eta, however the mapping in 3.2 is 1:1 with the sign of eta and x-sin^2(theta) being the same. So we can check if we have the right root of 3.2, and if not switch x for 1-x.  This transformation is motivated by the fact that the distribution is *almost* symmetric so 1-x will be in the right ball park for the solution:
 		if ( (x-s2)*eta < 0.0 ) {
@@ -35448,17 +35448,17 @@ function temme2( z, r, theta ) {
 	if ( x < lower || x > upper ) {
 		x = (lower+upper) / 2.0;
 	}
-	roots = _$temmeRootFinder_438( -lu, alpha );
+	roots = _$temmeRootFinder_445( -lu, alpha );
 
 	// And iterate:
-	x = _$newtonRaphsonIterate_415( roots, x, lower, upper, 32, 100 );
+	x = _$newtonRaphsonIterate_422( roots, x, lower, upper, 32, 100 );
 	return x;
 }
 
 
 // EXPORTS //
 
-var _$temme2_440 = temme2;
+var _$temme2_447 = temme2;
 
 /**
 * @license Apache-2.0
@@ -35561,12 +35561,12 @@ var _$FLOAT64_SMALLEST_SUBNORMAL_209 = FLOAT64_SMALLEST_SUBNORMAL;
 
 // MODULES //
 
-/* removed: var _$gammaincinv_366 = require( '@stdlib/math/base/special/gammaincinv' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$gammaincinv_373 = require( '@stdlib/math/base/special/gammaincinv' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
 /* removed: var _$FLOAT64_SMALLEST_SUBNORMAL_209 = require( '@stdlib/constants/math/float64-smallest-subnormal' ); */;
-/* removed: var _$temmeRootFinder_438 = require( './root_finder.js' ); */;
-/* removed: var _$newtonRaphsonIterate_415 = require( './newton_raphson.js' ); */;
+/* removed: var _$temmeRootFinder_445 = require( './root_finder.js' ); */;
+/* removed: var _$newtonRaphsonIterate_422 = require( './newton_raphson.js' ); */;
 
 
 // MAIN //
@@ -35619,15 +35619,15 @@ function temme3( a, b, p, q ) {
 
 	// Begin by getting an initial approximation for the quantity eta from the dominant part of the incomplete beta:
 	if ( p < q ) {
-		eta0 = _$gammaincinv_366( p, b, true );
+		eta0 = _$gammaincinv_373( p, b, true );
 	} else {
-		eta0 = _$gammaincinv_366( q, b, false );
+		eta0 = _$gammaincinv_373( q, b, false );
 	}
 	eta0 /= a;
 
 	// Define the variables and powers we'll need later on:
 	mu = b / a;
-	w = _$sqrt_494( 1.0+mu );
+	w = _$sqrt_501( 1.0+mu );
 	w2 = w * w;
 	w3 = w2 * w;
 	w4 = w2 * w2;
@@ -35681,19 +35681,19 @@ function temme3( a, b, p, q ) {
 	if ( eta <= 0 ) {
 		eta = _$FLOAT64_SMALLEST_SUBNORMAL_209;
 	}
-	u = eta - ( mu*_$ln_454(eta) ) + ( ( 1.0+mu ) * _$ln_454( 1.0+mu ) ) - mu;
+	u = eta - ( mu*_$ln_461(eta) ) + ( ( 1.0+mu ) * _$ln_461( 1.0+mu ) ) - mu;
 	cross = 1.0 / ( 1.0+mu );
 	lower = (eta < mu) ? cross : 0.0;
 	upper = (eta < mu) ? 1.0 : cross;
 	x = (lower+upper) / 2.0;
-	roots = _$temmeRootFinder_438( u, mu );
-	return _$newtonRaphsonIterate_415( roots, x, lower, upper, 32, 100 );
+	roots = _$temmeRootFinder_445( u, mu );
+	return _$newtonRaphsonIterate_422( roots, x, lower, upper, 32, 100 );
 }
 
 
 // EXPORTS //
 
-var _$temme3_441 = temme3;
+var _$temme3_448 = temme3;
 
 /**
 * @license Apache-2.0
@@ -35731,9 +35731,9 @@ var _$temme3_441 = temme3;
 // MODULES //
 
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$ldexp_452 = require( '@stdlib/math/base/special/ldexp' ); */;
-/* removed: var _$signum_488 = require( '@stdlib/math/base/special/signum' ); */;
-/* removed: var _$max_461 = require( '@stdlib/math/base/special/max' ); */;
+/* removed: var _$ldexp_459 = require( '@stdlib/math/base/special/ldexp' ); */;
+/* removed: var _$signum_495 = require( '@stdlib/math/base/special/signum' ); */;
+/* removed: var _$max_468 = require( '@stdlib/math/base/special/max' ); */;
 /* removed: var _$FLOAT64_MAX_202 = require( '@stdlib/constants/math/float64-max' ); */;
 
 
@@ -35772,8 +35772,8 @@ function halleyIterate( fun, guess, minimum, maximum, digits, maxIter ) {
 	f0 = 0.0;
 	outOfBounds = false;
 	result = guess;
-	factor = _$ldexp_452( 1.0, 1.0-digits );
-	delta = _$max_461( 10000000*guess, 10000000 );  // Arbitrarily large delta...
+	factor = _$ldexp_459( 1.0, 1.0-digits );
+	delta = _$max_468( 10000000*guess, 10000000 );  // Arbitrarily large delta...
 	f0Last = 0;
 	delta1 = delta;
 	delta2 = delta;
@@ -35804,7 +35804,7 @@ function halleyIterate( fun, guess, minimum, maximum, digits, maxIter ) {
 				f0Last = fun( guess );
 				delta = guess - result;
 			}
-			if ( _$signum_488( f0Last ) * _$signum_488( f0 ) < 0 ) {
+			if ( _$signum_495( f0Last ) * _$signum_495( f0 ) < 0 ) {
 				// We've crossed over so move in opposite direction to last step:
 				if ( delta < 0 ) {
 					delta = ( result-minimum ) / 2.0;
@@ -35841,7 +35841,7 @@ function halleyIterate( fun, guess, minimum, maximum, digits, maxIter ) {
 			// Last two steps haven't converged, try bisection:
 			delta = ( delta > 0.0 ) ? ( result-minimum )/2.0 : ( result-maximum )/2.0; // eslint-disable-line max-len
 			if ( _$abs_242(delta) > result ) {
-				delta = _$signum_488( delta ) * result; // Protect against huge jumps!
+				delta = _$signum_495( delta ) * result; // Protect against huge jumps!
 			}
 			// Reset delta2 so that this branch will *not* be taken on the next iteration:
 			delta2 = delta * 3.0;
@@ -35915,7 +35915,7 @@ function halleyIterate( fun, guess, minimum, maximum, digits, maxIter ) {
 
 // EXPORTS //
 
-var _$halleyIterate_407 = halleyIterate;
+var _$halleyIterate_414 = halleyIterate;
 
 /**
 * @license Apache-2.0
@@ -35953,7 +35953,7 @@ var _$halleyIterate_407 = halleyIterate;
 
 // MODULES //
 
-/* removed: var _$kernelBetainc_401 = require( '@stdlib/math/base/special/kernel-betainc' ); */;
+/* removed: var _$kernelBetainc_408 = require( '@stdlib/math/base/special/kernel-betainc' ); */;
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
 /* removed: var _$FLOAT64_MAX_202 = require( '@stdlib/constants/math/float64-max' ); */;
 /* removed: var _$FLOAT64_SMALLEST_NORMAL_208 = require( '@stdlib/constants/math/float64-smallest-normal' ); */;
@@ -35961,7 +35961,7 @@ var _$halleyIterate_407 = halleyIterate;
 
 // VARIABLES //
 
-var __out_408 = [ 0.0, 0.0 ]; // WARNING: not thread safe
+var __out_415 = [ 0.0, 0.0 ]; // WARNING: not thread safe
 
 
 // MAIN //
@@ -35993,9 +35993,9 @@ function ibetaRoots( a, b, target, invert ) {
 		var y;
 
 		y = 1.0 - x;
-		__out_408 = _$kernelBetainc_401( __out_408, x, a, b, invert, true );
-		f = __out_408[ 0 ] - target;
-		f1 = __out_408[ 1 ];
+		__out_415 = _$kernelBetainc_408( __out_415, x, a, b, invert, true );
+		f = __out_415[ 0 ] - target;
+		f1 = __out_415[ 1 ];
 		if ( invert ) {
 			f1 = -f1;
 		}
@@ -36023,7 +36023,7 @@ function ibetaRoots( a, b, target, invert ) {
 
 // EXPORTS //
 
-var _$ibetaRoots_408 = ibetaRoots;
+var _$ibetaRoots_415 = ibetaRoots;
 
 /* eslint-disable max-statements, max-lines */
 
@@ -36063,29 +36063,29 @@ var _$ibetaRoots_408 = ibetaRoots;
 
 // MODULES //
 
-/* removed: var _$evalpoly_507 = require( '@stdlib/math/base/tools/evalpoly' ); */;
+/* removed: var _$evalpoly_514 = require( '@stdlib/math/base/tools/evalpoly' ); */;
 /* removed: var _$betainc_259 = require( '@stdlib/math/base/special/betainc' ); */;
-/* removed: var _$expm1_306 = require( '@stdlib/math/base/special/expm1' ); */;
-/* removed: var _$log1p_458 = require( '@stdlib/math/base/special/log1p' ); */;
+/* removed: var _$expm1_313 = require( '@stdlib/math/base/special/expm1' ); */;
+/* removed: var _$log1p_465 = require( '@stdlib/math/base/special/log1p' ); */;
 /* removed: var _$asin_246 = require( '@stdlib/math/base/special/asin' ); */;
 /* removed: var _$beta_256 = require( '@stdlib/math/base/special/beta' ); */;
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
-/* removed: var _$sin_490 = require( '@stdlib/math/base/special/sin' ); */;
-/* removed: var _$max_461 = require( '@stdlib/math/base/special/max' ); */;
-/* removed: var _$min_465 = require( '@stdlib/math/base/special/min' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$sin_497 = require( '@stdlib/math/base/special/sin' ); */;
+/* removed: var _$max_468 = require( '@stdlib/math/base/special/max' ); */;
+/* removed: var _$min_472 = require( '@stdlib/math/base/special/min' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$FLOAT64_SMALLEST_NORMAL_208 = require( '@stdlib/constants/math/float64-smallest-normal' ); */;
 /* removed: var _$HALF_PI_194 = require( '@stdlib/constants/math/float64-half-pi' ); */;
 /* removed: var _$FLOAT64_EPSILON_188 = require( '@stdlib/constants/math/float64-eps' ); */;
-/* removed: var _$findIBetaInvFromTDist_406 = require( './find_ibeta_inv_from_t_dist.js' ); */;
-/* removed: var _$temme1_439 = require( './temme1.js' ); */;
-/* removed: var _$temme2_440 = require( './temme2.js' ); */;
-/* removed: var _$temme3_441 = require( './temme3.js' ); */;
-/* removed: var _$halleyIterate_407 = require( './halley_iterate.js' ); */;
-/* removed: var _$ibetaRoots_408 = require( './ibeta_roots.js' ); */;
+/* removed: var _$findIBetaInvFromTDist_413 = require( './find_ibeta_inv_from_t_dist.js' ); */;
+/* removed: var _$temme1_446 = require( './temme1.js' ); */;
+/* removed: var _$temme2_447 = require( './temme2.js' ); */;
+/* removed: var _$temme3_448 = require( './temme3.js' ); */;
+/* removed: var _$halleyIterate_414 = require( './halley_iterate.js' ); */;
+/* removed: var _$ibetaRoots_415 = require( './ibeta_roots.js' ); */;
 
 
 // VARIABLES //
@@ -36094,7 +36094,7 @@ var DIGITS = 32;
 var MAX_ITERATIONS = 1000;
 
 // Workspace for the polynomial coefficients:
-var __terms_414 = [ 0.0, 0.0, 0.0, 0.0, 0.0 ]; // WARNING: not thread safe
+var __terms_421 = [ 0.0, 0.0, 0.0, 0.0, 0.0 ]; // WARNING: not thread safe
 
 
 // MAIN //
@@ -36175,9 +36175,9 @@ function ibetaInvImp( a, b, p, q ) {
 	// Student's T with b = 0.5 gets handled as a special case, swap around if the arguments are in the "wrong" order:
 	if ( a === 0.5 ) {
 		if ( b === 0.5 ) {
-			x = _$sin_490( p*_$HALF_PI_194 );
+			x = _$sin_497( p*_$HALF_PI_194 );
 			x *= x;
-			y = _$sin_490( q*_$HALF_PI_194 );
+			y = _$sin_497( q*_$HALF_PI_194 );
 			y *= y;
 			return [ x, y ];
 		}
@@ -36197,21 +36197,21 @@ function ibetaInvImp( a, b, p, q ) {
 	if ( b === 0.5 && a >= 0.5 && p !== 1.0 ) {
 		// We have a Student's T distribution:
 		yp = {};
-		x = _$findIBetaInvFromTDist_406( a, p, yp );
+		x = _$findIBetaInvFromTDist_413( a, p, yp );
 		y = yp.value;
 	}
 	else if ( b === 1.0 ) {
 		if ( p < q ) {
 			if ( a > 1.0 ) {
-				x = _$pow_469( p, 1.0/a );
-				y = -_$expm1_306( _$ln_454(p) / a );
+				x = _$pow_476( p, 1.0/a );
+				y = -_$expm1_313( _$ln_461(p) / a );
 			} else {
-				x = _$pow_469( p, 1.0/a );
+				x = _$pow_476( p, 1.0/a );
 				y = 1.0 - x;
 			}
 		} else {
-			x = _$exp_303( _$log1p_458(-q) / a );
-			y = -_$expm1_306( _$log1p_458(-q) / a );
+			x = _$exp_310( _$log1p_465(-q) / a );
+			y = -_$expm1_313( _$log1p_465(-q) / a );
 		}
 		if ( invert ) {
 			tmp = y;
@@ -36233,15 +36233,15 @@ function ibetaInvImp( a, b, p, q ) {
 
 			invert = !invert;
 		}
-		minv = _$min_465( a, b );
-		maxv = _$max_461( a, b );
-		if ( ( _$sqrt_494(minv) > (maxv-minv) ) && minv > 5.0 ) {
+		minv = _$min_472( a, b );
+		maxv = _$max_468( a, b );
+		if ( ( _$sqrt_501(minv) > (maxv-minv) ) && minv > 5.0 ) {
 			// When a and b differ by a small amount the curve is quite symmetrical and we can use an error function to approximate the inverse. This is the cheapest of the three Temme expansions, and the calculated value for x will never be much larger than p, so we don't have to worry about cancellation as long as p is small.
-			x = _$temme1_439( a, b, p );
+			x = _$temme1_446( a, b, p );
 			y = 1.0 - x;
 		} else {
 			r = a + b;
-			theta = _$asin_246( _$sqrt_494( a/r ) );
+			theta = _$asin_246( _$sqrt_501( a/r ) );
 			lambda = minv / r;
 			if (
 				lambda >= 0.2 &&
@@ -36249,11 +36249,11 @@ function ibetaInvImp( a, b, p, q ) {
 				r >= 10
 			) {
 				// The second error function case is the next cheapest to use, it breaks down when the result is likely to be very small, if `a+b` is also small, but we can use a cheaper expansion there in any case. As before `x` won't be much larger than `p`, so as long as `p` is small we should be free of cancellation error.
-				ppa = _$pow_469( p, 1.0/a );
+				ppa = _$pow_476( p, 1.0/a );
 				if ( ppa < 0.0025 && ( a+b ) < 200.0 ) {
-					x = ppa * _$pow_469( a*_$beta_256( a, b ), 1.0/a );
+					x = ppa * _$pow_476( a*_$beta_256( a, b ), 1.0/a );
 				} else {
-					x = _$temme2_440( p, r, theta );
+					x = _$temme2_447( p, r, theta );
 				}
 				y = 1.0 - x;
 			} else {
@@ -36276,12 +36276,12 @@ function ibetaInvImp( a, b, p, q ) {
 				if ( bet === 0.0 ) {
 					y = 1.0;
 				} else {
-					y = _$pow_469( b*q*bet, 1.0/b );
+					y = _$pow_476( b*q*bet, 1.0/b );
 					x = 1.0 - y;
 				}
 			}
 			if ( y > 1.0e-5 ) {
-				x = _$temme3_441( a, b, p, q );
+				x = _$temme3_448( a, b, p, q );
 				y = 1.0 - x;
 			}
 		}
@@ -36311,7 +36311,7 @@ function ibetaInvImp( a, b, p, q ) {
 			invert = !invert;
 			xs = 1.0 - xs;
 		}
-		xg = _$pow_469( a*p*_$beta_256( a, b ), 1.0/a );
+		xg = _$pow_476( a*p*_$beta_256( a, b ), 1.0/a );
 		x = xg / ( 1.0+xg );
 		y = 1.0 / ( 1.0+xg );
 
@@ -36343,9 +36343,9 @@ function ibetaInvImp( a, b, p, q ) {
 			invert = !invert;
 		}
 		// Estimate x and y, using expm1 to get a good estimate for y when it's very small:
-		lx = _$ln_454( p*a*_$beta_256( a, b ) ) / a;
-		x = _$exp_303( lx );
-		y = ( x < 0.9 ) ? 1.0-x : -_$expm1_306(lx);
+		lx = _$ln_461( p*a*_$beta_256( a, b ) ) / a;
+		x = _$exp_310( lx );
+		y = ( x < 0.9 ) ? 1.0-x : -_$expm1_313(lx);
 
 		if ( b < a && x < 0.2 ) {
 			// Under a limited range of circumstances we can improve our estimate for x...
@@ -36354,15 +36354,15 @@ function ibetaInvImp( a, b, p, q ) {
 			a2 = a * a;
 			a3 = a * a2;
 			b2 = b * b;
-			__terms_414[ 0 ] = 0.0;
-			__terms_414[ 1 ] = 1.0;
-			__terms_414[ 2 ] = bm1 / ap1;
+			__terms_421[ 0 ] = 0.0;
+			__terms_421[ 1 ] = 1.0;
+			__terms_421[ 2 ] = bm1 / ap1;
 			ap1 *= ap1;
-			__terms_414[ 3 ] = bm1 * (3.0*a*b + 5.0*b + a2 - a - 4.0) / (2.0 * (a+2.0) * ap1); // eslint-disable-line max-len, no-mixed-operators
+			__terms_421[ 3 ] = bm1 * (3.0*a*b + 5.0*b + a2 - a - 4.0) / (2.0 * (a+2.0) * ap1); // eslint-disable-line max-len, no-mixed-operators
 			ap1 *= (a + 1.0);
-			__terms_414[ 4 ] = bm1 * (33.0*a*b2 + 31.0*b2 + 8.0*a2*b2 - 30.0*a*b - 47.0*b + 11.0*a2*b + 6.0*a3*b + 18.0 + 4.0*a - a3 + a2*a2 - 10.0*a2); // eslint-disable-line max-len, no-mixed-operators
-			__terms_414[ 4 ] /= (3.0 * (a+3.0) * (a+2.0) * ap1);
-			x = _$evalpoly_507( __terms_414, x );
+			__terms_421[ 4 ] = bm1 * (33.0*a*b2 + 31.0*b2 + 8.0*a2*b2 - 30.0*a*b - 47.0*b + 11.0*a2*b + 6.0*a3*b + 18.0 + 4.0*a - a3 + a2*a2 - 10.0*a2); // eslint-disable-line max-len, no-mixed-operators
+			__terms_421[ 4 ] /= (3.0 * (a+3.0) * (a+2.0) * ap1);
+			x = _$evalpoly_514( __terms_421, x );
 		}
 		// Know that result is below the inflection point, so set an upper limit on search...
 		if ( x > xs ) {
@@ -36381,8 +36381,8 @@ function ibetaInvImp( a, b, p, q ) {
 			p = tmp;
 			invert = !invert;
 		}
-		if ( _$pow_469( p, 1.0/a ) < 0.5 ) {
-			x = _$pow_469( p*a*_$beta_256( a, b ), 1.0/a );
+		if ( _$pow_476( p, 1.0/a ) < 0.5 ) {
+			x = _$pow_476( p*a*_$beta_256( a, b ), 1.0/a );
 			if ( x === 0.0 ) {
 				x = _$FLOAT64_SMALLEST_NORMAL_208;
 			}
@@ -36391,7 +36391,7 @@ function ibetaInvImp( a, b, p, q ) {
 		// Case: pow(q, 1/b) < 0.1
 		else {
 			// Model a distorted quarter circle:
-			y = _$pow_469( 1.0-_$pow_469( p, b*_$beta_256( a, b ) ), 1.0/b );
+			y = _$pow_476( 1.0-_$pow_476( p, b*_$beta_256( a, b ) ), 1.0/b );
 			if ( y === 0 ) {
 				y = _$FLOAT64_SMALLEST_NORMAL_208;
 			}
@@ -36441,8 +36441,8 @@ function ibetaInvImp( a, b, p, q ) {
 		digits /= 2;
 	}
 	// Now iterate, we can use either p or q as the target here depending on which is smaller:
-	roots = _$ibetaRoots_408( a, b, ( (p < q) ? p : q ), p >= q );
-	x = _$halleyIterate_407( roots, x, lower, upper, digits, MAX_ITERATIONS );
+	roots = _$ibetaRoots_415( a, b, ( (p < q) ? p : q ), p >= q );
+	x = _$halleyIterate_414( roots, x, lower, upper, digits, MAX_ITERATIONS );
 
 	// Tidy up, if we "lower" was too high then zero is the best answer we have:
 	if ( x === lower ) {
@@ -36457,7 +36457,7 @@ function ibetaInvImp( a, b, p, q ) {
 
 // EXPORTS //
 
-var _$ibetaInvImp_414= ibetaInvImp;
+var _$ibetaInvImp_421= ibetaInvImp;
 
 /**
 * @license Apache-2.0
@@ -36502,12 +36502,12 @@ var _$ibetaInvImp_414= ibetaInvImp;
 
 // MODULES //
 
-/* removed: var _$ibetaInvImp_414 = require( './kernel_betaincinv.js' ); */;
+/* removed: var _$ibetaInvImp_421 = require( './kernel_betaincinv.js' ); */;
 
 
 // EXPORTS //
 
-var _$kernelBetaincinv_409 = _$ibetaInvImp_414;
+var _$kernelBetaincinv_416 = _$ibetaInvImp_421;
 
 /**
 * @license Apache-2.0
@@ -36532,7 +36532,7 @@ var _$kernelBetaincinv_409 = _$ibetaInvImp_414;
 // MODULES //
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$kernelBetaincinv_409 = require( '@stdlib/math/base/special/kernel-betaincinv' ); */;
+/* removed: var _$kernelBetaincinv_416 = require( '@stdlib/math/base/special/kernel-betaincinv' ); */;
 
 
 // MAIN //
@@ -36581,9 +36581,9 @@ function betaincinv( p, a, b, upper ) {
 		return NaN;
 	}
 	if ( upper ) {
-		return _$kernelBetaincinv_409( a, b, 1.0 - p, p )[ 0 ];
+		return _$kernelBetaincinv_416( a, b, 1.0 - p, p )[ 0 ];
 	}
-	return _$kernelBetaincinv_409( a, b, p, 1.0 - p )[ 0 ];
+	return _$kernelBetaincinv_416( a, b, p, 1.0 - p )[ 0 ];
 }
 
 
@@ -36666,7 +36666,7 @@ var _$betaincinv_261 = _$betaincinv_260;
 
 // MODULES //
 
-/* removed: var _$defineProperty_753 = require( '@stdlib/utils/define-property' ); */;
+/* removed: var _$defineProperty_804 = require( '@stdlib/utils/define-property' ); */;
 
 
 // MAIN //
@@ -36694,7 +36694,7 @@ var _$betaincinv_261 = _$betaincinv_260;
 * }
 */
 function setNonEnumerableReadOnlyAccessor( obj, prop, getter ) { // eslint-disable-line id-length
-	_$defineProperty_753( obj, prop, {
+	_$defineProperty_804( obj, prop, {
 		'configurable': false,
 		'enumerable': false,
 		'get': getter
@@ -36704,7 +36704,7 @@ function setNonEnumerableReadOnlyAccessor( obj, prop, getter ) { // eslint-disab
 
 // EXPORTS //
 
-var _$setNonEnumerableReadOnlyAccessor_747 = setNonEnumerableReadOnlyAccessor;
+var _$setNonEnumerableReadOnlyAccessor_798 = setNonEnumerableReadOnlyAccessor;
 
 /**
 * @license Apache-2.0
@@ -36751,12 +36751,12 @@ var _$setNonEnumerableReadOnlyAccessor_747 = setNonEnumerableReadOnlyAccessor;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnlyAccessor_747 = require( './main.js' ); */; // eslint-disable-line id-length
+/* removed: var _$setNonEnumerableReadOnlyAccessor_798 = require( './main.js' ); */; // eslint-disable-line id-length
 
 
 // EXPORTS //
 
-var _$setNonEnumerableReadOnlyAccessor_746 = _$setNonEnumerableReadOnlyAccessor_747;
+var _$setNonEnumerableReadOnlyAccessor_797 = _$setNonEnumerableReadOnlyAccessor_798;
 
 /**
 * @license Apache-2.0
@@ -36780,7 +36780,7 @@ var _$setNonEnumerableReadOnlyAccessor_746 = _$setNonEnumerableReadOnlyAccessor_
 
 // MODULES //
 
-/* removed: var _$defineProperty_753 = require( '@stdlib/utils/define-property' ); */;
+/* removed: var _$defineProperty_804 = require( '@stdlib/utils/define-property' ); */;
 
 
 // MAIN //
@@ -36816,7 +36816,7 @@ var _$setNonEnumerableReadOnlyAccessor_746 = _$setNonEnumerableReadOnlyAccessor_
 * // returns 'beep foo'
 */
 function setNonEnumerableReadWriteAccessor( obj, prop, getter, setter ) { // eslint-disable-line id-length
-	_$defineProperty_753( obj, prop, {
+	_$defineProperty_804( obj, prop, {
 		'configurable': false,
 		'enumerable': false,
 		'get': getter,
@@ -36827,7 +36827,7 @@ function setNonEnumerableReadWriteAccessor( obj, prop, getter, setter ) { // esl
 
 // EXPORTS //
 
-var _$setNonEnumerableReadWriteAccessor_751 = setNonEnumerableReadWriteAccessor;
+var _$setNonEnumerableReadWriteAccessor_802 = setNonEnumerableReadWriteAccessor;
 
 /**
 * @license Apache-2.0
@@ -36881,12 +36881,12 @@ var _$setNonEnumerableReadWriteAccessor_751 = setNonEnumerableReadWriteAccessor;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadWriteAccessor_751 = require( './main.js' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_802 = require( './main.js' ); */;
 
 
 // EXPORTS //
 
-var _$setNonEnumerableReadWriteAccessor_750 = _$setNonEnumerableReadWriteAccessor_751;
+var _$setNonEnumerableReadWriteAccessor_801 = _$setNonEnumerableReadWriteAccessor_802;
 
 /**
 * @license Apache-2.0
@@ -36915,7 +36915,7 @@ var getProto = Object.getPrototypeOf;
 
 // EXPORTS //
 
-var _$getProto_761 = getProto;
+var _$getProto_812 = getProto;
 
 /**
 * @license Apache-2.0
@@ -36944,7 +36944,7 @@ var _$getProto_761 = getProto;
 * @param {Object} obj - input object
 * @returns {*} value of `__proto__` property
 */
-function __getProto_763( obj ) {
+function __getProto_814( obj ) {
 	// eslint-disable-next-line no-proto
 	return obj.__proto__;
 }
@@ -36952,7 +36952,7 @@ function __getProto_763( obj ) {
 
 // EXPORTS //
 
-var _$getProto_763 = __getProto_763;
+var _$getProto_814 = __getProto_814;
 
 /**
 * @license Apache-2.0
@@ -36976,8 +36976,8 @@ var _$getProto_763 = __getProto_763;
 
 // MODULES //
 
-/* removed: var _$nativeClass_788 = require( '@stdlib/utils/native-class' ); */;
-/* removed: var _$getProto_763 = require( './proto.js' ); */;
+/* removed: var _$nativeClass_839 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$getProto_814 = require( './proto.js' ); */;
 
 
 // MAIN //
@@ -36990,11 +36990,11 @@ var _$getProto_763 = __getProto_763;
 * @returns {(Object|null)} prototype
 */
 function getPrototypeOf( obj ) {
-	var proto = _$getProto_763( obj );
+	var proto = _$getProto_814( obj );
 	if ( proto || proto === null ) {
 		return proto;
 	}
-	if ( _$nativeClass_788( obj.constructor ) === '[object Function]' ) {
+	if ( _$nativeClass_839( obj.constructor ) === '[object Function]' ) {
 		// May break if the constructor has been tampered with...
 		return obj.constructor.prototype;
 	}
@@ -37008,7 +37008,7 @@ function getPrototypeOf( obj ) {
 
 // EXPORTS //
 
-var _$getPrototypeOf_762 = getPrototypeOf;
+var _$getPrototypeOf_813 = getPrototypeOf;
 
 /**
 * @license Apache-2.0
@@ -37033,23 +37033,23 @@ var _$getPrototypeOf_762 = getPrototypeOf;
 // MODULES //
 
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
-/* removed: var _$getProto_761 = require( './native.js' ); */;
-/* removed: var _$getPrototypeOf_762 = require( './polyfill.js' ); */;
+/* removed: var _$getProto_812 = require( './native.js' ); */;
+/* removed: var _$getPrototypeOf_813 = require( './polyfill.js' ); */;
 
 
 // MAIN //
 
-var __getProto_758;
+var __getProto_809;
 if ( _$isFunction_110( Object.getPrototypeOf ) ) {
-	__getProto_758 = _$getProto_761;
+	__getProto_809 = _$getProto_812;
 } else {
-	__getProto_758 = _$getPrototypeOf_762;
+	__getProto_809 = _$getPrototypeOf_813;
 }
 
 
 // EXPORTS //
 
-var _$getProto_758 = __getProto_758;
+var _$getProto_809 = __getProto_809;
 
 /**
 * @license Apache-2.0
@@ -37073,7 +37073,7 @@ var _$getProto_758 = __getProto_758;
 
 // MODULES //
 
-/* removed: var _$getProto_758 = require( './detect.js' ); */;
+/* removed: var _$getProto_809 = require( './detect.js' ); */;
 
 
 // MAIN //
@@ -37088,7 +37088,7 @@ var _$getProto_758 = __getProto_758;
 * var proto = getPrototypeOf( {} );
 * // returns {}
 */
-function __getPrototypeOf_759( value ) {
+function __getPrototypeOf_810( value ) {
 	if (
 		value === null ||
 		value === void 0
@@ -37098,13 +37098,13 @@ function __getPrototypeOf_759( value ) {
 	// In order to ensure consistent ES5/ES6 behavior, cast input value to an object (strings, numbers, booleans); ES5 `Object.getPrototypeOf` throws when provided primitives and ES6 `Object.getPrototypeOf` casts:
 	value = Object( value );
 
-	return _$getProto_758( value );
+	return _$getProto_809( value );
 }
 
 
 // EXPORTS //
 
-var _$getPrototypeOf_759 = __getPrototypeOf_759;
+var _$getPrototypeOf_810 = __getPrototypeOf_810;
 
 /**
 * @license Apache-2.0
@@ -37140,12 +37140,12 @@ var _$getPrototypeOf_759 = __getPrototypeOf_759;
 
 // MODULES //
 
-/* removed: var _$getPrototypeOf_759 = require( './get_prototype_of.js' ); */;
+/* removed: var _$getPrototypeOf_810 = require( './get_prototype_of.js' ); */;
 
 
 // EXPORTS //
 
-var _$getPrototype_760 = _$getPrototypeOf_759;
+var _$getPrototype_811 = _$getPrototypeOf_810;
 
 /**
 * @license Apache-2.0
@@ -37171,9 +37171,9 @@ var _$getPrototype_760 = _$getPrototypeOf_759;
 
 /* removed: var _$isObject_142 = require( '@stdlib/assert/is-object' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
-/* removed: var _$getPrototype_760 = require( '@stdlib/utils/get-prototype-of' ); */;
+/* removed: var _$getPrototype_811 = require( '@stdlib/utils/get-prototype-of' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$nativeClass_788 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_839 = require( '@stdlib/utils/native-class' ); */;
 
 
 // VARIABLES //
@@ -37227,7 +37227,7 @@ function isPlainObject( value ) {
 		return false;
 	}
 	// Objects with no prototype (e.g., `Object.create( null )`) are plain...
-	proto = _$getPrototype_760( value );
+	proto = _$getPrototype_811( value );
 	if ( !proto ) {
 		return true;
 	}
@@ -37239,7 +37239,7 @@ function isPlainObject( value ) {
 		// Prototype `constructor` property must be a function (see also https://bugs.jquery.com/ticket/9897 and http://stackoverflow.com/questions/18531624/isplainobject-thing):
 		_$hasOwnProp_58( proto, 'constructor' ) &&
 		_$isFunction_110( proto.constructor ) &&
-		_$nativeClass_788( proto.constructor ) === '[object Function]' &&
+		_$nativeClass_839( proto.constructor ) === '[object Function]' &&
 
 		// Test for object-specific method:
 		_$hasOwnProp_58( proto, 'isPrototypeOf' ) &&
@@ -37359,7 +37359,7 @@ function wrap( value ) {
 
 // EXPORTS //
 
-var _$wrap_738 = wrap;
+var _$wrap_789 = wrap;
 
 /**
 * @license Apache-2.0
@@ -37403,12 +37403,12 @@ var _$wrap_738 = wrap;
 
 // MODULES //
 
-/* removed: var _$wrap_738 = require( './constant_function.js' ); */;
+/* removed: var _$wrap_789 = require( './constant_function.js' ); */;
 
 
 // EXPORTS //
 
-var _$constantFunction_739 = _$wrap_738;
+var _$constantFunction_790 = _$wrap_789;
 
 /**
 * @license Apache-2.0
@@ -37437,14 +37437,14 @@ var _$constantFunction_739 = _$wrap_738;
 * noop();
 * // ...does nothing.
 */
-function __noop_794() {
+function __noop_845() {
 	// Empty function...
 }
 
 
 // EXPORTS //
 
-var _$noop_794 = __noop_794;
+var _$noop_845 = __noop_845;
 
 /**
 * @license Apache-2.0
@@ -37480,12 +37480,12 @@ var _$noop_794 = __noop_794;
 
 // MODULES //
 
-/* removed: var _$noop_794 = require( './noop.js' ); */;
+/* removed: var _$noop_845 = require( './noop.js' ); */;
 
 
 // EXPORTS //
 
-var _$noop_793 = _$noop_794;
+var _$noop_844 = _$noop_845;
 
 /**
 * @license Apache-2.0
@@ -37631,7 +37631,7 @@ var _$hasFunctionNameSupport_42 = _$hasFunctionNameSupport_43;
 
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 /* removed: var _$hasFunctionNameSupport_42 = require( '@stdlib/assert/has-function-name-support' ); */;
-/* removed: var _$RE_FUNCTION_NAME_599 = require( '@stdlib/regexp/function-name' ); */;
+/* removed: var _$RE_FUNCTION_NAME_616 = require( '@stdlib/regexp/function-name' ); */;
 
 
 // VARIABLES //
@@ -37672,13 +37672,13 @@ function functionName( fcn ) {
 	if ( isFunctionNameSupported ) {
 		return fcn.name;
 	}
-	return _$RE_FUNCTION_NAME_599.exec( fcn.toString() )[ 1 ];
+	return _$RE_FUNCTION_NAME_616.exec( fcn.toString() )[ 1 ];
 }
 
 
 // EXPORTS //
 
-var _$functionName_756 = functionName;
+var _$functionName_807 = functionName;
 
 /**
 * @license Apache-2.0
@@ -37720,12 +37720,12 @@ var _$functionName_756 = functionName;
 
 // MODULES //
 
-/* removed: var _$functionName_756 = require( './function_name.js' ); */;
+/* removed: var _$functionName_807 = require( './function_name.js' ); */;
 
 
 // EXPORTS //
 
-var _$functionName_757 = _$functionName_756;
+var _$functionName_808 = _$functionName_807;
 
 /**
 * @license Apache-2.0
@@ -37749,7 +37749,7 @@ var _$functionName_757 = _$functionName_756;
 
 // MODULES //
 
-/* removed: var _$nativeClass_788 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_839 = require( '@stdlib/utils/native-class' ); */;
 
 
 // VARIABLES //
@@ -37776,7 +37776,7 @@ var hasInt8Array = ( typeof Int8Array === 'function' ); // eslint-disable-line s
 function isInt8Array( value ) {
 	return (
 		( hasInt8Array && value instanceof Int8Array ) || // eslint-disable-line stdlib/require-globals
-		_$nativeClass_788( value ) === '[object Int8Array]'
+		_$nativeClass_839( value ) === '[object Int8Array]'
 	);
 }
 
@@ -38232,7 +38232,7 @@ var _$ctor_13 = __ctor_13;
 
 // MODULES //
 
-/* removed: var _$nativeClass_788 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_839 = require( '@stdlib/utils/native-class' ); */;
 
 
 // VARIABLES //
@@ -38259,7 +38259,7 @@ var hasUint8ClampedArray = ( typeof Uint8ClampedArray === 'function' ); // eslin
 function isUint8ClampedArray( value ) {
 	return (
 		( hasUint8ClampedArray && value instanceof Uint8ClampedArray ) || // eslint-disable-line stdlib/require-globals
-		_$nativeClass_788( value ) === '[object Uint8ClampedArray]'
+		_$nativeClass_839( value ) === '[object Uint8ClampedArray]'
 	);
 }
 
@@ -38592,7 +38592,7 @@ var _$ctor_29 = __ctor_29;
 
 // MODULES //
 
-/* removed: var _$nativeClass_788 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_839 = require( '@stdlib/utils/native-class' ); */;
 
 
 // VARIABLES //
@@ -38619,7 +38619,7 @@ var hasInt16Array = ( typeof Int16Array === 'function' ); // eslint-disable-line
 function isInt16Array( value ) {
 	return (
 		( hasInt16Array && value instanceof Int16Array ) || // eslint-disable-line stdlib/require-globals
-		_$nativeClass_788( value ) === '[object Int16Array]'
+		_$nativeClass_839( value ) === '[object Int16Array]'
 	);
 }
 
@@ -39075,7 +39075,7 @@ var _$ctor_7 = __ctor_7;
 
 // MODULES //
 
-/* removed: var _$nativeClass_788 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_839 = require( '@stdlib/utils/native-class' ); */;
 
 
 // VARIABLES //
@@ -39102,7 +39102,7 @@ var hasInt32Array = ( typeof Int32Array === 'function' ); // eslint-disable-line
 function isInt32Array( value ) {
 	return (
 		( hasInt32Array && value instanceof Int32Array ) || // eslint-disable-line stdlib/require-globals
-		_$nativeClass_788( value ) === '[object Int32Array]'
+		_$nativeClass_839( value ) === '[object Int32Array]'
 	);
 }
 
@@ -39496,7 +39496,7 @@ var _$ctor_10 = __ctor_10;
 
 // MODULES //
 
-/* removed: var _$nativeClass_788 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_839 = require( '@stdlib/utils/native-class' ); */;
 
 
 // VARIABLES //
@@ -39523,7 +39523,7 @@ var hasFloat32Array = ( typeof Float32Array === 'function' );// eslint-disable-l
 function isFloat32Array( value ) {
 	return (
 		( hasFloat32Array && value instanceof Float32Array ) || // eslint-disable-line stdlib/require-globals
-		_$nativeClass_788( value ) === '[object Float32Array]'
+		_$nativeClass_839( value ) === '[object Float32Array]'
 	);
 }
 
@@ -39918,9 +39918,9 @@ var _$names_163=[
 
 // MODULES //
 
-/* removed: var _$constructorName_740 = require( '@stdlib/utils/constructor-name' ); */;
-/* removed: var _$functionName_757 = require( '@stdlib/utils/function-name' ); */;
-/* removed: var _$getPrototype_760 = require( '@stdlib/utils/get-prototype-of' ); */;
+/* removed: var _$constructorName_791 = require( '@stdlib/utils/constructor-name' ); */;
+/* removed: var _$functionName_808 = require( '@stdlib/utils/function-name' ); */;
+/* removed: var _$getPrototype_811 = require( '@stdlib/utils/get-prototype-of' ); */;
 /* removed: var _$hasFloat64ArraySupport_39 = require( '@stdlib/assert/has-float64array-support' ); */;
 /* removed: var _$ctor_5 = require( '@stdlib/array/float64' ); */;
 /* removed: var _$CTORS_160 = require( './ctors.js' ); */;
@@ -39930,10 +39930,10 @@ var _$names_163=[
 // VARIABLES //
 
 // Abstract `TypedArray` class:
-var TypedArray = ( _$hasFloat64ArraySupport_39() ) ? _$getPrototype_760( _$ctor_5 ) : Dummy; // eslint-disable-line max-len
+var TypedArray = ( _$hasFloat64ArraySupport_39() ) ? _$getPrototype_811( _$ctor_5 ) : Dummy; // eslint-disable-line max-len
 
 // Ensure abstract typed array class has expected name:
-TypedArray = ( _$functionName_757( TypedArray ) === 'TypedArray' ) ? TypedArray : Dummy;
+TypedArray = ( _$functionName_808( TypedArray ) === 'TypedArray' ) ? TypedArray : Dummy;
 
 
 // FUNCTIONS //
@@ -39979,13 +39979,13 @@ function isTypedArray( value ) {
 	}
 	// Walk the prototype tree until we find an object having a desired class...
 	while ( value ) {
-		v = _$constructorName_740( value );
+		v = _$constructorName_791( value );
 		for ( i = 0; i < _$names_163.length; i++ ) {
 			if ( _$names_163[ i ] === v ) {
 				return true;
 			}
 		}
-		value = _$getPrototype_760( value );
+		value = _$getPrototype_811( value );
 	}
 
 	return false;
@@ -40229,8 +40229,8 @@ var _$CTORS_16 = __CTORS_16;
 // MODULES //
 
 /* removed: var _$instanceOf_78 = require( '@stdlib/assert/instance-of' ); */;
-/* removed: var _$constructorName_740 = require( '@stdlib/utils/constructor-name' ); */;
-/* removed: var _$getPrototype_760 = require( '@stdlib/utils/get-prototype-of' ); */;
+/* removed: var _$constructorName_791 = require( '@stdlib/utils/constructor-name' ); */;
+/* removed: var _$getPrototype_811 = require( '@stdlib/utils/get-prototype-of' ); */;
 /* removed: var _$CTORS_16 = require( './ctors.js' ); */;
 
 
@@ -40262,13 +40262,13 @@ function typeName( arr ) {
 	}
 	// Walk the prototype tree until we find an object having a desired native class...
 	while ( arr ) {
-		v = _$constructorName_740( arr );
+		v = _$constructorName_791( arr );
 		for ( i = 0; i < _$CTORS_16.length; i++ ) {
 			if ( v === _$CTORS_16[ i ][ 1 ] ) {
 				return _$CTORS_16[ i ][ 1 ];
 			}
 		}
-		arr = _$getPrototype_760( arr );
+		arr = _$getPrototype_811( arr );
 	}
 }
 
@@ -40388,7 +40388,7 @@ var _$toJSON_18 = toJSON;
 
 var _$toJSON_17 = _$toJSON_18;
 
-var _$defaults_594={
+var _$defaults_611={
 	"name": "improved-ziggurat",
 	"copy": true
 }
@@ -40824,7 +40824,7 @@ var _$isInteger_120 = __isInteger_120;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$isInteger_120 = require( './main.js' ); */;
 /* removed: var _$isInteger_122 = require( './primitive.js' ); */;
 /* removed: var _$isInteger_121 = require( './object.js' ); */;
@@ -40832,8 +40832,8 @@ var _$isInteger_120 = __isInteger_120;
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$isInteger_120, 'isPrimitive', _$isInteger_122 );
-_$setNonEnumerableReadOnly_748( _$isInteger_120, 'isObject', _$isInteger_121 );
+_$setNonEnumerableReadOnly_799( _$isInteger_120, 'isPrimitive', _$isInteger_122 );
+_$setNonEnumerableReadOnly_799( _$isInteger_120, 'isObject', _$isInteger_121 );
 
 
 // EXPORTS //
@@ -41077,7 +41077,7 @@ var _$isPositiveInteger_147 = __isPositiveInteger_147;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$isPositiveInteger_147 = require( './main.js' ); */;
 /* removed: var _$isPositiveInteger_149 = require( './primitive.js' ); */;
 /* removed: var _$isPositiveInteger_148 = require( './object.js' ); */;
@@ -41085,8 +41085,8 @@ var _$isPositiveInteger_147 = __isPositiveInteger_147;
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$isPositiveInteger_147, 'isPrimitive', _$isPositiveInteger_149 );
-_$setNonEnumerableReadOnly_748( _$isPositiveInteger_147, 'isObject', _$isPositiveInteger_148 );
+_$setNonEnumerableReadOnly_799( _$isPositiveInteger_147, 'isPrimitive', _$isPositiveInteger_149 );
+_$setNonEnumerableReadOnly_799( _$isPositiveInteger_147, 'isObject', _$isPositiveInteger_148 );
 
 
 // EXPORTS //
@@ -41283,7 +41283,7 @@ function uimul( a, b ) {
 
 // EXPORTS //
 
-var _$uimul_501 = uimul;
+var _$uimul_508 = uimul;
 
 /**
 * @license Apache-2.0
@@ -41319,12 +41319,12 @@ var _$uimul_501 = uimul;
 
 // MODULES //
 
-/* removed: var _$uimul_501 = require( './main.js' ); */;
+/* removed: var _$uimul_508 = require( './main.js' ); */;
 
 
 // EXPORTS //
 
-var _$uimul_500 = _$uimul_501;
+var _$uimul_507 = _$uimul_508;
 
 /**
 * @license Apache-2.0
@@ -41572,14 +41572,14 @@ var _$gcopy_176 = __gcopy_176;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$gcopy_175 = require( './main.js' ); */;
 /* removed: var _$gcopy_176 = require( './ndarray.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$gcopy_175, 'ndarray', _$gcopy_176 );
+_$setNonEnumerableReadOnly_799( _$gcopy_175, 'ndarray', _$gcopy_176 );
 
 
 // EXPORTS //
@@ -41609,7 +41609,7 @@ var _$gcopy_174 = _$gcopy_175;
 // MODULES //
 
 /* removed: var _$UINT32_MAX_221 = require( '@stdlib/constants/math/uint32-max' ); */;
-/* removed: var _$floor_314 = require( '@stdlib/math/base/special/floor' ); */;
+/* removed: var _$floor_321 = require( '@stdlib/math/base/special/floor' ); */;
 
 
 // VARIABLES //
@@ -41630,14 +41630,14 @@ var MAX = _$UINT32_MAX_221 - 1;
 * // returns <number>
 */
 function randuint32() {
-	var v = _$floor_314( 1.0 + (MAX*Math.random()) ); // eslint-disable-line stdlib/no-builtin-math
+	var v = _$floor_321( 1.0 + (MAX*Math.random()) ); // eslint-disable-line stdlib/no-builtin-math
 	return v >>> 0; // asm type annotation
 }
 
 
 // EXPORTS //
 
-var _$randuint32_593 = randuint32;
+var _$randuint32_605 = randuint32;
 
 /* eslint-disable max-lines, max-len */
 
@@ -41700,23 +41700,23 @@ var _$randuint32_593 = randuint32;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_746 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_750 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_797 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_801 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 /* removed: var _$isCollection_94 = require( '@stdlib/assert/is-collection' ); */;
 /* removed: var _$isUint32Array_166 = require( '@stdlib/assert/is-uint32array' ); */;
-var __isBoolean_590 = _$isBoolean_86.isPrimitive;
-var __isPositiveInteger_590 = _$isPositiveInteger_146.isPrimitive;
+var __isBoolean_602 = _$isBoolean_86.isPrimitive;
+var __isPositiveInteger_602 = _$isPositiveInteger_146.isPrimitive;
 /* removed: var _$FLOAT64_MAX_SAFE_INTEGER_201 = require( '@stdlib/constants/math/float64-max-safe-integer' ); */;
 /* removed: var _$UINT32_MAX_221 = require( '@stdlib/constants/math/uint32-max' ); */;
 /* removed: var _$ctor_23 = require( '@stdlib/array/uint32' ); */;
-/* removed: var _$max_461 = require( '@stdlib/math/base/special/max' ); */;
-/* removed: var _$uimul_500 = require( '@stdlib/math/base/special/uimul' ); */;
+/* removed: var _$max_468 = require( '@stdlib/math/base/special/max' ); */;
+/* removed: var _$uimul_507 = require( '@stdlib/math/base/special/uimul' ); */;
 /* removed: var _$gcopy_174 = require( '@stdlib/blas/base/gcopy' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
-/* removed: var _$randuint32_593 = require( './rand_uint32.js' ); */;
+/* removed: var _$randuint32_605 = require( './rand_uint32.js' ); */;
 
 
 // VARIABLES //
@@ -41725,7 +41725,7 @@ var __isPositiveInteger_590 = _$isPositiveInteger_146.isPrimitive;
 var N = 624;
 
 // Define a (magic) constant used for indexing into the state array:
-var __M_590 = 397;
+var __M_602 = 397;
 
 // Define the maximum seed: 11111111111111111111111111111111
 var MAX_SEED = _$UINT32_MAX_221 >>> 0; // asm type annotation
@@ -41866,7 +41866,7 @@ function createState( state, N, s ) {
 		*/
 		s = state[ i-1 ]>>>0; // asm type annotation
 		s = ( s^(s>>>30) )>>>0; // asm type annotation
-		state[ i ] = ( _$uimul_500( s, KNUTH_MULTIPLIER ) + i )>>>0; // asm type annotation
+		state[ i ] = ( _$uimul_507( s, KNUTH_MULTIPLIER ) + i )>>>0; // asm type annotation
 	}
 	return state;
 }
@@ -41889,7 +41889,7 @@ function initState( state, N, seed, M ) {
 
 	i = 1;
 	j = 0;
-	for ( k = _$max_461( N, M ); k > 0; k-- ) {
+	for ( k = _$max_468( N, M ); k > 0; k-- ) {
 		/*
 		* In the original C implementation (see `init_by_array()`),
 		*
@@ -41901,7 +41901,7 @@ function initState( state, N, seed, M ) {
 		*/
 		s = state[ i-1 ]>>>0; // asm type annotation
 		s = ( s^(s>>>30) )>>>0; // asm type annotation
-		s = ( _$uimul_500( s, MAGIC_MULTIPLIER_1 ) )>>>0; // asm type annotation
+		s = ( _$uimul_507( s, MAGIC_MULTIPLIER_1 ) )>>>0; // asm type annotation
 		state[ i ] = ( ((state[i]>>>0)^s) + seed[j] + j )>>>0; /* non-linear */ // asm type annotation
 
 		i += 1;
@@ -41926,7 +41926,7 @@ function initState( state, N, seed, M ) {
 		*/
 		s = state[ i-1 ]>>>0; // asm type annotation
 		s = ( s^(s>>>30) )>>>0; // asm type annotation
-		s = ( _$uimul_500( s, MAGIC_MULTIPLIER_2 ) )>>>0; // asm type annotation
+		s = ( _$uimul_507( s, MAGIC_MULTIPLIER_2 ) )>>>0; // asm type annotation
 		state[ i ] = ( ((state[i]>>>0)^s) - i )>>>0; /* non-linear */ // asm type annotation
 
 		i += 1;
@@ -41954,10 +41954,10 @@ function twist( state ) {
 	var j;
 	var k;
 
-	k = N - __M_590;
+	k = N - __M_602;
 	for ( i = 0; i < k; i++ ) {
 		w = ( state[i]&UPPER_MASK ) | ( state[i+1]&LOWER_MASK );
-		state[ i ] = state[ i+__M_590 ] ^ ( w>>>1 ) ^ MAG01[ w&ONE ];
+		state[ i ] = state[ i+__M_602 ] ^ ( w>>>1 ) ^ MAG01[ w&ONE ];
 	}
 	j = N - 1;
 	for ( ; i < j; i++ ) {
@@ -41965,7 +41965,7 @@ function twist( state ) {
 		state[ i ] = state[ i-k ] ^ ( w>>>1 ) ^ MAG01[ w&ONE ];
 	}
 	w = ( state[j]&UPPER_MASK ) | ( state[0]&LOWER_MASK );
-	state[ j ] = state[ __M_590-1 ] ^ ( w>>>1 ) ^ MAG01[ w&ONE ];
+	state[ j ] = state[ __M_602-1 ] ^ ( w>>>1 ) ^ MAG01[ w&ONE ];
 	return state;
 }
 
@@ -42006,7 +42006,7 @@ function twist( state ) {
 * var v = mt19937();
 * // returns 822569775
 */
-function __factory_590( options ) {
+function __factory_602( options ) {
 	var STATE;
 	var state;
 	var opts;
@@ -42021,7 +42021,7 @@ function __factory_590( options ) {
 		}
 		if ( _$hasOwnProp_58( options, 'copy' ) ) {
 			opts.copy = options.copy;
-			if ( !__isBoolean_590( options.copy ) ) {
+			if ( !__isBoolean_602( options.copy ) ) {
 				throw new TypeError( 'invalid option. `copy` option must be a boolean. Option: `' + options.copy + '`.' );
 			}
 		}
@@ -42052,7 +42052,7 @@ function __factory_590( options ) {
 			if ( _$hasOwnProp_58( options, 'seed' ) ) {
 				seed = options.seed;
 				opts.seed = true;
-				if ( __isPositiveInteger_590( seed ) ) {
+				if ( __isPositiveInteger_602( seed ) ) {
 					if ( seed > MAX_SEED ) {
 						throw new RangeError( 'invalid option. `seed` option must be a positive integer less than or equal to the maximum unsigned 32-bit integer. Option: `' + seed + '`.' );
 					}
@@ -42061,7 +42061,7 @@ function __factory_590( options ) {
 					throw new TypeError( 'invalid option. `seed` option must be either a positive integer less than or equal to the maximum unsigned 32-bit integer or an array-like object containing integer values less than or equal to the maximum unsigned 32-bit integer. Option: `' + seed + '`.' );
 				} else if ( seed.length === 1 ) {
 					seed = seed[ 0 ];
-					if ( !__isPositiveInteger_590( seed ) ) {
+					if ( !__isPositiveInteger_602( seed ) ) {
 						throw new TypeError( 'invalid option. `seed` option must be either a positive integer less than or equal to the maximum unsigned 32-bit integer or an array-like object containing integer values less than or equal to the maximum unsigned 32-bit integer. Option: `' + seed + '`.' );
 					}
 					if ( seed > MAX_SEED ) {
@@ -42094,11 +42094,11 @@ function __factory_590( options ) {
 					state = initState( state, N, seed, slen );
 				}
 			} else {
-				seed = _$randuint32_593() >>> 0; // asm type annotation
+				seed = _$randuint32_605() >>> 0; // asm type annotation
 			}
 		}
 	} else {
-		seed = _$randuint32_593() >>> 0; // asm type annotation
+		seed = _$randuint32_605() >>> 0; // asm type annotation
 	}
 	if ( state === void 0 ) {
 		STATE = new _$ctor_23( STATE_FIXED_LENGTH+1 );
@@ -42122,26 +42122,26 @@ function __factory_590( options ) {
 		state = createState( state, N, seed );
 	}
 	// Note: property order matters in order to maintain consistency of PRNG "shape" (hidden classes).
-	_$setNonEnumerableReadOnly_748( mt19937, 'NAME', 'mt19937' );
-	_$setNonEnumerableReadOnlyAccessor_746( mt19937, 'seed', getSeed );
-	_$setNonEnumerableReadOnlyAccessor_746( mt19937, 'seedLength', getSeedLength );
-	_$setNonEnumerableReadWriteAccessor_750( mt19937, 'state', getState, setState );
-	_$setNonEnumerableReadOnlyAccessor_746( mt19937, 'stateLength', getStateLength );
-	_$setNonEnumerableReadOnlyAccessor_746( mt19937, 'byteLength', getStateSize );
-	_$setNonEnumerableReadOnly_748( mt19937, 'toJSON', toJSON );
-	_$setNonEnumerableReadOnly_748( mt19937, 'MIN', 1 );
-	_$setNonEnumerableReadOnly_748( mt19937, 'MAX', _$UINT32_MAX_221 );
-	_$setNonEnumerableReadOnly_748( mt19937, 'normalized', normalized );
+	_$setNonEnumerableReadOnly_799( mt19937, 'NAME', 'mt19937' );
+	_$setNonEnumerableReadOnlyAccessor_797( mt19937, 'seed', getSeed );
+	_$setNonEnumerableReadOnlyAccessor_797( mt19937, 'seedLength', getSeedLength );
+	_$setNonEnumerableReadWriteAccessor_801( mt19937, 'state', getState, setState );
+	_$setNonEnumerableReadOnlyAccessor_797( mt19937, 'stateLength', getStateLength );
+	_$setNonEnumerableReadOnlyAccessor_797( mt19937, 'byteLength', getStateSize );
+	_$setNonEnumerableReadOnly_799( mt19937, 'toJSON', toJSON );
+	_$setNonEnumerableReadOnly_799( mt19937, 'MIN', 1 );
+	_$setNonEnumerableReadOnly_799( mt19937, 'MAX', _$UINT32_MAX_221 );
+	_$setNonEnumerableReadOnly_799( mt19937, 'normalized', normalized );
 
-	_$setNonEnumerableReadOnly_748( normalized, 'NAME', mt19937.NAME );
-	_$setNonEnumerableReadOnlyAccessor_746( normalized, 'seed', getSeed );
-	_$setNonEnumerableReadOnlyAccessor_746( normalized, 'seedLength', getSeedLength );
-	_$setNonEnumerableReadWriteAccessor_750( normalized, 'state', getState, setState );
-	_$setNonEnumerableReadOnlyAccessor_746( normalized, 'stateLength', getStateLength );
-	_$setNonEnumerableReadOnlyAccessor_746( normalized, 'byteLength', getStateSize );
-	_$setNonEnumerableReadOnly_748( normalized, 'toJSON', toJSON );
-	_$setNonEnumerableReadOnly_748( normalized, 'MIN', 0.0 );
-	_$setNonEnumerableReadOnly_748( normalized, 'MAX', MAX_NORMALIZED );
+	_$setNonEnumerableReadOnly_799( normalized, 'NAME', mt19937.NAME );
+	_$setNonEnumerableReadOnlyAccessor_797( normalized, 'seed', getSeed );
+	_$setNonEnumerableReadOnlyAccessor_797( normalized, 'seedLength', getSeedLength );
+	_$setNonEnumerableReadWriteAccessor_801( normalized, 'state', getState, setState );
+	_$setNonEnumerableReadOnlyAccessor_797( normalized, 'stateLength', getStateLength );
+	_$setNonEnumerableReadOnlyAccessor_797( normalized, 'byteLength', getStateSize );
+	_$setNonEnumerableReadOnly_799( normalized, 'toJSON', toJSON );
+	_$setNonEnumerableReadOnly_799( normalized, 'MIN', 0.0 );
+	_$setNonEnumerableReadOnly_799( normalized, 'MAX', MAX_NORMALIZED );
 
 	return mt19937;
 
@@ -42335,7 +42335,7 @@ function __factory_590( options ) {
 
 // EXPORTS //
 
-var _$factory_590 = __factory_590;
+var _$factory_602 = __factory_602;
 
 /**
 * @license Apache-2.0
@@ -42359,8 +42359,8 @@ var _$factory_590 = __factory_590;
 
 // MODULES //
 
-/* removed: var _$factory_590 = require( './factory.js' ); */;
-/* removed: var _$randuint32_593 = require( './rand_uint32.js' ); */;
+/* removed: var _$factory_602 = require( './factory.js' ); */;
+/* removed: var _$randuint32_605 = require( './rand_uint32.js' ); */;
 
 
 // MAIN //
@@ -42435,14 +42435,14 @@ var _$factory_590 = __factory_590;
 * var v = mt19937();
 * // returns <number>
 */
-var mt19937 = _$factory_590({
-	'seed': _$randuint32_593()
+var mt19937 = _$factory_602({
+	'seed': _$randuint32_605()
 });
 
 
 // EXPORTS //
 
-var _$mt19937_592 = mt19937;
+var _$mt19937_604 = mt19937;
 
 /**
 * @license Apache-2.0
@@ -42488,19 +42488,19 @@ var _$mt19937_592 = mt19937;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$mt19937_592 = require( './main.js' ); */;
-/* removed: var _$factory_590 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$mt19937_604 = require( './main.js' ); */;
+/* removed: var _$factory_602 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$mt19937_592, 'factory', _$factory_590 );
+_$setNonEnumerableReadOnly_799( _$mt19937_604, 'factory', _$factory_602 );
 
 
 // EXPORTS //
 
-var _$mt19937_591 = _$mt19937_592;
+var _$mt19937_603 = _$mt19937_604;
 
 /**
 * @license Apache-2.0
@@ -42524,9 +42524,9 @@ var _$mt19937_591 = _$mt19937_592;
 
 // MODULES //
 
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
-/* removed: var _$sin_490 = require( '@stdlib/math/base/special/sin' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$sin_497 = require( '@stdlib/math/base/special/sin' ); */;
 /* removed: var _$cos_273 = require( '@stdlib/math/base/special/cos' ); */;
 /* removed: var _$TWO_PI_213 = require( '@stdlib/constants/math/float64-two-pi' ); */;
 
@@ -42540,7 +42540,7 @@ var _$mt19937_591 = _$mt19937_592;
 * @param {PRNG} rand - PRNG which returns standard uniformly distributed numbers
 * @returns {PRNG} PRNG
 */
-function __wrap_556( rand ) {
+function __wrap_563( rand ) {
 	var flg;
 	var r;
 
@@ -42572,11 +42572,11 @@ function __wrap_556( rand ) {
 			} while (
 				u1 === 0.0
 			);
-			a = _$sqrt_494( -2.0 * _$ln_454(u1) );
+			a = _$sqrt_501( -2.0 * _$ln_461(u1) );
 			b = _$TWO_PI_213 * u2;
 			r = a * _$cos_273( b ); // cache for next call
 			flg = false;
-			return a * _$sin_490( b );
+			return a * _$sin_497( b );
 		}
 		flg = true;
 		return r;
@@ -42586,7 +42586,7 @@ function __wrap_556( rand ) {
 
 // EXPORTS //
 
-var _$wrap_556 = __wrap_556;
+var _$wrap_563 = __wrap_563;
 
 /**
 * @license Apache-2.0
@@ -42610,8 +42610,8 @@ var _$wrap_556 = __wrap_556;
 
 // MODULES //
 
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$cos_273 = require( '@stdlib/math/base/special/cos' ); */;
 /* removed: var _$PI_206 = require( '@stdlib/constants/math/float64-pi' ); */;
 
@@ -42631,14 +42631,14 @@ var COS_PI = _$cos_273( _$PI_206 ); // -1
 * @returns {number} minimum possible number
 */
 function getMin( min ) {
-	var a = _$sqrt_494( -2.0 * _$ln_454( min ) );
+	var a = _$sqrt_501( -2.0 * _$ln_461( min ) );
 	return a * COS_PI;
 }
 
 
 // EXPORTS //
 
-var _$getMin_555 = getMin;
+var _$getMin_562 = getMin;
 
 /**
 * @license Apache-2.0
@@ -42662,8 +42662,8 @@ var _$getMin_555 = getMin;
 
 // MODULES //
 
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$cos_273 = require( '@stdlib/math/base/special/cos' ); */;
 /* removed: var _$TWO_PI_213 = require( '@stdlib/constants/math/float64-two-pi' ); */;
 
@@ -42678,7 +42678,7 @@ var _$getMin_555 = getMin;
 * @returns {number} maximum possible number
 */
 function getMax( min ) {
-	var a = _$sqrt_494( -2.0 * _$ln_454( min ) );
+	var a = _$sqrt_501( -2.0 * _$ln_461( min ) );
 	var b = _$TWO_PI_213 * min;
 	return a * _$cos_273( b );
 }
@@ -42686,7 +42686,7 @@ function getMax( min ) {
 
 // EXPORTS //
 
-var _$getMax_554 = getMax;
+var _$getMax_561 = getMax;
 
 /**
 * @license Apache-2.0
@@ -42710,21 +42710,21 @@ var _$getMax_554 = getMax;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_746 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_750 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_797 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_801 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
-var __isBoolean_551 = _$isBoolean_86.isPrimitive;
+var __isBoolean_558 = _$isBoolean_86.isPrimitive;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
 /* removed: var _$isUint32Array_166 = require( '@stdlib/assert/is-uint32array' ); */;
-var __mt19937_551 = _$mt19937_591.factory;
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_793 = require( '@stdlib/utils/noop' ); */;
+var __mt19937_558 = _$mt19937_603.factory;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_844 = require( '@stdlib/utils/noop' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
-/* removed: var _$wrap_556 = require( './randn.js' ); */;
-/* removed: var _$getMin_555 = require( './min.js' ); */;
-/* removed: var _$getMax_554 = require( './max.js' ); */;
+/* removed: var _$wrap_563 = require( './randn.js' ); */;
+/* removed: var _$getMin_562 = require( './min.js' ); */;
+/* removed: var _$getMax_561 = require( './max.js' ); */;
 
 
 // MAIN //
@@ -42757,7 +42757,7 @@ var __mt19937_551 = _$mt19937_591.factory;
 * var r = randn();
 * // returns <number>
 */
-function __factory_551( options ) {
+function __factory_558( options ) {
 	var randu;
 	var randn;
 	var rand;
@@ -42772,7 +42772,7 @@ function __factory_551( options ) {
 		}
 		if ( _$hasOwnProp_58( options, 'copy' ) ) {
 			opts.copy = options.copy;
-			if ( !__isBoolean_551( options.copy ) ) {
+			if ( !__isBoolean_558( options.copy ) ) {
 				throw new TypeError( 'invalid option. `copy` option must be a boolean. Option: `' + options.copy + '`.' );
 			}
 		}
@@ -42799,45 +42799,45 @@ function __factory_551( options ) {
 	}
 	if ( opts.state === void 0 ) {
 		if ( randu === void 0 ) {
-			rand = __mt19937_551( opts );
+			rand = __mt19937_558( opts );
 			randu = rand.normalized;
 		} else {
 			opts.seed = null;
 		}
 	} else {
-		rand = __mt19937_551( opts );
+		rand = __mt19937_558( opts );
 		randu = rand.normalized;
 	}
-	randn = _$wrap_556( randu );
+	randn = _$wrap_563( randu );
 
-	_$setNonEnumerableReadOnly_748( randn, 'NAME', 'box-muller' );
+	_$setNonEnumerableReadOnly_799( randn, 'NAME', 'box-muller' );
 	if ( opts.seed === null ) {
-		_$setNonEnumerableReadOnly_748( randn, 'seed', null );
-		_$setNonEnumerableReadOnly_748( randn, 'seedLength', null );
+		_$setNonEnumerableReadOnly_799( randn, 'seed', null );
+		_$setNonEnumerableReadOnly_799( randn, 'seedLength', null );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_746( randn, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_746( randn, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadOnlyAccessor_797( randn, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_797( randn, 'seedLength', getSeedLength );
 	}
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( options && options.prng ) {
-		_$setNonEnumerableReadWriteAccessor_750( randn, 'state', _$constantFunction_739( null ), _$noop_793 );
-		_$setNonEnumerableReadOnly_748( randn, 'stateLength', null );
-		_$setNonEnumerableReadOnly_748( randn, 'byteLength', null );
-		_$setNonEnumerableReadOnly_748( randn, 'toJSON', _$constantFunction_739( null ) );
+		_$setNonEnumerableReadWriteAccessor_801( randn, 'state', _$constantFunction_790( null ), _$noop_844 );
+		_$setNonEnumerableReadOnly_799( randn, 'stateLength', null );
+		_$setNonEnumerableReadOnly_799( randn, 'byteLength', null );
+		_$setNonEnumerableReadOnly_799( randn, 'toJSON', _$constantFunction_790( null ) );
 	} else {
-		_$setNonEnumerableReadWriteAccessor_750( randn, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_746( randn, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_746( randn, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_748( randn, 'toJSON', toJSON );
+		_$setNonEnumerableReadWriteAccessor_801( randn, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_797( randn, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_797( randn, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_799( randn, 'toJSON', toJSON );
 	}
-	_$setNonEnumerableReadOnly_748( randn, 'PRNG', randu );
+	_$setNonEnumerableReadOnly_799( randn, 'PRNG', randu );
 
 	if ( _$hasOwnProp_58( randu, 'MIN' ) ) {
-		_$setNonEnumerableReadOnly_748( randn, 'MIN', _$getMin_555( randu.MIN ) );
-		_$setNonEnumerableReadOnly_748( randn, 'MAX', _$getMax_554( randu.MIN ) );
+		_$setNonEnumerableReadOnly_799( randn, 'MIN', _$getMin_562( randu.MIN ) );
+		_$setNonEnumerableReadOnly_799( randn, 'MAX', _$getMax_561( randu.MIN ) );
 	} else {
-		_$setNonEnumerableReadOnly_748( randn, 'MIN', null );
-		_$setNonEnumerableReadOnly_748( randn, 'MAX', null );
+		_$setNonEnumerableReadOnly_799( randn, 'MIN', null );
+		_$setNonEnumerableReadOnly_799( randn, 'MAX', null );
 	}
 
 	return randn;
@@ -42926,7 +42926,7 @@ function __factory_551( options ) {
 
 // EXPORTS //
 
-var _$factory_551 = __factory_551;
+var _$factory_558 = __factory_558;
 
 /**
 * @license Apache-2.0
@@ -42950,7 +42950,7 @@ var _$factory_551 = __factory_551;
 
 // MODULES //
 
-/* removed: var _$factory_551 = require( './factory.js' ); */;
+/* removed: var _$factory_558 = require( './factory.js' ); */;
 
 
 // MAIN //
@@ -43008,12 +43008,12 @@ var _$factory_551 = __factory_551;
 * var r = randn();
 * // returns <number>
 */
-var randn = _$factory_551();
+var randn = _$factory_558();
 
 
 // EXPORTS //
 
-var _$randn_553 = randn;
+var _$randn_560 = randn;
 
 /**
 * @license Apache-2.0
@@ -43059,19 +43059,19 @@ var _$randn_553 = randn;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$randn_553 = require( './main.js' ); */;
-/* removed: var _$factory_551 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$randn_560 = require( './main.js' ); */;
+/* removed: var _$factory_558 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$randn_553, 'factory', _$factory_551 );
+_$setNonEnumerableReadOnly_799( _$randn_560, 'factory', _$factory_558 );
 
 
 // EXPORTS //
 
-var _$randn_552 = _$randn_553;
+var _$randn_559 = _$randn_560;
 
 /**
 * @license Apache-2.0
@@ -43095,9 +43095,9 @@ var _$randn_552 = _$randn_553;
 
 // MODULES //
 
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 
 
 // VARIABLES //
@@ -43126,13 +43126,13 @@ function coordsArray( N, rTail ) {
 	var i;
 
 	X = new Array( N+1 );
-	f = _$exp_303( -0.5 * rTail * rTail );
+	f = _$exp_310( -0.5 * rTail * rTail );
 	X[ 0 ] = V / f; // [0] is bottom block: V / f(R)
 	X[ 1 ] = rTail;
 	X[ N ] = 0.0;
 	for ( i = 2; i < N; i++ ) {
-		X[ i ] = _$sqrt_494( -2.0 * _$ln_454( (V / X[i-1]) + f ) );
-		f = _$exp_303( -0.5 * X[ i ] * X[ i ] );
+		X[ i ] = _$sqrt_501( -2.0 * _$ln_461( (V / X[i-1]) + f ) );
+		f = _$exp_310( -0.5 * X[ i ] * X[ i ] );
 	}
 	return X;
 }
@@ -43140,7 +43140,7 @@ function coordsArray( N, rTail ) {
 
 // EXPORTS //
 
-var _$coordsArray_579 = coordsArray;
+var _$coordsArray_586 = coordsArray;
 
 /**
 * @license Apache-2.0
@@ -43189,7 +43189,7 @@ function ratioArray( X ) {
 
 // EXPORTS //
 
-var _$ratioArray_584 = ratioArray;
+var _$ratioArray_591 = ratioArray;
 
 /**
 * @license Apache-2.0
@@ -43213,7 +43213,7 @@ var _$ratioArray_584 = ratioArray;
 
 // MODULES //
 
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 
 
 // MAIN //
@@ -43235,8 +43235,8 @@ function sampleTail( rand, rTail, isNegative ) {
 	var x;
 	var y;
 	do {
-		x = _$ln_454( rand() ) / rTail;
-		y = _$ln_454( rand() );
+		x = _$ln_461( rand() ) / rTail;
+		y = _$ln_461( rand() );
 	} while ( -2.0*y < x*x );
 	return ( isNegative ) ? x-rTail : rTail-x;
 }
@@ -43244,7 +43244,7 @@ function sampleTail( rand, rTail, isNegative ) {
 
 // EXPORTS //
 
-var _$sampleTail_585 = sampleTail;
+var _$sampleTail_592 = sampleTail;
 
 /**
 * @license Apache-2.0
@@ -43269,10 +43269,10 @@ var _$sampleTail_585 = sampleTail;
 // MODULES //
 
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$coordsArray_579 = require( './coords_array.js' ); */;
-/* removed: var _$ratioArray_584 = require( './ratio_array.js' ); */;
-/* removed: var _$sampleTail_585 = require( './sample_tail.js' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$coordsArray_586 = require( './coords_array.js' ); */;
+/* removed: var _$ratioArray_591 = require( './ratio_array.js' ); */;
+/* removed: var _$sampleTail_592 = require( './sample_tail.js' ); */;
 
 
 // VARIABLES //
@@ -43284,10 +43284,10 @@ var NUM_BLOCKS = 128;
 var START_RIGHT_TAIL = 3.442619855899;
 
 // `X` holds coordinates, such that each rectangle has same area:
-var X = _$coordsArray_579( NUM_BLOCKS, START_RIGHT_TAIL );
+var X = _$coordsArray_586( NUM_BLOCKS, START_RIGHT_TAIL );
 
 // `R` holds `X[ i+1 ] / X[ i ]`:
-var R = _$ratioArray_584( X );
+var R = _$ratioArray_591( X );
 
 // 127 => 0x7F => 00000000000000000000000001111111
 var LAST_7_BITS_MASK = 127|0; // asm type annotation
@@ -43303,7 +43303,7 @@ var LAST_7_BITS_MASK = 127|0; // asm type annotation
 * @param {PRNG} randi - PRNG for generating uniformly distributed integers
 * @returns {number} pseudorandom number
 */
-function __wrap_581( randu, randi ) {
+function __wrap_588( randu, randi ) {
 	return randn;
 
 	/**
@@ -43334,14 +43334,14 @@ function __wrap_581( randu, randi ) {
 			}
 			// If bottom box, sample from the tail...
 			if ( i === 0 ) {
-				return _$sampleTail_585( randu, START_RIGHT_TAIL, u < 0.0 );
+				return _$sampleTail_592( randu, START_RIGHT_TAIL, u < 0.0 );
 			}
 			// Is this a sample from the wedges?
 			x = u * X[ i ];
 			x2 = x * x;
 			j = i + 1;
-			f0 = _$exp_303( -0.5 * ( (X[ i ]*X[ i ]) - x2 ) );
-			f1 = _$exp_303( -0.5 * ( (X[ j ]*X[ j ]) - x2 ) );
+			f0 = _$exp_310( -0.5 * ( (X[ i ]*X[ i ]) - x2 ) );
+			f1 = _$exp_310( -0.5 * ( (X[ j ]*X[ j ]) - x2 ) );
 			if ( f1 + (randu()*(f0-f1)) < 1.0 ) {
 				return x;
 			}
@@ -43352,7 +43352,7 @@ function __wrap_581( randu, randi ) {
 
 // EXPORTS //
 
-var _$wrap_581 = __wrap_581;
+var _$wrap_588 = __wrap_588;
 
 /**
 * @license Apache-2.0
@@ -43376,21 +43376,21 @@ var _$wrap_581 = __wrap_581;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_746 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_750 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_797 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_801 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
-var __isBoolean_580 = _$isBoolean_86.isPrimitive;
+var __isBoolean_587 = _$isBoolean_86.isPrimitive;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
 /* removed: var _$isUint32Array_166 = require( '@stdlib/assert/is-uint32array' ); */;
-var __mt19937_580 = _$mt19937_591.factory;
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_793 = require( '@stdlib/utils/noop' ); */;
-/* removed: var _$floor_314 = require( '@stdlib/math/base/special/floor' ); */;
+var __mt19937_587 = _$mt19937_603.factory;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_844 = require( '@stdlib/utils/noop' ); */;
+/* removed: var _$floor_321 = require( '@stdlib/math/base/special/floor' ); */;
 /* removed: var _$UINT32_MAX_221 = require( '@stdlib/constants/math/uint32-max' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
-/* removed: var _$wrap_581 = require( './improved_ziggurat.js' ); */;
+/* removed: var _$wrap_588 = require( './improved_ziggurat.js' ); */;
 
 
 // MAIN //
@@ -43423,7 +43423,7 @@ var __mt19937_580 = _$mt19937_591.factory;
 * var r = randn();
 * // returns <number>
 */
-function __factory_580( options ) {
+function __factory_587( options ) {
 	var randu;
 	var randi;
 	var randn;
@@ -43438,7 +43438,7 @@ function __factory_580( options ) {
 		}
 		if ( _$hasOwnProp_58( options, 'copy' ) ) {
 			opts.copy = options.copy;
-			if ( !__isBoolean_580( options.copy ) ) {
+			if ( !__isBoolean_587( options.copy ) ) {
 				throw new TypeError( 'invalid option. `copy` option must be a boolean. Option: `' + options.copy + '`.' );
 			}
 		}
@@ -43465,42 +43465,42 @@ function __factory_580( options ) {
 	}
 	if ( opts.state === void 0 ) {
 		if ( randu === void 0 ) {
-			randi = __mt19937_580( opts );
+			randi = __mt19937_587( opts );
 			randu = randi.normalized;
 		} else {
-			randi = __mt19937_580({
-				'seed': _$floor_314( 1.0 + ( _$UINT32_MAX_221*randu() ) ), // allows seeding via an externally seeded PRNG
+			randi = __mt19937_587({
+				'seed': _$floor_321( 1.0 + ( _$UINT32_MAX_221*randu() ) ), // allows seeding via an externally seeded PRNG
 				'copy': opts.copy
 			});
 			opts.seed = null;
 		}
 	} else {
-		randi = __mt19937_580( opts );
+		randi = __mt19937_587( opts );
 		randu = randi.normalized;
 	}
-	randn = _$wrap_581( randu, randi );
+	randn = _$wrap_588( randu, randi );
 
-	_$setNonEnumerableReadOnly_748( randn, 'NAME', 'improved-ziggurat' );
+	_$setNonEnumerableReadOnly_799( randn, 'NAME', 'improved-ziggurat' );
 	if ( opts.seed === null ) {
-		_$setNonEnumerableReadOnly_748( randn, 'seed', null );
-		_$setNonEnumerableReadOnly_748( randn, 'seedLength', null );
+		_$setNonEnumerableReadOnly_799( randn, 'seed', null );
+		_$setNonEnumerableReadOnly_799( randn, 'seedLength', null );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_746( randn, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_746( randn, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadOnlyAccessor_797( randn, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_797( randn, 'seedLength', getSeedLength );
 	}
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( options && options.prng ) {
-		_$setNonEnumerableReadWriteAccessor_750( randn, 'state', _$constantFunction_739( null ), _$noop_793 );
-		_$setNonEnumerableReadOnly_748( randn, 'stateLength', null );
-		_$setNonEnumerableReadOnly_748( randn, 'byteLength', null );
-		_$setNonEnumerableReadOnly_748( randn, 'toJSON', _$constantFunction_739( null ) );
+		_$setNonEnumerableReadWriteAccessor_801( randn, 'state', _$constantFunction_790( null ), _$noop_844 );
+		_$setNonEnumerableReadOnly_799( randn, 'stateLength', null );
+		_$setNonEnumerableReadOnly_799( randn, 'byteLength', null );
+		_$setNonEnumerableReadOnly_799( randn, 'toJSON', _$constantFunction_790( null ) );
 	} else {
-		_$setNonEnumerableReadWriteAccessor_750( randn, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_746( randn, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_746( randn, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_748( randn, 'toJSON', toJSON );
+		_$setNonEnumerableReadWriteAccessor_801( randn, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_797( randn, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_797( randn, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_799( randn, 'toJSON', toJSON );
 	}
-	_$setNonEnumerableReadOnly_748( randn, 'PRNG', randu );
+	_$setNonEnumerableReadOnly_799( randn, 'PRNG', randu );
 
 	return randn;
 
@@ -43588,7 +43588,7 @@ function __factory_580( options ) {
 
 // EXPORTS //
 
-var _$factory_580 = __factory_580;
+var _$factory_587 = __factory_587;
 
 /**
 * @license Apache-2.0
@@ -43612,7 +43612,7 @@ var _$factory_580 = __factory_580;
 
 // MODULES //
 
-/* removed: var _$factory_580 = require( './factory.js' ); */;
+/* removed: var _$factory_587 = require( './factory.js' ); */;
 
 
 // MAIN //
@@ -43662,12 +43662,12 @@ var _$factory_580 = __factory_580;
 * var r = randn();
 * // returns <number>
 */
-var __randn_583 = _$factory_580();
+var __randn_590 = _$factory_587();
 
 
 // EXPORTS //
 
-var _$randn_583 = __randn_583;
+var _$randn_590 = __randn_590;
 
 /**
 * @license Apache-2.0
@@ -43713,19 +43713,19 @@ var _$randn_583 = __randn_583;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$randn_583 = require( './main.js' ); */;
-/* removed: var _$factory_580 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$randn_590 = require( './main.js' ); */;
+/* removed: var _$factory_587 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$randn_583, 'factory', _$factory_580 );
+_$setNonEnumerableReadOnly_799( _$randn_590, 'factory', _$factory_587 );
 
 
 // EXPORTS //
 
-var _$randn_582 = _$randn_583;
+var _$randn_589 = _$randn_590;
 
 /**
 * @license Apache-2.0
@@ -43751,13 +43751,13 @@ var _$randn_582 = _$randn_583;
 
 var prngs = {};
 
-prngs[ 'box-muller' ] = _$randn_552;
-prngs[ 'improved-ziggurat' ] = _$randn_582;
+prngs[ 'box-muller' ] = _$randn_559;
+prngs[ 'improved-ziggurat' ] = _$randn_589;
 
 
 // EXPORTS //
 
-var _$prngs_598 = prngs;
+var _$prngs_615 = prngs;
 
 /**
 * @license Apache-2.0
@@ -43781,17 +43781,17 @@ var _$prngs_598 = prngs;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_746 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_750 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_797 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_801 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
-var __isBoolean_595 = _$isBoolean_86.isPrimitive;
+var __isBoolean_612 = _$isBoolean_86.isPrimitive;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_793 = require( '@stdlib/utils/noop' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_844 = require( '@stdlib/utils/noop' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
-/* removed: var _$defaults_594 = require( './defaults.json' ); */;
-/* removed: var _$prngs_598 = require( './prngs.js' ); */;
+/* removed: var _$defaults_611 = require( './defaults.json' ); */;
+/* removed: var _$prngs_615 = require( './prngs.js' ); */;
 
 
 // MAIN //
@@ -43838,14 +43838,14 @@ var __isBoolean_595 = _$isBoolean_86.isPrimitive;
 * var v = randn();
 * // returns <number>
 */
-function __factory_595( options ) {
+function __factory_612( options ) {
 	var opts;
 	var rand;
 	var prng;
 
 	opts = {
-		'name': _$defaults_594.name,
-		'copy': _$defaults_594.copy
+		'name': _$defaults_611.name,
+		'copy': _$defaults_611.copy
 	};
 	if ( arguments.length ) {
 		if ( !_$isPlainObject_144( options ) ) {
@@ -43872,12 +43872,12 @@ function __factory_595( options ) {
 		}
 		if ( _$hasOwnProp_58( options, 'copy' ) ) {
 			opts.copy = options.copy;
-			if ( !__isBoolean_595( opts.copy ) ) {
+			if ( !__isBoolean_612( opts.copy ) ) {
 				throw new TypeError( 'invalid option. `copy` option must be a boolean. Option: `' + opts.copy + '`.' );
 			}
 		}
 	}
-	prng = _$prngs_598[ opts.name ];
+	prng = _$prngs_615[ opts.name ];
 	if ( prng === void 0 ) {
 		throw new Error( 'invalid option. Unrecognized/unsupported PRNG. Option: `' + opts.name + '`.' );
 	}
@@ -43901,25 +43901,25 @@ function __factory_595( options ) {
 			'prng': opts.prng
 		});
 	}
-	_$setNonEnumerableReadOnly_748( normal, 'NAME', 'randn' );
+	_$setNonEnumerableReadOnly_799( normal, 'NAME', 'randn' );
 
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( opts.prng ) {
-		_$setNonEnumerableReadOnly_748( normal, 'seed', null );
-		_$setNonEnumerableReadOnly_748( normal, 'seedLength', null );
-		_$setNonEnumerableReadWriteAccessor_750( normal, 'state', _$constantFunction_739( null ), _$noop_793 );
-		_$setNonEnumerableReadOnly_748( normal, 'stateLength', null );
-		_$setNonEnumerableReadOnly_748( normal, 'byteLength', null );
-		_$setNonEnumerableReadOnly_748( normal, 'toJSON', _$constantFunction_739( null ) );
+		_$setNonEnumerableReadOnly_799( normal, 'seed', null );
+		_$setNonEnumerableReadOnly_799( normal, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_801( normal, 'state', _$constantFunction_790( null ), _$noop_844 );
+		_$setNonEnumerableReadOnly_799( normal, 'stateLength', null );
+		_$setNonEnumerableReadOnly_799( normal, 'byteLength', null );
+		_$setNonEnumerableReadOnly_799( normal, 'toJSON', _$constantFunction_790( null ) );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_746( normal, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_746( normal, 'seedLength', getSeedLength );
-		_$setNonEnumerableReadWriteAccessor_750( normal, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_746( normal, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_746( normal, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_748( normal, 'toJSON', toJSON );
+		_$setNonEnumerableReadOnlyAccessor_797( normal, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_797( normal, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_801( normal, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_797( normal, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_797( normal, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_799( normal, 'toJSON', toJSON );
 	}
-	_$setNonEnumerableReadOnly_748( normal, 'PRNG', rand.PRNG );
+	_$setNonEnumerableReadOnly_799( normal, 'PRNG', rand.PRNG );
 	return normal;
 
 	/**
@@ -44020,7 +44020,7 @@ function __factory_595( options ) {
 
 // EXPORTS //
 
-var _$factory_595 = __factory_595;
+var _$factory_612 = __factory_612;
 
 /**
 * @license Apache-2.0
@@ -44044,7 +44044,7 @@ var _$factory_595 = __factory_595;
 
 // MODULES //
 
-/* removed: var _$factory_595 = require( './factory.js' ); */;
+/* removed: var _$factory_612 = require( './factory.js' ); */;
 
 
 // MAIN //
@@ -44060,12 +44060,12 @@ var _$factory_595 = __factory_595;
 * var v = normal();
 * // returns <number>
 */
-var normal = _$factory_595();
+var normal = _$factory_612();
 
 
 // EXPORTS //
 
-var _$normal_597 = normal;
+var _$normal_614 = normal;
 
 /**
 * @license Apache-2.0
@@ -44112,82 +44112,82 @@ var _$normal_597 = normal;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$normal_597 = require( './main.js' ); */;
-/* removed: var _$factory_595 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$normal_614 = require( './main.js' ); */;
+/* removed: var _$factory_612 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$normal_597, 'factory', _$factory_595 );
+_$setNonEnumerableReadOnly_799( _$normal_614, 'factory', _$factory_612 );
 
 
 // EXPORTS //
 
-var _$randn_596 = _$normal_597;
+var _$randn_613 = _$normal_614;
 
-var _$special_824 = {};
+var _$special_875 = {};
 // Special functions //
-/* removed: var _$jStat_819 = require( './core.js' ); */;
+/* removed: var _$jStat_870 = require( './core.js' ); */;
 
 // Log-gamma function
-_$jStat_819.gammaln = _$gammaln_383;
-_$jStat_819.loggam = _$jStat_819.gammaln;
+_$jStat_870.gammaln = _$gammaln_390;
+_$jStat_870.loggam = _$jStat_870.gammaln;
 
 // gamma of x
-_$jStat_819.gammafn = _$gamma_325;
+_$jStat_870.gammafn = _$gamma_332;
 
 
-/* removed: var _$gammainc_341 = require( '@stdlib/math/base/special/gammainc' ); */;
+/* removed: var _$gammainc_348 = require( '@stdlib/math/base/special/gammainc' ); */;
 // lower incomplete gamma function, which is usually typeset with a
 // lower-case greek gamma as the function symbol
-_$jStat_819.gammap = function gammap(a, x) {
-  return _$gammainc_341(x, a, false);
+_$jStat_870.gammap = function gammap(a, x) {
+  return _$gammainc_348(x, a, false);
 };
 
 
 // The lower regularized incomplete gamma function, usually written P(a,x)
-_$jStat_819.lowRegGamma = function lowRegGamma(a, x) {
-  return _$gammainc_341(x, a);
+_$jStat_870.lowRegGamma = function lowRegGamma(a, x) {
+  return _$gammainc_348(x, a);
 };
 
 // natural log factorial of n
-_$jStat_819.factorialln = _$factorialln_312;
+_$jStat_870.factorialln = _$factorialln_319;
 
 // factorial of n
-_$jStat_819.factorial = _$factorial_310;
+_$jStat_870.factorial = _$factorial_317;
 
 // combinations of n, m
-_$jStat_819.combination = function combination(n, m) {
+_$jStat_870.combination = function combination(n, m) {
   // make sure n or m don't exceed the upper limit of usable values
   return (n > 170 || m > 170)
-      ? Math.exp(_$jStat_819.combinationln(n, m))
-      : (_$jStat_819.factorial(n) / _$jStat_819.factorial(m)) / _$jStat_819.factorial(n - m);
+      ? Math.exp(_$jStat_870.combinationln(n, m))
+      : (_$jStat_870.factorial(n) / _$jStat_870.factorial(m)) / _$jStat_870.factorial(n - m);
 };
 
 
-_$jStat_819.combinationln = function combinationln(n, m){
-  return _$jStat_819.factorialln(n) - _$jStat_819.factorialln(m) - _$jStat_819.factorialln(n - m);
+_$jStat_870.combinationln = function combinationln(n, m){
+  return _$jStat_870.factorialln(n) - _$jStat_870.factorialln(m) - _$jStat_870.factorialln(n - m);
 };
 
 
 // permutations of n, m
-_$jStat_819.permutation = function permutation(n, m) {
-  return _$jStat_819.factorial(n) / _$jStat_819.factorial(n - m);
+_$jStat_870.permutation = function permutation(n, m) {
+  return _$jStat_870.factorial(n) / _$jStat_870.factorial(n - m);
 };
 
 
 // beta function
-_$jStat_819.betafn = _$beta_256;
+_$jStat_870.betafn = _$beta_256;
 
 
 // natural logarithm of beta function
-_$jStat_819.betaln = _$betaln_265;
+_$jStat_870.betaln = _$betaln_265;
 
 
 // Evaluates the continued fraction for incomplete beta function by modified
 // Lentz's method.
-_$jStat_819.betacf = function betacf(x, a, b) {
+_$jStat_870.betacf = function betacf(x, a, b) {
   var fpmin = 1e-30;
   var m = 1;
   var qab = a + b;
@@ -44235,43 +44235,43 @@ _$jStat_819.betacf = function betacf(x, a, b) {
 
 
 // Returns the inverse of the lower regularized inomplete gamma function
-_$jStat_819.gammapinv = _$gammaincinv_366;
+_$jStat_870.gammapinv = _$gammaincinv_373;
 
 
 // Returns the error function erf(x)
-_$jStat_819.erf = _$erf_275;
+_$jStat_870.erf = _$erf_275;
 
 
 // Returns the complmentary error function erfc(x)
-_$jStat_819.erfc = _$erfc_285;
+_$jStat_870.erfc = _$erfc_285;
 
 
 // Returns the inverse of the complementary error function
-_$jStat_819.erfcinv = _$erfcinv_295;
+_$jStat_870.erfcinv = _$erfcinv_295;
 
 
 // Returns the inverse of the incomplete beta function
-_$jStat_819.ibetainv = _$betaincinv_261;
+_$jStat_870.ibetainv = _$betaincinv_261;
 
 
 // Returns the incomplete beta function I_x(a,b)
-_$jStat_819.ibeta = _$betainc_259;
+_$jStat_870.ibeta = _$betainc_259;
 
 // Returns a normal deviate (mu=0, sigma=1).
 // If n and m are specified it returns a object of normal deviates.
-/* removed: var _$randn_596 = require( '@stdlib/random/base/randn' ); */;
-_$jStat_819.randn = function randn(n, m) {
+/* removed: var _$randn_613 = require( '@stdlib/random/base/randn' ); */;
+_$jStat_870.randn = function randn(n, m) {
   var u, v, x, y, q;
   if (!m)
     m = n;
   if (n)
-    return _$jStat_819.create(n, m, function() { return _$jStat_819.randn(); });
-  return _$randn_596();
+    return _$jStat_870.create(n, m, function() { return _$jStat_870.randn(); });
+  return _$randn_613();
 };
 
 
 // Returns a gamma deviate by the method of Marsaglia and Tsang.
-_$jStat_819.randg = function randg(shape, n, m) {
+_$jStat_870.randg = function randg(shape, n, m) {
   var oalph = shape;
   var a1, a2, u, v, x, mat;
   if (!m)
@@ -44279,8 +44279,8 @@ _$jStat_819.randg = function randg(shape, n, m) {
   if (!shape)
     shape = 1;
   if (n) {
-    mat = _$jStat_819.zeros(n,m);
-    mat.alter(function() { return _$jStat_819.randg(shape); });
+    mat = _$jStat_870.zeros(n,m);
+    mat.alter(function() { return _$jStat_870.randg(shape); });
     return mat;
   }
   if (shape < 1)
@@ -44289,11 +44289,11 @@ _$jStat_819.randg = function randg(shape, n, m) {
   a2 = 1 / Math.sqrt(9 * a1);
   do {
     do {
-      x = _$jStat_819.randn();
+      x = _$jStat_870.randn();
       v = 1 + a2 * x;
     } while(v <= 0);
     v = v * v * v;
-    u = _$jStat_819._random_fn();
+    u = _$jStat_870._random_fn();
   } while(u > 1 - 0.331 * Math.pow(x, 4) &&
           Math.log(u) > 0.5 * x*x + a1 * (1 - v + Math.log(v)));
   // alpha > 1
@@ -44301,7 +44301,7 @@ _$jStat_819.randg = function randg(shape, n, m) {
     return a1 * v;
   // alpha < 1
   do {
-    u = _$jStat_819._random_fn();
+    u = _$jStat_870._random_fn();
   } while(u === 0);
   return Math.pow(u, 1 / oalph) * a1 * v;
 };
@@ -44310,9 +44310,9 @@ _$jStat_819.randg = function randg(shape, n, m) {
 // making use of static methods on the instance
 (function(funcs) {
   for (var i = 0; i < funcs.length; i++) (function(passfunc) {
-    _$jStat_819.fn[passfunc] = function() {
-      return _$jStat_819(
-          _$jStat_819.map(this, function(value) { return _$jStat_819[passfunc](value); }));
+    _$jStat_870.fn[passfunc] = function() {
+      return _$jStat_870(
+          _$jStat_870.map(this, function(value) { return _$jStat_870[passfunc](value); }));
     }
   })(funcs[i]);
 })('gammaln gammafn factorial factorialln'.split(' '));
@@ -44320,8 +44320,8 @@ _$jStat_819.randg = function randg(shape, n, m) {
 
 (function(funcs) {
   for (var i = 0; i < funcs.length; i++) (function(passfunc) {
-    _$jStat_819.fn[passfunc] = function() {
-      return _$jStat_819(_$jStat_819[passfunc].apply(null, arguments));
+    _$jStat_870.fn[passfunc] = function() {
+      return _$jStat_870(_$jStat_870[passfunc].apply(null, arguments));
     };
   })(funcs[i]);
 })('randn'.split(' '));
@@ -44350,9 +44350,9 @@ _$jStat_819.randg = function randg(shape, n, m) {
 
 /* removed: var _$betaln_265 = require( '@stdlib/math/base/special/betaln' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$log1p_458 = require( '@stdlib/math/base/special/log1p' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$log1p_465 = require( '@stdlib/math/base/special/log1p' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
 
 
@@ -44443,16 +44443,16 @@ function pdf( x, alpha, beta ) {
 		}
 		return alpha;
 	}
-	out = ( alpha-1.0 ) * _$ln_454( x );
-	out += ( beta-1.0 ) * _$log1p_458( -x );
+	out = ( alpha-1.0 ) * _$ln_461( x );
+	out += ( beta-1.0 ) * _$log1p_465( -x );
 	out -= _$betaln_265( alpha, beta );
-	return _$exp_303( out );
+	return _$exp_310( out );
 }
 
 
 // EXPORTS //
 
-var _$pdf_612 = pdf;
+var _$pdf_629 = pdf;
 
 /**
 * @license Apache-2.0
@@ -44476,12 +44476,12 @@ var _$pdf_612 = pdf;
 
 // MODULES //
 
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$betaln_265 = require( '@stdlib/math/base/special/betaln' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$log1p_458 = require( '@stdlib/math/base/special/log1p' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$log1p_465 = require( '@stdlib/math/base/special/log1p' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
 
 
@@ -44503,7 +44503,7 @@ var _$pdf_612 = pdf;
 * y = pdf( 0.3 );
 * // returns ~0.695
 */
-function __factory_610( alpha, beta ) {
+function __factory_627( alpha, beta ) {
 	var betalnAB;
 	if (
 		_$isnan_231( alpha ) ||
@@ -44511,7 +44511,7 @@ function __factory_610( alpha, beta ) {
 		alpha <= 0.0 ||
 		beta <= 0.0
 	) {
-		return _$constantFunction_739( NaN );
+		return _$constantFunction_790( NaN );
 	}
 	betalnAB = _$betaln_265( alpha, beta );
 	return pdf;
@@ -44555,16 +44555,16 @@ function __factory_610( alpha, beta ) {
 			return alpha;
 		}
 		out = -betalnAB;
-		out += ( alpha-1.0 ) * _$ln_454( x );
-		out += ( beta-1.0 ) * _$log1p_458( -x );
-		return _$exp_303( out );
+		out += ( alpha-1.0 ) * _$ln_461( x );
+		out += ( beta-1.0 ) * _$log1p_465( -x );
+		return _$exp_310( out );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_610 = __factory_610;
+var _$factory_627 = __factory_627;
 
 /**
 * @license Apache-2.0
@@ -44614,19 +44614,19 @@ var _$factory_610 = __factory_610;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_612 = require( './pdf.js' ); */;
-/* removed: var _$factory_610 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_629 = require( './pdf.js' ); */;
+/* removed: var _$factory_627 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$pdf_612, 'factory', _$factory_610 );
+_$setNonEnumerableReadOnly_799( _$pdf_629, 'factory', _$factory_627 );
 
 
 // EXPORTS //
 
-var _$pdf_611 = _$pdf_612;
+var _$pdf_628 = _$pdf_629;
 
 /**
 * @license Apache-2.0
@@ -44730,7 +44730,7 @@ function cdf( x, alpha, beta ) {
 
 // EXPORTS //
 
-var _$cdf_601 = cdf;
+var _$cdf_618 = cdf;
 
 /**
 * @license Apache-2.0
@@ -44754,7 +44754,7 @@ var _$cdf_601 = cdf;
 
 // MODULES //
 
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$betainc_259 = require( '@stdlib/math/base/special/betainc' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
@@ -44777,14 +44777,14 @@ var _$cdf_601 = cdf;
 * y = cdf( 0.3 );
 * // returns ~0.369
 */
-function __factory_602( alpha, beta ) {
+function __factory_619( alpha, beta ) {
 	if (
 		_$isnan_231( alpha ) ||
 		_$isnan_231( beta ) ||
 		alpha <= 0.0 ||
 		beta <= 0.0
 	) {
-		return _$constantFunction_739( NaN );
+		return _$constantFunction_790( NaN );
 	}
 	return cdf;
 
@@ -44816,7 +44816,7 @@ function __factory_602( alpha, beta ) {
 
 // EXPORTS //
 
-var _$factory_602 = __factory_602;
+var _$factory_619 = __factory_619;
 
 /**
 * @license Apache-2.0
@@ -44866,19 +44866,19 @@ var _$factory_602 = __factory_602;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_601 = require( './cdf.js' ); */;
-/* removed: var _$factory_602 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_618 = require( './cdf.js' ); */;
+/* removed: var _$factory_619 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$cdf_601, 'factory', _$factory_602 );
+_$setNonEnumerableReadOnly_799( _$cdf_618, 'factory', _$factory_619 );
 
 
 // EXPORTS //
 
-var _$cdf_603 = _$cdf_601;
+var _$cdf_620 = _$cdf_618;
 
 /**
 * @license Apache-2.0
@@ -44970,7 +44970,7 @@ function quantile( p, alpha, beta ) {
 
 // EXPORTS //
 
-var _$quantile_615 = quantile;
+var _$quantile_632 = quantile;
 
 /**
 * @license Apache-2.0
@@ -44994,7 +44994,7 @@ var _$quantile_615 = quantile;
 
 // MODULES //
 
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$betaincinv_261 = require( '@stdlib/math/base/special/betaincinv' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
@@ -45016,14 +45016,14 @@ var _$quantile_615 = quantile;
 * y = quantile( 0.8 );
 * // returns ~0.986
 */
-function __factory_613( alpha, beta ) {
+function __factory_630( alpha, beta ) {
 	if (
 		_$isnan_231( alpha ) ||
 		_$isnan_231( beta ) ||
 		alpha <= 0.0 ||
 		beta <= 0.0
 	) {
-		return _$constantFunction_739( NaN );
+		return _$constantFunction_790( NaN );
 	}
 	return quantile;
 
@@ -45053,7 +45053,7 @@ function __factory_613( alpha, beta ) {
 
 // EXPORTS //
 
-var _$factory_613 = __factory_613;
+var _$factory_630 = __factory_630;
 
 /**
 * @license Apache-2.0
@@ -45103,19 +45103,19 @@ var _$factory_613 = __factory_613;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_615 = require( './quantile.js' ); */;
-/* removed: var _$factory_613 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_632 = require( './quantile.js' ); */;
+/* removed: var _$factory_630 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$quantile_615, 'factory', _$factory_613 );
+_$setNonEnumerableReadOnly_799( _$quantile_632, 'factory', _$factory_630 );
 
 
 // EXPORTS //
 
-var _$quantile_614 = _$quantile_615;
+var _$quantile_631 = _$quantile_632;
 
 /**
 * @license Apache-2.0
@@ -45184,7 +45184,7 @@ function mean( alpha, beta ) {
 
 // EXPORTS //
 
-var _$mean_605 = mean;
+var _$mean_622 = mean;
 
 /**
 * @license Apache-2.0
@@ -45226,12 +45226,12 @@ var _$mean_605 = mean;
 
 // MODULES //
 
-/* removed: var _$mean_605 = require( './mean.js' ); */;
+/* removed: var _$mean_622 = require( './mean.js' ); */;
 
 
 // EXPORTS //
 
-var _$mean_604 = _$mean_605;
+var _$mean_621 = _$mean_622;
 
 /**
 * @license Apache-2.0
@@ -45305,7 +45305,7 @@ function median( alpha, beta ) {
 
 // EXPORTS //
 
-var _$median_607 = median;
+var _$median_624 = median;
 
 /**
 * @license Apache-2.0
@@ -45347,12 +45347,12 @@ var _$median_607 = median;
 
 // MODULES //
 
-/* removed: var _$median_607 = require( './median.js' ); */;
+/* removed: var _$median_624 = require( './median.js' ); */;
 
 
 // EXPORTS //
 
-var _$median_606 = _$median_607;
+var _$median_623 = _$median_624;
 
 /**
 * @license Apache-2.0
@@ -45421,7 +45421,7 @@ function mode( alpha, beta ) {
 
 // EXPORTS //
 
-var _$mode_609 = mode;
+var _$mode_626 = mode;
 
 /**
 * @license Apache-2.0
@@ -45460,12 +45460,12 @@ var _$mode_609 = mode;
 
 // MODULES //
 
-/* removed: var _$mode_609 = require( './mode.js' ); */;
+/* removed: var _$mode_626 = require( './mode.js' ); */;
 
 
 // EXPORTS //
 
-var _$mode_608 = _$mode_609;
+var _$mode_625 = _$mode_626;
 
 /**
 * @license Apache-2.0
@@ -45700,7 +45700,7 @@ var _$isNonNegativeInteger_131 = __isNonNegativeInteger_131;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$isNonNegativeInteger_131 = require( './main.js' ); */;
 /* removed: var _$isNonNegativeInteger_133 = require( './primitive.js' ); */;
 /* removed: var _$isNonNegativeInteger_132 = require( './object.js' ); */;
@@ -45708,8 +45708,8 @@ var _$isNonNegativeInteger_131 = __isNonNegativeInteger_131;
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$isNonNegativeInteger_131, 'isPrimitive', _$isNonNegativeInteger_133 );
-_$setNonEnumerableReadOnly_748( _$isNonNegativeInteger_131, 'isObject', _$isNonNegativeInteger_132 );
+_$setNonEnumerableReadOnly_799( _$isNonNegativeInteger_131, 'isPrimitive', _$isNonNegativeInteger_133 );
+_$setNonEnumerableReadOnly_799( _$isNonNegativeInteger_131, 'isObject', _$isNonNegativeInteger_132 );
 
 
 // EXPORTS //
@@ -45738,8 +45738,8 @@ var _$isNonNegativeInteger_130 = _$isNonNegativeInteger_131;
 
 // MODULES //
 
-/* removed: var _$getPrototype_760 = require( '@stdlib/utils/get-prototype-of' ); */;
-/* removed: var _$nativeClass_788 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$getPrototype_811 = require( '@stdlib/utils/get-prototype-of' ); */;
+/* removed: var _$nativeClass_839 = require( '@stdlib/utils/native-class' ); */;
 
 
 // MAIN //
@@ -45768,10 +45768,10 @@ function isError( value ) {
 	}
 	// Walk the prototype tree until we find an object having the desired native class...
 	while ( value ) {
-		if ( _$nativeClass_788( value ) === '[object Error]' ) {
+		if ( _$nativeClass_839( value ) === '[object Error]' ) {
 			return true;
 		}
-		value = _$getPrototype_760( value );
+		value = _$getPrototype_811( value );
 	}
 	return false;
 }
@@ -45967,7 +45967,7 @@ var _$test_158 = __test_158;
 // MODULES //
 
 /* removed: var _$hasToStringTagSupport_64 = require( '@stdlib/assert/has-tostringtag-support' ); */;
-/* removed: var _$nativeClass_788 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_839 = require( '@stdlib/utils/native-class' ); */;
 /* removed: var _$test_158 = require( './try2valueof.js' ); */;
 
 
@@ -46000,7 +46000,7 @@ function __isString_156( value ) {
 		if ( __FLG_156 ) {
 			return _$test_158( value );
 		}
-		return ( _$nativeClass_788( value ) === '[object String]' );
+		return ( _$nativeClass_839( value ) === '[object String]' );
 	}
 	return false;
 }
@@ -46119,7 +46119,7 @@ var _$isString_155 = __isString_155;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$isString_155 = require( './main.js' ); */;
 /* removed: var _$isString_157 = require( './primitive.js' ); */;
 /* removed: var _$isString_156 = require( './object.js' ); */;
@@ -46127,8 +46127,8 @@ var _$isString_155 = __isString_155;
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$isString_155, 'isPrimitive', _$isString_157 );
-_$setNonEnumerableReadOnly_748( _$isString_155, 'isObject', _$isString_156 );
+_$setNonEnumerableReadOnly_799( _$isString_155, 'isPrimitive', _$isString_157 );
+_$setNonEnumerableReadOnly_799( _$isString_155, 'isObject', _$isString_156 );
 
 
 // EXPORTS //
@@ -46222,7 +46222,7 @@ var RE_REGEXP = /^\/((?:\\\/|[^\/])+)\/([imgy]*)$/; // eslint-disable-line no-us
 
 // EXPORTS //
 
-var _$RE_REGEXP_600 = RE_REGEXP;
+var _$RE_REGEXP_617 = RE_REGEXP;
 
 /**
 * @license Apache-2.0
@@ -46246,8 +46246,8 @@ var _$RE_REGEXP_600 = RE_REGEXP;
 
 // MODULES //
 
-var __isString_803 = _$isString_154.isPrimitive;
-/* removed: var _$RE_REGEXP_600 = require( '@stdlib/regexp/regexp' ); */;
+var __isString_854 = _$isString_154.isPrimitive;
+/* removed: var _$RE_REGEXP_617 = require( '@stdlib/regexp/regexp' ); */;
 
 
 // MAIN //
@@ -46264,11 +46264,11 @@ var __isString_803 = _$isString_154.isPrimitive;
 * // returns /beep/
 */
 function reFromString( str ) {
-	if ( !__isString_803( str ) ) {
+	if ( !__isString_854( str ) ) {
 		throw new TypeError( 'invalid argument. Must provide a regular expression string. Value: `' + str + '`.' );
 	}
 	// Capture the regular expression pattern and any flags:
-	str = _$RE_REGEXP_600.exec( str );
+	str = _$RE_REGEXP_617.exec( str );
 
 	// Create a new regular expression:
 	return ( str ) ? new RegExp( str[1], str[2] ) : null;
@@ -46277,7 +46277,7 @@ function reFromString( str ) {
 
 // EXPORTS //
 
-var _$reFromString_803 = reFromString;
+var _$reFromString_854 = reFromString;
 
 /**
 * @license Apache-2.0
@@ -46313,12 +46313,12 @@ var _$reFromString_803 = reFromString;
 
 // MODULES //
 
-/* removed: var _$reFromString_803 = require( './from_string.js' ); */;
+/* removed: var _$reFromString_854 = require( './from_string.js' ); */;
 
 
 // EXPORTS //
 
-var _$reFromString_804 = _$reFromString_803;
+var _$reFromString_855 = _$reFromString_854;
 
 /**
 * @license Apache-2.0
@@ -46555,7 +46555,7 @@ var _$isnan_127 = __isnan_127;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$isnan_127 = require( './main.js' ); */;
 /* removed: var _$isnan_129 = require( './primitive.js' ); */;
 /* removed: var _$isnan_128 = require( './object.js' ); */;
@@ -46563,8 +46563,8 @@ var _$isnan_127 = __isnan_127;
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$isnan_127, 'isPrimitive', _$isnan_129 );
-_$setNonEnumerableReadOnly_748( _$isnan_127, 'isObject', _$isnan_128 );
+_$setNonEnumerableReadOnly_799( _$isnan_127, 'isPrimitive', _$isnan_129 );
+_$setNonEnumerableReadOnly_799( _$isnan_127, 'isObject', _$isnan_128 );
 
 
 // EXPORTS //
@@ -46595,8 +46595,8 @@ var _$isnan_126 = _$isnan_127;
 
 /* removed: var _$isnan_126 = require( '@stdlib/assert/is-nan' ); */;
 /* removed: var _$isCollection_94 = require( '@stdlib/assert/is-collection' ); */;
-var __isString_771 = _$isString_154.isPrimitive;
-var __isInteger_771 = _$isInteger_118.isPrimitive;
+var __isString_822 = _$isString_154.isPrimitive;
+var __isInteger_822 = _$isInteger_118.isPrimitive;
 
 
 // MAIN //
@@ -46657,7 +46657,7 @@ var __isInteger_771 = _$isInteger_118.isPrimitive;
 function indexOf( arr, searchElement, fromIndex ) {
 	var len;
 	var i;
-	if ( !_$isCollection_94( arr ) && !__isString_771( arr ) ) {
+	if ( !_$isCollection_94( arr ) && !__isString_822( arr ) ) {
 		throw new TypeError( 'invalid argument. First argument must be an array-like object. Value: `' + arr + '`.' );
 	}
 	len = arr.length;
@@ -46665,7 +46665,7 @@ function indexOf( arr, searchElement, fromIndex ) {
 		return -1;
 	}
 	if ( arguments.length === 3 ) {
-		if ( !__isInteger_771( fromIndex ) ) {
+		if ( !__isInteger_822( fromIndex ) ) {
 			throw new TypeError( 'invalid argument. `fromIndex` must be an integer. Value: `' + fromIndex + '`.' );
 		}
 		if ( fromIndex >= 0 ) {
@@ -46702,7 +46702,7 @@ function indexOf( arr, searchElement, fromIndex ) {
 
 // EXPORTS //
 
-var _$indexOf_771 = indexOf;
+var _$indexOf_822 = indexOf;
 
 /**
 * @license Apache-2.0
@@ -46771,12 +46771,12 @@ var _$indexOf_771 = indexOf;
 
 // MODULES //
 
-/* removed: var _$indexOf_771 = require( './index_of.js' ); */;
+/* removed: var _$indexOf_822 = require( './index_of.js' ); */;
 
 
 // EXPORTS //
 
-var _$indexOf_770 = _$indexOf_771;
+var _$indexOf_821 = _$indexOf_822;
 
 /**
 * @license Apache-2.0
@@ -46827,7 +46827,7 @@ function keys( value ) {
 
 // EXPORTS //
 
-var _$keys_772 = keys;
+var _$keys_823 = keys;
 
 /**
 * @license Apache-2.0
@@ -46851,7 +46851,7 @@ var _$keys_772 = keys;
 
 // MODULES //
 
-/* removed: var _$keys_772 = require( './builtin.js' ); */;
+/* removed: var _$keys_823 = require( './builtin.js' ); */;
 
 
 // FUNCTIONS //
@@ -46862,8 +46862,8 @@ var _$keys_772 = keys;
 * @private
 * @returns {boolean} boolean indicating whether the built-in implementation returns the expected number of keys
 */
-function __test_775() {
-	return ( _$keys_772( arguments ) || '' ).length !== 2;
+function __test_826() {
+	return ( _$keys_823( arguments ) || '' ).length !== 2;
 }
 
 
@@ -46879,14 +46879,14 @@ function __test_775() {
 * @private
 * @returns {boolean} boolean indicating whether a built-in implementation supports `arguments`
 */
-function __check_775() {
-	return __test_775( 1, 2 );
+function __check_826() {
+	return __test_826( 1, 2 );
 }
 
 
 // EXPORTS //
 
-var _$check_775 = __check_775;
+var _$check_826 = __check_826;
 
 /**
 * @license Apache-2.0
@@ -46910,12 +46910,12 @@ var _$check_775 = __check_775;
 
 // MAIN //
 
-var __bool_777 = ( typeof Object.keys !== 'undefined' );
+var __bool_828 = ( typeof Object.keys !== 'undefined' );
 
 
 // EXPORTS //
 
-var _$bool_777 = __bool_777;
+var _$bool_828 = __bool_828;
 
 /**
 * @license Apache-2.0
@@ -46939,7 +46939,7 @@ var _$bool_777 = __bool_777;
 
 // MODULES //
 
-/* removed: var _$nativeClass_788 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_839 = require( '@stdlib/utils/native-class' ); */;
 
 
 // MAIN //
@@ -46964,7 +46964,7 @@ var _$bool_777 = __bool_777;
 * // returns false
 */
 function isArguments( value ) {
-	return ( _$nativeClass_788( value ) === '[object Arguments]' );
+	return ( _$nativeClass_839( value ) === '[object Arguments]' );
 }
 
 
@@ -47416,12 +47416,12 @@ var _$isArguments_81 = __isArguments_81;
 // MODULES //
 
 /* removed: var _$isArguments_81 = require( '@stdlib/assert/is-arguments' ); */;
-/* removed: var _$keys_772 = require( './builtin.js' ); */;
+/* removed: var _$keys_823 = require( './builtin.js' ); */;
 
 
 // VARIABLES //
 
-var __slice_773 = Array.prototype.slice;
+var __slice_824 = Array.prototype.slice;
 
 
 // MAIN //
@@ -47442,17 +47442,17 @@ var __slice_773 = Array.prototype.slice;
 * var k = keys( obj );
 * // e.g., returns [ 'beep', 'foo' ]
 */
-function __keys_773( value ) {
+function __keys_824( value ) {
 	if ( _$isArguments_81( value ) ) {
-		return _$keys_772( __slice_773.call( value ) );
+		return _$keys_823( __slice_824.call( value ) );
 	}
-	return _$keys_772( value );
+	return _$keys_823( value );
 }
 
 
 // EXPORTS //
 
-var _$keys_773 = __keys_773;
+var _$keys_824 = __keys_824;
 
 /**
 * @license Apache-2.0
@@ -47477,18 +47477,18 @@ var _$keys_773 = __keys_773;
 // MODULES //
 
 /* removed: var _$isEnumerableProperty_97 = require( '@stdlib/assert/is-enumerable-property' ); */;
-/* removed: var _$noop_793 = require( '@stdlib/utils/noop' ); */;
+/* removed: var _$noop_844 = require( '@stdlib/utils/noop' ); */;
 
 
 // MAIN //
 
 // Note: certain environments treat an object's prototype as enumerable, which, as a matter of convention, it shouldn't be...
-var __bool_778 = _$isEnumerableProperty_97( _$noop_793, 'prototype' );
+var __bool_829 = _$isEnumerableProperty_97( _$noop_844, 'prototype' );
 
 
 // EXPORTS //
 
-var _$bool_778 = __bool_778;
+var _$bool_829 = __bool_829;
 
 /**
 * @license Apache-2.0
@@ -47517,7 +47517,7 @@ var _$bool_778 = __bool_778;
 
 // VARIABLES //
 
-var __obj_779 = {
+var __obj_830 = {
 	'toString': null
 };
 
@@ -47525,12 +47525,12 @@ var __obj_779 = {
 // MAIN //
 
 // Note: certain environments don't allow enumeration of overwritten properties which are considered non-enumerable...
-var __bool_779 = !_$isEnumerableProperty_97( __obj_779, 'toString' );
+var __bool_830 = !_$isEnumerableProperty_97( __obj_830, 'toString' );
 
 
 // EXPORTS //
 
-var _$bool_779 = __bool_779;
+var _$bool_830 = __bool_830;
 
 /**
 * @license Apache-2.0
@@ -47568,9 +47568,9 @@ function isConstructorPrototype( value ) {
 
 // EXPORTS //
 
-var _$isConstructorPrototype_782 = isConstructorPrototype;
+var _$isConstructorPrototype_833 = isConstructorPrototype;
 
-var _$excluded_keys_774=[
+var _$excluded_keys_825=[
 	"console",
 	"external",
 	"frame",
@@ -47620,7 +47620,7 @@ var w = ( typeof window === 'undefined' ) ? void 0 : window;
 
 // EXPORTS //
 
-var _$w_787 = w;
+var _$w_838 = w;
 
 /**
 * @license Apache-2.0
@@ -47645,16 +47645,16 @@ var _$w_787 = w;
 // MODULES //
 
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$indexOf_770 = require( '@stdlib/utils/index-of' ); */;
-/* removed: var _$main_809 = require( '@stdlib/utils/type-of' ); */;
-/* removed: var _$isConstructorPrototype_782 = require( './is_constructor_prototype.js' ); */;
-/* removed: var _$excluded_keys_774 = require( './excluded_keys.json' ); */;
-/* removed: var _$w_787 = require( './window.js' ); */;
+/* removed: var _$indexOf_821 = require( '@stdlib/utils/index-of' ); */;
+/* removed: var _$main_860 = require( '@stdlib/utils/type-of' ); */;
+/* removed: var _$isConstructorPrototype_833 = require( './is_constructor_prototype.js' ); */;
+/* removed: var _$excluded_keys_825 = require( './excluded_keys.json' ); */;
+/* removed: var _$w_838 = require( './window.js' ); */;
 
 
 // VARIABLES //
 
-var __bool_776;
+var __bool_827;
 
 
 // FUNCTIONS //
@@ -47667,20 +47667,20 @@ var __bool_776;
 * @private
 * @returns {boolean} boolean indicating whether an environment is buggy
 */
-function __check_776() {
+function __check_827() {
 	var k;
-	if ( _$main_809( _$w_787 ) === 'undefined' ) {
+	if ( _$main_860( _$w_838 ) === 'undefined' ) {
 		return false;
 	}
-	for ( k in _$w_787 ) { // eslint-disable-line guard-for-in
+	for ( k in _$w_838 ) { // eslint-disable-line guard-for-in
 		try {
 			if (
-				_$indexOf_770( _$excluded_keys_774, k ) === -1 &&
-				_$hasOwnProp_58( _$w_787, k ) &&
-				_$w_787[ k ] !== null &&
-				_$main_809( _$w_787[ k ] ) === 'object'
+				_$indexOf_821( _$excluded_keys_825, k ) === -1 &&
+				_$hasOwnProp_58( _$w_838, k ) &&
+				_$w_838[ k ] !== null &&
+				_$main_860( _$w_838[ k ] ) === 'object'
 			) {
-				_$isConstructorPrototype_782( _$w_787[ k ] );
+				_$isConstructorPrototype_833( _$w_838[ k ] );
 			}
 		} catch ( err ) { // eslint-disable-line no-unused-vars
 			return true;
@@ -47692,12 +47692,12 @@ function __check_776() {
 
 // MAIN //
 
-__bool_776 = __check_776();
+__bool_827 = __check_827();
 
 
 // EXPORTS //
 
-var _$bool_776 = __bool_776;
+var _$bool_827 = __bool_827;
 
 /**
 * @license Apache-2.0
@@ -47721,12 +47721,12 @@ var _$bool_776 = __bool_776;
 
 // MAIN //
 
-var __bool_780 = ( typeof window !== 'undefined' );
+var __bool_831 = ( typeof window !== 'undefined' );
 
 
 // EXPORTS //
 
-var _$bool_780 = __bool_780;
+var _$bool_831 = __bool_831;
 
 /**
 * @license Apache-2.0
@@ -47750,9 +47750,9 @@ var _$bool_780 = __bool_780;
 
 // MODULES //
 
-/* removed: var _$bool_776 = require( './has_automation_equality_bug.js' ); */;
-/* removed: var _$isConstructorPrototype_782 = require( './is_constructor_prototype.js' ); */;
-/* removed: var _$bool_780 = require( './has_window.js' ); */;
+/* removed: var _$bool_827 = require( './has_automation_equality_bug.js' ); */;
+/* removed: var _$isConstructorPrototype_833 = require( './is_constructor_prototype.js' ); */;
+/* removed: var _$bool_831 = require( './has_window.js' ); */;
 
 
 // MAIN //
@@ -47765,11 +47765,11 @@ var _$bool_780 = __bool_780;
 * @returns {boolean} boolean indicating whether a value equals the prototype of its constructor
 */
 function wrapper( value ) {
-	if ( _$bool_780 === false && !_$bool_776 ) {
-		return _$isConstructorPrototype_782( value );
+	if ( _$bool_831 === false && !_$bool_827 ) {
+		return _$isConstructorPrototype_833( value );
 	}
 	try {
-		return _$isConstructorPrototype_782( value );
+		return _$isConstructorPrototype_833( value );
 	} catch ( error ) { // eslint-disable-line no-unused-vars
 		return false;
 	}
@@ -47778,9 +47778,9 @@ function wrapper( value ) {
 
 // EXPORTS //
 
-var _$wrapper_783 = wrapper;
+var _$wrapper_834 = wrapper;
 
-var _$non_enumerable_785=[
+var _$non_enumerable_836=[
 	"toString",
 	"toLocaleString",
 	"valueOf",
@@ -47815,10 +47815,10 @@ var _$non_enumerable_785=[
 /* removed: var _$isObjectLike_140 = require( '@stdlib/assert/is-object-like' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
 /* removed: var _$isArguments_81 = require( '@stdlib/assert/is-arguments' ); */;
-/* removed: var _$bool_778 = require( './has_enumerable_prototype_bug.js' ); */;
-/* removed: var _$bool_779 = require( './has_non_enumerable_properties_bug.js' ); */;
-/* removed: var _$wrapper_783 = require( './is_constructor_prototype_wrapper.js' ); */;
-/* removed: var _$non_enumerable_785 = require( './non_enumerable.json' ); */;
+/* removed: var _$bool_829 = require( './has_enumerable_prototype_bug.js' ); */;
+/* removed: var _$bool_830 = require( './has_non_enumerable_properties_bug.js' ); */;
+/* removed: var _$wrapper_834 = require( './is_constructor_prototype_wrapper.js' ); */;
+/* removed: var _$non_enumerable_836 = require( './non_enumerable.json' ); */;
 
 
 // MAIN //
@@ -47839,7 +47839,7 @@ var _$non_enumerable_785=[
 * var k = keys( obj );
 * // e.g., returns [ 'beep', 'foo' ]
 */
-function __keys_786( value ) {
+function __keys_837( value ) {
 	var skipConstructor;
 	var skipPrototype;
 	var isFcn;
@@ -47869,17 +47869,17 @@ function __keys_786( value ) {
 		if ( isFcn === false && !_$isObjectLike_140( value ) ) {
 			return out;
 		}
-		skipPrototype = ( _$bool_778 && isFcn );
+		skipPrototype = ( _$bool_829 && isFcn );
 	}
 	for ( k in value ) {
 		if ( !( skipPrototype && k === 'prototype' ) && _$hasOwnProp_58( value, k ) ) {
 			out.push( String( k ) );
 		}
 	}
-	if ( _$bool_779 ) {
-		skipConstructor = _$wrapper_783( value );
-		for ( i = 0; i < _$non_enumerable_785.length; i++ ) {
-			p = _$non_enumerable_785[ i ];
+	if ( _$bool_830 ) {
+		skipConstructor = _$wrapper_834( value );
+		for ( i = 0; i < _$non_enumerable_836.length; i++ ) {
+			p = _$non_enumerable_836[ i ];
 			if ( !( skipConstructor && p === 'constructor' ) && _$hasOwnProp_58( value, p ) ) {
 				out.push( String( p ) );
 			}
@@ -47891,7 +47891,7 @@ function __keys_786( value ) {
 
 // EXPORTS //
 
-var _$keys_786 = __keys_786;
+var _$keys_837 = __keys_837;
 
 /**
 * @license Apache-2.0
@@ -47915,11 +47915,11 @@ var _$keys_786 = __keys_786;
 
 // MODULES //
 
-/* removed: var _$check_775 = require( './has_arguments_bug.js' ); */;
-/* removed: var _$bool_777 = require( './has_builtin.js' ); */;
-/* removed: var _$keys_772 = require( './builtin.js' ); */;
-/* removed: var _$keys_773 = require( './builtin_wrapper.js' ); */;
-/* removed: var _$keys_786 = require( './polyfill.js' ); */;
+/* removed: var _$check_826 = require( './has_arguments_bug.js' ); */;
+/* removed: var _$bool_828 = require( './has_builtin.js' ); */;
+/* removed: var _$keys_823 = require( './builtin.js' ); */;
+/* removed: var _$keys_824 = require( './builtin_wrapper.js' ); */;
+/* removed: var _$keys_837 = require( './polyfill.js' ); */;
 
 
 // MAIN //
@@ -47941,21 +47941,21 @@ var _$keys_786 = __keys_786;
 * var k = keys( obj );
 * // e.g., returns [ 'beep', 'foo' ]
 */
-var __keys_784;
-if ( _$bool_777 ) {
-	if ( _$check_775() ) {
-		__keys_784 = _$keys_773;
+var __keys_835;
+if ( _$bool_828 ) {
+	if ( _$check_826() ) {
+		__keys_835 = _$keys_824;
 	} else {
-		__keys_784 = _$keys_772;
+		__keys_835 = _$keys_823;
 	}
 } else {
-	__keys_784 = _$keys_786;
+	__keys_835 = _$keys_837;
 }
 
 
 // EXPORTS //
 
-var _$keys_784 = __keys_784;
+var _$keys_835 = __keys_835;
 
 /**
 * @license Apache-2.0
@@ -47996,12 +47996,12 @@ var _$keys_784 = __keys_784;
 
 // MODULES //
 
-/* removed: var _$keys_784 = require( './main.js' ); */;
+/* removed: var _$keys_835 = require( './main.js' ); */;
 
 
 // EXPORTS //
 
-var _$keys_781 = _$keys_784;
+var _$keys_832 = _$keys_835;
 
 /**
 * @license Apache-2.0
@@ -48025,12 +48025,12 @@ var _$keys_781 = _$keys_784;
 
 // MAIN //
 
-var __bool_800 = ( typeof Object.getOwnPropertyNames !== 'undefined' );
+var __bool_851 = ( typeof Object.getOwnPropertyNames !== 'undefined' );
 
 
 // EXPORTS //
 
-var _$bool_800 = __bool_800;
+var _$bool_851 = __bool_851;
 
 /**
 * @license Apache-2.0
@@ -48086,7 +48086,7 @@ function getOwnPropertyNames( value ) {
 
 // EXPORTS //
 
-var _$getOwnPropertyNames_799 = getOwnPropertyNames;
+var _$getOwnPropertyNames_850 = getOwnPropertyNames;
 
 /**
 * @license Apache-2.0
@@ -48110,7 +48110,7 @@ var _$getOwnPropertyNames_799 = getOwnPropertyNames;
 
 // MODULES //
 
-/* removed: var _$keys_781 = require( '@stdlib/utils/keys' ); */;
+/* removed: var _$keys_832 = require( '@stdlib/utils/keys' ); */;
 
 
 // MAIN //
@@ -48136,14 +48136,14 @@ var _$getOwnPropertyNames_799 = getOwnPropertyNames;
 * var keys = getOwnPropertyNames( obj );
 * // e.g., returns [ 'beep', 'foo' ]
 */
-function __getOwnPropertyNames_802( value ) {
-	return _$keys_781( Object( value ) );
+function __getOwnPropertyNames_853( value ) {
+	return _$keys_832( Object( value ) );
 }
 
 
 // EXPORTS //
 
-var _$getOwnPropertyNames_802 = __getOwnPropertyNames_802;
+var _$getOwnPropertyNames_853 = __getOwnPropertyNames_853;
 
 /**
 * @license Apache-2.0
@@ -48182,24 +48182,24 @@ var _$getOwnPropertyNames_802 = __getOwnPropertyNames_802;
 
 // MODULES //
 
-/* removed: var _$bool_800 = require( './has_builtin.js' ); */;
-/* removed: var _$getOwnPropertyNames_799 = require( './builtin.js' ); */;
-/* removed: var _$getOwnPropertyNames_802 = require( './polyfill.js' ); */;
+/* removed: var _$bool_851 = require( './has_builtin.js' ); */;
+/* removed: var _$getOwnPropertyNames_850 = require( './builtin.js' ); */;
+/* removed: var _$getOwnPropertyNames_853 = require( './polyfill.js' ); */;
 
 
 // MAIN //
 
-var __main_801;
-if ( _$bool_800 ) {
-	__main_801 = _$getOwnPropertyNames_799;
+var __main_852;
+if ( _$bool_851 ) {
+	__main_852 = _$getOwnPropertyNames_850;
 } else {
-	__main_801 = _$getOwnPropertyNames_802;
+	__main_852 = _$getOwnPropertyNames_853;
 }
 
 
 // EXPORTS //
 
-var _$main_801 = __main_801;
+var _$main_852 = __main_852;
 
 /**
 * @license Apache-2.0
@@ -48223,12 +48223,12 @@ var _$main_801 = __main_801;
 
 // MAIN //
 
-var __bool_796 = ( typeof Object.getOwnPropertyDescriptor !== 'undefined' );
+var __bool_847 = ( typeof Object.getOwnPropertyDescriptor !== 'undefined' );
 
 
 // EXPORTS //
 
-var _$bool_796 = __bool_796;
+var _$bool_847 = __bool_847;
 
 /**
 * @license Apache-2.0
@@ -48291,7 +48291,7 @@ function getOwnPropertyDescriptor( value, property ) {
 
 // EXPORTS //
 
-var _$getOwnPropertyDescriptor_795 = getOwnPropertyDescriptor;
+var _$getOwnPropertyDescriptor_846 = getOwnPropertyDescriptor;
 
 /**
 * @license Apache-2.0
@@ -48343,7 +48343,7 @@ var _$getOwnPropertyDescriptor_795 = getOwnPropertyDescriptor;
 * var desc = getOwnPropertyDescriptor( obj, 'foo' );
 * // returns {'configurable':true,'enumerable':true,'writable':true,'value':3.14}
 */
-function __getOwnPropertyDescriptor_798( value, property ) {
+function __getOwnPropertyDescriptor_849( value, property ) {
 	if ( _$hasOwnProp_58( value, property ) ) {
 		return {
 			'configurable': true,
@@ -48358,7 +48358,7 @@ function __getOwnPropertyDescriptor_798( value, property ) {
 
 // EXPORTS //
 
-var _$getOwnPropertyDescriptor_798 = __getOwnPropertyDescriptor_798;
+var _$getOwnPropertyDescriptor_849 = __getOwnPropertyDescriptor_849;
 
 /**
 * @license Apache-2.0
@@ -48399,31 +48399,31 @@ var _$getOwnPropertyDescriptor_798 = __getOwnPropertyDescriptor_798;
 
 // MODULES //
 
-/* removed: var _$bool_796 = require( './has_builtin.js' ); */;
-/* removed: var _$getOwnPropertyDescriptor_795 = require( './builtin.js' ); */;
-/* removed: var _$getOwnPropertyDescriptor_798 = require( './polyfill.js' ); */;
+/* removed: var _$bool_847 = require( './has_builtin.js' ); */;
+/* removed: var _$getOwnPropertyDescriptor_846 = require( './builtin.js' ); */;
+/* removed: var _$getOwnPropertyDescriptor_849 = require( './polyfill.js' ); */;
 
 
 // MAIN //
 
-var __main_797;
-if ( _$bool_796 ) {
-	__main_797 = _$getOwnPropertyDescriptor_795;
+var __main_848;
+if ( _$bool_847 ) {
+	__main_848 = _$getOwnPropertyDescriptor_846;
 } else {
-	__main_797 = _$getOwnPropertyDescriptor_798;
+	__main_848 = _$getOwnPropertyDescriptor_849;
 }
 
 
 // EXPORTS //
 
-var _$main_797 = __main_797;
+var _$main_848 = __main_848;
 
-var _$base64Js_812 = {};
+var _$base64Js_863 = {};
 'use strict'
 
-_$base64Js_812.byteLength = byteLength
-_$base64Js_812.toByteArray = toByteArray
-_$base64Js_812.fromByteArray = fromByteArray
+_$base64Js_863.byteLength = byteLength
+_$base64Js_863.toByteArray = toByteArray
+_$base64Js_863.fromByteArray = fromByteArray
 
 var lookup = []
 var revLookup = []
@@ -48572,8 +48572,8 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-var _$ieee754_816 = {};
-_$ieee754_816.read = function (buffer, offset, isLE, mLen, nBytes) {
+var _$ieee754_867 = {};
+_$ieee754_867.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = (nBytes * 8) - mLen - 1
   var eMax = (1 << eLen) - 1
@@ -48606,7 +48606,7 @@ _$ieee754_816.read = function (buffer, offset, isLE, mLen, nBytes) {
   return (s ? -1 : 1) * m * Math.pow(2, e - mLen)
 }
 
-_$ieee754_816.write = function (buffer, value, offset, isLE, mLen, nBytes) {
+_$ieee754_867.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   var e, m, c
   var eLen = (nBytes * 8) - mLen - 1
   var eMax = (1 << eLen) - 1
@@ -48689,7 +48689,7 @@ var main = ( typeof Buffer === 'function' ) ? Buffer : null; // eslint-disable-l
 
 _$main_55 = main;
 
-}).call(this,_$buffer_813({}).Buffer)
+}).call(this,_$buffer_864({}).Buffer)
 /**
 * @license Apache-2.0
 *
@@ -48822,7 +48822,7 @@ var _$hasNodeBufferSupport_56 = _$hasNodeBufferSupport_57;
 
 // MAIN //
 
-var __ctor_177 = _$buffer_813({}).Buffer; // eslint-disable-line stdlib/require-globals
+var __ctor_177 = _$buffer_864({}).Buffer; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
@@ -49292,7 +49292,7 @@ hash = typedarrays();
 
 // EXPORTS //
 
-var _$hash_745 = hash;
+var _$hash_796 = hash;
 
 /**
 * @license Apache-2.0
@@ -49320,16 +49320,16 @@ var _$hash_745 = hash;
 /* removed: var _$isArray_84 = require( '@stdlib/assert/is-array' ); */;
 /* removed: var _$isBuffer_92 = require( '@stdlib/assert/is-buffer' ); */;
 /* removed: var _$isError_100 = require( '@stdlib/assert/is-error' ); */;
-/* removed: var _$main_809 = require( '@stdlib/utils/type-of' ); */;
-/* removed: var _$reFromString_804 = require( '@stdlib/utils/regexp-from-string' ); */;
-/* removed: var _$indexOf_770 = require( '@stdlib/utils/index-of' ); */;
-/* removed: var _$keys_781 = require( '@stdlib/utils/keys' ); */;
-/* removed: var _$main_801 = require( '@stdlib/utils/property-names' ); */;
-/* removed: var _$main_797 = require( '@stdlib/utils/property-descriptor' ); */;
-/* removed: var _$getPrototype_760 = require( '@stdlib/utils/get-prototype-of' ); */;
-/* removed: var _$defineProperty_753 = require( '@stdlib/utils/define-property' ); */;
+/* removed: var _$main_860 = require( '@stdlib/utils/type-of' ); */;
+/* removed: var _$reFromString_855 = require( '@stdlib/utils/regexp-from-string' ); */;
+/* removed: var _$indexOf_821 = require( '@stdlib/utils/index-of' ); */;
+/* removed: var _$keys_832 = require( '@stdlib/utils/keys' ); */;
+/* removed: var _$main_852 = require( '@stdlib/utils/property-names' ); */;
+/* removed: var _$main_848 = require( '@stdlib/utils/property-descriptor' ); */;
+/* removed: var _$getPrototype_811 = require( '@stdlib/utils/get-prototype-of' ); */;
+/* removed: var _$defineProperty_804 = require( '@stdlib/utils/define-property' ); */;
 /* removed: var _$copyBuffer_181 = require( '@stdlib/buffer/from-buffer' ); */;
-/* removed: var _$hash_745 = require( './typed_arrays.js' ); */;
+/* removed: var _$hash_796 = require( './typed_arrays.js' ); */;
 
 
 // FUNCTIONS //
@@ -49360,19 +49360,19 @@ function cloneInstance( val ) {
 	cache = [];
 	refs = [];
 
-	ref = Object.create( _$getPrototype_760( val ) );
+	ref = Object.create( _$getPrototype_811( val ) );
 	cache.push( val );
 	refs.push( ref );
 
-	names = _$main_801( val );
+	names = _$main_852( val );
 	for ( i = 0; i < names.length; i++ ) {
 		name = names[ i ];
-		desc = _$main_797( val, name );
+		desc = _$main_848( val, name );
 		if ( _$hasOwnProp_58( desc, 'value' ) ) {
 			tmp = ( _$isArray_84( val[name] ) ) ? [] : {};
 			desc.value = deepCopy( val[name], tmp, cache, refs, -1 );
 		}
-		_$defineProperty_753( ref, name, desc );
+		_$defineProperty_804( ref, name, desc );
 	}
 	if ( !Object.isExtensible( val ) ) {
 		Object.preventExtensions( ref );
@@ -49430,15 +49430,15 @@ function copyError( error ) {
 		err.syscall = error.syscall;
 	}
 	// Any enumerable properties...
-	keys = _$keys_781( error );
+	keys = _$keys_832( error );
 	for ( i = 0; i < keys.length; i++ ) {
 		key = keys[ i ];
-		desc = _$main_797( error, key );
+		desc = _$main_848( error, key );
 		if ( _$hasOwnProp_58( desc, 'value' ) ) {
 			tmp = ( _$isArray_84( error[ key ] ) ) ? [] : {};
 			desc.value = deepCopy( error[ key ], tmp, cache, refs, -1 );
 		}
-		_$defineProperty_753( err, key, desc );
+		_$defineProperty_804( err, key, desc );
 	}
 	return err;
 }
@@ -49485,13 +49485,13 @@ function deepCopy( val, copy, cache, refs, level ) {
 		return copyError( val );
 	}
 	// Objects...
-	name = _$main_809( val );
+	name = _$main_860( val );
 
 	if ( name === 'date' ) {
 		return new Date( +val );
 	}
 	if ( name === 'regexp' ) {
-		return _$reFromString_804( val.toString() );
+		return _$reFromString_855( val.toString() );
 	}
 	if ( name === 'set' ) {
 		return new Set( val );
@@ -49507,7 +49507,7 @@ function deepCopy( val, copy, cache, refs, level ) {
 		// If provided an `Object`, return an equivalent primitive!
 		return val.valueOf();
 	}
-	ctor = _$hash_745[ name ];
+	ctor = _$hash_796[ name ];
 	if ( ctor ) {
 		return ctor( val );
 	}
@@ -49523,7 +49523,7 @@ function deepCopy( val, copy, cache, refs, level ) {
 		return {};
 	}
 	// Arrays and plain objects...
-	keys = _$keys_781( val );
+	keys = _$keys_832( val );
 	if ( level > 0 ) {
 		parent = name;
 		for ( j = 0; j < keys.length; j++ ) {
@@ -49531,7 +49531,7 @@ function deepCopy( val, copy, cache, refs, level ) {
 			x = val[ key ];
 
 			// Primitive, Buffer, special class instance...
-			name = _$main_809( x );
+			name = _$main_860( x );
 			if (
 				typeof x !== 'object' ||
 				x === null ||
@@ -49542,18 +49542,18 @@ function deepCopy( val, copy, cache, refs, level ) {
 				_$isBuffer_92( x )
 			) {
 				if ( parent === 'object' ) {
-					desc = _$main_797( val, key );
+					desc = _$main_848( val, key );
 					if ( _$hasOwnProp_58( desc, 'value' ) ) {
 						desc.value = deepCopy( x );
 					}
-					_$defineProperty_753( copy, key, desc );
+					_$defineProperty_804( copy, key, desc );
 				} else {
 					copy[ key ] = deepCopy( x );
 				}
 				continue;
 			}
 			// Circular reference...
-			i = _$indexOf_770( cache, x );
+			i = _$indexOf_821( cache, x );
 			if ( i !== -1 ) {
 				copy[ key ] = refs[ i ];
 				continue;
@@ -49565,11 +49565,11 @@ function deepCopy( val, copy, cache, refs, level ) {
 			if ( parent === 'array' ) {
 				copy[ key ] = deepCopy( x, ref, cache, refs, level );
 			} else {
-				desc = _$main_797( val, key );
+				desc = _$main_848( val, key );
 				if ( _$hasOwnProp_58( desc, 'value' ) ) {
 					desc.value = deepCopy( x, ref, cache, refs, level );
 				}
-				_$defineProperty_753( copy, key, desc );
+				_$defineProperty_804( copy, key, desc );
 			}
 		}
 	} else if ( name === 'array' ) {
@@ -49580,8 +49580,8 @@ function deepCopy( val, copy, cache, refs, level ) {
 	} else {
 		for ( j = 0; j < keys.length; j++ ) {
 			key = keys[ j ];
-			desc = _$main_797( val, key );
-			_$defineProperty_753( copy, key, desc );
+			desc = _$main_848( val, key );
+			_$defineProperty_804( copy, key, desc );
 		}
 	}
 	if ( !Object.isExtensible( val ) ) {
@@ -49599,7 +49599,7 @@ function deepCopy( val, copy, cache, refs, level ) {
 
 // EXPORTS //
 
-var _$deepCopy_743 = deepCopy;
+var _$deepCopy_794 = deepCopy;
 
 /**
 * @license Apache-2.0
@@ -49624,9 +49624,9 @@ var _$deepCopy_743 = deepCopy;
 // MODULES //
 
 /* removed: var _$isArray_84 = require( '@stdlib/assert/is-array' ); */;
-var __isNonNegativeInteger_742 = _$isNonNegativeInteger_130.isPrimitive;
+var __isNonNegativeInteger_793 = _$isNonNegativeInteger_130.isPrimitive;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
-/* removed: var _$deepCopy_743 = require( './deep_copy.js' ); */;
+/* removed: var _$deepCopy_794 = require( './deep_copy.js' ); */;
 
 
 // MAIN //
@@ -49660,7 +49660,7 @@ var __isNonNegativeInteger_742 = _$isNonNegativeInteger_130.isPrimitive;
 function copy( value, level ) {
 	var out;
 	if ( arguments.length > 1 ) {
-		if ( !__isNonNegativeInteger_742( level ) ) {
+		if ( !__isNonNegativeInteger_793( level ) ) {
 			throw new TypeError( 'invalid argument. `level` must be a nonnegative integer. Value: `' + level + '`.' );
 		}
 		if ( level === 0 ) {
@@ -49670,13 +49670,13 @@ function copy( value, level ) {
 		level = _$FLOAT64_PINF_207;
 	}
 	out = ( _$isArray_84( value ) ) ? new Array( value.length ) : {};
-	return _$deepCopy_743( value, out, [value], [out], level );
+	return _$deepCopy_794( value, out, [value], [out], level );
 }
 
 
 // EXPORTS //
 
-var _$copy_742 = copy;
+var _$copy_793 = copy;
 
 /**
 * @license Apache-2.0
@@ -49728,12 +49728,12 @@ var _$copy_742 = copy;
 
 // MODULES //
 
-/* removed: var _$copy_742 = require( './copy.js' ); */;
+/* removed: var _$copy_793 = require( './copy.js' ); */;
 
 
 // EXPORTS //
 
-var _$copy_744 = _$copy_742;
+var _$copy_795 = _$copy_793;
 
 /**
 * @license Apache-2.0
@@ -49968,7 +49968,7 @@ var _$isPositiveNumber_151 = __isPositiveNumber_151;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$isPositiveNumber_151 = require( './main.js' ); */;
 /* removed: var _$isPositiveNumber_153 = require( './primitive.js' ); */;
 /* removed: var _$isPositiveNumber_152 = require( './object.js' ); */;
@@ -49976,8 +49976,8 @@ var _$isPositiveNumber_151 = __isPositiveNumber_151;
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$isPositiveNumber_151, 'isPrimitive', _$isPositiveNumber_153 );
-_$setNonEnumerableReadOnly_748( _$isPositiveNumber_151, 'isObject', _$isPositiveNumber_152 );
+_$setNonEnumerableReadOnly_799( _$isPositiveNumber_151, 'isPrimitive', _$isPositiveNumber_153 );
+_$setNonEnumerableReadOnly_799( _$isPositiveNumber_151, 'isObject', _$isPositiveNumber_152 );
 
 
 // EXPORTS //
@@ -50038,7 +50038,7 @@ function validate( alpha, beta ) {
 
 // EXPORTS //
 
-var _$validate_550 = validate;
+var _$validate_557 = validate;
 
 /**
 * @license Apache-2.0
@@ -50062,8 +50062,8 @@ var _$validate_550 = validate;
 
 // MODULES //
 
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 
 
 // MAIN //
@@ -50088,7 +50088,7 @@ function sample( randu, randn, alpha ) {
 	var y;
 
 	A = alpha - 1.0;
-	t = _$pow_469( A+A, 0.5 );
+	t = _$pow_476( A+A, 0.5 );
 
 	flg = true;
 	while ( flg === true ) {
@@ -50096,17 +50096,17 @@ function sample( randu, randn, alpha ) {
 		x = 0.5 * ( 1.0+(s/t) );
 		if ( x >= 0.0 && x <= 1.0 ) {
 			u = randu();
-			s4 = _$pow_469( s, 4.0 );
+			s4 = _$pow_476( s, 4.0 );
 			y = (8.0*alpha) - 12.0;
 			y = 1.0 - (s4 / y);
 			if ( u <= y ) {
 				flg = false;
 			} else {
-				y += 0.5 * _$pow_469( s4/((8.0*alpha)-8.0), 2.0 );
+				y += 0.5 * _$pow_476( s4/((8.0*alpha)-8.0), 2.0 );
 				if ( u < y ) {
-					y = A * _$ln_454( 4.0*x*(1.0-x) );
+					y = A * _$ln_461( 4.0*x*(1.0-x) );
 					y += s*s / 2.0;
-					if ( y >= _$ln_454( u ) ) {
+					if ( y >= _$ln_461( u ) ) {
 						flg = false;
 					}
 				}
@@ -50119,7 +50119,7 @@ function sample( randu, randn, alpha ) {
 
 // EXPORTS //
 
-var _$sample_547 = sample;
+var _$sample_554 = sample;
 
 /**
 * @license Apache-2.0
@@ -50143,8 +50143,8 @@ var _$sample_547 = sample;
 
 // MODULES //
 
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 
 
 // MAIN //
@@ -50159,7 +50159,7 @@ var _$sample_547 = sample;
 * @param {PositiveNumber} beta - second shape parameter
 * @returns {Probability} pseudorandom number
 */
-function __sample_548( randu, randn, alpha, beta ) {
+function __sample_555( randu, randn, alpha, beta ) {
 	var sigma;
 	var flg;
 	var mu;
@@ -50175,9 +50175,9 @@ function __sample_548( randu, randn, alpha, beta ) {
 	A = alpha - 1.0;
 	B = beta - 1.0;
 	C = A + B;
-	L = C * _$ln_454( C );
+	L = C * _$ln_461( C );
 	mu = A / C;
-	sigma = 0.5 / _$pow_469( C, 0.5 );
+	sigma = 0.5 / _$pow_476( C, 0.5 );
 
 	flg = true;
 	while ( flg === true ) {
@@ -50185,10 +50185,10 @@ function __sample_548( randu, randn, alpha, beta ) {
 		x = mu + (s*sigma);
 		if ( x >= 0.0 && x <= 1.0 ) {
 			u = randu();
-			y = A * _$ln_454( x/A );
-			y += B * _$ln_454((1.0-x) / B);
+			y = A * _$ln_461( x/A );
+			y += B * _$ln_461((1.0-x) / B);
 			y += L + (0.5*s*s);
-			if ( y >= _$ln_454( u ) ) {
+			if ( y >= _$ln_461( u ) ) {
 				flg = false;
 			}
 		}
@@ -50199,7 +50199,7 @@ function __sample_548( randu, randn, alpha, beta ) {
 
 // EXPORTS //
 
-var _$sample_548 = __sample_548;
+var _$sample_555 = __sample_555;
 
 /**
 * @license Apache-2.0
@@ -50223,9 +50223,9 @@ var _$sample_548 = __sample_548;
 
 // MODULES //
 
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 
 
 // MAIN //
@@ -50239,7 +50239,7 @@ var _$sample_548 = __sample_548;
 * @param {PositiveNumber} beta - second shape parameter
 * @returns {Probability} pseudorandom number
 */
-function __sample_549( rand, alpha, beta ) {
+function __sample_556( rand, alpha, beta ) {
 	var lx;
 	var ly;
 	var xy;
@@ -50250,15 +50250,15 @@ function __sample_549( rand, alpha, beta ) {
 	while ( true ) {
 		u = rand();
 		v = rand();
-		x = _$pow_469( u, 1.0/alpha );
-		y = _$pow_469( v, 1.0/beta );
+		x = _$pow_476( u, 1.0/alpha );
+		y = _$pow_476( v, 1.0/beta );
 		xy = x + y;
 		if ( xy <= 1.0 ) {
 			if ( xy > 0.0 ) {
 				return x / ( xy );
 			}
-			lx = _$ln_454( u ) / alpha;
-			ly = _$ln_454( v ) / beta;
+			lx = _$ln_461( u ) / alpha;
+			ly = _$ln_461( v ) / beta;
 			if ( lx > ly ) {
 				ly -= lx;
 				lx = 0.0;
@@ -50266,7 +50266,7 @@ function __sample_549( rand, alpha, beta ) {
 				lx -= ly;
 				ly = 0.0;
 			}
-			return _$exp_303( lx - _$ln_454( _$exp_303(lx) + _$exp_303(ly) ) );
+			return _$exp_310( lx - _$ln_461( _$exp_310(lx) + _$exp_310(ly) ) );
 		}
 	}
 }
@@ -50274,7 +50274,7 @@ function __sample_549( rand, alpha, beta ) {
 
 // EXPORTS //
 
-var _$sample_549 = __sample_549;
+var _$sample_556 = __sample_556;
 
 /**
 * @license Apache-2.0
@@ -50298,9 +50298,9 @@ var _$sample_549 = __sample_549;
 
 // MODULES //
 
-/* removed: var _$sample_547 = require( './sample1.js' ); */;
-/* removed: var _$sample_548 = require( './sample2.js' ); */;
-/* removed: var _$sample_549 = require( './sample3.js' ); */;
+/* removed: var _$sample_554 = require( './sample1.js' ); */;
+/* removed: var _$sample_555 = require( './sample2.js' ); */;
+/* removed: var _$sample_556 = require( './sample3.js' ); */;
 
 
 // MAIN //
@@ -50315,20 +50315,20 @@ var _$sample_549 = __sample_549;
 * @param {PositiveNumber} beta - second shape parameter
 * @returns {Probability} pseudorandom number
 */
-function __sample_543( randu, randn, alpha, beta ) {
+function __sample_550( randu, randn, alpha, beta ) {
 	if ( alpha === beta && alpha > 1.5 ) {
-		return _$sample_547( randu, randn, alpha );
+		return _$sample_554( randu, randn, alpha );
 	}
 	if ( alpha > 1.0 && beta > 1.0 ) {
-		return _$sample_548( randu, randn, alpha, beta );
+		return _$sample_555( randu, randn, alpha, beta );
 	}
-	return _$sample_549( randu, alpha, beta );
+	return _$sample_556( randu, alpha, beta );
 }
 
 
 // EXPORTS //
 
-var _$sample_543 = __sample_543;
+var _$sample_550 = __sample_550;
 
 /**
 * @license Apache-2.0
@@ -50352,25 +50352,25 @@ var _$sample_543 = __sample_543;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_746 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_750 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_797 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_801 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
-var __isBoolean_544 = _$isBoolean_86.isPrimitive;
+var __isBoolean_551 = _$isBoolean_86.isPrimitive;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_793 = require( '@stdlib/utils/noop' ); */;
-var __randn_544 = _$randn_582.factory;
-var randu = _$mt19937_591.factory;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_844 = require( '@stdlib/utils/noop' ); */;
+var __randn_551 = _$randn_589.factory;
+var randu = _$mt19937_603.factory;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$gcopy_174 = require( '@stdlib/blas/base/gcopy' ); */;
 /* removed: var _$ctor_23 = require( '@stdlib/array/uint32' ); */;
 /* removed: var _$isUint32Array_166 = require( '@stdlib/assert/is-uint32array' ); */;
-/* removed: var _$copy_744 = require( '@stdlib/utils/copy' ); */;
+/* removed: var _$copy_795 = require( '@stdlib/utils/copy' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
-/* removed: var _$validate_550 = require( './validate.js' ); */;
-/* removed: var _$sample_543 = require( './beta.js' ); */;
+/* removed: var _$validate_557 = require( './validate.js' ); */;
+/* removed: var _$sample_550 = require( './beta.js' ); */;
 
 
 // MAIN //
@@ -50404,7 +50404,7 @@ var randu = _$mt19937_591.factory;
 * var v = beta();
 * // returns <number>
 */
-function __factory_544() {
+function __factory_551() {
 	var STATE;
 	var rnorm;
 	var alpha;
@@ -50426,7 +50426,7 @@ function __factory_544() {
 		if ( !_$isPlainObject_144( opts ) ) {
 			throw new TypeError( 'invalid argument. Options argument must be an object. Value: `' + opts + '`.' );
 		}
-		if ( _$hasOwnProp_58( opts, 'copy' ) && !__isBoolean_544( opts.copy ) ) {
+		if ( _$hasOwnProp_58( opts, 'copy' ) && !__isBoolean_551( opts.copy ) ) {
 			throw new TypeError( 'invalid option. `copy` option must be a boolean. Option: `' + opts.copy + '`.' );
 		}
 		if ( _$hasOwnProp_58( opts, 'prng' ) ) {
@@ -50438,7 +50438,7 @@ function __factory_544() {
 			if ( _$hasOwnProp_58( opts, 'state' ) && !_$isUint32Array_166( opts.state ) ) {
 				throw new TypeError( 'invalid option. `state` option must be a Uint32Array. Option: `' + opts.state + '`.' );
 			}
-			opts = _$copy_744( opts, 1 );
+			opts = _$copy_795( opts, 1 );
 			if ( opts.copy === false ) {
 				FLG = false;
 			} else if ( opts.state ) {
@@ -50450,7 +50450,7 @@ function __factory_544() {
 	} else {
 		alpha = arguments[ 0 ];
 		beta = arguments[ 1 ];
-		err = _$validate_550( alpha, beta );
+		err = _$validate_557( alpha, beta );
 		if ( err ) {
 			throw err;
 		}
@@ -50459,7 +50459,7 @@ function __factory_544() {
 			if ( !_$isPlainObject_144( opts ) ) {
 				throw new TypeError( 'invalid argument. Options argument must be an object. Value: `' + opts + '`.' );
 			}
-			if ( _$hasOwnProp_58( opts, 'copy' ) && !__isBoolean_544( opts.copy ) ) {
+			if ( _$hasOwnProp_58( opts, 'copy' ) && !__isBoolean_551( opts.copy ) ) {
 				throw new TypeError( 'invalid option. `copy` option must be a boolean. Option: `' + opts.copy + '`.' );
 			}
 			if ( _$hasOwnProp_58( opts, 'prng' ) ) {
@@ -50471,7 +50471,7 @@ function __factory_544() {
 				if ( _$hasOwnProp_58( opts, 'state' ) && !_$isUint32Array_166( opts.state ) ) {
 					throw new TypeError( 'invalid option. `state` option must be a Uint32Array. Option: `' + opts.state + '`.' );
 				}
-				opts = _$copy_744( opts, 1 );
+				opts = _$copy_795( opts, 1 );
 				if ( opts.copy === false ) {
 					FLG = false;
 				} else if ( opts.state ) {
@@ -50488,7 +50488,7 @@ function __factory_544() {
 		}
 	}
 	if ( opts && opts.prng ) {
-		rnorm = __randn_544({
+		rnorm = __randn_551({
 			'prng': opts.prng
 		});
 	} else {
@@ -50498,7 +50498,7 @@ function __factory_544() {
 			STATE = rand.state;
 			rand.state = STATE; // updates the underlying PRNG to point to a shared state
 		}
-		rnorm = __randn_544({
+		rnorm = __randn_551({
 			'state': STATE,
 			'copy': false
 		});
@@ -50508,25 +50508,25 @@ function __factory_544() {
 	} else {
 		prng = beta1;
 	}
-	_$setNonEnumerableReadOnly_748( prng, 'NAME', 'beta' );
+	_$setNonEnumerableReadOnly_799( prng, 'NAME', 'beta' );
 
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( opts && opts.prng ) {
-		_$setNonEnumerableReadOnly_748( prng, 'seed', null );
-		_$setNonEnumerableReadOnly_748( prng, 'seedLength', null );
-		_$setNonEnumerableReadWriteAccessor_750( prng, 'state', _$constantFunction_739( null ), _$noop_793 );
-		_$setNonEnumerableReadOnly_748( prng, 'stateLength', null );
-		_$setNonEnumerableReadOnly_748( prng, 'byteLength', null );
-		_$setNonEnumerableReadOnly_748( prng, 'toJSON', _$constantFunction_739( null ) );
-		_$setNonEnumerableReadOnly_748( prng, 'PRNG', rand );
+		_$setNonEnumerableReadOnly_799( prng, 'seed', null );
+		_$setNonEnumerableReadOnly_799( prng, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_801( prng, 'state', _$constantFunction_790( null ), _$noop_844 );
+		_$setNonEnumerableReadOnly_799( prng, 'stateLength', null );
+		_$setNonEnumerableReadOnly_799( prng, 'byteLength', null );
+		_$setNonEnumerableReadOnly_799( prng, 'toJSON', _$constantFunction_790( null ) );
+		_$setNonEnumerableReadOnly_799( prng, 'PRNG', rand );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'seedLength', getSeedLength );
-		_$setNonEnumerableReadWriteAccessor_750( prng, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_748( prng, 'toJSON', toJSON );
-		_$setNonEnumerableReadOnly_748( prng, 'PRNG', rand );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_801( prng, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_799( prng, 'toJSON', toJSON );
+		_$setNonEnumerableReadOnly_799( prng, 'PRNG', rand );
 		rand = rand.normalized;
 	}
 	return prng;
@@ -50633,7 +50633,7 @@ function __factory_544() {
 	* // returns <number>
 	*/
 	function beta1() {
-		return _$sample_543( rand, rnorm, alpha, beta );
+		return _$sample_550( rand, rnorm, alpha, beta );
 	}
 
 	/**
@@ -50657,14 +50657,14 @@ function __factory_544() {
 		) {
 			return NaN;
 		}
-		return _$sample_543( rand, rnorm, alpha, beta );
+		return _$sample_550( rand, rnorm, alpha, beta );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_544 = __factory_544;
+var _$factory_551 = __factory_551;
 
 /**
 * @license Apache-2.0
@@ -50688,7 +50688,7 @@ var _$factory_544 = __factory_544;
 
 // MODULES //
 
-/* removed: var _$factory_544 = require( './factory.js' ); */;
+/* removed: var _$factory_551 = require( './factory.js' ); */;
 
 
 // MAIN //
@@ -50715,12 +50715,12 @@ var _$factory_544 = __factory_544;
 * var r = beta( -2.0, 5.0 );
 * // returns NaN
 */
-var __beta_546 = _$factory_544();
+var __beta_553 = _$factory_551();
 
 
 // EXPORTS //
 
-var _$beta_546 = __beta_546;
+var _$beta_553 = __beta_553;
 
 /**
 * @license Apache-2.0
@@ -50766,19 +50766,19 @@ var _$beta_546 = __beta_546;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$beta_546 = require( './main.js' ); */;
-/* removed: var _$factory_544 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$beta_553 = require( './main.js' ); */;
+/* removed: var _$factory_551 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$beta_546, 'factory', _$factory_544 );
+_$setNonEnumerableReadOnly_799( _$beta_553, 'factory', _$factory_551 );
 
 
 // EXPORTS //
 
-var _$beta_545 = _$beta_546;
+var _$beta_552 = _$beta_553;
 
 /**
 * @license Apache-2.0
@@ -50852,7 +50852,7 @@ function variance( alpha, beta ) {
 
 // EXPORTS //
 
-var _$variance_617 = variance;
+var _$variance_634 = variance;
 
 /**
 * @license Apache-2.0
@@ -50894,12 +50894,12 @@ var _$variance_617 = variance;
 
 // MODULES //
 
-/* removed: var _$variance_617 = require( './variance.js' ); */;
+/* removed: var _$variance_634 = require( './variance.js' ); */;
 
 
 // EXPORTS //
 
-var _$variance_616 = _$variance_617;
+var _$variance_633 = _$variance_634;
 
 /**
 * @license Apache-2.0
@@ -50936,16 +50936,16 @@ var _$variance_616 = _$variance_617;
 
 // MODULES //
 
-/* removed: var _$gammaLanczosSumExpGScaled_319 = require( '@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled' ); */;
-/* removed: var _$expm1_306 = require( '@stdlib/math/base/special/expm1' ); */;
-/* removed: var _$log1p_458 = require( '@stdlib/math/base/special/log1p' ); */;
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$gammaLanczosSumExpGScaled_326 = require( '@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled' ); */;
+/* removed: var _$expm1_313 = require( '@stdlib/math/base/special/expm1' ); */;
+/* removed: var _$log1p_465 = require( '@stdlib/math/base/special/log1p' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
-/* removed: var _$max_461 = require( '@stdlib/math/base/special/max' ); */;
-/* removed: var _$min_465 = require( '@stdlib/math/base/special/min' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$max_468 = require( '@stdlib/math/base/special/max' ); */;
+/* removed: var _$min_472 = require( '@stdlib/math/base/special/min' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$FLOAT64_MAX_LN_200 = require( '@stdlib/constants/math/float64-max-ln' ); */;
 /* removed: var _$FLOAT64_MIN_LN_204 = require( '@stdlib/constants/math/float64-min-ln' ); */;
 /* removed: var _$FLOAT64_GAMMA_LANCZOS_G_192 = require( '@stdlib/constants/math/float64-gamma-lanczos-g' ); */;
@@ -51000,7 +51000,7 @@ var _$variance_616 = _$variance_617;
 * @param {boolean} normalized - boolean indicating whether to evaluate the power terms of the regularized or non-regularized incomplete beta function
 * @returns {number} power terms
 */
-function __ibetaPowerTerms_681( a, b, x, y, normalized ) {
+function __ibetaPowerTerms_698( a, b, x, y, normalized ) {
 	var result;
 	var smallA;
 	var ratio;
@@ -51018,7 +51018,7 @@ function __ibetaPowerTerms_681( a, b, x, y, normalized ) {
 
 	if ( !normalized ) {
 		// Can we do better here?
-		return _$pow_469( x, a ) * _$pow_469( y, b );
+		return _$pow_476( x, a ) * _$pow_476( y, b );
 	}
 	c = a + b;
 
@@ -51026,73 +51026,73 @@ function __ibetaPowerTerms_681( a, b, x, y, normalized ) {
 	agh = a + _$FLOAT64_GAMMA_LANCZOS_G_192 - 0.5;
 	bgh = b + _$FLOAT64_GAMMA_LANCZOS_G_192 - 0.5;
 	cgh = c + _$FLOAT64_GAMMA_LANCZOS_G_192 - 0.5;
-	result = _$gammaLanczosSumExpGScaled_319( c );
-	result /= _$gammaLanczosSumExpGScaled_319( a ) * _$gammaLanczosSumExpGScaled_319( b );
+	result = _$gammaLanczosSumExpGScaled_326( c );
+	result /= _$gammaLanczosSumExpGScaled_326( a ) * _$gammaLanczosSumExpGScaled_326( b );
 
 	// Combine with the leftover terms from the Lanczos approximation:
-	result *= _$sqrt_494( bgh / _$E_187 );
-	result *= _$sqrt_494( agh / cgh );
+	result *= _$sqrt_501( bgh / _$E_187 );
+	result *= _$sqrt_501( agh / cgh );
 
 	// `l1` and `l2` are the base of the exponents minus one:
 	l1 = ( ( x * b ) - ( y * agh ) ) / agh;
 	l2 = ( ( y * a ) - ( x * bgh ) ) / bgh;
-	if ( _$min_465( _$abs_242(l1), _$abs_242(l2) ) < 0.2 ) {
+	if ( _$min_472( _$abs_242(l1), _$abs_242(l2) ) < 0.2 ) {
 		// When the base of the exponent is very near 1 we get really gross errors unless extra care is taken:
-		if ( l1 * l2 > 0 || _$min_465( a, b ) < 1 ) {
+		if ( l1 * l2 > 0 || _$min_472( a, b ) < 1 ) {
 			if ( _$abs_242(l1) < 0.1 ) {
-				result *= _$exp_303( a * _$log1p_458( l1 ) );
+				result *= _$exp_310( a * _$log1p_465( l1 ) );
 			} else {
-				result *= _$pow_469( ( x*cgh ) / agh, a );
+				result *= _$pow_476( ( x*cgh ) / agh, a );
 			}
 			if ( _$abs_242(l2) < 0.1 ) {
-				result *= _$exp_303( b * _$log1p_458( l2 ) );
+				result *= _$exp_310( b * _$log1p_465( l2 ) );
 			} else {
-				result *= _$pow_469((y * cgh) / bgh, b);
+				result *= _$pow_476((y * cgh) / bgh, b);
 			}
 		}
-		else if ( _$max_461( _$abs_242(l1), _$abs_242(l2) ) < 0.5 ) {
+		else if ( _$max_468( _$abs_242(l1), _$abs_242(l2) ) < 0.5 ) {
 			smallA = a < b;
 			ratio = b / a;
 			if (
 				(smallA && (ratio * l2 < 0.1)) ||
 				(!smallA && (l1 / ratio > 0.1))
 			) {
-				l3 = _$expm1_306( ratio * _$log1p_458( l2 ) );
+				l3 = _$expm1_313( ratio * _$log1p_465( l2 ) );
 				l3 = l1 + l3 + ( l3 * l1 );
-				l3 = a * _$log1p_458( l3 );
-				result *= _$exp_303( l3 );
+				l3 = a * _$log1p_465( l3 );
+				result *= _$exp_310( l3 );
 			}
 			else {
-				l3 = _$expm1_306( _$log1p_458( l1 ) / ratio );
+				l3 = _$expm1_313( _$log1p_465( l1 ) / ratio );
 				l3 = l2 + l3 + ( l3 * l2 );
-				l3 = b * _$log1p_458( l3 );
-				result *= _$exp_303( l3 );
+				l3 = b * _$log1p_465( l3 );
+				result *= _$exp_310( l3 );
 			}
 		}
 		else if ( _$abs_242(l1) < _$abs_242(l2) ) {
 			// First base near 1 only:
-			l = ( a * _$log1p_458( l1 ) ) + ( b * _$ln_454( ( y*cgh ) / bgh ) );
+			l = ( a * _$log1p_465( l1 ) ) + ( b * _$ln_461( ( y*cgh ) / bgh ) );
 			if ( l <= _$FLOAT64_MIN_LN_204 || l >= _$FLOAT64_MAX_LN_200 ) {
-				l += _$ln_454(result);
+				l += _$ln_461(result);
 				if ( l >= _$FLOAT64_MAX_LN_200 ) {
 					return NaN;
 				}
-				result = _$exp_303( l );
+				result = _$exp_310( l );
 			} else {
-				result *= _$exp_303( l );
+				result *= _$exp_310( l );
 			}
 		}
 		else {
 			// Second base near 1 only:
-			l = ( b * _$log1p_458( l2 ) ) + ( a * _$ln_454( (x*cgh) / agh ) );
+			l = ( b * _$log1p_465( l2 ) ) + ( a * _$ln_461( (x*cgh) / agh ) );
 			if ( l <= _$FLOAT64_MIN_LN_204 || l >= _$FLOAT64_MAX_LN_200 ) {
-				l += _$ln_454(result);
+				l += _$ln_461(result);
 				if ( l >= _$FLOAT64_MAX_LN_200 ) {
 					return NaN;
 				}
-				result = _$exp_303( l );
+				result = _$exp_310( l );
 			} else {
-				result *= _$exp_303( l );
+				result *= _$exp_310( l );
 			}
 		}
 	}
@@ -51100,8 +51100,8 @@ function __ibetaPowerTerms_681( a, b, x, y, normalized ) {
 		// General case:
 		b1 = (x * cgh) / agh;
 		b2 = (y * cgh) / bgh;
-		l1 = a * _$ln_454(b1);
-		l2 = b * _$ln_454(b2);
+		l1 = a * _$ln_461(b1);
+		l2 = b * _$ln_461(b2);
 		if (
 			l1 >= _$FLOAT64_MAX_LN_200 ||
 			l1 <= _$FLOAT64_MIN_LN_204 ||
@@ -51110,35 +51110,35 @@ function __ibetaPowerTerms_681( a, b, x, y, normalized ) {
 		) {
 			// Oops, under/overflow, sidestep if we can:
 			if ( a < b ) {
-				p1 = _$pow_469( b2, b / a );
-				l3 = a * ( _$ln_454(b1) + _$ln_454(p1) );
+				p1 = _$pow_476( b2, b / a );
+				l3 = a * ( _$ln_461(b1) + _$ln_461(p1) );
 				if ( l3 < _$FLOAT64_MAX_LN_200 && l3 > _$FLOAT64_MIN_LN_204 ) {
-					result *= _$pow_469( p1 * b1, a );
+					result *= _$pow_476( p1 * b1, a );
 				} else {
-					l2 += l1 + _$ln_454(result);
+					l2 += l1 + _$ln_461(result);
 					if ( l2 >= _$FLOAT64_MAX_LN_200 ) {
 						return NaN;
 					}
-					result = _$exp_303( l2 );
+					result = _$exp_310( l2 );
 				}
 			}
 			else {
-				p1 = _$pow_469( b1, a / b );
-				l3 = ( _$ln_454(p1) + _$ln_454(b2) ) * b;
+				p1 = _$pow_476( b1, a / b );
+				l3 = ( _$ln_461(p1) + _$ln_461(b2) ) * b;
 				if ( l3 < _$FLOAT64_MAX_LN_200 && l3 > _$FLOAT64_MIN_LN_204 ) {
-					result *= _$pow_469( p1 * b2, b );
+					result *= _$pow_476( p1 * b2, b );
 				} else {
-					l2 += l1 + _$ln_454( result );
+					l2 += l1 + _$ln_461( result );
 					if (l2 >= _$FLOAT64_MAX_LN_200) {
 						return NaN;
 					}
-					result = _$exp_303( l2 );
+					result = _$exp_310( l2 );
 				}
 			}
 		}
 		else {
 			// Finally the normal case:
-			result *= _$pow_469( b1, a ) * _$pow_469( b2, b );
+			result *= _$pow_476( b1, a ) * _$pow_476( b2, b );
 		}
 	}
 	return result;
@@ -51147,7 +51147,7 @@ function __ibetaPowerTerms_681( a, b, x, y, normalized ) {
 
 // EXPORTS //
 
-var _$ibetaPowerTerms_681 = __ibetaPowerTerms_681;
+var _$ibetaPowerTerms_698 = __ibetaPowerTerms_698;
 
 /**
 * @license Apache-2.0
@@ -51171,7 +51171,7 @@ var _$ibetaPowerTerms_681 = __ibetaPowerTerms_681;
 
 // MODULES //
 
-/* removed: var _$ibetaPowerTerms_681 = require( './ibeta_power_terms.js' ); */;
+/* removed: var _$ibetaPowerTerms_698 = require( './ibeta_power_terms.js' ); */;
 
 
 // MAIN //
@@ -51189,7 +51189,7 @@ function ibetaDerivative( x, a, b ) {
 	var f1;
 	var y;
 
-	f1 = _$ibetaPowerTerms_681( a, b, x, 1.0 - x, true );
+	f1 = _$ibetaPowerTerms_698( a, b, x, 1.0 - x, true );
 	y = ( 1.0 - x ) * x;
 	f1 /= y;
 	return f1;
@@ -51198,7 +51198,7 @@ function ibetaDerivative( x, a, b ) {
 
 // EXPORTS //
 
-var _$ibetaDerivative_680 = ibetaDerivative;
+var _$ibetaDerivative_697 = ibetaDerivative;
 
 /**
 * @license Apache-2.0
@@ -51224,7 +51224,7 @@ var _$ibetaDerivative_680 = ibetaDerivative;
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
-/* removed: var _$ibetaDerivative_680 = require( './ibeta_derivative.js' ); */;
+/* removed: var _$ibetaDerivative_697 = require( './ibeta_derivative.js' ); */;
 
 
 // MAIN //
@@ -51269,7 +51269,7 @@ var _$ibetaDerivative_680 = ibetaDerivative;
 * var y = pdf( 2.0, -1.0, 1.0 );
 * // returns NaN
 */
-function __pdf_683( x, d1, d2 ) {
+function __pdf_700( x, d1, d2 ) {
 	var v1x;
 	var y;
 	var z;
@@ -51297,17 +51297,17 @@ function __pdf_683( x, d1, d2 ) {
 	v1x = d1 * x;
 	if ( v1x > d2 ) {
 		y = ( d2 * d1 ) / ( ( d2 + v1x ) * ( d2 + v1x ) );
-		return y * _$ibetaDerivative_680( d2 / ( d2+v1x ), d2/2.0, d1/2.0 );
+		return y * _$ibetaDerivative_697( d2 / ( d2+v1x ), d2/2.0, d1/2.0 );
 	}
 	z = d2 + v1x;
 	y = ((z * d1) - (x * d1 * d1)) / ( z * z );
-	return y * _$ibetaDerivative_680( v1x / ( d2+v1x ), d1/2.0, d2/2.0 );
+	return y * _$ibetaDerivative_697( v1x / ( d2+v1x ), d1/2.0, d2/2.0 );
 }
 
 
 // EXPORTS //
 
-var _$pdf_683 = __pdf_683;
+var _$pdf_700 = __pdf_700;
 
 /**
 * @license Apache-2.0
@@ -51331,10 +51331,10 @@ var _$pdf_683 = __pdf_683;
 
 // MODULES //
 
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
-/* removed: var _$ibetaDerivative_680 = require( './ibeta_derivative.js' ); */;
+/* removed: var _$ibetaDerivative_697 = require( './ibeta_derivative.js' ); */;
 
 
 // MAIN //
@@ -51354,7 +51354,7 @@ var _$pdf_683 = __pdf_683;
 * y = pdf( 2.0 );
 * // returns ~0.166
 */
-function __factory_679( d1, d2 ) {
+function __factory_696( d1, d2 ) {
 	var zeroVal;
 	var d1by2;
 	var d2by2;
@@ -51365,7 +51365,7 @@ function __factory_679( d1, d2 ) {
 		d1 <= 0.0 ||
 		d2 <= 0.0
 	) {
-		return _$constantFunction_739( NaN );
+		return _$constantFunction_790( NaN );
 	}
 	d1d2 = d1 * d2;
 	d1by2 = d1 / 2.0;
@@ -51406,18 +51406,18 @@ function __factory_679( d1, d2 ) {
 		v1x = d1 * x;
 		if ( v1x > d2 ) {
 			y = d1d2 / ( ( d2 + v1x ) * ( d2 + v1x ) );
-			return y * _$ibetaDerivative_680( d2 / ( d2 + v1x ), d2by2, d1by2 );
+			return y * _$ibetaDerivative_697( d2 / ( d2 + v1x ), d2by2, d1by2 );
 		}
 		z = d2 + v1x;
 		y = ((z * d1) - (x * d1 * d1)) / ( z * z );
-		return y * _$ibetaDerivative_680( d1 * x / ( d2 + v1x ), d1by2, d2by2 );
+		return y * _$ibetaDerivative_697( d1 * x / ( d2 + v1x ), d1by2, d2by2 );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_679 = __factory_679;
+var _$factory_696 = __factory_696;
 
 /**
 * @license Apache-2.0
@@ -51463,19 +51463,19 @@ var _$factory_679 = __factory_679;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_683 = require( './pdf.js' ); */;
-/* removed: var _$factory_679 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_700 = require( './pdf.js' ); */;
+/* removed: var _$factory_696 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$pdf_683, 'factory', _$factory_679 );
+_$setNonEnumerableReadOnly_799( _$pdf_700, 'factory', _$factory_696 );
 
 
 // EXPORTS //
 
-var _$pdf_682 = _$pdf_683;
+var _$pdf_699 = _$pdf_700;
 
 /**
 * @license Apache-2.0
@@ -51554,7 +51554,7 @@ var _$pdf_682 = _$pdf_683;
 * var y = cdf( 2.0, -1.0, 1.0 );
 * // returns NaN
 */
-function __cdf_672( x, d1, d2 ) {
+function __cdf_689( x, d1, d2 ) {
 	if (
 		_$isnan_231( x ) ||
 		_$isnan_231( d1 ) ||
@@ -51579,7 +51579,7 @@ function __cdf_672( x, d1, d2 ) {
 
 // EXPORTS //
 
-var _$cdf_672 = __cdf_672;
+var _$cdf_689 = __cdf_689;
 
 /**
 * @license Apache-2.0
@@ -51603,7 +51603,7 @@ var _$cdf_672 = __cdf_672;
 
 // MODULES //
 
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$betainc_259 = require( '@stdlib/math/base/special/betainc' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
@@ -51627,14 +51627,14 @@ var _$cdf_672 = __cdf_672;
 * y = cdf( 8.0 );
 * // returns ~0.884
 */
-function __factory_673( d1, d2 ) {
+function __factory_690( d1, d2 ) {
 	if (
 		_$isnan_231( d1 ) ||
 		_$isnan_231( d2 ) ||
 		d1 <= 0.0 ||
 		d2 <= 0.0
 	) {
-		return _$constantFunction_739( NaN );
+		return _$constantFunction_790( NaN );
 	}
 	return cdf;
 
@@ -51669,7 +51669,7 @@ function __factory_673( d1, d2 ) {
 
 // EXPORTS //
 
-var _$factory_673 = __factory_673;
+var _$factory_690 = __factory_690;
 
 /**
 * @license Apache-2.0
@@ -51719,19 +51719,19 @@ var _$factory_673 = __factory_673;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_672 = require( './cdf.js' ); */;
-/* removed: var _$factory_673 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_689 = require( './cdf.js' ); */;
+/* removed: var _$factory_690 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$cdf_672, 'factory', _$factory_673 );
+_$setNonEnumerableReadOnly_799( _$cdf_689, 'factory', _$factory_690 );
 
 
 // EXPORTS //
 
-var _$cdf_674 = _$cdf_672;
+var _$cdf_691 = _$cdf_689;
 
 /**
 * @license Apache-2.0
@@ -51755,7 +51755,7 @@ var _$cdf_674 = _$cdf_672;
 
 // MODULES //
 
-/* removed: var _$kernelBetaincinv_409 = require( '@stdlib/math/base/special/kernel-betaincinv' ); */;
+/* removed: var _$kernelBetaincinv_416 = require( '@stdlib/math/base/special/kernel-betaincinv' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
 
@@ -51805,7 +51805,7 @@ var _$cdf_674 = _$cdf_672;
 * var y = quantile( 0.5, 1.0, -1.0 );
 * // returns NaN
 */
-function __quantile_686( p, d1, d2 ) {
+function __quantile_703( p, d1, d2 ) {
 	var xs;
 	if (
 		_$isnan_231( p ) ||
@@ -51818,14 +51818,14 @@ function __quantile_686( p, d1, d2 ) {
 	) {
 		return NaN;
 	}
-	xs = _$kernelBetaincinv_409( d1/2.0, d2/2.0, p, 1.0 - p );
+	xs = _$kernelBetaincinv_416( d1/2.0, d2/2.0, p, 1.0 - p );
 	return d2 * xs[ 0 ] / ( d1 * xs[ 1 ] );
 }
 
 
 // EXPORTS //
 
-var _$quantile_686 = __quantile_686;
+var _$quantile_703 = __quantile_703;
 
 /**
 * @license Apache-2.0
@@ -51849,8 +51849,8 @@ var _$quantile_686 = __quantile_686;
 
 // MODULES //
 
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$kernelBetaincinv_409 = require( '@stdlib/math/base/special/kernel-betaincinv' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$kernelBetaincinv_416 = require( '@stdlib/math/base/special/kernel-betaincinv' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
 
@@ -51871,14 +51871,14 @@ var _$quantile_686 = __quantile_686;
 * y = quantile( 0.8 );
 * // returns ~4.382
 */
-function __factory_684( d1, d2 ) {
+function __factory_701( d1, d2 ) {
 	if (
 		_$isnan_231( d1 ) ||
 		_$isnan_231( d2 ) ||
 		d1 <= 0.0 ||
 		d2 <= 0.0
 	) {
-		return _$constantFunction_739( NaN );
+		return _$constantFunction_790( NaN );
 	}
 	return quantile;
 
@@ -51898,7 +51898,7 @@ function __factory_684( d1, d2 ) {
 		if ( _$isnan_231( p ) || p < 0.0 || p > 1.0 ) {
 			return NaN;
 		}
-		xs = _$kernelBetaincinv_409( d1/2.0, d2/2.0, p, 1.0 - p );
+		xs = _$kernelBetaincinv_416( d1/2.0, d2/2.0, p, 1.0 - p );
 		return d2 * xs[ 0 ] / ( d1 * xs[ 1 ] );
 	}
 }
@@ -51906,7 +51906,7 @@ function __factory_684( d1, d2 ) {
 
 // EXPORTS //
 
-var _$factory_684 = __factory_684;
+var _$factory_701 = __factory_701;
 
 /**
 * @license Apache-2.0
@@ -51953,19 +51953,19 @@ var _$factory_684 = __factory_684;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_686 = require( './quantile.js' ); */;
-/* removed: var _$factory_684 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_703 = require( './quantile.js' ); */;
+/* removed: var _$factory_701 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$quantile_686, 'factory', _$factory_684 );
+_$setNonEnumerableReadOnly_799( _$quantile_703, 'factory', _$factory_701 );
 
 
 // EXPORTS //
 
-var _$quantile_685 = _$quantile_686;
+var _$quantile_702 = _$quantile_703;
 
 /**
 * @license Apache-2.0
@@ -52029,7 +52029,7 @@ var _$quantile_685 = _$quantile_686;
 * var v = mean( NaN, 2.0 );
 * // returns NaN
 */
-function __mean_676( d1, d2 ) {
+function __mean_693( d1, d2 ) {
 	if (
 		_$isnan_231( d1 ) ||
 		_$isnan_231( d2 ) ||
@@ -52044,7 +52044,7 @@ function __mean_676( d1, d2 ) {
 
 // EXPORTS //
 
-var _$mean_676 = __mean_676;
+var _$mean_693 = __mean_693;
 
 /**
 * @license Apache-2.0
@@ -52086,12 +52086,12 @@ var _$mean_676 = __mean_676;
 
 // MODULES //
 
-/* removed: var _$mean_676 = require( './mean.js' ); */;
+/* removed: var _$mean_693 = require( './mean.js' ); */;
 
 
 // EXPORTS //
 
-var _$mean_675 = _$mean_676;
+var _$mean_692 = _$mean_693;
 
 /**
 * @license Apache-2.0
@@ -52150,7 +52150,7 @@ var _$mean_675 = _$mean_676;
 * var v = mode( NaN, 2.0 );
 * // returns NaN
 */
-function __mode_678( d1, d2 ) {
+function __mode_695( d1, d2 ) {
 	if ( d1 <= 2.0 || d2 <= 0.0 ) {
 		return NaN;
 	}
@@ -52160,7 +52160,7 @@ function __mode_678( d1, d2 ) {
 
 // EXPORTS //
 
-var _$mode_678 = __mode_678;
+var _$mode_695 = __mode_695;
 
 /**
 * @license Apache-2.0
@@ -52202,12 +52202,12 @@ var _$mode_678 = __mode_678;
 
 // MODULES //
 
-/* removed: var _$mode_678 = require( './mode.js' ); */;
+/* removed: var _$mode_695 = require( './mode.js' ); */;
 
 
 // EXPORTS //
 
-var _$mode_677 = _$mode_678;
+var _$mode_694 = _$mode_695;
 
 /**
 * @license Apache-2.0
@@ -52231,7 +52231,7 @@ var _$mode_677 = _$mode_678;
 
 // MODULES //
 
-var __isPositive_578 = _$isPositiveNumber_150.isPrimitive;
+var __isPositive_585 = _$isPositiveNumber_150.isPrimitive;
 
 
 // MAIN //
@@ -52250,11 +52250,11 @@ var __isPositive_578 = _$isPositiveNumber_150.isPrimitive;
 *     throw err;
 * }
 */
-function __validate_578( alpha, beta ) {
-	if ( !__isPositive_578( alpha ) ) {
+function __validate_585( alpha, beta ) {
+	if ( !__isPositive_585( alpha ) ) {
 		return new TypeError( 'invalid argument. `alpha` must be a positive number. Value: `' + alpha + '`.' );
 	}
-	if ( !__isPositive_578( beta ) ) {
+	if ( !__isPositive_585( beta ) ) {
 		return new TypeError( 'invalid argument. `beta` must be a positive number. Value: `' + beta + '`.' );
 	}
 	return null;
@@ -52263,7 +52263,7 @@ function __validate_578( alpha, beta ) {
 
 // EXPORTS //
 
-var _$validate_578 = __validate_578;
+var _$validate_585 = __validate_585;
 
 /**
 * @license Apache-2.0
@@ -52287,7 +52287,7 @@ var _$validate_578 = __validate_578;
 
 // MODULES //
 
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 
 
 // MAIN //
@@ -52303,7 +52303,7 @@ var _$validate_578 = __validate_578;
 * @param {PositiveNumber} c - `1.0 / sqrt( 9.0*d )`
 * @returns {PositiveNumber} pseudorandom number
 */
-function __gamma_575( randu, randn, beta, d, c ) {
+function __gamma_582( randu, randn, beta, d, c ) {
 	var flg;
 	var x2;
 	var v0;
@@ -52321,9 +52321,9 @@ function __gamma_575( randu, randn, beta, d, c ) {
 		v *= v * v;
 		x2 = x * x;
 		v0 = 1.0 - (0.331*x2*x2);
-		v1 = (0.5*x2) + (d*( 1.0-v+_$ln_454(v) ));
+		v1 = (0.5*x2) + (d*( 1.0-v+_$ln_461(v) ));
 		u = randu();
-		if ( u < v0 || _$ln_454( u ) < v1 ) {
+		if ( u < v0 || _$ln_461( u ) < v1 ) {
 			flg = false;
 		}
 	}
@@ -52333,7 +52333,7 @@ function __gamma_575( randu, randn, beta, d, c ) {
 
 // EXPORTS //
 
-var _$gamma_575 = __gamma_575;
+var _$gamma_582 = __gamma_582;
 
 /**
 * @license Apache-2.0
@@ -52357,32 +52357,32 @@ var _$gamma_575 = __gamma_575;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_746 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_750 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_797 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_801 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 /* removed: var _$isUint32Array_166 = require( '@stdlib/assert/is-uint32array' ); */;
-var __isBoolean_574 = _$isBoolean_86.isPrimitive;
+var __isBoolean_581 = _$isBoolean_86.isPrimitive;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_793 = require( '@stdlib/utils/noop' ); */;
-var __randn_574 = _$randn_582.factory;
-var __randu_574 = _$mt19937_591.factory;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_844 = require( '@stdlib/utils/noop' ); */;
+var __randn_581 = _$randn_589.factory;
+var __randu_581 = _$mt19937_603.factory;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
 /* removed: var _$gcopy_174 = require( '@stdlib/blas/base/gcopy' ); */;
 /* removed: var _$ctor_23 = require( '@stdlib/array/uint32' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
-/* removed: var _$copy_744 = require( '@stdlib/utils/copy' ); */;
-/* removed: var _$validate_578 = require( './validate.js' ); */;
-/* removed: var _$gamma_575 = require( './gamma.js' ); */;
+/* removed: var _$copy_795 = require( '@stdlib/utils/copy' ); */;
+/* removed: var _$validate_585 = require( './validate.js' ); */;
+/* removed: var _$gamma_582 = require( './gamma.js' ); */;
 
 
 // VARIABLES //
 
-var __ONE_THIRD_574 = 1.0 / 3.0;
+var __ONE_THIRD_581 = 1.0 / 3.0;
 
 
 // MAIN //
@@ -52416,7 +52416,7 @@ var __ONE_THIRD_574 = 1.0 / 3.0;
 * var v = gamma();
 * // returns <number>
 */
-function __factory_574() {
+function __factory_581() {
 	var STATE;
 	var alpha;
 	var rnorm;
@@ -52434,13 +52434,13 @@ function __factory_574() {
 		opts = {
 			'copy': false
 		};
-		rand = __randu_574( opts );
+		rand = __randu_581( opts );
 	} else if ( arguments.length === 1 ) {
 		opts = arguments[ 0 ];
 		if ( !_$isPlainObject_144( opts ) ) {
 			throw new TypeError( 'invalid argument. Options argument must be an object. Value: `' + opts + '`.' );
 		}
-		if ( _$hasOwnProp_58( opts, 'copy' ) && !__isBoolean_574( opts.copy ) ) {
+		if ( _$hasOwnProp_58( opts, 'copy' ) && !__isBoolean_581( opts.copy ) ) {
 			throw new TypeError( 'invalid option. `copy` option must be a boolean. Option: `' + opts.copy + '`.' );
 		}
 		if ( _$hasOwnProp_58( opts, 'prng' ) ) {
@@ -52452,19 +52452,19 @@ function __factory_574() {
 			if ( _$hasOwnProp_58( opts, 'state' ) && !_$isUint32Array_166( opts.state ) ) {
 				throw new TypeError( 'invalid option. `state` option must be a Uint32Array. Option: `' + opts.state + '`.' );
 			}
-			opts = _$copy_744( opts, 1 );
+			opts = _$copy_795( opts, 1 );
 			if ( opts.copy === false ) {
 				FLG = false;
 			} else if ( opts.state ) {
 				opts.state = _$gcopy_174( opts.state.length, opts.state, 1, new _$ctor_23( opts.state.length ), 1 ); // eslint-disable-line max-len
 			}
 			opts.copy = false;
-			rand = __randu_574( opts );
+			rand = __randu_581( opts );
 		}
 	} else {
 		alpha = arguments[ 0 ];
 		beta = arguments[ 1 ];
-		err = _$validate_578( alpha, beta );
+		err = _$validate_585( alpha, beta );
 		if ( err ) {
 			throw err;
 		}
@@ -52473,7 +52473,7 @@ function __factory_574() {
 			if ( !_$isPlainObject_144( opts ) ) {
 				throw new TypeError( 'invalid argument. Options argument must be an object. Value: `' + opts + '`.' );
 			}
-			if ( _$hasOwnProp_58( opts, 'copy' ) && !__isBoolean_574( opts.copy ) ) {
+			if ( _$hasOwnProp_58( opts, 'copy' ) && !__isBoolean_581( opts.copy ) ) {
 				throw new TypeError( 'invalid option. `copy` option must be a boolean. Option: `' + opts.copy + '`.' );
 			}
 			if ( _$hasOwnProp_58( opts, 'prng' ) ) {
@@ -52485,24 +52485,24 @@ function __factory_574() {
 				if ( _$hasOwnProp_58( opts, 'state' ) && !_$isUint32Array_166( opts.state ) ) {
 					throw new TypeError( 'invalid option. `state` option must be a Uint32Array. Option: `' + opts.state + '`.' );
 				}
-				opts = _$copy_744( opts, 1 );
+				opts = _$copy_795( opts, 1 );
 				if ( opts.copy === false ) {
 					FLG = false;
 				} else if ( opts.state ) {
 					opts.state = _$gcopy_174( opts.state.length, opts.state, 1, new _$ctor_23( opts.state.length ), 1 ); // eslint-disable-line max-len
 				}
 				opts.copy = false;
-				rand = __randu_574( opts );
+				rand = __randu_581( opts );
 			}
 		} else {
 			opts = {
 				'copy': false
 			};
-			rand = __randu_574( opts );
+			rand = __randu_581( opts );
 		}
 	}
 	if ( opts && opts.prng ) {
-		rnorm = __randn_574({
+		rnorm = __randn_581({
 			'prng': opts.prng
 		});
 	} else {
@@ -52512,7 +52512,7 @@ function __factory_574() {
 			STATE = rand.state;
 			rand.state = STATE; // updates the underlying PRNG to point to a shared state
 		}
-		rnorm = __randn_574({
+		rnorm = __randn_581({
 			'state': STATE,
 			'copy': false
 		});
@@ -52522,32 +52522,32 @@ function __factory_574() {
 	} else {
 		if ( alpha >= 1.0 ) {
 			prng = gamma1a;
-			d = alpha - __ONE_THIRD_574;
+			d = alpha - __ONE_THIRD_581;
 		} else {
 			prng = gamma1b;
-			d = alpha + 1.0 - __ONE_THIRD_574;
+			d = alpha + 1.0 - __ONE_THIRD_581;
 		}
-		c = 1.0 / _$sqrt_494( 9.0*d );
+		c = 1.0 / _$sqrt_501( 9.0*d );
 	}
-	_$setNonEnumerableReadOnly_748( prng, 'NAME', 'gamma' );
+	_$setNonEnumerableReadOnly_799( prng, 'NAME', 'gamma' );
 
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( opts && opts.prng ) {
-		_$setNonEnumerableReadOnly_748( prng, 'seed', null );
-		_$setNonEnumerableReadOnly_748( prng, 'seedLength', null );
-		_$setNonEnumerableReadWriteAccessor_750( prng, 'state', _$constantFunction_739( null ), _$noop_793 );
-		_$setNonEnumerableReadOnly_748( prng, 'stateLength', null );
-		_$setNonEnumerableReadOnly_748( prng, 'byteLength', null );
-		_$setNonEnumerableReadOnly_748( prng, 'toJSON', _$constantFunction_739( null ) );
-		_$setNonEnumerableReadOnly_748( prng, 'PRNG', rand );
+		_$setNonEnumerableReadOnly_799( prng, 'seed', null );
+		_$setNonEnumerableReadOnly_799( prng, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_801( prng, 'state', _$constantFunction_790( null ), _$noop_844 );
+		_$setNonEnumerableReadOnly_799( prng, 'stateLength', null );
+		_$setNonEnumerableReadOnly_799( prng, 'byteLength', null );
+		_$setNonEnumerableReadOnly_799( prng, 'toJSON', _$constantFunction_790( null ) );
+		_$setNonEnumerableReadOnly_799( prng, 'PRNG', rand );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'seedLength', getSeedLength );
-		_$setNonEnumerableReadWriteAccessor_750( prng, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_748( prng, 'toJSON', toJSON );
-		_$setNonEnumerableReadOnly_748( prng, 'PRNG', rand );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_801( prng, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_799( prng, 'toJSON', toJSON );
+		_$setNonEnumerableReadOnly_799( prng, 'PRNG', rand );
 		rand = rand.normalized;
 	}
 	return prng;
@@ -52654,7 +52654,7 @@ function __factory_574() {
 	* // returns <number>
 	*/
 	function gamma1a() {
-		return _$gamma_575( rand, rnorm, beta, d, c );
+		return _$gamma_582( rand, rnorm, beta, d, c );
 	}
 
 	/**
@@ -52668,7 +52668,7 @@ function __factory_574() {
 	* // returns <number>
 	*/
 	function gamma1b() {
-		return _$gamma_575( rand, rnorm, beta, d, c ) * _$pow_469( rand(), 1.0/alpha );
+		return _$gamma_582( rand, rnorm, beta, d, c ) * _$pow_476( rand(), 1.0/alpha );
 	}
 
 	/**
@@ -52707,20 +52707,20 @@ function __factory_574() {
 			return NaN;
 		}
 		if ( alpha < 1.0 ) {
-			d = alpha + 1.0 - __ONE_THIRD_574;
-			c = 1.0 / _$sqrt_494( 9.0*d );
-			return _$gamma_575( rand, rnorm, beta, d, c ) * _$pow_469( rand(), 1.0/alpha );
+			d = alpha + 1.0 - __ONE_THIRD_581;
+			c = 1.0 / _$sqrt_501( 9.0*d );
+			return _$gamma_582( rand, rnorm, beta, d, c ) * _$pow_476( rand(), 1.0/alpha );
 		}
-		d = alpha - __ONE_THIRD_574;
-		c = 1.0 / _$sqrt_494( 9.0*d );
-		return _$gamma_575( rand, rnorm, beta, d, c );
+		d = alpha - __ONE_THIRD_581;
+		c = 1.0 / _$sqrt_501( 9.0*d );
+		return _$gamma_582( rand, rnorm, beta, d, c );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_574 = __factory_574;
+var _$factory_581 = __factory_581;
 
 /**
 * @license Apache-2.0
@@ -52744,7 +52744,7 @@ var _$factory_574 = __factory_574;
 
 // MODULES //
 
-/* removed: var _$factory_574 = require( './factory.js' ); */;
+/* removed: var _$factory_581 = require( './factory.js' ); */;
 
 
 // MAIN //
@@ -52771,12 +52771,12 @@ var _$factory_574 = __factory_574;
 * var v = gamma( -2.0, 4.0 );
 * // returns NaN
 */
-var __gamma_577 = _$factory_574();
+var __gamma_584 = _$factory_581();
 
 
 // EXPORTS //
 
-var _$gamma_577 = __gamma_577;
+var _$gamma_584 = __gamma_584;
 
 /**
 * @license Apache-2.0
@@ -52822,19 +52822,19 @@ var _$gamma_577 = __gamma_577;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$gamma_577 = require( './main.js' ); */;
-/* removed: var _$factory_574 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$gamma_584 = require( './main.js' ); */;
+/* removed: var _$factory_581 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$gamma_577, 'factory', _$factory_574 );
+_$setNonEnumerableReadOnly_799( _$gamma_584, 'factory', _$factory_581 );
 
 
 // EXPORTS //
 
-var _$gamma_576 = _$gamma_577;
+var _$gamma_583 = _$gamma_584;
 
 /**
 * @license Apache-2.0
@@ -52858,17 +52858,17 @@ var _$gamma_576 = _$gamma_577;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_746 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_750 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
-var __isPositive_562 = _$isPositiveNumber_150.isPrimitive;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_797 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_801 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+var __isPositive_569 = _$isPositiveNumber_150.isPrimitive;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_793 = require( '@stdlib/utils/noop' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_844 = require( '@stdlib/utils/noop' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-var __gamma_562 = _$gamma_576.factory;
+var __gamma_569 = _$gamma_583.factory;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
 
 
@@ -52901,14 +52901,14 @@ var __gamma_562 = _$gamma_576.factory;
 * var v = chisquare();
 * // returns <number>
 */
-function __factory_562() {
+function __factory_569() {
 	var rgamma;
 	var rand;
 	var opts;
 	var prng;
 	var k;
 	if ( arguments.length === 0 ) {
-		rgamma = __gamma_562();
+		rgamma = __gamma_569();
 	} else if (
 		arguments.length === 1 &&
 		_$isPlainObject_144( arguments[ 0 ] )
@@ -52918,15 +52918,15 @@ function __factory_562() {
 			if ( !_$isFunction_110( opts.prng ) ) {
 				throw new TypeError( 'invalid option. `prng` option must be a pseudorandom number generator function. Option: `' + opts.prng + '`.' );
 			}
-			rgamma = __gamma_562({
+			rgamma = __gamma_569({
 				'prng': opts.prng
 			});
 		} else {
-			rgamma = __gamma_562( opts );
+			rgamma = __gamma_569( opts );
 		}
 	} else {
 		k = arguments[ 0 ];
-		if ( !__isPositive_562( k ) ) {
+		if ( !__isPositive_569( k ) ) {
 			throw new TypeError( 'invalid argument. First argument must be a positive number. Value: `' + k + '`.' );
 		}
 		if ( arguments.length > 1 ) {
@@ -52938,14 +52938,14 @@ function __factory_562() {
 				if ( !_$isFunction_110( opts.prng ) ) {
 					throw new TypeError( 'invalid option. `prng` option must be a pseudorandom number generator function. Option: `' + opts.prng + '`.' );
 				}
-				rgamma = __gamma_562( k/2.0, 0.5, {
+				rgamma = __gamma_569( k/2.0, 0.5, {
 					'prng': opts.prng
 				});
 			} else {
-				rgamma = __gamma_562( k/2.0, 0.5, opts );
+				rgamma = __gamma_569( k/2.0, 0.5, opts );
 			}
 		} else {
-			rgamma = __gamma_562( k/2.0, 0.5 );
+			rgamma = __gamma_569( k/2.0, 0.5 );
 		}
 	}
 	if ( k === void 0 ) {
@@ -52955,25 +52955,25 @@ function __factory_562() {
 	}
 	rand = rgamma.PRNG;
 
-	_$setNonEnumerableReadOnly_748( prng, 'NAME', 'chisquare' );
+	_$setNonEnumerableReadOnly_799( prng, 'NAME', 'chisquare' );
 
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( opts && opts.prng ) {
-		_$setNonEnumerableReadOnly_748( prng, 'seed', null );
-		_$setNonEnumerableReadOnly_748( prng, 'seedLength', null );
-		_$setNonEnumerableReadWriteAccessor_750( prng, 'state', _$constantFunction_739( null ), _$noop_793 );
-		_$setNonEnumerableReadOnly_748( prng, 'stateLength', null );
-		_$setNonEnumerableReadOnly_748( prng, 'byteLength', null );
-		_$setNonEnumerableReadOnly_748( prng, 'toJSON', _$constantFunction_739( null ) );
+		_$setNonEnumerableReadOnly_799( prng, 'seed', null );
+		_$setNonEnumerableReadOnly_799( prng, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_801( prng, 'state', _$constantFunction_790( null ), _$noop_844 );
+		_$setNonEnumerableReadOnly_799( prng, 'stateLength', null );
+		_$setNonEnumerableReadOnly_799( prng, 'byteLength', null );
+		_$setNonEnumerableReadOnly_799( prng, 'toJSON', _$constantFunction_790( null ) );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'seedLength', getSeedLength );
-		_$setNonEnumerableReadWriteAccessor_750( prng, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_748( prng, 'toJSON', toJSON );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_801( prng, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_799( prng, 'toJSON', toJSON );
 	}
-	_$setNonEnumerableReadOnly_748( prng, 'PRNG', rand );
+	_$setNonEnumerableReadOnly_799( prng, 'PRNG', rand );
 	return prng;
 
 	/**
@@ -53099,7 +53099,7 @@ function __factory_562() {
 
 // EXPORTS //
 
-var _$factory_562 = __factory_562;
+var _$factory_569 = __factory_569;
 
 /**
 * @license Apache-2.0
@@ -53123,7 +53123,7 @@ var _$factory_562 = __factory_562;
 
 // MODULES //
 
-/* removed: var _$factory_562 = require( './factory.js' ); */;
+/* removed: var _$factory_569 = require( './factory.js' ); */;
 
 
 // MAIN //
@@ -53148,12 +53148,12 @@ var _$factory_562 = __factory_562;
 * var v = chisquare( NaN );
 * // returns NaN
 */
-var chisquare = _$factory_562();
+var chisquare = _$factory_569();
 
 
 // EXPORTS //
 
-var _$chisquare_564 = chisquare;
+var _$chisquare_571 = chisquare;
 
 /**
 * @license Apache-2.0
@@ -53199,19 +53199,19 @@ var _$chisquare_564 = chisquare;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$chisquare_564 = require( './main.js' ); */;
-/* removed: var _$factory_562 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$chisquare_571 = require( './main.js' ); */;
+/* removed: var _$factory_569 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$chisquare_564, 'factory', _$factory_562 );
+_$setNonEnumerableReadOnly_799( _$chisquare_571, 'factory', _$factory_569 );
 
 
 // EXPORTS //
 
-var _$chisquare_563 = _$chisquare_564;
+var _$chisquare_570 = _$chisquare_571;
 
 /**
 * @license Apache-2.0
@@ -53235,7 +53235,7 @@ var _$chisquare_563 = _$chisquare_564;
 
 // MODULES //
 
-var __isPositive_573 = _$isPositiveNumber_150.isPrimitive;
+var __isPositive_580 = _$isPositiveNumber_150.isPrimitive;
 
 
 // MAIN //
@@ -53254,11 +53254,11 @@ var __isPositive_573 = _$isPositiveNumber_150.isPrimitive;
 *     throw err;
 * }
 */
-function __validate_573( d1, d2 ) {
-	if ( !__isPositive_573( d1 ) ) {
+function __validate_580( d1, d2 ) {
+	if ( !__isPositive_580( d1 ) ) {
 		return new TypeError( 'invalid argument. `d1` must be a positive number. Value: `' + d1 + '`.' );
 	}
-	if ( !__isPositive_573( d2 ) ) {
+	if ( !__isPositive_580( d2 ) ) {
 		return new TypeError( 'invalid argument. `d2` must be a positive number. Value: `' + d2 + '`.' );
 	}
 	return null;
@@ -53267,7 +53267,7 @@ function __validate_573( d1, d2 ) {
 
 // EXPORTS //
 
-var _$validate_573 = __validate_573;
+var _$validate_580 = __validate_580;
 
 /**
 * @license Apache-2.0
@@ -53298,7 +53298,7 @@ var _$validate_573 = __validate_573;
 * @param {PositiveNumber} d2 - degrees of freedom
 * @returns {NonNegativeNumber} pseudorandom number
 */
-function __f_569( rchisq, d1, d2 ) {
+function __f_576( rchisq, d1, d2 ) {
 	var x1 = rchisq( d1 ) / d1;
 	var x2 = rchisq( d2 ) / d2;
 	return x1 / x2;
@@ -53307,7 +53307,7 @@ function __f_569( rchisq, d1, d2 ) {
 
 // EXPORTS //
 
-var _$f_569 = __f_569;
+var _$f_576 = __f_576;
 
 /**
 * @license Apache-2.0
@@ -53331,19 +53331,19 @@ var _$f_569 = __f_569;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_746 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_750 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_797 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_801 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_793 = require( '@stdlib/utils/noop' ); */;
-var __chisquare_570 = _$chisquare_563.factory;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_844 = require( '@stdlib/utils/noop' ); */;
+var __chisquare_577 = _$chisquare_570.factory;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
-/* removed: var _$validate_573 = require( './validate.js' ); */;
-/* removed: var _$f_569 = require( './f.js' ); */;
+/* removed: var _$validate_580 = require( './validate.js' ); */;
+/* removed: var _$f_576 = require( './f.js' ); */;
 
 
 // MAIN //
@@ -53377,7 +53377,7 @@ var __chisquare_570 = _$chisquare_563.factory;
 * var v = f();
 * // returns <number>
 */
-function __factory_570() {
+function __factory_577() {
 	var rchisq;
 	var opts;
 	var rand;
@@ -53387,7 +53387,7 @@ function __factory_570() {
 	var d2;
 
 	if ( arguments.length === 0 ) {
-		rchisq = __chisquare_570();
+		rchisq = __chisquare_577();
 	} else if ( arguments.length === 1 ) {
 		opts = arguments[ 0 ];
 		if ( !_$isPlainObject_144( opts ) ) {
@@ -53397,16 +53397,16 @@ function __factory_570() {
 			if ( !_$isFunction_110( opts.prng ) ) {
 				throw new TypeError( 'invalid option. `prng` option must be a pseudorandom number generator function. Option: `' + opts.prng + '`.' );
 			}
-			rchisq = __chisquare_570({
+			rchisq = __chisquare_577({
 				'prng': opts.prng
 			});
 		} else {
-			rchisq = __chisquare_570( opts );
+			rchisq = __chisquare_577( opts );
 		}
 	} else {
 		d1 = arguments[ 0 ];
 		d2 = arguments[ 1 ];
-		err = _$validate_573( d1, d2 );
+		err = _$validate_580( d1, d2 );
 		if ( err ) {
 			throw err;
 		}
@@ -53419,14 +53419,14 @@ function __factory_570() {
 				if ( !_$isFunction_110( opts.prng ) ) {
 					throw new TypeError( 'invalid option. `prng` option must be a pseudorandom number generator function. Option: `' + opts.prng + '`.' );
 				}
-				rchisq = __chisquare_570({
+				rchisq = __chisquare_577({
 					'prng': opts.prng
 				});
 			} else {
-				rchisq = __chisquare_570( opts );
+				rchisq = __chisquare_577( opts );
 			}
 		} else {
-			rchisq = __chisquare_570();
+			rchisq = __chisquare_577();
 		}
 	}
 	if ( d1 === void 0 ) {
@@ -53436,25 +53436,25 @@ function __factory_570() {
 	}
 	rand = rchisq.PRNG;
 
-	_$setNonEnumerableReadOnly_748( prng, 'NAME', 'f' );
+	_$setNonEnumerableReadOnly_799( prng, 'NAME', 'f' );
 
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( opts && opts.prng ) {
-		_$setNonEnumerableReadOnly_748( prng, 'seed', null );
-		_$setNonEnumerableReadOnly_748( prng, 'seedLength', null );
-		_$setNonEnumerableReadWriteAccessor_750( prng, 'state', _$constantFunction_739( null ), _$noop_793 );
-		_$setNonEnumerableReadOnly_748( prng, 'stateLength', null );
-		_$setNonEnumerableReadOnly_748( prng, 'byteLength', null );
-		_$setNonEnumerableReadOnly_748( prng, 'toJSON', _$constantFunction_739( null ) );
+		_$setNonEnumerableReadOnly_799( prng, 'seed', null );
+		_$setNonEnumerableReadOnly_799( prng, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_801( prng, 'state', _$constantFunction_790( null ), _$noop_844 );
+		_$setNonEnumerableReadOnly_799( prng, 'stateLength', null );
+		_$setNonEnumerableReadOnly_799( prng, 'byteLength', null );
+		_$setNonEnumerableReadOnly_799( prng, 'toJSON', _$constantFunction_790( null ) );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'seedLength', getSeedLength );
-		_$setNonEnumerableReadWriteAccessor_750( prng, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_748( prng, 'toJSON', toJSON );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_801( prng, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_799( prng, 'toJSON', toJSON );
 	}
-	_$setNonEnumerableReadOnly_748( prng, 'PRNG', rand );
+	_$setNonEnumerableReadOnly_799( prng, 'PRNG', rand );
 	return prng;
 
 	/**
@@ -53552,7 +53552,7 @@ function __factory_570() {
 	* // returns <number>
 	*/
 	function f1() {
-		return _$f_569( rchisq, d1, d2 );
+		return _$f_576( rchisq, d1, d2 );
 	}
 
 	/**
@@ -53588,14 +53588,14 @@ function __factory_570() {
 		) {
 			return NaN;
 		}
-		return _$f_569( rchisq, d1, d2 );
+		return _$f_576( rchisq, d1, d2 );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_570 = __factory_570;
+var _$factory_577 = __factory_577;
 
 /**
 * @license Apache-2.0
@@ -53619,7 +53619,7 @@ var _$factory_570 = __factory_570;
 
 // MODULES //
 
-/* removed: var _$factory_570 = require( './factory.js' ); */;
+/* removed: var _$factory_577 = require( './factory.js' ); */;
 
 
 // MAIN //
@@ -53641,12 +53641,12 @@ var _$factory_570 = __factory_570;
 * var r = f( -2.0, 5.0 );
 * // returns NaN
 */
-var __f_572 = _$factory_570();
+var __f_579 = _$factory_577();
 
 
 // EXPORTS //
 
-var _$f_572 = __f_572;
+var _$f_579 = __f_579;
 
 /**
 * @license Apache-2.0
@@ -53692,19 +53692,19 @@ var _$f_572 = __f_572;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$f_572 = require( './main.js' ); */;
-/* removed: var _$factory_570 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$f_579 = require( './main.js' ); */;
+/* removed: var _$factory_577 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$f_572, 'factory', _$factory_570 );
+_$setNonEnumerableReadOnly_799( _$f_579, 'factory', _$factory_577 );
 
 
 // EXPORTS //
 
-var _$f_571 = _$f_572;
+var _$f_578 = _$f_579;
 
 /**
 * @license Apache-2.0
@@ -53728,7 +53728,7 @@ var _$f_571 = _$f_572;
 
 // MODULES //
 
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
 
 
 // MAIN //
@@ -53772,20 +53772,20 @@ var _$f_571 = _$f_572;
 * var v = variance( NaN, 2.0 );
 * // returns NaN
 */
-function __variance_688( d1, d2 ) {
+function __variance_705( d1, d2 ) {
 	var out;
 	if ( d1 <= 0.0 || d2 <= 4.0 ) {
 		return NaN;
 	}
 	out = 2.0 * d2 * d2 * ( d1 + d2 - 2.0 );
-	out /= d1 * _$pow_469( d2 - 2.0, 2.0 ) * ( d2 - 4.0 );
+	out /= d1 * _$pow_476( d2 - 2.0, 2.0 ) * ( d2 - 4.0 );
 	return out;
 }
 
 
 // EXPORTS //
 
-var _$variance_688 = __variance_688;
+var _$variance_705 = __variance_705;
 
 /**
 * @license Apache-2.0
@@ -53827,12 +53827,12 @@ var _$variance_688 = __variance_688;
 
 // MODULES //
 
-/* removed: var _$variance_688 = require( './variance.js' ); */;
+/* removed: var _$variance_705 = require( './variance.js' ); */;
 
 
 // EXPORTS //
 
-var _$variance_687 = _$variance_688;
+var _$variance_704 = _$variance_705;
 
 /**
 * @license Apache-2.0
@@ -53857,7 +53857,7 @@ var _$variance_687 = _$variance_688;
 // MODULES //
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
 /* removed: var _$PI_206 = require( '@stdlib/constants/math/float64-pi' ); */;
 
 
@@ -53900,7 +53900,7 @@ var _$variance_687 = _$variance_688;
 * var y = pdf( 2.0, 1.0, -2.0 );
 * // returns NaN
 */
-function __pdf_627( x, x0, gamma ) {
+function __pdf_644( x, x0, gamma ) {
 	var denom;
 	if (
 		_$isnan_231( x ) ||
@@ -53910,14 +53910,14 @@ function __pdf_627( x, x0, gamma ) {
 	) {
 		return NaN;
 	}
-	denom = _$PI_206 * gamma * ( 1.0 + _$pow_469( (x-x0)/gamma, 2.0 ) );
+	denom = _$PI_206 * gamma * ( 1.0 + _$pow_476( (x-x0)/gamma, 2.0 ) );
 	return 1.0 / denom;
 }
 
 
 // EXPORTS //
 
-var _$pdf_627 = __pdf_627;
+var _$pdf_644 = __pdf_644;
 
 /**
 * @license Apache-2.0
@@ -53941,9 +53941,9 @@ var _$pdf_627 = __pdf_627;
 
 // MODULES //
 
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
 /* removed: var _$PI_206 = require( '@stdlib/constants/math/float64-pi' ); */;
 
 
@@ -53965,14 +53965,14 @@ var _$pdf_627 = __pdf_627;
 * y = pdf( 3.0 );
 * // returns ~0.127
 */
-function __factory_625( x0, gamma ) {
+function __factory_642( x0, gamma ) {
 	var gpi;
 	if (
 		_$isnan_231( gamma ) ||
 		_$isnan_231( x0 ) ||
 		gamma <= 0.0
 	) {
-		return _$constantFunction_739( NaN );
+		return _$constantFunction_790( NaN );
 	}
 	gpi = gamma * _$PI_206;
 	return pdf;
@@ -53992,14 +53992,14 @@ function __factory_625( x0, gamma ) {
 		if ( _$isnan_231( x ) ) {
 			return NaN;
 		}
-		return 1.0 / ( gpi * (1.0 + _$pow_469( (x-x0)/gamma, 2.0 )) );
+		return 1.0 / ( gpi * (1.0 + _$pow_476( (x-x0)/gamma, 2.0 )) );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_625 = __factory_625;
+var _$factory_642 = __factory_642;
 
 /**
 * @license Apache-2.0
@@ -54043,19 +54043,19 @@ var _$factory_625 = __factory_625;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_627 = require( './pdf.js' ); */;
-/* removed: var _$factory_625 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_644 = require( './pdf.js' ); */;
+/* removed: var _$factory_642 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$pdf_627, 'factory', _$factory_625 );
+_$setNonEnumerableReadOnly_799( _$pdf_644, 'factory', _$factory_642 );
 
 
 // EXPORTS //
 
-var _$pdf_626 = _$pdf_627;
+var _$pdf_643 = _$pdf_644;
 
 /**
 * @license Apache-2.0
@@ -54079,7 +54079,7 @@ var _$pdf_626 = _$pdf_627;
 
 // MODULES //
 
-/* removed: var _$getHighWord_521 = require( '@stdlib/number/float64/base/get-high-word' ); */;
+/* removed: var _$getHighWord_528 = require( '@stdlib/number/float64/base/get-high-word' ); */;
 
 
 // MAIN //
@@ -54108,7 +54108,7 @@ var _$pdf_626 = _$pdf_627;
 */
 function signbit( x ) {
 	// Extract from the input value a higher order word (unsigned 32-bit integer) containing the exponent and sign:
-	var high = _$getHighWord_521( x );
+	var high = _$getHighWord_528( x );
 
 	// Shift off all bits which are not the sign bit and check if the sign bit is on:
 	return ( high >>> 31 ) ? true : false; // eslint-disable-line no-unneeded-ternary
@@ -54117,7 +54117,7 @@ function signbit( x ) {
 
 // EXPORTS //
 
-var _$signbit_536 = signbit;
+var _$signbit_543 = signbit;
 
 /**
 * @license Apache-2.0
@@ -54162,12 +54162,12 @@ var _$signbit_536 = signbit;
 
 // MODULES //
 
-/* removed: var _$signbit_536 = require( './main.js' ); */;
+/* removed: var _$signbit_543 = require( './main.js' ); */;
 
 
 // EXPORTS //
 
-var _$signbit_535 = _$signbit_536;
+var _$signbit_542 = _$signbit_543;
 
 /**
 * @license Apache-2.0
@@ -54524,7 +54524,7 @@ var _$atan_250 = _$atan_249;
 
 /* removed: var _$isInfinite_227 = require( '@stdlib/math/base/assert/is-infinite' ); */;
 /* removed: var _$copysign_271 = require( '@stdlib/math/base/special/copysign' ); */;
-/* removed: var _$signbit_535 = require( '@stdlib/number/float64/base/signbit' ); */;
+/* removed: var _$signbit_542 = require( '@stdlib/number/float64/base/signbit' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$atan_250 = require( '@stdlib/math/base/special/atan' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
@@ -54616,7 +54616,7 @@ function atan2( y, x ) {
 		return _$copysign_271( _$PI_206 / 2.0, y );
 	}
 	if ( y === 0.0 ) {
-		if ( x >= 0.0 && !_$signbit_535( x ) ) {
+		if ( x >= 0.0 && !_$signbit_542( x ) ) {
 			return _$copysign_271( 0.0, y );
 		}
 		return _$copysign_271( _$PI_206, y );
@@ -54729,7 +54729,7 @@ var _$atan2_254 = _$atan2_253;
 
 // VARIABLES //
 
-var __ONE_OVER_PI_618 = 0.3183098861837907;
+var __ONE_OVER_PI_635 = 0.3183098861837907;
 
 
 // MAIN //
@@ -54766,7 +54766,7 @@ var __ONE_OVER_PI_618 = 0.3183098861837907;
 * var y = cdf( 1.0, NaN, 3.0 );
 * // returns NaN
 */
-function __cdf_618( x, x0, gamma ) {
+function __cdf_635( x, x0, gamma ) {
 	if (
 		_$isnan_231( x ) ||
 		_$isnan_231( gamma ) ||
@@ -54775,13 +54775,13 @@ function __cdf_618( x, x0, gamma ) {
 	) {
 		return NaN;
 	}
-	return ( __ONE_OVER_PI_618 * _$atan2_254( x-x0, gamma ) ) + 0.5;
+	return ( __ONE_OVER_PI_635 * _$atan2_254( x-x0, gamma ) ) + 0.5;
 }
 
 
 // EXPORTS //
 
-var _$cdf_618 = __cdf_618;
+var _$cdf_635 = __cdf_635;
 
 /**
 * @license Apache-2.0
@@ -54805,14 +54805,14 @@ var _$cdf_618 = __cdf_618;
 
 // MODULES //
 
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$atan2_254 = require( '@stdlib/math/base/special/atan2' ); */;
 
 
 // VARIABLES //
 
-var __ONE_OVER_PI_619 = 0.3183098861837907;
+var __ONE_OVER_PI_636 = 0.3183098861837907;
 
 
 // MAIN //
@@ -54833,13 +54833,13 @@ var __ONE_OVER_PI_619 = 0.3183098861837907;
 * y = cdf( 12.0 );
 * // returns 0.75
 */
-function __factory_619( x0, gamma ) {
+function __factory_636( x0, gamma ) {
 	if (
 		_$isnan_231( gamma ) ||
 		_$isnan_231( x0 ) ||
 		gamma <= 0.0
 	) {
-		return _$constantFunction_739( NaN );
+		return _$constantFunction_790( NaN );
 	}
 	return cdf;
 
@@ -54858,14 +54858,14 @@ function __factory_619( x0, gamma ) {
 		if ( _$isnan_231( x ) ) {
 			return NaN;
 		}
-		return ( __ONE_OVER_PI_619 * _$atan2_254( x-x0, gamma ) ) + 0.5;
+		return ( __ONE_OVER_PI_636 * _$atan2_254( x-x0, gamma ) ) + 0.5;
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_619 = __factory_619;
+var _$factory_636 = __factory_636;
 
 /**
 * @license Apache-2.0
@@ -54909,19 +54909,19 @@ var _$factory_619 = __factory_619;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_618 = require( './cdf.js' ); */;
-/* removed: var _$factory_619 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_635 = require( './cdf.js' ); */;
+/* removed: var _$factory_636 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$cdf_618, 'factory', _$factory_619 );
+_$setNonEnumerableReadOnly_799( _$cdf_635, 'factory', _$factory_636 );
 
 
 // EXPORTS //
 
-var _$cdf_620 = _$cdf_618;
+var _$cdf_637 = _$cdf_635;
 
 /**
 * @license Apache-2.0
@@ -54960,7 +54960,7 @@ var _$cdf_620 = _$cdf_618;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_451( x ) {
+function __evalpoly_458( x ) {
 	if ( x === 0.0 ) {
 		return 0.13333333333320124;
 	}
@@ -54970,7 +54970,7 @@ function __evalpoly_451( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_451 = __evalpoly_451;
+var _$evalpoly_458 = __evalpoly_458;
 
 /**
 * @license Apache-2.0
@@ -55009,7 +55009,7 @@ var _$evalpoly_451 = __evalpoly_451;
 * @param {number} x - value at which to evaluate the polynomial
 * @returns {number} evaluated polynomial
 */
-function __evalpoly_450( x ) {
+function __evalpoly_457( x ) {
 	if ( x === 0.0 ) {
 		return 0.05396825397622605;
 	}
@@ -55019,7 +55019,7 @@ function __evalpoly_450( x ) {
 
 // EXPORTS //
 
-var _$evalpoly_450 = __evalpoly_450;
+var _$evalpoly_457 = __evalpoly_457;
 
 /**
 * @license Apache-2.0
@@ -55057,20 +55057,20 @@ var _$evalpoly_450 = __evalpoly_450;
 
 // MODULES //
 
-/* removed: var _$getHighWord_521 = require( '@stdlib/number/float64/base/get-high-word' ); */;
-/* removed: var _$setLowWord_532 = require( '@stdlib/number/float64/base/set-low-word' ); */;
-/* removed: var _$evalpoly_451 = require( './polyval_t_odd.js' ); */;
-/* removed: var _$evalpoly_450 = require( './polyval_t_even.js' ); */;
+/* removed: var _$getHighWord_528 = require( '@stdlib/number/float64/base/get-high-word' ); */;
+/* removed: var _$setLowWord_539 = require( '@stdlib/number/float64/base/set-low-word' ); */;
+/* removed: var _$evalpoly_458 = require( './polyval_t_odd.js' ); */;
+/* removed: var _$evalpoly_457 = require( './polyval_t_even.js' ); */;
 
 
 // VARIABLES //
 
-var __PIO4_449 = 7.85398163397448278999e-01;
+var __PIO4_456 = 7.85398163397448278999e-01;
 var PIO4LO = 3.06161699786838301793e-17;
 var T0 = 3.33333333333334091986e-01; // 3FD55555, 55555563
 
 // Absolute value mask: 2147483647 => 0x7fffffff => 01111111111111111111111111111111
-var __HIGH_WORD_ABS_MASK_449 = 0x7fffffff|0; // asm type annotation
+var __HIGH_WORD_ABS_MASK_456 = 0x7fffffff|0; // asm type annotation
 
 
 // MAIN //
@@ -55159,10 +55159,10 @@ function kernelTan( x, y, k ) {
 	var w;
 	var z;
 
-	hx = _$getHighWord_521( x );
+	hx = _$getHighWord_528( x );
 
 	// High word of |x|:
-	ix = (hx & __HIGH_WORD_ABS_MASK_449)|0; // asm type annotation
+	ix = (hx & __HIGH_WORD_ABS_MASK_456)|0; // asm type annotation
 
 	// Case: |x| >= 0.6744
 	if ( ix >= 0x3FE59428 ) {
@@ -55170,7 +55170,7 @@ function kernelTan( x, y, k ) {
 			x = -x;
 			y = -y;
 		}
-		z = __PIO4_449 - x;
+		z = __PIO4_456 - x;
 		w = PIO4LO - y;
 		x = z + w;
 		y = 0.0;
@@ -55179,8 +55179,8 @@ function kernelTan( x, y, k ) {
 	w = z * z;
 
 	// Break x^5*(T[1]+x^2*T[2]+...) into x^5(T[1]+x^4*T[3]+...+x^20*T[11]) + x^5(x^2*(T[2]+x^4*T[4]+...+x^22*T[12]))...
-	r = _$evalpoly_451( w );
-	v = z * _$evalpoly_450( w );
+	r = _$evalpoly_458( w );
+	v = z * _$evalpoly_457( w );
 	s = z * x;
 	r = y + (z * ((s * (r + v)) + y));
 	r += T0 * s;
@@ -55194,11 +55194,11 @@ function kernelTan( x, y, k ) {
 	}
 	// Compute -1/(x+r) accurately...
 	z = w;
-	_$setLowWord_532( z, 0 );
+	_$setLowWord_539( z, 0 );
 	v = r - (z - x); // z + v = r + x
 	a = -1.0 / w; // a = -1/w
 	t = a;
-	_$setLowWord_532( t, 0 );
+	_$setLowWord_539( t, 0 );
 	s = 1.0 + (t * z);
 	return t + (a * (s + (t * v)));
 }
@@ -55206,7 +55206,7 @@ function kernelTan( x, y, k ) {
 
 // EXPORTS //
 
-var _$kernelTan_449 = kernelTan;
+var _$kernelTan_456 = kernelTan;
 
 /**
 * @license Apache-2.0
@@ -55251,12 +55251,12 @@ var _$kernelTan_449 = kernelTan;
 
 // MODULES //
 
-/* removed: var _$kernelTan_449 = require( './kernel_tan.js' ); */;
+/* removed: var _$kernelTan_456 = require( './kernel_tan.js' ); */;
 
 
 // EXPORTS //
 
-var _$kernelTan_448 = _$kernelTan_449;
+var _$kernelTan_455 = _$kernelTan_456;
 
 /**
 * @license Apache-2.0
@@ -55294,27 +55294,27 @@ var _$kernelTan_448 = _$kernelTan_449;
 
 // MODULES //
 
-/* removed: var _$getHighWord_521 = require( '@stdlib/number/float64/base/get-high-word' ); */;
-/* removed: var _$kernelTan_448 = require( '@stdlib/math/base/special/kernel-tan' ); */;
-/* removed: var _$rempio2_482 = require( '@stdlib/math/base/special/rempio2' ); */;
+/* removed: var _$getHighWord_528 = require( '@stdlib/number/float64/base/get-high-word' ); */;
+/* removed: var _$kernelTan_455 = require( '@stdlib/math/base/special/kernel-tan' ); */;
+/* removed: var _$rempio2_489 = require( '@stdlib/math/base/special/rempio2' ); */;
 
 
 // VARIABLES //
 
 // Scratch buffer:
-var __buffer_497 = [ 0.0, 0.0 ]; // WARNING: not thread safe
+var __buffer_504 = [ 0.0, 0.0 ]; // WARNING: not thread safe
 
 // High word absolute value mask: 0x7fffffff => 01111111111111111111111111111111
-var __HIGH_WORD_ABS_MASK_497 = 0x7fffffff|0; // asm type annotation
+var __HIGH_WORD_ABS_MASK_504 = 0x7fffffff|0; // asm type annotation
 
 // High word for pi/4: 0x3fe921fb => 00111111111010010010000111111011
-var __HIGH_WORD_PIO4_497 = 0x3fe921fb|0; // asm type annotation
+var __HIGH_WORD_PIO4_504 = 0x3fe921fb|0; // asm type annotation
 
 // High word exponent mask: 0x7ff00000 => 01111111111100000000000000000000
-var __HIGH_WORD_EXPONENT_MASK_497 = 0x7ff00000|0; // asm type annotation
+var __HIGH_WORD_EXPONENT_MASK_504 = 0x7ff00000|0; // asm type annotation
 
 // High word for a small value: 2^-27 = 7.450580596923828e-9 => high word => 0x3e400000 => 00111110010000000000000000000000
-var __HIGH_WORD_TWO_NEG_27_497 = 0x3e400000|0; // asm type annotation
+var __HIGH_WORD_TWO_NEG_27_504 = 0x3e400000|0; // asm type annotation
 
 
 // MAIN //
@@ -55361,30 +55361,30 @@ function tan( x ) {
 	var ix;
 	var n;
 
-	ix = _$getHighWord_521( x );
-	ix &= __HIGH_WORD_ABS_MASK_497;
+	ix = _$getHighWord_528( x );
+	ix &= __HIGH_WORD_ABS_MASK_504;
 
 	// Case: |x| ~< π/4
-	if ( ix <= __HIGH_WORD_PIO4_497 ) {
+	if ( ix <= __HIGH_WORD_PIO4_504 ) {
 		// Case: |x| < 2**-27
-		if ( ix < __HIGH_WORD_TWO_NEG_27_497 ) {
+		if ( ix < __HIGH_WORD_TWO_NEG_27_504 ) {
 			return x;
 		}
-		return _$kernelTan_448( x, 0.0, 1 );
+		return _$kernelTan_455( x, 0.0, 1 );
 	}
 	// Case: tan(Inf or NaN) is NaN
-	if ( ix >= __HIGH_WORD_EXPONENT_MASK_497 ) {
+	if ( ix >= __HIGH_WORD_EXPONENT_MASK_504 ) {
 		return NaN;
 	}
 	// Argument reduction needed...
-	n = _$rempio2_482( x, __buffer_497 );
-	return _$kernelTan_448( __buffer_497[ 0 ], __buffer_497[ 1 ], 1-((n&1)<<1) );
+	n = _$rempio2_489( x, __buffer_504 );
+	return _$kernelTan_455( __buffer_504[ 0 ], __buffer_504[ 1 ], 1-((n&1)<<1) );
 }
 
 
 // EXPORTS //
 
-var _$tan_497 = tan;
+var _$tan_504 = tan;
 
 /**
 * @license Apache-2.0
@@ -55429,12 +55429,12 @@ var _$tan_497 = tan;
 
 // MODULES //
 
-/* removed: var _$tan_497 = require( './tan.js' ); */;
+/* removed: var _$tan_504 = require( './tan.js' ); */;
 
 
 // EXPORTS //
 
-var _$tan_496 = _$tan_497;
+var _$tan_503 = _$tan_504;
 
 /**
 * @license Apache-2.0
@@ -55459,7 +55459,7 @@ var _$tan_496 = _$tan_497;
 // MODULES //
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$tan_496 = require( '@stdlib/math/base/special/tan' ); */;
+/* removed: var _$tan_503 = require( '@stdlib/math/base/special/tan' ); */;
 /* removed: var _$PI_206 = require( '@stdlib/constants/math/float64-pi' ); */;
 
 
@@ -55510,7 +55510,7 @@ var _$tan_496 = _$tan_497;
 * var y = quantile( 0.5, 0.0, -1.0 );
 * // returns NaN
 */
-function __quantile_630( p, x0, gamma ) {
+function __quantile_647( p, x0, gamma ) {
 	if (
 		_$isnan_231( x0 ) ||
 		_$isnan_231( gamma ) ||
@@ -55521,13 +55521,13 @@ function __quantile_630( p, x0, gamma ) {
 	) {
 		return NaN;
 	}
-	return x0 + ( gamma * _$tan_496( _$PI_206*( p-0.5 ) ) );
+	return x0 + ( gamma * _$tan_503( _$PI_206*( p-0.5 ) ) );
 }
 
 
 // EXPORTS //
 
-var _$quantile_630 = __quantile_630;
+var _$quantile_647 = __quantile_647;
 
 /**
 * @license Apache-2.0
@@ -55551,9 +55551,9 @@ var _$quantile_630 = __quantile_630;
 
 // MODULES //
 
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$tan_496 = require( '@stdlib/math/base/special/tan' ); */;
+/* removed: var _$tan_503 = require( '@stdlib/math/base/special/tan' ); */;
 /* removed: var _$PI_206 = require( '@stdlib/constants/math/float64-pi' ); */;
 
 
@@ -55574,13 +55574,13 @@ var _$quantile_630 = __quantile_630;
 * y = quantile( 0.8 );
 * // returns ~12.753
 */
-function __factory_628( x0, gamma ) {
+function __factory_645( x0, gamma ) {
 	if (
 		_$isnan_231( x0 ) ||
 		_$isnan_231( gamma ) ||
 		gamma <= 0
 	) {
-		return _$constantFunction_739( NaN );
+		return _$constantFunction_790( NaN );
 	}
 	return quantile;
 
@@ -55599,14 +55599,14 @@ function __factory_628( x0, gamma ) {
 		if ( _$isnan_231( p ) || p < 0.0 || p > 1.0 ) {
 			return NaN;
 		}
-		return x0 + ( gamma * _$tan_496( _$PI_206*( p-0.5 ) ) );
+		return x0 + ( gamma * _$tan_503( _$PI_206*( p-0.5 ) ) );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_628 = __factory_628;
+var _$factory_645 = __factory_645;
 
 /**
 * @license Apache-2.0
@@ -55650,19 +55650,19 @@ var _$factory_628 = __factory_628;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_630 = require( './quantile.js' ); */;
-/* removed: var _$factory_628 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_647 = require( './quantile.js' ); */;
+/* removed: var _$factory_645 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$quantile_630, 'factory', _$factory_628 );
+_$setNonEnumerableReadOnly_799( _$quantile_647, 'factory', _$factory_645 );
 
 
 // EXPORTS //
 
-var _$quantile_629 = _$quantile_630;
+var _$quantile_646 = _$quantile_647;
 
 /**
 * @license Apache-2.0
@@ -55710,7 +55710,7 @@ var _$quantile_629 = _$quantile_630;
 * var v = median( 10.0, -0.5 );
 * // returns NaN
 */
-function __median_622( x0, gamma ) {
+function __median_639( x0, gamma ) {
 	if (
 		_$isnan_231( gamma ) ||
 		_$isnan_231( x0 ) ||
@@ -55724,7 +55724,7 @@ function __median_622( x0, gamma ) {
 
 // EXPORTS //
 
-var _$median_622 = __median_622;
+var _$median_639 = __median_639;
 
 /**
 * @license Apache-2.0
@@ -55763,12 +55763,12 @@ var _$median_622 = __median_622;
 
 // MODULES //
 
-/* removed: var _$median_622 = require( './median.js' ); */;
+/* removed: var _$median_639 = require( './median.js' ); */;
 
 
 // EXPORTS //
 
-var _$median_621 = _$median_622;
+var _$median_638 = _$median_639;
 
 /**
 * @license Apache-2.0
@@ -55816,7 +55816,7 @@ var _$median_621 = _$median_622;
 * var v = mode( 10.0, -0.5 );
 * // returns NaN
 */
-function __mode_624( x0, gamma ) {
+function __mode_641( x0, gamma ) {
 	if (
 		_$isnan_231( gamma ) ||
 		_$isnan_231( x0 ) ||
@@ -55830,7 +55830,7 @@ function __mode_624( x0, gamma ) {
 
 // EXPORTS //
 
-var _$mode_624 = __mode_624;
+var _$mode_641 = __mode_641;
 
 /**
 * @license Apache-2.0
@@ -55869,12 +55869,12 @@ var _$mode_624 = __mode_624;
 
 // MODULES //
 
-/* removed: var _$mode_624 = require( './mode.js' ); */;
+/* removed: var _$mode_641 = require( './mode.js' ); */;
 
 
 // EXPORTS //
 
-var _$mode_623 = _$mode_624;
+var _$mode_640 = _$mode_641;
 
 /**
 * @license Apache-2.0
@@ -55898,8 +55898,8 @@ var _$mode_623 = _$mode_624;
 
 // MODULES //
 
-var __isNumber_561 = _$isNumber_134.isPrimitive;
-var __isPositive_561 = _$isPositiveNumber_150.isPrimitive;
+var __isNumber_568 = _$isNumber_134.isPrimitive;
+var __isPositive_568 = _$isPositiveNumber_150.isPrimitive;
 /* removed: var _$isnan_126 = require( '@stdlib/assert/is-nan' ); */;
 
 
@@ -55919,11 +55919,11 @@ var __isPositive_561 = _$isPositiveNumber_150.isPrimitive;
 *     throw err;
 * }
 */
-function __validate_561( x0, gamma ) {
-	if ( !__isNumber_561( x0 ) || _$isnan_126( x0 ) ) {
+function __validate_568( x0, gamma ) {
+	if ( !__isNumber_568( x0 ) || _$isnan_126( x0 ) ) {
 		return new TypeError( 'invalid argument. `x0` must be a number primitive and not `NaN`. Value: `' + x0 + '`.' );
 	}
-	if ( !__isPositive_561( gamma ) ) {
+	if ( !__isPositive_568( gamma ) ) {
 		return new TypeError( 'invalid argument. `gamma` must be a positive number. Value: `' + gamma + '`.' );
 	}
 	return null;
@@ -55932,7 +55932,7 @@ function __validate_561( x0, gamma ) {
 
 // EXPORTS //
 
-var _$validate_561 = __validate_561;
+var _$validate_568 = __validate_568;
 
 /**
 * @license Apache-2.0
@@ -55956,7 +55956,7 @@ var _$validate_561 = __validate_561;
 
 // MODULES //
 
-/* removed: var _$tan_496 = require( '@stdlib/math/base/special/tan' ); */;
+/* removed: var _$tan_503 = require( '@stdlib/math/base/special/tan' ); */;
 /* removed: var _$PI_206 = require( '@stdlib/constants/math/float64-pi' ); */;
 
 
@@ -55972,13 +55972,13 @@ var _$validate_561 = __validate_561;
 * @returns {number} pseudorandom number
 */
 function cauchy( randn, x0, gamma ) {
-	return x0 + ( gamma*_$tan_496( _$PI_206*( randn()-0.5 ) ) );
+	return x0 + ( gamma*_$tan_503( _$PI_206*( randn()-0.5 ) ) );
 }
 
 
 // EXPORTS //
 
-var _$cauchy_557 = cauchy;
+var _$cauchy_564 = cauchy;
 
 /**
 * @license Apache-2.0
@@ -56002,19 +56002,19 @@ var _$cauchy_557 = cauchy;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_746 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_750 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_797 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_801 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_793 = require( '@stdlib/utils/noop' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_844 = require( '@stdlib/utils/noop' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-var __randn_558 = _$randn_582.factory;
+var __randn_565 = _$randn_589.factory;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
-/* removed: var _$validate_561 = require( './validate.js' ); */;
-/* removed: var _$cauchy_557 = require( './cauchy.js' ); */;
+/* removed: var _$validate_568 = require( './validate.js' ); */;
+/* removed: var _$cauchy_564 = require( './cauchy.js' ); */;
 
 
 // MAIN //
@@ -56048,7 +56048,7 @@ var __randn_558 = _$randn_582.factory;
 * var v = cauchy();
 * // returns <number>
 */
-function __factory_558() {
+function __factory_565() {
 	var gamma;
 	var rnorm;
 	var opts;
@@ -56058,7 +56058,7 @@ function __factory_558() {
 	var x0;
 
 	if ( arguments.length === 0 ) {
-		rnorm = __randn_558();
+		rnorm = __randn_565();
 	} else if ( arguments.length === 1 ) {
 		opts = arguments[ 0 ];
 		if ( !_$isPlainObject_144( opts ) ) {
@@ -56068,16 +56068,16 @@ function __factory_558() {
 			if ( !_$isFunction_110( opts.prng ) ) {
 				throw new TypeError( 'invalid option. `prng` option must be a pseudorandom number generator function. Option: `' + opts.prng + '`.' );
 			}
-			rnorm = __randn_558({
+			rnorm = __randn_565({
 				'prng': opts.prng
 			});
 		} else {
-			rnorm = __randn_558( opts );
+			rnorm = __randn_565( opts );
 		}
 	} else {
 		x0 = arguments[ 0 ];
 		gamma = arguments[ 1 ];
-		err = _$validate_561( x0, gamma );
+		err = _$validate_568( x0, gamma );
 		if ( err ) {
 			throw err;
 		}
@@ -56090,14 +56090,14 @@ function __factory_558() {
 				if ( !_$isFunction_110( opts.prng ) ) {
 					throw new TypeError( 'invalid option. `prng` option must be a pseudorandom number generator function. Option: `' + opts.prng + '`.' );
 				}
-				rnorm = __randn_558({
+				rnorm = __randn_565({
 					'prng': opts.prng
 				});
 			} else {
-				rnorm = __randn_558( opts );
+				rnorm = __randn_565( opts );
 			}
 		} else {
-			rnorm = __randn_558();
+			rnorm = __randn_565();
 		}
 	}
 	if ( x0 === void 0 ) {
@@ -56107,25 +56107,25 @@ function __factory_558() {
 	}
 	rand = rnorm.PRNG;
 
-	_$setNonEnumerableReadOnly_748( prng, 'NAME', 'cauchy' );
+	_$setNonEnumerableReadOnly_799( prng, 'NAME', 'cauchy' );
 
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( opts && opts.prng ) {
-		_$setNonEnumerableReadOnly_748( prng, 'seed', null );
-		_$setNonEnumerableReadOnly_748( prng, 'seedLength', null );
-		_$setNonEnumerableReadWriteAccessor_750( prng, 'state', _$constantFunction_739( null ), _$noop_793 );
-		_$setNonEnumerableReadOnly_748( prng, 'stateLength', null );
-		_$setNonEnumerableReadOnly_748( prng, 'byteLength', null );
-		_$setNonEnumerableReadOnly_748( prng, 'toJSON', _$constantFunction_739( null ) );
+		_$setNonEnumerableReadOnly_799( prng, 'seed', null );
+		_$setNonEnumerableReadOnly_799( prng, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_801( prng, 'state', _$constantFunction_790( null ), _$noop_844 );
+		_$setNonEnumerableReadOnly_799( prng, 'stateLength', null );
+		_$setNonEnumerableReadOnly_799( prng, 'byteLength', null );
+		_$setNonEnumerableReadOnly_799( prng, 'toJSON', _$constantFunction_790( null ) );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'seedLength', getSeedLength );
-		_$setNonEnumerableReadWriteAccessor_750( prng, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_748( prng, 'toJSON', toJSON );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_801( prng, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_799( prng, 'toJSON', toJSON );
 	}
-	_$setNonEnumerableReadOnly_748( prng, 'PRNG', rand );
+	_$setNonEnumerableReadOnly_799( prng, 'PRNG', rand );
 	return prng;
 
 	/**
@@ -56223,7 +56223,7 @@ function __factory_558() {
 	* // returns <number>
 	*/
 	function cauchy1() {
-		return _$cauchy_557( rnorm, x0, gamma );
+		return _$cauchy_564( rnorm, x0, gamma );
 	}
 
 	/**
@@ -56250,14 +56250,14 @@ function __factory_558() {
 		) {
 			return NaN;
 		}
-		return _$cauchy_557( rnorm, x0, gamma );
+		return _$cauchy_564( rnorm, x0, gamma );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_558 = __factory_558;
+var _$factory_565 = __factory_565;
 
 /**
 * @license Apache-2.0
@@ -56281,7 +56281,7 @@ var _$factory_558 = __factory_558;
 
 // MODULES //
 
-/* removed: var _$factory_558 = require( './factory.js' ); */;
+/* removed: var _$factory_565 = require( './factory.js' ); */;
 
 
 // MAIN //
@@ -56303,12 +56303,12 @@ var _$factory_558 = __factory_558;
 * var v = cauchy( 0.0, -1.0 );
 * // returns NaN
 */
-var __cauchy_560 = _$factory_558();
+var __cauchy_567 = _$factory_565();
 
 
 // EXPORTS //
 
-var _$cauchy_560 = __cauchy_560;
+var _$cauchy_567 = __cauchy_567;
 
 /**
 * @license Apache-2.0
@@ -56354,19 +56354,19 @@ var _$cauchy_560 = __cauchy_560;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cauchy_560 = require( './main.js' ); */;
-/* removed: var _$factory_558 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cauchy_567 = require( './main.js' ); */;
+/* removed: var _$factory_565 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$cauchy_560, 'factory', _$factory_558 );
+_$setNonEnumerableReadOnly_799( _$cauchy_567, 'factory', _$factory_565 );
 
 
 // EXPORTS //
 
-var _$cauchy_559 = _$cauchy_560;
+var _$cauchy_566 = _$cauchy_567;
 
 /**
 * @license Apache-2.0
@@ -56406,17 +56406,17 @@ var _$cauchy_559 = _$cauchy_560;
 
 // MODULES //
 
-/* removed: var _$gammaLanczosSumExpGScaled_319 = require( '@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled' ); */;
-/* removed: var _$gammaln_383 = require( '@stdlib/math/base/special/gammaln' ); */;
-/* removed: var _$gamma_325 = require( '@stdlib/math/base/special/gamma' ); */;
-/* removed: var _$log1p_458 = require( '@stdlib/math/base/special/log1p' ); */;
-/* removed: var _$sqrt_494 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$gammaLanczosSumExpGScaled_326 = require( '@stdlib/math/base/special/gamma-lanczos-sum-expg-scaled' ); */;
+/* removed: var _$gammaln_390 = require( '@stdlib/math/base/special/gammaln' ); */;
+/* removed: var _$gamma_332 = require( '@stdlib/math/base/special/gamma' ); */;
+/* removed: var _$log1p_465 = require( '@stdlib/math/base/special/log1p' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
 /* removed: var _$abs_242 = require( '@stdlib/math/base/special/abs' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
-/* removed: var _$max_461 = require( '@stdlib/math/base/special/max' ); */;
-/* removed: var _$min_465 = require( '@stdlib/math/base/special/min' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$max_468 = require( '@stdlib/math/base/special/max' ); */;
+/* removed: var _$min_472 = require( '@stdlib/math/base/special/min' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$FLOAT64_MAX_LN_200 = require( '@stdlib/constants/math/float64-max-ln' ); */;
 /* removed: var _$FLOAT64_MIN_LN_204 = require( '@stdlib/constants/math/float64-min-ln' ); */;
 /* removed: var _$FLOAT64_GAMMA_LANCZOS_G_192 = require( '@stdlib/constants/math/float64-gamma-lanczos-g' ); */;
@@ -56433,7 +56433,7 @@ var _$cauchy_559 = _$cauchy_560;
 * @param {number} z - input value
 * @returns {number} function value
 */
-function __regularisedGammaPrefix_700( a, z ) {
+function __regularisedGammaPrefix_717( a, z ) {
 	var prefix;
 	var amza;
 	var agh;
@@ -56448,40 +56448,40 @@ function __regularisedGammaPrefix_700( a, z ) {
 		// Treat a < 1 as a special case because our Lanczos approximations are optimized against the factorials with a > 1, and for high precision types very small values of `a` can give rather erroneous results for gamma:
 		if ( z <= _$FLOAT64_MIN_LN_204 ) {
 			// Use logs, so should be free of cancellation errors:
-			return _$exp_303( ( a * _$ln_454(z) ) - z - _$gammaln_383( a ) );
+			return _$exp_310( ( a * _$ln_461(z) ) - z - _$gammaln_390( a ) );
 		}
 		// No danger of overflow as gamma(a) < 1/a for small a, so direct calculation:
-		return _$pow_469( z, a ) * _$exp_303( -z ) / _$gamma_325( a );
+		return _$pow_476( z, a ) * _$exp_310( -z ) / _$gamma_332( a );
 	}
 	if ( _$abs_242(d*d*a) <= 100.0 && a > 150.0 ) {
 		// Special case for large a and a ~ z:
-		prefix = ( a * ( _$log1p_458( d ) - d ) ) + ( z * ( 0.5-_$FLOAT64_GAMMA_LANCZOS_G_192 ) / agh );
-		prefix = _$exp_303( prefix );
+		prefix = ( a * ( _$log1p_465( d ) - d ) ) + ( z * ( 0.5-_$FLOAT64_GAMMA_LANCZOS_G_192 ) / agh );
+		prefix = _$exp_310( prefix );
 	}
 	else {
 		// General case. Direct computation is most accurate, but use various fallbacks for different parts of the problem domain:
-		alz = a * _$ln_454(z / agh);
+		alz = a * _$ln_461(z / agh);
 		amz = a - z;
 		if (
-			_$min_465(alz, amz) <= _$FLOAT64_MIN_LN_204 ||
-			_$max_461(alz, amz) >= _$FLOAT64_MAX_LN_200
+			_$min_472(alz, amz) <= _$FLOAT64_MIN_LN_204 ||
+			_$max_468(alz, amz) >= _$FLOAT64_MAX_LN_200
 		) {
 			amza = amz / a;
 			if (
-				_$min_465(alz, amz)/2.0 > _$FLOAT64_MIN_LN_204 &&
-				_$max_461(alz, amz)/2.0 < _$FLOAT64_MAX_LN_200
+				_$min_472(alz, amz)/2.0 > _$FLOAT64_MIN_LN_204 &&
+				_$max_468(alz, amz)/2.0 < _$FLOAT64_MAX_LN_200
 			) {
 				// Compute square root of the result and then square it:
-				sq = _$pow_469( z / agh, a / 2.0 ) * _$exp_303( amz / 2.0 );
+				sq = _$pow_476( z / agh, a / 2.0 ) * _$exp_310( amz / 2.0 );
 				prefix = sq * sq;
 			}
 			else if (
-				_$min_465(alz, amz)/4.0 > _$FLOAT64_MIN_LN_204 &&
-				_$max_461(alz, amz)/4.0 < _$FLOAT64_MAX_LN_200 &&
+				_$min_472(alz, amz)/4.0 > _$FLOAT64_MIN_LN_204 &&
+				_$max_468(alz, amz)/4.0 < _$FLOAT64_MAX_LN_200 &&
 				z > a
 			) {
 				// Compute the 4th root of the result then square it twice:
-				sq = _$pow_469( z / agh, a / 4.0 ) * _$exp_303( amz / 4.0 );
+				sq = _$pow_476( z / agh, a / 4.0 ) * _$exp_310( amz / 4.0 );
 				prefix = sq * sq;
 				prefix *= prefix;
 			}
@@ -56489,25 +56489,25 @@ function __regularisedGammaPrefix_700( a, z ) {
 				amza > _$FLOAT64_MIN_LN_204 &&
 				amza < _$FLOAT64_MAX_LN_200
 			) {
-				prefix = _$pow_469( (z * _$exp_303(amza)) / agh, a );
+				prefix = _$pow_476( (z * _$exp_310(amza)) / agh, a );
 			}
 			else {
-				prefix = _$exp_303( alz + amz );
+				prefix = _$exp_310( alz + amz );
 			}
 		}
 		else
 		{
-			prefix = _$pow_469( z / agh, a ) * _$exp_303( amz );
+			prefix = _$pow_476( z / agh, a ) * _$exp_310( amz );
 		}
 	}
-	prefix *= _$sqrt_494( agh / _$E_187 ) / _$gammaLanczosSumExpGScaled_319( a );
+	prefix *= _$sqrt_501( agh / _$E_187 ) / _$gammaLanczosSumExpGScaled_326( a );
 	return prefix;
 }
 
 
 // EXPORTS //
 
-var _$regularisedGammaPrefix_700 = __regularisedGammaPrefix_700;
+var _$regularisedGammaPrefix_717 = __regularisedGammaPrefix_717;
 
 /**
 * @license Apache-2.0
@@ -56547,12 +56547,12 @@ var _$regularisedGammaPrefix_700 = __regularisedGammaPrefix_700;
 
 // MODULES //
 
-/* removed: var _$gammaln_383 = require( '@stdlib/math/base/special/gammaln' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$gammaln_390 = require( '@stdlib/math/base/special/gammaln' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
 /* removed: var _$FLOAT64_MAX_202 = require( '@stdlib/constants/math/float64-max' ); */;
-/* removed: var _$regularisedGammaPrefix_700 = require( './regularised_gamma_prefix.js' ); */;
+/* removed: var _$regularisedGammaPrefix_717 = require( './regularised_gamma_prefix.js' ); */;
 
 
 // MAIN //
@@ -56579,14 +56579,14 @@ function gammaPDerivative( a, x ) {
 		}
 		return ( a === 1.0 ) ? 1.0 : _$FLOAT64_PINF_207;
 	}
-	f1 = _$regularisedGammaPrefix_700( a, x );
+	f1 = _$regularisedGammaPrefix_717( a, x );
 	if ( x < 1.0 && ( _$FLOAT64_MAX_202 * x < f1 ) ) {
 		return _$FLOAT64_PINF_207;
 	}
 	if ( f1 === 0.0 ) {
 		// Underflow in calculation, use logs instead:
-		f1 = (a * _$ln_454( x )) - x - _$gammaln_383( a ) - _$ln_454( x );
-		f1 = _$exp_303( f1 );
+		f1 = (a * _$ln_461( x )) - x - _$gammaln_390( a ) - _$ln_461( x );
+		f1 = _$exp_310( f1 );
 	} else {
 		f1 /= x;
 	}
@@ -56596,7 +56596,7 @@ function gammaPDerivative( a, x ) {
 
 // EXPORTS //
 
-var _$gammaPDerivative_697 = gammaPDerivative;
+var _$gammaPDerivative_714 = gammaPDerivative;
 
 /**
 * @license Apache-2.0
@@ -56622,7 +56622,7 @@ var _$gammaPDerivative_697 = gammaPDerivative;
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
-/* removed: var _$gammaPDerivative_697 = require( './gamma_p_derivative.js' ); */;
+/* removed: var _$gammaPDerivative_714 = require( './gamma_p_derivative.js' ); */;
 
 
 // MAIN //
@@ -56669,7 +56669,7 @@ var _$gammaPDerivative_697 = gammaPDerivative;
 * var y = pdf( 2.0, 1.0, -1.0 );
 * // returns NaN
 */
-function __pdf_699( x, alpha, beta ) {
+function __pdf_716( x, alpha, beta ) {
 	if (
 		_$isnan_231( x ) ||
 		_$isnan_231( alpha ) ||
@@ -56686,13 +56686,13 @@ function __pdf_699( x, alpha, beta ) {
 		// Point mass at 0...
 		return ( x === 0.0 ) ? _$FLOAT64_PINF_207 : 0.0;
 	}
-	return _$gammaPDerivative_697( alpha, x * beta ) * beta;
+	return _$gammaPDerivative_714( alpha, x * beta ) * beta;
 }
 
 
 // EXPORTS //
 
-var _$pdf_699 = __pdf_699;
+var _$pdf_716 = __pdf_716;
 
 /**
 * @license Apache-2.0
@@ -56745,7 +56745,7 @@ var _$pdf_699 = __pdf_699;
 * var y = pdf( 0.0, NaN );
 * // returns NaN
 */
-function __pdf_651( x, mu ) {
+function __pdf_668( x, mu ) {
 	if ( _$isnan_231( x ) || _$isnan_231( mu ) ) {
 		return NaN;
 	}
@@ -56755,7 +56755,7 @@ function __pdf_651( x, mu ) {
 
 // EXPORTS //
 
-var _$pdf_651 = __pdf_651;
+var _$pdf_668 = __pdf_668;
 
 /**
 * @license Apache-2.0
@@ -56779,7 +56779,7 @@ var _$pdf_651 = __pdf_651;
 
 // MODULES //
 
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
@@ -56801,9 +56801,9 @@ var _$pdf_651 = __pdf_651;
 * y = pdf( 5.0 );
 * // returns Infinity
 */
-function __factory_649( mu ) {
+function __factory_666( mu ) {
 	if ( _$isnan_231( mu ) ) {
-		return _$constantFunction_739( NaN );
+		return _$constantFunction_790( NaN );
 	}
 	return pdf;
 
@@ -56829,7 +56829,7 @@ function __factory_649( mu ) {
 
 // EXPORTS //
 
-var _$factory_649 = __factory_649;
+var _$factory_666 = __factory_666;
 
 /**
 * @license Apache-2.0
@@ -56873,19 +56873,19 @@ var _$factory_649 = __factory_649;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_651 = require( './pdf.js' ); */;
-/* removed: var _$factory_649 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_668 = require( './pdf.js' ); */;
+/* removed: var _$factory_666 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$pdf_651, 'factory', _$factory_649 );
+_$setNonEnumerableReadOnly_799( _$pdf_668, 'factory', _$factory_666 );
 
 
 // EXPORTS //
 
-var _$pdf_650 = _$pdf_651;
+var _$pdf_667 = _$pdf_668;
 
 /**
 * @license Apache-2.0
@@ -56909,11 +56909,11 @@ var _$pdf_650 = _$pdf_651;
 
 // MODULES //
 
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
-var degenerate = _$pdf_650.factory;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
+var degenerate = _$pdf_667.factory;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
-/* removed: var _$gammaPDerivative_697 = require( './gamma_p_derivative.js' ); */;
+/* removed: var _$gammaPDerivative_714 = require( './gamma_p_derivative.js' ); */;
 
 
 // MAIN //
@@ -56934,14 +56934,14 @@ var degenerate = _$pdf_650.factory;
 * y = pdf( 4.0 );
 * // returns ~0.067
 */
-function __factory_696( alpha, beta ) {
+function __factory_713( alpha, beta ) {
 	if (
 		_$isnan_231( alpha ) ||
 		_$isnan_231( beta ) ||
 		alpha < 0.0 ||
 		beta <= 0.0
 	) {
-		return _$constantFunction_739( NaN );
+		return _$constantFunction_790( NaN );
 	}
 	if ( alpha === 0.0 ) {
 		return degenerate( 0.0 );
@@ -56966,14 +56966,14 @@ function __factory_696( alpha, beta ) {
 		if ( x < 0.0 || x === _$FLOAT64_PINF_207 ) {
 			return 0.0;
 		}
-		return _$gammaPDerivative_697( alpha, x * beta ) * beta;
+		return _$gammaPDerivative_714( alpha, x * beta ) * beta;
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_696 = __factory_696;
+var _$factory_713 = __factory_713;
 
 /**
 * @license Apache-2.0
@@ -57013,19 +57013,19 @@ var _$factory_696 = __factory_696;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_699 = require( './pdf.js' ); */;
-/* removed: var _$factory_696 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_716 = require( './pdf.js' ); */;
+/* removed: var _$factory_713 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$pdf_699, 'factory', _$factory_696 );
+_$setNonEnumerableReadOnly_799( _$pdf_716, 'factory', _$factory_713 );
 
 
 // EXPORTS //
 
-var _$pdf_698 = _$pdf_699;
+var _$pdf_715 = _$pdf_716;
 
 /**
 * @license Apache-2.0
@@ -57049,7 +57049,7 @@ var _$pdf_698 = _$pdf_699;
 
 // MODULES //
 
-/* removed: var _$pdf_698 = require( '@stdlib/stats/base/dists/gamma/pdf' ); */;
+/* removed: var _$pdf_715 = require( '@stdlib/stats/base/dists/gamma/pdf' ); */;
 
 
 // MAIN //
@@ -57086,14 +57086,14 @@ var _$pdf_698 = _$pdf_699;
 * var y = pdf( 2.0, -1.0 );
 * // returns NaN
 */
-function __pdf_640( x, k ) {
-	return _$pdf_698( x, k/2.0, 0.5 );
+function __pdf_657( x, k ) {
+	return _$pdf_715( x, k/2.0, 0.5 );
 }
 
 
 // EXPORTS //
 
-var _$pdf_640 = __pdf_640;
+var _$pdf_657 = __pdf_657;
 
 /**
 * @license Apache-2.0
@@ -57117,7 +57117,7 @@ var _$pdf_640 = __pdf_640;
 
 // MODULES //
 
-var gammaFactory = _$pdf_698.factory;
+var gammaFactory = _$pdf_715.factory;
 
 
 // MAIN //
@@ -57137,14 +57137,14 @@ var gammaFactory = _$pdf_698.factory;
 * y = pdf( 1.0 );
 * // returns ~0.141
 */
-function __factory_638( k ) {
+function __factory_655( k ) {
 	return gammaFactory( k/2.0, 0.5 );
 }
 
 
 // EXPORTS //
 
-var _$factory_638 = __factory_638;
+var _$factory_655 = __factory_655;
 
 /**
 * @license Apache-2.0
@@ -57188,19 +57188,19 @@ var _$factory_638 = __factory_638;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_640 = require( './pdf.js' ); */;
-/* removed: var _$factory_638 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_657 = require( './pdf.js' ); */;
+/* removed: var _$factory_655 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$pdf_640, 'factory', _$factory_638 );
+_$setNonEnumerableReadOnly_799( _$pdf_657, 'factory', _$factory_655 );
 
 
 // EXPORTS //
 
-var _$pdf_639 = _$pdf_640;
+var _$pdf_656 = _$pdf_657;
 
 /**
 * @license Apache-2.0
@@ -57224,7 +57224,7 @@ var _$pdf_639 = _$pdf_640;
 
 // MODULES //
 
-/* removed: var _$gammainc_341 = require( '@stdlib/math/base/special/gammainc' ); */;
+/* removed: var _$gammainc_348 = require( '@stdlib/math/base/special/gammainc' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
 
@@ -57279,7 +57279,7 @@ var _$pdf_639 = _$pdf_640;
 * var y = cdf( 2.0, 1.0, -1.0 );
 * // returns NaN
 */
-function __cdf_689( x, alpha, beta ) {
+function __cdf_706( x, alpha, beta ) {
 	if (
 		_$isnan_231( x ) ||
 		_$isnan_231( alpha ) ||
@@ -57298,13 +57298,13 @@ function __cdf_689( x, alpha, beta ) {
 	if ( x === _$FLOAT64_PINF_207 ) {
 		return 1.0;
 	}
-	return _$gammainc_341( x * beta, alpha );
+	return _$gammainc_348( x * beta, alpha );
 }
 
 
 // EXPORTS //
 
-var _$cdf_689 = __cdf_689;
+var _$cdf_706 = __cdf_706;
 
 /**
 * @license Apache-2.0
@@ -57360,7 +57360,7 @@ var _$cdf_689 = __cdf_689;
 * var y = cdf( 0.0, NaN );
 * // returns NaN
 */
-function __cdf_646( x, mu ) {
+function __cdf_663( x, mu ) {
 	if ( _$isnan_231( x ) || _$isnan_231( mu ) ) {
 		return NaN;
 	}
@@ -57370,7 +57370,7 @@ function __cdf_646( x, mu ) {
 
 // EXPORTS //
 
-var _$cdf_646 = __cdf_646;
+var _$cdf_663 = __cdf_663;
 
 /**
 * @license Apache-2.0
@@ -57394,7 +57394,7 @@ var _$cdf_646 = __cdf_646;
 
 // MODULES //
 
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
 
@@ -57418,9 +57418,9 @@ var _$cdf_646 = __cdf_646;
 * y = cdf( NaN );
 * // returns NaN
 */
-function __factory_647( mu ) {
+function __factory_664( mu ) {
 	if ( _$isnan_231( mu ) ) {
-		return _$constantFunction_739( NaN );
+		return _$constantFunction_790( NaN );
 	}
 	return cdf;
 
@@ -57446,7 +57446,7 @@ function __factory_647( mu ) {
 
 // EXPORTS //
 
-var _$factory_647 = __factory_647;
+var _$factory_664 = __factory_664;
 
 /**
 * @license Apache-2.0
@@ -57493,19 +57493,19 @@ var _$factory_647 = __factory_647;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_646 = require( './cdf.js' ); */;
-/* removed: var _$factory_647 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_663 = require( './cdf.js' ); */;
+/* removed: var _$factory_664 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$cdf_646, 'factory', _$factory_647 );
+_$setNonEnumerableReadOnly_799( _$cdf_663, 'factory', _$factory_664 );
 
 
 // EXPORTS //
 
-var _$cdf_648 = _$cdf_646;
+var _$cdf_665 = _$cdf_663;
 
 /**
 * @license Apache-2.0
@@ -57529,9 +57529,9 @@ var _$cdf_648 = _$cdf_646;
 
 // MODULES //
 
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
-var __degenerate_690 = _$cdf_648.factory;
-/* removed: var _$gammainc_341 = require( '@stdlib/math/base/special/gammainc' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
+var __degenerate_707 = _$cdf_665.factory;
+/* removed: var _$gammainc_348 = require( '@stdlib/math/base/special/gammainc' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
 
@@ -57553,17 +57553,17 @@ var __degenerate_690 = _$cdf_648.factory;
 * y = cdf( 8.0 );
 * // returns ~0.794
 */
-function __factory_690( alpha, beta ) {
+function __factory_707( alpha, beta ) {
 	if (
 		_$isnan_231( alpha ) ||
 		_$isnan_231( beta ) ||
 		alpha < 0.0 ||
 		beta <= 0.0
 	) {
-		return _$constantFunction_739( NaN );
+		return _$constantFunction_790( NaN );
 	}
 	if ( alpha === 0.0 ) {
-		return __degenerate_690( 0.0 );
+		return __degenerate_707( 0.0 );
 	}
 	return cdf;
 
@@ -57585,14 +57585,14 @@ function __factory_690( alpha, beta ) {
 		if ( x === _$FLOAT64_PINF_207 ) {
 			return 1.0;
 		}
-		return _$gammainc_341( x * beta, alpha );
+		return _$gammainc_348( x * beta, alpha );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_690 = __factory_690;
+var _$factory_707 = __factory_707;
 
 /**
 * @license Apache-2.0
@@ -57638,19 +57638,19 @@ var _$factory_690 = __factory_690;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_689 = require( './cdf.js' ); */;
-/* removed: var _$factory_690 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_706 = require( './cdf.js' ); */;
+/* removed: var _$factory_707 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$cdf_689, 'factory', _$factory_690 );
+_$setNonEnumerableReadOnly_799( _$cdf_706, 'factory', _$factory_707 );
 
 
 // EXPORTS //
 
-var _$cdf_691 = _$cdf_689;
+var _$cdf_708 = _$cdf_706;
 
 /**
 * @license Apache-2.0
@@ -57674,7 +57674,7 @@ var _$cdf_691 = _$cdf_689;
 
 // MODULES //
 
-/* removed: var _$cdf_691 = require( '@stdlib/stats/base/dists/gamma/cdf' ); */;
+/* removed: var _$cdf_708 = require( '@stdlib/stats/base/dists/gamma/cdf' ); */;
 
 
 // MAIN //
@@ -57711,14 +57711,14 @@ var _$cdf_691 = _$cdf_689;
 * var y = cdf( 2.0, -1.0 );
 * // returns NaN
 */
-function __cdf_631( x, k ) {
-	return _$cdf_691( x, k/2.0, 0.5 );
+function __cdf_648( x, k ) {
+	return _$cdf_708( x, k/2.0, 0.5 );
 }
 
 
 // EXPORTS //
 
-var _$cdf_631 = __cdf_631;
+var _$cdf_648 = __cdf_648;
 
 /**
 * @license Apache-2.0
@@ -57742,7 +57742,7 @@ var _$cdf_631 = __cdf_631;
 
 // MODULES //
 
-var __gammaFactory_632 = _$cdf_691.factory;
+var __gammaFactory_649 = _$cdf_708.factory;
 
 
 // MAIN //
@@ -57762,14 +57762,14 @@ var __gammaFactory_632 = _$cdf_691.factory;
 * y = cdf( 1.5 );
 * // returns ~0.318
 */
-function __factory_632( k ) {
-	return __gammaFactory_632( k/2.0, 0.5 );
+function __factory_649( k ) {
+	return __gammaFactory_649( k/2.0, 0.5 );
 }
 
 
 // EXPORTS //
 
-var _$factory_632 = __factory_632;
+var _$factory_649 = __factory_649;
 
 /**
 * @license Apache-2.0
@@ -57819,19 +57819,19 @@ var _$factory_632 = __factory_632;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_631 = require( './cdf.js' ); */;
-/* removed: var _$factory_632 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_648 = require( './cdf.js' ); */;
+/* removed: var _$factory_649 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$cdf_631, 'factory', _$factory_632 );
+_$setNonEnumerableReadOnly_799( _$cdf_648, 'factory', _$factory_649 );
 
 
 // EXPORTS //
 
-var _$cdf_633 = _$cdf_631;
+var _$cdf_650 = _$cdf_648;
 
 /**
 * @license Apache-2.0
@@ -57856,7 +57856,7 @@ var _$cdf_633 = _$cdf_631;
 // MODULES //
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$gammaincinv_366 = require( '@stdlib/math/base/special/gammaincinv' ); */;
+/* removed: var _$gammaincinv_373 = require( '@stdlib/math/base/special/gammaincinv' ); */;
 
 
 // MAIN //
@@ -57907,7 +57907,7 @@ var _$cdf_633 = _$cdf_631;
 * var y = quantile( 0.5, 1.0, -1.0 );
 * // returns NaN
 */
-function __quantile_703( p, alpha, beta ) {
+function __quantile_720( p, alpha, beta ) {
 	if (
 		_$isnan_231( alpha ) ||
 		_$isnan_231( beta ) ||
@@ -57922,13 +57922,13 @@ function __quantile_703( p, alpha, beta ) {
 	if ( alpha === 0.0 ) {
 		return 0.0;
 	}
-	return ( 1.0 / beta ) * _$gammaincinv_366( p, alpha );
+	return ( 1.0 / beta ) * _$gammaincinv_373( p, alpha );
 }
 
 
 // EXPORTS //
 
-var _$quantile_703 = __quantile_703;
+var _$quantile_720 = __quantile_720;
 
 /**
 * @license Apache-2.0
@@ -57988,7 +57988,7 @@ var _$quantile_703 = __quantile_703;
 * var y = quantile( 0.0, NaN );
 * // returns NaN
 */
-function __quantile_654( p, mu ) {
+function __quantile_671( p, mu ) {
 	if ( _$isnan_231( p ) || p < 0.0 || p > 1.0 ) {
 		return NaN;
 	}
@@ -57998,7 +57998,7 @@ function __quantile_654( p, mu ) {
 
 // EXPORTS //
 
-var _$quantile_654 = __quantile_654;
+var _$quantile_671 = __quantile_671;
 
 /**
 * @license Apache-2.0
@@ -58022,7 +58022,7 @@ var _$quantile_654 = __quantile_654;
 
 // MODULES //
 
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
 
@@ -58046,9 +58046,9 @@ var _$quantile_654 = __quantile_654;
 * y = quantile( 1.1 );
 * // returns NaN
 */
-function __factory_652( mu ) {
+function __factory_669( mu ) {
 	if ( _$isnan_231( mu ) ) {
-		return _$constantFunction_739( NaN );
+		return _$constantFunction_790( NaN );
 	}
 	return quantile;
 
@@ -58074,7 +58074,7 @@ function __factory_652( mu ) {
 
 // EXPORTS //
 
-var _$factory_652 = __factory_652;
+var _$factory_669 = __factory_669;
 
 /**
 * @license Apache-2.0
@@ -58118,19 +58118,19 @@ var _$factory_652 = __factory_652;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_654 = require( './quantile.js' ); */;
-/* removed: var _$factory_652 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_671 = require( './quantile.js' ); */;
+/* removed: var _$factory_669 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$quantile_654, 'factory', _$factory_652 );
+_$setNonEnumerableReadOnly_799( _$quantile_671, 'factory', _$factory_669 );
 
 
 // EXPORTS //
 
-var _$quantile_653 = _$quantile_654;
+var _$quantile_670 = _$quantile_671;
 
 /**
 * @license Apache-2.0
@@ -58154,9 +58154,9 @@ var _$quantile_653 = _$quantile_654;
 
 // MODULES //
 
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$gammaincinv_366 = require( '@stdlib/math/base/special/gammaincinv' ); */;
-var __degenerate_701 = _$quantile_653.factory;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$gammaincinv_373 = require( '@stdlib/math/base/special/gammaincinv' ); */;
+var __degenerate_718 = _$quantile_670.factory;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
 
@@ -58177,17 +58177,17 @@ var __degenerate_701 = _$quantile_653.factory;
 * y = quantile( 0.8 );
 * // returns ~7.289
 */
-function __factory_701( alpha, beta ) {
+function __factory_718( alpha, beta ) {
 	if (
 		_$isnan_231( alpha ) ||
 		_$isnan_231( beta ) ||
 		alpha < 0.0 ||
 		beta <= 0.0
 	) {
-		return _$constantFunction_739( NaN );
+		return _$constantFunction_790( NaN );
 	}
 	if ( alpha === 0.0 ) {
-		return __degenerate_701( 0.0 );
+		return __degenerate_718( 0.0 );
 	}
 	return quantile;
 
@@ -58206,14 +58206,14 @@ function __factory_701( alpha, beta ) {
 		if ( _$isnan_231( p ) || p < 0.0 || p > 1.0 ) {
 			return NaN;
 		}
-		return ( 1.0 / beta ) * _$gammaincinv_366( p, alpha );
+		return ( 1.0 / beta ) * _$gammaincinv_373( p, alpha );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_701 = __factory_701;
+var _$factory_718 = __factory_718;
 
 /**
 * @license Apache-2.0
@@ -58256,19 +58256,19 @@ var _$factory_701 = __factory_701;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_703 = require( './quantile.js' ); */;
-/* removed: var _$factory_701 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_720 = require( './quantile.js' ); */;
+/* removed: var _$factory_718 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$quantile_703, 'factory', _$factory_701 );
+_$setNonEnumerableReadOnly_799( _$quantile_720, 'factory', _$factory_718 );
 
 
 // EXPORTS //
 
-var _$quantile_702 = _$quantile_703;
+var _$quantile_719 = _$quantile_720;
 
 /**
 * @license Apache-2.0
@@ -58292,7 +58292,7 @@ var _$quantile_702 = _$quantile_703;
 
 // MODULES //
 
-/* removed: var _$quantile_702 = require( '@stdlib/stats/base/dists/gamma/quantile' ); */;
+/* removed: var _$quantile_719 = require( '@stdlib/stats/base/dists/gamma/quantile' ); */;
 
 
 // MAIN //
@@ -58337,14 +58337,14 @@ var _$quantile_702 = _$quantile_703;
 * var y = quantile( 0.5, -1.0 );
 * // returns NaN
 */
-function __quantile_643( p, k ) {
-	return _$quantile_702( p, k/2.0, 0.5 );
+function __quantile_660( p, k ) {
+	return _$quantile_719( p, k/2.0, 0.5 );
 }
 
 
 // EXPORTS //
 
-var _$quantile_643 = __quantile_643;
+var _$quantile_660 = __quantile_660;
 
 /**
 * @license Apache-2.0
@@ -58368,7 +58368,7 @@ var _$quantile_643 = __quantile_643;
 
 // MODULES //
 
-var __gammaFactory_641 = _$quantile_702.factory;
+var __gammaFactory_658 = _$quantile_719.factory;
 
 
 // MAIN //
@@ -58388,14 +58388,14 @@ var __gammaFactory_641 = _$quantile_702.factory;
 * y = quantile( 1.0 );
 * // returns Infinity
 */
-function __factory_641( k ) {
-	return __gammaFactory_641( k/2.0, 0.5 );
+function __factory_658( k ) {
+	return __gammaFactory_658( k/2.0, 0.5 );
 }
 
 
 // EXPORTS //
 
-var _$factory_641 = __factory_641;
+var _$factory_658 = __factory_658;
 
 /**
 * @license Apache-2.0
@@ -58439,19 +58439,19 @@ var _$factory_641 = __factory_641;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_643 = require( './quantile.js' ); */;
-/* removed: var _$factory_641 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_660 = require( './quantile.js' ); */;
+/* removed: var _$factory_658 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$quantile_643, 'factory', _$factory_641 );
+_$setNonEnumerableReadOnly_799( _$quantile_660, 'factory', _$factory_658 );
 
 
 // EXPORTS //
 
-var _$quantile_642 = _$quantile_643;
+var _$quantile_659 = _$quantile_660;
 
 /**
 * @license Apache-2.0
@@ -58502,7 +58502,7 @@ var _$quantile_642 = _$quantile_643;
 * var v = mean( NaN );
 * // returns NaN
 */
-function __mean_635( k ) {
+function __mean_652( k ) {
 	if ( _$isnan_231( k ) || k < 0.0 ) {
 		return NaN;
 	}
@@ -58512,7 +58512,7 @@ function __mean_635( k ) {
 
 // EXPORTS //
 
-var _$mean_635 = __mean_635;
+var _$mean_652 = __mean_652;
 
 /**
 * @license Apache-2.0
@@ -58551,12 +58551,12 @@ var _$mean_635 = __mean_635;
 
 // MODULES //
 
-/* removed: var _$mean_635 = require( './mean.js' ); */;
+/* removed: var _$mean_652 = require( './mean.js' ); */;
 
 
 // EXPORTS //
 
-var _$mean_634 = _$mean_635;
+var _$mean_651 = _$mean_652;
 
 /**
 * @license Apache-2.0
@@ -58581,7 +58581,7 @@ var _$mean_634 = _$mean_635;
 // MODULES //
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$max_461 = require( '@stdlib/math/base/special/max' ); */;
+/* removed: var _$max_468 = require( '@stdlib/math/base/special/max' ); */;
 
 
 // MAIN //
@@ -58608,17 +58608,17 @@ var _$mean_634 = _$mean_635;
 * var v = mode( NaN );
 * // returns NaN
 */
-function __mode_637( k ) {
+function __mode_654( k ) {
 	if ( _$isnan_231( k ) || k < 0.0 ) {
 		return NaN;
 	}
-	return _$max_461( k - 2.0, 0.0 );
+	return _$max_468( k - 2.0, 0.0 );
 }
 
 
 // EXPORTS //
 
-var _$mode_637 = __mode_637;
+var _$mode_654 = __mode_654;
 
 /**
 * @license Apache-2.0
@@ -58657,12 +58657,12 @@ var _$mode_637 = __mode_637;
 
 // MODULES //
 
-/* removed: var _$mode_637 = require( './mode.js' ); */;
+/* removed: var _$mode_654 = require( './mode.js' ); */;
 
 
 // EXPORTS //
 
-var _$mode_636 = _$mode_637;
+var _$mode_653 = _$mode_654;
 
 /**
 * @license Apache-2.0
@@ -58713,7 +58713,7 @@ var _$mode_636 = _$mode_637;
 * var v = variance( NaN );
 * // returns NaN
 */
-function __variance_645( k ) {
+function __variance_662( k ) {
 	if ( _$isnan_231( k ) || k < 0.0 ) {
 		return NaN;
 	}
@@ -58723,7 +58723,7 @@ function __variance_645( k ) {
 
 // EXPORTS //
 
-var _$variance_645 = __variance_645;
+var _$variance_662 = __variance_662;
 
 /**
 * @license Apache-2.0
@@ -58762,12 +58762,12 @@ var _$variance_645 = __variance_645;
 
 // MODULES //
 
-/* removed: var _$variance_645 = require( './variance.js' ); */;
+/* removed: var _$variance_662 = require( './variance.js' ); */;
 
 
 // EXPORTS //
 
-var _$variance_644 = _$variance_645;
+var _$variance_661 = _$variance_662;
 
 /**
 * @license Apache-2.0
@@ -58792,7 +58792,7 @@ var _$variance_644 = _$variance_645;
 // MODULES //
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
 
 
@@ -58830,7 +58830,7 @@ var _$variance_644 = _$variance_645;
 * var y = pdf( 2.0, -1.0 );
 * // returns NaN
 */
-function __pdf_666( x, lambda ) {
+function __pdf_683( x, lambda ) {
 	var scale;
 	if (
 		_$isnan_231( x ) ||
@@ -58844,13 +58844,13 @@ function __pdf_666( x, lambda ) {
 		return 0.0;
 	}
 	scale = 1.0 / lambda;
-	return _$exp_303( -x / scale ) / scale;
+	return _$exp_310( -x / scale ) / scale;
 }
 
 
 // EXPORTS //
 
-var _$pdf_666 = __pdf_666;
+var _$pdf_683 = __pdf_683;
 
 /**
 * @license Apache-2.0
@@ -58874,9 +58874,9 @@ var _$pdf_666 = __pdf_666;
 
 // MODULES //
 
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
 
 
@@ -58896,10 +58896,10 @@ var _$pdf_666 = __pdf_666;
 * y = pdf( 1.0 );
 * // returns ~0.303
 */
-function __factory_664( lambda ) {
+function __factory_681( lambda ) {
 	var scale;
 	if ( _$isnan_231( lambda ) || lambda < 0.0 || lambda === _$FLOAT64_PINF_207 ) {
-		return _$constantFunction_739( NaN );
+		return _$constantFunction_790( NaN );
 	}
 	scale = 1.0 / lambda;
 	return pdf;
@@ -58922,14 +58922,14 @@ function __factory_664( lambda ) {
 		if ( x < 0.0 ) {
 			return 0.0;
 		}
-		return _$exp_303( -x / scale ) / scale;
+		return _$exp_310( -x / scale ) / scale;
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_664 = __factory_664;
+var _$factory_681 = __factory_681;
 
 /**
 * @license Apache-2.0
@@ -58973,19 +58973,19 @@ var _$factory_664 = __factory_664;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_666 = require( './pdf.js' ); */;
-/* removed: var _$factory_664 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_683 = require( './pdf.js' ); */;
+/* removed: var _$factory_681 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$pdf_666, 'factory', _$factory_664 );
+_$setNonEnumerableReadOnly_799( _$pdf_683, 'factory', _$factory_681 );
 
 
 // EXPORTS //
 
-var _$pdf_665 = _$pdf_666;
+var _$pdf_682 = _$pdf_683;
 
 /**
 * @license Apache-2.0
@@ -59010,7 +59010,7 @@ var _$pdf_665 = _$pdf_666;
 // MODULES //
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
 
 
@@ -59048,7 +59048,7 @@ var _$pdf_665 = _$pdf_666;
 * var y = cdf( 2.0, -1.0 );
 * // returns NaN
 */
-function __cdf_655( x, lambda ) {
+function __cdf_672( x, lambda ) {
 	if (
 		_$isnan_231( lambda ) ||
 		lambda < 0.0 ||
@@ -59059,13 +59059,13 @@ function __cdf_655( x, lambda ) {
 	if ( x < 0.0 ) {
 		return 0.0;
 	}
-	return 1.0 - _$exp_303( -lambda * x );
+	return 1.0 - _$exp_310( -lambda * x );
 }
 
 
 // EXPORTS //
 
-var _$cdf_655 = __cdf_655;
+var _$cdf_672 = __cdf_672;
 
 /**
 * @license Apache-2.0
@@ -59089,9 +59089,9 @@ var _$cdf_655 = __cdf_655;
 
 // MODULES //
 
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
 
 
@@ -59111,13 +59111,13 @@ var _$cdf_655 = __cdf_655;
 * y = cdf( 1.0 );
 * // returns ~0.393
 */
-function __factory_656( lambda ) {
+function __factory_673( lambda ) {
 	if (
 		_$isnan_231( lambda ) ||
 		lambda < 0.0 ||
 		lambda === _$FLOAT64_PINF_207
 	) {
-		return _$constantFunction_739( NaN );
+		return _$constantFunction_790( NaN );
 	}
 	return cdf;
 
@@ -59136,14 +59136,14 @@ function __factory_656( lambda ) {
 		if ( x < 0.0 ) {
 			return 0.0;
 		}
-		return 1.0 - _$exp_303( -lambda * x );
+		return 1.0 - _$exp_310( -lambda * x );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_656 = __factory_656;
+var _$factory_673 = __factory_673;
 
 /**
 * @license Apache-2.0
@@ -59183,19 +59183,19 @@ var _$factory_656 = __factory_656;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_655 = require( './cdf.js' ); */;
-/* removed: var _$factory_656 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_672 = require( './cdf.js' ); */;
+/* removed: var _$factory_673 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$cdf_655, 'factory', _$factory_656 );
+_$setNonEnumerableReadOnly_799( _$cdf_672, 'factory', _$factory_673 );
 
 
 // EXPORTS //
 
-var _$cdf_657 = _$cdf_655;
+var _$cdf_674 = _$cdf_672;
 
 /**
 * @license Apache-2.0
@@ -59220,7 +59220,7 @@ var _$cdf_657 = _$cdf_655;
 // MODULES //
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
 
 
@@ -59262,7 +59262,7 @@ var _$cdf_657 = _$cdf_655;
 * var y = quantile( 0.5, -1.0 );
 * // returns NaN
 */
-function __quantile_669( p, lambda ) {
+function __quantile_686( p, lambda ) {
 	if (
 		_$isnan_231( lambda ) ||
 		lambda < 0.0 ||
@@ -59273,13 +59273,13 @@ function __quantile_669( p, lambda ) {
 	) {
 		return NaN;
 	}
-	return -_$ln_454( 1.0 - p ) / lambda;
+	return -_$ln_461( 1.0 - p ) / lambda;
 }
 
 
 // EXPORTS //
 
-var _$quantile_669 = __quantile_669;
+var _$quantile_686 = __quantile_686;
 
 /**
 * @license Apache-2.0
@@ -59303,9 +59303,9 @@ var _$quantile_669 = __quantile_669;
 
 // MODULES //
 
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
 
 
@@ -59325,9 +59325,9 @@ var _$quantile_669 = __quantile_669;
 * y = quantile( 1.0 );
 * // returns Infinity
 */
-function __factory_667( lambda ) {
+function __factory_684( lambda ) {
 	if ( lambda < 0.0 || lambda === _$FLOAT64_PINF_207 || _$isnan_231( lambda ) ) {
-		return _$constantFunction_739( NaN );
+		return _$constantFunction_790( NaN );
 	}
 	return quantile;
 
@@ -59346,14 +59346,14 @@ function __factory_667( lambda ) {
 		if ( _$isnan_231( p ) || p < 0.0 || p > 1.0 ) {
 			return NaN;
 		}
-		return -_$ln_454( 1.0 - p ) / lambda;
+		return -_$ln_461( 1.0 - p ) / lambda;
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_667 = __factory_667;
+var _$factory_684 = __factory_684;
 
 /**
 * @license Apache-2.0
@@ -59397,19 +59397,19 @@ var _$factory_667 = __factory_667;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_669 = require( './quantile.js' ); */;
-/* removed: var _$factory_667 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_686 = require( './quantile.js' ); */;
+/* removed: var _$factory_684 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$quantile_669, 'factory', _$factory_667 );
+_$setNonEnumerableReadOnly_799( _$quantile_686, 'factory', _$factory_684 );
 
 
 // EXPORTS //
 
-var _$quantile_668 = _$quantile_669;
+var _$quantile_685 = _$quantile_686;
 
 /**
 * @license Apache-2.0
@@ -59460,7 +59460,7 @@ var _$quantile_668 = _$quantile_669;
 * var v = mean( NaN );
 * // returns NaN
 */
-function __mean_659( lambda ) {
+function __mean_676( lambda ) {
 	if ( _$isnan_231( lambda ) || lambda < 0.0 ) {
 		return NaN;
 	}
@@ -59470,7 +59470,7 @@ function __mean_659( lambda ) {
 
 // EXPORTS //
 
-var _$mean_659 = __mean_659;
+var _$mean_676 = __mean_676;
 
 /**
 * @license Apache-2.0
@@ -59509,12 +59509,12 @@ var _$mean_659 = __mean_659;
 
 // MODULES //
 
-/* removed: var _$mean_659 = require( './mean.js' ); */;
+/* removed: var _$mean_676 = require( './mean.js' ); */;
 
 
 // EXPORTS //
 
-var _$mean_658 = _$mean_659;
+var _$mean_675 = _$mean_676;
 
 /**
 * @license Apache-2.0
@@ -59566,7 +59566,7 @@ var _$mean_658 = _$mean_659;
 * var v = median( NaN );
 * // returns NaN
 */
-function __median_661( lambda ) {
+function __median_678( lambda ) {
 	if ( _$isnan_231( lambda ) || lambda < 0.0 ) {
 		return NaN;
 	}
@@ -59576,7 +59576,7 @@ function __median_661( lambda ) {
 
 // EXPORTS //
 
-var _$median_661 = __median_661;
+var _$median_678 = __median_678;
 
 /**
 * @license Apache-2.0
@@ -59615,12 +59615,12 @@ var _$median_661 = __median_661;
 
 // MODULES //
 
-/* removed: var _$median_661 = require( './median.js' ); */;
+/* removed: var _$median_678 = require( './median.js' ); */;
 
 
 // EXPORTS //
 
-var _$median_660 = _$median_661;
+var _$median_677 = _$median_678;
 
 /**
 * @license Apache-2.0
@@ -59671,7 +59671,7 @@ var _$median_660 = _$median_661;
 * var v = mode( NaN );
 * // returns NaN
 */
-function __mode_663( lambda ) {
+function __mode_680( lambda ) {
 	if ( _$isnan_231( lambda ) || lambda < 0.0 ) {
 		return NaN;
 	}
@@ -59681,7 +59681,7 @@ function __mode_663( lambda ) {
 
 // EXPORTS //
 
-var _$mode_663 = __mode_663;
+var _$mode_680 = __mode_680;
 
 /**
 * @license Apache-2.0
@@ -59720,12 +59720,12 @@ var _$mode_663 = __mode_663;
 
 // MODULES //
 
-/* removed: var _$mode_663 = require( './mode.js' ); */;
+/* removed: var _$mode_680 = require( './mode.js' ); */;
 
 
 // EXPORTS //
 
-var _$mode_662 = _$mode_663;
+var _$mode_679 = _$mode_680;
 
 /**
 * @license Apache-2.0
@@ -59749,7 +59749,7 @@ var _$mode_662 = _$mode_663;
 
 // MODULES //
 
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 
 
 // MAIN //
@@ -59763,13 +59763,13 @@ var _$mode_662 = _$mode_663;
 * @returns {NonNegativeNumber} pseudorandom number
 */
 function exponential( rand, lambda ) {
-	return -_$ln_454( 1.0 - rand() ) / lambda;
+	return -_$ln_461( 1.0 - rand() ) / lambda;
 }
 
 
 // EXPORTS //
 
-var _$exponential_565 = exponential;
+var _$exponential_572 = exponential;
 
 /**
 * @license Apache-2.0
@@ -59793,19 +59793,19 @@ var _$exponential_565 = exponential;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_746 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_750 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
-var __isPositive_566 = _$isPositiveNumber_150.isPrimitive;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_797 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_801 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+var __isPositive_573 = _$isPositiveNumber_150.isPrimitive;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_793 = require( '@stdlib/utils/noop' ); */;
-var __randu_566 = _$mt19937_591.factory;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_844 = require( '@stdlib/utils/noop' ); */;
+var __randu_573 = _$mt19937_603.factory;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
-/* removed: var _$exponential_565 = require( './exponential.js' ); */;
+/* removed: var _$exponential_572 = require( './exponential.js' ); */;
 
 
 // MAIN //
@@ -59842,14 +59842,14 @@ var __randu_566 = _$mt19937_591.factory;
 * var v = exponential( 0.5 );
 * // returns <number>
 */
-function __factory_566() {
+function __factory_573() {
 	var lambda;
 	var opts;
 	var rand;
 	var prng;
 
 	if ( arguments.length === 0 ) {
-		rand = __randu_566();
+		rand = __randu_573();
 	} else if (
 		arguments.length === 1 &&
 		_$isPlainObject_144( arguments[ 0 ] )
@@ -59861,11 +59861,11 @@ function __factory_566() {
 			}
 			rand = opts.prng;
 		} else {
-			rand = __randu_566( opts );
+			rand = __randu_573( opts );
 		}
 	} else {
 		lambda = arguments[ 0 ];
-		if ( !__isPositive_566( lambda ) ) {
+		if ( !__isPositive_573( lambda ) ) {
 			throw new TypeError( 'invalid argument. First argument must be a positive number. Value: `' + lambda + '`.' );
 		}
 		if ( arguments.length > 1 ) {
@@ -59879,10 +59879,10 @@ function __factory_566() {
 				}
 				rand = opts.prng;
 			} else {
-				rand = __randu_566( opts );
+				rand = __randu_573( opts );
 			}
 		} else {
-			rand = __randu_566();
+			rand = __randu_573();
 		}
 	}
 	if ( lambda === void 0 ) {
@@ -59890,25 +59890,25 @@ function __factory_566() {
 	} else {
 		prng = exponential1;
 	}
-	_$setNonEnumerableReadOnly_748( prng, 'NAME', 'exponential' );
+	_$setNonEnumerableReadOnly_799( prng, 'NAME', 'exponential' );
 
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( opts && opts.prng ) {
-		_$setNonEnumerableReadOnly_748( prng, 'seed', null );
-		_$setNonEnumerableReadOnly_748( prng, 'seedLength', null );
-		_$setNonEnumerableReadWriteAccessor_750( prng, 'state', _$constantFunction_739( null ), _$noop_793 );
-		_$setNonEnumerableReadOnly_748( prng, 'stateLength', null );
-		_$setNonEnumerableReadOnly_748( prng, 'byteLength', null );
-		_$setNonEnumerableReadOnly_748( prng, 'toJSON', _$constantFunction_739( null ) );
-		_$setNonEnumerableReadOnly_748( prng, 'PRNG', rand );
+		_$setNonEnumerableReadOnly_799( prng, 'seed', null );
+		_$setNonEnumerableReadOnly_799( prng, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_801( prng, 'state', _$constantFunction_790( null ), _$noop_844 );
+		_$setNonEnumerableReadOnly_799( prng, 'stateLength', null );
+		_$setNonEnumerableReadOnly_799( prng, 'byteLength', null );
+		_$setNonEnumerableReadOnly_799( prng, 'toJSON', _$constantFunction_790( null ) );
+		_$setNonEnumerableReadOnly_799( prng, 'PRNG', rand );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'seedLength', getSeedLength );
-		_$setNonEnumerableReadWriteAccessor_750( prng, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_748( prng, 'toJSON', toJSON );
-		_$setNonEnumerableReadOnly_748( prng, 'PRNG', rand );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_801( prng, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_799( prng, 'toJSON', toJSON );
+		_$setNonEnumerableReadOnly_799( prng, 'PRNG', rand );
 		rand = rand.normalized;
 	}
 	return prng;
@@ -60008,7 +60008,7 @@ function __factory_566() {
 	* // returns <number>
 	*/
 	function exponential1() {
-		return _$exponential_565( rand, lambda );
+		return _$exponential_572( rand, lambda );
 	}
 
 	/**
@@ -60029,14 +60029,14 @@ function __factory_566() {
 		) {
 			return NaN;
 		}
-		return _$exponential_565( rand, lambda );
+		return _$exponential_572( rand, lambda );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_566 = __factory_566;
+var _$factory_573 = __factory_573;
 
 /**
 * @license Apache-2.0
@@ -60060,7 +60060,7 @@ var _$factory_566 = __factory_566;
 
 // MODULES //
 
-/* removed: var _$factory_566 = require( './factory.js' ); */;
+/* removed: var _$factory_573 = require( './factory.js' ); */;
 
 
 // MAIN //
@@ -60085,12 +60085,12 @@ var _$factory_566 = __factory_566;
 * var v = exponential( NaN );
 * // returns NaN
 */
-var __exponential_568 = _$factory_566();
+var __exponential_575 = _$factory_573();
 
 
 // EXPORTS //
 
-var _$exponential_568 = __exponential_568;
+var _$exponential_575 = __exponential_575;
 
 /**
 * @license Apache-2.0
@@ -60136,19 +60136,19 @@ var _$exponential_568 = __exponential_568;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$exponential_568 = require( './main.js' ); */;
-/* removed: var _$factory_566 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$exponential_575 = require( './main.js' ); */;
+/* removed: var _$factory_573 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$exponential_568, 'factory', _$factory_566 );
+_$setNonEnumerableReadOnly_799( _$exponential_575, 'factory', _$factory_573 );
 
 
 // EXPORTS //
 
-var _$exponential_567 = _$exponential_568;
+var _$exponential_574 = _$exponential_575;
 
 /**
 * @license Apache-2.0
@@ -60199,7 +60199,7 @@ var _$exponential_567 = _$exponential_568;
 * var v = variance( NaN );
 * // returns NaN
 */
-function __variance_671( lambda ) {
+function __variance_688( lambda ) {
 	if ( _$isnan_231( lambda ) || lambda < 0.0 ) {
 		return NaN;
 	}
@@ -60209,7 +60209,7 @@ function __variance_671( lambda ) {
 
 // EXPORTS //
 
-var _$variance_671 = __variance_671;
+var _$variance_688 = __variance_688;
 
 /**
 * @license Apache-2.0
@@ -60248,12 +60248,12 @@ var _$variance_671 = __variance_671;
 
 // MODULES //
 
-/* removed: var _$variance_671 = require( './variance.js' ); */;
+/* removed: var _$variance_688 = require( './variance.js' ); */;
 
 
 // EXPORTS //
 
-var _$variance_670 = _$variance_671;
+var _$variance_687 = _$variance_688;
 
 /**
 * @license Apache-2.0
@@ -60312,7 +60312,7 @@ var _$variance_670 = _$variance_671;
 * var v = mean( NaN, 2.0 );
 * // returns NaN
 */
-function __mean_693( alpha, beta ) {
+function __mean_710( alpha, beta ) {
 	if ( alpha <= 0.0 || beta <= 0.0 ) {
 		return NaN;
 	}
@@ -60322,7 +60322,7 @@ function __mean_693( alpha, beta ) {
 
 // EXPORTS //
 
-var _$mean_693 = __mean_693;
+var _$mean_710 = __mean_710;
 
 /**
 * @license Apache-2.0
@@ -60364,12 +60364,12 @@ var _$mean_693 = __mean_693;
 
 // MODULES //
 
-/* removed: var _$mean_693 = require( './mean.js' ); */;
+/* removed: var _$mean_710 = require( './mean.js' ); */;
 
 
 // EXPORTS //
 
-var _$mean_692 = _$mean_693;
+var _$mean_709 = _$mean_710;
 
 /**
 * @license Apache-2.0
@@ -60432,7 +60432,7 @@ var _$mean_692 = _$mean_693;
 * var v = mode( NaN, 2.0 );
 * // returns NaN
 */
-function __mode_695( alpha, beta ) {
+function __mode_712( alpha, beta ) {
 	if ( alpha < 1.0 || beta <= 0.0 ) {
 		return NaN;
 	}
@@ -60442,7 +60442,7 @@ function __mode_695( alpha, beta ) {
 
 // EXPORTS //
 
-var _$mode_695 = __mode_695;
+var _$mode_712 = __mode_712;
 
 /**
 * @license Apache-2.0
@@ -60484,12 +60484,12 @@ var _$mode_695 = __mode_695;
 
 // MODULES //
 
-/* removed: var _$mode_695 = require( './mode.js' ); */;
+/* removed: var _$mode_712 = require( './mode.js' ); */;
 
 
 // EXPORTS //
 
-var _$mode_694 = _$mode_695;
+var _$mode_711 = _$mode_712;
 
 /**
 * @license Apache-2.0
@@ -60548,7 +60548,7 @@ var _$mode_694 = _$mode_695;
 * var v = variance( NaN, 2.0 );
 * // returns NaN
 */
-function __variance_705( alpha, beta ) {
+function __variance_722( alpha, beta ) {
 	if ( alpha <= 0.0 || beta <= 0.0 ) {
 		return NaN;
 	}
@@ -60558,7 +60558,7 @@ function __variance_705( alpha, beta ) {
 
 // EXPORTS //
 
-var _$variance_705 = __variance_705;
+var _$variance_722 = __variance_722;
 
 /**
 * @license Apache-2.0
@@ -60600,12 +60600,12 @@ var _$variance_705 = __variance_705;
 
 // MODULES //
 
-/* removed: var _$variance_705 = require( './variance.js' ); */;
+/* removed: var _$variance_722 = require( './variance.js' ); */;
 
 
 // EXPORTS //
 
-var _$variance_704 = _$variance_705;
+var _$variance_721 = _$variance_722;
 
 /**
 * @license Apache-2.0
@@ -60629,10 +60629,10 @@ var _$variance_704 = _$variance_705;
 
 // MODULES //
 
-/* removed: var _$gammaln_383 = require( '@stdlib/math/base/special/gammaln' ); */;
+/* removed: var _$gammaln_390 = require( '@stdlib/math/base/special/gammaln' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 
 
 // MAIN //
@@ -60679,7 +60679,7 @@ var _$variance_704 = _$variance_705;
 * var y = pdf( 2.0, 1.0, -1.0 );
 * // returns NaN
 */
-function __pdf_715( x, alpha, beta ) {
+function __pdf_732( x, alpha, beta ) {
 	var lnl;
 	if (
 		_$isnan_231( x ) ||
@@ -60693,16 +60693,16 @@ function __pdf_715( x, alpha, beta ) {
 	if ( x <= 0.0 ) {
 		return 0.0;
 	}
-	lnl = (alpha * _$ln_454( beta )) - _$gammaln_383( alpha );
-	lnl -= (alpha + 1.0) * _$ln_454( x );
+	lnl = (alpha * _$ln_461( beta )) - _$gammaln_390( alpha );
+	lnl -= (alpha + 1.0) * _$ln_461( x );
 	lnl -= beta / x;
-	return _$exp_303( lnl );
+	return _$exp_310( lnl );
 }
 
 
 // EXPORTS //
 
-var _$pdf_715 = __pdf_715;
+var _$pdf_732 = __pdf_732;
 
 /**
 * @license Apache-2.0
@@ -60726,11 +60726,11 @@ var _$pdf_715 = __pdf_715;
 
 // MODULES //
 
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$gammaln_383 = require( '@stdlib/math/base/special/gammaln' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$gammaln_390 = require( '@stdlib/math/base/special/gammaln' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$exp_303 = require( '@stdlib/math/base/special/exp' ); */;
-/* removed: var _$ln_454 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
 
 
 // MAIN //
@@ -60751,7 +60751,7 @@ var _$pdf_715 = __pdf_715;
 * y = pdf( 2.0 );
 * // returns ~0.05
 */
-function __factory_713( alpha, beta ) {
+function __factory_730( alpha, beta ) {
 	var firstTerm;
 	if (
 		_$isnan_231( alpha ) ||
@@ -60759,9 +60759,9 @@ function __factory_713( alpha, beta ) {
 		alpha <= 0.0 ||
 		beta <= 0.0
 	) {
-		return _$constantFunction_739( NaN );
+		return _$constantFunction_790( NaN );
 	}
-	firstTerm = ( alpha * _$ln_454( beta ) ) - _$gammaln_383( alpha );
+	firstTerm = ( alpha * _$ln_461( beta ) ) - _$gammaln_390( alpha );
 	return pdf;
 
 	/**
@@ -60783,15 +60783,15 @@ function __factory_713( alpha, beta ) {
 		if ( x <= 0.0 ) {
 			return 0.0;
 		}
-		lnl = firstTerm - (( alpha + 1.0 ) * _$ln_454( x )) - (beta / x);
-		return _$exp_303( lnl );
+		lnl = firstTerm - (( alpha + 1.0 ) * _$ln_461( x )) - (beta / x);
+		return _$exp_310( lnl );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_713 = __factory_713;
+var _$factory_730 = __factory_730;
 
 /**
 * @license Apache-2.0
@@ -60831,19 +60831,19 @@ var _$factory_713 = __factory_713;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_715 = require( './pdf.js' ); */;
-/* removed: var _$factory_713 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_732 = require( './pdf.js' ); */;
+/* removed: var _$factory_730 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$pdf_715, 'factory', _$factory_713 );
+_$setNonEnumerableReadOnly_799( _$pdf_732, 'factory', _$factory_730 );
 
 
 // EXPORTS //
 
-var _$pdf_714 = _$pdf_715;
+var _$pdf_731 = _$pdf_732;
 
 /**
 * @license Apache-2.0
@@ -60867,7 +60867,7 @@ var _$pdf_714 = _$pdf_715;
 
 // MODULES //
 
-/* removed: var _$gammainc_341 = require( '@stdlib/math/base/special/gammainc' ); */;
+/* removed: var _$gammainc_348 = require( '@stdlib/math/base/special/gammainc' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
 
@@ -60921,7 +60921,7 @@ var _$pdf_714 = _$pdf_715;
 * var y = cdf( 2.0, 1.0, -1.0 );
 * // returns NaN
 */
-function __cdf_706( x, alpha, beta ) {
+function __cdf_723( x, alpha, beta ) {
 	if (
 		_$isnan_231( x ) ||
 		_$isnan_231( alpha ) ||
@@ -60934,13 +60934,13 @@ function __cdf_706( x, alpha, beta ) {
 	if ( x <= 0.0 ) {
 		return 0.0;
 	}
-	return _$gammainc_341( beta / x, alpha, true, true );
+	return _$gammainc_348( beta / x, alpha, true, true );
 }
 
 
 // EXPORTS //
 
-var _$cdf_706 = __cdf_706;
+var _$cdf_723 = __cdf_723;
 
 /**
 * @license Apache-2.0
@@ -60964,8 +60964,8 @@ var _$cdf_706 = __cdf_706;
 
 // MODULES //
 
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$gammainc_341 = require( '@stdlib/math/base/special/gammainc' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$gammainc_348 = require( '@stdlib/math/base/special/gammainc' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
 
@@ -60987,14 +60987,14 @@ var _$cdf_706 = __cdf_706;
 * y = cdf( 2.0 );
 * // returns ~0.96
 */
-function __factory_707( alpha, beta ) {
+function __factory_724( alpha, beta ) {
 	if (
 		_$isnan_231( alpha ) ||
 		_$isnan_231( beta ) ||
 		alpha <= 0.0 ||
 		beta <= 0.0
 	) {
-		return _$constantFunction_739( NaN );
+		return _$constantFunction_790( NaN );
 	}
 	return cdf;
 
@@ -61016,14 +61016,14 @@ function __factory_707( alpha, beta ) {
 		if ( x <= 0 ) {
 			return 0;
 		}
-		return _$gammainc_341( beta / x, alpha, true, true );
+		return _$gammainc_348( beta / x, alpha, true, true );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_707 = __factory_707;
+var _$factory_724 = __factory_724;
 
 /**
 * @license Apache-2.0
@@ -61069,19 +61069,19 @@ var _$factory_707 = __factory_707;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_706 = require( './cdf.js' ); */;
-/* removed: var _$factory_707 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_723 = require( './cdf.js' ); */;
+/* removed: var _$factory_724 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$cdf_706, 'factory', _$factory_707 );
+_$setNonEnumerableReadOnly_799( _$cdf_723, 'factory', _$factory_724 );
 
 
 // EXPORTS //
 
-var _$cdf_708 = _$cdf_706;
+var _$cdf_725 = _$cdf_723;
 
 /**
 * @license Apache-2.0
@@ -61105,7 +61105,7 @@ var _$cdf_708 = _$cdf_706;
 
 // MODULES //
 
-/* removed: var _$gammaincinv_366 = require( '@stdlib/math/base/special/gammaincinv' ); */;
+/* removed: var _$gammaincinv_373 = require( '@stdlib/math/base/special/gammaincinv' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
 
@@ -61156,7 +61156,7 @@ var _$cdf_708 = _$cdf_706;
 * var y = quantile( 0.5, 1.0, -1.0 );
 * // returns NaN
 */
-function __quantile_718( p, alpha, beta ) {
+function __quantile_735( p, alpha, beta ) {
 	if (
 		_$isnan_231( alpha ) ||
 		_$isnan_231( beta ) ||
@@ -61168,13 +61168,13 @@ function __quantile_718( p, alpha, beta ) {
 	) {
 		return NaN;
 	}
-	return beta / _$gammaincinv_366( p, alpha, true );
+	return beta / _$gammaincinv_373( p, alpha, true );
 }
 
 
 // EXPORTS //
 
-var _$quantile_718 = __quantile_718;
+var _$quantile_735 = __quantile_735;
 
 /**
 * @license Apache-2.0
@@ -61198,8 +61198,8 @@ var _$quantile_718 = __quantile_718;
 
 // MODULES //
 
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$gammaincinv_366 = require( '@stdlib/math/base/special/gammaincinv' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$gammaincinv_373 = require( '@stdlib/math/base/special/gammaincinv' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
 
@@ -61220,14 +61220,14 @@ var _$quantile_718 = __quantile_718;
 * y = quantile( 0.8 );
 * // returns ~0.427
 */
-function __factory_716( alpha, beta ) {
+function __factory_733( alpha, beta ) {
 	if (
 		_$isnan_231( alpha ) ||
 		_$isnan_231( beta ) ||
 		alpha <= 0.0 ||
 		beta <= 0.0
 	) {
-		return _$constantFunction_739( NaN );
+		return _$constantFunction_790( NaN );
 	}
 	return quantile;
 
@@ -61246,14 +61246,14 @@ function __factory_716( alpha, beta ) {
 		if ( _$isnan_231( p ) || p < 0.0 || p > 1.0 ) {
 			return NaN;
 		}
-		return beta / _$gammaincinv_366( p, alpha, true );
+		return beta / _$gammaincinv_373( p, alpha, true );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_716 = __factory_716;
+var _$factory_733 = __factory_733;
 
 /**
 * @license Apache-2.0
@@ -61296,19 +61296,19 @@ var _$factory_716 = __factory_716;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_718 = require( './quantile.js' ); */;
-/* removed: var _$factory_716 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_735 = require( './quantile.js' ); */;
+/* removed: var _$factory_733 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$quantile_718, 'factory', _$factory_716 );
+_$setNonEnumerableReadOnly_799( _$quantile_735, 'factory', _$factory_733 );
 
 
 // EXPORTS //
 
-var _$quantile_717 = _$quantile_718;
+var _$quantile_734 = _$quantile_735;
 
 /**
 * @license Apache-2.0
@@ -61367,7 +61367,7 @@ var _$quantile_717 = _$quantile_718;
 * var v = mean( NaN, 2.0 );
 * // returns NaN
 */
-function __mean_710( alpha, beta ) {
+function __mean_727( alpha, beta ) {
 	if ( alpha <= 1.0 || beta <= 0.0 ) {
 		return NaN;
 	}
@@ -61377,7 +61377,7 @@ function __mean_710( alpha, beta ) {
 
 // EXPORTS //
 
-var _$mean_710 = __mean_710;
+var _$mean_727 = __mean_727;
 
 /**
 * @license Apache-2.0
@@ -61416,12 +61416,12 @@ var _$mean_710 = __mean_710;
 
 // MODULES //
 
-/* removed: var _$mean_710 = require( './mean.js' ); */;
+/* removed: var _$mean_727 = require( './mean.js' ); */;
 
 
 // EXPORTS //
 
-var _$mean_709 = _$mean_710;
+var _$mean_726 = _$mean_727;
 
 /**
 * @license Apache-2.0
@@ -61480,7 +61480,7 @@ var _$mean_709 = _$mean_710;
 * var v = mode( NaN, 2.0 );
 * // returns NaN
 */
-function __mode_712( alpha, beta ) {
+function __mode_729( alpha, beta ) {
 	if ( alpha <= 0.0 || beta <= 0.0 ) {
 		return NaN;
 	}
@@ -61490,7 +61490,7 @@ function __mode_712( alpha, beta ) {
 
 // EXPORTS //
 
-var _$mode_712 = __mode_712;
+var _$mode_729 = __mode_729;
 
 /**
 * @license Apache-2.0
@@ -61532,12 +61532,12 @@ var _$mode_712 = __mode_712;
 
 // MODULES //
 
-/* removed: var _$mode_712 = require( './mode.js' ); */;
+/* removed: var _$mode_729 = require( './mode.js' ); */;
 
 
 // EXPORTS //
 
-var _$mode_711 = _$mode_712;
+var _$mode_728 = _$mode_729;
 
 /**
 * @license Apache-2.0
@@ -61561,7 +61561,7 @@ var _$mode_711 = _$mode_712;
 
 // MODULES //
 
-var __isPositive_589 = _$isPositiveNumber_150.isPrimitive;
+var __isPositive_596 = _$isPositiveNumber_150.isPrimitive;
 
 
 // MAIN //
@@ -61580,11 +61580,11 @@ var __isPositive_589 = _$isPositiveNumber_150.isPrimitive;
 *     throw err;
 * }
 */
-function __validate_589( alpha, beta ) {
-	if ( !__isPositive_589( alpha ) ) {
+function __validate_596( alpha, beta ) {
+	if ( !__isPositive_596( alpha ) ) {
 		return new TypeError( 'invalid argument. `alpha` must be a positive number. Value: `' + alpha + '`.' );
 	}
-	if ( !__isPositive_589( beta ) ) {
+	if ( !__isPositive_596( beta ) ) {
 		return new TypeError( 'invalid argument. `beta` must be a positive number. Value: `' + beta + '`.' );
 	}
 	return null;
@@ -61593,7 +61593,7 @@ function __validate_589( alpha, beta ) {
 
 // EXPORTS //
 
-var _$validate_589 = __validate_589;
+var _$validate_596 = __validate_596;
 
 /**
 * @license Apache-2.0
@@ -61617,18 +61617,18 @@ var _$validate_589 = __validate_589;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_746 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_750 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_797 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_801 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_793 = require( '@stdlib/utils/noop' ); */;
-var __gamma_586 = _$gamma_576.factory;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_844 = require( '@stdlib/utils/noop' ); */;
+var __gamma_593 = _$gamma_583.factory;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
-/* removed: var _$validate_589 = require( './validate.js' ); */;
+/* removed: var _$validate_596 = require( './validate.js' ); */;
 
 
 // MAIN //
@@ -61662,7 +61662,7 @@ var __gamma_586 = _$gamma_576.factory;
 * var v = invgamma();
 * // returns <number>
 */
-function __factory_586() {
+function __factory_593() {
 	var rgamma;
 	var alpha;
 	var beta;
@@ -61672,7 +61672,7 @@ function __factory_586() {
 	var err;
 
 	if ( arguments.length === 0 ) {
-		rgamma = __gamma_586();
+		rgamma = __gamma_593();
 	} else if ( arguments.length === 1 ) {
 		opts = arguments[ 0 ];
 		if ( !_$isPlainObject_144( opts ) ) {
@@ -61682,16 +61682,16 @@ function __factory_586() {
 			if ( !_$isFunction_110( opts.prng ) ) {
 				throw new TypeError( 'invalid option. `prng` option must be a pseudorandom number generator function. Option: `' + opts.prng + '`.' );
 			}
-			rgamma = __gamma_586({
+			rgamma = __gamma_593({
 				'prng': opts.prng
 			});
 		} else {
-			rgamma = __gamma_586( opts );
+			rgamma = __gamma_593( opts );
 		}
 	} else {
 		alpha = arguments[ 0 ];
 		beta = arguments[ 1 ];
-		err = _$validate_589( alpha, beta );
+		err = _$validate_596( alpha, beta );
 		if ( err ) {
 			throw err;
 		}
@@ -61704,14 +61704,14 @@ function __factory_586() {
 				if ( !_$isFunction_110( opts.prng ) ) {
 					throw new TypeError( 'invalid option. `prng` option must be a pseudorandom number generator function. Option: `' + opts.prng + '`.' );
 				}
-				rgamma = __gamma_586( alpha, beta, {
+				rgamma = __gamma_593( alpha, beta, {
 					'prng': opts.prng
 				});
 			} else {
-				rgamma = __gamma_586( alpha, beta, opts );
+				rgamma = __gamma_593( alpha, beta, opts );
 			}
 		} else {
-			rgamma = __gamma_586( alpha, beta );
+			rgamma = __gamma_593( alpha, beta );
 		}
 	}
 	if ( alpha === void 0 ) {
@@ -61721,25 +61721,25 @@ function __factory_586() {
 	}
 	rand = rgamma.PRNG;
 
-	_$setNonEnumerableReadOnly_748( prng, 'NAME', 'invgamma' );
+	_$setNonEnumerableReadOnly_799( prng, 'NAME', 'invgamma' );
 
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( opts && opts.prng ) {
-		_$setNonEnumerableReadOnly_748( prng, 'seed', null );
-		_$setNonEnumerableReadOnly_748( prng, 'seedLength', null );
-		_$setNonEnumerableReadWriteAccessor_750( prng, 'state', _$constantFunction_739( null ), _$noop_793 );
-		_$setNonEnumerableReadOnly_748( prng, 'stateLength', null );
-		_$setNonEnumerableReadOnly_748( prng, 'byteLength', null );
-		_$setNonEnumerableReadOnly_748( prng, 'toJSON', _$constantFunction_739( null ) );
+		_$setNonEnumerableReadOnly_799( prng, 'seed', null );
+		_$setNonEnumerableReadOnly_799( prng, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_801( prng, 'state', _$constantFunction_790( null ), _$noop_844 );
+		_$setNonEnumerableReadOnly_799( prng, 'stateLength', null );
+		_$setNonEnumerableReadOnly_799( prng, 'byteLength', null );
+		_$setNonEnumerableReadOnly_799( prng, 'toJSON', _$constantFunction_790( null ) );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'seedLength', getSeedLength );
-		_$setNonEnumerableReadWriteAccessor_750( prng, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_746( prng, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_748( prng, 'toJSON', toJSON );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_801( prng, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_799( prng, 'toJSON', toJSON );
 	}
-	_$setNonEnumerableReadOnly_748( prng, 'PRNG', rand );
+	_$setNonEnumerableReadOnly_799( prng, 'PRNG', rand );
 	return prng;
 
 	/**
@@ -61868,7 +61868,7 @@ function __factory_586() {
 
 // EXPORTS //
 
-var _$factory_586 = __factory_586;
+var _$factory_593 = __factory_593;
 
 /**
 * @license Apache-2.0
@@ -61892,7 +61892,7 @@ var _$factory_586 = __factory_586;
 
 // MODULES //
 
-/* removed: var _$factory_586 = require( './factory.js' ); */;
+/* removed: var _$factory_593 = require( './factory.js' ); */;
 
 
 // MAIN //
@@ -61931,12 +61931,12 @@ var _$factory_586 = __factory_586;
 * var v = invgamma( -2.0, 5.0 );
 * // returns NaN
 */
-var invgamma = _$factory_586();
+var invgamma = _$factory_593();
 
 
 // EXPORTS //
 
-var _$invgamma_588 = invgamma;
+var _$invgamma_595 = invgamma;
 
 /**
 * @license Apache-2.0
@@ -61990,19 +61990,19 @@ var _$invgamma_588 = invgamma;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$invgamma_588 = require( './main.js' ); */;
-/* removed: var _$factory_586 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$invgamma_595 = require( './main.js' ); */;
+/* removed: var _$factory_593 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$invgamma_588, 'factory', _$factory_586 );
+_$setNonEnumerableReadOnly_799( _$invgamma_595, 'factory', _$factory_593 );
 
 
 // EXPORTS //
 
-var _$invgamma_587 = _$invgamma_588;
+var _$invgamma_594 = _$invgamma_595;
 
 /**
 * @license Apache-2.0
@@ -62026,7 +62026,7 @@ var _$invgamma_587 = _$invgamma_588;
 
 // MODULES //
 
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
 
 
 // MAIN //
@@ -62066,17 +62066,17 @@ var _$invgamma_587 = _$invgamma_588;
 * var v = variance( NaN, 2.0 );
 * // returns NaN
 */
-function __variance_720( alpha, beta ) {
+function __variance_737( alpha, beta ) {
 	if ( alpha <= 2.0 || beta <= 0.0 ) {
 		return NaN;
 	}
-	return ( beta*beta ) / ( _$pow_469( alpha-1.0, 2.0 ) * ( alpha-2.0 ) );
+	return ( beta*beta ) / ( _$pow_476( alpha-1.0, 2.0 ) * ( alpha-2.0 ) );
 }
 
 
 // EXPORTS //
 
-var _$variance_720 = __variance_720;
+var _$variance_737 = __variance_737;
 
 /**
 * @license Apache-2.0
@@ -62118,12 +62118,12 @@ var _$variance_720 = __variance_720;
 
 // MODULES //
 
-/* removed: var _$variance_720 = require( './variance.js' ); */;
+/* removed: var _$variance_737 = require( './variance.js' ); */;
 
 
 // EXPORTS //
 
-var _$variance_719 = _$variance_720;
+var _$variance_736 = _$variance_737;
 
 /**
 * @license Apache-2.0
@@ -62148,7 +62148,7 @@ var _$variance_719 = _$variance_720;
 // MODULES //
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
 
 
 // MAIN //
@@ -62205,7 +62205,7 @@ var _$variance_719 = _$variance_720;
 * var y = pdf( 0.0, 1.0, NaN );
 * // returns NaN
 */
-function __pdf_732( x, a, b ) {
+function __pdf_749( x, a, b ) {
 	if (
 		_$isnan_231( x ) ||
 		_$isnan_231( a ) ||
@@ -62218,13 +62218,13 @@ function __pdf_732( x, a, b ) {
 	if ( x <= 0.0 || x >= 1.0 ) {
 		return 0.0;
 	}
-	return ( a*b ) * _$pow_469( x, a - 1.0 ) * _$pow_469( 1.0 - _$pow_469( x, a ), b - 1.0 );
+	return ( a*b ) * _$pow_476( x, a - 1.0 ) * _$pow_476( 1.0 - _$pow_476( x, a ), b - 1.0 );
 }
 
 
 // EXPORTS //
 
-var _$pdf_732 = __pdf_732;
+var _$pdf_749 = __pdf_749;
 
 /**
 * @license Apache-2.0
@@ -62248,9 +62248,9 @@ var _$pdf_732 = __pdf_732;
 
 // MODULES //
 
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
 
 
 // MAIN //
@@ -62271,14 +62271,14 @@ var _$pdf_732 = __pdf_732;
 * y = pdf( 0.3 );
 * // returns ~0.679
 */
-function __factory_730( a, b ) {
+function __factory_747( a, b ) {
 	if (
 		_$isnan_231( a ) ||
 		_$isnan_231( b ) ||
 		a <= 0.0 ||
 		b <= 0.0
 	) {
-		return _$constantFunction_739( NaN );
+		return _$constantFunction_790( NaN );
 	}
 	return pdf;
 
@@ -62300,14 +62300,14 @@ function __factory_730( a, b ) {
 		if ( x <= 0.0 || x >= 1.0 ) {
 			return 0.0;
 		}
-		return ( a*b ) * _$pow_469( x, a - 1.0 ) * _$pow_469( 1.0 - _$pow_469( x, a ), b - 1.0 );
+		return ( a*b ) * _$pow_476( x, a - 1.0 ) * _$pow_476( 1.0 - _$pow_476( x, a ), b - 1.0 );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_730 = __factory_730;
+var _$factory_747 = __factory_747;
 
 /**
 * @license Apache-2.0
@@ -62357,19 +62357,19 @@ var _$factory_730 = __factory_730;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_732 = require( './pdf.js' ); */;
-/* removed: var _$factory_730 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_749 = require( './pdf.js' ); */;
+/* removed: var _$factory_747 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$pdf_732, 'factory', _$factory_730 );
+_$setNonEnumerableReadOnly_799( _$pdf_749, 'factory', _$factory_747 );
 
 
 // EXPORTS //
 
-var _$pdf_731 = _$pdf_732;
+var _$pdf_748 = _$pdf_749;
 
 /**
 * @license Apache-2.0
@@ -62394,7 +62394,7 @@ var _$pdf_731 = _$pdf_732;
 // MODULES //
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
 
 
 // MAIN //
@@ -62451,7 +62451,7 @@ var _$pdf_731 = _$pdf_732;
 * var y = cdf( 0.0, 1.0, NaN );
 * // returns NaN
 */
-function __cdf_721( x, a, b ) {
+function __cdf_738( x, a, b ) {
 	if (
 		_$isnan_231( x ) ||
 		_$isnan_231( a ) ||
@@ -62467,13 +62467,13 @@ function __cdf_721( x, a, b ) {
 	if ( x >= 1.0 ) {
 		return 1.0;
 	}
-	return 1.0 - _$pow_469( 1.0 - _$pow_469( x, a ), b );
+	return 1.0 - _$pow_476( 1.0 - _$pow_476( x, a ), b );
 }
 
 
 // EXPORTS //
 
-var _$cdf_721 = __cdf_721;
+var _$cdf_738 = __cdf_738;
 
 /**
 * @license Apache-2.0
@@ -62497,9 +62497,9 @@ var _$cdf_721 = __cdf_721;
 
 // MODULES //
 
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
 
 
 // MAIN //
@@ -62520,14 +62520,14 @@ var _$cdf_721 = __cdf_721;
 * y = cdf( 0.3 );
 * // returns ~0.327
 */
-function __factory_722( a, b ) {
+function __factory_739( a, b ) {
 	if (
 		_$isnan_231( a ) ||
 		_$isnan_231( b ) ||
 		a <= 0.0 ||
 		b <= 0.0
 	) {
-		return _$constantFunction_739( NaN );
+		return _$constantFunction_790( NaN );
 	}
 	return cdf;
 
@@ -62552,14 +62552,14 @@ function __factory_722( a, b ) {
 		if ( x >= 1.0 ) {
 			return 1.0;
 		}
-		return 1.0 - _$pow_469( 1.0 - _$pow_469( x, a ), b );
+		return 1.0 - _$pow_476( 1.0 - _$pow_476( x, a ), b );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_722 = __factory_722;
+var _$factory_739 = __factory_739;
 
 /**
 * @license Apache-2.0
@@ -62609,19 +62609,19 @@ var _$factory_722 = __factory_722;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_721 = require( './cdf.js' ); */;
-/* removed: var _$factory_722 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_738 = require( './cdf.js' ); */;
+/* removed: var _$factory_739 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$cdf_721, 'factory', _$factory_722 );
+_$setNonEnumerableReadOnly_799( _$cdf_738, 'factory', _$factory_739 );
 
 
 // EXPORTS //
 
-var _$cdf_723 = _$cdf_721;
+var _$cdf_740 = _$cdf_738;
 
 /**
 * @license Apache-2.0
@@ -62646,7 +62646,7 @@ var _$cdf_723 = _$cdf_721;
 // MODULES //
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
 
 
 // MAIN //
@@ -62699,7 +62699,7 @@ var _$cdf_723 = _$cdf_721;
 * var y = quantile( 0.1, 1.0, NaN );
 * // returns NaN
 */
-function __quantile_735( p, a, b ) {
+function __quantile_752( p, a, b ) {
 	if (
 		_$isnan_231( p ) ||
 		_$isnan_231( a ) ||
@@ -62711,13 +62711,13 @@ function __quantile_735( p, a, b ) {
 	) {
 		return NaN;
 	}
-	return _$pow_469( 1.0 - _$pow_469( 1.0-p, 1.0/b ), 1.0/a );
+	return _$pow_476( 1.0 - _$pow_476( 1.0-p, 1.0/b ), 1.0/a );
 }
 
 
 // EXPORTS //
 
-var _$quantile_735 = __quantile_735;
+var _$quantile_752 = __quantile_752;
 
 /**
 * @license Apache-2.0
@@ -62741,9 +62741,9 @@ var _$quantile_735 = __quantile_735;
 
 // MODULES //
 
-/* removed: var _$constantFunction_739 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
 
 
 // MAIN //
@@ -62764,14 +62764,14 @@ var _$quantile_735 = __quantile_735;
 * y = quantile( 0.3 );
 * // returns ~0.26
 */
-function __factory_733( a, b ) {
+function __factory_750( a, b ) {
 	if (
 		_$isnan_231( a ) ||
 		_$isnan_231( b ) ||
 		a <= 0.0 ||
 		b <= 0.0
 	) {
-		return _$constantFunction_739( NaN );
+		return _$constantFunction_790( NaN );
 	}
 	return quantile;
 
@@ -62790,14 +62790,14 @@ function __factory_733( a, b ) {
 		if ( _$isnan_231( p ) || p < 0.0 || p > 1.0 ) {
 			return NaN;
 		}
-		return _$pow_469( 1.0 - _$pow_469( 1.0-p, 1.0/b ), 1.0/a );
+		return _$pow_476( 1.0 - _$pow_476( 1.0-p, 1.0/b ), 1.0/a );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_733 = __factory_733;
+var _$factory_750 = __factory_750;
 
 /**
 * @license Apache-2.0
@@ -62847,19 +62847,19 @@ var _$factory_733 = __factory_733;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_748 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_735 = require( './quantile.js' ); */;
-/* removed: var _$factory_733 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_752 = require( './quantile.js' ); */;
+/* removed: var _$factory_750 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_748( _$quantile_735, 'factory', _$factory_733 );
+_$setNonEnumerableReadOnly_799( _$quantile_752, 'factory', _$factory_750 );
 
 
 // EXPORTS //
 
-var _$quantile_734 = _$quantile_735;
+var _$quantile_751 = _$quantile_752;
 
 /**
 * @license Apache-2.0
@@ -62924,7 +62924,7 @@ var _$quantile_734 = _$quantile_735;
 * var v = mean( NaN, 2.0 );
 * // returns NaN
 */
-function __mean_725( a, b ) {
+function __mean_742( a, b ) {
 	if (
 		_$isnan_231( a ) ||
 		a <= 0.0 ||
@@ -62939,7 +62939,7 @@ function __mean_725( a, b ) {
 
 // EXPORTS //
 
-var _$mean_725 = __mean_725;
+var _$mean_742 = __mean_742;
 
 /**
 * @license Apache-2.0
@@ -62981,12 +62981,12 @@ var _$mean_725 = __mean_725;
 
 // MODULES //
 
-/* removed: var _$mean_725 = require( './mean.js' ); */;
+/* removed: var _$mean_742 = require( './mean.js' ); */;
 
 
 // EXPORTS //
 
-var _$mean_724 = _$mean_725;
+var _$mean_741 = _$mean_742;
 
 /**
 * @license Apache-2.0
@@ -63011,7 +63011,7 @@ var _$mean_724 = _$mean_725;
 // MODULES //
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
 
 
 // MAIN //
@@ -63051,7 +63051,7 @@ var _$mean_724 = _$mean_725;
 * var v = median( NaN, 2.0 );
 * // returns NaN
 */
-function __median_727( a, b ) {
+function __median_744( a, b ) {
 	if (
 		_$isnan_231( a ) ||
 		a <= 0.0 ||
@@ -63060,13 +63060,13 @@ function __median_727( a, b ) {
 	) {
 		return NaN;
 	}
-	return _$pow_469( 1.0 - _$pow_469( 2.0, -1.0/b ), 1.0/a );
+	return _$pow_476( 1.0 - _$pow_476( 2.0, -1.0/b ), 1.0/a );
 }
 
 
 // EXPORTS //
 
-var _$median_727 = __median_727;
+var _$median_744 = __median_744;
 
 /**
 * @license Apache-2.0
@@ -63108,12 +63108,12 @@ var _$median_727 = __median_727;
 
 // MODULES //
 
-/* removed: var _$median_727 = require( './median.js' ); */;
+/* removed: var _$median_744 = require( './median.js' ); */;
 
 
 // EXPORTS //
 
-var _$median_726 = _$median_727;
+var _$median_743 = _$median_744;
 
 /**
 * @license Apache-2.0
@@ -63138,7 +63138,7 @@ var _$median_726 = _$median_727;
 // MODULES //
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$pow_469 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
 
 
 // MAIN //
@@ -63182,7 +63182,7 @@ var _$median_726 = _$median_727;
 * var v = mode( NaN, 2.0 );
 * // returns NaN
 */
-function __mode_729( a, b ) {
+function __mode_746( a, b ) {
 	if (
 		_$isnan_231( a ) ||
 		a < 1.0 ||
@@ -63192,13 +63192,13 @@ function __mode_729( a, b ) {
 	) {
 		return NaN;
 	}
-	return _$pow_469( ( a-1.0 ) / ( (a*b) - 1.0 ), 1.0/a );
+	return _$pow_476( ( a-1.0 ) / ( (a*b) - 1.0 ), 1.0/a );
 }
 
 
 // EXPORTS //
 
-var _$mode_729 = __mode_729;
+var _$mode_746 = __mode_746;
 
 /**
 * @license Apache-2.0
@@ -63240,12 +63240,12 @@ var _$mode_729 = __mode_729;
 
 // MODULES //
 
-/* removed: var _$mode_729 = require( './mode.js' ); */;
+/* removed: var _$mode_746 = require( './mode.js' ); */;
 
 
 // EXPORTS //
 
-var _$mode_728 = _$mode_729;
+var _$mode_745 = _$mode_746;
 
 /**
 * @license Apache-2.0
@@ -63310,7 +63310,7 @@ var _$mode_728 = _$mode_729;
 * var v = variance( NaN, 2.0 );
 * // returns NaN
 */
-function __variance_737( a, b ) {
+function __variance_754( a, b ) {
 	var m1;
 	var m2;
 	if (
@@ -63329,7 +63329,7 @@ function __variance_737( a, b ) {
 
 // EXPORTS //
 
-var _$variance_737 = __variance_737;
+var _$variance_754 = __variance_754;
 
 /**
 * @license Apache-2.0
@@ -63371,21 +63371,3947 @@ var _$variance_737 = __variance_737;
 
 // MODULES //
 
-/* removed: var _$variance_737 = require( './variance.js' ); */;
+/* removed: var _$variance_754 = require( './variance.js' ); */;
 
 
 // EXPORTS //
 
-var _$variance_736 = _$variance_737;
+var _$variance_753 = _$variance_754;
 
-var _$distribution_820 = {};
-/* removed: var _$jStat_819 = require( './core.js' ); */;
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$PI_206 = require( '@stdlib/constants/math/float64-pi' ); */;
+
+
+// MAIN //
+
+/**
+* Evaluates the probability density function (PDF) for a lognormal distribution with location parameter `mu` and scale parameter `sigma` at a value `x`.
+*
+* @param {number} x - input value
+* @param {number} mu - location parameter
+* @param {PositiveNumber} sigma - scale parameter
+* @returns {number} evaluated PDF
+*
+* @example
+* var y = pdf( 2.0, 0.0, 1.0 );
+* // returns ~0.157
+*
+* @example
+* var y = pdf( 1.0, 0.0, 1.0 );
+* // returns ~0.399
+*
+* @example
+* var y = pdf( 1.0, 3.0, 1.0 );
+* // returns ~0.004
+*
+* @example
+* var y = pdf( -1.0, 4.0, 2.0 );
+* // returns 0.0
+*
+* @example
+* var y = pdf( NaN, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = pdf( 0.0, NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = pdf( 0.0, 0.0, NaN );
+* // returns NaN
+*
+* @example
+* // Negative scale parameter:
+* var y = pdf( 2.0, 0.0, -1.0 );
+* // returns NaN
+*/
+function __pdf_766( x, mu, sigma ) {
+	var s2;
+	var A;
+	var B;
+	if (
+		_$isnan_231( x ) ||
+		_$isnan_231( mu ) ||
+		_$isnan_231( sigma ) ||
+		sigma <= 0.0
+	) {
+		return NaN;
+	}
+	if ( x <= 0.0 ) {
+		return 0.0;
+	}
+	s2 = _$pow_476( sigma, 2.0 );
+	A = 1.0 / ( _$sqrt_501( 2.0 * s2 * _$PI_206 ) );
+	B = -1.0 / ( 2.0 * s2 );
+	return (1.0/x) * A * _$exp_310( B * _$pow_476( _$ln_461(x) - mu, 2.0 ) );
+}
+
+
+// EXPORTS //
+
+var _$pdf_766 = __pdf_766;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$PI_206 = require( '@stdlib/constants/math/float64-pi' ); */;
+
+
+// MAIN //
+
+/**
+* Returns a function for evaluating the probability density function (PDF) for a lognormal distribution with location parameter `mu` and scale parameter `sigma`.
+*
+* @param {number} mu - location parameter
+* @param {PositiveNumber} sigma - scale parameter
+* @returns {Function} PDF
+*
+* @example
+* var pdf = factory( 4.0, 2.0 );
+* var y = pdf( 10.0 );
+* // returns ~0.014
+*
+* y = pdf( 2.0 );
+* // returns ~0.025
+*/
+function __factory_764( mu, sigma ) {
+	var s2;
+	var A;
+	var B;
+	if (
+		_$isnan_231( mu ) ||
+		_$isnan_231( sigma ) ||
+		sigma <= 0.0
+	) {
+		return _$constantFunction_790( NaN );
+	}
+	s2 = _$pow_476( sigma, 2.0 );
+	A = 1.0 / ( _$sqrt_501( 2.0 * s2 * _$PI_206 ) );
+	B = -1.0 / ( 2.0 * s2 );
+	return pdf;
+
+	/**
+	* Evaluates the probability density function (PDF) for a lognormal distribution.
+	*
+	* @private
+	* @param {number} x - input value
+	* @returns {number} evaluated PDF
+	*
+	* @example
+	* var y = pdf( 2.5 );
+	* // returns <number>
+	*/
+	function pdf( x ) {
+		if ( _$isnan_231( x ) ) {
+			return NaN;
+		}
+		if ( x <= 0.0 ) {
+			return 0.0;
+		}
+		return (1.0/x) * A * _$exp_310( B * _$pow_476( _$ln_461(x) - mu, 2.0 ) );
+	}
+}
+
+
+// EXPORTS //
+
+var _$factory_764 = __factory_764;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Evaluate the probability density function (PDF) for a lognormal distribution.
+*
+* @module @stdlib/stats/base/dists/lognormal/pdf
+*
+* @example
+* var pdf = require( '@stdlib/stats/base/dists/lognormal/pdf' );
+*
+* var y = pdf( 2.0, 0.0, 1.0 );
+* // returns ~0.157
+*
+* y = pdf( 1.0, 0.0, 1.0 );
+* // returns ~0.399
+*
+* y = pdf( 1.0, 3.0, 1.0 );
+* // returns ~0.004
+*
+* var mypdf = pdf.factory( 4.0, 2.0 );
+* y = mypdf( 10.0 );
+* // returns ~0.014
+*
+* y = mypdf( 2.0 );
+* // returns ~0.025
+*/
+
+// MODULES //
+
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_766 = require( './pdf.js' ); */;
+/* removed: var _$factory_764 = require( './factory.js' ); */;
+
+
+// MAIN //
+
+_$setNonEnumerableReadOnly_799( _$pdf_766, 'factory', _$factory_764 );
+
+
+// EXPORTS //
+
+var _$pdf_765 = _$pdf_766;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$erfc_285 = require( '@stdlib/math/base/special/erfc' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+
+
+// MAIN //
+
+/**
+* Evaluates the cumulative distribution function (CDF) for a Normal distribution with mean `mu` and standard deviation `sigma` at a value `x`.
+*
+* @param {number} x - input value
+* @param {number} mu - mean
+* @param {NonNegativeNumber} sigma - standard deviation
+* @returns {Probability} evaluated cumulative distribution function
+*
+* @example
+* var y = cdf( 2.0, 0.0, 1.0 );
+* // returns ~0.977
+*
+* @example
+* var y = cdf( -1.0, -1.0, 2.0 );
+* // returns 0.5
+*
+* @example
+* var y = cdf( -1.0, 4.0, 2.0 );
+* // returns ~0.006
+*
+* @example
+* var y = cdf( NaN, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = cdf( 0.0, NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = cdf( 0.0, 0.0, NaN );
+* // returns NaN
+*
+* @example
+* // Negative standard deviation:
+* var y = cdf( 2.0, 0.0, -1.0 );
+* // returns NaN
+*/
+function __cdf_772( x, mu, sigma ) {
+	var denom;
+	var xc;
+	if (
+		_$isnan_231( x ) ||
+		_$isnan_231( mu ) ||
+		_$isnan_231( sigma ) ||
+		sigma < 0.0
+	) {
+		return NaN;
+	}
+	if ( sigma === 0.0 ) {
+		return (x < mu) ? 0.0 : 1.0;
+	}
+	denom = sigma * _$sqrt_501( 2.0 );
+	xc = x - mu;
+	return 0.5 * _$erfc_285( -xc/denom );
+}
+
+
+// EXPORTS //
+
+var _$cdf_772 = __cdf_772;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
+var __degenerate_773 = _$cdf_665.factory;
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$erfc_285 = require( '@stdlib/math/base/special/erfc' ); */;
+
+
+// MAIN //
+
+/**
+* Returns a function for evaluating the cumulative distribution function (CDF) for a Normal distribution.
+*
+* @param {number} mu - mean
+* @param {NonNegativeNumber} sigma - standard deviation
+* @returns {Function} function to evaluate the cumulative distribution function
+*
+* @example
+* var cdf = factory( 10.0, 2.0 );
+* var y = cdf( 10.0 );
+* // returns 0.5
+*
+* y = cdf( 12.0 );
+* // returns ~0.841
+*/
+function __factory_773( mu, sigma ) {
+	var denom;
+	if (
+		_$isnan_231( mu ) ||
+		_$isnan_231( sigma ) ||
+		sigma < 0.0
+	) {
+		return _$constantFunction_790( NaN );
+	}
+	if ( sigma === 0.0 ) {
+		return __degenerate_773( mu );
+	}
+	denom = sigma * _$sqrt_501( 2.0 );
+	return cdf;
+
+	/**
+	* Evaluates the cumulative distribution function (CDF) for a Normal distribution.
+	*
+	* @private
+	* @param {number} x - input value
+	* @returns {Probability} evaluated CDF
+	*
+	* @example
+	* var y = cdf( 2.0 );
+	* // returns <number>
+	*/
+	function cdf( x ) {
+		var xc;
+		if ( _$isnan_231( x ) ) {
+			return NaN;
+		}
+		xc = x - mu;
+		return 0.5 * _$erfc_285( -xc / denom );
+	}
+}
+
+
+// EXPORTS //
+
+var _$factory_773 = __factory_773;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Normal distribution cumulative distribution function (CDF).
+*
+* @module @stdlib/stats/base/dists/normal/cdf
+*
+* @example
+* var cdf = require( '@stdlib/stats/base/dists/normal/cdf' );
+*
+* var y = cdf( 2.0, 0.0, 1.0 );
+* // returns ~0.977
+*
+* var myCDF = cdf.factory( 10.0, 2.0 );
+* y = myCDF( 10.0 );
+* // returns 0.5
+*/
+
+// MODULES //
+
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_772 = require( './cdf.js' ); */;
+/* removed: var _$factory_773 = require( './factory.js' ); */;
+
+
+// MAIN //
+
+_$setNonEnumerableReadOnly_799( _$cdf_772, 'factory', _$factory_773 );
+
+
+// EXPORTS //
+
+var _$cdf_774 = _$cdf_772;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$cdf_774 = require( '@stdlib/stats/base/dists/normal/cdf' ); */;
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
+
+
+// MAIN //
+
+/**
+* Evaluates the cumulative distribution function (CDF) for a lognormal distribution with location parameter `mu` and scale parameter `sigma` at a value `x`.
+*
+* @param {number} x - input value
+* @param {number} mu - location parameter
+* @param {PositiveNumber} sigma - scale parameter
+* @returns {Probability} evaluated CDF
+*
+* @example
+* var y = cdf( 2.0, 0.0, 1.0 );
+* // returns ~0.756
+*
+* @example
+* var y = cdf( 5.0, 10.0, 3.0 );
+* // returns ~0.003
+*
+* @example
+* var y = cdf( 2.0, 0.0, NaN );
+* // returns NaN
+*
+* @example
+* var y = cdf( 2.0, NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = cdf( NaN, 0.0, 1.0 );
+* // returns NaN
+*/
+function __cdf_755( x, mu, sigma ) {
+	if (
+		_$isnan_231( x ) ||
+		_$isnan_231( mu ) ||
+		_$isnan_231( sigma ) ||
+		sigma <= 0.0
+	) {
+		return NaN;
+	}
+	if ( x <= 0.0 ) {
+		return 0.0;
+	}
+	return _$cdf_774( _$ln_461(x), mu, sigma );
+}
+
+
+// EXPORTS //
+
+var _$cdf_755 = __cdf_755;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$cdf_774 = require( '@stdlib/stats/base/dists/normal/cdf' ); */;
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
+
+
+// MAIN //
+
+/**
+* Returns a function for evaluating the cumulative distribution function (CDF) for a lognormal distribution with location parameter `mu` and scale parameter `sigma`.
+*
+* @param {number} mu - location parameter
+* @param {PositiveNumber} sigma - scale parameter
+* @returns {Function} CDF
+*
+* @example
+* var cdf = factory( 3.0, 1.5 );
+*
+* var y = cdf( 1.0 );
+* // returns ~0.023
+*
+* y = cdf( 4.0 );
+* // returns ~0.141
+*/
+function __factory_756( mu, sigma ) {
+	if ( _$isnan_231( mu ) || _$isnan_231( sigma ) || sigma <= 0.0 ) {
+		return _$constantFunction_790( NaN );
+	}
+	return cdf;
+
+	/**
+	* Evaluates the cumulative distribution function (CDF) for a lognormal distribution.
+	*
+	* @private
+	* @param {number} x - input value
+	* @returns {Probability} evaluated CDF
+	*
+	* @example
+	* var y = cdf( 2.0 );
+	* // returns <number>
+	*/
+	function cdf( x ) {
+		if ( _$isnan_231( x ) ) {
+			return NaN;
+		}
+		if ( x <= 0.0 ) {
+			return 0.0;
+		}
+		return _$cdf_774( _$ln_461(x), mu, sigma );
+	}
+}
+
+
+// EXPORTS //
+
+var _$factory_756 = __factory_756;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Evaluate the lognormal distribution cumulative distribution function (CDF).
+*
+* @module @stdlib/stats/base/dists/lognormal/cdf
+*
+* @example
+* var cdf = require( '@stdlib/stats/base/dists/lognormal/cdf' );
+*
+* var y = cdf( 2.0, 0.0, 1.0 );
+* // returns ~0.756
+*
+* y = cdf( 5.0, 10.0, 3.0 );
+* // returns ~0.003
+*
+* var mycdf = cdf.factory( 3.0, 1.5 );
+*
+* y = mycdf( 1.0 );
+* // returns ~0.023
+*
+* y = mycdf( 4.0 );
+* // returns ~0.141
+*/
+
+// MODULES //
+
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_755 = require( './cdf.js' ); */;
+/* removed: var _$factory_756 = require( './factory.js' ); */;
+
+
+// MAIN //
+
+_$setNonEnumerableReadOnly_799( _$cdf_755, 'factory', _$factory_756 );
+
+
+// EXPORTS //
+
+var _$cdf_757 = _$cdf_755;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+*
+* ## Notes
+*
+* -   Coefficients should be sorted in ascending degree.
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the rational function
+* @returns {number} evaluated rational function
+*/
+function __evalrational_303( x ) {
+	var ax;
+	var s1;
+	var s2;
+	if ( x === 0.0 ) {
+		return -0.0005087819496582806;
+	}
+	if ( x < 0.0 ) {
+		ax = -x;
+	} else {
+		ax = x;
+	}
+	if ( ax <= 1.0 ) {
+		s1 = -0.0005087819496582806 + (x * (-0.008368748197417368 + (x * (0.03348066254097446 + (x * (-0.012692614766297404 + (x * (-0.03656379714117627 + (x * (0.02198786811111689 + (x * (0.008226878746769157 + (x * (-0.005387729650712429 + (x * (0.0 + (x * 0.0))))))))))))))))); // eslint-disable-line max-len
+		s2 = 1.0 + (x * (-0.9700050433032906 + (x * (-1.5657455823417585 + (x * (1.5622155839842302 + (x * (0.662328840472003 + (x * (-0.7122890234154284 + (x * (-0.05273963823400997 + (x * (0.07952836873415717 + (x * (-0.0023339375937419 + (x * 0.0008862163904564247))))))))))))))))); // eslint-disable-line max-len
+	} else {
+		x = 1.0 / x;
+		s1 = 0.0 + (x * (0.0 + (x * (-0.005387729650712429 + (x * (0.008226878746769157 + (x * (0.02198786811111689 + (x * (-0.03656379714117627 + (x * (-0.012692614766297404 + (x * (0.03348066254097446 + (x * (-0.008368748197417368 + (x * -0.0005087819496582806))))))))))))))))); // eslint-disable-line max-len
+		s2 = 0.0008862163904564247 + (x * (-0.0023339375937419 + (x * (0.07952836873415717 + (x * (-0.05273963823400997 + (x * (-0.7122890234154284 + (x * (0.662328840472003 + (x * (1.5622155839842302 + (x * (-1.5657455823417585 + (x * (-0.9700050433032906 + (x * 1.0))))))))))))))))); // eslint-disable-line max-len
+	}
+	return s1 / s2;
+}
+
+
+// EXPORTS //
+
+var _$evalrational_303 = __evalrational_303;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+*
+* ## Notes
+*
+* -   Coefficients should be sorted in ascending degree.
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the rational function
+* @returns {number} evaluated rational function
+*/
+function __evalrational_304( x ) {
+	var ax;
+	var s1;
+	var s2;
+	if ( x === 0.0 ) {
+		return -0.20243350835593876;
+	}
+	if ( x < 0.0 ) {
+		ax = -x;
+	} else {
+		ax = x;
+	}
+	if ( ax <= 1.0 ) {
+		s1 = -0.20243350835593876 + (x * (0.10526468069939171 + (x * (8.3705032834312 + (x * (17.644729840837403 + (x * (-18.851064805871424 + (x * (-44.6382324441787 + (x * (17.445385985570866 + (x * (21.12946554483405 + (x * -3.6719225470772936))))))))))))))); // eslint-disable-line max-len
+		s2 = 1.0 + (x * (6.242641248542475 + (x * (3.971343795334387 + (x * (-28.66081804998 + (x * (-20.14326346804852 + (x * (48.560921310873994 + (x * (10.826866735546016 + (x * (-22.643693341313973 + (x * 1.7211476576120028))))))))))))))); // eslint-disable-line max-len
+	} else {
+		x = 1.0 / x;
+		s1 = -3.6719225470772936 + (x * (21.12946554483405 + (x * (17.445385985570866 + (x * (-44.6382324441787 + (x * (-18.851064805871424 + (x * (17.644729840837403 + (x * (8.3705032834312 + (x * (0.10526468069939171 + (x * -0.20243350835593876))))))))))))))); // eslint-disable-line max-len
+		s2 = 1.7211476576120028 + (x * (-22.643693341313973 + (x * (10.826866735546016 + (x * (48.560921310873994 + (x * (-20.14326346804852 + (x * (-28.66081804998 + (x * (3.971343795334387 + (x * (6.242641248542475 + (x * 1.0))))))))))))))); // eslint-disable-line max-len
+	}
+	return s1 / s2;
+}
+
+
+// EXPORTS //
+
+var _$evalrational_304 = __evalrational_304;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+*
+* ## Notes
+*
+* -   Coefficients should be sorted in ascending degree.
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the rational function
+* @returns {number} evaluated rational function
+*/
+function __evalrational_305( x ) {
+	var ax;
+	var s1;
+	var s2;
+	if ( x === 0.0 ) {
+		return -0.1311027816799519;
+	}
+	if ( x < 0.0 ) {
+		ax = -x;
+	} else {
+		ax = x;
+	}
+	if ( ax <= 1.0 ) {
+		s1 = -0.1311027816799519 + (x * (-0.16379404719331705 + (x * (0.11703015634199525 + (x * (0.38707973897260434 + (x * (0.3377855389120359 + (x * (0.14286953440815717 + (x * (0.029015791000532906 + (x * (0.0021455899538880526 + (x * (-6.794655751811263e-7 + (x * (2.8522533178221704e-8 + (x * -6.81149956853777e-10))))))))))))))))))); // eslint-disable-line max-len
+		s2 = 1.0 + (x * (3.4662540724256723 + (x * (5.381683457070069 + (x * (4.778465929458438 + (x * (2.5930192162362027 + (x * (0.848854343457902 + (x * (0.15226433829533179 + (x * (0.011059242293464892 + (x * (0.0 + (x * (0.0 + (x * 0.0))))))))))))))))))); // eslint-disable-line max-len
+	} else {
+		x = 1.0 / x;
+		s1 = -6.81149956853777e-10 + (x * (2.8522533178221704e-8 + (x * (-6.794655751811263e-7 + (x * (0.0021455899538880526 + (x * (0.029015791000532906 + (x * (0.14286953440815717 + (x * (0.3377855389120359 + (x * (0.38707973897260434 + (x * (0.11703015634199525 + (x * (-0.16379404719331705 + (x * -0.1311027816799519))))))))))))))))))); // eslint-disable-line max-len
+		s2 = 0.0 + (x * (0.0 + (x * (0.0 + (x * (0.011059242293464892 + (x * (0.15226433829533179 + (x * (0.848854343457902 + (x * (2.5930192162362027 + (x * (4.778465929458438 + (x * (5.381683457070069 + (x * (3.4662540724256723 + (x * 1.0))))))))))))))))))); // eslint-disable-line max-len
+	}
+	return s1 / s2;
+}
+
+
+// EXPORTS //
+
+var _$evalrational_305 = __evalrational_305;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+*
+* ## Notes
+*
+* -   Coefficients should be sorted in ascending degree.
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the rational function
+* @returns {number} evaluated rational function
+*/
+function __evalrational_306( x ) {
+	var ax;
+	var s1;
+	var s2;
+	if ( x === 0.0 ) {
+		return -0.0350353787183178;
+	}
+	if ( x < 0.0 ) {
+		ax = -x;
+	} else {
+		ax = x;
+	}
+	if ( ax <= 1.0 ) {
+		s1 = -0.0350353787183178 + (x * (-0.0022242652921344794 + (x * (0.018557330651423107 + (x * (0.009508047013259196 + (x * (0.0018712349281955923 + (x * (0.00015754461742496055 + (x * (0.00000460469890584318 + (x * (-2.304047769118826e-10 + (x * 2.6633922742578204e-12))))))))))))))); // eslint-disable-line max-len
+		s2 = 1.0 + (x * (1.3653349817554064 + (x * (0.7620591645536234 + (x * (0.22009110576413124 + (x * (0.03415891436709477 + (x * (0.00263861676657016 + (x * (0.00007646752923027944 + (x * (0.0 + (x * 0.0))))))))))))))); // eslint-disable-line max-len
+	} else {
+		x = 1.0 / x;
+		s1 = 2.6633922742578204e-12 + (x * (-2.304047769118826e-10 + (x * (0.00000460469890584318 + (x * (0.00015754461742496055 + (x * (0.0018712349281955923 + (x * (0.009508047013259196 + (x * (0.018557330651423107 + (x * (-0.0022242652921344794 + (x * -0.0350353787183178))))))))))))))); // eslint-disable-line max-len
+		s2 = 0.0 + (x * (0.0 + (x * (0.00007646752923027944 + (x * (0.00263861676657016 + (x * (0.03415891436709477 + (x * (0.22009110576413124 + (x * (0.7620591645536234 + (x * (1.3653349817554064 + (x * 1.0))))))))))))))); // eslint-disable-line max-len
+	}
+	return s1 / s2;
+}
+
+
+// EXPORTS //
+
+var _$evalrational_306 = __evalrational_306;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* This is a generated file. Do not edit directly. */
+'use strict';
+
+// MAIN //
+
+/**
+* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+*
+* ## Notes
+*
+* -   Coefficients should be sorted in ascending degree.
+* -   The implementation uses [Horner's rule][horners-method] for efficient computation.
+*
+* [horners-method]: https://en.wikipedia.org/wiki/Horner%27s_method
+*
+*
+* @private
+* @param {number} x - value at which to evaluate the rational function
+* @returns {number} evaluated rational function
+*/
+function __evalrational_307( x ) {
+	var ax;
+	var s1;
+	var s2;
+	if ( x === 0.0 ) {
+		return -0.016743100507663373;
+	}
+	if ( x < 0.0 ) {
+		ax = -x;
+	} else {
+		ax = x;
+	}
+	if ( ax <= 1.0 ) {
+		s1 = -0.016743100507663373 + (x * (-0.0011295143874558028 + (x * (0.001056288621524929 + (x * (0.00020938631748758808 + (x * (0.000014962478375834237 + (x * (4.4969678992770644e-7 + (x * (4.625961635228786e-9 + (x * (-2.811287356288318e-14 + (x * 9.905570997331033e-17))))))))))))))); // eslint-disable-line max-len
+		s2 = 1.0 + (x * (0.5914293448864175 + (x * (0.1381518657490833 + (x * (0.016074608709367652 + (x * (0.0009640118070051656 + (x * (0.000027533547476472603 + (x * (2.82243172016108e-7 + (x * (0.0 + (x * 0.0))))))))))))))); // eslint-disable-line max-len
+	} else {
+		x = 1.0 / x;
+		s1 = 9.905570997331033e-17 + (x * (-2.811287356288318e-14 + (x * (4.625961635228786e-9 + (x * (4.4969678992770644e-7 + (x * (0.000014962478375834237 + (x * (0.00020938631748758808 + (x * (0.001056288621524929 + (x * (-0.0011295143874558028 + (x * -0.016743100507663373))))))))))))))); // eslint-disable-line max-len
+		s2 = 0.0 + (x * (0.0 + (x * (2.82243172016108e-7 + (x * (0.000027533547476472603 + (x * (0.0009640118070051656 + (x * (0.016074608709367652 + (x * (0.1381518657490833 + (x * (0.5914293448864175 + (x * 1.0))))))))))))))); // eslint-disable-line max-len
+	}
+	return s1 / s2;
+}
+
+
+// EXPORTS //
+
+var _$evalrational_307 = __evalrational_307;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+*
+* ## Notice
+*
+* The original C++ code and copyright notice are from the [Boost library]{@link http://www.boost.org/doc/libs/1_48_0/boost/math/special_functions/detail/erf_inv.hpp}. This implementation follows the original, but has been modified for JavaScript.
+*
+* ```text
+* (C) Copyright John Maddock 2006.
+*
+* Use, modification and distribution are subject to the
+* Boost Software License, Version 1.0. (See accompanying file
+* LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
+* ```
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$ln_461 = require( '@stdlib/math/base/special/ln' ); */;
+/* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
+/* removed: var _$FLOAT64_NINF_205 = require( '@stdlib/constants/math/float64-ninf' ); */;
+/* removed: var _$evalrational_303 = require( './rational_p1q1.js' ); */;
+/* removed: var _$evalrational_304 = require( './rational_p2q2.js' ); */;
+/* removed: var _$evalrational_305 = require( './rational_p3q3.js' ); */;
+/* removed: var _$evalrational_306 = require( './rational_p4q4.js' ); */;
+/* removed: var _$evalrational_307 = require( './rational_p5q5.js' ); */;
+
+
+// VARIABLES //
+
+var __Y1_301 = 8.91314744949340820313e-2;
+var __Y2_301 = 2.249481201171875;
+var __Y3_301 = 8.07220458984375e-1;
+var __Y4_301 = 9.3995571136474609375e-1;
+var __Y5_301 = 9.8362827301025390625e-1;
+
+
+// MAIN //
+
+/**
+* Evaluates the inverse error function.
+*
+* ## Method
+*
+* 1.  For \\(|x| \leq 0.5\\), we evaluate the inverse error function using the rational approximation
+*
+*     ```tex
+*     \operatorname{erf^{-1}}(x) = x(x+10)(\mathrm{Y} + \operatorname{R}(x))
+*     ```
+*
+*     where \\(Y\\) is a constant and \\(\operatorname{R}(x)\\) is optimized for a low absolute error compared to \\(|Y|\\).
+*
+*     <!-- <note> -->
+*
+*     Max error \\(2.001849\mbox{e-}18\\). Maximum deviation found (error term at infinite precision) \\(8.030\mbox{e-}21\\).
+*
+*     <!-- </note> -->
+*
+* 2.  For \\(0.5 > 1-|x| \geq 0\\), we evaluate the inverse error function using the rational approximation
+*
+*     ```tex
+*     \operatorname{erf^{-1}} = \frac{\sqrt{-2 \cdot \ln(1-x)}}{\mathrm{Y} + \operatorname{R}(1-x)}
+*     ```
+*
+*     where \\(Y\\) is a constant, and \\(\operatorname{R}(q)\\) is optimized for a low absolute error compared to \\(Y\\).
+*
+*     <!-- <note> -->
+*
+*     Max error \\(7.403372\mbox{e-}17\\). Maximum deviation found (error term at infinite precision) \\(4.811\mbox{e-}20\\).
+*
+*     <!-- </note> -->
+*
+* 3.  For \\(1-|x| < 0.25\\), we have a series of rational approximations all of the general form
+*
+*     ```tex
+*     p = \sqrt{-\ln(1-x)}
+*     ```
+*
+*     Accordingly, the result is given by
+*
+*     ```tex
+*     \operatorname{erf^{-1}}(x) = p(\mathrm{Y} + \operatorname{R}(p-B))
+*     ```
+*
+*     where \\(Y\\) is a constant, \\(B\\) is the lowest value of \\(p\\) for which the approximation is valid, and \\(\operatorname{R}(x-B)\\) is optimized for a low absolute error compared to \\(Y\\).
+*
+*     <!-- <note> -->
+*
+*     Almost all code will only go through the first or maybe second approximation.  After that we are dealing with very small input values.
+*
+*     -   If \\(p < 3\\), max error \\(1.089051\mbox{e-}20\\).
+*     -   If \\(p < 6\\), max error \\(8.389174\mbox{e-}21\\).
+*     -   If \\(p < 18\\), max error \\(1.481312\mbox{e-}19\\).
+*     -   If \\(p < 44\\), max error \\(5.697761\mbox{e-}20\\).
+*     -   If \\(p \geq 44\\), max error \\(1.279746\mbox{e-}20\\).
+*
+*     <!-- </note> -->
+*
+*     <!-- <note> -->
+*
+*     The Boost library can accommodate \\(80\\) and \\(128\\) bit long doubles. JavaScript only supports a \\(64\\) bit double (IEEE 754). Accordingly, the smallest \\(p\\) (in JavaScript at the time of this writing) is \\(\sqrt{-\ln(\sim5\mbox{e-}324)} = 27.284429111150214\\).
+*
+*     <!-- </note> -->
+*
+*
+* @param {number} x - input value
+* @returns {number} function value
+*
+* @example
+* var y = erfinv( 0.5 );
+* // returns ~0.4769
+*
+* @example
+* var y = erfinv( 0.8 );
+* // returns ~0.9062
+*
+* @example
+* var y = erfinv( 0.0 );
+* // returns 0.0
+*
+* @example
+* var y = erfinv( -0.0 );
+* // returns -0.0
+*
+* @example
+* var y = erfinv( -1.0 );
+* // returns -Infinity
+*
+* @example
+* var y = erfinv( 1.0 );
+* // returns Infinity
+*
+* @example
+* var y = erfinv( NaN );
+* // returns NaN
+*/
+function erfinv( x ) {
+	var sign;
+	var ax;
+	var qs;
+	var q;
+	var g;
+	var r;
+
+	// Special case: NaN
+	if ( _$isnan_231( x ) ) {
+		return NaN;
+	}
+	// Special case: 1
+	if ( x === 1.0 ) {
+		return _$FLOAT64_PINF_207;
+	}
+	// Special case: -1
+	if ( x === -1.0 ) {
+		return _$FLOAT64_NINF_205;
+	}
+	// Special case: +-0
+	if ( x === 0.0 ) {
+		return x;
+	}
+	// Special case: |x| > 1 (range error)
+	if ( x > 1.0 || x < -1.0 ) {
+		return NaN;
+	}
+	// Argument reduction (reduce to interval [0,1]). If `x` is negative, we can safely negate the value, taking advantage of the error function being an odd function; i.e., `erf(-x) = -erf(x)`.
+	if ( x < 0.0 ) {
+		sign = -1.0;
+		ax = -x;
+	} else {
+		sign = 1.0;
+		ax = x;
+	}
+	q = 1.0 - ax;
+
+	// |x| <= 0.5
+	if ( ax <= 0.5 ) {
+		g = ax * ( ax + 10.0 );
+		r = _$evalrational_303( ax );
+		return sign * ( (g*__Y1_301) + (g*r) );
+	}
+	// 1-|x| >= 0.25
+	if ( q >= 0.25 ) {
+		g = _$sqrt_501( -2.0 * _$ln_461(q) );
+		q -= 0.25;
+		r = _$evalrational_304( q );
+		return sign * ( g / (__Y2_301+r) );
+	}
+	q = _$sqrt_501( -_$ln_461( q ) );
+
+	// q < 3
+	if ( q < 3.0 ) {
+		qs = q - 1.125;
+		r = _$evalrational_305( qs );
+		return sign * ( (__Y3_301*q) + (r*q) );
+	}
+	// q < 6
+	if ( q < 6.0 ) {
+		qs = q - 3.0;
+		r = _$evalrational_306( qs );
+		return sign * ( (__Y4_301*q) + (r*q) );
+	}
+	// q < 18
+	qs = q - 6.0;
+	r = _$evalrational_307( qs );
+	return sign * ( (__Y5_301*q) + (r*q) );
+}
+
+
+// EXPORTS //
+
+var _$erfinv_301 = erfinv;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Evaluate the inverse error function.
+*
+* @module @stdlib/math/base/special/erfinv
+*
+* @example
+* var erfinv = require( '@stdlib/math/base/special/erfinv' );
+*
+* var y = erfinv( 0.5 );
+* // returns ~0.4769
+*
+* y = erfinv( 0.8 );
+* // returns ~0.9062
+*
+* y = erfinv( 0.0 );
+* // returns 0.0
+*
+* y = erfinv( -0.0 );
+* // returns -0.0
+*
+* y = erfinv( -1.0 );
+* // returns -Infinity
+*
+* y = erfinv( 1.0 );
+* // returns Infinity
+*
+* y = erfinv( NaN );
+* // returns NaN
+*/
+
+// MODULES //
+
+/* removed: var _$erfinv_301 = require( './erfinv.js' ); */;
+
+
+// EXPORTS //
+
+var _$erfinv_302 = _$erfinv_301;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$erfinv_302 = require( '@stdlib/math/base/special/erfinv' ); */;
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
+
+
+// MAIN //
+
+/**
+* Evaluates the quantile function for a normal distribution with mean `mu` and standard deviation `sigma` at a probability `p`.
+*
+* @param {Probability} p - input value
+* @param {number} mu - mean
+* @param {NonNegativeNumber} sigma - standard deviation
+* @returns {number} evaluated quantile function
+*
+* @example
+* var y = quantile( 0.8, 0.0, 1.0 );
+* // returns ~0.842
+*
+* @example
+* var y = quantile( 0.5, 4.0, 2.0 );
+* // returns 4.0
+*
+* @example
+* var y = quantile( 1.1, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = quantile( -0.2, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = quantile( NaN, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = quantile( 0.0, NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = quantile( 0.0, 0.0, NaN );
+* // returns NaN
+*
+* @example
+* // Negative standard deviation:
+* var y = quantile( 0.5, 0.0, -1.0 );
+* // returns NaN
+*/
+function __quantile_786( p, mu, sigma ) {
+	var A;
+	var B;
+
+	if (
+		_$isnan_231( mu ) ||
+		_$isnan_231( sigma ) ||
+		_$isnan_231( p ) ||
+		sigma < 0.0 ||
+		p < 0.0 ||
+		p > 1.0
+	) {
+		return NaN;
+	}
+	if ( sigma === 0.0 ) {
+		return mu;
+	}
+	A = mu;
+	B = sigma * _$sqrt_501( 2.0 );
+	return A + (B * _$erfinv_302( (2.0*p) - 1.0 ));
+}
+
+
+// EXPORTS //
+
+var _$quantile_786 = __quantile_786;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
+var __degenerate_784 = _$quantile_670.factory;
+/* removed: var _$erfinv_302 = require( '@stdlib/math/base/special/erfinv' ); */;
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
+
+
+// MAIN //
+
+/**
+* Returns a function for evaluating the quantile function of a normal distribution.
+*
+* @param {number} mu - mean
+* @param {NonNegativeNumber} sigma - standard deviation
+* @returns {Function} quantile function
+*
+* @example
+* var quantile = factory( 10.0, 2.0 );
+* var y = quantile( 0.5 );
+* // returns 10.0
+*
+* y = quantile( 0.8 );
+* // returns ~11.683
+*/
+function __factory_784( mu, sigma ) {
+	var A;
+	var B;
+	if ( _$isnan_231( mu ) || _$isnan_231( sigma ) || sigma < 0.0 ) {
+		return _$constantFunction_790( NaN );
+	}
+	if ( sigma === 0.0 ) {
+		__degenerate_784( mu );
+	}
+	A = mu;
+	B = sigma * _$sqrt_501( 2.0 );
+	return quantile;
+
+	/**
+	* Evaluates the quantile function for a normal distribution.
+	*
+	* @private
+	* @param {Probability} p - input value
+	* @returns {number} evaluated quantile function
+	*
+	* @example
+	* var y = quantile( 0.3 );
+	* // returns <number>
+	*/
+	function quantile( p ) {
+		if ( _$isnan_231( p ) || p < 0.0 || p > 1.0 ) {
+			return NaN;
+		}
+		return A + ( B * _$erfinv_302( (2.0*p) - 1.0 ) );
+	}
+}
+
+
+// EXPORTS //
+
+var _$factory_784 = __factory_784;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Normal distribution quantile function.
+*
+* @module @stdlib/stats/base/dists/normal/quantile
+*
+* @example
+* var quantile = require( '@stdlib/stats/base/dists/normal/quantile' );
+*
+* var y = quantile( 0.8, 0.0, 1.0 );
+* // returns ~0.842
+*
+* var myQuantile = quantile.factory( 10.0, 2.0 );
+* y = myQuantile( 0.5 );
+* // returns 10.0
+*/
+
+// MODULES //
+
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_786 = require( './quantile.js' ); */;
+/* removed: var _$factory_784 = require( './factory.js' ); */;
+
+
+// MAIN //
+
+_$setNonEnumerableReadOnly_799( _$quantile_786, 'factory', _$factory_784 );
+
+
+// EXPORTS //
+
+var _$quantile_785 = _$quantile_786;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$quantile_785 = require( '@stdlib/stats/base/dists/normal/quantile' ); */;
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+
+
+// MAIN //
+
+/**
+* Evaluates the quantile function for a lognormal distribution with location parameter `mu` and scale parameter `sigma` at a probability `p`.
+*
+* @param {Probability} p - input value
+* @param {number} mu - location parameter
+* @param {PositiveNumber} sigma - scale parameter
+* @returns {number} evaluated quantile function
+*
+* @example
+* var y = quantile( 0.8, 0.0, 1.0 );
+* // returns ~2.32
+*
+* @example
+* var y = quantile( 0.5, 4.0, 2.0 );
+* // returns ~54.598
+*
+* @example
+* var y = quantile( 1.1, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = quantile( -0.2, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = quantile( NaN, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = quantile( 0.0, NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = quantile( 0.0, 0.0, NaN );
+* // returns NaN
+*
+* @example
+* // Negative scale parameter:
+* var y = quantile( 0.5, 0.0, -1.0 );
+* // returns NaN
+*/
+function __quantile_769( p, mu, sigma ) {
+	if (
+		_$isnan_231( mu ) ||
+		_$isnan_231( sigma ) ||
+		_$isnan_231( p ) ||
+		sigma <= 0.0 ||
+		p < 0.0 ||
+		p > 1.0
+	) {
+		return NaN;
+	}
+	return _$exp_310( mu + (sigma * _$quantile_785( p, 0.0, 1.0 )) );
+}
+
+
+// EXPORTS //
+
+var _$quantile_769 = __quantile_769;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$quantile_785 = require( '@stdlib/stats/base/dists/normal/quantile' ); */;
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+
+
+// MAIN //
+
+/**
+* Returns a function for evaluating the quantile function for a lognormal distribution with location parameter `mu` and scale parameter `sigma`.
+*
+* @param {number} mu - location parameter
+* @param {PositiveNumber} sigma - scale parameter
+* @returns {Function} quantile function
+*
+* @example
+* var quantile = factory( 4.0, 2.0 );
+* var y = quantile( 0.5 );
+* // returns ~54.598
+*
+* y = quantile( 0.8 );
+* // returns ~293.901
+*/
+function __factory_767( mu, sigma ) {
+	if (
+		_$isnan_231( mu ) ||
+		_$isnan_231( sigma ) ||
+		sigma <= 0.0
+	) {
+		return _$constantFunction_790( NaN );
+	}
+	return quantile;
+
+	/**
+	* Evaluates the quantile function for a lognormal distribution.
+	*
+	* @private
+	* @param {Probability} p - input value
+	* @returns {number} evaluated quantile function
+	*
+	* @example
+	* var y = quantile( 0.3 );
+	* // returns <number>
+	*/
+	function quantile( p ) {
+		if ( _$isnan_231( p ) || p < 0.0 || p > 1.0 ) {
+			return NaN;
+		}
+		return _$exp_310( mu + (sigma * _$quantile_785( p, 0.0, 1.0 )) );
+	}
+}
+
+
+// EXPORTS //
+
+var _$factory_767 = __factory_767;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Evaluate the quantile function for a lognormal distribution.
+*
+* @module @stdlib/stats/base/dists/lognormal/quantile
+*
+* @example
+* var quantile = require( '@stdlib/stats/base/dists/lognormal/quantile' );
+*
+* var y = quantile( 0.8, 0.0, 1.0 );
+* // returns ~2.32
+*
+* y = quantile( 0.5, 4.0, 2.0 );
+* // returns ~54.598
+*
+* var myquantile = quantile.factory( 4.0, 2.0 );
+*
+* y = myquantile( 0.2 );
+* // returns ~10.143
+*
+* y = myquantile( 0.8 );
+* // returns ~293.901
+*/
+
+// MODULES //
+
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_769 = require( './quantile.js' ); */;
+/* removed: var _$factory_767 = require( './factory.js' ); */;
+
+
+// MAIN //
+
+_$setNonEnumerableReadOnly_799( _$quantile_769, 'factory', _$factory_767 );
+
+
+// EXPORTS //
+
+var _$quantile_768 = _$quantile_769;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+
+
+// MAIN //
+
+/**
+* Returns the expected value for a lognormal distribution with location `mu` and scale `sigma`.
+*
+* @param {number} mu - location parameter
+* @param {PositiveNumber} sigma - scale parameter
+* @returns {NonNegativeNumber} expected value
+*
+* @example
+* var y = mean( 0.0, 1.0 );
+* // returns ~1.649
+*
+* @example
+* var y = mean( 5.0, 2.0 );
+* // returns ~1096.633
+*
+* @example
+* var y = mean( NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = mean( 0.0, NaN );
+* // returns NaN
+*
+* @example
+* var y = mean( 0.0, 0.0 );
+* // returns NaN
+*/
+function __mean_759( mu, sigma ) {
+	if (
+		_$isnan_231( mu ) ||
+		_$isnan_231( sigma ) ||
+		sigma <= 0.0
+	) {
+		return NaN;
+	}
+	return _$exp_310( mu + ( ( sigma*sigma ) / 2.0 ) );
+}
+
+
+// EXPORTS //
+
+var _$mean_759 = __mean_759;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Lognormal distribution expected value.
+*
+* @module @stdlib/stats/base/dists/lognormal/mean
+*
+* @example
+* var mean = require( '@stdlib/stats/base/dists/lognormal/mean' );
+*
+* var y = mean( 0.0, 1.0 );
+* // returns ~1.649
+*
+* y = mean( 4.0, 2.0 );
+* // returns ~403.429
+*/
+
+// MODULES //
+
+/* removed: var _$mean_759 = require( './mean.js' ); */;
+
+
+// EXPORTS //
+
+var _$mean_758 = _$mean_759;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+
+
+// MAIN //
+
+/**
+* Returns the median for a lognormal distribution with location `mu` and scale `sigma`.
+*
+* @param {number} mu - location parameter
+* @param {PositiveNumber} sigma - scale parameter
+* @returns {NonNegativeNumber} median
+*
+* @example
+* var y = median( 0.0, 1.0 );
+* // returns 1.0
+*
+* @example
+* var y = median( 5.0, 2.0 );
+* // returns ~148.413
+*
+* @example
+* var y = median( NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = median( 0.0, NaN );
+* // returns NaN
+*
+* @example
+* var y = median( 0.0, 0.0 );
+* // returns NaN
+*/
+function __median_761( mu, sigma ) {
+	if (
+		_$isnan_231( mu ) ||
+		_$isnan_231( sigma ) ||
+		sigma <= 0.0
+	) {
+		return NaN;
+	}
+	return _$exp_310( mu );
+}
+
+
+// EXPORTS //
+
+var _$median_761 = __median_761;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Lognormal distribution median.
+*
+* @module @stdlib/stats/base/dists/lognormal/median
+*
+* @example
+* var median = require( '@stdlib/stats/base/dists/lognormal/median' );
+*
+* var y = median( 0.0, 1.0 );
+* // returns 1.0
+*
+* y = median( 4.0, 2.0 );
+* // returns ~54.598
+*/
+
+// MODULES //
+
+/* removed: var _$median_761 = require( './median.js' ); */;
+
+
+// EXPORTS //
+
+var _$median_760 = _$median_761;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+
+
+// MAIN //
+
+/**
+* Returns the mode for a lognormal distribution with location `mu` and scale `sigma`.
+*
+* @param {number} mu - location parameter
+* @param {PositiveNumber} sigma - scale parameter
+* @returns {NonNegativeNumber} mode
+*
+* @example
+* var y = mode( 0.0, 1.0 );
+* // returns ~0.368
+*
+* @example
+* var y = mode( 5.0, 2.0 );
+* // returns ~2.718
+*
+* @example
+* var y = mode( NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = mode( 0.0, NaN );
+* // returns NaN
+*
+* @example
+* var y = mode( 0.0, 0.0 );
+* // returns NaN
+*/
+function __mode_763( mu, sigma ) {
+	if (
+		_$isnan_231( mu ) ||
+		_$isnan_231( sigma ) ||
+		sigma <= 0.0
+	) {
+		return NaN;
+	}
+	return _$exp_310( mu - ( sigma*sigma ) );
+}
+
+
+// EXPORTS //
+
+var _$mode_763 = __mode_763;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Lognormal distribution mode.
+*
+* @module @stdlib/stats/base/dists/lognormal/mode
+*
+* @example
+* var mode = require( '@stdlib/stats/base/dists/lognormal/mode' );
+*
+* var y = mode( 0.0, 1.0 );
+* // returns ~0.368
+*
+* y = mode( 4.0, 2.0 );
+* // returns 1.0
+*/
+
+// MODULES //
+
+/* removed: var _$mode_763 = require( './mode.js' ); */;
+
+
+// EXPORTS //
+
+var _$mode_762 = _$mode_763;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var __isNumber_601 = _$isNumber_134.isPrimitive;
+var __isPositive_601 = _$isPositiveNumber_150.isPrimitive;
+/* removed: var _$isnan_126 = require( '@stdlib/assert/is-nan' ); */;
+
+
+// MAIN //
+
+/**
+* Validates parameters.
+*
+* @private
+* @param {number} mu - location parameter
+* @param {PositiveNumber} sigma - scale paramter
+* @returns {(Error|null)} error or null
+*
+* @example
+* var err = validate( 1.0, 2.0 );
+* if ( err ) {
+*     throw err;
+* }
+*/
+function __validate_601( mu, sigma ) {
+	if ( !__isNumber_601( mu ) || _$isnan_126( mu ) ) {
+		return new TypeError( 'invalid argument. `mu` must be a number primitive and not `NaN`. Value: `' + mu + '`.' );
+	}
+	if ( !__isPositive_601( sigma ) ) {
+		return new TypeError( 'invalid argument. `sigma` must be a positive number. Value: `' + sigma + '`.' );
+	}
+	return null;
+}
+
+
+// EXPORTS //
+
+var _$validate_601 = __validate_601;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+
+
+// MAIN //
+
+/**
+* Returns a log-normally distributed pseudorandom number.
+*
+* @private
+* @param {PRNG} randn - PRNG for standard normally distributed numbers
+* @param {number} mu - location parameter
+* @param {PositiveNumber} sigma - scale parameter
+* @returns {PositiveNumber} pseudorandom number
+*/
+function lognormal( randn, mu, sigma ) {
+	return _$exp_310( mu + (sigma*randn()) );
+}
+
+
+// EXPORTS //
+
+var _$lognormal_599 = lognormal;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_797 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_801 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
+/* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
+/* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_844 = require( '@stdlib/utils/noop' ); */;
+var __randn_597 = _$randn_589.factory;
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
+/* removed: var _$validate_601 = require( './validate.js' ); */;
+/* removed: var _$lognormal_599 = require( './lognormal.js' ); */;
+
+
+// MAIN //
+
+/**
+* Returns a pseudorandom number generator for generating random numbers from a lognormal distribution.
+*
+* @param {number} [mu] - location parameter
+* @param {PositiveNumber} [sigma] - scale parameter
+* @param {Options} [options] - function options
+* @param {PRNG} [options.prng] - pseudorandom number generator which generates uniformly distributed pseudorandom numbers
+* @param {PRNGSeedMT19937} [options.seed] - pseudorandom number generator seed
+* @param {PRNGStateMT19937} [options.state] - pseudorandom number generator state
+* @param {boolean} [options.copy=true] - boolean indicating whether to copy a provided pseudorandom number generator state
+* @throws {TypeError} `mu` must be a number
+* @throws {TypeError} `sigma` must be a positive number
+* @throws {TypeError} options argument must be an object
+* @throws {TypeError} must provide valid options
+* @throws {Error} must provide a valid state
+* @returns {PRNG} pseudorandom number generator
+*
+* @example
+* var lognormal = factory( 0.0, 1.0 );
+*
+* var v = lognormal();
+* // returns <number>
+*
+* @example
+* var lognormal = factory( -3.0, 0.5, {
+*     'seed': 297
+* });
+* var v = lognormal();
+* // returns <number>
+*/
+function __factory_597() {
+	var sigma;
+	var rnorm;
+	var opts;
+	var rand;
+	var prng;
+	var err;
+	var mu;
+
+	if ( arguments.length === 0 ) {
+		rnorm = __randn_597();
+	} else if ( arguments.length === 1 ) {
+		opts = arguments[ 0 ];
+		if ( !_$isPlainObject_144( opts ) ) {
+			throw new TypeError( 'invalid argument. Options argument must be an object. Value: `' + opts + '`.' );
+		}
+		if ( _$hasOwnProp_58( opts, 'prng' ) ) {
+			if ( !_$isFunction_110( opts.prng ) ) {
+				throw new TypeError( 'invalid option. `prng` option must be a pseudorandom number generator function. Option: `' + opts.prng + '`.' );
+			}
+			rnorm = __randn_597({
+				'prng': opts.prng
+			});
+		} else {
+			rnorm = __randn_597( opts );
+		}
+	} else {
+		mu = arguments[ 0 ];
+		sigma = arguments[ 1 ];
+		err = _$validate_601( mu, sigma );
+		if ( err ) {
+			throw err;
+		}
+		if ( arguments.length > 2 ) {
+			opts = arguments[ 2 ];
+			if ( !_$isPlainObject_144( opts ) ) {
+				throw new TypeError( 'invalid argument. Options argument must be an object. Value: `' + opts + '`.' );
+			}
+			if ( _$hasOwnProp_58( opts, 'prng' ) ) {
+				if ( !_$isFunction_110( opts.prng ) ) {
+					throw new TypeError( 'invalid option. `prng` option must be a pseudorandom number generator function. Option: `' + opts.prng + '`.' );
+				}
+				rnorm = __randn_597({
+					'prng': opts.prng
+				});
+			} else {
+				rnorm = __randn_597( opts );
+			}
+		} else {
+			rnorm = __randn_597();
+		}
+	}
+	if ( mu === void 0 ) {
+		prng = lognormal2;
+	} else {
+		prng = lognormal1;
+	}
+	rand = rnorm.PRNG;
+
+	_$setNonEnumerableReadOnly_799( prng, 'NAME', 'lognormal' );
+
+	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
+	if ( opts && opts.prng ) {
+		_$setNonEnumerableReadOnly_799( prng, 'seed', null );
+		_$setNonEnumerableReadOnly_799( prng, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_801( prng, 'state', _$constantFunction_790( null ), _$noop_844 );
+		_$setNonEnumerableReadOnly_799( prng, 'stateLength', null );
+		_$setNonEnumerableReadOnly_799( prng, 'byteLength', null );
+		_$setNonEnumerableReadOnly_799( prng, 'toJSON', _$constantFunction_790( null ) );
+	} else {
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_801( prng, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_799( prng, 'toJSON', toJSON );
+	}
+	_$setNonEnumerableReadOnly_799( prng, 'PRNG', rand );
+	return prng;
+
+	/**
+	* Returns the PRNG seed.
+	*
+	* @private
+	* @returns {PRNGSeedMT19937} seed
+	*/
+	function getSeed() {
+		return rand.seed;
+	}
+
+	/**
+	* Returns the PRNG seed length.
+	*
+	* @private
+	* @returns {PositiveInteger} seed length
+	*/
+	function getSeedLength() {
+		return rand.seedLength;
+	}
+
+	/**
+	* Returns the PRNG state length.
+	*
+	* @private
+	* @returns {PositiveInteger} state length
+	*/
+	function getStateLength() {
+		return rand.stateLength;
+	}
+
+	/**
+	* Returns the PRNG state size (in bytes).
+	*
+	* @private
+	* @returns {PositiveInteger} state size (in bytes)
+	*/
+	function getStateSize() {
+		return rand.byteLength;
+	}
+
+	/**
+	* Returns the current pseudorandom number generator state.
+	*
+	* @private
+	* @returns {PRNGStateMT19937} current state
+	*/
+	function getState() {
+		return rand.state;
+	}
+
+	/**
+	* Sets the pseudorandom number generator state.
+	*
+	* @private
+	* @param {PRNGStateMT19937} s - generator state
+	* @throws {Error} must provide a valid state
+	*/
+	function setState( s ) {
+		rand.state = s;
+	}
+
+	/**
+	* Serializes the pseudorandom number generator as a JSON object.
+	*
+	* ## Notes
+	*
+	* -   `JSON.stringify()` implicitly calls this method when stringifying a PRNG.
+	*
+	* @private
+	* @returns {Object} JSON representation
+	*/
+	function toJSON() {
+		var out = {};
+		out.type = 'PRNG';
+		out.name = prng.NAME;
+		out.state = _$toJSON_17( rand.state );
+		if ( mu === void 0 ) {
+			out.params = [];
+		} else {
+			out.params = [ mu, sigma ];
+		}
+		return out;
+	}
+
+	/**
+	* Returns a log-normally distributed pseudorandom number with bound parameters `mu` and `sigma`.
+	*
+	* @private
+	* @returns {PositiveNumber} pseudorandom number
+	*
+	* @example
+	* var v = lognormal1();
+	* // returns <number>
+	*/
+	function lognormal1() {
+		return _$lognormal_599( rnorm, mu, sigma );
+	}
+
+	/**
+	* Returns a log-normally distributed pseudorandom number with parameters `mu` and `sigma`.
+	*
+	* @private
+	* @param {number} mu - location parameter
+	* @param {PositiveNumber} sigma - scale parameter
+	* @returns {PositiveNumber} pseudorandom number
+	*
+	* @example
+	* var v = lognormal2( -2.0, 4.0 );
+	* // returns <number>
+	*
+	* @example
+	* var v = lognormal2( 0.0, -1.0 );
+	* // returns NaN
+	*/
+	function lognormal2( mu, sigma ) {
+		if (
+			_$isnan_231( mu ) ||
+			_$isnan_231( sigma ) ||
+			sigma <= 0.0
+		) {
+			return NaN;
+		}
+		return _$lognormal_599( rnorm, mu, sigma );
+	}
+}
+
+
+// EXPORTS //
+
+var _$factory_597 = __factory_597;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$factory_597 = require( './factory.js' ); */;
+
+
+// MAIN //
+
+/**
+* Returns a log-normally distributed pseudorandom number with parameters `mu` and `sigma`.
+*
+* @name lognormal
+* @type {PRNG}
+* @param {number} mu - location parameter
+* @param {PositiveNumber} sigma - scale parameter
+* @returns {PositiveNumber} pseudorandom number
+*
+* @example
+* var v = lognormal( -2.0, 4.0 );
+* // returns <number>
+*
+* @example
+* var v = lognormal( 0.0, -1.0 );
+* // returns NaN
+*/
+var __lognormal_600 = _$factory_597();
+
+
+// EXPORTS //
+
+var _$lognormal_600 = __lognormal_600;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Log-normal distributed pseudorandom numbers.
+*
+* @module @stdlib/random/base/lognormal
+*
+* @example
+* var lognormal = require( '@stdlib/random/base/lognormal' );
+*
+* var v = lognormal( 0.0, 1.0 );
+* // returns <number>
+*
+* @example
+* var factory = require( '@stdlib/random/base/lognormal' ).factory;
+* var lognormal = factory( 3.0, 2.0, {
+*     'seed': 297
+* });
+*
+* var v = lognormal();
+* // returns <number>
+*
+* @example
+* var factory = require( '@stdlib/random/base/lognormal' ).factory;
+* var lognormal = factory({
+*     'seed': 297
+* });
+*
+* var v = lognormal( 3.0, 2.0 );
+* // returns <number>
+*/
+
+// MODULES //
+
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$lognormal_600 = require( './main.js' ); */;
+/* removed: var _$factory_597 = require( './factory.js' ); */;
+
+
+// MAIN //
+
+_$setNonEnumerableReadOnly_799( _$lognormal_600, 'factory', _$factory_597 );
+
+
+// EXPORTS //
+
+var _$lognormal_598 = _$lognormal_600;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+
+
+// MAIN //
+
+/**
+* Returns the variance for a lognormal distribution with location `mu` and scale `sigma`.
+*
+* @param {number} mu - location parameter
+* @param {PositiveNumber} sigma - scale parameter
+* @returns {NonNegativeNumber} variance
+*
+* @example
+* var y = variance( 0.0, 1.0 );
+* // returns ~4.671
+*
+* @example
+* var y = variance( 5.0, 2.0 );
+* // returns ~64457364.853
+*
+* @example
+* var y = variance( NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = variance( 0.0, NaN );
+* // returns NaN
+*
+* @example
+* var y = variance( 0.0, 0.0 );
+* // returns NaN
+*/
+function __variance_771( mu, sigma ) {
+	var s2;
+	if (
+		_$isnan_231( mu ) ||
+		_$isnan_231( sigma ) ||
+		sigma <= 0.0
+	) {
+		return NaN;
+	}
+	s2 = sigma*sigma;
+	return ( _$exp_310( s2 ) - 1.0 ) * _$exp_310( ( 2.0*mu ) + s2 );
+}
+
+
+// EXPORTS //
+
+var _$variance_771 = __variance_771;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Lognormal distribution variance.
+*
+* @module @stdlib/stats/base/dists/lognormal/variance
+*
+* @example
+* var variance = require( '@stdlib/stats/base/dists/lognormal/variance' );
+*
+* var y = variance( 0.0, 1.0 );
+* // returns ~4.671
+*
+* y = variance( 4.0, 2.0 );
+* // returns ~8723355.729
+*/
+
+// MODULES //
+
+/* removed: var _$variance_771 = require( './variance.js' ); */;
+
+
+// EXPORTS //
+
+var _$variance_770 = _$variance_771;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$TWO_PI_213 = require( '@stdlib/constants/math/float64-two-pi' ); */;
+/* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+
+
+// MAIN //
+
+/**
+* Evaluates the probability density function (PDF) for a normal distribution with mean `mu` and standard deviation `sigma` at a value `x`.
+*
+* @param {number} x - input value
+* @param {number} mu - mean
+* @param {NonNegativeNumber} sigma - standard deviation
+* @returns {number} evaluated probability density function
+*
+* @example
+* var y = pdf( 2.0, 0.0, 1.0 );
+* // returns ~0.054
+*
+* @example
+* var y = pdf( -1.0, 4.0, 2.0 );
+* // returns ~0.009
+*
+* @example
+* var y = pdf( NaN, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = pdf( 0.0, NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = pdf( 0.0, 0.0, NaN );
+* // returns NaN
+*
+* @example
+* // Negative standard deviation:
+* var y = pdf( 2.0, 0.0, -1.0 );
+* // returns NaN
+*
+* @example
+* var y = pdf( 2.0, 8.0, 0.0 );
+* // returns 0.0
+*
+* @example
+* var y = pdf( 8.0, 8.0, 0.0 );
+* // returns Infinity
+*/
+function __pdf_783( x, mu, sigma ) {
+	var s2;
+	var A;
+	var B;
+	if (
+		_$isnan_231( x ) ||
+		_$isnan_231( mu ) ||
+		_$isnan_231( sigma ) ||
+		sigma < 0.0
+	) {
+		return NaN;
+	}
+	if ( sigma === 0.0 ) {
+		return ( x === mu ) ? _$FLOAT64_PINF_207 : 0.0;
+	}
+	s2 = _$pow_476( sigma, 2.0 );
+	A = 1.0 / _$sqrt_501( s2*_$TWO_PI_213 );
+	B = -1.0 / ( 2.0*s2 );
+	return A * _$exp_310( B * _$pow_476(x-mu, 2.0) );
+}
+
+
+// EXPORTS //
+
+var _$pdf_783 = __pdf_783;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
+var __degenerate_781 = _$pdf_667.factory;
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$sqrt_501 = require( '@stdlib/math/base/special/sqrt' ); */;
+/* removed: var _$exp_310 = require( '@stdlib/math/base/special/exp' ); */;
+/* removed: var _$pow_476 = require( '@stdlib/math/base/special/pow' ); */;
+/* removed: var _$TWO_PI_213 = require( '@stdlib/constants/math/float64-two-pi' ); */;
+
+
+// MAIN //
+
+/**
+* Returns a function for evaluating the probability density function (PDF) for a normal distribution.
+*
+* @param {number} mu - mean
+* @param {NonNegativeNumber} sigma - standard deviation
+* @returns {Function} function to evaluate the probability density function
+*
+* @example
+* var pdf = factory( 10.0, 2.0 );
+* var y = pdf( 10.0 );
+* // returns ~0.199
+*
+* y = pdf( 5.0 );
+* // returns ~0.009
+*/
+function __factory_781( mu, sigma ) {
+	var s2;
+	var A;
+	var B;
+	if (
+		_$isnan_231( mu ) ||
+		_$isnan_231( sigma ) ||
+		sigma < 0.0
+	) {
+		return _$constantFunction_790( NaN );
+	}
+	if ( sigma === 0.0 ) {
+		return __degenerate_781( mu );
+	}
+	s2 = _$pow_476( sigma, 2.0 );
+	A = 1.0 / _$sqrt_501( s2*_$TWO_PI_213 );
+	B = -1.0 / ( 2.0*s2 );
+	return pdf;
+
+	/**
+	* Evaluates the probability density function (PDF) for a normal distribution.
+	*
+	* @private
+	* @param {number} x - input value
+	* @returns {number} evaluated probability density function
+	*
+	* @example
+	* var y = pdf( -3.14 );
+	* // returns <number>
+	*/
+	function pdf( x ) {
+		if ( _$isnan_231( x ) ) {
+			return NaN;
+		}
+		return A * _$exp_310( B * _$pow_476(x-mu, 2.0) );
+	}
+}
+
+
+// EXPORTS //
+
+var _$factory_781 = __factory_781;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Normal distribution probability density function (PDF).
+*
+* @module @stdlib/stats/base/dists/normal/pdf
+*
+* @example
+* var pdf = require( '@stdlib/stats/base/dists/normal/pdf' );
+*
+* var y = pdf( 2.0, 0.0, 1.0 );
+* // returns ~0.054
+*
+* var myPDF = pdf.factory( 10.0, 2.0 );
+* y = myPDF( 10.0 );
+* // returns ~0.199
+*/
+
+// MODULES //
+
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_783 = require( './pdf.js' ); */;
+/* removed: var _$factory_781 = require( './factory.js' ); */;
+
+
+// MAIN //
+
+_$setNonEnumerableReadOnly_799( _$pdf_783, 'factory', _$factory_781 );
+
+
+// EXPORTS //
+
+var _$pdf_782 = _$pdf_783;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+
+
+// MAIN //
+
+/**
+* Returns the expected value for a normal distribution with mean `mu` and standard deviation `sigma`.
+*
+* @param {number} mu - mean
+* @param {PositiveNumber} sigma - standard deviation
+* @returns {number} expected value
+*
+* @example
+* var y = mean( 0.0, 1.0 );
+* // returns 0.0
+*
+* @example
+* var y = mean( 5.0, 2.0 );
+* // returns 5.0
+*
+* @example
+* var y = mean( NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = mean( 0.0, NaN );
+* // returns NaN
+*
+* @example
+* var y = mean( 0.0, 0.0 );
+* // returns NaN
+*/
+function __mean_776( mu, sigma ) {
+	if (
+		_$isnan_231( mu ) ||
+		_$isnan_231( sigma ) ||
+		sigma <= 0.0
+	) {
+		return NaN;
+	}
+	return mu;
+}
+
+
+// EXPORTS //
+
+var _$mean_776 = __mean_776;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Normal distribution expected value.
+*
+* @module @stdlib/stats/base/dists/normal/mean
+*
+* @example
+* var mean = require( '@stdlib/stats/base/dists/normal/mean' );
+*
+* var y = mean( 0.0, 1.0 );
+* // returns 0.0
+*
+* y = mean( 4.0, 2.0 );
+* // returns 4.0
+*/
+
+// MODULES //
+
+/* removed: var _$mean_776 = require( './mean.js' ); */;
+
+
+// EXPORTS //
+
+var _$mean_775 = _$mean_776;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+
+
+// MAIN //
+
+/**
+* Returns the median for a normal distribution with mean `mu` and standard deviation `sigma`.
+*
+* @param {number} mu - mean
+* @param {PositiveNumber} sigma - standard deviation
+* @returns {number} median
+*
+* @example
+* var y = median( 0.0, 1.0 );
+* // returns 0.0
+*
+* @example
+* var y = median( 5.0, 2.0 );
+* // returns 5.0
+*
+* @example
+* var y = median( NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = median( 0.0, NaN );
+* // returns NaN
+*
+* @example
+* var y = median( 0.0, 0.0 );
+* // returns NaN
+*/
+function __median_778( mu, sigma ) {
+	if (
+		_$isnan_231( mu ) ||
+		_$isnan_231( sigma ) ||
+		sigma <= 0.0
+	) {
+		return NaN;
+	}
+	return mu;
+}
+
+
+// EXPORTS //
+
+var _$median_778 = __median_778;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Normal distribution median.
+*
+* @module @stdlib/stats/base/dists/normal/median
+*
+* @example
+* var median = require( '@stdlib/stats/base/dists/normal/median' );
+*
+* var y = median( 0.0, 1.0 );
+* // returns 0.0
+*
+* y = median( 4.0, 2.0 );
+* // returns 4.0
+*/
+
+// MODULES //
+
+/* removed: var _$median_778 = require( './median.js' ); */;
+
+
+// EXPORTS //
+
+var _$median_777 = _$median_778;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+
+
+// MAIN //
+
+/**
+* Returns the mode for a normal distribution with mean `mu` and standard deviation `sigma`.
+*
+* @param {number} mu - mean
+* @param {PositiveNumber} sigma - standard deviation
+* @returns {number} mode
+*
+* @example
+* var y = mode( 0.0, 1.0 );
+* // returns 0.0
+*
+* @example
+* var y = mode( 5.0, 2.0 );
+* // returns 5.0
+*
+* @example
+* var y = mode( NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = mode( 0.0, NaN );
+* // returns NaN
+*
+* @example
+* var y = mode( 0.0, 0.0 );
+* // returns NaN
+*/
+function __mode_780( mu, sigma ) {
+	if (
+		_$isnan_231( mu ) ||
+		_$isnan_231( sigma ) ||
+		sigma <= 0.0
+	) {
+		return NaN;
+	}
+	return mu;
+}
+
+
+// EXPORTS //
+
+var _$mode_780 = __mode_780;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Normal distribution mode.
+*
+* @module @stdlib/stats/base/dists/normal/mode
+*
+* @example
+* var mode = require( '@stdlib/stats/base/dists/normal/mode' );
+*
+* var y = mode( 0.0, 1.0 );
+* // returns 0.0
+*
+* y = mode( 4.0, 2.0 );
+* // returns 4.0
+*/
+
+// MODULES //
+
+/* removed: var _$mode_780 = require( './mode.js' ); */;
+
+
+// EXPORTS //
+
+var _$mode_779 = _$mode_780;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var __isNumber_610 = _$isNumber_134.isPrimitive;
+var __isPositive_610 = _$isPositiveNumber_150.isPrimitive;
+/* removed: var _$isnan_126 = require( '@stdlib/assert/is-nan' ); */;
+
+
+// MAIN //
+
+/**
+* Validates parameters.
+*
+* @private
+* @param {number} mu - mean
+* @param {PositiveNumber} sigma - standard deviation
+* @returns {(Error|null)} error or null
+*
+* @example
+* var err = validate( 1.0, 2.0 );
+* if ( err ) {
+*     throw err;
+* }
+*/
+function __validate_610( mu, sigma ) {
+	if ( !__isNumber_610( mu ) || _$isnan_126( mu ) ) {
+		return new TypeError( 'invalid argument. `mu` must be a number primitive and not `NaN`. Value: `' + mu + '`.' );
+	}
+	if ( !__isPositive_610( sigma ) ) {
+		return new TypeError( 'invalid argument. `sigma` must be a positive number. Value: `' + sigma + '`.' );
+	}
+	return null;
+}
+
+
+// EXPORTS //
+
+var _$validate_610 = __validate_610;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Returns a pseudorandom number from a normal distribution with parameters `mu` and `sigma`.
+*
+* @private
+* @param {PRNG} rand - pseudorandom number generator
+* @param {number} mu - mean
+* @param {PositiveNumber} sigma - standard deviation
+* @returns {number} pseudorandom number
+*/
+function __normal_609( rand, mu, sigma ) {
+	return mu + (sigma*rand());
+}
+
+
+// EXPORTS //
+
+var _$normal_609 = __normal_609;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_797 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_801 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
+/* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
+/* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
+/* removed: var _$constantFunction_790 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_844 = require( '@stdlib/utils/noop' ); */;
+var __randn_606 = _$randn_589.factory;
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
+/* removed: var _$validate_610 = require( './validate.js' ); */;
+/* removed: var _$normal_609 = require( './normal.js' ); */;
+
+
+// MAIN //
+
+/**
+* Returns a pseudorandom number generator for generating normally distributed random numbers.
+*
+* @param {number} [mu] - mean
+* @param {PositiveNumber} [sigma] - standard deviation
+* @param {Options} [options] - function options
+* @param {PRNG} [options.prng] - pseudorandom number generator which generates uniformly distributed pseudorandom numbers
+* @param {PRNGSeedMT19937} [options.seed] - pseudorandom number generator seed
+* @param {PRNGStateMT19937} [options.state] - pseudorandom number generator state
+* @param {boolean} [options.copy=true] - boolean indicating whether to copy a provided pseudorandom number generator state
+* @throws {TypeError} `mu` must be a number
+* @throws {TypeError} `sigma` must be a positive number
+* @throws {TypeError} options argument must be an object
+* @throws {TypeError} must provide valid options
+* @throws {Error} must provide a valid state
+* @returns {PRNG} pseudorandom number generator
+*
+* @example
+* var normal = factory( 0.0, 1.0 );
+* var v = normal();
+* // returns <number>
+*
+* @example
+* var normal = factory( -3.0, 0.5, {
+*     'seed': 297
+* });
+* var v = normal();
+* // returns <number>
+*/
+function __factory_606() {
+	var sigma;
+	var rnorm;
+	var opts;
+	var rand;
+	var prng;
+	var err;
+	var mu;
+
+	if ( arguments.length === 0 ) {
+		rnorm = __randn_606();
+	} else if ( arguments.length === 1 ) {
+		opts = arguments[ 0 ];
+		if ( !_$isPlainObject_144( opts ) ) {
+			throw new TypeError( 'invalid argument. Options argument must be an object. Value: `' + opts + '`.' );
+		}
+		if ( _$hasOwnProp_58( opts, 'prng' ) ) {
+			if ( !_$isFunction_110( opts.prng ) ) {
+				throw new TypeError( 'invalid option. `prng` option must be a pseudorandom number generator function. Option: `' + opts.prng + '`.' );
+			}
+			rnorm = __randn_606({
+				'prng': opts.prng
+			});
+		} else {
+			rnorm = __randn_606( opts );
+		}
+	} else {
+		mu = arguments[ 0 ];
+		sigma = arguments[ 1 ];
+		err = _$validate_610( mu, sigma );
+		if ( err ) {
+			throw err;
+		}
+		if ( arguments.length > 2 ) {
+			opts = arguments[ 2 ];
+			if ( !_$isPlainObject_144( opts ) ) {
+				throw new TypeError( 'invalid argument. Options argument must be an object. Value: `' + opts + '`.' );
+			}
+			if ( _$hasOwnProp_58( opts, 'prng' ) ) {
+				if ( !_$isFunction_110( opts.prng ) ) {
+					throw new TypeError( 'invalid option. `prng` option must be a pseudorandom number generator function. Option: `' + opts.prng + '`.' );
+				}
+				rnorm = __randn_606({
+					'prng': opts.prng
+				});
+			} else {
+				rnorm = __randn_606( opts );
+			}
+		} else {
+			rnorm = __randn_606();
+		}
+	}
+	if ( mu === void 0 ) {
+		prng = normal2;
+	} else {
+		prng = normal1;
+	}
+	rand = rnorm.PRNG;
+
+	_$setNonEnumerableReadOnly_799( prng, 'NAME', 'normal' );
+
+	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
+	if ( opts && opts.prng ) {
+		_$setNonEnumerableReadOnly_799( prng, 'seed', null );
+		_$setNonEnumerableReadOnly_799( prng, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_801( prng, 'state', _$constantFunction_790( null ), _$noop_844 );
+		_$setNonEnumerableReadOnly_799( prng, 'stateLength', null );
+		_$setNonEnumerableReadOnly_799( prng, 'byteLength', null );
+		_$setNonEnumerableReadOnly_799( prng, 'toJSON', _$constantFunction_790( null ) );
+	} else {
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_801( prng, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_797( prng, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_799( prng, 'toJSON', toJSON );
+	}
+	_$setNonEnumerableReadOnly_799( prng, 'PRNG', rand );
+	return prng;
+
+	/**
+	* Returns the PRNG seed.
+	*
+	* @private
+	* @returns {PRNGSeedMT19937} seed
+	*/
+	function getSeed() {
+		return rand.seed;
+	}
+
+	/**
+	* Returns the PRNG seed length.
+	*
+	* @private
+	* @returns {PositiveInteger} seed length
+	*/
+	function getSeedLength() {
+		return rand.seedLength;
+	}
+
+	/**
+	* Returns the PRNG state length.
+	*
+	* @private
+	* @returns {PositiveInteger} state length
+	*/
+	function getStateLength() {
+		return rand.stateLength;
+	}
+
+	/**
+	* Returns the PRNG state size (in bytes).
+	*
+	* @private
+	* @returns {PositiveInteger} state size (in bytes)
+	*/
+	function getStateSize() {
+		return rand.byteLength;
+	}
+
+	/**
+	* Returns the current pseudorandom number generator state.
+	*
+	* @private
+	* @returns {PRNGStateMT19937} current state
+	*/
+	function getState() {
+		return rand.state;
+	}
+
+	/**
+	* Sets the pseudorandom number generator state.
+	*
+	* @private
+	* @param {PRNGStateMT19937} s - generator state
+	* @throws {Error} must provide a valid state
+	*/
+	function setState( s ) {
+		rand.state = s;
+	}
+
+	/**
+	* Serializes the pseudorandom number generator as a JSON object.
+	*
+	* ## Notes
+	*
+	* -   `JSON.stringify()` implicitly calls this method when stringifying a PRNG.
+	*
+	* @private
+	* @returns {Object} JSON representation
+	*/
+	function toJSON() {
+		var out = {};
+		out.type = 'PRNG';
+		out.name = prng.NAME;
+		out.state = _$toJSON_17( rand.state );
+		if ( mu === void 0 ) {
+			out.params = [];
+		} else {
+			out.params = [ mu, sigma ];
+		}
+		return out;
+	}
+
+	/**
+	* Returns a pseudorandom number from a normal distribution with bound parameters `mu` and `sigma`.
+	*
+	* @private
+	* @returns {number} pseudorandom number
+	*
+	* @example
+	* var v = normal1();
+	* // returns <number>
+	*/
+	function normal1() {
+		return _$normal_609( rnorm, mu, sigma );
+	}
+
+	/**
+	* Returns a normally distributed pseudorandom number with mean `mu` and standard deviation `sigma`.
+	*
+	* @private
+	* @param {number} mu - mean
+	* @param {PositiveNumber} sigma - standard deviation
+	* @returns {number} pseudorandom number
+	*
+	* @example
+	* var v = normal2( 0.0, 1.0 );
+	* // returns <number>
+	*
+	* @example
+	* var v = normal2( 0.0, -1.0 );
+	* // returns NaN
+	*/
+	function normal2( mu, sigma ) {
+		if (
+			_$isnan_231( mu ) ||
+			_$isnan_231( sigma ) ||
+			sigma <= 0.0
+		) {
+			return NaN;
+		}
+		return _$normal_609( rnorm, mu, sigma );
+	}
+}
+
+
+// EXPORTS //
+
+var _$factory_606 = __factory_606;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$factory_606 = require( './factory.js' ); */;
+
+
+// MAIN //
+
+/**
+* Returns a normally distributed pseudorandom number with mean `mu` and standard deviation `sigma`.
+*
+* @name normal
+* @type {PRNG}
+* @param {number} mu - mean
+* @param {PositiveNumber} sigma - standard deviation
+* @returns {number} pseudorandom number
+*
+* @example
+* var v = normal( 0.0, 1.0 );
+* // returns <number>
+*
+* @example
+* var v = normal( 0.0, -1.0 );
+* // returns NaN
+*/
+var __normal_608 = _$factory_606();
+
+
+// EXPORTS //
+
+var _$normal_608 = __normal_608;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Normally distributed pseudorandom numbers.
+*
+* @module @stdlib/random/base/normal
+*
+* @example
+* var normal = require( '@stdlib/random/base/normal' );
+*
+* var v = normal( 0.0, 1.0 );
+* // returns <number>
+*
+* @example
+* var factory = require( '@stdlib/random/base/normal' ).factory;
+* var normal = factory( 3.0, 2.0, {
+*     'seed': 297
+* });
+*
+* var v = normal();
+* // returns <number>
+*
+* @example
+* var factory = require( '@stdlib/random/base/normal' ).factory;
+* var normal = factory({
+*     'seed': 297
+* });
+*
+* var v = normal( -3.0, 2.0 );
+* // returns <number>
+*/
+
+// MODULES //
+
+/* removed: var _$setNonEnumerableReadOnly_799 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$normal_608 = require( './main.js' ); */;
+/* removed: var _$factory_606 = require( './factory.js' ); */;
+
+
+// MAIN //
+
+_$setNonEnumerableReadOnly_799( _$normal_608, 'factory', _$factory_606 );
+
+
+// EXPORTS //
+
+var _$normal_607 = _$normal_608;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+
+
+// MAIN //
+
+/**
+* Returns the variance for a normal distribution with mean `mu` and standard deviation `sigma`.
+*
+* @param {number} mu - mean
+* @param {PositiveNumber} sigma - standard deviation
+* @returns {PositiveNumber} variance
+*
+* @example
+* var y = variance( 0.0, 1.0 );
+* // returns 1.0
+*
+* @example
+* var y = variance( 5.0, 3.0 );
+* // returns 9.0
+*
+* @example
+* var y = variance( NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = variance( 0.0, NaN );
+* // returns NaN
+*
+* @example
+* var y = variance( 0.0, 0.0 );
+* // returns NaN
+*/
+function __variance_788( mu, sigma ) {
+	if (
+		_$isnan_231( mu ) ||
+		_$isnan_231( sigma ) ||
+		sigma <= 0.0
+	) {
+		return NaN;
+	}
+	return sigma*sigma;
+}
+
+
+// EXPORTS //
+
+var _$variance_788 = __variance_788;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Normal distribution variance.
+*
+* @module @stdlib/stats/base/dists/normal/variance
+*
+* @example
+* var variance = require( '@stdlib/stats/base/dists/normal/variance' );
+*
+* var y = variance( 0.0, 1.0 );
+* // returns 1.0
+*
+* y = variance( 4.0, 3.0 );
+* // returns 9.0
+*/
+
+// MODULES //
+
+/* removed: var _$variance_788 = require( './variance.js' ); */;
+
+
+// EXPORTS //
+
+var _$variance_787 = _$variance_788;
+
+var _$distribution_871 = {};
+/* removed: var _$jStat_870 = require( './core.js' ); */;
 
 // generate all distribution instance methods
 (function(list) {
   for (var i = 0; i < list.length; i++) (function(func) {
     // distribution instance method
-    _$jStat_819[func] = function(a, b, c) {
+    _$jStat_870[func] = function(a, b, c) {
       if (!(this instanceof arguments.callee))
         return new arguments.callee(a, b, c);
       this._a = a;
@@ -63394,46 +67320,46 @@ var _$distribution_820 = {};
       return this;
     };
     // distribution method to be used on a jStat instance
-    _$jStat_819.fn[func] = function(a, b, c) {
-      var newthis = _$jStat_819[func](a, b, c);
+    _$jStat_870.fn[func] = function(a, b, c) {
+      var newthis = _$jStat_870[func](a, b, c);
       newthis.data = this;
       return newthis;
     };
     // sample instance method
-    _$jStat_819[func].prototype.sample = function(arr) {
+    _$jStat_870[func].prototype.sample = function(arr) {
       var a = this._a;
       var b = this._b;
       var c = this._c;
       if (arr)
-        return _$jStat_819.alter(arr, function() {
-          return _$jStat_819[func].sample(a, b, c);
+        return _$jStat_870.alter(arr, function() {
+          return _$jStat_870[func].sample(a, b, c);
         });
       else
-        return _$jStat_819[func].sample(a, b, c);
+        return _$jStat_870[func].sample(a, b, c);
     };
     // generate the pdf, cdf and inv instance methods
     (function(vals) {
       for (var i = 0; i < vals.length; i++) (function(fnfunc) {
-        _$jStat_819[func].prototype[fnfunc] = function(x) {
+        _$jStat_870[func].prototype[fnfunc] = function(x) {
           var a = this._a;
           var b = this._b;
           var c = this._c;
           if (!x && x !== 0)
             x = this.data;
           if (typeof x !== 'number') {
-            return _$jStat_819.fn.map.call(x, function(x) {
-              return _$jStat_819[func][fnfunc](x, a, b, c);
+            return _$jStat_870.fn.map.call(x, function(x) {
+              return _$jStat_870[func][fnfunc](x, a, b, c);
             });
           }
-          return _$jStat_819[func][fnfunc](x, a, b, c);
+          return _$jStat_870[func][fnfunc](x, a, b, c);
         };
       })(vals[i]);
     })('pdf cdf inv'.split(' '));
     // generate the mean, median, mode and variance instance methods
     (function(vals) {
       for (var i = 0; i < vals.length; i++) (function(fnfunc) {
-        _$jStat_819[func].prototype[fnfunc] = function() {
-          return _$jStat_819[func][fnfunc](this._a, this._b, this._c);
+        _$jStat_870[func].prototype[fnfunc] = function() {
+          return _$jStat_870[func][fnfunc](this._a, this._b, this._c);
         };
       })(vals[i]);
     })('mean median mode variance'.split(' '));
@@ -63444,242 +67370,218 @@ var _$distribution_820 = {};
   'binomial negbin hypgeom poisson triangular tukey arcsine'
 ).split(' '));
 
-/* removed: var _$pdf_611 = require( '@stdlib/stats/base/dists/beta/pdf' ); */;
-/* removed: var _$cdf_603 = require( '@stdlib/stats/base/dists/beta/cdf' ); */;
-/* removed: var _$quantile_614 = require( '@stdlib/stats/base/dists/beta/quantile' ); */;
-/* removed: var _$mean_604 = require( '@stdlib/stats/base/dists/beta/mean' ); */;
-/* removed: var _$median_606 = require( '@stdlib/stats/base/dists/beta/median' ); */;
-/* removed: var _$mode_608 = require( '@stdlib/stats/base/dists/beta/mode' ); */;
-/* removed: var _$beta_545 = require( '@stdlib/random/base/beta' ); */;
-/* removed: var _$variance_616 = require( '@stdlib/stats/base/dists/beta/variance' ); */;
+/* removed: var _$pdf_628 = require( '@stdlib/stats/base/dists/beta/pdf' ); */;
+/* removed: var _$cdf_620 = require( '@stdlib/stats/base/dists/beta/cdf' ); */;
+/* removed: var _$quantile_631 = require( '@stdlib/stats/base/dists/beta/quantile' ); */;
+/* removed: var _$mean_621 = require( '@stdlib/stats/base/dists/beta/mean' ); */;
+/* removed: var _$median_623 = require( '@stdlib/stats/base/dists/beta/median' ); */;
+/* removed: var _$mode_625 = require( '@stdlib/stats/base/dists/beta/mode' ); */;
+/* removed: var _$beta_552 = require( '@stdlib/random/base/beta' ); */;
+/* removed: var _$variance_633 = require( '@stdlib/stats/base/dists/beta/variance' ); */;
 
 // extend beta function with static methods
-_$jStat_819.extend(_$jStat_819.beta, {
-  pdf: _$pdf_611,
-  cdf: _$cdf_603,
-  inv: _$quantile_614,
-  mean: _$mean_604,
-  median: _$median_606,
-  mode: _$mode_608,
-  sample: _$beta_545,
-  variance: _$variance_616
+_$jStat_870.extend(_$jStat_870.beta, {
+  pdf: _$pdf_628,
+  cdf: _$cdf_620,
+  inv: _$quantile_631,
+  mean: _$mean_621,
+  median: _$median_623,
+  mode: _$mode_625,
+  sample: _$beta_552,
+  variance: _$variance_633
 });
 
-/* removed: var _$pdf_682 = require( '@stdlib/stats/base/dists/f/pdf' ); */;
-/* removed: var _$cdf_674 = require( '@stdlib/stats/base/dists/f/cdf' ); */;
-/* removed: var _$quantile_685 = require( '@stdlib/stats/base/dists/f/quantile' ); */;
-/* removed: var _$mean_675 = require( '@stdlib/stats/base/dists/f/mean' ); */;
-/* removed: var _$mode_677 = require( '@stdlib/stats/base/dists/f/mode' ); */;
-/* removed: var _$f_571 = require( '@stdlib/random/base/f' ); */;
-/* removed: var _$variance_687 = require( '@stdlib/stats/base/dists/f/variance' ); */;
+/* removed: var _$pdf_699 = require( '@stdlib/stats/base/dists/f/pdf' ); */;
+/* removed: var _$cdf_691 = require( '@stdlib/stats/base/dists/f/cdf' ); */;
+/* removed: var _$quantile_702 = require( '@stdlib/stats/base/dists/f/quantile' ); */;
+/* removed: var _$mean_692 = require( '@stdlib/stats/base/dists/f/mean' ); */;
+/* removed: var _$mode_694 = require( '@stdlib/stats/base/dists/f/mode' ); */;
+/* removed: var _$f_578 = require( '@stdlib/random/base/f' ); */;
+/* removed: var _$variance_704 = require( '@stdlib/stats/base/dists/f/variance' ); */;
 
 // extend F function with static methods
-_$jStat_819.extend(_$jStat_819.centralF, {
-  pdf: _$pdf_682,
-  cdf: _$cdf_674,
-  inv: _$quantile_685,
-  mean: _$mean_675,
-  mode: _$mode_677,
-  sample: _$f_571,
-  variance: _$variance_687
+_$jStat_870.extend(_$jStat_870.centralF, {
+  pdf: _$pdf_699,
+  cdf: _$cdf_691,
+  inv: _$quantile_702,
+  mean: _$mean_692,
+  mode: _$mode_694,
+  sample: _$f_578,
+  variance: _$variance_704
 });
 
-/* removed: var _$pdf_626 = require( '@stdlib/stats/base/dists/cauchy/pdf' ); */;
-/* removed: var _$cdf_620 = require( '@stdlib/stats/base/dists/cauchy/cdf' ); */;
-/* removed: var _$quantile_629 = require( '@stdlib/stats/base/dists/cauchy/quantile' ); */;
-/* removed: var _$median_621 = require( '@stdlib/stats/base/dists/cauchy/median' ); */;
-/* removed: var _$mode_623 = require( '@stdlib/stats/base/dists/cauchy/mode' ); */;
-/* removed: var _$cauchy_559 = require( '@stdlib/random/base/cauchy' ); */;
+/* removed: var _$pdf_643 = require( '@stdlib/stats/base/dists/cauchy/pdf' ); */;
+/* removed: var _$cdf_637 = require( '@stdlib/stats/base/dists/cauchy/cdf' ); */;
+/* removed: var _$quantile_646 = require( '@stdlib/stats/base/dists/cauchy/quantile' ); */;
+/* removed: var _$median_638 = require( '@stdlib/stats/base/dists/cauchy/median' ); */;
+/* removed: var _$mode_640 = require( '@stdlib/stats/base/dists/cauchy/mode' ); */;
+/* removed: var _$cauchy_566 = require( '@stdlib/random/base/cauchy' ); */;
 
 // extend cauchy function with static methods
-_$jStat_819.extend(_$jStat_819.cauchy, {
-  pdf: _$pdf_626,
-  cdf: _$cdf_620,
-  inv: _$quantile_629,
-  median: _$median_621,
-  mode: _$mode_623,
-  sample: _$cauchy_559
+_$jStat_870.extend(_$jStat_870.cauchy, {
+  pdf: _$pdf_643,
+  cdf: _$cdf_637,
+  inv: _$quantile_646,
+  median: _$median_638,
+  mode: _$mode_640,
+  sample: _$cauchy_566
 });
 
-/* removed: var _$pdf_639 = require( '@stdlib/stats/base/dists/chisquare/pdf' ); */;
-/* removed: var _$cdf_633 = require( '@stdlib/stats/base/dists/chisquare/cdf' ); */;
-/* removed: var _$quantile_642 = require( '@stdlib/stats/base/dists/chisquare/quantile' ); */;
-/* removed: var _$mean_634 = require( '@stdlib/stats/base/dists/chisquare/mean' ); */;
-/* removed: var _$mode_636 = require( '@stdlib/stats/base/dists/chisquare/mode' ); */;
-/* removed: var _$chisquare_563 = require( '@stdlib/random/base/chisquare' ); */;
-/* removed: var _$variance_644 = require( '@stdlib/stats/base/dists/chisquare/variance' ); */;
+/* removed: var _$pdf_656 = require( '@stdlib/stats/base/dists/chisquare/pdf' ); */;
+/* removed: var _$cdf_650 = require( '@stdlib/stats/base/dists/chisquare/cdf' ); */;
+/* removed: var _$quantile_659 = require( '@stdlib/stats/base/dists/chisquare/quantile' ); */;
+/* removed: var _$mean_651 = require( '@stdlib/stats/base/dists/chisquare/mean' ); */;
+/* removed: var _$mode_653 = require( '@stdlib/stats/base/dists/chisquare/mode' ); */;
+/* removed: var _$chisquare_570 = require( '@stdlib/random/base/chisquare' ); */;
+/* removed: var _$variance_661 = require( '@stdlib/stats/base/dists/chisquare/variance' ); */;
 
 // extend chisquare function with static methods
-_$jStat_819.extend(_$jStat_819.chisquare, {
-  pdf: _$pdf_639,
-  cdf: _$cdf_633,
-  inv: _$quantile_642,
-  mean : _$mean_634,
+_$jStat_870.extend(_$jStat_870.chisquare, {
+  pdf: _$pdf_656,
+  cdf: _$cdf_650,
+  inv: _$quantile_659,
+  mean : _$mean_651,
 
   // TODO: this is an approximation (is there a better way?)
   median: function median(dof) {
     return dof * Math.pow(1 - (2 / (9 * dof)), 3);
   },
 
-  mode: _$mode_636,
-  sample: _$chisquare_563,
-  variance: _$variance_644
+  mode: _$mode_653,
+  sample: _$chisquare_570,
+  variance: _$variance_661
 });
 
-/* removed: var _$pdf_665 = require( '@stdlib/stats/base/dists/exponential/pdf' ); */;
-/* removed: var _$cdf_657 = require( '@stdlib/stats/base/dists/exponential/cdf' ); */;
-/* removed: var _$quantile_668 = require( '@stdlib/stats/base/dists/exponential/quantile' ); */;
-/* removed: var _$mean_658 = require( '@stdlib/stats/base/dists/exponential/mean' ); */;
-/* removed: var _$median_660 = require( '@stdlib/stats/base/dists/exponential/median' ); */;
-/* removed: var _$mode_662 = require( '@stdlib/stats/base/dists/exponential/mode' ); */;
-/* removed: var _$exponential_567 = require( '@stdlib/random/base/exponential' ); */;
-/* removed: var _$variance_670 = require( '@stdlib/stats/base/dists/exponential/variance' ); */;
+/* removed: var _$pdf_682 = require( '@stdlib/stats/base/dists/exponential/pdf' ); */;
+/* removed: var _$cdf_674 = require( '@stdlib/stats/base/dists/exponential/cdf' ); */;
+/* removed: var _$quantile_685 = require( '@stdlib/stats/base/dists/exponential/quantile' ); */;
+/* removed: var _$mean_675 = require( '@stdlib/stats/base/dists/exponential/mean' ); */;
+/* removed: var _$median_677 = require( '@stdlib/stats/base/dists/exponential/median' ); */;
+/* removed: var _$mode_679 = require( '@stdlib/stats/base/dists/exponential/mode' ); */;
+/* removed: var _$exponential_574 = require( '@stdlib/random/base/exponential' ); */;
+/* removed: var _$variance_687 = require( '@stdlib/stats/base/dists/exponential/variance' ); */;
 
 // extend exponential function with static methods
-_$jStat_819.extend(_$jStat_819.exponential, {
-  pdf: _$pdf_665,
-  cdf: _$cdf_657,
-  inv: _$quantile_668,
-  mean : _$mean_658,
-  median: _$median_660,
-  mode: _$mode_662,
-  sample: _$exponential_567,
-  variance : _$variance_670
+_$jStat_870.extend(_$jStat_870.exponential, {
+  pdf: _$pdf_682,
+  cdf: _$cdf_674,
+  inv: _$quantile_685,
+  mean : _$mean_675,
+  median: _$median_677,
+  mode: _$mode_679,
+  sample: _$exponential_574,
+  variance : _$variance_687
 });
 
-/* removed: var _$pdf_698 = require( '@stdlib/stats/base/dists/gamma/pdf' ); */;
-/* removed: var _$cdf_691 = require( '@stdlib/stats/base/dists/gamma/cdf' ); */;
-/* removed: var _$quantile_702 = require( '@stdlib/stats/base/dists/gamma/quantile' ); */;
-/* removed: var _$mean_692 = require( '@stdlib/stats/base/dists/gamma/mean' ); */;
-/* removed: var _$mode_694 = require( '@stdlib/stats/base/dists/gamma/mode' ); */;
-/* removed: var _$gamma_576 = require( '@stdlib/random/base/gamma' ); */;
-/* removed: var _$variance_704 = require( '@stdlib/stats/base/dists/gamma/variance' ); */;
+/* removed: var _$pdf_715 = require( '@stdlib/stats/base/dists/gamma/pdf' ); */;
+/* removed: var _$cdf_708 = require( '@stdlib/stats/base/dists/gamma/cdf' ); */;
+/* removed: var _$quantile_719 = require( '@stdlib/stats/base/dists/gamma/quantile' ); */;
+/* removed: var _$mean_709 = require( '@stdlib/stats/base/dists/gamma/mean' ); */;
+/* removed: var _$mode_711 = require( '@stdlib/stats/base/dists/gamma/mode' ); */;
+/* removed: var _$gamma_583 = require( '@stdlib/random/base/gamma' ); */;
+/* removed: var _$variance_721 = require( '@stdlib/stats/base/dists/gamma/variance' ); */;
 
 // extend gamma function with static methods
-_$jStat_819.extend(_$jStat_819.gamma, {
+_$jStat_870.extend(_$jStat_870.gamma, {
   pdf: function pdf(x, shape, scale) {
-    return _$pdf_698(x, shape, 1.0/scale);
+    return _$pdf_715(x, shape, 1.0/scale);
   },
   cdf: function cdf(x, shape, scale) {
-    return _$cdf_691(x, shape, 1.0/scale);
+    return _$cdf_708(x, shape, 1.0/scale);
   },
   inv: function inv(x, shape, scale) {
-    return _$quantile_702(x, shape, 1.0/scale);
+    return _$quantile_719(x, shape, 1.0/scale);
   },
   mean : function mean(x, shape, scale) {
-    return _$mean_692(x, shape, 1.0/scale);
+    return _$mean_709(x, shape, 1.0/scale);
   },
   mode: function mode(x, shape, scale) {
-    return _$mode_694(x, shape, 1.0/scale);
+    return _$mode_711(x, shape, 1.0/scale);
   },
   sample: function sample(x, shape, scale) {
-    return _$gamma_576(x, shape, 1.0/scale);
+    return _$gamma_583(x, shape, 1.0/scale);
   },
   variance: function variance(x, shape, scale) {
-    return _$variance_704(x, shape, 1.0/scale);
+    return _$variance_721(x, shape, 1.0/scale);
   }
 });
 
-/* removed: var _$pdf_714 = require( '@stdlib/stats/base/dists/invgamma/pdf' ); */;
-/* removed: var _$cdf_708 = require( '@stdlib/stats/base/dists/invgamma/cdf' ); */;
-/* removed: var _$quantile_717 = require( '@stdlib/stats/base/dists/invgamma/quantile' ); */;
-/* removed: var _$mean_709 = require( '@stdlib/stats/base/dists/invgamma/mean' ); */;
-/* removed: var _$mode_711 = require( '@stdlib/stats/base/dists/invgamma/mode' ); */;
-/* removed: var _$invgamma_587 = require( '@stdlib/random/base/invgamma' ); */;
-/* removed: var _$variance_719 = require( '@stdlib/stats/base/dists/invgamma/variance' ); */;
+/* removed: var _$pdf_731 = require( '@stdlib/stats/base/dists/invgamma/pdf' ); */;
+/* removed: var _$cdf_725 = require( '@stdlib/stats/base/dists/invgamma/cdf' ); */;
+/* removed: var _$quantile_734 = require( '@stdlib/stats/base/dists/invgamma/quantile' ); */;
+/* removed: var _$mean_726 = require( '@stdlib/stats/base/dists/invgamma/mean' ); */;
+/* removed: var _$mode_728 = require( '@stdlib/stats/base/dists/invgamma/mode' ); */;
+/* removed: var _$invgamma_594 = require( '@stdlib/random/base/invgamma' ); */;
+/* removed: var _$variance_736 = require( '@stdlib/stats/base/dists/invgamma/variance' ); */;
 
 // extend inverse gamma function with static methods
-_$jStat_819.extend(_$jStat_819.invgamma, {
-  pdf: _$pdf_714,
-  cdf: _$cdf_708,
-  inv: _$quantile_717,
-  mean: _$mean_709,
-  mode: _$mode_711,
-  sample: _$invgamma_587,
-  variance: _$variance_719
-});
-
-/* removed: var _$pdf_731 = require( '@stdlib/stats/base/dists/kumaraswamy/pdf' ); */;
-/* removed: var _$cdf_723 = require( '@stdlib/stats/base/dists/kumaraswamy/cdf' ); */;
-/* removed: var _$quantile_734 = require( '@stdlib/stats/base/dists/kumaraswamy/quantile' ); */;
-/* removed: var _$mean_724 = require( '@stdlib/stats/base/dists/kumaraswamy/mean' ); */;
-/* removed: var _$median_726 = require( '@stdlib/stats/base/dists/kumaraswamy/median' ); */;
-/* removed: var _$mode_728 = require( '@stdlib/stats/base/dists/kumaraswamy/mode' ); */;
-/* removed: var _$variance_736 = require( '@stdlib/stats/base/dists/kumaraswamy/variance' ); */;
-
-// extend kumaraswamy function with static methods
-_$jStat_819.extend(_$jStat_819.kumaraswamy, {
+_$jStat_870.extend(_$jStat_870.invgamma, {
   pdf: _$pdf_731,
-  cdf: _$cdf_723,
+  cdf: _$cdf_725,
   inv: _$quantile_734,
-  mean : _$mean_724,
-  median: _$median_726,
+  mean: _$mean_726,
   mode: _$mode_728,
+  sample: _$invgamma_594,
   variance: _$variance_736
 });
 
+/* removed: var _$pdf_748 = require( '@stdlib/stats/base/dists/kumaraswamy/pdf' ); */;
+/* removed: var _$cdf_740 = require( '@stdlib/stats/base/dists/kumaraswamy/cdf' ); */;
+/* removed: var _$quantile_751 = require( '@stdlib/stats/base/dists/kumaraswamy/quantile' ); */;
+/* removed: var _$mean_741 = require( '@stdlib/stats/base/dists/kumaraswamy/mean' ); */;
+/* removed: var _$median_743 = require( '@stdlib/stats/base/dists/kumaraswamy/median' ); */;
+/* removed: var _$mode_745 = require( '@stdlib/stats/base/dists/kumaraswamy/mode' ); */;
+/* removed: var _$variance_753 = require( '@stdlib/stats/base/dists/kumaraswamy/variance' ); */;
 
+// extend kumaraswamy function with static methods
+_$jStat_870.extend(_$jStat_870.kumaraswamy, {
+  pdf: _$pdf_748,
+  cdf: _$cdf_740,
+  inv: _$quantile_751,
+  mean : _$mean_741,
+  median: _$median_743,
+  mode: _$mode_745,
+  variance: _$variance_753
+});
+
+/* removed: var _$pdf_765 = require( '@stdlib/stats/base/dists/lognormal/pdf' ); */;
+/* removed: var _$cdf_757 = require( '@stdlib/stats/base/dists/lognormal/cdf' ); */;
+/* removed: var _$quantile_768 = require( '@stdlib/stats/base/dists/lognormal/quantile' ); */;
+/* removed: var _$mean_758 = require( '@stdlib/stats/base/dists/lognormal/mean' ); */;
+/* removed: var _$median_760 = require( '@stdlib/stats/base/dists/lognormal/median' ); */;
+/* removed: var _$mode_762 = require( '@stdlib/stats/base/dists/lognormal/mode' ); */;
+/* removed: var _$lognormal_598 = require( '@stdlib/random/base/lognormal' ); */;
+/* removed: var _$variance_770 = require( '@stdlib/stats/base/dists/lognormal/variance' ); */;
 
 // extend lognormal function with static methods
-_$jStat_819.extend(_$jStat_819.lognormal, {
-  pdf: function pdf(x, mu, sigma) {
-    if (x <= 0)
-      return 0;
-    return Math.exp(-Math.log(x) - 0.5 * Math.log(2 * Math.PI) -
-                    Math.log(sigma) - Math.pow(Math.log(x) - mu, 2) /
-                    (2 * sigma * sigma));
-  },
-
-  cdf: function cdf(x, mu, sigma) {
-    if (x < 0)
-      return 0;
-    return 0.5 +
-        (0.5 * _$jStat_819.erf((Math.log(x) - mu) / Math.sqrt(2 * sigma * sigma)));
-  },
-
-  inv: function(p, mu, sigma) {
-    return Math.exp(-1.41421356237309505 * sigma * _$jStat_819.erfcinv(2 * p) + mu);
-  },
-
-  mean: function mean(mu, sigma) {
-    return Math.exp(mu + sigma * sigma / 2);
-  },
-
-  median: function median(mu/*, sigma*/) {
-    return Math.exp(mu);
-  },
-
-  mode: function mode(mu, sigma) {
-    return Math.exp(mu - sigma * sigma);
-  },
-
-  sample: function sample(mu, sigma) {
-    return Math.exp(_$jStat_819.randn() * sigma + mu);
-  },
-
-  variance: function variance(mu, sigma) {
-    return (Math.exp(sigma * sigma) - 1) * Math.exp(2 * mu + sigma * sigma);
-  }
+_$jStat_870.extend(_$jStat_870.lognormal, {
+  pdf: _$pdf_765,
+  cdf: _$cdf_757,
+  inv: _$quantile_768,
+  mean: _$mean_758,
+  median: _$median_760,
+  mode: _$mode_762,
+  sample: _$lognormal_598,
+  variance: _$variance_770
 });
 
 
-
 // extend noncentralt function with static methods
-_$jStat_819.extend(_$jStat_819.noncentralt, {
+_$jStat_870.extend(_$jStat_870.noncentralt, {
   pdf: function pdf(x, dof, ncp) {
     var tol = 1e-14;
     if (Math.abs(ncp) < tol)  // ncp approx 0; use student-t
-      return _$jStat_819.studentt.pdf(x, dof)
+      return _$jStat_870.studentt.pdf(x, dof)
 
     if (Math.abs(x) < tol) {  // different formula for x == 0
-      return Math.exp(_$jStat_819.gammaln((dof + 1) / 2) - ncp * ncp / 2 -
-                      0.5 * Math.log(Math.PI * dof) - _$jStat_819.gammaln(dof / 2));
+      return Math.exp(_$jStat_870.gammaln((dof + 1) / 2) - ncp * ncp / 2 -
+                      0.5 * Math.log(Math.PI * dof) - _$jStat_870.gammaln(dof / 2));
     }
 
     // formula for x != 0
     return dof / x *
-        (_$jStat_819.noncentralt.cdf(x * Math.sqrt(1 + 2 / dof), dof+2, ncp) -
-         _$jStat_819.noncentralt.cdf(x, dof, ncp));
+        (_$jStat_870.noncentralt.cdf(x * Math.sqrt(1 + 2 / dof), dof+2, ncp) -
+         _$jStat_870.noncentralt.cdf(x, dof, ncp));
   },
 
   cdf: function cdf(x, dof, ncp) {
@@ -63687,7 +67589,7 @@ _$jStat_819.extend(_$jStat_819.noncentralt, {
     var min_iterations = 200;
 
     if (Math.abs(ncp) < tol)  // ncp approx 0; use student-t
-      return _$jStat_819.studentt.cdf(x, dof);
+      return _$jStat_870.studentt.cdf(x, dof);
 
     // turn negative x into positive and flip result afterwards
     var flip = false;
@@ -63696,7 +67598,7 @@ _$jStat_819.extend(_$jStat_819.noncentralt, {
       ncp = -ncp;
     }
 
-    var prob = _$jStat_819.normal.cdf(-ncp, 0, 1);
+    var prob = _$jStat_870.normal.cdf(-ncp, 0, 1);
     var value = tol + 1;
     // use value at last two steps to determine convergence
     var lastvalue = value;
@@ -63704,15 +67606,15 @@ _$jStat_819.extend(_$jStat_819.noncentralt, {
     var j = 0;
     var p = Math.exp(-ncp * ncp / 2);
     var q = Math.exp(-ncp * ncp / 2 - 0.5 * Math.log(2) -
-                     _$jStat_819.gammaln(3 / 2)) * ncp;
+                     _$jStat_870.gammaln(3 / 2)) * ncp;
     while (j < min_iterations || lastvalue > tol || value > tol) {
       lastvalue = value;
       if (j > 0) {
         p *= (ncp * ncp) / (2 * j);
         q *= (ncp * ncp) / (2 * (j + 1 / 2));
       }
-      value = p * _$jStat_819.beta.cdf(y, j + 0.5, dof / 2) +
-          q * _$jStat_819.beta.cdf(y, j+1, dof/2);
+      value = p * _$jStat_870.beta.cdf(y, j + 0.5, dof / 2) +
+          q * _$jStat_870.beta.cdf(y, j+1, dof/2);
       prob += 0.5 * value;
       j++;
     }
@@ -63721,47 +67623,31 @@ _$jStat_819.extend(_$jStat_819.noncentralt, {
   }
 });
 
+/* removed: var _$pdf_782 = require( '@stdlib/stats/base/dists/normal/pdf' ); */;
+/* removed: var _$cdf_774 = require( '@stdlib/stats/base/dists/normal/cdf' ); */;
+/* removed: var _$quantile_785 = require( '@stdlib/stats/base/dists/normal/quantile' ); */;
+/* removed: var _$mean_775 = require( '@stdlib/stats/base/dists/normal/mean' ); */;
+/* removed: var _$median_777 = require( '@stdlib/stats/base/dists/normal/median' ); */;
+/* removed: var _$mode_779 = require( '@stdlib/stats/base/dists/normal/mode' ); */;
+/* removed: var _$normal_607 = require( '@stdlib/random/base/normal' ); */;
+/* removed: var _$variance_787 = require( '@stdlib/stats/base/dists/normal/variance' ); */;
 
 // extend normal function with static methods
-_$jStat_819.extend(_$jStat_819.normal, {
-  pdf: function pdf(x, mean, std) {
-    return Math.exp(-0.5 * Math.log(2 * Math.PI) -
-                    Math.log(std) - Math.pow(x - mean, 2) / (2 * std * std));
-  },
-
-  cdf: function cdf(x, mean, std) {
-    return 0.5 * (1 + _$jStat_819.erf((x - mean) / Math.sqrt(2 * std * std)));
-  },
-
-  inv: function(p, mean, std) {
-    return -1.41421356237309505 * std * _$jStat_819.erfcinv(2 * p) + mean;
-  },
-
-  mean : function(mean/*, std*/) {
-    return mean;
-  },
-
-  median: function median(mean/*, std*/) {
-    return mean;
-  },
-
-  mode: function (mean/*, std*/) {
-    return mean;
-  },
-
-  sample: function sample(mean, std) {
-    return _$jStat_819.randn() * std + mean;
-  },
-
-  variance : function(mean, std) {
-    return std * std;
-  }
+_$jStat_870.extend(_$jStat_870.normal, {
+  pdf: _$pdf_782,
+  cdf: _$cdf_774,
+  inv: _$quantile_785,
+  mean : _$mean_775,
+  median: _$median_777,
+  mode: _$mode_779,
+  sample: _$normal_607,
+  variance : _$variance_787
 });
 
 
 
 // extend pareto function with static methods
-_$jStat_819.extend(_$jStat_819.pareto, {
+_$jStat_870.extend(_$jStat_870.pareto, {
   pdf: function pdf(x, scale, shape) {
     if (x < scale)
       return 0;
@@ -63802,21 +67688,21 @@ _$jStat_819.extend(_$jStat_819.pareto, {
 
 
 // extend studentt function with static methods
-_$jStat_819.extend(_$jStat_819.studentt, {
+_$jStat_870.extend(_$jStat_870.studentt, {
   pdf: function pdf(x, dof) {
     dof = dof > 1e100 ? 1e100 : dof;
-    return (1/(Math.sqrt(dof) * _$jStat_819.betafn(0.5, dof/2))) *
+    return (1/(Math.sqrt(dof) * _$jStat_870.betafn(0.5, dof/2))) *
         Math.pow(1 + ((x * x) / dof), -((dof + 1) / 2));
   },
 
   cdf: function cdf(x, dof) {
     var dof2 = dof / 2;
-    return _$jStat_819.ibeta((x + Math.sqrt(x * x + dof)) /
+    return _$jStat_870.ibeta((x + Math.sqrt(x * x + dof)) /
                        (2 * Math.sqrt(x * x + dof)), dof2, dof2);
   },
 
   inv: function(p, dof) {
-    var x = _$jStat_819.ibetainv(2 * Math.min(p, 1 - p), 0.5 * dof, 0.5);
+    var x = _$jStat_870.ibetainv(2 * Math.min(p, 1 - p), 0.5 * dof, 0.5);
     x = Math.sqrt(dof * (1 - x) / x);
     return (p > 0.5) ? x : -x;
   },
@@ -63834,7 +67720,7 @@ _$jStat_819.extend(_$jStat_819.studentt, {
   },
 
   sample: function sample(dof) {
-    return _$jStat_819.randn() * Math.sqrt(dof / (2 * _$jStat_819.randg(dof / 2)));
+    return _$jStat_870.randn() * Math.sqrt(dof / (2 * _$jStat_870.randg(dof / 2)));
   },
 
   variance: function variance(dof) {
@@ -63845,7 +67731,7 @@ _$jStat_819.extend(_$jStat_819.studentt, {
 
 
 // extend weibull function with static methods
-_$jStat_819.extend(_$jStat_819.weibull, {
+_$jStat_870.extend(_$jStat_870.weibull, {
   pdf: function pdf(x, scale, shape) {
     if (x < 0 || scale < 0 || shape < 0)
       return 0;
@@ -63862,7 +67748,7 @@ _$jStat_819.extend(_$jStat_819.weibull, {
   },
 
   mean : function(scale, shape) {
-    return scale * _$jStat_819.gammafn(1 + 1 / shape);
+    return scale * _$jStat_870.gammafn(1 + 1 / shape);
   },
 
   median: function median(scale, shape) {
@@ -63876,19 +67762,19 @@ _$jStat_819.extend(_$jStat_819.weibull, {
   },
 
   sample: function sample(scale, shape) {
-    return scale * Math.pow(-Math.log(_$jStat_819._random_fn()), 1 / shape);
+    return scale * Math.pow(-Math.log(_$jStat_870._random_fn()), 1 / shape);
   },
 
   variance: function variance(scale, shape) {
-    return scale * scale * _$jStat_819.gammafn(1 + 2 / shape) -
-        Math.pow(_$jStat_819.weibull.mean(scale, shape), 2);
+    return scale * scale * _$jStat_870.gammafn(1 + 2 / shape) -
+        Math.pow(_$jStat_870.weibull.mean(scale, shape), 2);
   }
 });
 
 
 
 // extend uniform function with static methods
-_$jStat_819.extend(_$jStat_819.uniform, {
+_$jStat_870.extend(_$jStat_870.uniform, {
   pdf: function pdf(x, a, b) {
     return (x < a || x > b) ? 0 : 1 / (b - a);
   },
@@ -63910,7 +67796,7 @@ _$jStat_819.extend(_$jStat_819.uniform, {
   },
 
   median: function median(a, b) {
-    return _$jStat_819.mean(a, b);
+    return _$jStat_870.mean(a, b);
   },
 
   mode: function mode(/*a, b*/) {
@@ -63918,7 +67804,7 @@ _$jStat_819.extend(_$jStat_819.uniform, {
   },
 
   sample: function sample(a, b) {
-    return (a / 2 + b / 2) + (b / 2 - a / 2) * (2 * _$jStat_819._random_fn() - 1);
+    return (a / 2 + b / 2) + (b / 2 - a / 2) * (2 * _$jStat_870._random_fn() - 1);
   },
 
   variance: function variance(a, b) {
@@ -63957,11 +67843,11 @@ function betinc(x, a, b, eps) {
 
 
 // extend uniform function with static methods
-_$jStat_819.extend(_$jStat_819.binomial, {
+_$jStat_870.extend(_$jStat_870.binomial, {
   pdf: function pdf(k, n, p) {
     return (p === 0 || p === 1) ?
       ((n * p) === k ? 1 : 0) :
-      _$jStat_819.combination(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k);
+      _$jStat_870.combination(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k);
   },
 
   cdf: function cdf(x, n, p) {
@@ -63980,8 +67866,8 @@ _$jStat_819.extend(_$jStat_819.binomial, {
     var a = x + 1;
     var b = n - x;
     var s = a + b;
-    var bt = Math.exp(_$jStat_819.gammaln(s) - _$jStat_819.gammaln(b) -
-                      _$jStat_819.gammaln(a) + a * Math.log(z) + b * Math.log(1 - z));
+    var bt = Math.exp(_$jStat_870.gammaln(s) - _$jStat_870.gammaln(b) -
+                      _$jStat_870.gammaln(a) + a * Math.log(z) + b * Math.log(1 - z));
 
     if (z < (a + 1) / (s + 2))
       betacdf = bt * betinc(z, a, b, eps);
@@ -63995,13 +67881,13 @@ _$jStat_819.extend(_$jStat_819.binomial, {
 
 
 // extend uniform function with static methods
-_$jStat_819.extend(_$jStat_819.negbin, {
+_$jStat_870.extend(_$jStat_870.negbin, {
   pdf: function pdf(k, r, p) {
     if (k !== k >>> 0)
       return false;
     if (k < 0)
       return 0;
-    return _$jStat_819.combination(k + r - 1, r - 1) *
+    return _$jStat_870.combination(k + r - 1, r - 1) *
         Math.pow(1 - p, k) * Math.pow(p, r);
   },
 
@@ -64010,7 +67896,7 @@ _$jStat_819.extend(_$jStat_819.negbin, {
     k = 0;
     if (x < 0) return 0;
     for (; k <= x; k++) {
-      sum += _$jStat_819.negbin.pdf(k, r, p);
+      sum += _$jStat_870.negbin.pdf(k, r, p);
     }
     return sum;
   }
@@ -64019,7 +67905,7 @@ _$jStat_819.extend(_$jStat_819.negbin, {
 
 
 // extend uniform function with static methods
-_$jStat_819.extend(_$jStat_819.hypgeom, {
+_$jStat_870.extend(_$jStat_870.hypgeom, {
   pdf: function pdf(k, N, m, n) {
     // Hypergeometric PDF.
 
@@ -64044,22 +67930,22 @@ _$jStat_819.extend(_$jStat_819.hypgeom, {
       if(n * 2 > N) {
         // More than half the population is sampled.
 
-        return _$jStat_819.hypgeom.pdf(N - m - n + k, N, N - m, N - n)
+        return _$jStat_870.hypgeom.pdf(N - m - n + k, N, N - m, N - n)
       } else {
         // Half or less of the population is sampled.
 
-        return _$jStat_819.hypgeom.pdf(n - k, N, N - m, n);
+        return _$jStat_870.hypgeom.pdf(n - k, N, N - m, n);
       }
 
     } else if(n * 2 > N) {
       // Half or less is successes.
 
-      return _$jStat_819.hypgeom.pdf(m - k, N, m, N - n);
+      return _$jStat_870.hypgeom.pdf(m - k, N, m, N - n);
 
     } else if(m < n) {
       // We want to have the number of things sampled to be less than the
       // successes available. So swap the definitions of successful and sampled.
-      return _$jStat_819.hypgeom.pdf(k, N, n, m);
+      return _$jStat_870.hypgeom.pdf(k, N, n, m);
     } else {
       // If we get here, half or less of the population was sampled, half or
       // less of it was successes, and we had fewer sampled things than
@@ -64129,22 +68015,22 @@ _$jStat_819.extend(_$jStat_819.hypgeom, {
       if(n * 2 > N) {
         // More than half the population is sampled.
 
-        return _$jStat_819.hypgeom.cdf(N - m - n + x, N, N - m, N - n)
+        return _$jStat_870.hypgeom.cdf(N - m - n + x, N, N - m, N - n)
       } else {
         // Half or less of the population is sampled.
 
-        return 1 - _$jStat_819.hypgeom.cdf(n - x - 1, N, N - m, n);
+        return 1 - _$jStat_870.hypgeom.cdf(n - x - 1, N, N - m, n);
       }
 
     } else if(n * 2 > N) {
       // Half or less is successes.
 
-      return 1 - _$jStat_819.hypgeom.cdf(m - x - 1, N, m, N - n);
+      return 1 - _$jStat_870.hypgeom.cdf(m - x - 1, N, m, N - n);
 
     } else if(m < n) {
       // We want to have the number of things sampled to be less than the
       // successes available. So swap the definitions of successful and sampled.
-      return _$jStat_819.hypgeom.cdf(x, N, n, m);
+      return _$jStat_870.hypgeom.cdf(x, N, n, m);
     } else {
       // If we get here, half or less of the population was sampled, half or
       // less of it was successes, and we had fewer sampled things than
@@ -64203,13 +68089,13 @@ _$jStat_819.extend(_$jStat_819.hypgeom, {
 
 
 // extend uniform function with static methods
-_$jStat_819.extend(_$jStat_819.poisson, {
+_$jStat_870.extend(_$jStat_870.poisson, {
   pdf: function pdf(k, l) {
     if (l < 0 || (k % 1) !== 0 || k < 0) {
       return 0;
     }
 
-    return Math.pow(l, k) * Math.exp(-l) / _$jStat_819.factorial(k);
+    return Math.pow(l, k) * Math.exp(-l) / _$jStat_870.factorial(k);
   },
 
   cdf: function cdf(x, l) {
@@ -64217,9 +68103,9 @@ _$jStat_819.extend(_$jStat_819.poisson, {
     k = 0;
     if (x < 0) return 0;
     for (; k <= x; k++) {
-      sumarr.push(_$jStat_819.poisson.pdf(k, l));
+      sumarr.push(_$jStat_870.poisson.pdf(k, l));
     }
-    return _$jStat_819.sum(sumarr);
+    return _$jStat_870.sum(sumarr);
   },
 
   mean : function(l) {
@@ -64234,7 +68120,7 @@ _$jStat_819.extend(_$jStat_819.poisson, {
     var p = 1, k = 0, L = Math.exp(-l);
     do {
       k++;
-      p *= _$jStat_819._random_fn();
+      p *= _$jStat_870._random_fn();
     } while (p > L);
     return k - 1;
   },
@@ -64264,7 +68150,7 @@ _$jStat_819.extend(_$jStat_819.poisson, {
       }
       /* log(V) == log(0.0) ok here */
       /* if U==0.0 so that us==0.0, log is ok since always returns */
-      if ((Math.log(V) + Math.log(invalpha) - Math.log(a / (us * us) + b)) <= (-lam + k * loglam - _$jStat_819.loggam(k + 1))) {
+      if ((Math.log(V) + Math.log(invalpha) - Math.log(a / (us * us) + b)) <= (-lam + k * loglam - _$jStat_870.loggam(k + 1))) {
           return k;
       }
     }
@@ -64279,7 +68165,7 @@ _$jStat_819.extend(_$jStat_819.poisson, {
 });
 
 // extend triangular function with static methods
-_$jStat_819.extend(_$jStat_819.triangular, {
+_$jStat_870.extend(_$jStat_870.triangular, {
   pdf: function pdf(x, a, b, c) {
     if (b <= a || c < a || c > b) {
       return NaN;
@@ -64338,7 +68224,7 @@ _$jStat_819.extend(_$jStat_819.triangular, {
   },
 
   sample: function sample(a, b, c) {
-    var u = _$jStat_819._random_fn();
+    var u = _$jStat_870._random_fn();
     if (u < ((c - a) / (b - a)))
       return a + Math.sqrt(u * (b - a) * (c - a))
     return b - Math.sqrt((1 - u) * (b - a) * (b - c));
@@ -64351,7 +68237,7 @@ _$jStat_819.extend(_$jStat_819.triangular, {
 
 
 // extend arcsine function with static methods
-_$jStat_819.extend(_$jStat_819.arcsine, {
+_$jStat_870.extend(_$jStat_870.arcsine, {
   pdf: function pdf(x, a, b) {
     if (b <= a) return NaN;
 
@@ -64389,7 +68275,7 @@ _$jStat_819.extend(_$jStat_819.arcsine, {
 
   sample: function sample(a, b) {
     return ((a + b) / 2) + ((b - a) / 2) *
-      Math.sin(2 * Math.PI * _$jStat_819.uniform.sample(0, 1));
+      Math.sin(2 * Math.PI * _$jStat_870.uniform.sample(0, 1));
   },
 
   variance: function variance(a, b) {
@@ -64401,7 +68287,7 @@ _$jStat_819.extend(_$jStat_819.arcsine, {
 
 function laplaceSign(x) { return x / Math.abs(x); }
 
-_$jStat_819.extend(_$jStat_819.laplace, {
+_$jStat_870.extend(_$jStat_870.laplace, {
   pdf: function pdf(x, mu, b) {
     return (b <= 0) ? 0 : (Math.exp(-Math.abs(x - mu) / b)) / (2 * b);
   },
@@ -64433,7 +68319,7 @@ _$jStat_819.extend(_$jStat_819.laplace, {
   },
 
   sample: function sample(mu, b) {
-    var u = _$jStat_819._random_fn() - 0.5;
+    var u = _$jStat_870._random_fn() - 0.5;
 
     return mu - (b * laplaceSign(u) * Math.log(1 - (2 * Math.abs(u))));
   }
@@ -64478,7 +68364,7 @@ function tukeyWprob(w, rr, cc) {
   // find (f(w/2) - 1) ^ cc
   // (first term in integral of hartley's form).
 
-  var pr_w = 2 * _$jStat_819.normal.cdf(qsqz, 0, 1, 1, 0) - 1; // erf(qsqz / M_SQRT2)
+  var pr_w = 2 * _$jStat_870.normal.cdf(qsqz, 0, 1, 1, 0) - 1; // erf(qsqz / M_SQRT2)
   // if pr_w ^ cc < 2e-22 then set pr_w = 0
   if (pr_w >= Math.exp(C2 / cc))
     pr_w = Math.pow(pr_w, cc);
@@ -64537,8 +68423,8 @@ function tukeyWprob(w, rr, cc) {
       if (qexpo > C3)
         break;
 
-      var pplus = 2 * _$jStat_819.normal.cdf(ac, 0, 1, 1, 0);
-      var pminus= 2 * _$jStat_819.normal.cdf(ac, w, 1, 1, 0);
+      var pplus = 2 * _$jStat_870.normal.cdf(ac, 0, 1, 1, 0);
+      var pminus= 2 * _$jStat_870.normal.cdf(ac, w, 1, 1, 0);
 
       // if rinsum ^ (cc-1) < 9e-14,
       // then doesn't contribute to integral
@@ -64594,7 +68480,7 @@ function tukeyQinv(p, c, v) {
   return t * (q * Math.log(c - 1.0) + c5);
 }
 
-_$jStat_819.extend(_$jStat_819.tukey, {
+_$jStat_870.extend(_$jStat_870.tukey, {
   cdf: function cdf(q, nmeans, df) {
     // Identical implementation as the R ptukey() function as of commit 68947
     var rr = 1;
@@ -64651,7 +68537,7 @@ _$jStat_819.extend(_$jStat_819.tukey, {
     // calculate leading constant
 
     var f2 = df * 0.5;
-    var f2lf = ((f2 * Math.log(df)) - (df * Math.log(2))) - _$jStat_819.gammaln(f2);
+    var f2lf = ((f2 * Math.log(df)) - (df * Math.log(2))) - _$jStat_870.gammaln(f2);
     var f21 = f2 - 1.0;
 
     // integral is divided into unit, half-unit, quarter-unit, or
@@ -64751,7 +68637,7 @@ _$jStat_819.extend(_$jStat_819.tukey, {
 
     // Find prob(value < x0)
 
-    var valx0 = _$jStat_819.tukey.cdf(x0, nmeans, df) - p;
+    var valx0 = _$jStat_870.tukey.cdf(x0, nmeans, df) - p;
 
     // Find the second iterate and prob(value < x1).
     // If the first iterate has probability value
@@ -64763,7 +68649,7 @@ _$jStat_819.extend(_$jStat_819.tukey, {
       x1 = Math.max(0.0, x0 - 1.0);
     else
       x1 = x0 + 1.0;
-    var valx1 = _$jStat_819.tukey.cdf(x1, nmeans, df) - p;
+    var valx1 = _$jStat_870.tukey.cdf(x1, nmeans, df) - p;
 
     // Find new iterate
 
@@ -64781,7 +68667,7 @@ _$jStat_819.extend(_$jStat_819.tukey, {
       }
       // Find prob(value < new iterate)
 
-      valx1 = _$jStat_819.tukey.cdf(ans, nmeans, df) - p;
+      valx1 = _$jStat_870.tukey.cdf(ans, nmeans, df) - p;
       x1 = ans;
 
       // If the difference between two successive
@@ -64796,30 +68682,30 @@ _$jStat_819.extend(_$jStat_819.tukey, {
   }
 });
 
-var _$linearalgebra_821 = {};
+var _$linearalgebra_872 = {};
 /* Provides functions for the solution of linear system of equations, integration, extrapolation,
  * interpolation, eigenvalue problems, differential equations and PCA analysis. */
-/* removed: var _$jStat_819 = require( './core.js' ); */;
+/* removed: var _$jStat_870 = require( './core.js' ); */;
 
 var push = Array.prototype.push;
-var __isArray_821 = _$jStat_819.utils.isArray;
+var __isArray_872 = _$jStat_870.utils.isArray;
 
 function isUsable(arg) {
-  return __isArray_821(arg) || arg instanceof _$jStat_819;
+  return __isArray_872(arg) || arg instanceof _$jStat_870;
 }
 
-_$jStat_819.extend({
+_$jStat_870.extend({
 
   // add a vector/matrix to a vector/matrix or scalar
   add: function add(arr, arg) {
     // check if arg is a vector or scalar
     if (isUsable(arg)) {
       if (!isUsable(arg[0])) arg = [ arg ];
-      return _$jStat_819.map(arr, function(value, row, col) {
+      return _$jStat_870.map(arr, function(value, row, col) {
         return value + arg[row][col];
       });
     }
-    return _$jStat_819.map(arr, function(value) { return value + arg; });
+    return _$jStat_870.map(arr, function(value) { return value + arg; });
   },
 
   // subtract a vector or scalar from the vector
@@ -64827,20 +68713,20 @@ _$jStat_819.extend({
     // check if arg is a vector or scalar
     if (isUsable(arg)) {
       if (!isUsable(arg[0])) arg = [ arg ];
-      return _$jStat_819.map(arr, function(value, row, col) {
+      return _$jStat_870.map(arr, function(value, row, col) {
         return value - arg[row][col] || 0;
       });
     }
-    return _$jStat_819.map(arr, function(value) { return value - arg; });
+    return _$jStat_870.map(arr, function(value) { return value - arg; });
   },
 
   // matrix division
   divide: function divide(arr, arg) {
     if (isUsable(arg)) {
       if (!isUsable(arg[0])) arg = [ arg ];
-      return _$jStat_819.multiply(arr, _$jStat_819.inv(arg));
+      return _$jStat_870.multiply(arr, _$jStat_870.inv(arg));
     }
-    return _$jStat_819.map(arr, function(value) { return value / arg; });
+    return _$jStat_870.map(arr, function(value) { return value / arg; });
   },
 
   // matrix multiplication
@@ -64852,7 +68738,7 @@ _$jStat_819.extend({
     }
     nrow = arr.length,
     ncol = arr[0].length,
-    res = _$jStat_819.zeros(nrow, nrescols = (isUsable(arg)) ? arg[0].length : ncol),
+    res = _$jStat_870.zeros(nrow, nrescols = (isUsable(arg)) ? arg[0].length : ncol),
     rescols = 0;
     if (isUsable(arg)) {
       for (; rescols < nrescols; rescols++) {
@@ -64865,7 +68751,7 @@ _$jStat_819.extend({
       }
       return (nrow === 1 && rescols === 1) ? res[0][0] : res;
     }
-    return _$jStat_819.map(arr, function(value) { return value * arg; });
+    return _$jStat_870.map(arr, function(value) { return value * arg; });
   },
 
   // outer([1,2,3],[4,5,6])
@@ -64874,7 +68760,7 @@ _$jStat_819.extend({
   // ->
   // [[4,5,6],[8,10,12],[12,15,18]]
   outer:function outer(A, B) {
-    return _$jStat_819.multiply(A.map(function(t){ return [t] }), [B]);
+    return _$jStat_870.multiply(A.map(function(t){ return [t] }), [B]);
   },
 
 
@@ -64883,8 +68769,8 @@ _$jStat_819.extend({
     if (!isUsable(arr[0])) arr = [ arr ];
     if (!isUsable(arg[0])) arg = [ arg ];
     // convert column to row vector
-    var left = (arr[0].length === 1 && arr.length !== 1) ? _$jStat_819.transpose(arr) : arr,
-    right = (arg[0].length === 1 && arg.length !== 1) ? _$jStat_819.transpose(arg) : arg,
+    var left = (arr[0].length === 1 && arr.length !== 1) ? _$jStat_870.transpose(arr) : arr,
+    right = (arg[0].length === 1 && arg.length !== 1) ? _$jStat_870.transpose(arg) : arg,
     res = [],
     row = 0,
     nrow = left.length,
@@ -64902,22 +68788,22 @@ _$jStat_819.extend({
 
   // raise every element by a scalar
   pow: function pow(arr, arg) {
-    return _$jStat_819.map(arr, function(value) { return Math.pow(value, arg); });
+    return _$jStat_870.map(arr, function(value) { return Math.pow(value, arg); });
   },
 
   // exponentiate every element
   exp: function exp(arr) {
-    return _$jStat_819.map(arr, function(value) { return Math.exp(value); });
+    return _$jStat_870.map(arr, function(value) { return Math.exp(value); });
   },
 
   // generate the natural log of every element
   log: function exp(arr) {
-    return _$jStat_819.map(arr, function(value) { return Math.log(value); });
+    return _$jStat_870.map(arr, function(value) { return Math.log(value); });
   },
 
   // generate the absolute values of the vector
   abs: function abs(arr) {
-    return _$jStat_819.map(arr, function(value) { return Math.abs(value); });
+    return _$jStat_870.map(arr, function(value) { return Math.abs(value); });
   },
 
   // computes the p-norm of the vector
@@ -64939,7 +68825,7 @@ _$jStat_819.extend({
   // computes the angle between two vectors in rads
   // In case a matrix is passed, this uses the first row as the vector
   angle: function angle(arr, arg) {
-    return Math.acos(_$jStat_819.dot(arr, arg) / (_$jStat_819.norm(arr) * _$jStat_819.norm(arg)));
+    return Math.acos(_$jStat_870.dot(arr, arg) / (_$jStat_870.norm(arr) * _$jStat_870.norm(arg)));
   },
 
   // augment one matrix by another
@@ -64962,8 +68848,8 @@ _$jStat_819.extend({
   inv: function inv(a) {
     var rows = a.length;
     var cols = a[0].length;
-    var b = _$jStat_819.identity(rows, cols);
-    var c = _$jStat_819.gauss_jordan(a, b);
+    var b = _$jStat_870.identity(rows, cols);
+    var c = _$jStat_870.gauss_jordan(a, b);
     var result = [];
     var i = 0;
     var j;
@@ -65024,7 +68910,7 @@ _$jStat_819.extend({
     sum = 0,
     x = [],
     maug, pivot, temp, k;
-    a = _$jStat_819.aug(a, b);
+    a = _$jStat_870.aug(a, b);
     maug = a[0].length;
     for(i = 0; i < n; i++) {
       pivot = a[i][i];
@@ -65060,7 +68946,7 @@ _$jStat_819.extend({
   },
 
   gauss_jordan: function gauss_jordan(a, b) {
-    var m = _$jStat_819.aug(a, b);
+    var m = _$jStat_870.aug(a, b);
     var h = m.length;
     var w = m[0].length;
     var c = 0;
@@ -65110,7 +68996,7 @@ _$jStat_819.extend({
   // will return [[2.666],[0.1666],[1.666]]
   triaUpSolve: function triaUpSolve(A, b) {
     var size = A[0].length;
-    var x = _$jStat_819.zeros(1, size)[0];
+    var x = _$jStat_870.zeros(1, size)[0];
     var parts;
     var matrix_mode = false;
 
@@ -65119,11 +69005,11 @@ _$jStat_819.extend({
       matrix_mode = true;
     }
 
-    _$jStat_819.arange(size - 1, -1, -1).forEach(function(i) {
-      parts = _$jStat_819.arange(i + 1, size).map(function(j) {
+    _$jStat_870.arange(size - 1, -1, -1).forEach(function(i) {
+      parts = _$jStat_870.arange(i + 1, size).map(function(j) {
         return x[j] * A[i][j];
       });
-      x[i] = (b[i] - _$jStat_819.sum(parts)) / A[i][i];
+      x[i] = (b[i] - _$jStat_870.sum(parts)) / A[i][i];
     });
 
     if (matrix_mode)
@@ -65134,7 +69020,7 @@ _$jStat_819.extend({
   triaLowSolve: function triaLowSolve(A, b) {
     // like to triaUpSolve but A is lower triangular matrix
     var size = A[0].length;
-    var x = _$jStat_819.zeros(1, size)[0];
+    var x = _$jStat_870.zeros(1, size)[0];
     var parts;
 
     var matrix_mode=false;
@@ -65143,11 +69029,11 @@ _$jStat_819.extend({
       matrix_mode = true;
     }
 
-    _$jStat_819.arange(size).forEach(function(i) {
-      parts = _$jStat_819.arange(i).map(function(j) {
+    _$jStat_870.arange(size).forEach(function(i) {
+      parts = _$jStat_870.arange(i).map(function(j) {
         return A[i][j] * x[j];
       });
-      x[i] = (b[i] - _$jStat_819.sum(parts)) / A[i][i];
+      x[i] = (b[i] - _$jStat_870.sum(parts)) / A[i][i];
     })
 
     if (matrix_mode)
@@ -65163,24 +69049,24 @@ _$jStat_819.extend({
   lu: function lu(A) {
     var size = A.length;
     //var L=jStat.diagonal(jStat.ones(1,size)[0]);
-    var L = _$jStat_819.identity(size);
-    var R = _$jStat_819.zeros(A.length, A[0].length);
+    var L = _$jStat_870.identity(size);
+    var R = _$jStat_870.zeros(A.length, A[0].length);
     var parts;
-    _$jStat_819.arange(size).forEach(function(t) {
+    _$jStat_870.arange(size).forEach(function(t) {
       R[0][t] = A[0][t];
     });
-    _$jStat_819.arange(1, size).forEach(function(l) {
-      _$jStat_819.arange(l).forEach(function(i) {
-        parts = _$jStat_819.arange(i).map(function(jj) {
+    _$jStat_870.arange(1, size).forEach(function(l) {
+      _$jStat_870.arange(l).forEach(function(i) {
+        parts = _$jStat_870.arange(i).map(function(jj) {
           return L[l][jj] * R[jj][i];
         });
-        L[l][i] = (A[l][i] - _$jStat_819.sum(parts)) / R[i][i];
+        L[l][i] = (A[l][i] - _$jStat_870.sum(parts)) / R[i][i];
       });
-      _$jStat_819.arange(l, size).forEach(function(j) {
-        parts = _$jStat_819.arange(l).map(function(jj) {
+      _$jStat_870.arange(l, size).forEach(function(j) {
+        parts = _$jStat_870.arange(l).map(function(jj) {
           return L[l][jj] * R[jj][j];
         });
-        R[l][j] = A[parts.length][j] - _$jStat_819.sum(parts);
+        R[l][j] = A[parts.length][j] - _$jStat_870.sum(parts);
       });
     });
     return [L, R];
@@ -65191,18 +69077,18 @@ _$jStat_819.extend({
   // T is lower triangular matrix
   cholesky: function cholesky(A) {
     var size = A.length;
-    var T = _$jStat_819.zeros(A.length, A[0].length);
+    var T = _$jStat_870.zeros(A.length, A[0].length);
     var parts;
-    _$jStat_819.arange(size).forEach(function(i) {
-      parts = _$jStat_819.arange(i).map(function(t) {
+    _$jStat_870.arange(size).forEach(function(i) {
+      parts = _$jStat_870.arange(i).map(function(t) {
         return Math.pow(T[i][t],2);
       });
-      T[i][i] = Math.sqrt(A[i][i] - _$jStat_819.sum(parts));
-      _$jStat_819.arange(i + 1, size).forEach(function(j) {
-        parts = _$jStat_819.arange(i).map(function(t) {
+      T[i][i] = Math.sqrt(A[i][i] - _$jStat_870.sum(parts));
+      _$jStat_870.arange(i + 1, size).forEach(function(j) {
+        parts = _$jStat_870.arange(i).map(function(t) {
           return T[i][t] * T[j][t];
         });
-        T[j][i] = (A[i][j] - _$jStat_819.sum(parts)) / T[i][i];
+        T[j][i] = (A[i][j] - _$jStat_870.sum(parts)) / T[i][i];
       });
     });
     return T;
@@ -65234,14 +69120,14 @@ _$jStat_819.extend({
         }
       }
     }
-    h = _$jStat_819.multiply(_$jStat_819.multiply(_$jStat_819.inv(d), _$jStat_819.add(l, u)), -1);
-    c = _$jStat_819.multiply(_$jStat_819.inv(d), b);
+    h = _$jStat_870.multiply(_$jStat_870.multiply(_$jStat_870.inv(d), _$jStat_870.add(l, u)), -1);
+    c = _$jStat_870.multiply(_$jStat_870.inv(d), b);
     xv = x;
-    xk = _$jStat_819.add(_$jStat_819.multiply(h, x), c);
+    xk = _$jStat_870.add(_$jStat_870.multiply(h, x), c);
     i = 2;
-    while (Math.abs(_$jStat_819.norm(_$jStat_819.subtract(xk,xv))) > r) {
+    while (Math.abs(_$jStat_870.norm(_$jStat_870.subtract(xk,xv))) > r) {
       xv = xk;
-      xk = _$jStat_819.add(_$jStat_819.multiply(h, xv), c);
+      xk = _$jStat_870.add(_$jStat_870.multiply(h, xv), c);
       i++;
     }
     return xk;
@@ -65271,14 +69157,14 @@ _$jStat_819.extend({
         }
       }
     }
-    h = _$jStat_819.multiply(_$jStat_819.multiply(_$jStat_819.inv(_$jStat_819.add(d, l)), u), -1);
-    c = _$jStat_819.multiply(_$jStat_819.inv(_$jStat_819.add(d, l)), b);
+    h = _$jStat_870.multiply(_$jStat_870.multiply(_$jStat_870.inv(_$jStat_870.add(d, l)), u), -1);
+    c = _$jStat_870.multiply(_$jStat_870.inv(_$jStat_870.add(d, l)), b);
     xv = x;
-    xk = _$jStat_819.add(_$jStat_819.multiply(h, x), c);
+    xk = _$jStat_870.add(_$jStat_870.multiply(h, x), c);
     i = 2;
-    while (Math.abs(_$jStat_819.norm(_$jStat_819.subtract(xk, xv))) > r) {
+    while (Math.abs(_$jStat_870.norm(_$jStat_870.subtract(xk, xv))) > r) {
       xv = xk;
-      xk = _$jStat_819.add(_$jStat_819.multiply(h, xv), c);
+      xk = _$jStat_870.add(_$jStat_870.multiply(h, xv), c);
       i = i + 1;
     }
     return xk;
@@ -65308,17 +69194,17 @@ _$jStat_819.extend({
         }
       }
     }
-    h = _$jStat_819.multiply(_$jStat_819.inv(_$jStat_819.add(d, _$jStat_819.multiply(l, w))),
-                       _$jStat_819.subtract(_$jStat_819.multiply(d, 1 - w),
-                                      _$jStat_819.multiply(u, w)));
-    c = _$jStat_819.multiply(_$jStat_819.multiply(_$jStat_819.inv(_$jStat_819.add(d,
-        _$jStat_819.multiply(l, w))), b), w);
+    h = _$jStat_870.multiply(_$jStat_870.inv(_$jStat_870.add(d, _$jStat_870.multiply(l, w))),
+                       _$jStat_870.subtract(_$jStat_870.multiply(d, 1 - w),
+                                      _$jStat_870.multiply(u, w)));
+    c = _$jStat_870.multiply(_$jStat_870.multiply(_$jStat_870.inv(_$jStat_870.add(d,
+        _$jStat_870.multiply(l, w))), b), w);
     xv = x;
-    xk = _$jStat_819.add(_$jStat_819.multiply(h, x), c);
+    xk = _$jStat_870.add(_$jStat_870.multiply(h, x), c);
     i = 2;
-    while (Math.abs(_$jStat_819.norm(_$jStat_819.subtract(xk, xv))) > r) {
+    while (Math.abs(_$jStat_870.norm(_$jStat_870.subtract(xk, xv))) > r) {
       xv = xk;
-      xk = _$jStat_819.add(_$jStat_819.multiply(h, xv), c);
+      xk = _$jStat_870.add(_$jStat_870.multiply(h, xv), c);
       i++;
     }
     return xk;
@@ -65338,12 +69224,12 @@ _$jStat_819.extend({
       factor = (a[i + 1][i] > 0) ? -1 : 1;
       alpha = factor * Math.sqrt(alpha);
       r = Math.sqrt((((alpha * alpha) - a[i + 1][i] * alpha) / 2));
-      w = _$jStat_819.zeros(m, 1);
+      w = _$jStat_870.zeros(m, 1);
       w[i + 1][0] = (a[i + 1][i] - alpha) / (2 * r);
       for (k = i + 2; k < m; k++) w[k][0] = a[k][i] / (2 * r);
-      p = _$jStat_819.subtract(_$jStat_819.identity(m, n),
-          _$jStat_819.multiply(_$jStat_819.multiply(w, _$jStat_819.transpose(w)), 2));
-      a = _$jStat_819.multiply(p, _$jStat_819.multiply(a, p));
+      p = _$jStat_870.subtract(_$jStat_870.identity(m, n),
+          _$jStat_870.multiply(_$jStat_870.multiply(w, _$jStat_870.transpose(w)), 2));
+      a = _$jStat_870.multiply(p, _$jStat_870.multiply(a, p));
     }
     return a;
   },
@@ -65358,8 +69244,8 @@ _$jStat_819.extend({
     // y is [||x||,0,0,...]
 
     // quick ref
-    var sum   = _$jStat_819.sum;
-    var range = _$jStat_819.arange;
+    var sum   = _$jStat_870.sum;
+    var range = _$jStat_870.arange;
 
     function qr2(x) {
       // quick impletation
@@ -65368,8 +69254,8 @@ _$jStat_819.extend({
       var n = x.length;
       var p = x[0].length;
 
-      var r = _$jStat_819.zeros(p, p);
-      x = _$jStat_819.copy(x);
+      var r = _$jStat_870.zeros(p, p);
+      x = _$jStat_870.copy(x);
 
       var i,j,k;
       for(j = 0; j < p; j++){
@@ -65399,22 +69285,22 @@ _$jStat_819.extend({
     // [[b1],[b2],[b3]] form will return [[x1],[x2],[x3]] array form solution
     // else b is [b1,b2,b3] form will return [x1,x2,x3] array form solution
     function R_I(A) {
-      A = _$jStat_819.copy(A);
+      A = _$jStat_870.copy(A);
       var size = A.length;
-      var I = _$jStat_819.identity(size);
-      _$jStat_819.arange(size - 1, -1, -1).forEach(function(i) {
-        _$jStat_819.sliceAssign(
-            I, { row: i }, _$jStat_819.divide(_$jStat_819.slice(I, { row: i }), A[i][i]));
-        _$jStat_819.sliceAssign(
-            A, { row: i }, _$jStat_819.divide(_$jStat_819.slice(A, { row: i }), A[i][i]));
-        _$jStat_819.arange(i).forEach(function(j) {
-          var c = _$jStat_819.multiply(A[j][i], -1);
-          var Aj = _$jStat_819.slice(A, { row: j });
-          var cAi = _$jStat_819.multiply(_$jStat_819.slice(A, { row: i }), c);
-          _$jStat_819.sliceAssign(A, { row: j }, _$jStat_819.add(Aj, cAi));
-          var Ij = _$jStat_819.slice(I, { row: j });
-          var cIi = _$jStat_819.multiply(_$jStat_819.slice(I, { row: i }), c);
-          _$jStat_819.sliceAssign(I, { row: j }, _$jStat_819.add(Ij, cIi));
+      var I = _$jStat_870.identity(size);
+      _$jStat_870.arange(size - 1, -1, -1).forEach(function(i) {
+        _$jStat_870.sliceAssign(
+            I, { row: i }, _$jStat_870.divide(_$jStat_870.slice(I, { row: i }), A[i][i]));
+        _$jStat_870.sliceAssign(
+            A, { row: i }, _$jStat_870.divide(_$jStat_870.slice(A, { row: i }), A[i][i]));
+        _$jStat_870.arange(i).forEach(function(j) {
+          var c = _$jStat_870.multiply(A[j][i], -1);
+          var Aj = _$jStat_870.slice(A, { row: j });
+          var cAi = _$jStat_870.multiply(_$jStat_870.slice(A, { row: i }), c);
+          _$jStat_870.sliceAssign(A, { row: j }, _$jStat_870.add(Aj, cAi));
+          var Ij = _$jStat_870.slice(I, { row: j });
+          var cIi = _$jStat_870.multiply(_$jStat_870.slice(I, { row: i }), c);
+          _$jStat_870.sliceAssign(I, { row: j }, _$jStat_870.add(Ij, cIi));
         })
       });
       return I;
@@ -65427,20 +69313,20 @@ _$jStat_819.extend({
         b = b.map(function(x){ return [x] });
         array_mode = true;
       }
-      var QR = _$jStat_819.QR(A);
+      var QR = _$jStat_870.QR(A);
       var Q = QR[0];
       var R = QR[1];
       var attrs = A[0].length;
-      var Q1 = _$jStat_819.slice(Q,{col:{end:attrs}});
-      var R1 = _$jStat_819.slice(R,{row:{end:attrs}});
+      var Q1 = _$jStat_870.slice(Q,{col:{end:attrs}});
+      var R1 = _$jStat_870.slice(R,{row:{end:attrs}});
       var RI = R_I(R1);
-      var Q2 = _$jStat_819.transpose(Q1);
+      var Q2 = _$jStat_870.transpose(Q1);
 
       if(Q2[0].length === undefined){
         Q2 = [Q2]; // The confusing jStat.multifly implementation threat nature process again.
       }
 
-      var x = _$jStat_819.multiply(_$jStat_819.multiply(RI, Q2), b);
+      var x = _$jStat_870.multiply(_$jStat_870.multiply(RI, Q2), b);
 
       if(x.length === undefined){
         x = [[x]]; // The confusing jStat.multifly implementation threat nature process again.
@@ -65458,7 +69344,7 @@ _$jStat_819.extend({
   jacobi: function jacobi(a) {
     var condition = 1;
     var n = a.length;
-    var e = _$jStat_819.identity(n, n);
+    var e = _$jStat_870.identity(n, n);
     var ev = [];
     var b, i, j, p, q, maxim, theta, s;
     // condition === 1 only if tolerance is not reached
@@ -65481,14 +69367,14 @@ _$jStat_819.extend({
         theta = (a[p][q] > 0) ? Math.PI / 4 : -Math.PI / 4;
       else
         theta = Math.atan(2 * a[p][q] / (a[p][p] - a[q][q])) / 2;
-      s = _$jStat_819.identity(n, n);
+      s = _$jStat_870.identity(n, n);
       s[p][p] = Math.cos(theta);
       s[p][q] = -Math.sin(theta);
       s[q][p] = Math.sin(theta);
       s[q][q] = Math.cos(theta);
       // eigen vector matrix
-      e = _$jStat_819.multiply(e, s);
-      b = _$jStat_819.multiply(_$jStat_819.multiply(_$jStat_819.inv(s), a), s);
+      e = _$jStat_870.multiply(e, s);
+      b = _$jStat_870.multiply(_$jStat_870.multiply(_$jStat_870.inv(s), a), s);
       a = b;
       condition = 0;
       for (i = 1; i < n; i++) {
@@ -65679,7 +69565,7 @@ _$jStat_819.extend({
       A[i][i+1] = h[i];
       B[i][0] = alpha[i];
     }
-    c = _$jStat_819.multiply(_$jStat_819.inv(A), B);
+    c = _$jStat_870.multiply(_$jStat_870.inv(A), B);
     for (j = 0; j < n - 1; j++) {
       b[j] = (F[j + 1] - F[j]) / h[j] - h[j] * (c[j + 1][0] + 2 * c[j][0]) / 3;
       d[j] = (c[j + 1][0] - c[j][0]) / (3 * h[j]);
@@ -65688,8 +69574,8 @@ _$jStat_819.extend({
       if (X[j] > value) break;
     }
     j -= 1;
-    return F[j] + (value - X[j]) * b[j] + _$jStat_819.sq(value-X[j]) *
-        c[j] + (value - X[j]) * _$jStat_819.sq(value - X[j]) * d[j];
+    return F[j] + (value - X[j]) * b[j] + _$jStat_870.sq(value-X[j]) *
+        c[j] + (value - X[j]) * _$jStat_870.sq(value - X[j]) * d[j];
   },
 
   gauss_quadrature: function gauss_quadrature() {
@@ -65712,7 +69598,7 @@ _$jStat_819.extend({
     var V = [];
     var Vt = [];
     for (i = 0; i < m; i++) {
-      u[i] = _$jStat_819.sum(X[i]) / n;
+      u[i] = _$jStat_870.sum(X[i]) / n;
     }
     for (i = 0; i < n; i++) {
       B[i] = [];
@@ -65720,17 +69606,17 @@ _$jStat_819.extend({
         B[i][j] = X[j][i] - u[j];
       }
     }
-    B = _$jStat_819.transpose(B);
+    B = _$jStat_870.transpose(B);
     for (i = 0; i < m; i++) {
       C[i] = [];
       for (j = 0; j < m; j++) {
-        C[i][j] = (_$jStat_819.dot([B[i]], [B[j]])) / (n - 1);
+        C[i][j] = (_$jStat_870.dot([B[i]], [B[j]])) / (n - 1);
       }
     }
-    result = _$jStat_819.jacobi(C);
+    result = _$jStat_870.jacobi(C);
     V = result[0];
     D = result[1];
-    Vt = _$jStat_819.transpose(V);
+    Vt = _$jStat_870.transpose(V);
     for (i = 0; i < D.length; i++) {
       for (j = i; j < D.length; j++) {
         if(D[i] < D[j])  {
@@ -65743,11 +69629,11 @@ _$jStat_819.extend({
         }
       }
     }
-    Bt = _$jStat_819.transpose(B);
+    Bt = _$jStat_870.transpose(B);
     for (i = 0; i < m; i++) {
       Y[i] = [];
       for (j = 0; j < Bt.length; j++) {
-        Y[i][j] = _$jStat_819.dot([Vt[i]], [Bt[j]]);
+        Y[i][j] = _$jStat_870.dot([Vt[i]], [Bt[j]]);
       }
     }
     return [X, D, Vt, Y];
@@ -65757,42 +69643,42 @@ _$jStat_819.extend({
 // extend jStat.fn with methods that require one argument
 (function(funcs) {
   for (var i = 0; i < funcs.length; i++) (function(passfunc) {
-    _$jStat_819.fn[passfunc] = function(arg, func) {
+    _$jStat_870.fn[passfunc] = function(arg, func) {
       var tmpthis = this;
       // check for callback
       if (func) {
         setTimeout(function() {
-          func.call(tmpthis, _$jStat_819.fn[passfunc].call(tmpthis, arg));
+          func.call(tmpthis, _$jStat_870.fn[passfunc].call(tmpthis, arg));
         }, 15);
         return this;
       }
-      if (typeof _$jStat_819[passfunc](this, arg) === 'number')
-        return _$jStat_819[passfunc](this, arg);
+      if (typeof _$jStat_870[passfunc](this, arg) === 'number')
+        return _$jStat_870[passfunc](this, arg);
       else
-        return _$jStat_819(_$jStat_819[passfunc](this, arg));
+        return _$jStat_870(_$jStat_870[passfunc](this, arg));
     };
   }(funcs[i]));
 }('add divide multiply subtract dot pow exp log abs norm angle'.split(' ')));
 
-var _$test_825 = {};
-/* removed: var _$jStat_819 = require( './core.js' ); */;
+var _$test_876 = {};
+/* removed: var _$jStat_870 = require( './core.js' ); */;
 
-var __slice_825 = [].slice;
-var __isNumber_825 = _$jStat_819.utils.isNumber;
-var __isArray_825 = _$jStat_819.utils.isArray;
+var __slice_876 = [].slice;
+var __isNumber_876 = _$jStat_870.utils.isNumber;
+var __isArray_876 = _$jStat_870.utils.isArray;
 
 // flag==true denotes use of sample standard deviation
 // Z Statistics
-_$jStat_819.extend({
+_$jStat_870.extend({
   // 2 different parameter lists:
   // (value, mean, sd)
   // (value, array, flag)
   zscore: function zscore() {
-    var args = __slice_825.call(arguments);
-    if (__isNumber_825(args[1])) {
+    var args = __slice_876.call(arguments);
+    if (__isNumber_876(args[1])) {
       return (args[0] - args[1]) / args[2];
     }
-    return (args[0] - _$jStat_819.mean(args[1])) / _$jStat_819.stdev(args[1], args[2]);
+    return (args[0] - _$jStat_870.mean(args[1])) / _$jStat_870.stdev(args[1], args[2]);
   },
 
   // 3 different paramter lists:
@@ -65800,33 +69686,33 @@ _$jStat_819.extend({
   // (zscore, sides)
   // (value, array, sides, flag)
   ztest: function ztest() {
-    var args = __slice_825.call(arguments);
+    var args = __slice_876.call(arguments);
     var z;
-    if (__isArray_825(args[1])) {
+    if (__isArray_876(args[1])) {
       // (value, array, sides, flag)
-      z = _$jStat_819.zscore(args[0],args[1],args[3]);
+      z = _$jStat_870.zscore(args[0],args[1],args[3]);
       return (args[2] === 1) ?
-        (_$jStat_819.normal.cdf(-Math.abs(z), 0, 1)) :
-        (_$jStat_819.normal.cdf(-Math.abs(z), 0, 1)*2);
+        (_$jStat_870.normal.cdf(-Math.abs(z), 0, 1)) :
+        (_$jStat_870.normal.cdf(-Math.abs(z), 0, 1)*2);
     } else {
       if (args.length > 2) {
         // (value, mean, sd, sides)
-        z = _$jStat_819.zscore(args[0],args[1],args[2]);
+        z = _$jStat_870.zscore(args[0],args[1],args[2]);
         return (args[3] === 1) ?
-          (_$jStat_819.normal.cdf(-Math.abs(z),0,1)) :
-          (_$jStat_819.normal.cdf(-Math.abs(z),0,1)* 2);
+          (_$jStat_870.normal.cdf(-Math.abs(z),0,1)) :
+          (_$jStat_870.normal.cdf(-Math.abs(z),0,1)* 2);
       } else {
         // (zscore, sides)
         z = args[0];
         return (args[1] === 1) ?
-          (_$jStat_819.normal.cdf(-Math.abs(z),0,1)) :
-          (_$jStat_819.normal.cdf(-Math.abs(z),0,1)*2);
+          (_$jStat_870.normal.cdf(-Math.abs(z),0,1)) :
+          (_$jStat_870.normal.cdf(-Math.abs(z),0,1)*2);
       }
     }
   }
 });
 
-_$jStat_819.extend(_$jStat_819.fn, {
+_$jStat_870.extend(_$jStat_870.fn, {
   zscore: function zscore(value, flag) {
     return (value - this.mean()) / this.stdev(flag);
   },
@@ -65834,22 +69720,22 @@ _$jStat_819.extend(_$jStat_819.fn, {
   ztest: function ztest(value, sides, flag) {
     var zscore = Math.abs(this.zscore(value, flag));
     return (sides === 1) ?
-      (_$jStat_819.normal.cdf(-zscore, 0, 1)) :
-      (_$jStat_819.normal.cdf(-zscore, 0, 1) * 2);
+      (_$jStat_870.normal.cdf(-zscore, 0, 1)) :
+      (_$jStat_870.normal.cdf(-zscore, 0, 1) * 2);
   }
 });
 
 // T Statistics
-_$jStat_819.extend({
+_$jStat_870.extend({
   // 2 parameter lists
   // (value, mean, sd, n)
   // (value, array)
   tscore: function tscore() {
-    var args = __slice_825.call(arguments);
+    var args = __slice_876.call(arguments);
     return (args.length === 4) ?
       ((args[0] - args[1]) / (args[2] / Math.sqrt(args[3]))) :
-      ((args[0] - _$jStat_819.mean(args[1])) /
-       (_$jStat_819.stdev(args[1], true) / Math.sqrt(args[1].length)));
+      ((args[0] - _$jStat_870.mean(args[1])) /
+       (_$jStat_870.stdev(args[1], true) / Math.sqrt(args[1].length)));
   },
 
   // 3 different paramter lists:
@@ -65857,47 +69743,47 @@ _$jStat_819.extend({
   // (tscore, n, sides)
   // (value, array, sides)
   ttest: function ttest() {
-    var args = __slice_825.call(arguments);
+    var args = __slice_876.call(arguments);
     var tscore;
     if (args.length === 5) {
-      tscore = Math.abs(_$jStat_819.tscore(args[0], args[1], args[2], args[3]));
+      tscore = Math.abs(_$jStat_870.tscore(args[0], args[1], args[2], args[3]));
       return (args[4] === 1) ?
-        (_$jStat_819.studentt.cdf(-tscore, args[3]-1)) :
-        (_$jStat_819.studentt.cdf(-tscore, args[3]-1)*2);
+        (_$jStat_870.studentt.cdf(-tscore, args[3]-1)) :
+        (_$jStat_870.studentt.cdf(-tscore, args[3]-1)*2);
     }
-    if (__isNumber_825(args[1])) {
+    if (__isNumber_876(args[1])) {
       tscore = Math.abs(args[0])
       return (args[2] == 1) ?
-        (_$jStat_819.studentt.cdf(-tscore, args[1]-1)) :
-        (_$jStat_819.studentt.cdf(-tscore, args[1]-1) * 2);
+        (_$jStat_870.studentt.cdf(-tscore, args[1]-1)) :
+        (_$jStat_870.studentt.cdf(-tscore, args[1]-1) * 2);
     }
-    tscore = Math.abs(_$jStat_819.tscore(args[0], args[1]))
+    tscore = Math.abs(_$jStat_870.tscore(args[0], args[1]))
     return (args[2] == 1) ?
-      (_$jStat_819.studentt.cdf(-tscore, args[1].length-1)) :
-      (_$jStat_819.studentt.cdf(-tscore, args[1].length-1) * 2);
+      (_$jStat_870.studentt.cdf(-tscore, args[1].length-1)) :
+      (_$jStat_870.studentt.cdf(-tscore, args[1].length-1) * 2);
   }
 });
 
-_$jStat_819.extend(_$jStat_819.fn, {
+_$jStat_870.extend(_$jStat_870.fn, {
   tscore: function tscore(value) {
     return (value - this.mean()) / (this.stdev(true) / Math.sqrt(this.cols()));
   },
 
   ttest: function ttest(value, sides) {
     return (sides === 1) ?
-      (1 - _$jStat_819.studentt.cdf(Math.abs(this.tscore(value)), this.cols()-1)) :
-      (_$jStat_819.studentt.cdf(-Math.abs(this.tscore(value)), this.cols()-1)*2);
+      (1 - _$jStat_870.studentt.cdf(Math.abs(this.tscore(value)), this.cols()-1)) :
+      (_$jStat_870.studentt.cdf(-Math.abs(this.tscore(value)), this.cols()-1)*2);
   }
 });
 
 // F Statistics
-_$jStat_819.extend({
+_$jStat_870.extend({
   // Paramter list is as follows:
   // (array1, array2, array3, ...)
   // or it is an array of arrays
   // array of arrays conversion
   anovafscore: function anovafscore() {
-    var args = __slice_825.call(arguments),
+    var args = __slice_876.call(arguments),
     expVar, sample, sampMean, sampSampMean, tmpargs, unexpVar, i, j;
     if (args.length === 1) {
       tmpargs = new Array(args[0].length);
@@ -65911,17 +69797,17 @@ _$jStat_819.extend({
     for (i = 0; i < args.length; i++) {
       sample = sample.concat(args[i]);
     }
-    sampMean = _$jStat_819.mean(sample);
+    sampMean = _$jStat_870.mean(sample);
     // Computes the explained variance
     expVar = 0;
     for (i = 0; i < args.length; i++) {
-      expVar = expVar + args[i].length * Math.pow(_$jStat_819.mean(args[i]) - sampMean, 2);
+      expVar = expVar + args[i].length * Math.pow(_$jStat_870.mean(args[i]) - sampMean, 2);
     }
     expVar /= (args.length - 1);
     // Computes unexplained variance
     unexpVar = 0;
     for (i = 0; i < args.length; i++) {
-      sampSampMean = _$jStat_819.mean(args[i]);
+      sampSampMean = _$jStat_870.mean(args[i]);
       for (j = 0; j < args[i].length; j++) {
         unexpVar += Math.pow(args[i][j] - sampSampMean, 2);
       }
@@ -65934,29 +69820,29 @@ _$jStat_819.extend({
   // (array1, array2, array3, ...)
   // (anovafscore, df1, df2)
   anovaftest: function anovaftest() {
-    var args = __slice_825.call(arguments),
+    var args = __slice_876.call(arguments),
     df1, df2, n, i;
-    if (__isNumber_825(args[0])) {
-      return 1 - _$jStat_819.centralF.cdf(args[0], args[1], args[2]);
+    if (__isNumber_876(args[0])) {
+      return 1 - _$jStat_870.centralF.cdf(args[0], args[1], args[2]);
     }
-    var anovafscore = _$jStat_819.anovafscore(args);
+    var anovafscore = _$jStat_870.anovafscore(args);
     df1 = args.length - 1;
     n = 0;
     for (i = 0; i < args.length; i++) {
       n = n + args[i].length;
     }
     df2 = n - df1 - 1;
-    return 1 - _$jStat_819.centralF.cdf(anovafscore, df1, df2);
+    return 1 - _$jStat_870.centralF.cdf(anovafscore, df1, df2);
   },
 
   ftest: function ftest(fscore, df1, df2) {
-    return 1 - _$jStat_819.centralF.cdf(fscore, df1, df2);
+    return 1 - _$jStat_870.centralF.cdf(fscore, df1, df2);
   }
 });
 
-_$jStat_819.extend(_$jStat_819.fn, {
+_$jStat_870.extend(_$jStat_870.fn, {
   anovafscore: function anovafscore() {
-    return _$jStat_819.anovafscore(this.toArray());
+    return _$jStat_870.anovafscore(this.toArray());
   },
 
   anovaftes: function anovaftes() {
@@ -65965,27 +69851,27 @@ _$jStat_819.extend(_$jStat_819.fn, {
     for (i = 0; i < this.length; i++) {
       n = n + this[i].length;
     }
-    return _$jStat_819.ftest(this.anovafscore(), this.length - 1, n - this.length);
+    return _$jStat_870.ftest(this.anovafscore(), this.length - 1, n - this.length);
   }
 });
 
 // Tukey's range test
-_$jStat_819.extend({
+_$jStat_870.extend({
   // 2 parameter lists
   // (mean1, mean2, n1, n2, sd)
   // (array1, array2, sd)
   qscore: function qscore() {
-    var args = __slice_825.call(arguments);
+    var args = __slice_876.call(arguments);
     var mean1, mean2, n1, n2, sd;
-    if (__isNumber_825(args[0])) {
+    if (__isNumber_876(args[0])) {
         mean1 = args[0];
         mean2 = args[1];
         n1 = args[2];
         n2 = args[3];
         sd = args[4];
     } else {
-        mean1 = _$jStat_819.mean(args[0]);
-        mean2 = _$jStat_819.mean(args[1]);
+        mean1 = _$jStat_870.mean(args[0]);
+        mean2 = _$jStat_870.mean(args[1]);
         n1 = args[0].length;
         n2 = args[1].length;
         sd = args[2];
@@ -65998,35 +69884,35 @@ _$jStat_819.extend({
   // (mean1, mean2, n1, n2, sd, n, k)
   // (array1, array2, sd, n, k)
   qtest: function qtest() {
-    var args = __slice_825.call(arguments);
+    var args = __slice_876.call(arguments);
 
     var qscore;
     if (args.length === 3) {
       qscore = args[0];
       args = args.slice(1);
     } else if (args.length === 7) {
-      qscore = _$jStat_819.qscore(args[0], args[1], args[2], args[3], args[4]);
+      qscore = _$jStat_870.qscore(args[0], args[1], args[2], args[3], args[4]);
       args = args.slice(5);
     } else {
-      qscore = _$jStat_819.qscore(args[0], args[1], args[2]);
+      qscore = _$jStat_870.qscore(args[0], args[1], args[2]);
       args = args.slice(3);
     }
 
     var n = args[0];
     var k = args[1];
 
-    return 1 - _$jStat_819.tukey.cdf(qscore, k, n - k);
+    return 1 - _$jStat_870.tukey.cdf(qscore, k, n - k);
   },
 
   tukeyhsd: function tukeyhsd(arrays) {
-    var sd = _$jStat_819.pooledstdev(arrays);
-    var means = arrays.map(function (arr) {return _$jStat_819.mean(arr);});
+    var sd = _$jStat_870.pooledstdev(arrays);
+    var means = arrays.map(function (arr) {return _$jStat_870.mean(arr);});
     var n = arrays.reduce(function (n, arr) {return n + arr.length;}, 0);
 
     var results = [];
     for (var i = 0; i < arrays.length; ++i) {
         for (var j = i + 1; j < arrays.length; ++j) {
-            var p = _$jStat_819.qtest(means[i], means[j], arrays[i].length, arrays[j].length, sd, n, arrays.length);
+            var p = _$jStat_870.qtest(means[i], means[j], arrays[i].length, arrays[j].length, sd, n, arrays.length);
             results.push([[i, j], p]);
         }
     }
@@ -66036,20 +69922,20 @@ _$jStat_819.extend({
 });
 
 // Error Bounds
-_$jStat_819.extend({
+_$jStat_870.extend({
   // 2 different parameter setups
   // (value, alpha, sd, n)
   // (value, alpha, array)
   normalci: function normalci() {
-    var args = __slice_825.call(arguments),
+    var args = __slice_876.call(arguments),
     ans = new Array(2),
     change;
     if (args.length === 4) {
-      change = Math.abs(_$jStat_819.normal.inv(args[1] / 2, 0, 1) *
+      change = Math.abs(_$jStat_870.normal.inv(args[1] / 2, 0, 1) *
                         args[2] / Math.sqrt(args[3]));
     } else {
-      change = Math.abs(_$jStat_819.normal.inv(args[1] / 2, 0, 1) *
-                        _$jStat_819.stdev(args[2]) / Math.sqrt(args[2].length));
+      change = Math.abs(_$jStat_870.normal.inv(args[1] / 2, 0, 1) *
+                        _$jStat_870.stdev(args[2]) / Math.sqrt(args[2].length));
     }
     ans[0] = args[0] - change;
     ans[1] = args[0] + change;
@@ -66060,15 +69946,15 @@ _$jStat_819.extend({
   // (value, alpha, sd, n)
   // (value, alpha, array)
   tci: function tci() {
-    var args = __slice_825.call(arguments),
+    var args = __slice_876.call(arguments),
     ans = new Array(2),
     change;
     if (args.length === 4) {
-      change = Math.abs(_$jStat_819.studentt.inv(args[1] / 2, args[3] - 1) *
+      change = Math.abs(_$jStat_870.studentt.inv(args[1] / 2, args[3] - 1) *
                         args[2] / Math.sqrt(args[3]));
     } else {
-      change = Math.abs(_$jStat_819.studentt.inv(args[1] / 2, args[2].length - 1) *
-                        _$jStat_819.stdev(args[2], true) / Math.sqrt(args[2].length));
+      change = Math.abs(_$jStat_870.studentt.inv(args[1] / 2, args[2].length - 1) *
+                        _$jStat_870.stdev(args[2], true) / Math.sqrt(args[2].length));
     }
     ans[0] = args[0] - change;
     ans[1] = args[0] + change;
@@ -66080,13 +69966,13 @@ _$jStat_819.extend({
   }
 });
 
-_$jStat_819.extend(_$jStat_819.fn, {
+_$jStat_870.extend(_$jStat_870.fn, {
   normalci: function normalci(value, alpha) {
-    return _$jStat_819.normalci(value, alpha, this.toArray());
+    return _$jStat_870.normalci(value, alpha, this.toArray());
   },
 
   tci: function tci(value, alpha) {
-    return _$jStat_819.tci(value, alpha, this.toArray());
+    return _$jStat_870.tci(value, alpha, this.toArray());
   }
 });
 
@@ -66101,29 +69987,29 @@ function differenceOfProportions(p1, n1, p2, n2) {
 }
 
 // Difference of Proportions
-_$jStat_819.extend(_$jStat_819.fn, {
+_$jStat_870.extend(_$jStat_870.fn, {
   oneSidedDifferenceOfProportions: function oneSidedDifferenceOfProportions(p1, n1, p2, n2) {
     var z = differenceOfProportions(p1, n1, p2, n2);
-    return _$jStat_819.ztest(z, 1);
+    return _$jStat_870.ztest(z, 1);
   },
 
   twoSidedDifferenceOfProportions: function twoSidedDifferenceOfProportions(p1, n1, p2, n2) {
     var z = differenceOfProportions(p1, n1, p2, n2);
-    return _$jStat_819.ztest(z, 2);
+    return _$jStat_870.ztest(z, 2);
   }
 });
 
-var _$models_822 = {};
-/* removed: var _$jStat_819 = require( './core.js' ); */;
+var _$models_873 = {};
+/* removed: var _$jStat_870 = require( './core.js' ); */;
 
-_$jStat_819.models = (function(){
+_$jStat_870.models = (function(){
   function sub_regress(exog) {
     var var_count = exog[0].length;
-    var modelList = _$jStat_819.arange(var_count).map(function(endog_index) {
+    var modelList = _$jStat_870.arange(var_count).map(function(endog_index) {
       var exog_index =
-          _$jStat_819.arange(var_count).filter(function(i){return i!==endog_index});
-      return ols(_$jStat_819.col(exog, endog_index).map(function(x){ return x[0] }),
-                 _$jStat_819.col(exog, exog_index))
+          _$jStat_870.arange(var_count).filter(function(i){return i!==endog_index});
+      return ols(_$jStat_870.col(exog, endog_index).map(function(x){ return x[0] }),
+                 _$jStat_870.col(exog, exog_index))
     });
     return modelList;
   }
@@ -66136,20 +70022,20 @@ _$jStat_819.models = (function(){
     var nobs = endog.length;
     var df_model = exog[0].length - 1;
     var df_resid = nobs-df_model - 1;
-    var coef = _$jStat_819.lstsq(exog, endog);
+    var coef = _$jStat_870.lstsq(exog, endog);
     var predict =
-        _$jStat_819.multiply(exog, coef.map(function(x) { return [x] }))
+        _$jStat_870.multiply(exog, coef.map(function(x) { return [x] }))
             .map(function(p) { return p[0] });
-    var resid = _$jStat_819.subtract(endog, predict);
-    var ybar = _$jStat_819.mean(endog);
+    var resid = _$jStat_870.subtract(endog, predict);
+    var ybar = _$jStat_870.mean(endog);
     // constant cause problem
     // var SST = jStat.sum(endog.map(function(y) {
     //   return Math.pow(y-ybar,2);
     // }));
-    var SSE = _$jStat_819.sum(predict.map(function(f) {
+    var SSE = _$jStat_870.sum(predict.map(function(f) {
       return Math.pow(f - ybar, 2);
     }));
-    var SSR = _$jStat_819.sum(endog.map(function(y, i) {
+    var SSR = _$jStat_870.sum(endog.map(function(y, i) {
       return Math.pow(y - predict[i], 2);
     }));
     var SST = SSE + SSR;
@@ -66186,10 +70072,10 @@ _$jStat_819.models = (function(){
       return (coef - 0) / seBetaHat[i];
     });
     var pValue = tStatistic.map(function(t) {
-      var leftppf = _$jStat_819.studentt.cdf(t, model.df_resid);
+      var leftppf = _$jStat_870.studentt.cdf(t, model.df_resid);
       return (leftppf > 0.5 ? 1 - leftppf : leftppf) * 2;
     });
-    var c = _$jStat_819.studentt.inv(0.975, model.df_resid);
+    var c = _$jStat_870.studentt.inv(0.975, model.df_resid);
     var interval95 = model.coef.map(function(coef, i) {
       var d = c * seBetaHat[i];
       return [coef - d, coef + d];
@@ -66207,7 +70093,7 @@ _$jStat_819.models = (function(){
     var F_statistic =
         (model.R2 / model.df_model) / ((1 - model.R2) / model.df_resid);
     var fcdf = function(x, n1, n2) {
-      return _$jStat_819.beta.cdf(x / (n2 / n1 + x), n1 / 2, n2 / 2)
+      return _$jStat_870.beta.cdf(x / (n2 / n1 + x), n1 / 2, n2 / 2)
     }
     var pvalue = 1 - fcdf(F_statistic, model.df_model, model.df_resid);
     return { F_statistic: F_statistic, pvalue: pvalue };
@@ -66230,7 +70116,7 @@ _$jStat_819.models = (function(){
   return { ols: ols_wrap };
 })();
 
-var _$regression_823 = {};
+var _$regression_874 = {};
 //To regress, simply build X matrix
 //(append column of 1's) using
 //buildxmatrix and build the Y
@@ -66238,11 +70124,11 @@ var _$regression_823 = {};
 //(simply the transpose)
 //and run regress.
 
-/* removed: var _$jStat_819 = require( './core.js' ); */;
+/* removed: var _$jStat_870 = require( './core.js' ); */;
 
 //Regressions
 
-_$jStat_819.extend({
+_$jStat_870.extend({
   buildxmatrix: function buildxmatrix(){
     //Parameters will be passed in as such
     //(array1,array2,array3,...)
@@ -66253,7 +70139,7 @@ _$jStat_819.extend({
       var array = [1];
       matrixRows[i]= array.concat(arguments[i]);
     }
-    return _$jStat_819(matrixRows);
+    return _$jStat_870(matrixRows);
 
   },
 
@@ -66265,7 +70151,7 @@ _$jStat_819.extend({
       var array = [1]
       matrixRows[i]= array.concat(arguments[0][i]);
     }
-    return _$jStat_819(matrixRows);
+    return _$jStat_870(matrixRows);
 
   },
 
@@ -66275,12 +70161,12 @@ _$jStat_819.extend({
     for(var i=0;i<jMat.length;i++){
       pass[i] = jMat[i];
     }
-    return _$jStat_819.builddxmatrix(pass);
+    return _$jStat_870.builddxmatrix(pass);
 
   },
 
   buildymatrix: function buildymatrix(array){
-    return _$jStat_819(array).transpose();
+    return _$jStat_870(array).transpose();
   },
 
   buildjymatrix: function buildjymatrix(jMat){
@@ -66302,7 +70188,7 @@ _$jStat_819.extend({
             result[i][j] = sum;
           }
         }
-        return _$jStat_819(result);
+        return _$jStat_870(result);
       }
       result = [];
       for (i = 0; i < A.rows(); i++) {
@@ -66315,7 +70201,7 @@ _$jStat_819.extend({
           result[i][j] = sum;
         }
       }
-      return _$jStat_819(result);
+      return _$jStat_870(result);
     }
   },
 
@@ -66324,32 +70210,32 @@ _$jStat_819.extend({
   regress: function regress(jMatX,jMatY){
     //print("regressin!");
     //print(jMatX.toArray());
-    var innerinv = _$jStat_819.xtranspxinv(jMatX);
+    var innerinv = _$jStat_870.xtranspxinv(jMatX);
     //print(innerinv);
     var xtransp = jMatX.transpose();
-    var next = _$jStat_819.matrixmult(_$jStat_819(innerinv),xtransp);
-    return _$jStat_819.matrixmult(next,jMatY);
+    var next = _$jStat_870.matrixmult(_$jStat_870(innerinv),xtransp);
+    return _$jStat_870.matrixmult(next,jMatY);
 
   },
 
   regresst: function regresst(jMatX,jMatY,sides){
-    var beta = _$jStat_819.regress(jMatX,jMatY);
+    var beta = _$jStat_870.regress(jMatX,jMatY);
 
     var compile = {};
     compile.anova = {};
-    var jMatYBar = _$jStat_819.jMatYBar(jMatX, beta);
+    var jMatYBar = _$jStat_870.jMatYBar(jMatX, beta);
     compile.yBar = jMatYBar;
     var yAverage = jMatY.mean();
-    compile.anova.residuals = _$jStat_819.residuals(jMatY, jMatYBar);
+    compile.anova.residuals = _$jStat_870.residuals(jMatY, jMatYBar);
 
-    compile.anova.ssr = _$jStat_819.ssr(jMatYBar, yAverage);
+    compile.anova.ssr = _$jStat_870.ssr(jMatYBar, yAverage);
     compile.anova.msr = compile.anova.ssr / (jMatX[0].length - 1);
 
-    compile.anova.sse = _$jStat_819.sse(jMatY, jMatYBar);
+    compile.anova.sse = _$jStat_870.sse(jMatY, jMatYBar);
     compile.anova.mse =
         compile.anova.sse / (jMatY.length - (jMatX[0].length - 1) - 1);
 
-    compile.anova.sst = _$jStat_819.sst(jMatY, yAverage);
+    compile.anova.sst = _$jStat_870.sst(jMatY, yAverage);
     compile.anova.mst = compile.anova.sst / (jMatY.length - 1);
 
     compile.anova.r2 = 1 - (compile.anova.sse / compile.anova.sst);
@@ -66357,7 +70243,7 @@ _$jStat_819.extend({
 
     compile.anova.fratio = compile.anova.msr / compile.anova.mse;
     compile.anova.pvalue =
-        _$jStat_819.anovaftest(compile.anova.fratio,
+        _$jStat_870.anovaftest(compile.anova.fratio,
                          jMatX[0].length - 1,
                          jMatY.length - (jMatX[0].length - 1) - 1);
 
@@ -66367,13 +70253,13 @@ _$jStat_819.extend({
     if (compile.anova.r2adj < 0) compile.anova.r2adj = 0;
 
     compile.stats = new Array(jMatX[0].length);
-    var covar = _$jStat_819.xtranspxinv(jMatX);
+    var covar = _$jStat_870.xtranspxinv(jMatX);
     var sds, ts, ps;
 
     for(var i=0; i<beta.length;i++){
       sds=Math.sqrt(compile.anova.mse * Math.abs(covar[i][i]));
       ts= Math.abs(beta[i] / sds);
-      ps= _$jStat_819.ttest(ts, jMatY.length - jMatX[0].length - 1, sides);
+      ps= _$jStat_870.ttest(ts, jMatY.length - jMatX[0].length - 1, sides);
 
       compile.stats[i]=[beta[i], sds, ts, ps];
     }
@@ -66383,23 +70269,23 @@ _$jStat_819.extend({
   },
 
   xtranspx: function xtranspx(jMatX){
-    return _$jStat_819.matrixmult(jMatX.transpose(),jMatX);
+    return _$jStat_870.matrixmult(jMatX.transpose(),jMatX);
   },
 
 
   xtranspxinv: function xtranspxinv(jMatX){
-    var inner = _$jStat_819.matrixmult(jMatX.transpose(),jMatX);
-    var innerinv = _$jStat_819.inv(inner);
+    var inner = _$jStat_870.matrixmult(jMatX.transpose(),jMatX);
+    var innerinv = _$jStat_870.inv(inner);
     return innerinv;
   },
 
   jMatYBar: function jMatYBar(jMatX, beta) {
-    var yBar = _$jStat_819.matrixmult(jMatX, beta);
-    return new _$jStat_819(yBar);
+    var yBar = _$jStat_870.matrixmult(jMatX, beta);
+    return new _$jStat_870(yBar);
   },
 
   residuals: function residuals(jMatY, jMatYBar) {
-    return _$jStat_819.matrixsubtract(jMatY, jMatYBar);
+    return _$jStat_870.matrixsubtract(jMatY, jMatYBar);
   },
 
   ssr: function ssr(jMatYBar, yAverage) {
@@ -66434,11 +70320,11 @@ _$jStat_819.extend({
         ans[i][j]=A[i][j]-B[i][j];
       }
     }
-    return _$jStat_819(ans);
+    return _$jStat_870(ans);
   }
 });
 
-return _$jStat_819;
+return _$jStat_870;
 
 });
 

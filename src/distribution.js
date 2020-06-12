@@ -237,50 +237,26 @@ jStat.extend(jStat.kumaraswamy, {
   variance: kumaraswamyVariance
 });
 
-
+var lognormalPDF = require( '@stdlib/stats/base/dists/lognormal/pdf' );
+var lognormalCDF = require( '@stdlib/stats/base/dists/lognormal/cdf' );
+var lognormalQuantile = require( '@stdlib/stats/base/dists/lognormal/quantile' );
+var lognormalMean = require( '@stdlib/stats/base/dists/lognormal/mean' );
+var lognormalMedian = require( '@stdlib/stats/base/dists/lognormal/median' );
+var lognormalMode = require( '@stdlib/stats/base/dists/lognormal/mode' );
+var lognormalSample = require( '@stdlib/random/base/lognormal' );
+var lognormalVariance = require( '@stdlib/stats/base/dists/lognormal/variance' );
 
 // extend lognormal function with static methods
 jStat.extend(jStat.lognormal, {
-  pdf: function pdf(x, mu, sigma) {
-    if (x <= 0)
-      return 0;
-    return Math.exp(-Math.log(x) - 0.5 * Math.log(2 * Math.PI) -
-                    Math.log(sigma) - Math.pow(Math.log(x) - mu, 2) /
-                    (2 * sigma * sigma));
-  },
-
-  cdf: function cdf(x, mu, sigma) {
-    if (x < 0)
-      return 0;
-    return 0.5 +
-        (0.5 * jStat.erf((Math.log(x) - mu) / Math.sqrt(2 * sigma * sigma)));
-  },
-
-  inv: function(p, mu, sigma) {
-    return Math.exp(-1.41421356237309505 * sigma * jStat.erfcinv(2 * p) + mu);
-  },
-
-  mean: function mean(mu, sigma) {
-    return Math.exp(mu + sigma * sigma / 2);
-  },
-
-  median: function median(mu/*, sigma*/) {
-    return Math.exp(mu);
-  },
-
-  mode: function mode(mu, sigma) {
-    return Math.exp(mu - sigma * sigma);
-  },
-
-  sample: function sample(mu, sigma) {
-    return Math.exp(jStat.randn() * sigma + mu);
-  },
-
-  variance: function variance(mu, sigma) {
-    return (Math.exp(sigma * sigma) - 1) * Math.exp(2 * mu + sigma * sigma);
-  }
+  pdf: lognormalPDF,
+  cdf: lognormalCDF,
+  inv: lognormalQuantile,
+  mean: lognormalMean,
+  median: lognormalMedian,
+  mode: lognormalMode,
+  sample: lognormalSample,
+  variance: lognormalVariance
 });
-
 
 
 // extend noncentralt function with static methods
@@ -340,41 +316,25 @@ jStat.extend(jStat.noncentralt, {
   }
 });
 
+var normalPDF = require( '@stdlib/stats/base/dists/normal/pdf' );
+var normalCDF = require( '@stdlib/stats/base/dists/normal/cdf' );
+var normalQuantile = require( '@stdlib/stats/base/dists/normal/quantile' );
+var normalMean = require( '@stdlib/stats/base/dists/normal/mean' );
+var normalMedian = require( '@stdlib/stats/base/dists/normal/median' );
+var normalMode = require( '@stdlib/stats/base/dists/normal/mode' );
+var normalSample = require( '@stdlib/random/base/normal' );
+var normalVariance = require( '@stdlib/stats/base/dists/normal/variance' );
 
 // extend normal function with static methods
 jStat.extend(jStat.normal, {
-  pdf: function pdf(x, mean, std) {
-    return Math.exp(-0.5 * Math.log(2 * Math.PI) -
-                    Math.log(std) - Math.pow(x - mean, 2) / (2 * std * std));
-  },
-
-  cdf: function cdf(x, mean, std) {
-    return 0.5 * (1 + jStat.erf((x - mean) / Math.sqrt(2 * std * std)));
-  },
-
-  inv: function(p, mean, std) {
-    return -1.41421356237309505 * std * jStat.erfcinv(2 * p) + mean;
-  },
-
-  mean : function(mean/*, std*/) {
-    return mean;
-  },
-
-  median: function median(mean/*, std*/) {
-    return mean;
-  },
-
-  mode: function (mean/*, std*/) {
-    return mean;
-  },
-
-  sample: function sample(mean, std) {
-    return jStat.randn() * std + mean;
-  },
-
-  variance : function(mean, std) {
-    return std * std;
-  }
+  pdf: normalPDF,
+  cdf: normalCDF,
+  inv: normalQuantile,
+  mean : normalMean,
+  median: normalMedian,
+  mode: normalMode,
+  sample: normalSample,
+  variance : normalVariance
 });
 
 
