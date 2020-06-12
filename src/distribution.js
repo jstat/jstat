@@ -441,45 +441,28 @@ jStat.extend(jStat.weibull, {
   }
 });
 
-
+var uniformPDF = require( '@stdlib/stats/base/dists/uniform/pdf' );
+var uniformCDF = require( '@stdlib/stats/base/dists/uniform/cdf' );
+var uniformQuantile = require( '@stdlib/stats/base/dists/uniform/quantile' );
+var uniformMean = require( '@stdlib/stats/base/dists/uniform/mean' );
+var uniformMedian = require( '@stdlib/stats/base/dists/uniform/median' );
+var uniformSample = require( '@stdlib/random/base/t' );
+var uniformVariance = require( '@stdlib/stats/base/dists/uniform/variance' );
 
 // extend uniform function with static methods
 jStat.extend(jStat.uniform, {
-  pdf: function pdf(x, a, b) {
-    return (x < a || x > b) ? 0 : 1 / (b - a);
-  },
-
-  cdf: function cdf(x, a, b) {
-    if (x < a)
-      return 0;
-    else if (x < b)
-      return (x - a) / (b - a);
-    return 1;
-  },
-
-  inv: function(p, a, b) {
-    return a + (p * (b - a));
-  },
-
-  mean: function mean(a, b) {
-    return 0.5 * (a + b);
-  },
-
-  median: function median(a, b) {
-    return jStat.mean(a, b);
-  },
+  pdf: uniformPDF,
+  cdf: uniformCDF,
+  inv: uniformQuantile,
+  mean: uniformMean,
+  median: uniformMedian,
 
   mode: function mode(/*a, b*/) {
     throw new Error('mode is not yet implemented');
   },
 
-  sample: function sample(a, b) {
-    return (a / 2 + b / 2) + (b / 2 - a / 2) * (2 * jStat._random_fn() - 1);
-  },
-
-  variance: function variance(a, b) {
-    return Math.pow(b - a, 2) / 12;
-  }
+  sample: uniformSample,
+  variance: uniformVariance
 });
 
 
