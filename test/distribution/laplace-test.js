@@ -26,8 +26,8 @@ suite.addBatch({
             assert.epsilon(tol, pdf(0, 0, 5), 0.1);
 
             //Zero for invalid parameters
-            assert.epsilon(tol, pdf(0, 0, 0), 0);
-            assert.epsilon(tol, pdf(0, 0, -3), 0);
+            assert.isNaN(pdf(0, 0, 0));
+            assert.isNaN(pdf(0, 0, -3));
 
             //Large values
             assert.epsilon(tol, pdf(0, 400, 500), 0.001 * Math.exp(-0.8));
@@ -48,8 +48,8 @@ suite.addBatch({
             assert.epsilon(tol, cdf(-2, 0, 4), 0.5 * Math.exp(-0.5));
 
             //Zero returned for invalid parameters
-            assert.epsilon(tol, cdf(1, 1, 0), 0);
-            assert.epsilon(tol, cdf(1, 1, -2), 0);
+            assert.isNaN(cdf(1, 1, 0));
+            assert.isNaN(cdf(1, 1, -2));
         },
         'mean': function(jStat) {
             var mean = jStat.laplace.mean;

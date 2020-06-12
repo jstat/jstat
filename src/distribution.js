@@ -554,45 +554,23 @@ jStat.extend(jStat.arcsine, {
   variance: arcsineVariance
 });
 
-
-function laplaceSign(x) { return x / Math.abs(x); }
+var laplacePDF = require( '@stdlib/stats/base/dists/laplace/pdf' );
+var laplaceCDF = require( '@stdlib/stats/base/dists/laplace/cdf' );
+var laplaceQuantile = require( '@stdlib/stats/base/dists/laplace/quantile' );
+var laplaceMean = require( '@stdlib/stats/base/dists/laplace/mean' );
+var laplaceMedian = require( '@stdlib/stats/base/dists/laplace/median' );
+var laplaceMode = require( '@stdlib/stats/base/dists/laplace/mode' );
+var laplaceSample = require( '@stdlib/random/base/laplace' );
+var laplaceVariance = require( '@stdlib/stats/base/dists/laplace/variance' );
 
 jStat.extend(jStat.laplace, {
-  pdf: function pdf(x, mu, b) {
-    return (b <= 0) ? 0 : (Math.exp(-Math.abs(x - mu) / b)) / (2 * b);
-  },
-
-  cdf: function cdf(x, mu, b) {
-    if (b <= 0) { return 0; }
-
-    if(x < mu) {
-      return 0.5 * Math.exp((x - mu) / b);
-    } else {
-      return 1 - 0.5 * Math.exp(- (x - mu) / b);
-    }
-  },
-
-  mean: function(mu/*, b*/) {
-    return mu;
-  },
-
-  median: function(mu/*, b*/) {
-    return mu;
-  },
-
-  mode: function(mu/*, b*/) {
-    return mu;
-  },
-
-  variance: function(mu, b) {
-    return 2 * b * b;
-  },
-
-  sample: function sample(mu, b) {
-    var u = jStat._random_fn() - 0.5;
-
-    return mu - (b * laplaceSign(u) * Math.log(1 - (2 * Math.abs(u))));
-  }
+  pdf: laplacePDF,
+  cdf: laplaceCDF,
+  mean: laplaceMean,
+  median: laplaceMedian,
+  mode: laplaceMode,
+  variance: laplaceVariance,
+  sample: laplaceSample
 });
 
 function tukeyWprob(w, rr, cc) {

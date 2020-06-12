@@ -1,6 +1,6 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.jStat = f()}})(function(){var define,module,exports;
 var createModuleFactory = function createModuleFactory(t){var e;return function(r){return e||t(e={exports:{},parent:r},e.exports),e.exports}};
-var _$buffer_1029 = createModuleFactory(function (module, exports) {
+var _$buffer_1051 = createModuleFactory(function (module, exports) {
 (function (Buffer){
 /*!
  * The buffer module from node.js, for the browser.
@@ -12,8 +12,8 @@ var _$buffer_1029 = createModuleFactory(function (module, exports) {
 
 'use strict'
 
-/* removed: var _$base64Js_1028 = require('base64-js') */;
-/* removed: var _$ieee754_1032 = require('ieee754') */;
+/* removed: var _$base64Js_1050 = require('base64-js') */;
+/* removed: var _$ieee754_1054 = require('ieee754') */;
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -932,9 +932,9 @@ Buffer.prototype.toJSON = function toJSON () {
 
 function base64Slice (buf, start, end) {
   if (start === 0 && end === buf.length) {
-    return _$base64Js_1028.fromByteArray(buf)
+    return _$base64Js_1050.fromByteArray(buf)
   } else {
-    return _$base64Js_1028.fromByteArray(buf.slice(start, end))
+    return _$base64Js_1050.fromByteArray(buf.slice(start, end))
   }
 }
 
@@ -1260,25 +1260,25 @@ Buffer.prototype.readInt32BE = function readInt32BE (offset, noAssert) {
 Buffer.prototype.readFloatLE = function readFloatLE (offset, noAssert) {
   offset = offset >>> 0
   if (!noAssert) checkOffset(offset, 4, this.length)
-  return _$ieee754_1032.read(this, offset, true, 23, 4)
+  return _$ieee754_1054.read(this, offset, true, 23, 4)
 }
 
 Buffer.prototype.readFloatBE = function readFloatBE (offset, noAssert) {
   offset = offset >>> 0
   if (!noAssert) checkOffset(offset, 4, this.length)
-  return _$ieee754_1032.read(this, offset, false, 23, 4)
+  return _$ieee754_1054.read(this, offset, false, 23, 4)
 }
 
 Buffer.prototype.readDoubleLE = function readDoubleLE (offset, noAssert) {
   offset = offset >>> 0
   if (!noAssert) checkOffset(offset, 8, this.length)
-  return _$ieee754_1032.read(this, offset, true, 52, 8)
+  return _$ieee754_1054.read(this, offset, true, 52, 8)
 }
 
 Buffer.prototype.readDoubleBE = function readDoubleBE (offset, noAssert) {
   offset = offset >>> 0
   if (!noAssert) checkOffset(offset, 8, this.length)
-  return _$ieee754_1032.read(this, offset, false, 52, 8)
+  return _$ieee754_1054.read(this, offset, false, 52, 8)
 }
 
 function checkInt (buf, value, offset, ext, max, min) {
@@ -1480,7 +1480,7 @@ function writeFloat (buf, value, offset, littleEndian, noAssert) {
   if (!noAssert) {
     checkIEEE754(buf, value, offset, 4, 3.4028234663852886e+38, -3.4028234663852886e+38)
   }
-  _$ieee754_1032.write(buf, value, offset, littleEndian, 23, 4)
+  _$ieee754_1054.write(buf, value, offset, littleEndian, 23, 4)
   return offset + 4
 }
 
@@ -1498,7 +1498,7 @@ function writeDouble (buf, value, offset, littleEndian, noAssert) {
   if (!noAssert) {
     checkIEEE754(buf, value, offset, 8, 1.7976931348623157E+308, -1.7976931348623157E+308)
   }
-  _$ieee754_1032.write(buf, value, offset, littleEndian, 52, 8)
+  _$ieee754_1054.write(buf, value, offset, littleEndian, 52, 8)
   return offset + 8
 }
 
@@ -1756,7 +1756,7 @@ function utf16leToBytes (str, units) {
 }
 
 function base64ToBytes (str) {
-  return _$base64Js_1028.toByteArray(base64clean(str))
+  return _$base64Js_1050.toByteArray(base64clean(str))
 }
 
 function blitBuffer (src, dst, offset, length) {
@@ -1780,7 +1780,7 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-}).call(this,_$buffer_1029({}).Buffer)
+}).call(this,_$buffer_1051({}).Buffer)
 });
 /**
 * @license Apache-2.0
@@ -1984,7 +1984,7 @@ var toStr = Object.prototype.toString;
 
 // EXPORTS //
 
-var _$toStr_1007 = toStr;
+var _$toStr_1029 = toStr;
 
 /**
 * @license Apache-2.0
@@ -2008,7 +2008,7 @@ var _$toStr_1007 = toStr;
 
 // MODULES //
 
-/* removed: var _$toStr_1007 = require( './tostring.js' ); */;
+/* removed: var _$toStr_1029 = require( './tostring.js' ); */;
 
 
 // MAIN //
@@ -2035,13 +2035,13 @@ var _$toStr_1007 = toStr;
 * // returns '[object Object]'
 */
 function nativeClass( v ) {
-	return _$toStr_1007.call( v );
+	return _$toStr_1029.call( v );
 }
 
 
 // EXPORTS //
 
-var _$nativeClass_1005 = nativeClass;
+var _$nativeClass_1027 = nativeClass;
 
 /**
 * @license Apache-2.0
@@ -2183,7 +2183,7 @@ var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
 // EXPORTS //
 
-var _$toStrTag_1008 = toStrTag;
+var _$toStrTag_1030 = toStrTag;
 
 /**
 * @license Apache-2.0
@@ -2208,8 +2208,8 @@ var _$toStrTag_1008 = toStrTag;
 // MODULES //
 
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$toStrTag_1008 = require( './tostringtag.js' ); */;
-/* removed: var _$toStr_1007 = require( './tostring.js' ); */;
+/* removed: var _$toStrTag_1030 = require( './tostringtag.js' ); */;
+/* removed: var _$toStr_1029 = require( './tostring.js' ); */;
 
 
 // MAIN //
@@ -2235,29 +2235,29 @@ var _$toStrTag_1008 = toStrTag;
 * var str = nativeClass( new Beep() );
 * // returns '[object Object]'
 */
-function __nativeClass_1006( v ) {
+function __nativeClass_1028( v ) {
 	var isOwn;
 	var tag;
 	var out;
 
 	if ( v === null || v === void 0 ) {
-		return _$toStr_1007.call( v );
+		return _$toStr_1029.call( v );
 	}
-	tag = v[ _$toStrTag_1008 ];
-	isOwn = _$hasOwnProp_58( v, _$toStrTag_1008 );
+	tag = v[ _$toStrTag_1030 ];
+	isOwn = _$hasOwnProp_58( v, _$toStrTag_1030 );
 
 	// Attempt to override the `toStringTag` property. For built-ins having a `Symbol.toStringTag` property (e.g., `JSON`, `Math`, etc), the `Symbol.toStringTag` property is read-only (e.g., , so we need to wrap in a `try/catch`.
 	try {
-		v[ _$toStrTag_1008 ] = void 0;
+		v[ _$toStrTag_1030 ] = void 0;
 	} catch ( err ) { // eslint-disable-line no-unused-vars
-		return _$toStr_1007.call( v );
+		return _$toStr_1029.call( v );
 	}
-	out = _$toStr_1007.call( v );
+	out = _$toStr_1029.call( v );
 
 	if ( isOwn ) {
-		v[ _$toStrTag_1008 ] = tag;
+		v[ _$toStrTag_1030 ] = tag;
 	} else {
-		delete v[ _$toStrTag_1008 ];
+		delete v[ _$toStrTag_1030 ];
 	}
 	return out;
 }
@@ -2265,7 +2265,7 @@ function __nativeClass_1006( v ) {
 
 // EXPORTS //
 
-var _$nativeClass_1006 = __nativeClass_1006;
+var _$nativeClass_1028 = __nativeClass_1028;
 
 /**
 * @license Apache-2.0
@@ -2311,23 +2311,23 @@ var _$nativeClass_1006 = __nativeClass_1006;
 // MODULES //
 
 /* removed: var _$hasToStringTagSupport_64 = require( '@stdlib/assert/has-tostringtag-support' ); */;
-/* removed: var _$nativeClass_1005 = require( './native_class.js' ); */;
-/* removed: var _$nativeClass_1006 = require( './polyfill.js' ); */;
+/* removed: var _$nativeClass_1027 = require( './native_class.js' ); */;
+/* removed: var _$nativeClass_1028 = require( './polyfill.js' ); */;
 
 
 // MAIN //
 
-var __nativeClass_1004;
+var __nativeClass_1026;
 if ( _$hasToStringTagSupport_64() ) {
-	__nativeClass_1004 = _$nativeClass_1006;
+	__nativeClass_1026 = _$nativeClass_1028;
 } else {
-	__nativeClass_1004 = _$nativeClass_1005;
+	__nativeClass_1026 = _$nativeClass_1027;
 }
 
 
 // EXPORTS //
 
-var _$nativeClass_1004 = __nativeClass_1004;
+var _$nativeClass_1026 = __nativeClass_1026;
 
 /**
 * @license Apache-2.0
@@ -2351,7 +2351,7 @@ var _$nativeClass_1004 = __nativeClass_1004;
 
 // MODULES //
 
-/* removed: var _$nativeClass_1004 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_1026 = require( '@stdlib/utils/native-class' ); */;
 
 
 // VARIABLES //
@@ -2376,7 +2376,7 @@ var f;
 * // returns false
 */
 function isArray( value ) {
-	return ( _$nativeClass_1004( value ) === '[object Array]' );
+	return ( _$nativeClass_1026( value ) === '[object Array]' );
 }
 
 
@@ -2462,7 +2462,7 @@ var RE = /./;
 
 // EXPORTS //
 
-var _$RE_1023 = RE;
+var _$RE_1045 = RE;
 
 /**
 * @license Apache-2.0
@@ -2646,12 +2646,12 @@ var _$hasDefinePropertySupport_33 = _$hasDefinePropertySupport_34;
 * var str = obj.foo;
 * // returns 'bar'
 */
-var __defineProperty_968 = Object.defineProperty;
+var __defineProperty_990 = Object.defineProperty;
 
 
 // EXPORTS //
 
-var _$defineProperty_968 = __defineProperty_968;
+var _$defineProperty_990 = __defineProperty_990;
 
 /**
 * @license Apache-2.0
@@ -2929,7 +2929,7 @@ var lookupSetter = objectProtoype.__lookupSetter__;
 * var str = obj.foo;
 * // returns 'bar'
 */
-function __defineProperty_970( obj, prop, descriptor ) {
+function __defineProperty_992( obj, prop, descriptor ) {
 	var prototype;
 	var hasValue;
 	var hasGet;
@@ -2980,7 +2980,7 @@ function __defineProperty_970( obj, prop, descriptor ) {
 
 // EXPORTS //
 
-var _$defineProperty_970 = __defineProperty_970;
+var _$defineProperty_992 = __defineProperty_992;
 
 /**
 * @license Apache-2.0
@@ -3023,23 +3023,23 @@ var _$defineProperty_970 = __defineProperty_970;
 // MODULES //
 
 /* removed: var _$hasDefinePropertySupport_33 = require( '@stdlib/assert/has-define-property-support' ); */;
-/* removed: var _$defineProperty_968 = require( './builtin.js' ); */;
-/* removed: var _$defineProperty_970 = require( './polyfill.js' ); */;
+/* removed: var _$defineProperty_990 = require( './builtin.js' ); */;
+/* removed: var _$defineProperty_992 = require( './polyfill.js' ); */;
 
 
 // MAIN //
 
-var __defineProperty_969;
+var __defineProperty_991;
 if ( _$hasDefinePropertySupport_33() ) {
-	__defineProperty_969 = _$defineProperty_968;
+	__defineProperty_991 = _$defineProperty_990;
 } else {
-	__defineProperty_969 = _$defineProperty_970;
+	__defineProperty_991 = _$defineProperty_992;
 }
 
 
 // EXPORTS //
 
-var _$defineProperty_969 = __defineProperty_969;
+var _$defineProperty_991 = __defineProperty_991;
 
 /**
 * @license Apache-2.0
@@ -3063,7 +3063,7 @@ var _$defineProperty_969 = __defineProperty_969;
 
 // MODULES //
 
-/* removed: var _$defineProperty_969 = require( '@stdlib/utils/define-property' ); */;
+/* removed: var _$defineProperty_991 = require( '@stdlib/utils/define-property' ); */;
 
 
 // MAIN //
@@ -3087,7 +3087,7 @@ var _$defineProperty_969 = __defineProperty_969;
 * }
 */
 function setNonEnumerableReadOnly( obj, prop, value ) {
-	_$defineProperty_969( obj, prop, {
+	_$defineProperty_991( obj, prop, {
 		'configurable': false,
 		'enumerable': false,
 		'writable': false,
@@ -3098,7 +3098,7 @@ function setNonEnumerableReadOnly( obj, prop, value ) {
 
 // EXPORTS //
 
-var _$setNonEnumerableReadOnly_965 = setNonEnumerableReadOnly;
+var _$setNonEnumerableReadOnly_987 = setNonEnumerableReadOnly;
 
 /**
 * @license Apache-2.0
@@ -3141,12 +3141,12 @@ var _$setNonEnumerableReadOnly_965 = setNonEnumerableReadOnly;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_965 = require( './main.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_987 = require( './main.js' ); */;
 
 
 // EXPORTS //
 
-var _$setNonEnumerableReadOnly_964 = _$setNonEnumerableReadOnly_965;
+var _$setNonEnumerableReadOnly_986 = _$setNonEnumerableReadOnly_987;
 
 /**
 * @license Apache-2.0
@@ -3294,7 +3294,7 @@ var _$test_91 = test;
 // MODULES //
 
 /* removed: var _$hasToStringTagSupport_64 = require( '@stdlib/assert/has-tostringtag-support' ); */;
-/* removed: var _$nativeClass_1004 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_1026 = require( '@stdlib/utils/native-class' ); */;
 /* removed: var _$test_91 = require( './try2serialize.js' ); */;
 
 
@@ -3327,7 +3327,7 @@ function __isBoolean_88( value ) {
 		if ( __FLG_88 ) {
 			return _$test_91( value );
 		}
-		return ( _$nativeClass_1004( value ) === '[object Boolean]' );
+		return ( _$nativeClass_1026( value ) === '[object Boolean]' );
 	}
 	return false;
 }
@@ -3453,7 +3453,7 @@ var _$isBoolean_87 = __isBoolean_87;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$isBoolean_87 = require( './main.js' ); */;
 /* removed: var _$isBoolean_89 = require( './primitive.js' ); */;
 /* removed: var _$isBoolean_88 = require( './object.js' ); */;
@@ -3461,8 +3461,8 @@ var _$isBoolean_87 = __isBoolean_87;
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$isBoolean_87, 'isPrimitive', _$isBoolean_89 );
-_$setNonEnumerableReadOnly_964( _$isBoolean_87, 'isObject', _$isBoolean_88 );
+_$setNonEnumerableReadOnly_986( _$isBoolean_87, 'isPrimitive', _$isBoolean_89 );
+_$setNonEnumerableReadOnly_986( _$isBoolean_87, 'isObject', _$isBoolean_88 );
 
 
 // EXPORTS //
@@ -3504,7 +3504,7 @@ function getGlobal() {
 
 // EXPORTS //
 
-var _$getGlobal_980 = getGlobal;
+var _$getGlobal_1002 = getGlobal;
 
 /**
 * @license Apache-2.0
@@ -3533,7 +3533,7 @@ var obj = ( typeof self === 'object' ) ? self : null;
 
 // EXPORTS //
 
-var _$obj_984 = obj;
+var _$obj_1006 = obj;
 
 /**
 * @license Apache-2.0
@@ -3557,14 +3557,14 @@ var _$obj_984 = obj;
 
 // MAIN //
 
-var __obj_985 = ( typeof window === 'object' ) ? window : null;
+var __obj_1007 = ( typeof window === 'object' ) ? window : null;
 
 
 // EXPORTS //
 
-var _$obj_985 = __obj_985;
+var _$obj_1007 = __obj_1007;
 
-var _$obj_981 = {};
+var _$obj_1003 = {};
 (function (global){
 /**
 * @license Apache-2.0
@@ -3593,7 +3593,7 @@ var obj = ( typeof global === 'object' ) ? global : null;
 
 // EXPORTS //
 
-_$obj_981 = obj;
+_$obj_1003 = obj;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 /**
@@ -3618,11 +3618,11 @@ _$obj_981 = obj;
 
 // MODULES //
 
-var __isBoolean_983 = _$isBoolean_86.isPrimitive;
-/* removed: var _$getGlobal_980 = require( './codegen.js' ); */;
-/* removed: var _$obj_984 = require( './self.js' ); */;
-/* removed: var _$obj_985 = require( './window.js' ); */;
-/* removed: var _$obj_981 = require( './global.js' ); */;
+var __isBoolean_1005 = _$isBoolean_86.isPrimitive;
+/* removed: var _$getGlobal_1002 = require( './codegen.js' ); */;
+/* removed: var _$obj_1006 = require( './self.js' ); */;
+/* removed: var _$obj_1007 = require( './window.js' ); */;
+/* removed: var _$obj_1003 = require( './global.js' ); */;
 
 
 // MAIN //
@@ -3643,27 +3643,27 @@ var __isBoolean_983 = _$isBoolean_86.isPrimitive;
 * var g = getGlobal();
 * // returns {...}
 */
-function __getGlobal_983( codegen ) {
+function __getGlobal_1005( codegen ) {
 	if ( arguments.length ) {
-		if ( !__isBoolean_983( codegen ) ) {
+		if ( !__isBoolean_1005( codegen ) ) {
 			throw new TypeError( 'invalid argument. Must provide a boolean primitive. Value: `'+codegen+'`.' );
 		}
 		if ( codegen ) {
-			return _$getGlobal_980();
+			return _$getGlobal_1002();
 		}
 		// Fall through...
 	}
 	// Case: browsers and web workers
-	if ( _$obj_984 ) {
-		return _$obj_984;
+	if ( _$obj_1006 ) {
+		return _$obj_1006;
 	}
 	// Case: browsers
-	if ( _$obj_985 ) {
-		return _$obj_985;
+	if ( _$obj_1007 ) {
+		return _$obj_1007;
 	}
 	// Case: Node.js
-	if ( _$obj_981 ) {
-		return _$obj_981;
+	if ( _$obj_1003 ) {
+		return _$obj_1003;
 	}
 	// Case: unknown
 	throw new Error( 'unexpected error. Unable to resolve global object.' );
@@ -3672,7 +3672,7 @@ function __getGlobal_983( codegen ) {
 
 // EXPORTS //
 
-var _$getGlobal_983 = __getGlobal_983;
+var _$getGlobal_1005 = __getGlobal_1005;
 
 /**
 * @license Apache-2.0
@@ -3708,12 +3708,12 @@ var _$getGlobal_983 = __getGlobal_983;
 
 // MODULES //
 
-/* removed: var _$getGlobal_983 = require( './main.js' ); */;
+/* removed: var _$getGlobal_1005 = require( './main.js' ); */;
 
 
 // EXPORTS //
 
-var _$getGlobal_982 = _$getGlobal_983;
+var _$getGlobal_1004 = _$getGlobal_1005;
 
 /**
 * @license Apache-2.0
@@ -3737,18 +3737,18 @@ var _$getGlobal_982 = _$getGlobal_983;
 
 // MODULES //
 
-/* removed: var _$getGlobal_982 = require( '@stdlib/utils/global' ); */;
+/* removed: var _$getGlobal_1004 = require( '@stdlib/utils/global' ); */;
 
 
 // MAIN //
 
-var root = _$getGlobal_982();
+var root = _$getGlobal_1004();
 var nodeList = root.document && root.document.childNodes;
 
 
 // EXPORTS //
 
-var _$nodeList_1022 = nodeList;
+var _$nodeList_1044 = nodeList;
 
 /**
 * @license Apache-2.0
@@ -3775,7 +3775,7 @@ var typedarray = Int8Array; // eslint-disable-line stdlib/require-globals
 
 // EXPORTS //
 
-var _$typedarray_1024 = typedarray;
+var _$typedarray_1046 = typedarray;
 
 /**
 * @license Apache-2.0
@@ -3799,9 +3799,9 @@ var _$typedarray_1024 = typedarray;
 
 // MODULES //
 
-/* removed: var _$RE_1023 = require( './fixtures/re.js' ); */;
-/* removed: var _$nodeList_1022 = require( './fixtures/nodelist.js' ); */;
-/* removed: var _$typedarray_1024 = require( './fixtures/typedarray.js' ); */;
+/* removed: var _$RE_1045 = require( './fixtures/re.js' ); */;
+/* removed: var _$nodeList_1044 = require( './fixtures/nodelist.js' ); */;
+/* removed: var _$typedarray_1046 = require( './fixtures/typedarray.js' ); */;
 
 
 // MAIN //
@@ -3815,13 +3815,13 @@ var _$typedarray_1024 = typedarray;
 function check() {
 	if (
 		// Chrome 1-12 returns 'function' for regular expression instances (see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof):
-		typeof _$RE_1023 === 'function' ||
+		typeof _$RE_1045 === 'function' ||
 
 		// Safari 8 returns 'object' for typed array and weak map constructors (underscore #1929):
-		typeof _$typedarray_1024 === 'object' ||
+		typeof _$typedarray_1046 === 'object' ||
 
 		// PhantomJS 1.9 returns 'function' for `NodeList` instances (underscore #2236):
-		typeof _$nodeList_1022 === 'function'
+		typeof _$nodeList_1044 === 'function'
 	) {
 		return true;
 	}
@@ -3831,7 +3831,7 @@ function check() {
 
 // EXPORTS //
 
-var _$check_1021 = check;
+var _$check_1043 = check;
 
 /**
 * @license Apache-2.0
@@ -3914,7 +3914,7 @@ var RE_FUNCTION_NAME = /^\s*function\s*([^(]*)/i;
 
 // EXPORTS //
 
-var _$RE_FUNCTION_NAME_649 = RE_FUNCTION_NAME;
+var _$RE_FUNCTION_NAME_654 = RE_FUNCTION_NAME;
 
 /**
 * @license Apache-2.0
@@ -4150,14 +4150,14 @@ var _$isObjectLike_141 = isObjectLike;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$arrayfcn_173 = require( '@stdlib/assert/tools/array-function' ); */;
 /* removed: var _$isObjectLike_141 = require( './main.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$isObjectLike_141, 'isObjectLikeArray', _$arrayfcn_173( _$isObjectLike_141 ) );
+_$setNonEnumerableReadOnly_986( _$isObjectLike_141, 'isObjectLikeArray', _$arrayfcn_173( _$isObjectLike_141 ) );
 
 
 // EXPORTS //
@@ -4301,8 +4301,8 @@ var _$isBuffer_92 = _$isBuffer_93;
 
 // MODULES //
 
-/* removed: var _$nativeClass_1004 = require( '@stdlib/utils/native-class' ); */;
-/* removed: var _$RE_FUNCTION_NAME_649 = require( '@stdlib/regexp/function-name' ); */;
+/* removed: var _$nativeClass_1026 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$RE_FUNCTION_NAME_654 = require( '@stdlib/regexp/function-name' ); */;
 /* removed: var _$isBuffer_92 = require( '@stdlib/assert/is-buffer' ); */;
 
 
@@ -4338,13 +4338,13 @@ function constructorName( v ) {
 	var match;
 	var name;
 	var ctor;
-	name = _$nativeClass_1004( v ).slice( 8, -1 );
+	name = _$nativeClass_1026( v ).slice( 8, -1 );
 	if ( (name === 'Object' || name === 'Error') && v.constructor ) {
 		ctor = v.constructor;
 		if ( typeof ctor.name === 'string' ) {
 			return ctor.name;
 		}
-		match = _$RE_FUNCTION_NAME_649.exec( ctor.toString() );
+		match = _$RE_FUNCTION_NAME_654.exec( ctor.toString() );
 		if ( match ) {
 			return match[ 1 ];
 		}
@@ -4358,7 +4358,7 @@ function constructorName( v ) {
 
 // EXPORTS //
 
-var _$constructorName_957 = constructorName;
+var _$constructorName_979 = constructorName;
 
 /**
 * @license Apache-2.0
@@ -4400,12 +4400,12 @@ var _$constructorName_957 = constructorName;
 
 // MODULES //
 
-/* removed: var _$constructorName_957 = require( './main.js' ); */;
+/* removed: var _$constructorName_979 = require( './main.js' ); */;
 
 
 // EXPORTS //
 
-var _$constructorName_956 = _$constructorName_957;
+var _$constructorName_978 = _$constructorName_979;
 
 /**
 * @license Apache-2.0
@@ -4429,7 +4429,7 @@ var _$constructorName_956 = _$constructorName_957;
 
 // MODULES //
 
-/* removed: var _$constructorName_956 = require( '@stdlib/utils/constructor-name' ); */;
+/* removed: var _$constructorName_978 = require( '@stdlib/utils/constructor-name' ); */;
 
 
 // NOTES //
@@ -4474,7 +4474,7 @@ function typeOf( v ) {
 
 	// If the `typeof` operator returned something other than `object`, we are done. Otherwise, we need to check for an internal class name or search for a constructor.
 	if ( type === 'object' ) {
-		return _$constructorName_956( v ).toLowerCase();
+		return _$constructorName_978( v ).toLowerCase();
 	}
 	return type;
 }
@@ -4482,7 +4482,7 @@ function typeOf( v ) {
 
 // EXPORTS //
 
-var _$typeOf_1027 = typeOf;
+var _$typeOf_1049 = typeOf;
 
 /**
 * @license Apache-2.0
@@ -4506,7 +4506,7 @@ var _$typeOf_1027 = typeOf;
 
 // MODULES //
 
-/* removed: var _$constructorName_956 = require( '@stdlib/utils/constructor-name' ); */;
+/* removed: var _$constructorName_978 = require( '@stdlib/utils/constructor-name' ); */;
 
 
 // MAIN //
@@ -4517,14 +4517,14 @@ var _$typeOf_1027 = typeOf;
 * @param {*} v - input value
 * @returns {string} string indicating the value's type
 */
-function __typeOf_1026( v ) {
-	return _$constructorName_956( v ).toLowerCase();
+function __typeOf_1048( v ) {
+	return _$constructorName_978( v ).toLowerCase();
 }
 
 
 // EXPORTS //
 
-var _$typeOf_1026 = __typeOf_1026;
+var _$typeOf_1048 = __typeOf_1048;
 
 /**
 * @license Apache-2.0
@@ -4563,19 +4563,19 @@ var _$typeOf_1026 = __typeOf_1026;
 
 // MODULES //
 
-/* removed: var _$check_1021 = require( './check.js' ); */;
-/* removed: var _$typeOf_1027 = require( './typeof.js' ); */;
-/* removed: var _$typeOf_1026 = require( './polyfill.js' ); */;
+/* removed: var _$check_1043 = require( './check.js' ); */;
+/* removed: var _$typeOf_1049 = require( './typeof.js' ); */;
+/* removed: var _$typeOf_1048 = require( './polyfill.js' ); */;
 
 
 // MAIN //
 
-var __main_1025 = ( _$check_1021() ) ? _$typeOf_1026 : _$typeOf_1027;
+var __main_1047 = ( _$check_1043() ) ? _$typeOf_1048 : _$typeOf_1049;
 
 
 // EXPORTS //
 
-var _$main_1025 = __main_1025;
+var _$main_1047 = __main_1047;
 
 /**
 * @license Apache-2.0
@@ -4599,7 +4599,7 @@ var _$main_1025 = __main_1025;
 
 // MODULES //
 
-/* removed: var _$main_1025 = require( '@stdlib/utils/type-of' ); */;
+/* removed: var _$main_1047 = require( '@stdlib/utils/type-of' ); */;
 
 
 // MAIN //
@@ -4620,7 +4620,7 @@ var _$main_1025 = __main_1025;
 */
 function isFunction( value ) {
 	// Note: cannot use `typeof` directly, as various browser engines incorrectly return `'function'` when operating on non-function objects, such as regular expressions and NodeLists.
-	return ( _$main_1025( value ) === 'function' );
+	return ( _$main_1047( value ) === 'function' );
 }
 
 
@@ -4891,7 +4891,7 @@ var _$test_139 = __test_139;
 // MODULES //
 
 /* removed: var _$hasToStringTagSupport_64 = require( '@stdlib/assert/has-tostringtag-support' ); */;
-/* removed: var _$nativeClass_1004 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_1026 = require( '@stdlib/utils/native-class' ); */;
 /* removed: var _$Number_524 = require( '@stdlib/number/ctor' ); */;
 /* removed: var _$test_139 = require( './try2serialize.js' ); */;
 
@@ -4925,7 +4925,7 @@ function __isNumber_136( value ) {
 		if ( __FLG_136 ) {
 			return _$test_139( value );
 		}
-		return ( _$nativeClass_1004( value ) === '[object Number]' );
+		return ( _$nativeClass_1026( value ) === '[object Number]' );
 	}
 	return false;
 }
@@ -5058,7 +5058,7 @@ var _$isNumber_135 = __isNumber_135;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$isNumber_135 = require( './main.js' ); */;
 /* removed: var _$isNumber_137 = require( './primitive.js' ); */;
 /* removed: var _$isNumber_136 = require( './object.js' ); */;
@@ -5066,8 +5066,8 @@ var _$isNumber_135 = __isNumber_135;
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$isNumber_135, 'isPrimitive', _$isNumber_137 );
-_$setNonEnumerableReadOnly_964( _$isNumber_135, 'isObject', _$isNumber_136 );
+_$setNonEnumerableReadOnly_986( _$isNumber_135, 'isPrimitive', _$isNumber_137 );
+_$setNonEnumerableReadOnly_986( _$isNumber_135, 'isObject', _$isNumber_136 );
 
 
 // EXPORTS //
@@ -5544,7 +5544,7 @@ var _$isFinite_103 = __isFinite_103;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$isFinite_103 = require( './main.js' ); */;
 /* removed: var _$isFinite_105 = require( './primitive.js' ); */;
 /* removed: var _$isFinite_104 = require( './object.js' ); */;
@@ -5552,8 +5552,8 @@ var _$isFinite_103 = __isFinite_103;
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$isFinite_103, 'isPrimitive', _$isFinite_105 );
-_$setNonEnumerableReadOnly_964( _$isFinite_103, 'isObject', _$isFinite_104 );
+_$setNonEnumerableReadOnly_986( _$isFinite_103, 'isPrimitive', _$isFinite_105 );
+_$setNonEnumerableReadOnly_986( _$isFinite_103, 'isObject', _$isFinite_104 );
 
 
 // EXPORTS //
@@ -5941,12 +5941,12 @@ var _$incrspace_523 = _$incrspace_522;
 
 /* removed: var _$isArray_84 = require( '@stdlib/assert/is-array' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
-var __isNumber_1035 = _$isFinite_102.isPrimitive;
+var __isNumber_1057 = _$isFinite_102.isPrimitive;
 
 // For quick reference.
 var concat = Array.prototype.concat;
 var slice = Array.prototype.slice;
-var __toString_1035 = Object.prototype.toString;
+var __toString_1057 = Object.prototype.toString;
 
 // Calculate correction for IEEE error
 // TODO: This calculation can be improved.
@@ -5995,7 +5995,7 @@ jStat._init = function _init(args) {
     }
 
   // If first argument is number, assume creation of sequence.
-  } else if (__isNumber_1035(args[0])) {
+  } else if (__isNumber_1057(args[0])) {
     this[0] = jStat.seq.apply(null, args);
     this.length = 1;
 
@@ -6024,7 +6024,7 @@ jStat.utils = {
   calcRdx: calcRdx,
   isArray: _$isArray_84,
   isFunction: _$isFunction_110,
-  isNumber: __isNumber_1035,
+  isNumber: __isNumber_1057,
   toVector: toVector
 };
 
@@ -6246,7 +6246,7 @@ function retZero() { return 0; }
 
 // Generate a rows x cols matrix of zeros.
 jStat.zeros = function zeros(rows, cols) {
-  if (!__isNumber_1035(cols))
+  if (!__isNumber_1057(cols))
     cols = rows;
   return jStat.create(rows, cols, retZero);
 };
@@ -6257,7 +6257,7 @@ function retOne() { return 1; }
 
 // Generate a rows x cols matrix of ones.
 jStat.ones = function ones(rows, cols) {
-  if (!__isNumber_1035(cols))
+  if (!__isNumber_1057(cols))
     cols = rows;
   return jStat.create(rows, cols, retOne);
 };
@@ -6265,7 +6265,7 @@ jStat.ones = function ones(rows, cols) {
 
 // Generate a rows x cols matrix of uniformly random numbers.
 jStat.rand = function rand(rows, cols) {
-  if (!__isNumber_1035(cols))
+  if (!__isNumber_1057(cols))
     cols = rows;
   return jStat.create(rows, cols, jStat._random_fn);
 };
@@ -6276,7 +6276,7 @@ function retIdent(i, j) { return i === j ? 1 : 0; }
 
 // Generate an identity matrix of size row x cols.
 jStat.identity = function identity(rows, cols) {
-  if (!__isNumber_1035(cols))
+  if (!__isNumber_1057(cols))
     cols = rows;
   return jStat.create(rows, cols, retIdent);
 };
@@ -6395,15 +6395,15 @@ jStat.slice = (function(){
   function slice(list, rcSlice) {
     var colSlice, rowSlice;
     rcSlice = rcSlice || {};
-    if (__isNumber_1035(rcSlice.row)) {
-      if (__isNumber_1035(rcSlice.col))
+    if (__isNumber_1057(rcSlice.row)) {
+      if (__isNumber_1057(rcSlice.col))
         return list[rcSlice.row][rcSlice.col];
       var row = jStat.rowa(list, rcSlice.row);
       colSlice = rcSlice.col || {};
       return _slice(row, colSlice.start, colSlice.end, colSlice.step);
     }
 
-    if (__isNumber_1035(rcSlice.col)) {
+    if (__isNumber_1057(rcSlice.col)) {
       var col = jStat.cola(list, rcSlice.col);
       rowSlice = rcSlice.row || {};
       return _slice(col, rowSlice.start, rowSlice.end, rowSlice.step);
@@ -6426,8 +6426,8 @@ jStat.slice = (function(){
 // A=[[1,2,3],[4,0,0],[7,0,0]]
 jStat.sliceAssign = function sliceAssign(A, rcSlice, B) {
   var nl, ml;
-  if (__isNumber_1035(rcSlice.row)) {
-    if (__isNumber_1035(rcSlice.col))
+  if (__isNumber_1057(rcSlice.row)) {
+    if (__isNumber_1057(rcSlice.col))
       return A[rcSlice.row][rcSlice.col] = B;
     rcSlice.col = rcSlice.col || {};
     rcSlice.col.start = rcSlice.col.start || 0;
@@ -6443,7 +6443,7 @@ jStat.sliceAssign = function sliceAssign(A, rcSlice, B) {
     return A;
   }
 
-  if (__isNumber_1035(rcSlice.col)) {
+  if (__isNumber_1057(rcSlice.col)) {
     rcSlice.row = rcSlice.row || {};
     rcSlice.row.start = rcSlice.row.start || 0;
     rcSlice.row.end = rcSlice.row.end || A.length;
@@ -6496,7 +6496,7 @@ jStat.diagonal = function diagonal(diagArray) {
 // return copy of A
 jStat.copy = function copy(A) {
   return A.map(function(row) {
-    if (__isNumber_1035(row))
+    if (__isNumber_1057(row))
       return row;
     return row.map(function(t) {
       return t;
@@ -6600,12 +6600,12 @@ jProto.alter = function alter(func) {
 jStat.jStat = jStat;
 
 // Exposing jStat.
-var _$jStat_1035 = jStat;
+var _$jStat_1057 = jStat;
 
-var _$vector_1042 = {};
-/* removed: var _$jStat_1035 = require( './core.js' ); */;
+var _$vector_1064 = {};
+/* removed: var _$jStat_1057 = require( './core.js' ); */;
 
-var __isFunction_1042 = _$jStat_1035.utils.isFunction;
+var __isFunction_1064 = _$jStat_1057.utils.isFunction;
 
 // Ascending functions for sort
 function ascNum(a, b) { return a - b; }
@@ -6616,7 +6616,7 @@ function clip(arg, min, max) {
 
 
 // sum of an array
-_$jStat_1035.sum = function sum(arr) {
+_$jStat_1057.sum = function sum(arr) {
   var sum = 0;
   var i = arr.length;
   while (--i >= 0)
@@ -6626,7 +6626,7 @@ _$jStat_1035.sum = function sum(arr) {
 
 
 // sum squared
-_$jStat_1035.sumsqrd = function sumsqrd(arr) {
+_$jStat_1057.sumsqrd = function sumsqrd(arr) {
   var sum = 0;
   var i = arr.length;
   while (--i >= 0)
@@ -6636,8 +6636,8 @@ _$jStat_1035.sumsqrd = function sumsqrd(arr) {
 
 
 // sum of squared errors of prediction (SSE)
-_$jStat_1035.sumsqerr = function sumsqerr(arr) {
-  var mean = _$jStat_1035.mean(arr);
+_$jStat_1057.sumsqerr = function sumsqerr(arr) {
+  var mean = _$jStat_1057.mean(arr);
   var sum = 0;
   var i = arr.length;
   var tmp;
@@ -6649,7 +6649,7 @@ _$jStat_1035.sumsqerr = function sumsqerr(arr) {
 };
 
 // sum of an array in each row
-_$jStat_1035.sumrow = function sumrow(arr) {
+_$jStat_1057.sumrow = function sumrow(arr) {
   var sum = 0;
   var i = arr.length;
   while (--i >= 0)
@@ -6658,7 +6658,7 @@ _$jStat_1035.sumrow = function sumrow(arr) {
 };
 
 // product of an array
-_$jStat_1035.product = function product(arr) {
+_$jStat_1057.product = function product(arr) {
   var prod = 1;
   var i = arr.length;
   while (--i >= 0)
@@ -6668,7 +6668,7 @@ _$jStat_1035.product = function product(arr) {
 
 
 // minimum value of an array
-_$jStat_1035.min = function min(arr) {
+_$jStat_1057.min = function min(arr) {
   var low = arr[0];
   var i = 0;
   while (++i < arr.length)
@@ -6679,7 +6679,7 @@ _$jStat_1035.min = function min(arr) {
 
 
 // maximum value of an array
-_$jStat_1035.max = function max(arr) {
+_$jStat_1057.max = function max(arr) {
   var high = arr[0];
   var i = 0;
   while (++i < arr.length)
@@ -6690,7 +6690,7 @@ _$jStat_1035.max = function max(arr) {
 
 
 // unique values of an array
-_$jStat_1035.unique = function unique(arr) {
+_$jStat_1057.unique = function unique(arr) {
   var hash = {}, _arr = [];
   for(var i = 0; i < arr.length; i++) {
     if (!hash[arr[i]]) {
@@ -6703,25 +6703,25 @@ _$jStat_1035.unique = function unique(arr) {
 
 
 // mean value of an array
-_$jStat_1035.mean = function mean(arr) {
-  return _$jStat_1035.sum(arr) / arr.length;
+_$jStat_1057.mean = function mean(arr) {
+  return _$jStat_1057.sum(arr) / arr.length;
 };
 
 
 // mean squared error (MSE)
-_$jStat_1035.meansqerr = function meansqerr(arr) {
-  return _$jStat_1035.sumsqerr(arr) / arr.length;
+_$jStat_1057.meansqerr = function meansqerr(arr) {
+  return _$jStat_1057.sumsqerr(arr) / arr.length;
 };
 
 
 // geometric mean of an array
-_$jStat_1035.geomean = function geomean(arr) {
-  return Math.pow(_$jStat_1035.product(arr), 1 / arr.length);
+_$jStat_1057.geomean = function geomean(arr) {
+  return Math.pow(_$jStat_1057.product(arr), 1 / arr.length);
 };
 
 
 // median of an array
-_$jStat_1035.median = function median(arr) {
+_$jStat_1057.median = function median(arr) {
   var arrlen = arr.length;
   var _arr = arr.slice().sort(ascNum);
   // check if array is even or odd, then return the appropriate
@@ -6732,19 +6732,19 @@ _$jStat_1035.median = function median(arr) {
 
 
 // cumulative sum of an array
-_$jStat_1035.cumsum = function cumsum(arr) {
-  return _$jStat_1035.cumreduce(arr, function (a, b) { return a + b; });
+_$jStat_1057.cumsum = function cumsum(arr) {
+  return _$jStat_1057.cumreduce(arr, function (a, b) { return a + b; });
 };
 
 
 // cumulative product of an array
-_$jStat_1035.cumprod = function cumprod(arr) {
-  return _$jStat_1035.cumreduce(arr, function (a, b) { return a * b; });
+_$jStat_1057.cumprod = function cumprod(arr) {
+  return _$jStat_1057.cumreduce(arr, function (a, b) { return a * b; });
 };
 
 
 // successive differences of a sequence
-_$jStat_1035.diff = function diff(arr) {
+_$jStat_1057.diff = function diff(arr) {
   var diffs = [];
   var arrLen = arr.length;
   var i;
@@ -6755,7 +6755,7 @@ _$jStat_1035.diff = function diff(arr) {
 
 
 // ranks of an array
-_$jStat_1035.rank = function (arr) {
+_$jStat_1057.rank = function (arr) {
   var i;
   var distinctNumbers = [];
   var numberCounts = {};
@@ -6791,7 +6791,7 @@ _$jStat_1035.rank = function (arr) {
 // mode of an array
 // if there are multiple modes of an array, return all of them
 // is this the appropriate way of handling it?
-_$jStat_1035.mode = function mode(arr) {
+_$jStat_1057.mode = function mode(arr) {
   var arrLen = arr.length;
   var _arr = arr.slice().sort(ascNum);
   var count = 1;
@@ -6824,26 +6824,26 @@ _$jStat_1035.mode = function mode(arr) {
 
 
 // range of an array
-_$jStat_1035.range = function range(arr) {
-  return _$jStat_1035.max(arr) - _$jStat_1035.min(arr);
+_$jStat_1057.range = function range(arr) {
+  return _$jStat_1057.max(arr) - _$jStat_1057.min(arr);
 };
 
 // variance of an array
 // flag = true indicates sample instead of population
-_$jStat_1035.variance = function variance(arr, flag) {
-  return _$jStat_1035.sumsqerr(arr) / (arr.length - (flag ? 1 : 0));
+_$jStat_1057.variance = function variance(arr, flag) {
+  return _$jStat_1057.sumsqerr(arr) / (arr.length - (flag ? 1 : 0));
 };
 
 // pooled variance of an array of arrays
-_$jStat_1035.pooledvariance = function pooledvariance(arr) {
-  var sumsqerr = arr.reduce(function (a, samples) {return a + _$jStat_1035.sumsqerr(samples);}, 0);
+_$jStat_1057.pooledvariance = function pooledvariance(arr) {
+  var sumsqerr = arr.reduce(function (a, samples) {return a + _$jStat_1057.sumsqerr(samples);}, 0);
   var count = arr.reduce(function (a, samples) {return a + samples.length;}, 0);
   return sumsqerr / (count - arr.length);
 };
 
 // deviation of an array
-_$jStat_1035.deviation = function (arr) {
-  var mean = _$jStat_1035.mean(arr);
+_$jStat_1057.deviation = function (arr) {
+  var mean = _$jStat_1057.mean(arr);
   var arrlen = arr.length;
   var dev = new Array(arrlen);
   for (var i = 0; i < arrlen; i++) {
@@ -6854,45 +6854,45 @@ _$jStat_1035.deviation = function (arr) {
 
 // standard deviation of an array
 // flag = true indicates sample instead of population
-_$jStat_1035.stdev = function stdev(arr, flag) {
-  return Math.sqrt(_$jStat_1035.variance(arr, flag));
+_$jStat_1057.stdev = function stdev(arr, flag) {
+  return Math.sqrt(_$jStat_1057.variance(arr, flag));
 };
 
 // pooled standard deviation of an array of arrays
-_$jStat_1035.pooledstdev = function pooledstdev(arr) {
-  return Math.sqrt(_$jStat_1035.pooledvariance(arr));
+_$jStat_1057.pooledstdev = function pooledstdev(arr) {
+  return Math.sqrt(_$jStat_1057.pooledvariance(arr));
 };
 
 // mean deviation (mean absolute deviation) of an array
-_$jStat_1035.meandev = function meandev(arr) {
-  var mean = _$jStat_1035.mean(arr);
+_$jStat_1057.meandev = function meandev(arr) {
+  var mean = _$jStat_1057.mean(arr);
   var a = [];
   for (var i = arr.length - 1; i >= 0; i--) {
     a.push(Math.abs(arr[i] - mean));
   }
-  return _$jStat_1035.mean(a);
+  return _$jStat_1057.mean(a);
 };
 
 
 // median deviation (median absolute deviation) of an array
-_$jStat_1035.meddev = function meddev(arr) {
-  var median = _$jStat_1035.median(arr);
+_$jStat_1057.meddev = function meddev(arr) {
+  var median = _$jStat_1057.median(arr);
   var a = [];
   for (var i = arr.length - 1; i >= 0; i--) {
     a.push(Math.abs(arr[i] - median));
   }
-  return _$jStat_1035.median(a);
+  return _$jStat_1057.median(a);
 };
 
 
 // coefficient of variation
-_$jStat_1035.coeffvar = function coeffvar(arr) {
-  return _$jStat_1035.stdev(arr) / _$jStat_1035.mean(arr);
+_$jStat_1057.coeffvar = function coeffvar(arr) {
+  return _$jStat_1057.stdev(arr) / _$jStat_1057.mean(arr);
 };
 
 
 // quartiles of an array
-_$jStat_1035.quartiles = function quartiles(arr) {
+_$jStat_1057.quartiles = function quartiles(arr) {
   var arrlen = arr.length;
   var _arr = arr.slice().sort(ascNum);
   return [
@@ -6905,7 +6905,7 @@ _$jStat_1035.quartiles = function quartiles(arr) {
 
 // Arbitary quantiles of an array. Direct port of the scipy.stats
 // implementation by Pierre GF Gerard-Marchant.
-_$jStat_1035.quantiles = function quantiles(arr, quantilesArray, alphap, betap) {
+_$jStat_1057.quantiles = function quantiles(arr, quantilesArray, alphap, betap) {
   var sortedArray = arr.slice().sort(ascNum);
   var quantileVals = [quantilesArray.length];
   var n = arr.length;
@@ -6930,7 +6930,7 @@ _$jStat_1035.quantiles = function quantiles(arr, quantilesArray, alphap, betap) 
 
 // Return the k-th percentile of values in a range, where k is in the range 0..1, inclusive.
 // Passing true for the exclusive parameter excludes both endpoints of the range.
-_$jStat_1035.percentile = function percentile(arr, k, exclusive) {
+_$jStat_1057.percentile = function percentile(arr, k, exclusive) {
   var _arr = arr.slice().sort(ascNum);
   var realIndex = k * (_arr.length + (exclusive ? 1 : -1)) + (exclusive ? 0 : 1);
   var index = parseInt(realIndex);
@@ -6945,7 +6945,7 @@ _$jStat_1035.percentile = function percentile(arr, k, exclusive) {
 // The percentile rank of score in a given array. Returns the percentage
 // of all values in the input array that are less than (kind='strict') or
 // less or equal than (kind='weak') score. Default is weak.
-_$jStat_1035.percentileOfScore = function percentileOfScore(arr, score, kind) {
+_$jStat_1057.percentileOfScore = function percentileOfScore(arr, score, kind) {
   var counter = 0;
   var len = arr.length;
   var strict = false;
@@ -6967,10 +6967,10 @@ _$jStat_1035.percentileOfScore = function percentileOfScore(arr, score, kind) {
 
 
 // Histogram (bin count) data
-_$jStat_1035.histogram = function histogram(arr, binCnt) {
+_$jStat_1057.histogram = function histogram(arr, binCnt) {
   binCnt = binCnt || 4;
-  var first = _$jStat_1035.min(arr);
-  var binWidth = (_$jStat_1035.max(arr) - first) / binCnt;
+  var first = _$jStat_1057.min(arr);
+  var binWidth = (_$jStat_1057.max(arr) - first) / binCnt;
   var len = arr.length;
   var bins = [];
   var i;
@@ -6985,9 +6985,9 @@ _$jStat_1035.histogram = function histogram(arr, binCnt) {
 
 
 // covariance of two arrays
-_$jStat_1035.covariance = function covariance(arr1, arr2) {
-  var u = _$jStat_1035.mean(arr1);
-  var v = _$jStat_1035.mean(arr2);
+_$jStat_1057.covariance = function covariance(arr1, arr2) {
+  var u = _$jStat_1057.mean(arr1);
+  var v = _$jStat_1057.mean(arr2);
   var arr1Len = arr1.length;
   var sq_dev = new Array(arr1Len);
   var i;
@@ -6995,30 +6995,30 @@ _$jStat_1035.covariance = function covariance(arr1, arr2) {
   for (i = 0; i < arr1Len; i++)
     sq_dev[i] = (arr1[i] - u) * (arr2[i] - v);
 
-  return _$jStat_1035.sum(sq_dev) / (arr1Len - 1);
+  return _$jStat_1057.sum(sq_dev) / (arr1Len - 1);
 };
 
 
 // (pearson's) population correlation coefficient, rho
-_$jStat_1035.corrcoeff = function corrcoeff(arr1, arr2) {
-  return _$jStat_1035.covariance(arr1, arr2) /
-      _$jStat_1035.stdev(arr1, 1) /
-      _$jStat_1035.stdev(arr2, 1);
+_$jStat_1057.corrcoeff = function corrcoeff(arr1, arr2) {
+  return _$jStat_1057.covariance(arr1, arr2) /
+      _$jStat_1057.stdev(arr1, 1) /
+      _$jStat_1057.stdev(arr2, 1);
 };
 
   // (spearman's) rank correlation coefficient, sp
-_$jStat_1035.spearmancoeff =  function (arr1, arr2) {
-  arr1 = _$jStat_1035.rank(arr1);
-  arr2 = _$jStat_1035.rank(arr2);
+_$jStat_1057.spearmancoeff =  function (arr1, arr2) {
+  arr1 = _$jStat_1057.rank(arr1);
+  arr2 = _$jStat_1057.rank(arr2);
   //return pearson's correlation of the ranks:
-  return _$jStat_1035.corrcoeff(arr1, arr2);
+  return _$jStat_1057.corrcoeff(arr1, arr2);
 }
 
 
 // statistical standardized moments (general form of skew/kurt)
-_$jStat_1035.stanMoment = function stanMoment(arr, n) {
-  var mu = _$jStat_1035.mean(arr);
-  var sigma = _$jStat_1035.stdev(arr);
+_$jStat_1057.stanMoment = function stanMoment(arr, n) {
+  var mu = _$jStat_1057.mean(arr);
+  var sigma = _$jStat_1057.stdev(arr);
   var len = arr.length;
   var skewSum = 0;
 
@@ -7029,17 +7029,17 @@ _$jStat_1035.stanMoment = function stanMoment(arr, n) {
 };
 
 // (pearson's) moment coefficient of skewness
-_$jStat_1035.skewness = function skewness(arr) {
-  return _$jStat_1035.stanMoment(arr, 3);
+_$jStat_1057.skewness = function skewness(arr) {
+  return _$jStat_1057.stanMoment(arr, 3);
 };
 
 // (pearson's) (excess) kurtosis
-_$jStat_1035.kurtosis = function kurtosis(arr) {
-  return _$jStat_1035.stanMoment(arr, 4) - 3;
+_$jStat_1057.kurtosis = function kurtosis(arr) {
+  return _$jStat_1057.stanMoment(arr, 4) - 3;
 };
 
 
-var __jProto_1042 = _$jStat_1035.prototype;
+var __jProto_1064 = _$jStat_1057.prototype;
 
 
 // Extend jProto with method for calculating cumulative sums and products.
@@ -7051,19 +7051,19 @@ var __jProto_1042 = _$jStat_1035.prototype;
   for (var i = 0; i < funcs.length; i++) (function(passfunc) {
     // If a matrix is passed, automatically assume operation should be done on
     // the columns.
-    __jProto_1042[passfunc] = function(fullbool, func) {
+    __jProto_1064[passfunc] = function(fullbool, func) {
       var arr = [];
       var i = 0;
       var tmpthis = this;
       // Assignment reassignation depending on how parameters were passed in.
-      if (__isFunction_1042(fullbool)) {
+      if (__isFunction_1064(fullbool)) {
         func = fullbool;
         fullbool = false;
       }
       // Check if a callback was passed with the function.
       if (func) {
         setTimeout(function() {
-          func.call(tmpthis, __jProto_1042[passfunc].call(tmpthis, fullbool));
+          func.call(tmpthis, __jProto_1064[passfunc].call(tmpthis, fullbool));
         });
         return this;
       }
@@ -7071,11 +7071,11 @@ var __jProto_1042 = _$jStat_1035.prototype;
       if (this.length > 1) {
         tmpthis = fullbool === true ? this : this.transpose();
         for (; i < tmpthis.length; i++)
-          arr[i] = _$jStat_1035[passfunc](tmpthis[i]);
+          arr[i] = _$jStat_1057[passfunc](tmpthis[i]);
         return arr;
       }
       // Pass fullbool if only vector, not a matrix. for variance and stdev.
-      return _$jStat_1035[passfunc](this[0], fullbool);
+      return _$jStat_1057[passfunc](this[0], fullbool);
     };
   })(funcs[i]);
 })(('cumsum cumprod').split(' '));
@@ -7086,19 +7086,19 @@ var __jProto_1042 = _$jStat_1035.prototype;
   for (var i = 0; i < funcs.length; i++) (function(passfunc) {
     // If a matrix is passed, automatically assume operation should be done on
     // the columns.
-    __jProto_1042[passfunc] = function(fullbool, func) {
+    __jProto_1064[passfunc] = function(fullbool, func) {
       var arr = [];
       var i = 0;
       var tmpthis = this;
       // Assignment reassignation depending on how parameters were passed in.
-      if (__isFunction_1042(fullbool)) {
+      if (__isFunction_1064(fullbool)) {
         func = fullbool;
         fullbool = false;
       }
       // Check if a callback was passed with the function.
       if (func) {
         setTimeout(function() {
-          func.call(tmpthis, __jProto_1042[passfunc].call(tmpthis, fullbool));
+          func.call(tmpthis, __jProto_1064[passfunc].call(tmpthis, fullbool));
         });
         return this;
       }
@@ -7107,13 +7107,13 @@ var __jProto_1042 = _$jStat_1035.prototype;
         if (passfunc !== 'sumrow')
           tmpthis = fullbool === true ? this : this.transpose();
         for (; i < tmpthis.length; i++)
-          arr[i] = _$jStat_1035[passfunc](tmpthis[i]);
+          arr[i] = _$jStat_1057[passfunc](tmpthis[i]);
         return fullbool === true
-            ? _$jStat_1035[passfunc](_$jStat_1035.utils.toVector(arr))
+            ? _$jStat_1057[passfunc](_$jStat_1057.utils.toVector(arr))
             : arr;
       }
       // Pass fullbool if only vector, not a matrix. for variance and stdev.
-      return _$jStat_1035[passfunc](this[0], fullbool);
+      return _$jStat_1057[passfunc](this[0], fullbool);
     };
   })(funcs[i]);
 })(('sum sumsqrd sumsqerr sumrow product min max unique mean meansqerr ' +
@@ -7125,7 +7125,7 @@ var __jProto_1042 = _$jStat_1035.prototype;
 // done on columns.
 (function(funcs) {
   for (var i = 0; i < funcs.length; i++) (function(passfunc) {
-    __jProto_1042[passfunc] = function() {
+    __jProto_1064[passfunc] = function() {
       var arr = [];
       var i = 0;
       var tmpthis = this;
@@ -7134,13 +7134,13 @@ var __jProto_1042 = _$jStat_1035.prototype;
 
       // If the last argument is a function, we assume it's a callback; we
       // strip the callback out and call the function again.
-      if (__isFunction_1042(args[args.length - 1])) {
+      if (__isFunction_1064(args[args.length - 1])) {
         callbackFunction = args[args.length - 1];
         var argsToPass = args.slice(0, args.length - 1);
 
         setTimeout(function() {
           callbackFunction.call(tmpthis,
-                                __jProto_1042[passfunc].apply(tmpthis, argsToPass));
+                                __jProto_1064[passfunc].apply(tmpthis, argsToPass));
         });
         return this;
 
@@ -7148,7 +7148,7 @@ var __jProto_1042 = _$jStat_1035.prototype;
       } else {
         callbackFunction = undefined;
         var curriedFunction = function curriedFunction(vector) {
-          return _$jStat_1035[passfunc].apply(tmpthis, [vector].concat(args));
+          return _$jStat_1057[passfunc].apply(tmpthis, [vector].concat(args));
         }
       }
 
@@ -7411,7 +7411,7 @@ var _$abs_244 = _$abs_243;
 
 // MODULES //
 
-/* removed: var _$nativeClass_1004 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_1026 = require( '@stdlib/utils/native-class' ); */;
 
 
 // VARIABLES //
@@ -7438,7 +7438,7 @@ var hasUint32Array = ( typeof Uint32Array === 'function' ); // eslint-disable-li
 function isUint32Array( value ) {
 	return (
 		( hasUint32Array && value instanceof Uint32Array ) || // eslint-disable-line stdlib/require-globals
-		_$nativeClass_1004( value ) === '[object Uint32Array]'
+		_$nativeClass_1026( value ) === '[object Uint32Array]'
 	);
 }
 
@@ -7771,7 +7771,7 @@ var _$ctor_23 = __ctor_23;
 
 // MODULES //
 
-/* removed: var _$nativeClass_1004 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_1026 = require( '@stdlib/utils/native-class' ); */;
 
 
 // VARIABLES //
@@ -7798,7 +7798,7 @@ var hasFloat64Array = ( typeof Float64Array === 'function' ); // eslint-disable-
 function isFloat64Array( value ) {
 	return (
 		( hasFloat64Array && value instanceof Float64Array ) || // eslint-disable-line stdlib/require-globals
-		_$nativeClass_1004( value ) === '[object Float64Array]'
+		_$nativeClass_1026( value ) === '[object Float64Array]'
 	);
 }
 
@@ -8128,7 +8128,7 @@ var _$ctor_5 = __ctor_5;
 
 // MODULES //
 
-/* removed: var _$nativeClass_1004 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_1026 = require( '@stdlib/utils/native-class' ); */;
 
 
 // VARIABLES //
@@ -8155,7 +8155,7 @@ var hasUint8Array = ( typeof Uint8Array === 'function' ); // eslint-disable-line
 function isUint8Array( value ) {
 	return (
 		( hasUint8Array && value instanceof Uint8Array ) || // eslint-disable-line stdlib/require-globals
-		_$nativeClass_1004( value ) === '[object Uint8Array]'
+		_$nativeClass_1026( value ) === '[object Uint8Array]'
 	);
 }
 
@@ -8550,7 +8550,7 @@ var _$ctor_26 = __ctor_26;
 
 // MODULES //
 
-/* removed: var _$nativeClass_1004 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_1026 = require( '@stdlib/utils/native-class' ); */;
 
 
 // VARIABLES //
@@ -8577,7 +8577,7 @@ var hasUint16Array = ( typeof Uint16Array === 'function' ); // eslint-disable-li
 function isUint16Array( value ) {
 	return (
 		( hasUint16Array && value instanceof Uint16Array ) || // eslint-disable-line stdlib/require-globals
-		_$nativeClass_1004( value ) === '[object Uint16Array]'
+		_$nativeClass_1026( value ) === '[object Uint16Array]'
 	);
 }
 
@@ -19823,14 +19823,14 @@ var _$factory_517 = factory;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$evalpoly_516 = require( './evalpoly.js' ); */;
 /* removed: var _$factory_517 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$evalpoly_516, 'factory', _$factory_517 );
+_$setNonEnumerableReadOnly_986( _$evalpoly_516, 'factory', _$factory_517 );
 
 
 // EXPORTS //
@@ -20473,7 +20473,7 @@ var evil = eval; // eslint-disable-line no-eval
 
 // EXPORTS //
 
-var _$evil_971 = evil;
+var _$evil_993 = evil;
 
 /**
 * @license Apache-2.0
@@ -20497,7 +20497,7 @@ var _$evil_971 = evil;
 
 // MODULES //
 
-/* removed: var _$evil_971 = require( '@stdlib/utils/eval' ); */;
+/* removed: var _$evil_993 = require( '@stdlib/utils/eval' ); */;
 
 
 // MAIN //
@@ -20514,7 +20514,7 @@ var _$evil_971 = evil;
 function hasGeneratorSupport() {
 	var bool;
 	try {
-		_$evil_971( '"use strict"; (function* () {})' );
+		_$evil_993( '"use strict"; (function* () {})' );
 		bool = true;
 	} catch ( err ) { // eslint-disable-line no-unused-vars
 		bool = false;
@@ -25946,7 +25946,7 @@ var y = d * 365.25;
  * @api public
  */
 
-var _$ms_1033 = function(val, options) {
+var _$ms_1055 = function(val, options) {
   options = options || {};
   var type = typeof val;
   if (type === 'string' && val.length > 0) {
@@ -26075,7 +26075,7 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's';
 }
 
-var _$debug_1031 = {};
+var _$debug_1053 = {};
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -26084,19 +26084,19 @@ var _$debug_1031 = {};
  * Expose `debug()` as the module.
  */
 
-_$debug_1031 = _$debug_1031 = createDebug.debug = createDebug['default'] = createDebug;
-_$debug_1031.coerce = coerce;
-_$debug_1031.disable = disable;
-_$debug_1031.enable = enable;
-_$debug_1031.enabled = enabled;
-_$debug_1031.humanize = _$ms_1033;
+_$debug_1053 = _$debug_1053 = createDebug.debug = createDebug['default'] = createDebug;
+_$debug_1053.coerce = coerce;
+_$debug_1053.disable = disable;
+_$debug_1053.enable = enable;
+_$debug_1053.enabled = enabled;
+_$debug_1053.humanize = _$ms_1055;
 
 /**
  * The currently active debug mode names, and names to skip.
  */
 
-_$debug_1031.names = [];
-_$debug_1031.skips = [];
+_$debug_1053.names = [];
+_$debug_1053.skips = [];
 
 /**
  * Map of special "%n" handling functions, for the debug "format" argument.
@@ -26104,7 +26104,7 @@ _$debug_1031.skips = [];
  * Valid key names are a single, lower or upper-case letter, i.e. "n" and "N".
  */
 
-_$debug_1031.formatters = {};
+_$debug_1053.formatters = {};
 
 /**
  * Previous log timestamp.
@@ -26127,7 +26127,7 @@ function selectColor(namespace) {
     hash |= 0; // Convert to 32bit integer
   }
 
-  return _$debug_1031.colors[Math.abs(hash) % _$debug_1031.colors.length];
+  return _$debug_1053.colors[Math.abs(hash) % _$debug_1053.colors.length];
 }
 
 /**
@@ -26160,7 +26160,7 @@ function createDebug(namespace) {
       args[i] = arguments[i];
     }
 
-    args[0] = _$debug_1031.coerce(args[0]);
+    args[0] = _$debug_1053.coerce(args[0]);
 
     if ('string' !== typeof args[0]) {
       // anything else let's inspect with %O
@@ -26173,7 +26173,7 @@ function createDebug(namespace) {
       // if we encounter an escaped % then don't increase the array index
       if (match === '%%') return match;
       index++;
-      var formatter = _$debug_1031.formatters[format];
+      var formatter = _$debug_1053.formatters[format];
       if ('function' === typeof formatter) {
         var val = args[index];
         match = formatter.call(self, val);
@@ -26186,20 +26186,20 @@ function createDebug(namespace) {
     });
 
     // apply env-specific formatting (colors, etc.)
-    _$debug_1031.formatArgs.call(self, args);
+    _$debug_1053.formatArgs.call(self, args);
 
-    var logFn = debug.log || _$debug_1031.log || console.log.bind(console);
+    var logFn = debug.log || _$debug_1053.log || console.log.bind(console);
     logFn.apply(self, args);
   }
 
   debug.namespace = namespace;
-  debug.enabled = _$debug_1031.enabled(namespace);
-  debug.useColors = _$debug_1031.useColors();
+  debug.enabled = _$debug_1053.enabled(namespace);
+  debug.useColors = _$debug_1053.useColors();
   debug.color = selectColor(namespace);
 
   // env-specific initialization logic for debug instances
-  if ('function' === typeof _$debug_1031.init) {
-    _$debug_1031.init(debug);
+  if ('function' === typeof _$debug_1053.init) {
+    _$debug_1053.init(debug);
   }
 
   return debug;
@@ -26214,10 +26214,10 @@ function createDebug(namespace) {
  */
 
 function enable(namespaces) {
-  _$debug_1031.save(namespaces);
+  _$debug_1053.save(namespaces);
 
-  _$debug_1031.names = [];
-  _$debug_1031.skips = [];
+  _$debug_1053.names = [];
+  _$debug_1053.skips = [];
 
   var split = (typeof namespaces === 'string' ? namespaces : '').split(/[\s,]+/);
   var len = split.length;
@@ -26226,9 +26226,9 @@ function enable(namespaces) {
     if (!split[i]) continue; // ignore empty strings
     namespaces = split[i].replace(/\*/g, '.*?');
     if (namespaces[0] === '-') {
-      _$debug_1031.skips.push(new RegExp('^' + namespaces.substr(1) + '$'));
+      _$debug_1053.skips.push(new RegExp('^' + namespaces.substr(1) + '$'));
     } else {
-      _$debug_1031.names.push(new RegExp('^' + namespaces + '$'));
+      _$debug_1053.names.push(new RegExp('^' + namespaces + '$'));
     }
   }
 }
@@ -26240,7 +26240,7 @@ function enable(namespaces) {
  */
 
 function disable() {
-  _$debug_1031.enable('');
+  _$debug_1053.enable('');
 }
 
 /**
@@ -26253,13 +26253,13 @@ function disable() {
 
 function enabled(name) {
   var i, len;
-  for (i = 0, len = _$debug_1031.skips.length; i < len; i++) {
-    if (_$debug_1031.skips[i].test(name)) {
+  for (i = 0, len = _$debug_1053.skips.length; i < len; i++) {
+    if (_$debug_1053.skips[i].test(name)) {
       return false;
     }
   }
-  for (i = 0, len = _$debug_1031.names.length; i < len; i++) {
-    if (_$debug_1031.names[i].test(name)) {
+  for (i = 0, len = _$debug_1053.names.length; i < len; i++) {
+    if (_$debug_1053.names[i].test(name)) {
       return true;
     }
   }
@@ -26279,9 +26279,9 @@ function coerce(val) {
   return val;
 }
 
-var _$browser_1034 = {};
+var _$browser_1056 = {};
 // shim for using process in browser
-var process = _$browser_1034 = {};
+var process = _$browser_1056 = {};
 
 // cached from whatever global is present so that test runners that stub it
 // don't break things.  But we need to wrap it in a try catch in case it is
@@ -26465,7 +26465,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-var _$browser_1030 = {};
+var _$browser_1052 = {};
 (function (process){
 /**
  * This is the web browser implementation of `debug()`.
@@ -26473,13 +26473,13 @@ var _$browser_1030 = {};
  * Expose `debug()` as the module.
  */
 
-_$browser_1030 = _$browser_1030 = _$debug_1031;
-_$browser_1030.log = log;
-_$browser_1030.formatArgs = formatArgs;
-_$browser_1030.save = save;
-_$browser_1030.load = load;
-_$browser_1030.useColors = useColors;
-_$browser_1030.storage = 'undefined' != typeof chrome
+_$browser_1052 = _$browser_1052 = _$debug_1053;
+_$browser_1052.log = log;
+_$browser_1052.formatArgs = formatArgs;
+_$browser_1052.save = save;
+_$browser_1052.load = load;
+_$browser_1052.useColors = useColors;
+_$browser_1052.storage = 'undefined' != typeof chrome
                && 'undefined' != typeof chrome.storage
                   ? chrome.storage.local
                   : localstorage();
@@ -26488,7 +26488,7 @@ _$browser_1030.storage = 'undefined' != typeof chrome
  * Colors.
  */
 
-_$browser_1030.colors = [
+_$browser_1052.colors = [
   'lightseagreen',
   'forestgreen',
   'goldenrod',
@@ -26529,7 +26529,7 @@ function useColors() {
  * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
  */
 
-_$browser_1030.formatters.j = function(v) {
+_$browser_1052.formatters.j = function(v) {
   try {
     return JSON.stringify(v);
   } catch (err) {
@@ -26552,7 +26552,7 @@ function formatArgs(args) {
     + (useColors ? ' %c' : ' ')
     + args[0]
     + (useColors ? '%c ' : ' ')
-    + '+' + _$browser_1030.humanize(this.diff);
+    + '+' + _$browser_1052.humanize(this.diff);
 
   if (!useColors) return;
 
@@ -26602,9 +26602,9 @@ function log() {
 function save(namespaces) {
   try {
     if (null == namespaces) {
-      _$browser_1030.storage.removeItem('debug');
+      _$browser_1052.storage.removeItem('debug');
     } else {
-      _$browser_1030.storage.debug = namespaces;
+      _$browser_1052.storage.debug = namespaces;
     }
   } catch(e) {}
 }
@@ -26619,7 +26619,7 @@ function save(namespaces) {
 function load() {
   var r;
   try {
-    r = _$browser_1030.storage.debug;
+    r = _$browser_1052.storage.debug;
   } catch(e) {}
 
   // If debug isn't set in LS, and we're in Electron, try to load $DEBUG
@@ -26634,7 +26634,7 @@ function load() {
  * Enable namespaces listed in `localStorage.debug` initially.
  */
 
-_$browser_1030.enable(load());
+_$browser_1052.enable(load());
 
 /**
  * Localstorage attempts to return the localstorage.
@@ -26653,7 +26653,7 @@ function localstorage() {
   } catch (e) {}
 }
 
-}).call(this,_$browser_1034)
+}).call(this,_$browser_1056)
 /**
 * @license Apache-2.0
 *
@@ -27343,7 +27343,7 @@ var _$FLOAT32_MAX_185 = FLOAT32_MAX;
 
 // MODULES //
 
-/* removed: var _$browser_1030 = require( 'debug' ); */;
+/* removed: var _$browser_1052 = require( 'debug' ); */;
 /* removed: var _$gammainc_352 = require( '@stdlib/math/base/special/gammainc' ); */;
 /* removed: var _$abs_244 = require( '@stdlib/math/base/special/abs' ); */;
 /* removed: var _$exp_314 = require( '@stdlib/math/base/special/exp' ); */;
@@ -27353,7 +27353,7 @@ var _$FLOAT32_MAX_185 = FLOAT32_MAX;
 
 // VARIABLES //
 
-var debug = _$browser_1030( 'gammaincinv:higher_newton' );
+var debug = _$browser_1052( 'gammaincinv:higher_newton' );
 
 
 // MAIN //
@@ -28769,7 +28769,7 @@ var _$eps3_373 = eps3;
 
 // MODULES //
 
-/* removed: var _$browser_1030 = require( 'debug' ); */;
+/* removed: var _$browser_1052 = require( 'debug' ); */;
 /* removed: var _$evalpoly_518 = require( '@stdlib/math/base/tools/evalpoly' ); */;
 /* removed: var _$gammaln_394 = require( '@stdlib/math/base/special/gammaln' ); */;
 /* removed: var _$erfcinv_299 = require( '@stdlib/math/base/special/erfcinv' ); */;
@@ -28793,7 +28793,7 @@ var _$eps3_373 = eps3;
 
 // VARIABLES //
 
-var __debug_370 = _$browser_1030( 'gammaincinv:compute' );
+var __debug_370 = _$browser_1052( 'gammaincinv:compute' );
 var HALF = 0.5;
 var ONEO3 = 0.333333333333333333333333333333;
 var ONEO4 = 0.25;
@@ -36666,7 +36666,7 @@ var _$betaincinv_263 = _$betaincinv_262;
 
 // MODULES //
 
-/* removed: var _$defineProperty_969 = require( '@stdlib/utils/define-property' ); */;
+/* removed: var _$defineProperty_991 = require( '@stdlib/utils/define-property' ); */;
 
 
 // MAIN //
@@ -36694,7 +36694,7 @@ var _$betaincinv_263 = _$betaincinv_262;
 * }
 */
 function setNonEnumerableReadOnlyAccessor( obj, prop, getter ) { // eslint-disable-line id-length
-	_$defineProperty_969( obj, prop, {
+	_$defineProperty_991( obj, prop, {
 		'configurable': false,
 		'enumerable': false,
 		'get': getter
@@ -36704,7 +36704,7 @@ function setNonEnumerableReadOnlyAccessor( obj, prop, getter ) { // eslint-disab
 
 // EXPORTS //
 
-var _$setNonEnumerableReadOnlyAccessor_963 = setNonEnumerableReadOnlyAccessor;
+var _$setNonEnumerableReadOnlyAccessor_985 = setNonEnumerableReadOnlyAccessor;
 
 /**
 * @license Apache-2.0
@@ -36751,12 +36751,12 @@ var _$setNonEnumerableReadOnlyAccessor_963 = setNonEnumerableReadOnlyAccessor;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnlyAccessor_963 = require( './main.js' ); */; // eslint-disable-line id-length
+/* removed: var _$setNonEnumerableReadOnlyAccessor_985 = require( './main.js' ); */; // eslint-disable-line id-length
 
 
 // EXPORTS //
 
-var _$setNonEnumerableReadOnlyAccessor_962 = _$setNonEnumerableReadOnlyAccessor_963;
+var _$setNonEnumerableReadOnlyAccessor_984 = _$setNonEnumerableReadOnlyAccessor_985;
 
 /**
 * @license Apache-2.0
@@ -36780,7 +36780,7 @@ var _$setNonEnumerableReadOnlyAccessor_962 = _$setNonEnumerableReadOnlyAccessor_
 
 // MODULES //
 
-/* removed: var _$defineProperty_969 = require( '@stdlib/utils/define-property' ); */;
+/* removed: var _$defineProperty_991 = require( '@stdlib/utils/define-property' ); */;
 
 
 // MAIN //
@@ -36816,7 +36816,7 @@ var _$setNonEnumerableReadOnlyAccessor_962 = _$setNonEnumerableReadOnlyAccessor_
 * // returns 'beep foo'
 */
 function setNonEnumerableReadWriteAccessor( obj, prop, getter, setter ) { // eslint-disable-line id-length
-	_$defineProperty_969( obj, prop, {
+	_$defineProperty_991( obj, prop, {
 		'configurable': false,
 		'enumerable': false,
 		'get': getter,
@@ -36827,7 +36827,7 @@ function setNonEnumerableReadWriteAccessor( obj, prop, getter, setter ) { // esl
 
 // EXPORTS //
 
-var _$setNonEnumerableReadWriteAccessor_967 = setNonEnumerableReadWriteAccessor;
+var _$setNonEnumerableReadWriteAccessor_989 = setNonEnumerableReadWriteAccessor;
 
 /**
 * @license Apache-2.0
@@ -36881,12 +36881,12 @@ var _$setNonEnumerableReadWriteAccessor_967 = setNonEnumerableReadWriteAccessor;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadWriteAccessor_967 = require( './main.js' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_989 = require( './main.js' ); */;
 
 
 // EXPORTS //
 
-var _$setNonEnumerableReadWriteAccessor_966 = _$setNonEnumerableReadWriteAccessor_967;
+var _$setNonEnumerableReadWriteAccessor_988 = _$setNonEnumerableReadWriteAccessor_989;
 
 /**
 * @license Apache-2.0
@@ -36915,7 +36915,7 @@ var getProto = Object.getPrototypeOf;
 
 // EXPORTS //
 
-var _$getProto_977 = getProto;
+var _$getProto_999 = getProto;
 
 /**
 * @license Apache-2.0
@@ -36944,7 +36944,7 @@ var _$getProto_977 = getProto;
 * @param {Object} obj - input object
 * @returns {*} value of `__proto__` property
 */
-function __getProto_979( obj ) {
+function __getProto_1001( obj ) {
 	// eslint-disable-next-line no-proto
 	return obj.__proto__;
 }
@@ -36952,7 +36952,7 @@ function __getProto_979( obj ) {
 
 // EXPORTS //
 
-var _$getProto_979 = __getProto_979;
+var _$getProto_1001 = __getProto_1001;
 
 /**
 * @license Apache-2.0
@@ -36976,8 +36976,8 @@ var _$getProto_979 = __getProto_979;
 
 // MODULES //
 
-/* removed: var _$nativeClass_1004 = require( '@stdlib/utils/native-class' ); */;
-/* removed: var _$getProto_979 = require( './proto.js' ); */;
+/* removed: var _$nativeClass_1026 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$getProto_1001 = require( './proto.js' ); */;
 
 
 // MAIN //
@@ -36990,11 +36990,11 @@ var _$getProto_979 = __getProto_979;
 * @returns {(Object|null)} prototype
 */
 function getPrototypeOf( obj ) {
-	var proto = _$getProto_979( obj );
+	var proto = _$getProto_1001( obj );
 	if ( proto || proto === null ) {
 		return proto;
 	}
-	if ( _$nativeClass_1004( obj.constructor ) === '[object Function]' ) {
+	if ( _$nativeClass_1026( obj.constructor ) === '[object Function]' ) {
 		// May break if the constructor has been tampered with...
 		return obj.constructor.prototype;
 	}
@@ -37008,7 +37008,7 @@ function getPrototypeOf( obj ) {
 
 // EXPORTS //
 
-var _$getPrototypeOf_978 = getPrototypeOf;
+var _$getPrototypeOf_1000 = getPrototypeOf;
 
 /**
 * @license Apache-2.0
@@ -37033,23 +37033,23 @@ var _$getPrototypeOf_978 = getPrototypeOf;
 // MODULES //
 
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
-/* removed: var _$getProto_977 = require( './native.js' ); */;
-/* removed: var _$getPrototypeOf_978 = require( './polyfill.js' ); */;
+/* removed: var _$getProto_999 = require( './native.js' ); */;
+/* removed: var _$getPrototypeOf_1000 = require( './polyfill.js' ); */;
 
 
 // MAIN //
 
-var __getProto_974;
+var __getProto_996;
 if ( _$isFunction_110( Object.getPrototypeOf ) ) {
-	__getProto_974 = _$getProto_977;
+	__getProto_996 = _$getProto_999;
 } else {
-	__getProto_974 = _$getPrototypeOf_978;
+	__getProto_996 = _$getPrototypeOf_1000;
 }
 
 
 // EXPORTS //
 
-var _$getProto_974 = __getProto_974;
+var _$getProto_996 = __getProto_996;
 
 /**
 * @license Apache-2.0
@@ -37073,7 +37073,7 @@ var _$getProto_974 = __getProto_974;
 
 // MODULES //
 
-/* removed: var _$getProto_974 = require( './detect.js' ); */;
+/* removed: var _$getProto_996 = require( './detect.js' ); */;
 
 
 // MAIN //
@@ -37088,7 +37088,7 @@ var _$getProto_974 = __getProto_974;
 * var proto = getPrototypeOf( {} );
 * // returns {}
 */
-function __getPrototypeOf_975( value ) {
+function __getPrototypeOf_997( value ) {
 	if (
 		value === null ||
 		value === void 0
@@ -37098,13 +37098,13 @@ function __getPrototypeOf_975( value ) {
 	// In order to ensure consistent ES5/ES6 behavior, cast input value to an object (strings, numbers, booleans); ES5 `Object.getPrototypeOf` throws when provided primitives and ES6 `Object.getPrototypeOf` casts:
 	value = Object( value );
 
-	return _$getProto_974( value );
+	return _$getProto_996( value );
 }
 
 
 // EXPORTS //
 
-var _$getPrototypeOf_975 = __getPrototypeOf_975;
+var _$getPrototypeOf_997 = __getPrototypeOf_997;
 
 /**
 * @license Apache-2.0
@@ -37140,12 +37140,12 @@ var _$getPrototypeOf_975 = __getPrototypeOf_975;
 
 // MODULES //
 
-/* removed: var _$getPrototypeOf_975 = require( './get_prototype_of.js' ); */;
+/* removed: var _$getPrototypeOf_997 = require( './get_prototype_of.js' ); */;
 
 
 // EXPORTS //
 
-var _$getPrototype_976 = _$getPrototypeOf_975;
+var _$getPrototype_998 = _$getPrototypeOf_997;
 
 /**
 * @license Apache-2.0
@@ -37171,9 +37171,9 @@ var _$getPrototype_976 = _$getPrototypeOf_975;
 
 /* removed: var _$isObject_142 = require( '@stdlib/assert/is-object' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
-/* removed: var _$getPrototype_976 = require( '@stdlib/utils/get-prototype-of' ); */;
+/* removed: var _$getPrototype_998 = require( '@stdlib/utils/get-prototype-of' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$nativeClass_1004 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_1026 = require( '@stdlib/utils/native-class' ); */;
 
 
 // VARIABLES //
@@ -37227,7 +37227,7 @@ function isPlainObject( value ) {
 		return false;
 	}
 	// Objects with no prototype (e.g., `Object.create( null )`) are plain...
-	proto = _$getPrototype_976( value );
+	proto = _$getPrototype_998( value );
 	if ( !proto ) {
 		return true;
 	}
@@ -37239,7 +37239,7 @@ function isPlainObject( value ) {
 		// Prototype `constructor` property must be a function (see also https://bugs.jquery.com/ticket/9897 and http://stackoverflow.com/questions/18531624/isplainobject-thing):
 		_$hasOwnProp_58( proto, 'constructor' ) &&
 		_$isFunction_110( proto.constructor ) &&
-		_$nativeClass_1004( proto.constructor ) === '[object Function]' &&
+		_$nativeClass_1026( proto.constructor ) === '[object Function]' &&
 
 		// Test for object-specific method:
 		_$hasOwnProp_58( proto, 'isPrototypeOf' ) &&
@@ -37359,7 +37359,7 @@ function wrap( value ) {
 
 // EXPORTS //
 
-var _$wrap_954 = wrap;
+var _$wrap_976 = wrap;
 
 /**
 * @license Apache-2.0
@@ -37403,12 +37403,12 @@ var _$wrap_954 = wrap;
 
 // MODULES //
 
-/* removed: var _$wrap_954 = require( './constant_function.js' ); */;
+/* removed: var _$wrap_976 = require( './constant_function.js' ); */;
 
 
 // EXPORTS //
 
-var _$constantFunction_955 = _$wrap_954;
+var _$constantFunction_977 = _$wrap_976;
 
 /**
 * @license Apache-2.0
@@ -37437,14 +37437,14 @@ var _$constantFunction_955 = _$wrap_954;
 * noop();
 * // ...does nothing.
 */
-function __noop_1010() {
+function __noop_1032() {
 	// Empty function...
 }
 
 
 // EXPORTS //
 
-var _$noop_1010 = __noop_1010;
+var _$noop_1032 = __noop_1032;
 
 /**
 * @license Apache-2.0
@@ -37480,12 +37480,12 @@ var _$noop_1010 = __noop_1010;
 
 // MODULES //
 
-/* removed: var _$noop_1010 = require( './noop.js' ); */;
+/* removed: var _$noop_1032 = require( './noop.js' ); */;
 
 
 // EXPORTS //
 
-var _$noop_1009 = _$noop_1010;
+var _$noop_1031 = _$noop_1032;
 
 /**
 * @license Apache-2.0
@@ -37631,7 +37631,7 @@ var _$hasFunctionNameSupport_42 = _$hasFunctionNameSupport_43;
 
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 /* removed: var _$hasFunctionNameSupport_42 = require( '@stdlib/assert/has-function-name-support' ); */;
-/* removed: var _$RE_FUNCTION_NAME_649 = require( '@stdlib/regexp/function-name' ); */;
+/* removed: var _$RE_FUNCTION_NAME_654 = require( '@stdlib/regexp/function-name' ); */;
 
 
 // VARIABLES //
@@ -37672,13 +37672,13 @@ function functionName( fcn ) {
 	if ( isFunctionNameSupported ) {
 		return fcn.name;
 	}
-	return _$RE_FUNCTION_NAME_649.exec( fcn.toString() )[ 1 ];
+	return _$RE_FUNCTION_NAME_654.exec( fcn.toString() )[ 1 ];
 }
 
 
 // EXPORTS //
 
-var _$functionName_972 = functionName;
+var _$functionName_994 = functionName;
 
 /**
 * @license Apache-2.0
@@ -37720,12 +37720,12 @@ var _$functionName_972 = functionName;
 
 // MODULES //
 
-/* removed: var _$functionName_972 = require( './function_name.js' ); */;
+/* removed: var _$functionName_994 = require( './function_name.js' ); */;
 
 
 // EXPORTS //
 
-var _$functionName_973 = _$functionName_972;
+var _$functionName_995 = _$functionName_994;
 
 /**
 * @license Apache-2.0
@@ -37749,7 +37749,7 @@ var _$functionName_973 = _$functionName_972;
 
 // MODULES //
 
-/* removed: var _$nativeClass_1004 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_1026 = require( '@stdlib/utils/native-class' ); */;
 
 
 // VARIABLES //
@@ -37776,7 +37776,7 @@ var hasInt8Array = ( typeof Int8Array === 'function' ); // eslint-disable-line s
 function isInt8Array( value ) {
 	return (
 		( hasInt8Array && value instanceof Int8Array ) || // eslint-disable-line stdlib/require-globals
-		_$nativeClass_1004( value ) === '[object Int8Array]'
+		_$nativeClass_1026( value ) === '[object Int8Array]'
 	);
 }
 
@@ -38232,7 +38232,7 @@ var _$ctor_13 = __ctor_13;
 
 // MODULES //
 
-/* removed: var _$nativeClass_1004 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_1026 = require( '@stdlib/utils/native-class' ); */;
 
 
 // VARIABLES //
@@ -38259,7 +38259,7 @@ var hasUint8ClampedArray = ( typeof Uint8ClampedArray === 'function' ); // eslin
 function isUint8ClampedArray( value ) {
 	return (
 		( hasUint8ClampedArray && value instanceof Uint8ClampedArray ) || // eslint-disable-line stdlib/require-globals
-		_$nativeClass_1004( value ) === '[object Uint8ClampedArray]'
+		_$nativeClass_1026( value ) === '[object Uint8ClampedArray]'
 	);
 }
 
@@ -38592,7 +38592,7 @@ var _$ctor_29 = __ctor_29;
 
 // MODULES //
 
-/* removed: var _$nativeClass_1004 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_1026 = require( '@stdlib/utils/native-class' ); */;
 
 
 // VARIABLES //
@@ -38619,7 +38619,7 @@ var hasInt16Array = ( typeof Int16Array === 'function' ); // eslint-disable-line
 function isInt16Array( value ) {
 	return (
 		( hasInt16Array && value instanceof Int16Array ) || // eslint-disable-line stdlib/require-globals
-		_$nativeClass_1004( value ) === '[object Int16Array]'
+		_$nativeClass_1026( value ) === '[object Int16Array]'
 	);
 }
 
@@ -39075,7 +39075,7 @@ var _$ctor_7 = __ctor_7;
 
 // MODULES //
 
-/* removed: var _$nativeClass_1004 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_1026 = require( '@stdlib/utils/native-class' ); */;
 
 
 // VARIABLES //
@@ -39102,7 +39102,7 @@ var hasInt32Array = ( typeof Int32Array === 'function' ); // eslint-disable-line
 function isInt32Array( value ) {
 	return (
 		( hasInt32Array && value instanceof Int32Array ) || // eslint-disable-line stdlib/require-globals
-		_$nativeClass_1004( value ) === '[object Int32Array]'
+		_$nativeClass_1026( value ) === '[object Int32Array]'
 	);
 }
 
@@ -39496,7 +39496,7 @@ var _$ctor_10 = __ctor_10;
 
 // MODULES //
 
-/* removed: var _$nativeClass_1004 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_1026 = require( '@stdlib/utils/native-class' ); */;
 
 
 // VARIABLES //
@@ -39523,7 +39523,7 @@ var hasFloat32Array = ( typeof Float32Array === 'function' );// eslint-disable-l
 function isFloat32Array( value ) {
 	return (
 		( hasFloat32Array && value instanceof Float32Array ) || // eslint-disable-line stdlib/require-globals
-		_$nativeClass_1004( value ) === '[object Float32Array]'
+		_$nativeClass_1026( value ) === '[object Float32Array]'
 	);
 }
 
@@ -39918,9 +39918,9 @@ var _$names_163=[
 
 // MODULES //
 
-/* removed: var _$constructorName_956 = require( '@stdlib/utils/constructor-name' ); */;
-/* removed: var _$functionName_973 = require( '@stdlib/utils/function-name' ); */;
-/* removed: var _$getPrototype_976 = require( '@stdlib/utils/get-prototype-of' ); */;
+/* removed: var _$constructorName_978 = require( '@stdlib/utils/constructor-name' ); */;
+/* removed: var _$functionName_995 = require( '@stdlib/utils/function-name' ); */;
+/* removed: var _$getPrototype_998 = require( '@stdlib/utils/get-prototype-of' ); */;
 /* removed: var _$hasFloat64ArraySupport_39 = require( '@stdlib/assert/has-float64array-support' ); */;
 /* removed: var _$ctor_5 = require( '@stdlib/array/float64' ); */;
 /* removed: var _$CTORS_160 = require( './ctors.js' ); */;
@@ -39930,10 +39930,10 @@ var _$names_163=[
 // VARIABLES //
 
 // Abstract `TypedArray` class:
-var TypedArray = ( _$hasFloat64ArraySupport_39() ) ? _$getPrototype_976( _$ctor_5 ) : Dummy; // eslint-disable-line max-len
+var TypedArray = ( _$hasFloat64ArraySupport_39() ) ? _$getPrototype_998( _$ctor_5 ) : Dummy; // eslint-disable-line max-len
 
 // Ensure abstract typed array class has expected name:
-TypedArray = ( _$functionName_973( TypedArray ) === 'TypedArray' ) ? TypedArray : Dummy;
+TypedArray = ( _$functionName_995( TypedArray ) === 'TypedArray' ) ? TypedArray : Dummy;
 
 
 // FUNCTIONS //
@@ -39979,13 +39979,13 @@ function isTypedArray( value ) {
 	}
 	// Walk the prototype tree until we find an object having a desired class...
 	while ( value ) {
-		v = _$constructorName_956( value );
+		v = _$constructorName_978( value );
 		for ( i = 0; i < _$names_163.length; i++ ) {
 			if ( _$names_163[ i ] === v ) {
 				return true;
 			}
 		}
-		value = _$getPrototype_976( value );
+		value = _$getPrototype_998( value );
 	}
 
 	return false;
@@ -40229,8 +40229,8 @@ var _$CTORS_16 = __CTORS_16;
 // MODULES //
 
 /* removed: var _$instanceOf_78 = require( '@stdlib/assert/instance-of' ); */;
-/* removed: var _$constructorName_956 = require( '@stdlib/utils/constructor-name' ); */;
-/* removed: var _$getPrototype_976 = require( '@stdlib/utils/get-prototype-of' ); */;
+/* removed: var _$constructorName_978 = require( '@stdlib/utils/constructor-name' ); */;
+/* removed: var _$getPrototype_998 = require( '@stdlib/utils/get-prototype-of' ); */;
 /* removed: var _$CTORS_16 = require( './ctors.js' ); */;
 
 
@@ -40262,13 +40262,13 @@ function typeName( arr ) {
 	}
 	// Walk the prototype tree until we find an object having a desired native class...
 	while ( arr ) {
-		v = _$constructorName_956( arr );
+		v = _$constructorName_978( arr );
 		for ( i = 0; i < _$CTORS_16.length; i++ ) {
 			if ( v === _$CTORS_16[ i ][ 1 ] ) {
 				return _$CTORS_16[ i ][ 1 ];
 			}
 		}
-		arr = _$getPrototype_976( arr );
+		arr = _$getPrototype_998( arr );
 	}
 }
 
@@ -40388,7 +40388,7 @@ var _$toJSON_18 = toJSON;
 
 var _$toJSON_17 = _$toJSON_18;
 
-var _$defaults_626={
+var _$defaults_631={
 	"name": "improved-ziggurat",
 	"copy": true
 }
@@ -40824,7 +40824,7 @@ var _$isInteger_120 = __isInteger_120;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$isInteger_120 = require( './main.js' ); */;
 /* removed: var _$isInteger_122 = require( './primitive.js' ); */;
 /* removed: var _$isInteger_121 = require( './object.js' ); */;
@@ -40832,8 +40832,8 @@ var _$isInteger_120 = __isInteger_120;
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$isInteger_120, 'isPrimitive', _$isInteger_122 );
-_$setNonEnumerableReadOnly_964( _$isInteger_120, 'isObject', _$isInteger_121 );
+_$setNonEnumerableReadOnly_986( _$isInteger_120, 'isPrimitive', _$isInteger_122 );
+_$setNonEnumerableReadOnly_986( _$isInteger_120, 'isObject', _$isInteger_121 );
 
 
 // EXPORTS //
@@ -41077,7 +41077,7 @@ var _$isPositiveInteger_147 = __isPositiveInteger_147;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$isPositiveInteger_147 = require( './main.js' ); */;
 /* removed: var _$isPositiveInteger_149 = require( './primitive.js' ); */;
 /* removed: var _$isPositiveInteger_148 = require( './object.js' ); */;
@@ -41085,8 +41085,8 @@ var _$isPositiveInteger_147 = __isPositiveInteger_147;
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$isPositiveInteger_147, 'isPrimitive', _$isPositiveInteger_149 );
-_$setNonEnumerableReadOnly_964( _$isPositiveInteger_147, 'isObject', _$isPositiveInteger_148 );
+_$setNonEnumerableReadOnly_986( _$isPositiveInteger_147, 'isPrimitive', _$isPositiveInteger_149 );
+_$setNonEnumerableReadOnly_986( _$isPositiveInteger_147, 'isObject', _$isPositiveInteger_148 );
 
 
 // EXPORTS //
@@ -41572,14 +41572,14 @@ var _$gcopy_176 = __gcopy_176;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$gcopy_175 = require( './main.js' ); */;
 /* removed: var _$gcopy_176 = require( './ndarray.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$gcopy_175, 'ndarray', _$gcopy_176 );
+_$setNonEnumerableReadOnly_986( _$gcopy_175, 'ndarray', _$gcopy_176 );
 
 
 // EXPORTS //
@@ -41637,7 +41637,7 @@ function randuint32() {
 
 // EXPORTS //
 
-var _$randuint32_614 = randuint32;
+var _$randuint32_619 = randuint32;
 
 /* eslint-disable max-lines, max-len */
 
@@ -41700,15 +41700,15 @@ var _$randuint32_614 = randuint32;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_962 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_966 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_984 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_988 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 /* removed: var _$isCollection_94 = require( '@stdlib/assert/is-collection' ); */;
 /* removed: var _$isUint32Array_166 = require( '@stdlib/assert/is-uint32array' ); */;
-var __isBoolean_611 = _$isBoolean_86.isPrimitive;
-var __isPositiveInteger_611 = _$isPositiveInteger_146.isPrimitive;
+var __isBoolean_616 = _$isBoolean_86.isPrimitive;
+var __isPositiveInteger_616 = _$isPositiveInteger_146.isPrimitive;
 /* removed: var _$FLOAT64_MAX_SAFE_INTEGER_201 = require( '@stdlib/constants/math/float64-max-safe-integer' ); */;
 /* removed: var _$UINT32_MAX_221 = require( '@stdlib/constants/math/uint32-max' ); */;
 /* removed: var _$ctor_23 = require( '@stdlib/array/uint32' ); */;
@@ -41716,7 +41716,7 @@ var __isPositiveInteger_611 = _$isPositiveInteger_146.isPrimitive;
 /* removed: var _$uimul_511 = require( '@stdlib/math/base/special/uimul' ); */;
 /* removed: var _$gcopy_174 = require( '@stdlib/blas/base/gcopy' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
-/* removed: var _$randuint32_614 = require( './rand_uint32.js' ); */;
+/* removed: var _$randuint32_619 = require( './rand_uint32.js' ); */;
 
 
 // VARIABLES //
@@ -41725,7 +41725,7 @@ var __isPositiveInteger_611 = _$isPositiveInteger_146.isPrimitive;
 var N = 624;
 
 // Define a (magic) constant used for indexing into the state array:
-var __M_611 = 397;
+var __M_616 = 397;
 
 // Define the maximum seed: 11111111111111111111111111111111
 var MAX_SEED = _$UINT32_MAX_221 >>> 0; // asm type annotation
@@ -41954,10 +41954,10 @@ function twist( state ) {
 	var j;
 	var k;
 
-	k = N - __M_611;
+	k = N - __M_616;
 	for ( i = 0; i < k; i++ ) {
 		w = ( state[i]&UPPER_MASK ) | ( state[i+1]&LOWER_MASK );
-		state[ i ] = state[ i+__M_611 ] ^ ( w>>>1 ) ^ MAG01[ w&ONE ];
+		state[ i ] = state[ i+__M_616 ] ^ ( w>>>1 ) ^ MAG01[ w&ONE ];
 	}
 	j = N - 1;
 	for ( ; i < j; i++ ) {
@@ -41965,7 +41965,7 @@ function twist( state ) {
 		state[ i ] = state[ i-k ] ^ ( w>>>1 ) ^ MAG01[ w&ONE ];
 	}
 	w = ( state[j]&UPPER_MASK ) | ( state[0]&LOWER_MASK );
-	state[ j ] = state[ __M_611-1 ] ^ ( w>>>1 ) ^ MAG01[ w&ONE ];
+	state[ j ] = state[ __M_616-1 ] ^ ( w>>>1 ) ^ MAG01[ w&ONE ];
 	return state;
 }
 
@@ -42006,7 +42006,7 @@ function twist( state ) {
 * var v = mt19937();
 * // returns 822569775
 */
-function __factory_611( options ) {
+function __factory_616( options ) {
 	var STATE;
 	var state;
 	var opts;
@@ -42021,7 +42021,7 @@ function __factory_611( options ) {
 		}
 		if ( _$hasOwnProp_58( options, 'copy' ) ) {
 			opts.copy = options.copy;
-			if ( !__isBoolean_611( options.copy ) ) {
+			if ( !__isBoolean_616( options.copy ) ) {
 				throw new TypeError( 'invalid option. `copy` option must be a boolean. Option: `' + options.copy + '`.' );
 			}
 		}
@@ -42052,7 +42052,7 @@ function __factory_611( options ) {
 			if ( _$hasOwnProp_58( options, 'seed' ) ) {
 				seed = options.seed;
 				opts.seed = true;
-				if ( __isPositiveInteger_611( seed ) ) {
+				if ( __isPositiveInteger_616( seed ) ) {
 					if ( seed > MAX_SEED ) {
 						throw new RangeError( 'invalid option. `seed` option must be a positive integer less than or equal to the maximum unsigned 32-bit integer. Option: `' + seed + '`.' );
 					}
@@ -42061,7 +42061,7 @@ function __factory_611( options ) {
 					throw new TypeError( 'invalid option. `seed` option must be either a positive integer less than or equal to the maximum unsigned 32-bit integer or an array-like object containing integer values less than or equal to the maximum unsigned 32-bit integer. Option: `' + seed + '`.' );
 				} else if ( seed.length === 1 ) {
 					seed = seed[ 0 ];
-					if ( !__isPositiveInteger_611( seed ) ) {
+					if ( !__isPositiveInteger_616( seed ) ) {
 						throw new TypeError( 'invalid option. `seed` option must be either a positive integer less than or equal to the maximum unsigned 32-bit integer or an array-like object containing integer values less than or equal to the maximum unsigned 32-bit integer. Option: `' + seed + '`.' );
 					}
 					if ( seed > MAX_SEED ) {
@@ -42094,11 +42094,11 @@ function __factory_611( options ) {
 					state = initState( state, N, seed, slen );
 				}
 			} else {
-				seed = _$randuint32_614() >>> 0; // asm type annotation
+				seed = _$randuint32_619() >>> 0; // asm type annotation
 			}
 		}
 	} else {
-		seed = _$randuint32_614() >>> 0; // asm type annotation
+		seed = _$randuint32_619() >>> 0; // asm type annotation
 	}
 	if ( state === void 0 ) {
 		STATE = new _$ctor_23( STATE_FIXED_LENGTH+1 );
@@ -42122,26 +42122,26 @@ function __factory_611( options ) {
 		state = createState( state, N, seed );
 	}
 	// Note: property order matters in order to maintain consistency of PRNG "shape" (hidden classes).
-	_$setNonEnumerableReadOnly_964( mt19937, 'NAME', 'mt19937' );
-	_$setNonEnumerableReadOnlyAccessor_962( mt19937, 'seed', getSeed );
-	_$setNonEnumerableReadOnlyAccessor_962( mt19937, 'seedLength', getSeedLength );
-	_$setNonEnumerableReadWriteAccessor_966( mt19937, 'state', getState, setState );
-	_$setNonEnumerableReadOnlyAccessor_962( mt19937, 'stateLength', getStateLength );
-	_$setNonEnumerableReadOnlyAccessor_962( mt19937, 'byteLength', getStateSize );
-	_$setNonEnumerableReadOnly_964( mt19937, 'toJSON', toJSON );
-	_$setNonEnumerableReadOnly_964( mt19937, 'MIN', 1 );
-	_$setNonEnumerableReadOnly_964( mt19937, 'MAX', _$UINT32_MAX_221 );
-	_$setNonEnumerableReadOnly_964( mt19937, 'normalized', normalized );
+	_$setNonEnumerableReadOnly_986( mt19937, 'NAME', 'mt19937' );
+	_$setNonEnumerableReadOnlyAccessor_984( mt19937, 'seed', getSeed );
+	_$setNonEnumerableReadOnlyAccessor_984( mt19937, 'seedLength', getSeedLength );
+	_$setNonEnumerableReadWriteAccessor_988( mt19937, 'state', getState, setState );
+	_$setNonEnumerableReadOnlyAccessor_984( mt19937, 'stateLength', getStateLength );
+	_$setNonEnumerableReadOnlyAccessor_984( mt19937, 'byteLength', getStateSize );
+	_$setNonEnumerableReadOnly_986( mt19937, 'toJSON', toJSON );
+	_$setNonEnumerableReadOnly_986( mt19937, 'MIN', 1 );
+	_$setNonEnumerableReadOnly_986( mt19937, 'MAX', _$UINT32_MAX_221 );
+	_$setNonEnumerableReadOnly_986( mt19937, 'normalized', normalized );
 
-	_$setNonEnumerableReadOnly_964( normalized, 'NAME', mt19937.NAME );
-	_$setNonEnumerableReadOnlyAccessor_962( normalized, 'seed', getSeed );
-	_$setNonEnumerableReadOnlyAccessor_962( normalized, 'seedLength', getSeedLength );
-	_$setNonEnumerableReadWriteAccessor_966( normalized, 'state', getState, setState );
-	_$setNonEnumerableReadOnlyAccessor_962( normalized, 'stateLength', getStateLength );
-	_$setNonEnumerableReadOnlyAccessor_962( normalized, 'byteLength', getStateSize );
-	_$setNonEnumerableReadOnly_964( normalized, 'toJSON', toJSON );
-	_$setNonEnumerableReadOnly_964( normalized, 'MIN', 0.0 );
-	_$setNonEnumerableReadOnly_964( normalized, 'MAX', MAX_NORMALIZED );
+	_$setNonEnumerableReadOnly_986( normalized, 'NAME', mt19937.NAME );
+	_$setNonEnumerableReadOnlyAccessor_984( normalized, 'seed', getSeed );
+	_$setNonEnumerableReadOnlyAccessor_984( normalized, 'seedLength', getSeedLength );
+	_$setNonEnumerableReadWriteAccessor_988( normalized, 'state', getState, setState );
+	_$setNonEnumerableReadOnlyAccessor_984( normalized, 'stateLength', getStateLength );
+	_$setNonEnumerableReadOnlyAccessor_984( normalized, 'byteLength', getStateSize );
+	_$setNonEnumerableReadOnly_986( normalized, 'toJSON', toJSON );
+	_$setNonEnumerableReadOnly_986( normalized, 'MIN', 0.0 );
+	_$setNonEnumerableReadOnly_986( normalized, 'MAX', MAX_NORMALIZED );
 
 	return mt19937;
 
@@ -42335,7 +42335,7 @@ function __factory_611( options ) {
 
 // EXPORTS //
 
-var _$factory_611 = __factory_611;
+var _$factory_616 = __factory_616;
 
 /**
 * @license Apache-2.0
@@ -42359,8 +42359,8 @@ var _$factory_611 = __factory_611;
 
 // MODULES //
 
-/* removed: var _$factory_611 = require( './factory.js' ); */;
-/* removed: var _$randuint32_614 = require( './rand_uint32.js' ); */;
+/* removed: var _$factory_616 = require( './factory.js' ); */;
+/* removed: var _$randuint32_619 = require( './rand_uint32.js' ); */;
 
 
 // MAIN //
@@ -42435,14 +42435,14 @@ var _$factory_611 = __factory_611;
 * var v = mt19937();
 * // returns <number>
 */
-var mt19937 = _$factory_611({
-	'seed': _$randuint32_614()
+var mt19937 = _$factory_616({
+	'seed': _$randuint32_619()
 });
 
 
 // EXPORTS //
 
-var _$mt19937_613 = mt19937;
+var _$mt19937_618 = mt19937;
 
 /**
 * @license Apache-2.0
@@ -42488,19 +42488,19 @@ var _$mt19937_613 = mt19937;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$mt19937_613 = require( './main.js' ); */;
-/* removed: var _$factory_611 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$mt19937_618 = require( './main.js' ); */;
+/* removed: var _$factory_616 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$mt19937_613, 'factory', _$factory_611 );
+_$setNonEnumerableReadOnly_986( _$mt19937_618, 'factory', _$factory_616 );
 
 
 // EXPORTS //
 
-var _$mt19937_612 = _$mt19937_613;
+var _$mt19937_617 = _$mt19937_618;
 
 /**
 * @license Apache-2.0
@@ -42710,17 +42710,17 @@ var _$getMax_570 = getMax;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_962 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_966 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_984 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_988 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 var __isBoolean_567 = _$isBoolean_86.isPrimitive;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
 /* removed: var _$isUint32Array_166 = require( '@stdlib/assert/is-uint32array' ); */;
-var __mt19937_567 = _$mt19937_612.factory;
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_1009 = require( '@stdlib/utils/noop' ); */;
+var __mt19937_567 = _$mt19937_617.factory;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_1031 = require( '@stdlib/utils/noop' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
 /* removed: var _$wrap_572 = require( './randn.js' ); */;
 /* removed: var _$getMin_571 = require( './min.js' ); */;
@@ -42810,34 +42810,34 @@ function __factory_567( options ) {
 	}
 	randn = _$wrap_572( randu );
 
-	_$setNonEnumerableReadOnly_964( randn, 'NAME', 'box-muller' );
+	_$setNonEnumerableReadOnly_986( randn, 'NAME', 'box-muller' );
 	if ( opts.seed === null ) {
-		_$setNonEnumerableReadOnly_964( randn, 'seed', null );
-		_$setNonEnumerableReadOnly_964( randn, 'seedLength', null );
+		_$setNonEnumerableReadOnly_986( randn, 'seed', null );
+		_$setNonEnumerableReadOnly_986( randn, 'seedLength', null );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_962( randn, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_962( randn, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadOnlyAccessor_984( randn, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_984( randn, 'seedLength', getSeedLength );
 	}
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( options && options.prng ) {
-		_$setNonEnumerableReadWriteAccessor_966( randn, 'state', _$constantFunction_955( null ), _$noop_1009 );
-		_$setNonEnumerableReadOnly_964( randn, 'stateLength', null );
-		_$setNonEnumerableReadOnly_964( randn, 'byteLength', null );
-		_$setNonEnumerableReadOnly_964( randn, 'toJSON', _$constantFunction_955( null ) );
+		_$setNonEnumerableReadWriteAccessor_988( randn, 'state', _$constantFunction_977( null ), _$noop_1031 );
+		_$setNonEnumerableReadOnly_986( randn, 'stateLength', null );
+		_$setNonEnumerableReadOnly_986( randn, 'byteLength', null );
+		_$setNonEnumerableReadOnly_986( randn, 'toJSON', _$constantFunction_977( null ) );
 	} else {
-		_$setNonEnumerableReadWriteAccessor_966( randn, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_962( randn, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_962( randn, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_964( randn, 'toJSON', toJSON );
+		_$setNonEnumerableReadWriteAccessor_988( randn, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_984( randn, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_984( randn, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_986( randn, 'toJSON', toJSON );
 	}
-	_$setNonEnumerableReadOnly_964( randn, 'PRNG', randu );
+	_$setNonEnumerableReadOnly_986( randn, 'PRNG', randu );
 
 	if ( _$hasOwnProp_58( randu, 'MIN' ) ) {
-		_$setNonEnumerableReadOnly_964( randn, 'MIN', _$getMin_571( randu.MIN ) );
-		_$setNonEnumerableReadOnly_964( randn, 'MAX', _$getMax_570( randu.MIN ) );
+		_$setNonEnumerableReadOnly_986( randn, 'MIN', _$getMin_571( randu.MIN ) );
+		_$setNonEnumerableReadOnly_986( randn, 'MAX', _$getMax_570( randu.MIN ) );
 	} else {
-		_$setNonEnumerableReadOnly_964( randn, 'MIN', null );
-		_$setNonEnumerableReadOnly_964( randn, 'MAX', null );
+		_$setNonEnumerableReadOnly_986( randn, 'MIN', null );
+		_$setNonEnumerableReadOnly_986( randn, 'MAX', null );
 	}
 
 	return randn;
@@ -43059,14 +43059,14 @@ var _$randn_569 = randn;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$randn_569 = require( './main.js' ); */;
 /* removed: var _$factory_567 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$randn_569, 'factory', _$factory_567 );
+_$setNonEnumerableReadOnly_986( _$randn_569, 'factory', _$factory_567 );
 
 
 // EXPORTS //
@@ -43376,17 +43376,17 @@ var _$wrap_597 = __wrap_597;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_962 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_966 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_984 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_988 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 var __isBoolean_596 = _$isBoolean_86.isPrimitive;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
 /* removed: var _$isUint32Array_166 = require( '@stdlib/assert/is-uint32array' ); */;
-var __mt19937_596 = _$mt19937_612.factory;
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_1009 = require( '@stdlib/utils/noop' ); */;
+var __mt19937_596 = _$mt19937_617.factory;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_1031 = require( '@stdlib/utils/noop' ); */;
 /* removed: var _$floor_325 = require( '@stdlib/math/base/special/floor' ); */;
 /* removed: var _$UINT32_MAX_221 = require( '@stdlib/constants/math/uint32-max' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
@@ -43480,27 +43480,27 @@ function __factory_596( options ) {
 	}
 	randn = _$wrap_597( randu, randi );
 
-	_$setNonEnumerableReadOnly_964( randn, 'NAME', 'improved-ziggurat' );
+	_$setNonEnumerableReadOnly_986( randn, 'NAME', 'improved-ziggurat' );
 	if ( opts.seed === null ) {
-		_$setNonEnumerableReadOnly_964( randn, 'seed', null );
-		_$setNonEnumerableReadOnly_964( randn, 'seedLength', null );
+		_$setNonEnumerableReadOnly_986( randn, 'seed', null );
+		_$setNonEnumerableReadOnly_986( randn, 'seedLength', null );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_962( randn, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_962( randn, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadOnlyAccessor_984( randn, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_984( randn, 'seedLength', getSeedLength );
 	}
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( options && options.prng ) {
-		_$setNonEnumerableReadWriteAccessor_966( randn, 'state', _$constantFunction_955( null ), _$noop_1009 );
-		_$setNonEnumerableReadOnly_964( randn, 'stateLength', null );
-		_$setNonEnumerableReadOnly_964( randn, 'byteLength', null );
-		_$setNonEnumerableReadOnly_964( randn, 'toJSON', _$constantFunction_955( null ) );
+		_$setNonEnumerableReadWriteAccessor_988( randn, 'state', _$constantFunction_977( null ), _$noop_1031 );
+		_$setNonEnumerableReadOnly_986( randn, 'stateLength', null );
+		_$setNonEnumerableReadOnly_986( randn, 'byteLength', null );
+		_$setNonEnumerableReadOnly_986( randn, 'toJSON', _$constantFunction_977( null ) );
 	} else {
-		_$setNonEnumerableReadWriteAccessor_966( randn, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_962( randn, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_962( randn, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_964( randn, 'toJSON', toJSON );
+		_$setNonEnumerableReadWriteAccessor_988( randn, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_984( randn, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_984( randn, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_986( randn, 'toJSON', toJSON );
 	}
-	_$setNonEnumerableReadOnly_964( randn, 'PRNG', randu );
+	_$setNonEnumerableReadOnly_986( randn, 'PRNG', randu );
 
 	return randn;
 
@@ -43713,14 +43713,14 @@ var _$randn_599 = __randn_599;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$randn_599 = require( './main.js' ); */;
 /* removed: var _$factory_596 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$randn_599, 'factory', _$factory_596 );
+_$setNonEnumerableReadOnly_986( _$randn_599, 'factory', _$factory_596 );
 
 
 // EXPORTS //
@@ -43757,7 +43757,7 @@ prngs[ 'improved-ziggurat' ] = _$randn_598;
 
 // EXPORTS //
 
-var _$prngs_630 = prngs;
+var _$prngs_635 = prngs;
 
 /**
 * @license Apache-2.0
@@ -43781,17 +43781,17 @@ var _$prngs_630 = prngs;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_962 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_966 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_984 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_988 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
-var __isBoolean_627 = _$isBoolean_86.isPrimitive;
+var __isBoolean_632 = _$isBoolean_86.isPrimitive;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_1009 = require( '@stdlib/utils/noop' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_1031 = require( '@stdlib/utils/noop' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
-/* removed: var _$defaults_626 = require( './defaults.json' ); */;
-/* removed: var _$prngs_630 = require( './prngs.js' ); */;
+/* removed: var _$defaults_631 = require( './defaults.json' ); */;
+/* removed: var _$prngs_635 = require( './prngs.js' ); */;
 
 
 // MAIN //
@@ -43838,14 +43838,14 @@ var __isBoolean_627 = _$isBoolean_86.isPrimitive;
 * var v = randn();
 * // returns <number>
 */
-function __factory_627( options ) {
+function __factory_632( options ) {
 	var opts;
 	var rand;
 	var prng;
 
 	opts = {
-		'name': _$defaults_626.name,
-		'copy': _$defaults_626.copy
+		'name': _$defaults_631.name,
+		'copy': _$defaults_631.copy
 	};
 	if ( arguments.length ) {
 		if ( !_$isPlainObject_144( options ) ) {
@@ -43872,12 +43872,12 @@ function __factory_627( options ) {
 		}
 		if ( _$hasOwnProp_58( options, 'copy' ) ) {
 			opts.copy = options.copy;
-			if ( !__isBoolean_627( opts.copy ) ) {
+			if ( !__isBoolean_632( opts.copy ) ) {
 				throw new TypeError( 'invalid option. `copy` option must be a boolean. Option: `' + opts.copy + '`.' );
 			}
 		}
 	}
-	prng = _$prngs_630[ opts.name ];
+	prng = _$prngs_635[ opts.name ];
 	if ( prng === void 0 ) {
 		throw new Error( 'invalid option. Unrecognized/unsupported PRNG. Option: `' + opts.name + '`.' );
 	}
@@ -43901,25 +43901,25 @@ function __factory_627( options ) {
 			'prng': opts.prng
 		});
 	}
-	_$setNonEnumerableReadOnly_964( normal, 'NAME', 'randn' );
+	_$setNonEnumerableReadOnly_986( normal, 'NAME', 'randn' );
 
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( opts.prng ) {
-		_$setNonEnumerableReadOnly_964( normal, 'seed', null );
-		_$setNonEnumerableReadOnly_964( normal, 'seedLength', null );
-		_$setNonEnumerableReadWriteAccessor_966( normal, 'state', _$constantFunction_955( null ), _$noop_1009 );
-		_$setNonEnumerableReadOnly_964( normal, 'stateLength', null );
-		_$setNonEnumerableReadOnly_964( normal, 'byteLength', null );
-		_$setNonEnumerableReadOnly_964( normal, 'toJSON', _$constantFunction_955( null ) );
+		_$setNonEnumerableReadOnly_986( normal, 'seed', null );
+		_$setNonEnumerableReadOnly_986( normal, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_988( normal, 'state', _$constantFunction_977( null ), _$noop_1031 );
+		_$setNonEnumerableReadOnly_986( normal, 'stateLength', null );
+		_$setNonEnumerableReadOnly_986( normal, 'byteLength', null );
+		_$setNonEnumerableReadOnly_986( normal, 'toJSON', _$constantFunction_977( null ) );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_962( normal, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_962( normal, 'seedLength', getSeedLength );
-		_$setNonEnumerableReadWriteAccessor_966( normal, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_962( normal, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_962( normal, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_964( normal, 'toJSON', toJSON );
+		_$setNonEnumerableReadOnlyAccessor_984( normal, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_984( normal, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_988( normal, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_984( normal, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_984( normal, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_986( normal, 'toJSON', toJSON );
 	}
-	_$setNonEnumerableReadOnly_964( normal, 'PRNG', rand.PRNG );
+	_$setNonEnumerableReadOnly_986( normal, 'PRNG', rand.PRNG );
 	return normal;
 
 	/**
@@ -44020,7 +44020,7 @@ function __factory_627( options ) {
 
 // EXPORTS //
 
-var _$factory_627 = __factory_627;
+var _$factory_632 = __factory_632;
 
 /**
 * @license Apache-2.0
@@ -44044,7 +44044,7 @@ var _$factory_627 = __factory_627;
 
 // MODULES //
 
-/* removed: var _$factory_627 = require( './factory.js' ); */;
+/* removed: var _$factory_632 = require( './factory.js' ); */;
 
 
 // MAIN //
@@ -44060,12 +44060,12 @@ var _$factory_627 = __factory_627;
 * var v = normal();
 * // returns <number>
 */
-var normal = _$factory_627();
+var normal = _$factory_632();
 
 
 // EXPORTS //
 
-var _$normal_629 = normal;
+var _$normal_634 = normal;
 
 /**
 * @license Apache-2.0
@@ -44112,82 +44112,82 @@ var _$normal_629 = normal;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$normal_629 = require( './main.js' ); */;
-/* removed: var _$factory_627 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$normal_634 = require( './main.js' ); */;
+/* removed: var _$factory_632 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$normal_629, 'factory', _$factory_627 );
+_$setNonEnumerableReadOnly_986( _$normal_634, 'factory', _$factory_632 );
 
 
 // EXPORTS //
 
-var _$randn_628 = _$normal_629;
+var _$randn_633 = _$normal_634;
 
-var _$special_1040 = {};
+var _$special_1062 = {};
 // Special functions //
-/* removed: var _$jStat_1035 = require( './core.js' ); */;
+/* removed: var _$jStat_1057 = require( './core.js' ); */;
 
 // Log-gamma function
-_$jStat_1035.gammaln = _$gammaln_394;
-_$jStat_1035.loggam = _$jStat_1035.gammaln;
+_$jStat_1057.gammaln = _$gammaln_394;
+_$jStat_1057.loggam = _$jStat_1057.gammaln;
 
 // gamma of x
-_$jStat_1035.gammafn = _$gamma_336;
+_$jStat_1057.gammafn = _$gamma_336;
 
 
 /* removed: var _$gammainc_352 = require( '@stdlib/math/base/special/gammainc' ); */;
 // lower incomplete gamma function, which is usually typeset with a
 // lower-case greek gamma as the function symbol
-_$jStat_1035.gammap = function gammap(a, x) {
+_$jStat_1057.gammap = function gammap(a, x) {
   return _$gammainc_352(x, a, false);
 };
 
 
 // The lower regularized incomplete gamma function, usually written P(a,x)
-_$jStat_1035.lowRegGamma = function lowRegGamma(a, x) {
+_$jStat_1057.lowRegGamma = function lowRegGamma(a, x) {
   return _$gammainc_352(x, a);
 };
 
 // natural log factorial of n
-_$jStat_1035.factorialln = _$factorialln_323;
+_$jStat_1057.factorialln = _$factorialln_323;
 
 // factorial of n
-_$jStat_1035.factorial = _$factorial_321;
+_$jStat_1057.factorial = _$factorial_321;
 
 // combinations of n, m
-_$jStat_1035.combination = function combination(n, m) {
+_$jStat_1057.combination = function combination(n, m) {
   // make sure n or m don't exceed the upper limit of usable values
   return (n > 170 || m > 170)
-      ? Math.exp(_$jStat_1035.combinationln(n, m))
-      : (_$jStat_1035.factorial(n) / _$jStat_1035.factorial(m)) / _$jStat_1035.factorial(n - m);
+      ? Math.exp(_$jStat_1057.combinationln(n, m))
+      : (_$jStat_1057.factorial(n) / _$jStat_1057.factorial(m)) / _$jStat_1057.factorial(n - m);
 };
 
 
-_$jStat_1035.combinationln = function combinationln(n, m){
-  return _$jStat_1035.factorialln(n) - _$jStat_1035.factorialln(m) - _$jStat_1035.factorialln(n - m);
+_$jStat_1057.combinationln = function combinationln(n, m){
+  return _$jStat_1057.factorialln(n) - _$jStat_1057.factorialln(m) - _$jStat_1057.factorialln(n - m);
 };
 
 
 // permutations of n, m
-_$jStat_1035.permutation = function permutation(n, m) {
-  return _$jStat_1035.factorial(n) / _$jStat_1035.factorial(n - m);
+_$jStat_1057.permutation = function permutation(n, m) {
+  return _$jStat_1057.factorial(n) / _$jStat_1057.factorial(n - m);
 };
 
 
 // beta function
-_$jStat_1035.betafn = _$beta_258;
+_$jStat_1057.betafn = _$beta_258;
 
 
 // natural logarithm of beta function
-_$jStat_1035.betaln = _$betaln_267;
+_$jStat_1057.betaln = _$betaln_267;
 
 
 // Evaluates the continued fraction for incomplete beta function by modified
 // Lentz's method.
-_$jStat_1035.betacf = function betacf(x, a, b) {
+_$jStat_1057.betacf = function betacf(x, a, b) {
   var fpmin = 1e-30;
   var m = 1;
   var qab = a + b;
@@ -44235,43 +44235,43 @@ _$jStat_1035.betacf = function betacf(x, a, b) {
 
 
 // Returns the inverse of the lower regularized inomplete gamma function
-_$jStat_1035.gammapinv = _$gammaincinv_377;
+_$jStat_1057.gammapinv = _$gammaincinv_377;
 
 
 // Returns the error function erf(x)
-_$jStat_1035.erf = _$erf_279;
+_$jStat_1057.erf = _$erf_279;
 
 
 // Returns the complmentary error function erfc(x)
-_$jStat_1035.erfc = _$erfc_289;
+_$jStat_1057.erfc = _$erfc_289;
 
 
 // Returns the inverse of the complementary error function
-_$jStat_1035.erfcinv = _$erfcinv_299;
+_$jStat_1057.erfcinv = _$erfcinv_299;
 
 
 // Returns the inverse of the incomplete beta function
-_$jStat_1035.ibetainv = _$betaincinv_263;
+_$jStat_1057.ibetainv = _$betaincinv_263;
 
 
 // Returns the incomplete beta function I_x(a,b)
-_$jStat_1035.ibeta = _$betainc_261;
+_$jStat_1057.ibeta = _$betainc_261;
 
 // Returns a normal deviate (mu=0, sigma=1).
 // If n and m are specified it returns a object of normal deviates.
-/* removed: var _$randn_628 = require( '@stdlib/random/base/randn' ); */;
-_$jStat_1035.randn = function randn(n, m) {
+/* removed: var _$randn_633 = require( '@stdlib/random/base/randn' ); */;
+_$jStat_1057.randn = function randn(n, m) {
   var u, v, x, y, q;
   if (!m)
     m = n;
   if (n)
-    return _$jStat_1035.create(n, m, function() { return _$jStat_1035.randn(); });
-  return _$randn_628();
+    return _$jStat_1057.create(n, m, function() { return _$jStat_1057.randn(); });
+  return _$randn_633();
 };
 
 
 // Returns a gamma deviate by the method of Marsaglia and Tsang.
-_$jStat_1035.randg = function randg(shape, n, m) {
+_$jStat_1057.randg = function randg(shape, n, m) {
   var oalph = shape;
   var a1, a2, u, v, x, mat;
   if (!m)
@@ -44279,8 +44279,8 @@ _$jStat_1035.randg = function randg(shape, n, m) {
   if (!shape)
     shape = 1;
   if (n) {
-    mat = _$jStat_1035.zeros(n,m);
-    mat.alter(function() { return _$jStat_1035.randg(shape); });
+    mat = _$jStat_1057.zeros(n,m);
+    mat.alter(function() { return _$jStat_1057.randg(shape); });
     return mat;
   }
   if (shape < 1)
@@ -44289,11 +44289,11 @@ _$jStat_1035.randg = function randg(shape, n, m) {
   a2 = 1 / Math.sqrt(9 * a1);
   do {
     do {
-      x = _$jStat_1035.randn();
+      x = _$jStat_1057.randn();
       v = 1 + a2 * x;
     } while(v <= 0);
     v = v * v * v;
-    u = _$jStat_1035._random_fn();
+    u = _$jStat_1057._random_fn();
   } while(u > 1 - 0.331 * Math.pow(x, 4) &&
           Math.log(u) > 0.5 * x*x + a1 * (1 - v + Math.log(v)));
   // alpha > 1
@@ -44301,7 +44301,7 @@ _$jStat_1035.randg = function randg(shape, n, m) {
     return a1 * v;
   // alpha < 1
   do {
-    u = _$jStat_1035._random_fn();
+    u = _$jStat_1057._random_fn();
   } while(u === 0);
   return Math.pow(u, 1 / oalph) * a1 * v;
 };
@@ -44310,9 +44310,9 @@ _$jStat_1035.randg = function randg(shape, n, m) {
 // making use of static methods on the instance
 (function(funcs) {
   for (var i = 0; i < funcs.length; i++) (function(passfunc) {
-    _$jStat_1035.fn[passfunc] = function() {
-      return _$jStat_1035(
-          _$jStat_1035.map(this, function(value) { return _$jStat_1035[passfunc](value); }));
+    _$jStat_1057.fn[passfunc] = function() {
+      return _$jStat_1057(
+          _$jStat_1057.map(this, function(value) { return _$jStat_1057[passfunc](value); }));
     }
   })(funcs[i]);
 })('gammaln gammafn factorial factorialln'.split(' '));
@@ -44320,8 +44320,8 @@ _$jStat_1035.randg = function randg(shape, n, m) {
 
 (function(funcs) {
   for (var i = 0; i < funcs.length; i++) (function(passfunc) {
-    _$jStat_1035.fn[passfunc] = function() {
-      return _$jStat_1035(_$jStat_1035[passfunc].apply(null, arguments));
+    _$jStat_1057.fn[passfunc] = function() {
+      return _$jStat_1057(_$jStat_1057[passfunc].apply(null, arguments));
     };
   })(funcs[i]);
 })('randn'.split(' '));
@@ -44452,7 +44452,7 @@ function pdf( x, alpha, beta ) {
 
 // EXPORTS //
 
-var _$pdf_677 = pdf;
+var _$pdf_682 = pdf;
 
 /**
 * @license Apache-2.0
@@ -44476,7 +44476,7 @@ var _$pdf_677 = pdf;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$betaln_267 = require( '@stdlib/math/base/special/betaln' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$log1p_469 = require( '@stdlib/math/base/special/log1p' ); */;
@@ -44503,7 +44503,7 @@ var _$pdf_677 = pdf;
 * y = pdf( 0.3 );
 * // returns ~0.695
 */
-function __factory_675( alpha, beta ) {
+function __factory_680( alpha, beta ) {
 	var betalnAB;
 	if (
 		_$isnan_231( alpha ) ||
@@ -44511,7 +44511,7 @@ function __factory_675( alpha, beta ) {
 		alpha <= 0.0 ||
 		beta <= 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	betalnAB = _$betaln_267( alpha, beta );
 	return pdf;
@@ -44564,7 +44564,7 @@ function __factory_675( alpha, beta ) {
 
 // EXPORTS //
 
-var _$factory_675 = __factory_675;
+var _$factory_680 = __factory_680;
 
 /**
 * @license Apache-2.0
@@ -44614,19 +44614,19 @@ var _$factory_675 = __factory_675;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_677 = require( './pdf.js' ); */;
-/* removed: var _$factory_675 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_682 = require( './pdf.js' ); */;
+/* removed: var _$factory_680 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$pdf_677, 'factory', _$factory_675 );
+_$setNonEnumerableReadOnly_986( _$pdf_682, 'factory', _$factory_680 );
 
 
 // EXPORTS //
 
-var _$pdf_676 = _$pdf_677;
+var _$pdf_681 = _$pdf_682;
 
 /**
 * @license Apache-2.0
@@ -44730,7 +44730,7 @@ function cdf( x, alpha, beta ) {
 
 // EXPORTS //
 
-var _$cdf_666 = cdf;
+var _$cdf_671 = cdf;
 
 /**
 * @license Apache-2.0
@@ -44754,7 +44754,7 @@ var _$cdf_666 = cdf;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$betainc_261 = require( '@stdlib/math/base/special/betainc' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
@@ -44777,14 +44777,14 @@ var _$cdf_666 = cdf;
 * y = cdf( 0.3 );
 * // returns ~0.369
 */
-function __factory_667( alpha, beta ) {
+function __factory_672( alpha, beta ) {
 	if (
 		_$isnan_231( alpha ) ||
 		_$isnan_231( beta ) ||
 		alpha <= 0.0 ||
 		beta <= 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return cdf;
 
@@ -44816,7 +44816,7 @@ function __factory_667( alpha, beta ) {
 
 // EXPORTS //
 
-var _$factory_667 = __factory_667;
+var _$factory_672 = __factory_672;
 
 /**
 * @license Apache-2.0
@@ -44866,19 +44866,19 @@ var _$factory_667 = __factory_667;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_666 = require( './cdf.js' ); */;
-/* removed: var _$factory_667 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_671 = require( './cdf.js' ); */;
+/* removed: var _$factory_672 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$cdf_666, 'factory', _$factory_667 );
+_$setNonEnumerableReadOnly_986( _$cdf_671, 'factory', _$factory_672 );
 
 
 // EXPORTS //
 
-var _$cdf_668 = _$cdf_666;
+var _$cdf_673 = _$cdf_671;
 
 /**
 * @license Apache-2.0
@@ -44970,7 +44970,7 @@ function quantile( p, alpha, beta ) {
 
 // EXPORTS //
 
-var _$quantile_680 = quantile;
+var _$quantile_685 = quantile;
 
 /**
 * @license Apache-2.0
@@ -44994,7 +44994,7 @@ var _$quantile_680 = quantile;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$betaincinv_263 = require( '@stdlib/math/base/special/betaincinv' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
@@ -45016,14 +45016,14 @@ var _$quantile_680 = quantile;
 * y = quantile( 0.8 );
 * // returns ~0.986
 */
-function __factory_678( alpha, beta ) {
+function __factory_683( alpha, beta ) {
 	if (
 		_$isnan_231( alpha ) ||
 		_$isnan_231( beta ) ||
 		alpha <= 0.0 ||
 		beta <= 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return quantile;
 
@@ -45053,7 +45053,7 @@ function __factory_678( alpha, beta ) {
 
 // EXPORTS //
 
-var _$factory_678 = __factory_678;
+var _$factory_683 = __factory_683;
 
 /**
 * @license Apache-2.0
@@ -45103,19 +45103,19 @@ var _$factory_678 = __factory_678;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_680 = require( './quantile.js' ); */;
-/* removed: var _$factory_678 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_685 = require( './quantile.js' ); */;
+/* removed: var _$factory_683 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$quantile_680, 'factory', _$factory_678 );
+_$setNonEnumerableReadOnly_986( _$quantile_685, 'factory', _$factory_683 );
 
 
 // EXPORTS //
 
-var _$quantile_679 = _$quantile_680;
+var _$quantile_684 = _$quantile_685;
 
 /**
 * @license Apache-2.0
@@ -45184,7 +45184,7 @@ function mean( alpha, beta ) {
 
 // EXPORTS //
 
-var _$mean_670 = mean;
+var _$mean_675 = mean;
 
 /**
 * @license Apache-2.0
@@ -45226,12 +45226,12 @@ var _$mean_670 = mean;
 
 // MODULES //
 
-/* removed: var _$mean_670 = require( './mean.js' ); */;
+/* removed: var _$mean_675 = require( './mean.js' ); */;
 
 
 // EXPORTS //
 
-var _$mean_669 = _$mean_670;
+var _$mean_674 = _$mean_675;
 
 /**
 * @license Apache-2.0
@@ -45305,7 +45305,7 @@ function median( alpha, beta ) {
 
 // EXPORTS //
 
-var _$median_672 = median;
+var _$median_677 = median;
 
 /**
 * @license Apache-2.0
@@ -45347,12 +45347,12 @@ var _$median_672 = median;
 
 // MODULES //
 
-/* removed: var _$median_672 = require( './median.js' ); */;
+/* removed: var _$median_677 = require( './median.js' ); */;
 
 
 // EXPORTS //
 
-var _$median_671 = _$median_672;
+var _$median_676 = _$median_677;
 
 /**
 * @license Apache-2.0
@@ -45421,7 +45421,7 @@ function mode( alpha, beta ) {
 
 // EXPORTS //
 
-var _$mode_674 = mode;
+var _$mode_679 = mode;
 
 /**
 * @license Apache-2.0
@@ -45460,12 +45460,12 @@ var _$mode_674 = mode;
 
 // MODULES //
 
-/* removed: var _$mode_674 = require( './mode.js' ); */;
+/* removed: var _$mode_679 = require( './mode.js' ); */;
 
 
 // EXPORTS //
 
-var _$mode_673 = _$mode_674;
+var _$mode_678 = _$mode_679;
 
 /**
 * @license Apache-2.0
@@ -45700,7 +45700,7 @@ var _$isNonNegativeInteger_131 = __isNonNegativeInteger_131;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$isNonNegativeInteger_131 = require( './main.js' ); */;
 /* removed: var _$isNonNegativeInteger_133 = require( './primitive.js' ); */;
 /* removed: var _$isNonNegativeInteger_132 = require( './object.js' ); */;
@@ -45708,8 +45708,8 @@ var _$isNonNegativeInteger_131 = __isNonNegativeInteger_131;
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$isNonNegativeInteger_131, 'isPrimitive', _$isNonNegativeInteger_133 );
-_$setNonEnumerableReadOnly_964( _$isNonNegativeInteger_131, 'isObject', _$isNonNegativeInteger_132 );
+_$setNonEnumerableReadOnly_986( _$isNonNegativeInteger_131, 'isPrimitive', _$isNonNegativeInteger_133 );
+_$setNonEnumerableReadOnly_986( _$isNonNegativeInteger_131, 'isObject', _$isNonNegativeInteger_132 );
 
 
 // EXPORTS //
@@ -45738,8 +45738,8 @@ var _$isNonNegativeInteger_130 = _$isNonNegativeInteger_131;
 
 // MODULES //
 
-/* removed: var _$getPrototype_976 = require( '@stdlib/utils/get-prototype-of' ); */;
-/* removed: var _$nativeClass_1004 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$getPrototype_998 = require( '@stdlib/utils/get-prototype-of' ); */;
+/* removed: var _$nativeClass_1026 = require( '@stdlib/utils/native-class' ); */;
 
 
 // MAIN //
@@ -45768,10 +45768,10 @@ function isError( value ) {
 	}
 	// Walk the prototype tree until we find an object having the desired native class...
 	while ( value ) {
-		if ( _$nativeClass_1004( value ) === '[object Error]' ) {
+		if ( _$nativeClass_1026( value ) === '[object Error]' ) {
 			return true;
 		}
-		value = _$getPrototype_976( value );
+		value = _$getPrototype_998( value );
 	}
 	return false;
 }
@@ -45967,7 +45967,7 @@ var _$test_158 = __test_158;
 // MODULES //
 
 /* removed: var _$hasToStringTagSupport_64 = require( '@stdlib/assert/has-tostringtag-support' ); */;
-/* removed: var _$nativeClass_1004 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_1026 = require( '@stdlib/utils/native-class' ); */;
 /* removed: var _$test_158 = require( './try2valueof.js' ); */;
 
 
@@ -46000,7 +46000,7 @@ function __isString_156( value ) {
 		if ( __FLG_156 ) {
 			return _$test_158( value );
 		}
-		return ( _$nativeClass_1004( value ) === '[object String]' );
+		return ( _$nativeClass_1026( value ) === '[object String]' );
 	}
 	return false;
 }
@@ -46119,7 +46119,7 @@ var _$isString_155 = __isString_155;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$isString_155 = require( './main.js' ); */;
 /* removed: var _$isString_157 = require( './primitive.js' ); */;
 /* removed: var _$isString_156 = require( './object.js' ); */;
@@ -46127,8 +46127,8 @@ var _$isString_155 = __isString_155;
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$isString_155, 'isPrimitive', _$isString_157 );
-_$setNonEnumerableReadOnly_964( _$isString_155, 'isObject', _$isString_156 );
+_$setNonEnumerableReadOnly_986( _$isString_155, 'isPrimitive', _$isString_157 );
+_$setNonEnumerableReadOnly_986( _$isString_155, 'isObject', _$isString_156 );
 
 
 // EXPORTS //
@@ -46222,7 +46222,7 @@ var RE_REGEXP = /^\/((?:\\\/|[^\/])+)\/([imgy]*)$/; // eslint-disable-line no-us
 
 // EXPORTS //
 
-var _$RE_REGEXP_650 = RE_REGEXP;
+var _$RE_REGEXP_655 = RE_REGEXP;
 
 /**
 * @license Apache-2.0
@@ -46246,8 +46246,8 @@ var _$RE_REGEXP_650 = RE_REGEXP;
 
 // MODULES //
 
-var __isString_1019 = _$isString_154.isPrimitive;
-/* removed: var _$RE_REGEXP_650 = require( '@stdlib/regexp/regexp' ); */;
+var __isString_1041 = _$isString_154.isPrimitive;
+/* removed: var _$RE_REGEXP_655 = require( '@stdlib/regexp/regexp' ); */;
 
 
 // MAIN //
@@ -46264,11 +46264,11 @@ var __isString_1019 = _$isString_154.isPrimitive;
 * // returns /beep/
 */
 function reFromString( str ) {
-	if ( !__isString_1019( str ) ) {
+	if ( !__isString_1041( str ) ) {
 		throw new TypeError( 'invalid argument. Must provide a regular expression string. Value: `' + str + '`.' );
 	}
 	// Capture the regular expression pattern and any flags:
-	str = _$RE_REGEXP_650.exec( str );
+	str = _$RE_REGEXP_655.exec( str );
 
 	// Create a new regular expression:
 	return ( str ) ? new RegExp( str[1], str[2] ) : null;
@@ -46277,7 +46277,7 @@ function reFromString( str ) {
 
 // EXPORTS //
 
-var _$reFromString_1019 = reFromString;
+var _$reFromString_1041 = reFromString;
 
 /**
 * @license Apache-2.0
@@ -46313,12 +46313,12 @@ var _$reFromString_1019 = reFromString;
 
 // MODULES //
 
-/* removed: var _$reFromString_1019 = require( './from_string.js' ); */;
+/* removed: var _$reFromString_1041 = require( './from_string.js' ); */;
 
 
 // EXPORTS //
 
-var _$reFromString_1020 = _$reFromString_1019;
+var _$reFromString_1042 = _$reFromString_1041;
 
 /**
 * @license Apache-2.0
@@ -46555,7 +46555,7 @@ var _$isnan_127 = __isnan_127;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$isnan_127 = require( './main.js' ); */;
 /* removed: var _$isnan_129 = require( './primitive.js' ); */;
 /* removed: var _$isnan_128 = require( './object.js' ); */;
@@ -46563,8 +46563,8 @@ var _$isnan_127 = __isnan_127;
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$isnan_127, 'isPrimitive', _$isnan_129 );
-_$setNonEnumerableReadOnly_964( _$isnan_127, 'isObject', _$isnan_128 );
+_$setNonEnumerableReadOnly_986( _$isnan_127, 'isPrimitive', _$isnan_129 );
+_$setNonEnumerableReadOnly_986( _$isnan_127, 'isObject', _$isnan_128 );
 
 
 // EXPORTS //
@@ -46595,8 +46595,8 @@ var _$isnan_126 = _$isnan_127;
 
 /* removed: var _$isnan_126 = require( '@stdlib/assert/is-nan' ); */;
 /* removed: var _$isCollection_94 = require( '@stdlib/assert/is-collection' ); */;
-var __isString_987 = _$isString_154.isPrimitive;
-var __isInteger_987 = _$isInteger_118.isPrimitive;
+var __isString_1009 = _$isString_154.isPrimitive;
+var __isInteger_1009 = _$isInteger_118.isPrimitive;
 
 
 // MAIN //
@@ -46657,7 +46657,7 @@ var __isInteger_987 = _$isInteger_118.isPrimitive;
 function indexOf( arr, searchElement, fromIndex ) {
 	var len;
 	var i;
-	if ( !_$isCollection_94( arr ) && !__isString_987( arr ) ) {
+	if ( !_$isCollection_94( arr ) && !__isString_1009( arr ) ) {
 		throw new TypeError( 'invalid argument. First argument must be an array-like object. Value: `' + arr + '`.' );
 	}
 	len = arr.length;
@@ -46665,7 +46665,7 @@ function indexOf( arr, searchElement, fromIndex ) {
 		return -1;
 	}
 	if ( arguments.length === 3 ) {
-		if ( !__isInteger_987( fromIndex ) ) {
+		if ( !__isInteger_1009( fromIndex ) ) {
 			throw new TypeError( 'invalid argument. `fromIndex` must be an integer. Value: `' + fromIndex + '`.' );
 		}
 		if ( fromIndex >= 0 ) {
@@ -46702,7 +46702,7 @@ function indexOf( arr, searchElement, fromIndex ) {
 
 // EXPORTS //
 
-var _$indexOf_987 = indexOf;
+var _$indexOf_1009 = indexOf;
 
 /**
 * @license Apache-2.0
@@ -46771,12 +46771,12 @@ var _$indexOf_987 = indexOf;
 
 // MODULES //
 
-/* removed: var _$indexOf_987 = require( './index_of.js' ); */;
+/* removed: var _$indexOf_1009 = require( './index_of.js' ); */;
 
 
 // EXPORTS //
 
-var _$indexOf_986 = _$indexOf_987;
+var _$indexOf_1008 = _$indexOf_1009;
 
 /**
 * @license Apache-2.0
@@ -46827,7 +46827,7 @@ function keys( value ) {
 
 // EXPORTS //
 
-var _$keys_988 = keys;
+var _$keys_1010 = keys;
 
 /**
 * @license Apache-2.0
@@ -46851,7 +46851,7 @@ var _$keys_988 = keys;
 
 // MODULES //
 
-/* removed: var _$keys_988 = require( './builtin.js' ); */;
+/* removed: var _$keys_1010 = require( './builtin.js' ); */;
 
 
 // FUNCTIONS //
@@ -46862,8 +46862,8 @@ var _$keys_988 = keys;
 * @private
 * @returns {boolean} boolean indicating whether the built-in implementation returns the expected number of keys
 */
-function __test_991() {
-	return ( _$keys_988( arguments ) || '' ).length !== 2;
+function __test_1013() {
+	return ( _$keys_1010( arguments ) || '' ).length !== 2;
 }
 
 
@@ -46879,14 +46879,14 @@ function __test_991() {
 * @private
 * @returns {boolean} boolean indicating whether a built-in implementation supports `arguments`
 */
-function __check_991() {
-	return __test_991( 1, 2 );
+function __check_1013() {
+	return __test_1013( 1, 2 );
 }
 
 
 // EXPORTS //
 
-var _$check_991 = __check_991;
+var _$check_1013 = __check_1013;
 
 /**
 * @license Apache-2.0
@@ -46910,12 +46910,12 @@ var _$check_991 = __check_991;
 
 // MAIN //
 
-var __bool_993 = ( typeof Object.keys !== 'undefined' );
+var __bool_1015 = ( typeof Object.keys !== 'undefined' );
 
 
 // EXPORTS //
 
-var _$bool_993 = __bool_993;
+var _$bool_1015 = __bool_1015;
 
 /**
 * @license Apache-2.0
@@ -46939,7 +46939,7 @@ var _$bool_993 = __bool_993;
 
 // MODULES //
 
-/* removed: var _$nativeClass_1004 = require( '@stdlib/utils/native-class' ); */;
+/* removed: var _$nativeClass_1026 = require( '@stdlib/utils/native-class' ); */;
 
 
 // MAIN //
@@ -46964,7 +46964,7 @@ var _$bool_993 = __bool_993;
 * // returns false
 */
 function isArguments( value ) {
-	return ( _$nativeClass_1004( value ) === '[object Arguments]' );
+	return ( _$nativeClass_1026( value ) === '[object Arguments]' );
 }
 
 
@@ -47416,12 +47416,12 @@ var _$isArguments_81 = __isArguments_81;
 // MODULES //
 
 /* removed: var _$isArguments_81 = require( '@stdlib/assert/is-arguments' ); */;
-/* removed: var _$keys_988 = require( './builtin.js' ); */;
+/* removed: var _$keys_1010 = require( './builtin.js' ); */;
 
 
 // VARIABLES //
 
-var __slice_989 = Array.prototype.slice;
+var __slice_1011 = Array.prototype.slice;
 
 
 // MAIN //
@@ -47442,17 +47442,17 @@ var __slice_989 = Array.prototype.slice;
 * var k = keys( obj );
 * // e.g., returns [ 'beep', 'foo' ]
 */
-function __keys_989( value ) {
+function __keys_1011( value ) {
 	if ( _$isArguments_81( value ) ) {
-		return _$keys_988( __slice_989.call( value ) );
+		return _$keys_1010( __slice_1011.call( value ) );
 	}
-	return _$keys_988( value );
+	return _$keys_1010( value );
 }
 
 
 // EXPORTS //
 
-var _$keys_989 = __keys_989;
+var _$keys_1011 = __keys_1011;
 
 /**
 * @license Apache-2.0
@@ -47477,18 +47477,18 @@ var _$keys_989 = __keys_989;
 // MODULES //
 
 /* removed: var _$isEnumerableProperty_97 = require( '@stdlib/assert/is-enumerable-property' ); */;
-/* removed: var _$noop_1009 = require( '@stdlib/utils/noop' ); */;
+/* removed: var _$noop_1031 = require( '@stdlib/utils/noop' ); */;
 
 
 // MAIN //
 
 // Note: certain environments treat an object's prototype as enumerable, which, as a matter of convention, it shouldn't be...
-var __bool_994 = _$isEnumerableProperty_97( _$noop_1009, 'prototype' );
+var __bool_1016 = _$isEnumerableProperty_97( _$noop_1031, 'prototype' );
 
 
 // EXPORTS //
 
-var _$bool_994 = __bool_994;
+var _$bool_1016 = __bool_1016;
 
 /**
 * @license Apache-2.0
@@ -47517,7 +47517,7 @@ var _$bool_994 = __bool_994;
 
 // VARIABLES //
 
-var __obj_995 = {
+var __obj_1017 = {
 	'toString': null
 };
 
@@ -47525,12 +47525,12 @@ var __obj_995 = {
 // MAIN //
 
 // Note: certain environments don't allow enumeration of overwritten properties which are considered non-enumerable...
-var __bool_995 = !_$isEnumerableProperty_97( __obj_995, 'toString' );
+var __bool_1017 = !_$isEnumerableProperty_97( __obj_1017, 'toString' );
 
 
 // EXPORTS //
 
-var _$bool_995 = __bool_995;
+var _$bool_1017 = __bool_1017;
 
 /**
 * @license Apache-2.0
@@ -47568,9 +47568,9 @@ function isConstructorPrototype( value ) {
 
 // EXPORTS //
 
-var _$isConstructorPrototype_998 = isConstructorPrototype;
+var _$isConstructorPrototype_1020 = isConstructorPrototype;
 
-var _$excluded_keys_990=[
+var _$excluded_keys_1012=[
 	"console",
 	"external",
 	"frame",
@@ -47620,7 +47620,7 @@ var w = ( typeof window === 'undefined' ) ? void 0 : window;
 
 // EXPORTS //
 
-var _$w_1003 = w;
+var _$w_1025 = w;
 
 /**
 * @license Apache-2.0
@@ -47645,16 +47645,16 @@ var _$w_1003 = w;
 // MODULES //
 
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$indexOf_986 = require( '@stdlib/utils/index-of' ); */;
-/* removed: var _$main_1025 = require( '@stdlib/utils/type-of' ); */;
-/* removed: var _$isConstructorPrototype_998 = require( './is_constructor_prototype.js' ); */;
-/* removed: var _$excluded_keys_990 = require( './excluded_keys.json' ); */;
-/* removed: var _$w_1003 = require( './window.js' ); */;
+/* removed: var _$indexOf_1008 = require( '@stdlib/utils/index-of' ); */;
+/* removed: var _$main_1047 = require( '@stdlib/utils/type-of' ); */;
+/* removed: var _$isConstructorPrototype_1020 = require( './is_constructor_prototype.js' ); */;
+/* removed: var _$excluded_keys_1012 = require( './excluded_keys.json' ); */;
+/* removed: var _$w_1025 = require( './window.js' ); */;
 
 
 // VARIABLES //
 
-var __bool_992;
+var __bool_1014;
 
 
 // FUNCTIONS //
@@ -47667,20 +47667,20 @@ var __bool_992;
 * @private
 * @returns {boolean} boolean indicating whether an environment is buggy
 */
-function __check_992() {
+function __check_1014() {
 	var k;
-	if ( _$main_1025( _$w_1003 ) === 'undefined' ) {
+	if ( _$main_1047( _$w_1025 ) === 'undefined' ) {
 		return false;
 	}
-	for ( k in _$w_1003 ) { // eslint-disable-line guard-for-in
+	for ( k in _$w_1025 ) { // eslint-disable-line guard-for-in
 		try {
 			if (
-				_$indexOf_986( _$excluded_keys_990, k ) === -1 &&
-				_$hasOwnProp_58( _$w_1003, k ) &&
-				_$w_1003[ k ] !== null &&
-				_$main_1025( _$w_1003[ k ] ) === 'object'
+				_$indexOf_1008( _$excluded_keys_1012, k ) === -1 &&
+				_$hasOwnProp_58( _$w_1025, k ) &&
+				_$w_1025[ k ] !== null &&
+				_$main_1047( _$w_1025[ k ] ) === 'object'
 			) {
-				_$isConstructorPrototype_998( _$w_1003[ k ] );
+				_$isConstructorPrototype_1020( _$w_1025[ k ] );
 			}
 		} catch ( err ) { // eslint-disable-line no-unused-vars
 			return true;
@@ -47692,12 +47692,12 @@ function __check_992() {
 
 // MAIN //
 
-__bool_992 = __check_992();
+__bool_1014 = __check_1014();
 
 
 // EXPORTS //
 
-var _$bool_992 = __bool_992;
+var _$bool_1014 = __bool_1014;
 
 /**
 * @license Apache-2.0
@@ -47721,12 +47721,12 @@ var _$bool_992 = __bool_992;
 
 // MAIN //
 
-var __bool_996 = ( typeof window !== 'undefined' );
+var __bool_1018 = ( typeof window !== 'undefined' );
 
 
 // EXPORTS //
 
-var _$bool_996 = __bool_996;
+var _$bool_1018 = __bool_1018;
 
 /**
 * @license Apache-2.0
@@ -47750,9 +47750,9 @@ var _$bool_996 = __bool_996;
 
 // MODULES //
 
-/* removed: var _$bool_992 = require( './has_automation_equality_bug.js' ); */;
-/* removed: var _$isConstructorPrototype_998 = require( './is_constructor_prototype.js' ); */;
-/* removed: var _$bool_996 = require( './has_window.js' ); */;
+/* removed: var _$bool_1014 = require( './has_automation_equality_bug.js' ); */;
+/* removed: var _$isConstructorPrototype_1020 = require( './is_constructor_prototype.js' ); */;
+/* removed: var _$bool_1018 = require( './has_window.js' ); */;
 
 
 // MAIN //
@@ -47765,11 +47765,11 @@ var _$bool_996 = __bool_996;
 * @returns {boolean} boolean indicating whether a value equals the prototype of its constructor
 */
 function wrapper( value ) {
-	if ( _$bool_996 === false && !_$bool_992 ) {
-		return _$isConstructorPrototype_998( value );
+	if ( _$bool_1018 === false && !_$bool_1014 ) {
+		return _$isConstructorPrototype_1020( value );
 	}
 	try {
-		return _$isConstructorPrototype_998( value );
+		return _$isConstructorPrototype_1020( value );
 	} catch ( error ) { // eslint-disable-line no-unused-vars
 		return false;
 	}
@@ -47778,9 +47778,9 @@ function wrapper( value ) {
 
 // EXPORTS //
 
-var _$wrapper_999 = wrapper;
+var _$wrapper_1021 = wrapper;
 
-var _$non_enumerable_1001=[
+var _$non_enumerable_1023=[
 	"toString",
 	"toLocaleString",
 	"valueOf",
@@ -47815,10 +47815,10 @@ var _$non_enumerable_1001=[
 /* removed: var _$isObjectLike_140 = require( '@stdlib/assert/is-object-like' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
 /* removed: var _$isArguments_81 = require( '@stdlib/assert/is-arguments' ); */;
-/* removed: var _$bool_994 = require( './has_enumerable_prototype_bug.js' ); */;
-/* removed: var _$bool_995 = require( './has_non_enumerable_properties_bug.js' ); */;
-/* removed: var _$wrapper_999 = require( './is_constructor_prototype_wrapper.js' ); */;
-/* removed: var _$non_enumerable_1001 = require( './non_enumerable.json' ); */;
+/* removed: var _$bool_1016 = require( './has_enumerable_prototype_bug.js' ); */;
+/* removed: var _$bool_1017 = require( './has_non_enumerable_properties_bug.js' ); */;
+/* removed: var _$wrapper_1021 = require( './is_constructor_prototype_wrapper.js' ); */;
+/* removed: var _$non_enumerable_1023 = require( './non_enumerable.json' ); */;
 
 
 // MAIN //
@@ -47839,7 +47839,7 @@ var _$non_enumerable_1001=[
 * var k = keys( obj );
 * // e.g., returns [ 'beep', 'foo' ]
 */
-function __keys_1002( value ) {
+function __keys_1024( value ) {
 	var skipConstructor;
 	var skipPrototype;
 	var isFcn;
@@ -47869,17 +47869,17 @@ function __keys_1002( value ) {
 		if ( isFcn === false && !_$isObjectLike_140( value ) ) {
 			return out;
 		}
-		skipPrototype = ( _$bool_994 && isFcn );
+		skipPrototype = ( _$bool_1016 && isFcn );
 	}
 	for ( k in value ) {
 		if ( !( skipPrototype && k === 'prototype' ) && _$hasOwnProp_58( value, k ) ) {
 			out.push( String( k ) );
 		}
 	}
-	if ( _$bool_995 ) {
-		skipConstructor = _$wrapper_999( value );
-		for ( i = 0; i < _$non_enumerable_1001.length; i++ ) {
-			p = _$non_enumerable_1001[ i ];
+	if ( _$bool_1017 ) {
+		skipConstructor = _$wrapper_1021( value );
+		for ( i = 0; i < _$non_enumerable_1023.length; i++ ) {
+			p = _$non_enumerable_1023[ i ];
 			if ( !( skipConstructor && p === 'constructor' ) && _$hasOwnProp_58( value, p ) ) {
 				out.push( String( p ) );
 			}
@@ -47891,7 +47891,7 @@ function __keys_1002( value ) {
 
 // EXPORTS //
 
-var _$keys_1002 = __keys_1002;
+var _$keys_1024 = __keys_1024;
 
 /**
 * @license Apache-2.0
@@ -47915,11 +47915,11 @@ var _$keys_1002 = __keys_1002;
 
 // MODULES //
 
-/* removed: var _$check_991 = require( './has_arguments_bug.js' ); */;
-/* removed: var _$bool_993 = require( './has_builtin.js' ); */;
-/* removed: var _$keys_988 = require( './builtin.js' ); */;
-/* removed: var _$keys_989 = require( './builtin_wrapper.js' ); */;
-/* removed: var _$keys_1002 = require( './polyfill.js' ); */;
+/* removed: var _$check_1013 = require( './has_arguments_bug.js' ); */;
+/* removed: var _$bool_1015 = require( './has_builtin.js' ); */;
+/* removed: var _$keys_1010 = require( './builtin.js' ); */;
+/* removed: var _$keys_1011 = require( './builtin_wrapper.js' ); */;
+/* removed: var _$keys_1024 = require( './polyfill.js' ); */;
 
 
 // MAIN //
@@ -47941,21 +47941,21 @@ var _$keys_1002 = __keys_1002;
 * var k = keys( obj );
 * // e.g., returns [ 'beep', 'foo' ]
 */
-var __keys_1000;
-if ( _$bool_993 ) {
-	if ( _$check_991() ) {
-		__keys_1000 = _$keys_989;
+var __keys_1022;
+if ( _$bool_1015 ) {
+	if ( _$check_1013() ) {
+		__keys_1022 = _$keys_1011;
 	} else {
-		__keys_1000 = _$keys_988;
+		__keys_1022 = _$keys_1010;
 	}
 } else {
-	__keys_1000 = _$keys_1002;
+	__keys_1022 = _$keys_1024;
 }
 
 
 // EXPORTS //
 
-var _$keys_1000 = __keys_1000;
+var _$keys_1022 = __keys_1022;
 
 /**
 * @license Apache-2.0
@@ -47996,12 +47996,12 @@ var _$keys_1000 = __keys_1000;
 
 // MODULES //
 
-/* removed: var _$keys_1000 = require( './main.js' ); */;
+/* removed: var _$keys_1022 = require( './main.js' ); */;
 
 
 // EXPORTS //
 
-var _$keys_997 = _$keys_1000;
+var _$keys_1019 = _$keys_1022;
 
 /**
 * @license Apache-2.0
@@ -48025,12 +48025,12 @@ var _$keys_997 = _$keys_1000;
 
 // MAIN //
 
-var __bool_1016 = ( typeof Object.getOwnPropertyNames !== 'undefined' );
+var __bool_1038 = ( typeof Object.getOwnPropertyNames !== 'undefined' );
 
 
 // EXPORTS //
 
-var _$bool_1016 = __bool_1016;
+var _$bool_1038 = __bool_1038;
 
 /**
 * @license Apache-2.0
@@ -48086,7 +48086,7 @@ function getOwnPropertyNames( value ) {
 
 // EXPORTS //
 
-var _$getOwnPropertyNames_1015 = getOwnPropertyNames;
+var _$getOwnPropertyNames_1037 = getOwnPropertyNames;
 
 /**
 * @license Apache-2.0
@@ -48110,7 +48110,7 @@ var _$getOwnPropertyNames_1015 = getOwnPropertyNames;
 
 // MODULES //
 
-/* removed: var _$keys_997 = require( '@stdlib/utils/keys' ); */;
+/* removed: var _$keys_1019 = require( '@stdlib/utils/keys' ); */;
 
 
 // MAIN //
@@ -48136,14 +48136,14 @@ var _$getOwnPropertyNames_1015 = getOwnPropertyNames;
 * var keys = getOwnPropertyNames( obj );
 * // e.g., returns [ 'beep', 'foo' ]
 */
-function __getOwnPropertyNames_1018( value ) {
-	return _$keys_997( Object( value ) );
+function __getOwnPropertyNames_1040( value ) {
+	return _$keys_1019( Object( value ) );
 }
 
 
 // EXPORTS //
 
-var _$getOwnPropertyNames_1018 = __getOwnPropertyNames_1018;
+var _$getOwnPropertyNames_1040 = __getOwnPropertyNames_1040;
 
 /**
 * @license Apache-2.0
@@ -48182,24 +48182,24 @@ var _$getOwnPropertyNames_1018 = __getOwnPropertyNames_1018;
 
 // MODULES //
 
-/* removed: var _$bool_1016 = require( './has_builtin.js' ); */;
-/* removed: var _$getOwnPropertyNames_1015 = require( './builtin.js' ); */;
-/* removed: var _$getOwnPropertyNames_1018 = require( './polyfill.js' ); */;
+/* removed: var _$bool_1038 = require( './has_builtin.js' ); */;
+/* removed: var _$getOwnPropertyNames_1037 = require( './builtin.js' ); */;
+/* removed: var _$getOwnPropertyNames_1040 = require( './polyfill.js' ); */;
 
 
 // MAIN //
 
-var __main_1017;
-if ( _$bool_1016 ) {
-	__main_1017 = _$getOwnPropertyNames_1015;
+var __main_1039;
+if ( _$bool_1038 ) {
+	__main_1039 = _$getOwnPropertyNames_1037;
 } else {
-	__main_1017 = _$getOwnPropertyNames_1018;
+	__main_1039 = _$getOwnPropertyNames_1040;
 }
 
 
 // EXPORTS //
 
-var _$main_1017 = __main_1017;
+var _$main_1039 = __main_1039;
 
 /**
 * @license Apache-2.0
@@ -48223,12 +48223,12 @@ var _$main_1017 = __main_1017;
 
 // MAIN //
 
-var __bool_1012 = ( typeof Object.getOwnPropertyDescriptor !== 'undefined' );
+var __bool_1034 = ( typeof Object.getOwnPropertyDescriptor !== 'undefined' );
 
 
 // EXPORTS //
 
-var _$bool_1012 = __bool_1012;
+var _$bool_1034 = __bool_1034;
 
 /**
 * @license Apache-2.0
@@ -48291,7 +48291,7 @@ function getOwnPropertyDescriptor( value, property ) {
 
 // EXPORTS //
 
-var _$getOwnPropertyDescriptor_1011 = getOwnPropertyDescriptor;
+var _$getOwnPropertyDescriptor_1033 = getOwnPropertyDescriptor;
 
 /**
 * @license Apache-2.0
@@ -48343,7 +48343,7 @@ var _$getOwnPropertyDescriptor_1011 = getOwnPropertyDescriptor;
 * var desc = getOwnPropertyDescriptor( obj, 'foo' );
 * // returns {'configurable':true,'enumerable':true,'writable':true,'value':3.14}
 */
-function __getOwnPropertyDescriptor_1014( value, property ) {
+function __getOwnPropertyDescriptor_1036( value, property ) {
 	if ( _$hasOwnProp_58( value, property ) ) {
 		return {
 			'configurable': true,
@@ -48358,7 +48358,7 @@ function __getOwnPropertyDescriptor_1014( value, property ) {
 
 // EXPORTS //
 
-var _$getOwnPropertyDescriptor_1014 = __getOwnPropertyDescriptor_1014;
+var _$getOwnPropertyDescriptor_1036 = __getOwnPropertyDescriptor_1036;
 
 /**
 * @license Apache-2.0
@@ -48399,31 +48399,31 @@ var _$getOwnPropertyDescriptor_1014 = __getOwnPropertyDescriptor_1014;
 
 // MODULES //
 
-/* removed: var _$bool_1012 = require( './has_builtin.js' ); */;
-/* removed: var _$getOwnPropertyDescriptor_1011 = require( './builtin.js' ); */;
-/* removed: var _$getOwnPropertyDescriptor_1014 = require( './polyfill.js' ); */;
+/* removed: var _$bool_1034 = require( './has_builtin.js' ); */;
+/* removed: var _$getOwnPropertyDescriptor_1033 = require( './builtin.js' ); */;
+/* removed: var _$getOwnPropertyDescriptor_1036 = require( './polyfill.js' ); */;
 
 
 // MAIN //
 
-var __main_1013;
-if ( _$bool_1012 ) {
-	__main_1013 = _$getOwnPropertyDescriptor_1011;
+var __main_1035;
+if ( _$bool_1034 ) {
+	__main_1035 = _$getOwnPropertyDescriptor_1033;
 } else {
-	__main_1013 = _$getOwnPropertyDescriptor_1014;
+	__main_1035 = _$getOwnPropertyDescriptor_1036;
 }
 
 
 // EXPORTS //
 
-var _$main_1013 = __main_1013;
+var _$main_1035 = __main_1035;
 
-var _$base64Js_1028 = {};
+var _$base64Js_1050 = {};
 'use strict'
 
-_$base64Js_1028.byteLength = byteLength
-_$base64Js_1028.toByteArray = toByteArray
-_$base64Js_1028.fromByteArray = fromByteArray
+_$base64Js_1050.byteLength = byteLength
+_$base64Js_1050.toByteArray = toByteArray
+_$base64Js_1050.fromByteArray = fromByteArray
 
 var lookup = []
 var revLookup = []
@@ -48572,8 +48572,8 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-var _$ieee754_1032 = {};
-_$ieee754_1032.read = function (buffer, offset, isLE, mLen, nBytes) {
+var _$ieee754_1054 = {};
+_$ieee754_1054.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = (nBytes * 8) - mLen - 1
   var eMax = (1 << eLen) - 1
@@ -48606,7 +48606,7 @@ _$ieee754_1032.read = function (buffer, offset, isLE, mLen, nBytes) {
   return (s ? -1 : 1) * m * Math.pow(2, e - mLen)
 }
 
-_$ieee754_1032.write = function (buffer, value, offset, isLE, mLen, nBytes) {
+_$ieee754_1054.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   var e, m, c
   var eLen = (nBytes * 8) - mLen - 1
   var eMax = (1 << eLen) - 1
@@ -48689,7 +48689,7 @@ var main = ( typeof Buffer === 'function' ) ? Buffer : null; // eslint-disable-l
 
 _$main_55 = main;
 
-}).call(this,_$buffer_1029({}).Buffer)
+}).call(this,_$buffer_1051({}).Buffer)
 /**
 * @license Apache-2.0
 *
@@ -48822,7 +48822,7 @@ var _$hasNodeBufferSupport_56 = _$hasNodeBufferSupport_57;
 
 // MAIN //
 
-var __ctor_177 = _$buffer_1029({}).Buffer; // eslint-disable-line stdlib/require-globals
+var __ctor_177 = _$buffer_1051({}).Buffer; // eslint-disable-line stdlib/require-globals
 
 
 // EXPORTS //
@@ -49292,7 +49292,7 @@ hash = typedarrays();
 
 // EXPORTS //
 
-var _$hash_961 = hash;
+var _$hash_983 = hash;
 
 /**
 * @license Apache-2.0
@@ -49320,16 +49320,16 @@ var _$hash_961 = hash;
 /* removed: var _$isArray_84 = require( '@stdlib/assert/is-array' ); */;
 /* removed: var _$isBuffer_92 = require( '@stdlib/assert/is-buffer' ); */;
 /* removed: var _$isError_100 = require( '@stdlib/assert/is-error' ); */;
-/* removed: var _$main_1025 = require( '@stdlib/utils/type-of' ); */;
-/* removed: var _$reFromString_1020 = require( '@stdlib/utils/regexp-from-string' ); */;
-/* removed: var _$indexOf_986 = require( '@stdlib/utils/index-of' ); */;
-/* removed: var _$keys_997 = require( '@stdlib/utils/keys' ); */;
-/* removed: var _$main_1017 = require( '@stdlib/utils/property-names' ); */;
-/* removed: var _$main_1013 = require( '@stdlib/utils/property-descriptor' ); */;
-/* removed: var _$getPrototype_976 = require( '@stdlib/utils/get-prototype-of' ); */;
-/* removed: var _$defineProperty_969 = require( '@stdlib/utils/define-property' ); */;
+/* removed: var _$main_1047 = require( '@stdlib/utils/type-of' ); */;
+/* removed: var _$reFromString_1042 = require( '@stdlib/utils/regexp-from-string' ); */;
+/* removed: var _$indexOf_1008 = require( '@stdlib/utils/index-of' ); */;
+/* removed: var _$keys_1019 = require( '@stdlib/utils/keys' ); */;
+/* removed: var _$main_1039 = require( '@stdlib/utils/property-names' ); */;
+/* removed: var _$main_1035 = require( '@stdlib/utils/property-descriptor' ); */;
+/* removed: var _$getPrototype_998 = require( '@stdlib/utils/get-prototype-of' ); */;
+/* removed: var _$defineProperty_991 = require( '@stdlib/utils/define-property' ); */;
 /* removed: var _$copyBuffer_181 = require( '@stdlib/buffer/from-buffer' ); */;
-/* removed: var _$hash_961 = require( './typed_arrays.js' ); */;
+/* removed: var _$hash_983 = require( './typed_arrays.js' ); */;
 
 
 // FUNCTIONS //
@@ -49360,19 +49360,19 @@ function cloneInstance( val ) {
 	cache = [];
 	refs = [];
 
-	ref = Object.create( _$getPrototype_976( val ) );
+	ref = Object.create( _$getPrototype_998( val ) );
 	cache.push( val );
 	refs.push( ref );
 
-	names = _$main_1017( val );
+	names = _$main_1039( val );
 	for ( i = 0; i < names.length; i++ ) {
 		name = names[ i ];
-		desc = _$main_1013( val, name );
+		desc = _$main_1035( val, name );
 		if ( _$hasOwnProp_58( desc, 'value' ) ) {
 			tmp = ( _$isArray_84( val[name] ) ) ? [] : {};
 			desc.value = deepCopy( val[name], tmp, cache, refs, -1 );
 		}
-		_$defineProperty_969( ref, name, desc );
+		_$defineProperty_991( ref, name, desc );
 	}
 	if ( !Object.isExtensible( val ) ) {
 		Object.preventExtensions( ref );
@@ -49430,15 +49430,15 @@ function copyError( error ) {
 		err.syscall = error.syscall;
 	}
 	// Any enumerable properties...
-	keys = _$keys_997( error );
+	keys = _$keys_1019( error );
 	for ( i = 0; i < keys.length; i++ ) {
 		key = keys[ i ];
-		desc = _$main_1013( error, key );
+		desc = _$main_1035( error, key );
 		if ( _$hasOwnProp_58( desc, 'value' ) ) {
 			tmp = ( _$isArray_84( error[ key ] ) ) ? [] : {};
 			desc.value = deepCopy( error[ key ], tmp, cache, refs, -1 );
 		}
-		_$defineProperty_969( err, key, desc );
+		_$defineProperty_991( err, key, desc );
 	}
 	return err;
 }
@@ -49485,13 +49485,13 @@ function deepCopy( val, copy, cache, refs, level ) {
 		return copyError( val );
 	}
 	// Objects...
-	name = _$main_1025( val );
+	name = _$main_1047( val );
 
 	if ( name === 'date' ) {
 		return new Date( +val );
 	}
 	if ( name === 'regexp' ) {
-		return _$reFromString_1020( val.toString() );
+		return _$reFromString_1042( val.toString() );
 	}
 	if ( name === 'set' ) {
 		return new Set( val );
@@ -49507,7 +49507,7 @@ function deepCopy( val, copy, cache, refs, level ) {
 		// If provided an `Object`, return an equivalent primitive!
 		return val.valueOf();
 	}
-	ctor = _$hash_961[ name ];
+	ctor = _$hash_983[ name ];
 	if ( ctor ) {
 		return ctor( val );
 	}
@@ -49523,7 +49523,7 @@ function deepCopy( val, copy, cache, refs, level ) {
 		return {};
 	}
 	// Arrays and plain objects...
-	keys = _$keys_997( val );
+	keys = _$keys_1019( val );
 	if ( level > 0 ) {
 		parent = name;
 		for ( j = 0; j < keys.length; j++ ) {
@@ -49531,7 +49531,7 @@ function deepCopy( val, copy, cache, refs, level ) {
 			x = val[ key ];
 
 			// Primitive, Buffer, special class instance...
-			name = _$main_1025( x );
+			name = _$main_1047( x );
 			if (
 				typeof x !== 'object' ||
 				x === null ||
@@ -49542,18 +49542,18 @@ function deepCopy( val, copy, cache, refs, level ) {
 				_$isBuffer_92( x )
 			) {
 				if ( parent === 'object' ) {
-					desc = _$main_1013( val, key );
+					desc = _$main_1035( val, key );
 					if ( _$hasOwnProp_58( desc, 'value' ) ) {
 						desc.value = deepCopy( x );
 					}
-					_$defineProperty_969( copy, key, desc );
+					_$defineProperty_991( copy, key, desc );
 				} else {
 					copy[ key ] = deepCopy( x );
 				}
 				continue;
 			}
 			// Circular reference...
-			i = _$indexOf_986( cache, x );
+			i = _$indexOf_1008( cache, x );
 			if ( i !== -1 ) {
 				copy[ key ] = refs[ i ];
 				continue;
@@ -49565,11 +49565,11 @@ function deepCopy( val, copy, cache, refs, level ) {
 			if ( parent === 'array' ) {
 				copy[ key ] = deepCopy( x, ref, cache, refs, level );
 			} else {
-				desc = _$main_1013( val, key );
+				desc = _$main_1035( val, key );
 				if ( _$hasOwnProp_58( desc, 'value' ) ) {
 					desc.value = deepCopy( x, ref, cache, refs, level );
 				}
-				_$defineProperty_969( copy, key, desc );
+				_$defineProperty_991( copy, key, desc );
 			}
 		}
 	} else if ( name === 'array' ) {
@@ -49580,8 +49580,8 @@ function deepCopy( val, copy, cache, refs, level ) {
 	} else {
 		for ( j = 0; j < keys.length; j++ ) {
 			key = keys[ j ];
-			desc = _$main_1013( val, key );
-			_$defineProperty_969( copy, key, desc );
+			desc = _$main_1035( val, key );
+			_$defineProperty_991( copy, key, desc );
 		}
 	}
 	if ( !Object.isExtensible( val ) ) {
@@ -49599,7 +49599,7 @@ function deepCopy( val, copy, cache, refs, level ) {
 
 // EXPORTS //
 
-var _$deepCopy_959 = deepCopy;
+var _$deepCopy_981 = deepCopy;
 
 /**
 * @license Apache-2.0
@@ -49624,9 +49624,9 @@ var _$deepCopy_959 = deepCopy;
 // MODULES //
 
 /* removed: var _$isArray_84 = require( '@stdlib/assert/is-array' ); */;
-var __isNonNegativeInteger_958 = _$isNonNegativeInteger_130.isPrimitive;
+var __isNonNegativeInteger_980 = _$isNonNegativeInteger_130.isPrimitive;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
-/* removed: var _$deepCopy_959 = require( './deep_copy.js' ); */;
+/* removed: var _$deepCopy_981 = require( './deep_copy.js' ); */;
 
 
 // MAIN //
@@ -49660,7 +49660,7 @@ var __isNonNegativeInteger_958 = _$isNonNegativeInteger_130.isPrimitive;
 function copy( value, level ) {
 	var out;
 	if ( arguments.length > 1 ) {
-		if ( !__isNonNegativeInteger_958( level ) ) {
+		if ( !__isNonNegativeInteger_980( level ) ) {
 			throw new TypeError( 'invalid argument. `level` must be a nonnegative integer. Value: `' + level + '`.' );
 		}
 		if ( level === 0 ) {
@@ -49670,13 +49670,13 @@ function copy( value, level ) {
 		level = _$FLOAT64_PINF_207;
 	}
 	out = ( _$isArray_84( value ) ) ? new Array( value.length ) : {};
-	return _$deepCopy_959( value, out, [value], [out], level );
+	return _$deepCopy_981( value, out, [value], [out], level );
 }
 
 
 // EXPORTS //
 
-var _$copy_958 = copy;
+var _$copy_980 = copy;
 
 /**
 * @license Apache-2.0
@@ -49728,12 +49728,12 @@ var _$copy_958 = copy;
 
 // MODULES //
 
-/* removed: var _$copy_958 = require( './copy.js' ); */;
+/* removed: var _$copy_980 = require( './copy.js' ); */;
 
 
 // EXPORTS //
 
-var _$copy_960 = _$copy_958;
+var _$copy_982 = _$copy_980;
 
 /**
 * @license Apache-2.0
@@ -49968,7 +49968,7 @@ var _$isPositiveNumber_151 = __isPositiveNumber_151;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$isPositiveNumber_151 = require( './main.js' ); */;
 /* removed: var _$isPositiveNumber_153 = require( './primitive.js' ); */;
 /* removed: var _$isPositiveNumber_152 = require( './object.js' ); */;
@@ -49976,8 +49976,8 @@ var _$isPositiveNumber_151 = __isPositiveNumber_151;
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$isPositiveNumber_151, 'isPrimitive', _$isPositiveNumber_153 );
-_$setNonEnumerableReadOnly_964( _$isPositiveNumber_151, 'isObject', _$isPositiveNumber_152 );
+_$setNonEnumerableReadOnly_986( _$isPositiveNumber_151, 'isPrimitive', _$isPositiveNumber_153 );
+_$setNonEnumerableReadOnly_986( _$isPositiveNumber_151, 'isObject', _$isPositiveNumber_152 );
 
 
 // EXPORTS //
@@ -50352,22 +50352,22 @@ var _$sample_559 = __sample_559;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_962 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_966 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_984 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_988 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 var __isBoolean_560 = _$isBoolean_86.isPrimitive;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_1009 = require( '@stdlib/utils/noop' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_1031 = require( '@stdlib/utils/noop' ); */;
 var __randn_560 = _$randn_598.factory;
-var randu = _$mt19937_612.factory;
+var randu = _$mt19937_617.factory;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$gcopy_174 = require( '@stdlib/blas/base/gcopy' ); */;
 /* removed: var _$ctor_23 = require( '@stdlib/array/uint32' ); */;
 /* removed: var _$isUint32Array_166 = require( '@stdlib/assert/is-uint32array' ); */;
-/* removed: var _$copy_960 = require( '@stdlib/utils/copy' ); */;
+/* removed: var _$copy_982 = require( '@stdlib/utils/copy' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
 /* removed: var _$validate_566 = require( './validate.js' ); */;
 /* removed: var _$sample_559 = require( './beta.js' ); */;
@@ -50438,7 +50438,7 @@ function __factory_560() {
 			if ( _$hasOwnProp_58( opts, 'state' ) && !_$isUint32Array_166( opts.state ) ) {
 				throw new TypeError( 'invalid option. `state` option must be a Uint32Array. Option: `' + opts.state + '`.' );
 			}
-			opts = _$copy_960( opts, 1 );
+			opts = _$copy_982( opts, 1 );
 			if ( opts.copy === false ) {
 				FLG = false;
 			} else if ( opts.state ) {
@@ -50471,7 +50471,7 @@ function __factory_560() {
 				if ( _$hasOwnProp_58( opts, 'state' ) && !_$isUint32Array_166( opts.state ) ) {
 					throw new TypeError( 'invalid option. `state` option must be a Uint32Array. Option: `' + opts.state + '`.' );
 				}
-				opts = _$copy_960( opts, 1 );
+				opts = _$copy_982( opts, 1 );
 				if ( opts.copy === false ) {
 					FLG = false;
 				} else if ( opts.state ) {
@@ -50508,25 +50508,25 @@ function __factory_560() {
 	} else {
 		prng = beta1;
 	}
-	_$setNonEnumerableReadOnly_964( prng, 'NAME', 'beta' );
+	_$setNonEnumerableReadOnly_986( prng, 'NAME', 'beta' );
 
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( opts && opts.prng ) {
-		_$setNonEnumerableReadOnly_964( prng, 'seed', null );
-		_$setNonEnumerableReadOnly_964( prng, 'seedLength', null );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', _$constantFunction_955( null ), _$noop_1009 );
-		_$setNonEnumerableReadOnly_964( prng, 'stateLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'byteLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', _$constantFunction_955( null ) );
-		_$setNonEnumerableReadOnly_964( prng, 'PRNG', rand );
+		_$setNonEnumerableReadOnly_986( prng, 'seed', null );
+		_$setNonEnumerableReadOnly_986( prng, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', _$constantFunction_977( null ), _$noop_1031 );
+		_$setNonEnumerableReadOnly_986( prng, 'stateLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'byteLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', _$constantFunction_977( null ) );
+		_$setNonEnumerableReadOnly_986( prng, 'PRNG', rand );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seedLength', getSeedLength );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', toJSON );
-		_$setNonEnumerableReadOnly_964( prng, 'PRNG', rand );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', toJSON );
+		_$setNonEnumerableReadOnly_986( prng, 'PRNG', rand );
 		rand = rand.normalized;
 	}
 	return prng;
@@ -50766,14 +50766,14 @@ var _$beta_562 = __beta_562;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$beta_562 = require( './main.js' ); */;
 /* removed: var _$factory_560 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$beta_562, 'factory', _$factory_560 );
+_$setNonEnumerableReadOnly_986( _$beta_562, 'factory', _$factory_560 );
 
 
 // EXPORTS //
@@ -50852,7 +50852,7 @@ function variance( alpha, beta ) {
 
 // EXPORTS //
 
-var _$variance_682 = variance;
+var _$variance_687 = variance;
 
 /**
 * @license Apache-2.0
@@ -50894,12 +50894,12 @@ var _$variance_682 = variance;
 
 // MODULES //
 
-/* removed: var _$variance_682 = require( './variance.js' ); */;
+/* removed: var _$variance_687 = require( './variance.js' ); */;
 
 
 // EXPORTS //
 
-var _$variance_681 = _$variance_682;
+var _$variance_686 = _$variance_687;
 
 /**
 * @license Apache-2.0
@@ -51000,7 +51000,7 @@ var _$variance_681 = _$variance_682;
 * @param {boolean} normalized - boolean indicating whether to evaluate the power terms of the regularized or non-regularized incomplete beta function
 * @returns {number} power terms
 */
-function __ibetaPowerTerms_755( a, b, x, y, normalized ) {
+function __ibetaPowerTerms_760( a, b, x, y, normalized ) {
 	var result;
 	var smallA;
 	var ratio;
@@ -51147,7 +51147,7 @@ function __ibetaPowerTerms_755( a, b, x, y, normalized ) {
 
 // EXPORTS //
 
-var _$ibetaPowerTerms_755 = __ibetaPowerTerms_755;
+var _$ibetaPowerTerms_760 = __ibetaPowerTerms_760;
 
 /**
 * @license Apache-2.0
@@ -51171,7 +51171,7 @@ var _$ibetaPowerTerms_755 = __ibetaPowerTerms_755;
 
 // MODULES //
 
-/* removed: var _$ibetaPowerTerms_755 = require( './ibeta_power_terms.js' ); */;
+/* removed: var _$ibetaPowerTerms_760 = require( './ibeta_power_terms.js' ); */;
 
 
 // MAIN //
@@ -51189,7 +51189,7 @@ function ibetaDerivative( x, a, b ) {
 	var f1;
 	var y;
 
-	f1 = _$ibetaPowerTerms_755( a, b, x, 1.0 - x, true );
+	f1 = _$ibetaPowerTerms_760( a, b, x, 1.0 - x, true );
 	y = ( 1.0 - x ) * x;
 	f1 /= y;
 	return f1;
@@ -51198,7 +51198,7 @@ function ibetaDerivative( x, a, b ) {
 
 // EXPORTS //
 
-var _$ibetaDerivative_754 = ibetaDerivative;
+var _$ibetaDerivative_759 = ibetaDerivative;
 
 /**
 * @license Apache-2.0
@@ -51224,7 +51224,7 @@ var _$ibetaDerivative_754 = ibetaDerivative;
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
-/* removed: var _$ibetaDerivative_754 = require( './ibeta_derivative.js' ); */;
+/* removed: var _$ibetaDerivative_759 = require( './ibeta_derivative.js' ); */;
 
 
 // MAIN //
@@ -51269,7 +51269,7 @@ var _$ibetaDerivative_754 = ibetaDerivative;
 * var y = pdf( 2.0, -1.0, 1.0 );
 * // returns NaN
 */
-function __pdf_757( x, d1, d2 ) {
+function __pdf_762( x, d1, d2 ) {
 	var v1x;
 	var y;
 	var z;
@@ -51297,17 +51297,17 @@ function __pdf_757( x, d1, d2 ) {
 	v1x = d1 * x;
 	if ( v1x > d2 ) {
 		y = ( d2 * d1 ) / ( ( d2 + v1x ) * ( d2 + v1x ) );
-		return y * _$ibetaDerivative_754( d2 / ( d2+v1x ), d2/2.0, d1/2.0 );
+		return y * _$ibetaDerivative_759( d2 / ( d2+v1x ), d2/2.0, d1/2.0 );
 	}
 	z = d2 + v1x;
 	y = ((z * d1) - (x * d1 * d1)) / ( z * z );
-	return y * _$ibetaDerivative_754( v1x / ( d2+v1x ), d1/2.0, d2/2.0 );
+	return y * _$ibetaDerivative_759( v1x / ( d2+v1x ), d1/2.0, d2/2.0 );
 }
 
 
 // EXPORTS //
 
-var _$pdf_757 = __pdf_757;
+var _$pdf_762 = __pdf_762;
 
 /**
 * @license Apache-2.0
@@ -51331,10 +51331,10 @@ var _$pdf_757 = __pdf_757;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
-/* removed: var _$ibetaDerivative_754 = require( './ibeta_derivative.js' ); */;
+/* removed: var _$ibetaDerivative_759 = require( './ibeta_derivative.js' ); */;
 
 
 // MAIN //
@@ -51354,7 +51354,7 @@ var _$pdf_757 = __pdf_757;
 * y = pdf( 2.0 );
 * // returns ~0.166
 */
-function __factory_753( d1, d2 ) {
+function __factory_758( d1, d2 ) {
 	var zeroVal;
 	var d1by2;
 	var d2by2;
@@ -51365,7 +51365,7 @@ function __factory_753( d1, d2 ) {
 		d1 <= 0.0 ||
 		d2 <= 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	d1d2 = d1 * d2;
 	d1by2 = d1 / 2.0;
@@ -51406,18 +51406,18 @@ function __factory_753( d1, d2 ) {
 		v1x = d1 * x;
 		if ( v1x > d2 ) {
 			y = d1d2 / ( ( d2 + v1x ) * ( d2 + v1x ) );
-			return y * _$ibetaDerivative_754( d2 / ( d2 + v1x ), d2by2, d1by2 );
+			return y * _$ibetaDerivative_759( d2 / ( d2 + v1x ), d2by2, d1by2 );
 		}
 		z = d2 + v1x;
 		y = ((z * d1) - (x * d1 * d1)) / ( z * z );
-		return y * _$ibetaDerivative_754( d1 * x / ( d2 + v1x ), d1by2, d2by2 );
+		return y * _$ibetaDerivative_759( d1 * x / ( d2 + v1x ), d1by2, d2by2 );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_753 = __factory_753;
+var _$factory_758 = __factory_758;
 
 /**
 * @license Apache-2.0
@@ -51463,19 +51463,19 @@ var _$factory_753 = __factory_753;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_757 = require( './pdf.js' ); */;
-/* removed: var _$factory_753 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_762 = require( './pdf.js' ); */;
+/* removed: var _$factory_758 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$pdf_757, 'factory', _$factory_753 );
+_$setNonEnumerableReadOnly_986( _$pdf_762, 'factory', _$factory_758 );
 
 
 // EXPORTS //
 
-var _$pdf_756 = _$pdf_757;
+var _$pdf_761 = _$pdf_762;
 
 /**
 * @license Apache-2.0
@@ -51554,7 +51554,7 @@ var _$pdf_756 = _$pdf_757;
 * var y = cdf( 2.0, -1.0, 1.0 );
 * // returns NaN
 */
-function __cdf_746( x, d1, d2 ) {
+function __cdf_751( x, d1, d2 ) {
 	if (
 		_$isnan_231( x ) ||
 		_$isnan_231( d1 ) ||
@@ -51579,7 +51579,7 @@ function __cdf_746( x, d1, d2 ) {
 
 // EXPORTS //
 
-var _$cdf_746 = __cdf_746;
+var _$cdf_751 = __cdf_751;
 
 /**
 * @license Apache-2.0
@@ -51603,7 +51603,7 @@ var _$cdf_746 = __cdf_746;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$betainc_261 = require( '@stdlib/math/base/special/betainc' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
@@ -51627,14 +51627,14 @@ var _$cdf_746 = __cdf_746;
 * y = cdf( 8.0 );
 * // returns ~0.884
 */
-function __factory_747( d1, d2 ) {
+function __factory_752( d1, d2 ) {
 	if (
 		_$isnan_231( d1 ) ||
 		_$isnan_231( d2 ) ||
 		d1 <= 0.0 ||
 		d2 <= 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return cdf;
 
@@ -51669,7 +51669,7 @@ function __factory_747( d1, d2 ) {
 
 // EXPORTS //
 
-var _$factory_747 = __factory_747;
+var _$factory_752 = __factory_752;
 
 /**
 * @license Apache-2.0
@@ -51719,19 +51719,19 @@ var _$factory_747 = __factory_747;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_746 = require( './cdf.js' ); */;
-/* removed: var _$factory_747 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_751 = require( './cdf.js' ); */;
+/* removed: var _$factory_752 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$cdf_746, 'factory', _$factory_747 );
+_$setNonEnumerableReadOnly_986( _$cdf_751, 'factory', _$factory_752 );
 
 
 // EXPORTS //
 
-var _$cdf_748 = _$cdf_746;
+var _$cdf_753 = _$cdf_751;
 
 /**
 * @license Apache-2.0
@@ -51805,7 +51805,7 @@ var _$cdf_748 = _$cdf_746;
 * var y = quantile( 0.5, 1.0, -1.0 );
 * // returns NaN
 */
-function __quantile_760( p, d1, d2 ) {
+function __quantile_765( p, d1, d2 ) {
 	var xs;
 	if (
 		_$isnan_231( p ) ||
@@ -51825,7 +51825,7 @@ function __quantile_760( p, d1, d2 ) {
 
 // EXPORTS //
 
-var _$quantile_760 = __quantile_760;
+var _$quantile_765 = __quantile_765;
 
 /**
 * @license Apache-2.0
@@ -51849,7 +51849,7 @@ var _$quantile_760 = __quantile_760;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$kernelBetaincinv_420 = require( '@stdlib/math/base/special/kernel-betaincinv' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
@@ -51871,14 +51871,14 @@ var _$quantile_760 = __quantile_760;
 * y = quantile( 0.8 );
 * // returns ~4.382
 */
-function __factory_758( d1, d2 ) {
+function __factory_763( d1, d2 ) {
 	if (
 		_$isnan_231( d1 ) ||
 		_$isnan_231( d2 ) ||
 		d1 <= 0.0 ||
 		d2 <= 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return quantile;
 
@@ -51906,7 +51906,7 @@ function __factory_758( d1, d2 ) {
 
 // EXPORTS //
 
-var _$factory_758 = __factory_758;
+var _$factory_763 = __factory_763;
 
 /**
 * @license Apache-2.0
@@ -51953,19 +51953,19 @@ var _$factory_758 = __factory_758;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_760 = require( './quantile.js' ); */;
-/* removed: var _$factory_758 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_765 = require( './quantile.js' ); */;
+/* removed: var _$factory_763 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$quantile_760, 'factory', _$factory_758 );
+_$setNonEnumerableReadOnly_986( _$quantile_765, 'factory', _$factory_763 );
 
 
 // EXPORTS //
 
-var _$quantile_759 = _$quantile_760;
+var _$quantile_764 = _$quantile_765;
 
 /**
 * @license Apache-2.0
@@ -52029,7 +52029,7 @@ var _$quantile_759 = _$quantile_760;
 * var v = mean( NaN, 2.0 );
 * // returns NaN
 */
-function __mean_750( d1, d2 ) {
+function __mean_755( d1, d2 ) {
 	if (
 		_$isnan_231( d1 ) ||
 		_$isnan_231( d2 ) ||
@@ -52044,7 +52044,7 @@ function __mean_750( d1, d2 ) {
 
 // EXPORTS //
 
-var _$mean_750 = __mean_750;
+var _$mean_755 = __mean_755;
 
 /**
 * @license Apache-2.0
@@ -52086,12 +52086,12 @@ var _$mean_750 = __mean_750;
 
 // MODULES //
 
-/* removed: var _$mean_750 = require( './mean.js' ); */;
+/* removed: var _$mean_755 = require( './mean.js' ); */;
 
 
 // EXPORTS //
 
-var _$mean_749 = _$mean_750;
+var _$mean_754 = _$mean_755;
 
 /**
 * @license Apache-2.0
@@ -52150,7 +52150,7 @@ var _$mean_749 = _$mean_750;
 * var v = mode( NaN, 2.0 );
 * // returns NaN
 */
-function __mode_752( d1, d2 ) {
+function __mode_757( d1, d2 ) {
 	if ( d1 <= 2.0 || d2 <= 0.0 ) {
 		return NaN;
 	}
@@ -52160,7 +52160,7 @@ function __mode_752( d1, d2 ) {
 
 // EXPORTS //
 
-var _$mode_752 = __mode_752;
+var _$mode_757 = __mode_757;
 
 /**
 * @license Apache-2.0
@@ -52202,12 +52202,12 @@ var _$mode_752 = __mode_752;
 
 // MODULES //
 
-/* removed: var _$mode_752 = require( './mode.js' ); */;
+/* removed: var _$mode_757 = require( './mode.js' ); */;
 
 
 // EXPORTS //
 
-var _$mode_751 = _$mode_752;
+var _$mode_756 = _$mode_757;
 
 /**
 * @license Apache-2.0
@@ -52357,25 +52357,25 @@ var _$gamma_591 = __gamma_591;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_962 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_966 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_984 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_988 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 /* removed: var _$isUint32Array_166 = require( '@stdlib/assert/is-uint32array' ); */;
 var __isBoolean_590 = _$isBoolean_86.isPrimitive;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_1009 = require( '@stdlib/utils/noop' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_1031 = require( '@stdlib/utils/noop' ); */;
 var __randn_590 = _$randn_598.factory;
-var __randu_590 = _$mt19937_612.factory;
+var __randu_590 = _$mt19937_617.factory;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$sqrt_505 = require( '@stdlib/math/base/special/sqrt' ); */;
 /* removed: var _$pow_480 = require( '@stdlib/math/base/special/pow' ); */;
 /* removed: var _$gcopy_174 = require( '@stdlib/blas/base/gcopy' ); */;
 /* removed: var _$ctor_23 = require( '@stdlib/array/uint32' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
-/* removed: var _$copy_960 = require( '@stdlib/utils/copy' ); */;
+/* removed: var _$copy_982 = require( '@stdlib/utils/copy' ); */;
 /* removed: var _$validate_594 = require( './validate.js' ); */;
 /* removed: var _$gamma_591 = require( './gamma.js' ); */;
 
@@ -52452,7 +52452,7 @@ function __factory_590() {
 			if ( _$hasOwnProp_58( opts, 'state' ) && !_$isUint32Array_166( opts.state ) ) {
 				throw new TypeError( 'invalid option. `state` option must be a Uint32Array. Option: `' + opts.state + '`.' );
 			}
-			opts = _$copy_960( opts, 1 );
+			opts = _$copy_982( opts, 1 );
 			if ( opts.copy === false ) {
 				FLG = false;
 			} else if ( opts.state ) {
@@ -52485,7 +52485,7 @@ function __factory_590() {
 				if ( _$hasOwnProp_58( opts, 'state' ) && !_$isUint32Array_166( opts.state ) ) {
 					throw new TypeError( 'invalid option. `state` option must be a Uint32Array. Option: `' + opts.state + '`.' );
 				}
-				opts = _$copy_960( opts, 1 );
+				opts = _$copy_982( opts, 1 );
 				if ( opts.copy === false ) {
 					FLG = false;
 				} else if ( opts.state ) {
@@ -52529,25 +52529,25 @@ function __factory_590() {
 		}
 		c = 1.0 / _$sqrt_505( 9.0*d );
 	}
-	_$setNonEnumerableReadOnly_964( prng, 'NAME', 'gamma' );
+	_$setNonEnumerableReadOnly_986( prng, 'NAME', 'gamma' );
 
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( opts && opts.prng ) {
-		_$setNonEnumerableReadOnly_964( prng, 'seed', null );
-		_$setNonEnumerableReadOnly_964( prng, 'seedLength', null );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', _$constantFunction_955( null ), _$noop_1009 );
-		_$setNonEnumerableReadOnly_964( prng, 'stateLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'byteLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', _$constantFunction_955( null ) );
-		_$setNonEnumerableReadOnly_964( prng, 'PRNG', rand );
+		_$setNonEnumerableReadOnly_986( prng, 'seed', null );
+		_$setNonEnumerableReadOnly_986( prng, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', _$constantFunction_977( null ), _$noop_1031 );
+		_$setNonEnumerableReadOnly_986( prng, 'stateLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'byteLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', _$constantFunction_977( null ) );
+		_$setNonEnumerableReadOnly_986( prng, 'PRNG', rand );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seedLength', getSeedLength );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', toJSON );
-		_$setNonEnumerableReadOnly_964( prng, 'PRNG', rand );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', toJSON );
+		_$setNonEnumerableReadOnly_986( prng, 'PRNG', rand );
 		rand = rand.normalized;
 	}
 	return prng;
@@ -52822,14 +52822,14 @@ var _$gamma_593 = __gamma_593;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$gamma_593 = require( './main.js' ); */;
 /* removed: var _$factory_590 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$gamma_593, 'factory', _$factory_590 );
+_$setNonEnumerableReadOnly_986( _$gamma_593, 'factory', _$factory_590 );
 
 
 // EXPORTS //
@@ -52858,15 +52858,15 @@ var _$gamma_592 = _$gamma_593;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_962 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_966 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_984 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_988 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 var __isPositive_578 = _$isPositiveNumber_150.isPrimitive;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_1009 = require( '@stdlib/utils/noop' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_1031 = require( '@stdlib/utils/noop' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 var __gamma_578 = _$gamma_592.factory;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
@@ -52955,25 +52955,25 @@ function __factory_578() {
 	}
 	rand = rgamma.PRNG;
 
-	_$setNonEnumerableReadOnly_964( prng, 'NAME', 'chisquare' );
+	_$setNonEnumerableReadOnly_986( prng, 'NAME', 'chisquare' );
 
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( opts && opts.prng ) {
-		_$setNonEnumerableReadOnly_964( prng, 'seed', null );
-		_$setNonEnumerableReadOnly_964( prng, 'seedLength', null );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', _$constantFunction_955( null ), _$noop_1009 );
-		_$setNonEnumerableReadOnly_964( prng, 'stateLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'byteLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', _$constantFunction_955( null ) );
+		_$setNonEnumerableReadOnly_986( prng, 'seed', null );
+		_$setNonEnumerableReadOnly_986( prng, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', _$constantFunction_977( null ), _$noop_1031 );
+		_$setNonEnumerableReadOnly_986( prng, 'stateLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'byteLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', _$constantFunction_977( null ) );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seedLength', getSeedLength );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', toJSON );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', toJSON );
 	}
-	_$setNonEnumerableReadOnly_964( prng, 'PRNG', rand );
+	_$setNonEnumerableReadOnly_986( prng, 'PRNG', rand );
 	return prng;
 
 	/**
@@ -53199,14 +53199,14 @@ var _$chisquare_580 = chisquare;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$chisquare_580 = require( './main.js' ); */;
 /* removed: var _$factory_578 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$chisquare_580, 'factory', _$factory_578 );
+_$setNonEnumerableReadOnly_986( _$chisquare_580, 'factory', _$factory_578 );
 
 
 // EXPORTS //
@@ -53331,14 +53331,14 @@ var _$f_585 = __f_585;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_962 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_966 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_984 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_988 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_1009 = require( '@stdlib/utils/noop' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_1031 = require( '@stdlib/utils/noop' ); */;
 var __chisquare_586 = _$chisquare_579.factory;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
@@ -53436,25 +53436,25 @@ function __factory_586() {
 	}
 	rand = rchisq.PRNG;
 
-	_$setNonEnumerableReadOnly_964( prng, 'NAME', 'f' );
+	_$setNonEnumerableReadOnly_986( prng, 'NAME', 'f' );
 
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( opts && opts.prng ) {
-		_$setNonEnumerableReadOnly_964( prng, 'seed', null );
-		_$setNonEnumerableReadOnly_964( prng, 'seedLength', null );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', _$constantFunction_955( null ), _$noop_1009 );
-		_$setNonEnumerableReadOnly_964( prng, 'stateLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'byteLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', _$constantFunction_955( null ) );
+		_$setNonEnumerableReadOnly_986( prng, 'seed', null );
+		_$setNonEnumerableReadOnly_986( prng, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', _$constantFunction_977( null ), _$noop_1031 );
+		_$setNonEnumerableReadOnly_986( prng, 'stateLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'byteLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', _$constantFunction_977( null ) );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seedLength', getSeedLength );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', toJSON );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', toJSON );
 	}
-	_$setNonEnumerableReadOnly_964( prng, 'PRNG', rand );
+	_$setNonEnumerableReadOnly_986( prng, 'PRNG', rand );
 	return prng;
 
 	/**
@@ -53692,14 +53692,14 @@ var _$f_588 = __f_588;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$f_588 = require( './main.js' ); */;
 /* removed: var _$factory_586 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$f_588, 'factory', _$factory_586 );
+_$setNonEnumerableReadOnly_986( _$f_588, 'factory', _$factory_586 );
 
 
 // EXPORTS //
@@ -53772,7 +53772,7 @@ var _$f_587 = _$f_588;
 * var v = variance( NaN, 2.0 );
 * // returns NaN
 */
-function __variance_762( d1, d2 ) {
+function __variance_767( d1, d2 ) {
 	var out;
 	if ( d1 <= 0.0 || d2 <= 4.0 ) {
 		return NaN;
@@ -53785,7 +53785,7 @@ function __variance_762( d1, d2 ) {
 
 // EXPORTS //
 
-var _$variance_762 = __variance_762;
+var _$variance_767 = __variance_767;
 
 /**
 * @license Apache-2.0
@@ -53827,12 +53827,12 @@ var _$variance_762 = __variance_762;
 
 // MODULES //
 
-/* removed: var _$variance_762 = require( './variance.js' ); */;
+/* removed: var _$variance_767 = require( './variance.js' ); */;
 
 
 // EXPORTS //
 
-var _$variance_761 = _$variance_762;
+var _$variance_766 = _$variance_767;
 
 /**
 * @license Apache-2.0
@@ -53900,7 +53900,7 @@ var _$variance_761 = _$variance_762;
 * var y = pdf( 2.0, 1.0, -2.0 );
 * // returns NaN
 */
-function __pdf_698( x, x0, gamma ) {
+function __pdf_703( x, x0, gamma ) {
 	var denom;
 	if (
 		_$isnan_231( x ) ||
@@ -53917,7 +53917,7 @@ function __pdf_698( x, x0, gamma ) {
 
 // EXPORTS //
 
-var _$pdf_698 = __pdf_698;
+var _$pdf_703 = __pdf_703;
 
 /**
 * @license Apache-2.0
@@ -53941,7 +53941,7 @@ var _$pdf_698 = __pdf_698;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$pow_480 = require( '@stdlib/math/base/special/pow' ); */;
 /* removed: var _$PI_206 = require( '@stdlib/constants/math/float64-pi' ); */;
@@ -53965,14 +53965,14 @@ var _$pdf_698 = __pdf_698;
 * y = pdf( 3.0 );
 * // returns ~0.127
 */
-function __factory_696( x0, gamma ) {
+function __factory_701( x0, gamma ) {
 	var gpi;
 	if (
 		_$isnan_231( gamma ) ||
 		_$isnan_231( x0 ) ||
 		gamma <= 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	gpi = gamma * _$PI_206;
 	return pdf;
@@ -53999,7 +53999,7 @@ function __factory_696( x0, gamma ) {
 
 // EXPORTS //
 
-var _$factory_696 = __factory_696;
+var _$factory_701 = __factory_701;
 
 /**
 * @license Apache-2.0
@@ -54043,19 +54043,19 @@ var _$factory_696 = __factory_696;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_698 = require( './pdf.js' ); */;
-/* removed: var _$factory_696 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_703 = require( './pdf.js' ); */;
+/* removed: var _$factory_701 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$pdf_698, 'factory', _$factory_696 );
+_$setNonEnumerableReadOnly_986( _$pdf_703, 'factory', _$factory_701 );
 
 
 // EXPORTS //
 
-var _$pdf_697 = _$pdf_698;
+var _$pdf_702 = _$pdf_703;
 
 /**
 * @license Apache-2.0
@@ -54729,7 +54729,7 @@ var _$atan2_256 = _$atan2_255;
 
 // VARIABLES //
 
-var __ONE_OVER_PI_689 = 0.3183098861837907;
+var __ONE_OVER_PI_694 = 0.3183098861837907;
 
 
 // MAIN //
@@ -54766,7 +54766,7 @@ var __ONE_OVER_PI_689 = 0.3183098861837907;
 * var y = cdf( 1.0, NaN, 3.0 );
 * // returns NaN
 */
-function __cdf_689( x, x0, gamma ) {
+function __cdf_694( x, x0, gamma ) {
 	if (
 		_$isnan_231( x ) ||
 		_$isnan_231( gamma ) ||
@@ -54775,13 +54775,13 @@ function __cdf_689( x, x0, gamma ) {
 	) {
 		return NaN;
 	}
-	return ( __ONE_OVER_PI_689 * _$atan2_256( x-x0, gamma ) ) + 0.5;
+	return ( __ONE_OVER_PI_694 * _$atan2_256( x-x0, gamma ) ) + 0.5;
 }
 
 
 // EXPORTS //
 
-var _$cdf_689 = __cdf_689;
+var _$cdf_694 = __cdf_694;
 
 /**
 * @license Apache-2.0
@@ -54805,14 +54805,14 @@ var _$cdf_689 = __cdf_689;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$atan2_256 = require( '@stdlib/math/base/special/atan2' ); */;
 
 
 // VARIABLES //
 
-var __ONE_OVER_PI_690 = 0.3183098861837907;
+var __ONE_OVER_PI_695 = 0.3183098861837907;
 
 
 // MAIN //
@@ -54833,13 +54833,13 @@ var __ONE_OVER_PI_690 = 0.3183098861837907;
 * y = cdf( 12.0 );
 * // returns 0.75
 */
-function __factory_690( x0, gamma ) {
+function __factory_695( x0, gamma ) {
 	if (
 		_$isnan_231( gamma ) ||
 		_$isnan_231( x0 ) ||
 		gamma <= 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return cdf;
 
@@ -54858,14 +54858,14 @@ function __factory_690( x0, gamma ) {
 		if ( _$isnan_231( x ) ) {
 			return NaN;
 		}
-		return ( __ONE_OVER_PI_690 * _$atan2_256( x-x0, gamma ) ) + 0.5;
+		return ( __ONE_OVER_PI_695 * _$atan2_256( x-x0, gamma ) ) + 0.5;
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_690 = __factory_690;
+var _$factory_695 = __factory_695;
 
 /**
 * @license Apache-2.0
@@ -54909,19 +54909,19 @@ var _$factory_690 = __factory_690;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_689 = require( './cdf.js' ); */;
-/* removed: var _$factory_690 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_694 = require( './cdf.js' ); */;
+/* removed: var _$factory_695 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$cdf_689, 'factory', _$factory_690 );
+_$setNonEnumerableReadOnly_986( _$cdf_694, 'factory', _$factory_695 );
 
 
 // EXPORTS //
 
-var _$cdf_691 = _$cdf_689;
+var _$cdf_696 = _$cdf_694;
 
 /**
 * @license Apache-2.0
@@ -55510,7 +55510,7 @@ var _$tan_507 = _$tan_508;
 * var y = quantile( 0.5, 0.0, -1.0 );
 * // returns NaN
 */
-function __quantile_701( p, x0, gamma ) {
+function __quantile_706( p, x0, gamma ) {
 	if (
 		_$isnan_231( x0 ) ||
 		_$isnan_231( gamma ) ||
@@ -55527,7 +55527,7 @@ function __quantile_701( p, x0, gamma ) {
 
 // EXPORTS //
 
-var _$quantile_701 = __quantile_701;
+var _$quantile_706 = __quantile_706;
 
 /**
 * @license Apache-2.0
@@ -55551,7 +55551,7 @@ var _$quantile_701 = __quantile_701;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$tan_507 = require( '@stdlib/math/base/special/tan' ); */;
 /* removed: var _$PI_206 = require( '@stdlib/constants/math/float64-pi' ); */;
@@ -55574,13 +55574,13 @@ var _$quantile_701 = __quantile_701;
 * y = quantile( 0.8 );
 * // returns ~12.753
 */
-function __factory_699( x0, gamma ) {
+function __factory_704( x0, gamma ) {
 	if (
 		_$isnan_231( x0 ) ||
 		_$isnan_231( gamma ) ||
 		gamma <= 0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return quantile;
 
@@ -55606,7 +55606,7 @@ function __factory_699( x0, gamma ) {
 
 // EXPORTS //
 
-var _$factory_699 = __factory_699;
+var _$factory_704 = __factory_704;
 
 /**
 * @license Apache-2.0
@@ -55650,19 +55650,19 @@ var _$factory_699 = __factory_699;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_701 = require( './quantile.js' ); */;
-/* removed: var _$factory_699 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_706 = require( './quantile.js' ); */;
+/* removed: var _$factory_704 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$quantile_701, 'factory', _$factory_699 );
+_$setNonEnumerableReadOnly_986( _$quantile_706, 'factory', _$factory_704 );
 
 
 // EXPORTS //
 
-var _$quantile_700 = _$quantile_701;
+var _$quantile_705 = _$quantile_706;
 
 /**
 * @license Apache-2.0
@@ -55710,7 +55710,7 @@ var _$quantile_700 = _$quantile_701;
 * var v = median( 10.0, -0.5 );
 * // returns NaN
 */
-function __median_693( x0, gamma ) {
+function __median_698( x0, gamma ) {
 	if (
 		_$isnan_231( gamma ) ||
 		_$isnan_231( x0 ) ||
@@ -55724,7 +55724,7 @@ function __median_693( x0, gamma ) {
 
 // EXPORTS //
 
-var _$median_693 = __median_693;
+var _$median_698 = __median_698;
 
 /**
 * @license Apache-2.0
@@ -55763,12 +55763,12 @@ var _$median_693 = __median_693;
 
 // MODULES //
 
-/* removed: var _$median_693 = require( './median.js' ); */;
+/* removed: var _$median_698 = require( './median.js' ); */;
 
 
 // EXPORTS //
 
-var _$median_692 = _$median_693;
+var _$median_697 = _$median_698;
 
 /**
 * @license Apache-2.0
@@ -55816,7 +55816,7 @@ var _$median_692 = _$median_693;
 * var v = mode( 10.0, -0.5 );
 * // returns NaN
 */
-function __mode_695( x0, gamma ) {
+function __mode_700( x0, gamma ) {
 	if (
 		_$isnan_231( gamma ) ||
 		_$isnan_231( x0 ) ||
@@ -55830,7 +55830,7 @@ function __mode_695( x0, gamma ) {
 
 // EXPORTS //
 
-var _$mode_695 = __mode_695;
+var _$mode_700 = __mode_700;
 
 /**
 * @license Apache-2.0
@@ -55869,12 +55869,12 @@ var _$mode_695 = __mode_695;
 
 // MODULES //
 
-/* removed: var _$mode_695 = require( './mode.js' ); */;
+/* removed: var _$mode_700 = require( './mode.js' ); */;
 
 
 // EXPORTS //
 
-var _$mode_694 = _$mode_695;
+var _$mode_699 = _$mode_700;
 
 /**
 * @license Apache-2.0
@@ -56002,14 +56002,14 @@ var _$cauchy_573 = cauchy;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_962 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_966 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_984 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_988 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_1009 = require( '@stdlib/utils/noop' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_1031 = require( '@stdlib/utils/noop' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 var __randn_574 = _$randn_598.factory;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
@@ -56107,25 +56107,25 @@ function __factory_574() {
 	}
 	rand = rnorm.PRNG;
 
-	_$setNonEnumerableReadOnly_964( prng, 'NAME', 'cauchy' );
+	_$setNonEnumerableReadOnly_986( prng, 'NAME', 'cauchy' );
 
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( opts && opts.prng ) {
-		_$setNonEnumerableReadOnly_964( prng, 'seed', null );
-		_$setNonEnumerableReadOnly_964( prng, 'seedLength', null );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', _$constantFunction_955( null ), _$noop_1009 );
-		_$setNonEnumerableReadOnly_964( prng, 'stateLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'byteLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', _$constantFunction_955( null ) );
+		_$setNonEnumerableReadOnly_986( prng, 'seed', null );
+		_$setNonEnumerableReadOnly_986( prng, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', _$constantFunction_977( null ), _$noop_1031 );
+		_$setNonEnumerableReadOnly_986( prng, 'stateLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'byteLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', _$constantFunction_977( null ) );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seedLength', getSeedLength );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', toJSON );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', toJSON );
 	}
-	_$setNonEnumerableReadOnly_964( prng, 'PRNG', rand );
+	_$setNonEnumerableReadOnly_986( prng, 'PRNG', rand );
 	return prng;
 
 	/**
@@ -56354,14 +56354,14 @@ var _$cauchy_576 = __cauchy_576;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$cauchy_576 = require( './main.js' ); */;
 /* removed: var _$factory_574 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$cauchy_576, 'factory', _$factory_574 );
+_$setNonEnumerableReadOnly_986( _$cauchy_576, 'factory', _$factory_574 );
 
 
 // EXPORTS //
@@ -56433,7 +56433,7 @@ var _$cauchy_575 = _$cauchy_576;
 * @param {number} z - input value
 * @returns {number} function value
 */
-function __regularisedGammaPrefix_774( a, z ) {
+function __regularisedGammaPrefix_779( a, z ) {
 	var prefix;
 	var amza;
 	var agh;
@@ -56507,7 +56507,7 @@ function __regularisedGammaPrefix_774( a, z ) {
 
 // EXPORTS //
 
-var _$regularisedGammaPrefix_774 = __regularisedGammaPrefix_774;
+var _$regularisedGammaPrefix_779 = __regularisedGammaPrefix_779;
 
 /**
 * @license Apache-2.0
@@ -56552,7 +56552,7 @@ var _$regularisedGammaPrefix_774 = __regularisedGammaPrefix_774;
 /* removed: var _$ln_465 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
 /* removed: var _$FLOAT64_MAX_202 = require( '@stdlib/constants/math/float64-max' ); */;
-/* removed: var _$regularisedGammaPrefix_774 = require( './regularised_gamma_prefix.js' ); */;
+/* removed: var _$regularisedGammaPrefix_779 = require( './regularised_gamma_prefix.js' ); */;
 
 
 // MAIN //
@@ -56579,7 +56579,7 @@ function gammaPDerivative( a, x ) {
 		}
 		return ( a === 1.0 ) ? 1.0 : _$FLOAT64_PINF_207;
 	}
-	f1 = _$regularisedGammaPrefix_774( a, x );
+	f1 = _$regularisedGammaPrefix_779( a, x );
 	if ( x < 1.0 && ( _$FLOAT64_MAX_202 * x < f1 ) ) {
 		return _$FLOAT64_PINF_207;
 	}
@@ -56596,7 +56596,7 @@ function gammaPDerivative( a, x ) {
 
 // EXPORTS //
 
-var _$gammaPDerivative_771 = gammaPDerivative;
+var _$gammaPDerivative_776 = gammaPDerivative;
 
 /**
 * @license Apache-2.0
@@ -56622,7 +56622,7 @@ var _$gammaPDerivative_771 = gammaPDerivative;
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
-/* removed: var _$gammaPDerivative_771 = require( './gamma_p_derivative.js' ); */;
+/* removed: var _$gammaPDerivative_776 = require( './gamma_p_derivative.js' ); */;
 
 
 // MAIN //
@@ -56669,7 +56669,7 @@ var _$gammaPDerivative_771 = gammaPDerivative;
 * var y = pdf( 2.0, 1.0, -1.0 );
 * // returns NaN
 */
-function __pdf_773( x, alpha, beta ) {
+function __pdf_778( x, alpha, beta ) {
 	if (
 		_$isnan_231( x ) ||
 		_$isnan_231( alpha ) ||
@@ -56686,13 +56686,13 @@ function __pdf_773( x, alpha, beta ) {
 		// Point mass at 0...
 		return ( x === 0.0 ) ? _$FLOAT64_PINF_207 : 0.0;
 	}
-	return _$gammaPDerivative_771( alpha, x * beta ) * beta;
+	return _$gammaPDerivative_776( alpha, x * beta ) * beta;
 }
 
 
 // EXPORTS //
 
-var _$pdf_773 = __pdf_773;
+var _$pdf_778 = __pdf_778;
 
 /**
 * @license Apache-2.0
@@ -56745,7 +56745,7 @@ var _$pdf_773 = __pdf_773;
 * var y = pdf( 0.0, NaN );
 * // returns NaN
 */
-function __pdf_722( x, mu ) {
+function __pdf_727( x, mu ) {
 	if ( _$isnan_231( x ) || _$isnan_231( mu ) ) {
 		return NaN;
 	}
@@ -56755,7 +56755,7 @@ function __pdf_722( x, mu ) {
 
 // EXPORTS //
 
-var _$pdf_722 = __pdf_722;
+var _$pdf_727 = __pdf_727;
 
 /**
 * @license Apache-2.0
@@ -56779,7 +56779,7 @@ var _$pdf_722 = __pdf_722;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
@@ -56801,9 +56801,9 @@ var _$pdf_722 = __pdf_722;
 * y = pdf( 5.0 );
 * // returns Infinity
 */
-function __factory_720( mu ) {
+function __factory_725( mu ) {
 	if ( _$isnan_231( mu ) ) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return pdf;
 
@@ -56829,7 +56829,7 @@ function __factory_720( mu ) {
 
 // EXPORTS //
 
-var _$factory_720 = __factory_720;
+var _$factory_725 = __factory_725;
 
 /**
 * @license Apache-2.0
@@ -56873,19 +56873,19 @@ var _$factory_720 = __factory_720;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_722 = require( './pdf.js' ); */;
-/* removed: var _$factory_720 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_727 = require( './pdf.js' ); */;
+/* removed: var _$factory_725 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$pdf_722, 'factory', _$factory_720 );
+_$setNonEnumerableReadOnly_986( _$pdf_727, 'factory', _$factory_725 );
 
 
 // EXPORTS //
 
-var _$pdf_721 = _$pdf_722;
+var _$pdf_726 = _$pdf_727;
 
 /**
 * @license Apache-2.0
@@ -56909,11 +56909,11 @@ var _$pdf_721 = _$pdf_722;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-var degenerate = _$pdf_721.factory;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+var degenerate = _$pdf_726.factory;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
-/* removed: var _$gammaPDerivative_771 = require( './gamma_p_derivative.js' ); */;
+/* removed: var _$gammaPDerivative_776 = require( './gamma_p_derivative.js' ); */;
 
 
 // MAIN //
@@ -56934,14 +56934,14 @@ var degenerate = _$pdf_721.factory;
 * y = pdf( 4.0 );
 * // returns ~0.067
 */
-function __factory_770( alpha, beta ) {
+function __factory_775( alpha, beta ) {
 	if (
 		_$isnan_231( alpha ) ||
 		_$isnan_231( beta ) ||
 		alpha < 0.0 ||
 		beta <= 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	if ( alpha === 0.0 ) {
 		return degenerate( 0.0 );
@@ -56966,14 +56966,14 @@ function __factory_770( alpha, beta ) {
 		if ( x < 0.0 || x === _$FLOAT64_PINF_207 ) {
 			return 0.0;
 		}
-		return _$gammaPDerivative_771( alpha, x * beta ) * beta;
+		return _$gammaPDerivative_776( alpha, x * beta ) * beta;
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_770 = __factory_770;
+var _$factory_775 = __factory_775;
 
 /**
 * @license Apache-2.0
@@ -57013,19 +57013,19 @@ var _$factory_770 = __factory_770;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_773 = require( './pdf.js' ); */;
-/* removed: var _$factory_770 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_778 = require( './pdf.js' ); */;
+/* removed: var _$factory_775 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$pdf_773, 'factory', _$factory_770 );
+_$setNonEnumerableReadOnly_986( _$pdf_778, 'factory', _$factory_775 );
 
 
 // EXPORTS //
 
-var _$pdf_772 = _$pdf_773;
+var _$pdf_777 = _$pdf_778;
 
 /**
 * @license Apache-2.0
@@ -57049,7 +57049,7 @@ var _$pdf_772 = _$pdf_773;
 
 // MODULES //
 
-/* removed: var _$pdf_772 = require( '@stdlib/stats/base/dists/gamma/pdf' ); */;
+/* removed: var _$pdf_777 = require( '@stdlib/stats/base/dists/gamma/pdf' ); */;
 
 
 // MAIN //
@@ -57086,14 +57086,14 @@ var _$pdf_772 = _$pdf_773;
 * var y = pdf( 2.0, -1.0 );
 * // returns NaN
 */
-function __pdf_711( x, k ) {
-	return _$pdf_772( x, k/2.0, 0.5 );
+function __pdf_716( x, k ) {
+	return _$pdf_777( x, k/2.0, 0.5 );
 }
 
 
 // EXPORTS //
 
-var _$pdf_711 = __pdf_711;
+var _$pdf_716 = __pdf_716;
 
 /**
 * @license Apache-2.0
@@ -57117,7 +57117,7 @@ var _$pdf_711 = __pdf_711;
 
 // MODULES //
 
-var gammaFactory = _$pdf_772.factory;
+var gammaFactory = _$pdf_777.factory;
 
 
 // MAIN //
@@ -57137,14 +57137,14 @@ var gammaFactory = _$pdf_772.factory;
 * y = pdf( 1.0 );
 * // returns ~0.141
 */
-function __factory_709( k ) {
+function __factory_714( k ) {
 	return gammaFactory( k/2.0, 0.5 );
 }
 
 
 // EXPORTS //
 
-var _$factory_709 = __factory_709;
+var _$factory_714 = __factory_714;
 
 /**
 * @license Apache-2.0
@@ -57188,19 +57188,19 @@ var _$factory_709 = __factory_709;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_711 = require( './pdf.js' ); */;
-/* removed: var _$factory_709 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_716 = require( './pdf.js' ); */;
+/* removed: var _$factory_714 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$pdf_711, 'factory', _$factory_709 );
+_$setNonEnumerableReadOnly_986( _$pdf_716, 'factory', _$factory_714 );
 
 
 // EXPORTS //
 
-var _$pdf_710 = _$pdf_711;
+var _$pdf_715 = _$pdf_716;
 
 /**
 * @license Apache-2.0
@@ -57279,7 +57279,7 @@ var _$pdf_710 = _$pdf_711;
 * var y = cdf( 2.0, 1.0, -1.0 );
 * // returns NaN
 */
-function __cdf_763( x, alpha, beta ) {
+function __cdf_768( x, alpha, beta ) {
 	if (
 		_$isnan_231( x ) ||
 		_$isnan_231( alpha ) ||
@@ -57304,7 +57304,7 @@ function __cdf_763( x, alpha, beta ) {
 
 // EXPORTS //
 
-var _$cdf_763 = __cdf_763;
+var _$cdf_768 = __cdf_768;
 
 /**
 * @license Apache-2.0
@@ -57360,7 +57360,7 @@ var _$cdf_763 = __cdf_763;
 * var y = cdf( 0.0, NaN );
 * // returns NaN
 */
-function __cdf_717( x, mu ) {
+function __cdf_722( x, mu ) {
 	if ( _$isnan_231( x ) || _$isnan_231( mu ) ) {
 		return NaN;
 	}
@@ -57370,7 +57370,7 @@ function __cdf_717( x, mu ) {
 
 // EXPORTS //
 
-var _$cdf_717 = __cdf_717;
+var _$cdf_722 = __cdf_722;
 
 /**
 * @license Apache-2.0
@@ -57394,7 +57394,7 @@ var _$cdf_717 = __cdf_717;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
 
@@ -57418,9 +57418,9 @@ var _$cdf_717 = __cdf_717;
 * y = cdf( NaN );
 * // returns NaN
 */
-function __factory_718( mu ) {
+function __factory_723( mu ) {
 	if ( _$isnan_231( mu ) ) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return cdf;
 
@@ -57446,7 +57446,7 @@ function __factory_718( mu ) {
 
 // EXPORTS //
 
-var _$factory_718 = __factory_718;
+var _$factory_723 = __factory_723;
 
 /**
 * @license Apache-2.0
@@ -57493,19 +57493,19 @@ var _$factory_718 = __factory_718;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_717 = require( './cdf.js' ); */;
-/* removed: var _$factory_718 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_722 = require( './cdf.js' ); */;
+/* removed: var _$factory_723 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$cdf_717, 'factory', _$factory_718 );
+_$setNonEnumerableReadOnly_986( _$cdf_722, 'factory', _$factory_723 );
 
 
 // EXPORTS //
 
-var _$cdf_719 = _$cdf_717;
+var _$cdf_724 = _$cdf_722;
 
 /**
 * @license Apache-2.0
@@ -57529,8 +57529,8 @@ var _$cdf_719 = _$cdf_717;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-var __degenerate_764 = _$cdf_719.factory;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+var __degenerate_769 = _$cdf_724.factory;
 /* removed: var _$gammainc_352 = require( '@stdlib/math/base/special/gammainc' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
@@ -57553,17 +57553,17 @@ var __degenerate_764 = _$cdf_719.factory;
 * y = cdf( 8.0 );
 * // returns ~0.794
 */
-function __factory_764( alpha, beta ) {
+function __factory_769( alpha, beta ) {
 	if (
 		_$isnan_231( alpha ) ||
 		_$isnan_231( beta ) ||
 		alpha < 0.0 ||
 		beta <= 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	if ( alpha === 0.0 ) {
-		return __degenerate_764( 0.0 );
+		return __degenerate_769( 0.0 );
 	}
 	return cdf;
 
@@ -57592,7 +57592,7 @@ function __factory_764( alpha, beta ) {
 
 // EXPORTS //
 
-var _$factory_764 = __factory_764;
+var _$factory_769 = __factory_769;
 
 /**
 * @license Apache-2.0
@@ -57638,19 +57638,19 @@ var _$factory_764 = __factory_764;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_763 = require( './cdf.js' ); */;
-/* removed: var _$factory_764 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_768 = require( './cdf.js' ); */;
+/* removed: var _$factory_769 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$cdf_763, 'factory', _$factory_764 );
+_$setNonEnumerableReadOnly_986( _$cdf_768, 'factory', _$factory_769 );
 
 
 // EXPORTS //
 
-var _$cdf_765 = _$cdf_763;
+var _$cdf_770 = _$cdf_768;
 
 /**
 * @license Apache-2.0
@@ -57674,7 +57674,7 @@ var _$cdf_765 = _$cdf_763;
 
 // MODULES //
 
-/* removed: var _$cdf_765 = require( '@stdlib/stats/base/dists/gamma/cdf' ); */;
+/* removed: var _$cdf_770 = require( '@stdlib/stats/base/dists/gamma/cdf' ); */;
 
 
 // MAIN //
@@ -57711,14 +57711,14 @@ var _$cdf_765 = _$cdf_763;
 * var y = cdf( 2.0, -1.0 );
 * // returns NaN
 */
-function __cdf_702( x, k ) {
-	return _$cdf_765( x, k/2.0, 0.5 );
+function __cdf_707( x, k ) {
+	return _$cdf_770( x, k/2.0, 0.5 );
 }
 
 
 // EXPORTS //
 
-var _$cdf_702 = __cdf_702;
+var _$cdf_707 = __cdf_707;
 
 /**
 * @license Apache-2.0
@@ -57742,7 +57742,7 @@ var _$cdf_702 = __cdf_702;
 
 // MODULES //
 
-var __gammaFactory_703 = _$cdf_765.factory;
+var __gammaFactory_708 = _$cdf_770.factory;
 
 
 // MAIN //
@@ -57762,14 +57762,14 @@ var __gammaFactory_703 = _$cdf_765.factory;
 * y = cdf( 1.5 );
 * // returns ~0.318
 */
-function __factory_703( k ) {
-	return __gammaFactory_703( k/2.0, 0.5 );
+function __factory_708( k ) {
+	return __gammaFactory_708( k/2.0, 0.5 );
 }
 
 
 // EXPORTS //
 
-var _$factory_703 = __factory_703;
+var _$factory_708 = __factory_708;
 
 /**
 * @license Apache-2.0
@@ -57819,19 +57819,19 @@ var _$factory_703 = __factory_703;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_702 = require( './cdf.js' ); */;
-/* removed: var _$factory_703 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_707 = require( './cdf.js' ); */;
+/* removed: var _$factory_708 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$cdf_702, 'factory', _$factory_703 );
+_$setNonEnumerableReadOnly_986( _$cdf_707, 'factory', _$factory_708 );
 
 
 // EXPORTS //
 
-var _$cdf_704 = _$cdf_702;
+var _$cdf_709 = _$cdf_707;
 
 /**
 * @license Apache-2.0
@@ -57907,7 +57907,7 @@ var _$cdf_704 = _$cdf_702;
 * var y = quantile( 0.5, 1.0, -1.0 );
 * // returns NaN
 */
-function __quantile_777( p, alpha, beta ) {
+function __quantile_782( p, alpha, beta ) {
 	if (
 		_$isnan_231( alpha ) ||
 		_$isnan_231( beta ) ||
@@ -57928,7 +57928,7 @@ function __quantile_777( p, alpha, beta ) {
 
 // EXPORTS //
 
-var _$quantile_777 = __quantile_777;
+var _$quantile_782 = __quantile_782;
 
 /**
 * @license Apache-2.0
@@ -57988,7 +57988,7 @@ var _$quantile_777 = __quantile_777;
 * var y = quantile( 0.0, NaN );
 * // returns NaN
 */
-function __quantile_728( p, mu ) {
+function __quantile_733( p, mu ) {
 	if ( _$isnan_231( p ) || p < 0.0 || p > 1.0 ) {
 		return NaN;
 	}
@@ -57998,7 +57998,7 @@ function __quantile_728( p, mu ) {
 
 // EXPORTS //
 
-var _$quantile_728 = __quantile_728;
+var _$quantile_733 = __quantile_733;
 
 /**
 * @license Apache-2.0
@@ -58022,7 +58022,7 @@ var _$quantile_728 = __quantile_728;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
 
@@ -58046,9 +58046,9 @@ var _$quantile_728 = __quantile_728;
 * y = quantile( 1.1 );
 * // returns NaN
 */
-function __factory_726( mu ) {
+function __factory_731( mu ) {
 	if ( _$isnan_231( mu ) ) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return quantile;
 
@@ -58074,7 +58074,7 @@ function __factory_726( mu ) {
 
 // EXPORTS //
 
-var _$factory_726 = __factory_726;
+var _$factory_731 = __factory_731;
 
 /**
 * @license Apache-2.0
@@ -58118,19 +58118,19 @@ var _$factory_726 = __factory_726;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_728 = require( './quantile.js' ); */;
-/* removed: var _$factory_726 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_733 = require( './quantile.js' ); */;
+/* removed: var _$factory_731 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$quantile_728, 'factory', _$factory_726 );
+_$setNonEnumerableReadOnly_986( _$quantile_733, 'factory', _$factory_731 );
 
 
 // EXPORTS //
 
-var _$quantile_727 = _$quantile_728;
+var _$quantile_732 = _$quantile_733;
 
 /**
 * @license Apache-2.0
@@ -58154,9 +58154,9 @@ var _$quantile_727 = _$quantile_728;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$gammaincinv_377 = require( '@stdlib/math/base/special/gammaincinv' ); */;
-var __degenerate_775 = _$quantile_727.factory;
+var __degenerate_780 = _$quantile_732.factory;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
 
@@ -58177,17 +58177,17 @@ var __degenerate_775 = _$quantile_727.factory;
 * y = quantile( 0.8 );
 * // returns ~7.289
 */
-function __factory_775( alpha, beta ) {
+function __factory_780( alpha, beta ) {
 	if (
 		_$isnan_231( alpha ) ||
 		_$isnan_231( beta ) ||
 		alpha < 0.0 ||
 		beta <= 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	if ( alpha === 0.0 ) {
-		return __degenerate_775( 0.0 );
+		return __degenerate_780( 0.0 );
 	}
 	return quantile;
 
@@ -58213,7 +58213,7 @@ function __factory_775( alpha, beta ) {
 
 // EXPORTS //
 
-var _$factory_775 = __factory_775;
+var _$factory_780 = __factory_780;
 
 /**
 * @license Apache-2.0
@@ -58256,19 +58256,19 @@ var _$factory_775 = __factory_775;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_777 = require( './quantile.js' ); */;
-/* removed: var _$factory_775 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_782 = require( './quantile.js' ); */;
+/* removed: var _$factory_780 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$quantile_777, 'factory', _$factory_775 );
+_$setNonEnumerableReadOnly_986( _$quantile_782, 'factory', _$factory_780 );
 
 
 // EXPORTS //
 
-var _$quantile_776 = _$quantile_777;
+var _$quantile_781 = _$quantile_782;
 
 /**
 * @license Apache-2.0
@@ -58292,7 +58292,7 @@ var _$quantile_776 = _$quantile_777;
 
 // MODULES //
 
-/* removed: var _$quantile_776 = require( '@stdlib/stats/base/dists/gamma/quantile' ); */;
+/* removed: var _$quantile_781 = require( '@stdlib/stats/base/dists/gamma/quantile' ); */;
 
 
 // MAIN //
@@ -58337,14 +58337,14 @@ var _$quantile_776 = _$quantile_777;
 * var y = quantile( 0.5, -1.0 );
 * // returns NaN
 */
-function __quantile_714( p, k ) {
-	return _$quantile_776( p, k/2.0, 0.5 );
+function __quantile_719( p, k ) {
+	return _$quantile_781( p, k/2.0, 0.5 );
 }
 
 
 // EXPORTS //
 
-var _$quantile_714 = __quantile_714;
+var _$quantile_719 = __quantile_719;
 
 /**
 * @license Apache-2.0
@@ -58368,7 +58368,7 @@ var _$quantile_714 = __quantile_714;
 
 // MODULES //
 
-var __gammaFactory_712 = _$quantile_776.factory;
+var __gammaFactory_717 = _$quantile_781.factory;
 
 
 // MAIN //
@@ -58388,14 +58388,14 @@ var __gammaFactory_712 = _$quantile_776.factory;
 * y = quantile( 1.0 );
 * // returns Infinity
 */
-function __factory_712( k ) {
-	return __gammaFactory_712( k/2.0, 0.5 );
+function __factory_717( k ) {
+	return __gammaFactory_717( k/2.0, 0.5 );
 }
 
 
 // EXPORTS //
 
-var _$factory_712 = __factory_712;
+var _$factory_717 = __factory_717;
 
 /**
 * @license Apache-2.0
@@ -58439,19 +58439,19 @@ var _$factory_712 = __factory_712;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_714 = require( './quantile.js' ); */;
-/* removed: var _$factory_712 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_719 = require( './quantile.js' ); */;
+/* removed: var _$factory_717 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$quantile_714, 'factory', _$factory_712 );
+_$setNonEnumerableReadOnly_986( _$quantile_719, 'factory', _$factory_717 );
 
 
 // EXPORTS //
 
-var _$quantile_713 = _$quantile_714;
+var _$quantile_718 = _$quantile_719;
 
 /**
 * @license Apache-2.0
@@ -58502,7 +58502,7 @@ var _$quantile_713 = _$quantile_714;
 * var v = mean( NaN );
 * // returns NaN
 */
-function __mean_706( k ) {
+function __mean_711( k ) {
 	if ( _$isnan_231( k ) || k < 0.0 ) {
 		return NaN;
 	}
@@ -58512,7 +58512,7 @@ function __mean_706( k ) {
 
 // EXPORTS //
 
-var _$mean_706 = __mean_706;
+var _$mean_711 = __mean_711;
 
 /**
 * @license Apache-2.0
@@ -58551,12 +58551,12 @@ var _$mean_706 = __mean_706;
 
 // MODULES //
 
-/* removed: var _$mean_706 = require( './mean.js' ); */;
+/* removed: var _$mean_711 = require( './mean.js' ); */;
 
 
 // EXPORTS //
 
-var _$mean_705 = _$mean_706;
+var _$mean_710 = _$mean_711;
 
 /**
 * @license Apache-2.0
@@ -58608,7 +58608,7 @@ var _$mean_705 = _$mean_706;
 * var v = mode( NaN );
 * // returns NaN
 */
-function __mode_708( k ) {
+function __mode_713( k ) {
 	if ( _$isnan_231( k ) || k < 0.0 ) {
 		return NaN;
 	}
@@ -58618,7 +58618,7 @@ function __mode_708( k ) {
 
 // EXPORTS //
 
-var _$mode_708 = __mode_708;
+var _$mode_713 = __mode_713;
 
 /**
 * @license Apache-2.0
@@ -58657,12 +58657,12 @@ var _$mode_708 = __mode_708;
 
 // MODULES //
 
-/* removed: var _$mode_708 = require( './mode.js' ); */;
+/* removed: var _$mode_713 = require( './mode.js' ); */;
 
 
 // EXPORTS //
 
-var _$mode_707 = _$mode_708;
+var _$mode_712 = _$mode_713;
 
 /**
 * @license Apache-2.0
@@ -58713,7 +58713,7 @@ var _$mode_707 = _$mode_708;
 * var v = variance( NaN );
 * // returns NaN
 */
-function __variance_716( k ) {
+function __variance_721( k ) {
 	if ( _$isnan_231( k ) || k < 0.0 ) {
 		return NaN;
 	}
@@ -58723,7 +58723,7 @@ function __variance_716( k ) {
 
 // EXPORTS //
 
-var _$variance_716 = __variance_716;
+var _$variance_721 = __variance_721;
 
 /**
 * @license Apache-2.0
@@ -58762,12 +58762,12 @@ var _$variance_716 = __variance_716;
 
 // MODULES //
 
-/* removed: var _$variance_716 = require( './variance.js' ); */;
+/* removed: var _$variance_721 = require( './variance.js' ); */;
 
 
 // EXPORTS //
 
-var _$variance_715 = _$variance_716;
+var _$variance_720 = _$variance_721;
 
 /**
 * @license Apache-2.0
@@ -58830,7 +58830,7 @@ var _$variance_715 = _$variance_716;
 * var y = pdf( 2.0, -1.0 );
 * // returns NaN
 */
-function __pdf_740( x, lambda ) {
+function __pdf_745( x, lambda ) {
 	var scale;
 	if (
 		_$isnan_231( x ) ||
@@ -58850,7 +58850,7 @@ function __pdf_740( x, lambda ) {
 
 // EXPORTS //
 
-var _$pdf_740 = __pdf_740;
+var _$pdf_745 = __pdf_745;
 
 /**
 * @license Apache-2.0
@@ -58874,7 +58874,7 @@ var _$pdf_740 = __pdf_740;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$exp_314 = require( '@stdlib/math/base/special/exp' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
@@ -58896,10 +58896,10 @@ var _$pdf_740 = __pdf_740;
 * y = pdf( 1.0 );
 * // returns ~0.303
 */
-function __factory_738( lambda ) {
+function __factory_743( lambda ) {
 	var scale;
 	if ( _$isnan_231( lambda ) || lambda < 0.0 || lambda === _$FLOAT64_PINF_207 ) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	scale = 1.0 / lambda;
 	return pdf;
@@ -58929,7 +58929,7 @@ function __factory_738( lambda ) {
 
 // EXPORTS //
 
-var _$factory_738 = __factory_738;
+var _$factory_743 = __factory_743;
 
 /**
 * @license Apache-2.0
@@ -58973,19 +58973,19 @@ var _$factory_738 = __factory_738;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_740 = require( './pdf.js' ); */;
-/* removed: var _$factory_738 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_745 = require( './pdf.js' ); */;
+/* removed: var _$factory_743 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$pdf_740, 'factory', _$factory_738 );
+_$setNonEnumerableReadOnly_986( _$pdf_745, 'factory', _$factory_743 );
 
 
 // EXPORTS //
 
-var _$pdf_739 = _$pdf_740;
+var _$pdf_744 = _$pdf_745;
 
 /**
 * @license Apache-2.0
@@ -59048,7 +59048,7 @@ var _$pdf_739 = _$pdf_740;
 * var y = cdf( 2.0, -1.0 );
 * // returns NaN
 */
-function __cdf_729( x, lambda ) {
+function __cdf_734( x, lambda ) {
 	if (
 		_$isnan_231( lambda ) ||
 		lambda < 0.0 ||
@@ -59065,7 +59065,7 @@ function __cdf_729( x, lambda ) {
 
 // EXPORTS //
 
-var _$cdf_729 = __cdf_729;
+var _$cdf_734 = __cdf_734;
 
 /**
 * @license Apache-2.0
@@ -59089,7 +59089,7 @@ var _$cdf_729 = __cdf_729;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$exp_314 = require( '@stdlib/math/base/special/exp' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
@@ -59111,13 +59111,13 @@ var _$cdf_729 = __cdf_729;
 * y = cdf( 1.0 );
 * // returns ~0.393
 */
-function __factory_730( lambda ) {
+function __factory_735( lambda ) {
 	if (
 		_$isnan_231( lambda ) ||
 		lambda < 0.0 ||
 		lambda === _$FLOAT64_PINF_207
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return cdf;
 
@@ -59143,7 +59143,7 @@ function __factory_730( lambda ) {
 
 // EXPORTS //
 
-var _$factory_730 = __factory_730;
+var _$factory_735 = __factory_735;
 
 /**
 * @license Apache-2.0
@@ -59183,19 +59183,19 @@ var _$factory_730 = __factory_730;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_729 = require( './cdf.js' ); */;
-/* removed: var _$factory_730 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_734 = require( './cdf.js' ); */;
+/* removed: var _$factory_735 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$cdf_729, 'factory', _$factory_730 );
+_$setNonEnumerableReadOnly_986( _$cdf_734, 'factory', _$factory_735 );
 
 
 // EXPORTS //
 
-var _$cdf_731 = _$cdf_729;
+var _$cdf_736 = _$cdf_734;
 
 /**
 * @license Apache-2.0
@@ -59262,7 +59262,7 @@ var _$cdf_731 = _$cdf_729;
 * var y = quantile( 0.5, -1.0 );
 * // returns NaN
 */
-function __quantile_743( p, lambda ) {
+function __quantile_748( p, lambda ) {
 	if (
 		_$isnan_231( lambda ) ||
 		lambda < 0.0 ||
@@ -59279,7 +59279,7 @@ function __quantile_743( p, lambda ) {
 
 // EXPORTS //
 
-var _$quantile_743 = __quantile_743;
+var _$quantile_748 = __quantile_748;
 
 /**
 * @license Apache-2.0
@@ -59303,7 +59303,7 @@ var _$quantile_743 = __quantile_743;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$ln_465 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
@@ -59325,9 +59325,9 @@ var _$quantile_743 = __quantile_743;
 * y = quantile( 1.0 );
 * // returns Infinity
 */
-function __factory_741( lambda ) {
+function __factory_746( lambda ) {
 	if ( lambda < 0.0 || lambda === _$FLOAT64_PINF_207 || _$isnan_231( lambda ) ) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return quantile;
 
@@ -59353,7 +59353,7 @@ function __factory_741( lambda ) {
 
 // EXPORTS //
 
-var _$factory_741 = __factory_741;
+var _$factory_746 = __factory_746;
 
 /**
 * @license Apache-2.0
@@ -59397,19 +59397,19 @@ var _$factory_741 = __factory_741;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_743 = require( './quantile.js' ); */;
-/* removed: var _$factory_741 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_748 = require( './quantile.js' ); */;
+/* removed: var _$factory_746 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$quantile_743, 'factory', _$factory_741 );
+_$setNonEnumerableReadOnly_986( _$quantile_748, 'factory', _$factory_746 );
 
 
 // EXPORTS //
 
-var _$quantile_742 = _$quantile_743;
+var _$quantile_747 = _$quantile_748;
 
 /**
 * @license Apache-2.0
@@ -59460,7 +59460,7 @@ var _$quantile_742 = _$quantile_743;
 * var v = mean( NaN );
 * // returns NaN
 */
-function __mean_733( lambda ) {
+function __mean_738( lambda ) {
 	if ( _$isnan_231( lambda ) || lambda < 0.0 ) {
 		return NaN;
 	}
@@ -59470,7 +59470,7 @@ function __mean_733( lambda ) {
 
 // EXPORTS //
 
-var _$mean_733 = __mean_733;
+var _$mean_738 = __mean_738;
 
 /**
 * @license Apache-2.0
@@ -59509,12 +59509,12 @@ var _$mean_733 = __mean_733;
 
 // MODULES //
 
-/* removed: var _$mean_733 = require( './mean.js' ); */;
+/* removed: var _$mean_738 = require( './mean.js' ); */;
 
 
 // EXPORTS //
 
-var _$mean_732 = _$mean_733;
+var _$mean_737 = _$mean_738;
 
 /**
 * @license Apache-2.0
@@ -59566,7 +59566,7 @@ var _$mean_732 = _$mean_733;
 * var v = median( NaN );
 * // returns NaN
 */
-function __median_735( lambda ) {
+function __median_740( lambda ) {
 	if ( _$isnan_231( lambda ) || lambda < 0.0 ) {
 		return NaN;
 	}
@@ -59576,7 +59576,7 @@ function __median_735( lambda ) {
 
 // EXPORTS //
 
-var _$median_735 = __median_735;
+var _$median_740 = __median_740;
 
 /**
 * @license Apache-2.0
@@ -59615,12 +59615,12 @@ var _$median_735 = __median_735;
 
 // MODULES //
 
-/* removed: var _$median_735 = require( './median.js' ); */;
+/* removed: var _$median_740 = require( './median.js' ); */;
 
 
 // EXPORTS //
 
-var _$median_734 = _$median_735;
+var _$median_739 = _$median_740;
 
 /**
 * @license Apache-2.0
@@ -59671,7 +59671,7 @@ var _$median_734 = _$median_735;
 * var v = mode( NaN );
 * // returns NaN
 */
-function __mode_737( lambda ) {
+function __mode_742( lambda ) {
 	if ( _$isnan_231( lambda ) || lambda < 0.0 ) {
 		return NaN;
 	}
@@ -59681,7 +59681,7 @@ function __mode_737( lambda ) {
 
 // EXPORTS //
 
-var _$mode_737 = __mode_737;
+var _$mode_742 = __mode_742;
 
 /**
 * @license Apache-2.0
@@ -59720,12 +59720,12 @@ var _$mode_737 = __mode_737;
 
 // MODULES //
 
-/* removed: var _$mode_737 = require( './mode.js' ); */;
+/* removed: var _$mode_742 = require( './mode.js' ); */;
 
 
 // EXPORTS //
 
-var _$mode_736 = _$mode_737;
+var _$mode_741 = _$mode_742;
 
 /**
 * @license Apache-2.0
@@ -59793,16 +59793,16 @@ var _$exponential_581 = exponential;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_962 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_966 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_984 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_988 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 var __isPositive_582 = _$isPositiveNumber_150.isPrimitive;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_1009 = require( '@stdlib/utils/noop' ); */;
-var __randu_582 = _$mt19937_612.factory;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_1031 = require( '@stdlib/utils/noop' ); */;
+var __randu_582 = _$mt19937_617.factory;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
 /* removed: var _$exponential_581 = require( './exponential.js' ); */;
@@ -59890,25 +59890,25 @@ function __factory_582() {
 	} else {
 		prng = exponential1;
 	}
-	_$setNonEnumerableReadOnly_964( prng, 'NAME', 'exponential' );
+	_$setNonEnumerableReadOnly_986( prng, 'NAME', 'exponential' );
 
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( opts && opts.prng ) {
-		_$setNonEnumerableReadOnly_964( prng, 'seed', null );
-		_$setNonEnumerableReadOnly_964( prng, 'seedLength', null );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', _$constantFunction_955( null ), _$noop_1009 );
-		_$setNonEnumerableReadOnly_964( prng, 'stateLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'byteLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', _$constantFunction_955( null ) );
-		_$setNonEnumerableReadOnly_964( prng, 'PRNG', rand );
+		_$setNonEnumerableReadOnly_986( prng, 'seed', null );
+		_$setNonEnumerableReadOnly_986( prng, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', _$constantFunction_977( null ), _$noop_1031 );
+		_$setNonEnumerableReadOnly_986( prng, 'stateLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'byteLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', _$constantFunction_977( null ) );
+		_$setNonEnumerableReadOnly_986( prng, 'PRNG', rand );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seedLength', getSeedLength );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', toJSON );
-		_$setNonEnumerableReadOnly_964( prng, 'PRNG', rand );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', toJSON );
+		_$setNonEnumerableReadOnly_986( prng, 'PRNG', rand );
 		rand = rand.normalized;
 	}
 	return prng;
@@ -60136,14 +60136,14 @@ var _$exponential_584 = __exponential_584;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$exponential_584 = require( './main.js' ); */;
 /* removed: var _$factory_582 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$exponential_584, 'factory', _$factory_582 );
+_$setNonEnumerableReadOnly_986( _$exponential_584, 'factory', _$factory_582 );
 
 
 // EXPORTS //
@@ -60199,7 +60199,7 @@ var _$exponential_583 = _$exponential_584;
 * var v = variance( NaN );
 * // returns NaN
 */
-function __variance_745( lambda ) {
+function __variance_750( lambda ) {
 	if ( _$isnan_231( lambda ) || lambda < 0.0 ) {
 		return NaN;
 	}
@@ -60209,7 +60209,7 @@ function __variance_745( lambda ) {
 
 // EXPORTS //
 
-var _$variance_745 = __variance_745;
+var _$variance_750 = __variance_750;
 
 /**
 * @license Apache-2.0
@@ -60248,12 +60248,12 @@ var _$variance_745 = __variance_745;
 
 // MODULES //
 
-/* removed: var _$variance_745 = require( './variance.js' ); */;
+/* removed: var _$variance_750 = require( './variance.js' ); */;
 
 
 // EXPORTS //
 
-var _$variance_744 = _$variance_745;
+var _$variance_749 = _$variance_750;
 
 /**
 * @license Apache-2.0
@@ -60312,7 +60312,7 @@ var _$variance_744 = _$variance_745;
 * var v = mean( NaN, 2.0 );
 * // returns NaN
 */
-function __mean_767( alpha, beta ) {
+function __mean_772( alpha, beta ) {
 	if ( alpha <= 0.0 || beta <= 0.0 ) {
 		return NaN;
 	}
@@ -60322,7 +60322,7 @@ function __mean_767( alpha, beta ) {
 
 // EXPORTS //
 
-var _$mean_767 = __mean_767;
+var _$mean_772 = __mean_772;
 
 /**
 * @license Apache-2.0
@@ -60364,12 +60364,12 @@ var _$mean_767 = __mean_767;
 
 // MODULES //
 
-/* removed: var _$mean_767 = require( './mean.js' ); */;
+/* removed: var _$mean_772 = require( './mean.js' ); */;
 
 
 // EXPORTS //
 
-var _$mean_766 = _$mean_767;
+var _$mean_771 = _$mean_772;
 
 /**
 * @license Apache-2.0
@@ -60432,7 +60432,7 @@ var _$mean_766 = _$mean_767;
 * var v = mode( NaN, 2.0 );
 * // returns NaN
 */
-function __mode_769( alpha, beta ) {
+function __mode_774( alpha, beta ) {
 	if ( alpha < 1.0 || beta <= 0.0 ) {
 		return NaN;
 	}
@@ -60442,7 +60442,7 @@ function __mode_769( alpha, beta ) {
 
 // EXPORTS //
 
-var _$mode_769 = __mode_769;
+var _$mode_774 = __mode_774;
 
 /**
 * @license Apache-2.0
@@ -60484,12 +60484,12 @@ var _$mode_769 = __mode_769;
 
 // MODULES //
 
-/* removed: var _$mode_769 = require( './mode.js' ); */;
+/* removed: var _$mode_774 = require( './mode.js' ); */;
 
 
 // EXPORTS //
 
-var _$mode_768 = _$mode_769;
+var _$mode_773 = _$mode_774;
 
 /**
 * @license Apache-2.0
@@ -60548,7 +60548,7 @@ var _$mode_768 = _$mode_769;
 * var v = variance( NaN, 2.0 );
 * // returns NaN
 */
-function __variance_779( alpha, beta ) {
+function __variance_784( alpha, beta ) {
 	if ( alpha <= 0.0 || beta <= 0.0 ) {
 		return NaN;
 	}
@@ -60558,7 +60558,7 @@ function __variance_779( alpha, beta ) {
 
 // EXPORTS //
 
-var _$variance_779 = __variance_779;
+var _$variance_784 = __variance_784;
 
 /**
 * @license Apache-2.0
@@ -60600,12 +60600,12 @@ var _$variance_779 = __variance_779;
 
 // MODULES //
 
-/* removed: var _$variance_779 = require( './variance.js' ); */;
+/* removed: var _$variance_784 = require( './variance.js' ); */;
 
 
 // EXPORTS //
 
-var _$variance_778 = _$variance_779;
+var _$variance_783 = _$variance_784;
 
 /**
 * @license Apache-2.0
@@ -60679,7 +60679,7 @@ var _$variance_778 = _$variance_779;
 * var y = pdf( 2.0, 1.0, -1.0 );
 * // returns NaN
 */
-function __pdf_796( x, alpha, beta ) {
+function __pdf_801( x, alpha, beta ) {
 	var lnl;
 	if (
 		_$isnan_231( x ) ||
@@ -60702,7 +60702,7 @@ function __pdf_796( x, alpha, beta ) {
 
 // EXPORTS //
 
-var _$pdf_796 = __pdf_796;
+var _$pdf_801 = __pdf_801;
 
 /**
 * @license Apache-2.0
@@ -60726,7 +60726,7 @@ var _$pdf_796 = __pdf_796;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$gammaln_394 = require( '@stdlib/math/base/special/gammaln' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$exp_314 = require( '@stdlib/math/base/special/exp' ); */;
@@ -60751,7 +60751,7 @@ var _$pdf_796 = __pdf_796;
 * y = pdf( 2.0 );
 * // returns ~0.05
 */
-function __factory_794( alpha, beta ) {
+function __factory_799( alpha, beta ) {
 	var firstTerm;
 	if (
 		_$isnan_231( alpha ) ||
@@ -60759,7 +60759,7 @@ function __factory_794( alpha, beta ) {
 		alpha <= 0.0 ||
 		beta <= 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	firstTerm = ( alpha * _$ln_465( beta ) ) - _$gammaln_394( alpha );
 	return pdf;
@@ -60791,7 +60791,7 @@ function __factory_794( alpha, beta ) {
 
 // EXPORTS //
 
-var _$factory_794 = __factory_794;
+var _$factory_799 = __factory_799;
 
 /**
 * @license Apache-2.0
@@ -60831,19 +60831,19 @@ var _$factory_794 = __factory_794;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_796 = require( './pdf.js' ); */;
-/* removed: var _$factory_794 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_801 = require( './pdf.js' ); */;
+/* removed: var _$factory_799 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$pdf_796, 'factory', _$factory_794 );
+_$setNonEnumerableReadOnly_986( _$pdf_801, 'factory', _$factory_799 );
 
 
 // EXPORTS //
 
-var _$pdf_795 = _$pdf_796;
+var _$pdf_800 = _$pdf_801;
 
 /**
 * @license Apache-2.0
@@ -60921,7 +60921,7 @@ var _$pdf_795 = _$pdf_796;
 * var y = cdf( 2.0, 1.0, -1.0 );
 * // returns NaN
 */
-function __cdf_787( x, alpha, beta ) {
+function __cdf_792( x, alpha, beta ) {
 	if (
 		_$isnan_231( x ) ||
 		_$isnan_231( alpha ) ||
@@ -60940,7 +60940,7 @@ function __cdf_787( x, alpha, beta ) {
 
 // EXPORTS //
 
-var _$cdf_787 = __cdf_787;
+var _$cdf_792 = __cdf_792;
 
 /**
 * @license Apache-2.0
@@ -60964,7 +60964,7 @@ var _$cdf_787 = __cdf_787;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$gammainc_352 = require( '@stdlib/math/base/special/gammainc' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
@@ -60987,14 +60987,14 @@ var _$cdf_787 = __cdf_787;
 * y = cdf( 2.0 );
 * // returns ~0.96
 */
-function __factory_788( alpha, beta ) {
+function __factory_793( alpha, beta ) {
 	if (
 		_$isnan_231( alpha ) ||
 		_$isnan_231( beta ) ||
 		alpha <= 0.0 ||
 		beta <= 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return cdf;
 
@@ -61023,7 +61023,7 @@ function __factory_788( alpha, beta ) {
 
 // EXPORTS //
 
-var _$factory_788 = __factory_788;
+var _$factory_793 = __factory_793;
 
 /**
 * @license Apache-2.0
@@ -61069,19 +61069,19 @@ var _$factory_788 = __factory_788;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_787 = require( './cdf.js' ); */;
-/* removed: var _$factory_788 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_792 = require( './cdf.js' ); */;
+/* removed: var _$factory_793 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$cdf_787, 'factory', _$factory_788 );
+_$setNonEnumerableReadOnly_986( _$cdf_792, 'factory', _$factory_793 );
 
 
 // EXPORTS //
 
-var _$cdf_789 = _$cdf_787;
+var _$cdf_794 = _$cdf_792;
 
 /**
 * @license Apache-2.0
@@ -61156,7 +61156,7 @@ var _$cdf_789 = _$cdf_787;
 * var y = quantile( 0.5, 1.0, -1.0 );
 * // returns NaN
 */
-function __quantile_799( p, alpha, beta ) {
+function __quantile_804( p, alpha, beta ) {
 	if (
 		_$isnan_231( alpha ) ||
 		_$isnan_231( beta ) ||
@@ -61174,7 +61174,7 @@ function __quantile_799( p, alpha, beta ) {
 
 // EXPORTS //
 
-var _$quantile_799 = __quantile_799;
+var _$quantile_804 = __quantile_804;
 
 /**
 * @license Apache-2.0
@@ -61198,7 +61198,7 @@ var _$quantile_799 = __quantile_799;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$gammaincinv_377 = require( '@stdlib/math/base/special/gammaincinv' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
@@ -61220,14 +61220,14 @@ var _$quantile_799 = __quantile_799;
 * y = quantile( 0.8 );
 * // returns ~0.427
 */
-function __factory_797( alpha, beta ) {
+function __factory_802( alpha, beta ) {
 	if (
 		_$isnan_231( alpha ) ||
 		_$isnan_231( beta ) ||
 		alpha <= 0.0 ||
 		beta <= 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return quantile;
 
@@ -61253,7 +61253,7 @@ function __factory_797( alpha, beta ) {
 
 // EXPORTS //
 
-var _$factory_797 = __factory_797;
+var _$factory_802 = __factory_802;
 
 /**
 * @license Apache-2.0
@@ -61296,19 +61296,19 @@ var _$factory_797 = __factory_797;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_799 = require( './quantile.js' ); */;
-/* removed: var _$factory_797 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_804 = require( './quantile.js' ); */;
+/* removed: var _$factory_802 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$quantile_799, 'factory', _$factory_797 );
+_$setNonEnumerableReadOnly_986( _$quantile_804, 'factory', _$factory_802 );
 
 
 // EXPORTS //
 
-var _$quantile_798 = _$quantile_799;
+var _$quantile_803 = _$quantile_804;
 
 /**
 * @license Apache-2.0
@@ -61367,7 +61367,7 @@ var _$quantile_798 = _$quantile_799;
 * var v = mean( NaN, 2.0 );
 * // returns NaN
 */
-function __mean_791( alpha, beta ) {
+function __mean_796( alpha, beta ) {
 	if ( alpha <= 1.0 || beta <= 0.0 ) {
 		return NaN;
 	}
@@ -61377,7 +61377,7 @@ function __mean_791( alpha, beta ) {
 
 // EXPORTS //
 
-var _$mean_791 = __mean_791;
+var _$mean_796 = __mean_796;
 
 /**
 * @license Apache-2.0
@@ -61416,12 +61416,12 @@ var _$mean_791 = __mean_791;
 
 // MODULES //
 
-/* removed: var _$mean_791 = require( './mean.js' ); */;
+/* removed: var _$mean_796 = require( './mean.js' ); */;
 
 
 // EXPORTS //
 
-var _$mean_790 = _$mean_791;
+var _$mean_795 = _$mean_796;
 
 /**
 * @license Apache-2.0
@@ -61480,7 +61480,7 @@ var _$mean_790 = _$mean_791;
 * var v = mode( NaN, 2.0 );
 * // returns NaN
 */
-function __mode_793( alpha, beta ) {
+function __mode_798( alpha, beta ) {
 	if ( alpha <= 0.0 || beta <= 0.0 ) {
 		return NaN;
 	}
@@ -61490,7 +61490,7 @@ function __mode_793( alpha, beta ) {
 
 // EXPORTS //
 
-var _$mode_793 = __mode_793;
+var _$mode_798 = __mode_798;
 
 /**
 * @license Apache-2.0
@@ -61532,12 +61532,12 @@ var _$mode_793 = __mode_793;
 
 // MODULES //
 
-/* removed: var _$mode_793 = require( './mode.js' ); */;
+/* removed: var _$mode_798 = require( './mode.js' ); */;
 
 
 // EXPORTS //
 
-var _$mode_792 = _$mode_793;
+var _$mode_797 = _$mode_798;
 
 /**
 * @license Apache-2.0
@@ -61617,14 +61617,14 @@ var _$validate_605 = __validate_605;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_962 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_966 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_984 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_988 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_1009 = require( '@stdlib/utils/noop' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_1031 = require( '@stdlib/utils/noop' ); */;
 var __gamma_602 = _$gamma_592.factory;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
@@ -61721,25 +61721,25 @@ function __factory_602() {
 	}
 	rand = rgamma.PRNG;
 
-	_$setNonEnumerableReadOnly_964( prng, 'NAME', 'invgamma' );
+	_$setNonEnumerableReadOnly_986( prng, 'NAME', 'invgamma' );
 
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( opts && opts.prng ) {
-		_$setNonEnumerableReadOnly_964( prng, 'seed', null );
-		_$setNonEnumerableReadOnly_964( prng, 'seedLength', null );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', _$constantFunction_955( null ), _$noop_1009 );
-		_$setNonEnumerableReadOnly_964( prng, 'stateLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'byteLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', _$constantFunction_955( null ) );
+		_$setNonEnumerableReadOnly_986( prng, 'seed', null );
+		_$setNonEnumerableReadOnly_986( prng, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', _$constantFunction_977( null ), _$noop_1031 );
+		_$setNonEnumerableReadOnly_986( prng, 'stateLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'byteLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', _$constantFunction_977( null ) );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seedLength', getSeedLength );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', toJSON );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', toJSON );
 	}
-	_$setNonEnumerableReadOnly_964( prng, 'PRNG', rand );
+	_$setNonEnumerableReadOnly_986( prng, 'PRNG', rand );
 	return prng;
 
 	/**
@@ -61990,14 +61990,14 @@ var _$invgamma_604 = invgamma;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$invgamma_604 = require( './main.js' ); */;
 /* removed: var _$factory_602 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$invgamma_604, 'factory', _$factory_602 );
+_$setNonEnumerableReadOnly_986( _$invgamma_604, 'factory', _$factory_602 );
 
 
 // EXPORTS //
@@ -62066,7 +62066,7 @@ var _$invgamma_603 = _$invgamma_604;
 * var v = variance( NaN, 2.0 );
 * // returns NaN
 */
-function __variance_801( alpha, beta ) {
+function __variance_806( alpha, beta ) {
 	if ( alpha <= 2.0 || beta <= 0.0 ) {
 		return NaN;
 	}
@@ -62076,7 +62076,7 @@ function __variance_801( alpha, beta ) {
 
 // EXPORTS //
 
-var _$variance_801 = __variance_801;
+var _$variance_806 = __variance_806;
 
 /**
 * @license Apache-2.0
@@ -62118,12 +62118,12 @@ var _$variance_801 = __variance_801;
 
 // MODULES //
 
-/* removed: var _$variance_801 = require( './variance.js' ); */;
+/* removed: var _$variance_806 = require( './variance.js' ); */;
 
 
 // EXPORTS //
 
-var _$variance_800 = _$variance_801;
+var _$variance_805 = _$variance_806;
 
 /**
 * @license Apache-2.0
@@ -62205,7 +62205,7 @@ var _$variance_800 = _$variance_801;
 * var y = pdf( 0.0, 1.0, NaN );
 * // returns NaN
 */
-function __pdf_813( x, a, b ) {
+function __pdf_818( x, a, b ) {
 	if (
 		_$isnan_231( x ) ||
 		_$isnan_231( a ) ||
@@ -62224,7 +62224,7 @@ function __pdf_813( x, a, b ) {
 
 // EXPORTS //
 
-var _$pdf_813 = __pdf_813;
+var _$pdf_818 = __pdf_818;
 
 /**
 * @license Apache-2.0
@@ -62248,7 +62248,7 @@ var _$pdf_813 = __pdf_813;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$pow_480 = require( '@stdlib/math/base/special/pow' ); */;
 
@@ -62271,14 +62271,14 @@ var _$pdf_813 = __pdf_813;
 * y = pdf( 0.3 );
 * // returns ~0.679
 */
-function __factory_811( a, b ) {
+function __factory_816( a, b ) {
 	if (
 		_$isnan_231( a ) ||
 		_$isnan_231( b ) ||
 		a <= 0.0 ||
 		b <= 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return pdf;
 
@@ -62307,7 +62307,7 @@ function __factory_811( a, b ) {
 
 // EXPORTS //
 
-var _$factory_811 = __factory_811;
+var _$factory_816 = __factory_816;
 
 /**
 * @license Apache-2.0
@@ -62357,19 +62357,19 @@ var _$factory_811 = __factory_811;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_813 = require( './pdf.js' ); */;
-/* removed: var _$factory_811 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_818 = require( './pdf.js' ); */;
+/* removed: var _$factory_816 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$pdf_813, 'factory', _$factory_811 );
+_$setNonEnumerableReadOnly_986( _$pdf_818, 'factory', _$factory_816 );
 
 
 // EXPORTS //
 
-var _$pdf_812 = _$pdf_813;
+var _$pdf_817 = _$pdf_818;
 
 /**
 * @license Apache-2.0
@@ -62451,7 +62451,7 @@ var _$pdf_812 = _$pdf_813;
 * var y = cdf( 0.0, 1.0, NaN );
 * // returns NaN
 */
-function __cdf_802( x, a, b ) {
+function __cdf_807( x, a, b ) {
 	if (
 		_$isnan_231( x ) ||
 		_$isnan_231( a ) ||
@@ -62473,7 +62473,7 @@ function __cdf_802( x, a, b ) {
 
 // EXPORTS //
 
-var _$cdf_802 = __cdf_802;
+var _$cdf_807 = __cdf_807;
 
 /**
 * @license Apache-2.0
@@ -62497,7 +62497,7 @@ var _$cdf_802 = __cdf_802;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$pow_480 = require( '@stdlib/math/base/special/pow' ); */;
 
@@ -62520,14 +62520,14 @@ var _$cdf_802 = __cdf_802;
 * y = cdf( 0.3 );
 * // returns ~0.327
 */
-function __factory_803( a, b ) {
+function __factory_808( a, b ) {
 	if (
 		_$isnan_231( a ) ||
 		_$isnan_231( b ) ||
 		a <= 0.0 ||
 		b <= 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return cdf;
 
@@ -62559,7 +62559,7 @@ function __factory_803( a, b ) {
 
 // EXPORTS //
 
-var _$factory_803 = __factory_803;
+var _$factory_808 = __factory_808;
 
 /**
 * @license Apache-2.0
@@ -62609,19 +62609,19 @@ var _$factory_803 = __factory_803;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_802 = require( './cdf.js' ); */;
-/* removed: var _$factory_803 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_807 = require( './cdf.js' ); */;
+/* removed: var _$factory_808 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$cdf_802, 'factory', _$factory_803 );
+_$setNonEnumerableReadOnly_986( _$cdf_807, 'factory', _$factory_808 );
 
 
 // EXPORTS //
 
-var _$cdf_804 = _$cdf_802;
+var _$cdf_809 = _$cdf_807;
 
 /**
 * @license Apache-2.0
@@ -62699,7 +62699,7 @@ var _$cdf_804 = _$cdf_802;
 * var y = quantile( 0.1, 1.0, NaN );
 * // returns NaN
 */
-function __quantile_816( p, a, b ) {
+function __quantile_821( p, a, b ) {
 	if (
 		_$isnan_231( p ) ||
 		_$isnan_231( a ) ||
@@ -62717,7 +62717,7 @@ function __quantile_816( p, a, b ) {
 
 // EXPORTS //
 
-var _$quantile_816 = __quantile_816;
+var _$quantile_821 = __quantile_821;
 
 /**
 * @license Apache-2.0
@@ -62741,7 +62741,7 @@ var _$quantile_816 = __quantile_816;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$pow_480 = require( '@stdlib/math/base/special/pow' ); */;
 
@@ -62764,14 +62764,14 @@ var _$quantile_816 = __quantile_816;
 * y = quantile( 0.3 );
 * // returns ~0.26
 */
-function __factory_814( a, b ) {
+function __factory_819( a, b ) {
 	if (
 		_$isnan_231( a ) ||
 		_$isnan_231( b ) ||
 		a <= 0.0 ||
 		b <= 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return quantile;
 
@@ -62797,7 +62797,7 @@ function __factory_814( a, b ) {
 
 // EXPORTS //
 
-var _$factory_814 = __factory_814;
+var _$factory_819 = __factory_819;
 
 /**
 * @license Apache-2.0
@@ -62847,19 +62847,19 @@ var _$factory_814 = __factory_814;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_816 = require( './quantile.js' ); */;
-/* removed: var _$factory_814 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_821 = require( './quantile.js' ); */;
+/* removed: var _$factory_819 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$quantile_816, 'factory', _$factory_814 );
+_$setNonEnumerableReadOnly_986( _$quantile_821, 'factory', _$factory_819 );
 
 
 // EXPORTS //
 
-var _$quantile_815 = _$quantile_816;
+var _$quantile_820 = _$quantile_821;
 
 /**
 * @license Apache-2.0
@@ -62924,7 +62924,7 @@ var _$quantile_815 = _$quantile_816;
 * var v = mean( NaN, 2.0 );
 * // returns NaN
 */
-function __mean_806( a, b ) {
+function __mean_811( a, b ) {
 	if (
 		_$isnan_231( a ) ||
 		a <= 0.0 ||
@@ -62939,7 +62939,7 @@ function __mean_806( a, b ) {
 
 // EXPORTS //
 
-var _$mean_806 = __mean_806;
+var _$mean_811 = __mean_811;
 
 /**
 * @license Apache-2.0
@@ -62981,12 +62981,12 @@ var _$mean_806 = __mean_806;
 
 // MODULES //
 
-/* removed: var _$mean_806 = require( './mean.js' ); */;
+/* removed: var _$mean_811 = require( './mean.js' ); */;
 
 
 // EXPORTS //
 
-var _$mean_805 = _$mean_806;
+var _$mean_810 = _$mean_811;
 
 /**
 * @license Apache-2.0
@@ -63051,7 +63051,7 @@ var _$mean_805 = _$mean_806;
 * var v = median( NaN, 2.0 );
 * // returns NaN
 */
-function __median_808( a, b ) {
+function __median_813( a, b ) {
 	if (
 		_$isnan_231( a ) ||
 		a <= 0.0 ||
@@ -63066,7 +63066,7 @@ function __median_808( a, b ) {
 
 // EXPORTS //
 
-var _$median_808 = __median_808;
+var _$median_813 = __median_813;
 
 /**
 * @license Apache-2.0
@@ -63108,12 +63108,12 @@ var _$median_808 = __median_808;
 
 // MODULES //
 
-/* removed: var _$median_808 = require( './median.js' ); */;
+/* removed: var _$median_813 = require( './median.js' ); */;
 
 
 // EXPORTS //
 
-var _$median_807 = _$median_808;
+var _$median_812 = _$median_813;
 
 /**
 * @license Apache-2.0
@@ -63182,7 +63182,7 @@ var _$median_807 = _$median_808;
 * var v = mode( NaN, 2.0 );
 * // returns NaN
 */
-function __mode_810( a, b ) {
+function __mode_815( a, b ) {
 	if (
 		_$isnan_231( a ) ||
 		a < 1.0 ||
@@ -63198,7 +63198,7 @@ function __mode_810( a, b ) {
 
 // EXPORTS //
 
-var _$mode_810 = __mode_810;
+var _$mode_815 = __mode_815;
 
 /**
 * @license Apache-2.0
@@ -63240,12 +63240,12 @@ var _$mode_810 = __mode_810;
 
 // MODULES //
 
-/* removed: var _$mode_810 = require( './mode.js' ); */;
+/* removed: var _$mode_815 = require( './mode.js' ); */;
 
 
 // EXPORTS //
 
-var _$mode_809 = _$mode_810;
+var _$mode_814 = _$mode_815;
 
 /**
 * @license Apache-2.0
@@ -63310,7 +63310,7 @@ var _$mode_809 = _$mode_810;
 * var v = variance( NaN, 2.0 );
 * // returns NaN
 */
-function __variance_818( a, b ) {
+function __variance_823( a, b ) {
 	var m1;
 	var m2;
 	if (
@@ -63329,7 +63329,7 @@ function __variance_818( a, b ) {
 
 // EXPORTS //
 
-var _$variance_818 = __variance_818;
+var _$variance_823 = __variance_823;
 
 /**
 * @license Apache-2.0
@@ -63371,12 +63371,12 @@ var _$variance_818 = __variance_818;
 
 // MODULES //
 
-/* removed: var _$variance_818 = require( './variance.js' ); */;
+/* removed: var _$variance_823 = require( './variance.js' ); */;
 
 
 // EXPORTS //
 
-var _$variance_817 = _$variance_818;
+var _$variance_822 = _$variance_823;
 
 /**
 * @license Apache-2.0
@@ -63451,7 +63451,7 @@ var _$variance_817 = _$variance_818;
 * var y = pdf( 2.0, 0.0, -1.0 );
 * // returns NaN
 */
-function __pdf_830( x, mu, sigma ) {
+function __pdf_852( x, mu, sigma ) {
 	var s2;
 	var A;
 	var B;
@@ -63475,7 +63475,7 @@ function __pdf_830( x, mu, sigma ) {
 
 // EXPORTS //
 
-var _$pdf_830 = __pdf_830;
+var _$pdf_852 = __pdf_852;
 
 /**
 * @license Apache-2.0
@@ -63499,7 +63499,7 @@ var _$pdf_830 = __pdf_830;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$sqrt_505 = require( '@stdlib/math/base/special/sqrt' ); */;
 /* removed: var _$exp_314 = require( '@stdlib/math/base/special/exp' ); */;
@@ -63525,7 +63525,7 @@ var _$pdf_830 = __pdf_830;
 * y = pdf( 2.0 );
 * // returns ~0.025
 */
-function __factory_828( mu, sigma ) {
+function __factory_850( mu, sigma ) {
 	var s2;
 	var A;
 	var B;
@@ -63534,7 +63534,7 @@ function __factory_828( mu, sigma ) {
 		_$isnan_231( sigma ) ||
 		sigma <= 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	s2 = _$pow_480( sigma, 2.0 );
 	A = 1.0 / ( _$sqrt_505( 2.0 * s2 * _$PI_206 ) );
@@ -63566,7 +63566,7 @@ function __factory_828( mu, sigma ) {
 
 // EXPORTS //
 
-var _$factory_828 = __factory_828;
+var _$factory_850 = __factory_850;
 
 /**
 * @license Apache-2.0
@@ -63615,19 +63615,19 @@ var _$factory_828 = __factory_828;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_830 = require( './pdf.js' ); */;
-/* removed: var _$factory_828 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_852 = require( './pdf.js' ); */;
+/* removed: var _$factory_850 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$pdf_830, 'factory', _$factory_828 );
+_$setNonEnumerableReadOnly_986( _$pdf_852, 'factory', _$factory_850 );
 
 
 // EXPORTS //
 
-var _$pdf_829 = _$pdf_830;
+var _$pdf_851 = _$pdf_852;
 
 /**
 * @license Apache-2.0
@@ -63695,7 +63695,7 @@ var _$pdf_829 = _$pdf_830;
 * var y = cdf( 2.0, 0.0, -1.0 );
 * // returns NaN
 */
-function __cdf_844( x, mu, sigma ) {
+function __cdf_866( x, mu, sigma ) {
 	var denom;
 	var xc;
 	if (
@@ -63717,7 +63717,7 @@ function __cdf_844( x, mu, sigma ) {
 
 // EXPORTS //
 
-var _$cdf_844 = __cdf_844;
+var _$cdf_866 = __cdf_866;
 
 /**
 * @license Apache-2.0
@@ -63741,8 +63741,8 @@ var _$cdf_844 = __cdf_844;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-var __degenerate_845 = _$cdf_719.factory;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+var __degenerate_867 = _$cdf_724.factory;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$sqrt_505 = require( '@stdlib/math/base/special/sqrt' ); */;
 /* removed: var _$erfc_289 = require( '@stdlib/math/base/special/erfc' ); */;
@@ -63765,17 +63765,17 @@ var __degenerate_845 = _$cdf_719.factory;
 * y = cdf( 12.0 );
 * // returns ~0.841
 */
-function __factory_845( mu, sigma ) {
+function __factory_867( mu, sigma ) {
 	var denom;
 	if (
 		_$isnan_231( mu ) ||
 		_$isnan_231( sigma ) ||
 		sigma < 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	if ( sigma === 0.0 ) {
-		return __degenerate_845( mu );
+		return __degenerate_867( mu );
 	}
 	denom = sigma * _$sqrt_505( 2.0 );
 	return cdf;
@@ -63804,7 +63804,7 @@ function __factory_845( mu, sigma ) {
 
 // EXPORTS //
 
-var _$factory_845 = __factory_845;
+var _$factory_867 = __factory_867;
 
 /**
 * @license Apache-2.0
@@ -63844,19 +63844,19 @@ var _$factory_845 = __factory_845;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_844 = require( './cdf.js' ); */;
-/* removed: var _$factory_845 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_866 = require( './cdf.js' ); */;
+/* removed: var _$factory_867 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$cdf_844, 'factory', _$factory_845 );
+_$setNonEnumerableReadOnly_986( _$cdf_866, 'factory', _$factory_867 );
 
 
 // EXPORTS //
 
-var _$cdf_846 = _$cdf_844;
+var _$cdf_868 = _$cdf_866;
 
 /**
 * @license Apache-2.0
@@ -63880,7 +63880,7 @@ var _$cdf_846 = _$cdf_844;
 
 // MODULES //
 
-/* removed: var _$cdf_846 = require( '@stdlib/stats/base/dists/normal/cdf' ); */;
+/* removed: var _$cdf_868 = require( '@stdlib/stats/base/dists/normal/cdf' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$ln_465 = require( '@stdlib/math/base/special/ln' ); */;
 
@@ -63915,7 +63915,7 @@ var _$cdf_846 = _$cdf_844;
 * var y = cdf( NaN, 0.0, 1.0 );
 * // returns NaN
 */
-function __cdf_819( x, mu, sigma ) {
+function __cdf_841( x, mu, sigma ) {
 	if (
 		_$isnan_231( x ) ||
 		_$isnan_231( mu ) ||
@@ -63927,13 +63927,13 @@ function __cdf_819( x, mu, sigma ) {
 	if ( x <= 0.0 ) {
 		return 0.0;
 	}
-	return _$cdf_846( _$ln_465(x), mu, sigma );
+	return _$cdf_868( _$ln_465(x), mu, sigma );
 }
 
 
 // EXPORTS //
 
-var _$cdf_819 = __cdf_819;
+var _$cdf_841 = __cdf_841;
 
 /**
 * @license Apache-2.0
@@ -63957,8 +63957,8 @@ var _$cdf_819 = __cdf_819;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$cdf_846 = require( '@stdlib/stats/base/dists/normal/cdf' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$cdf_868 = require( '@stdlib/stats/base/dists/normal/cdf' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$ln_465 = require( '@stdlib/math/base/special/ln' ); */;
 
@@ -63981,9 +63981,9 @@ var _$cdf_819 = __cdf_819;
 * y = cdf( 4.0 );
 * // returns ~0.141
 */
-function __factory_820( mu, sigma ) {
+function __factory_842( mu, sigma ) {
 	if ( _$isnan_231( mu ) || _$isnan_231( sigma ) || sigma <= 0.0 ) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return cdf;
 
@@ -64005,14 +64005,14 @@ function __factory_820( mu, sigma ) {
 		if ( x <= 0.0 ) {
 			return 0.0;
 		}
-		return _$cdf_846( _$ln_465(x), mu, sigma );
+		return _$cdf_868( _$ln_465(x), mu, sigma );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_820 = __factory_820;
+var _$factory_842 = __factory_842;
 
 /**
 * @license Apache-2.0
@@ -64059,19 +64059,19 @@ var _$factory_820 = __factory_820;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_819 = require( './cdf.js' ); */;
-/* removed: var _$factory_820 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_841 = require( './cdf.js' ); */;
+/* removed: var _$factory_842 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$cdf_819, 'factory', _$factory_820 );
+_$setNonEnumerableReadOnly_986( _$cdf_841, 'factory', _$factory_842 );
 
 
 // EXPORTS //
 
-var _$cdf_821 = _$cdf_819;
+var _$cdf_843 = _$cdf_841;
 
 /**
 * @license Apache-2.0
@@ -64763,7 +64763,7 @@ var _$erfinv_306 = _$erfinv_305;
 * var y = quantile( 0.5, 0.0, -1.0 );
 * // returns NaN
 */
-function __quantile_858( p, mu, sigma ) {
+function __quantile_880( p, mu, sigma ) {
 	var A;
 	var B;
 
@@ -64788,7 +64788,7 @@ function __quantile_858( p, mu, sigma ) {
 
 // EXPORTS //
 
-var _$quantile_858 = __quantile_858;
+var _$quantile_880 = __quantile_880;
 
 /**
 * @license Apache-2.0
@@ -64812,8 +64812,8 @@ var _$quantile_858 = __quantile_858;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-var __degenerate_856 = _$quantile_727.factory;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+var __degenerate_878 = _$quantile_732.factory;
 /* removed: var _$erfinv_306 = require( '@stdlib/math/base/special/erfinv' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$sqrt_505 = require( '@stdlib/math/base/special/sqrt' ); */;
@@ -64836,14 +64836,14 @@ var __degenerate_856 = _$quantile_727.factory;
 * y = quantile( 0.8 );
 * // returns ~11.683
 */
-function __factory_856( mu, sigma ) {
+function __factory_878( mu, sigma ) {
 	var A;
 	var B;
 	if ( _$isnan_231( mu ) || _$isnan_231( sigma ) || sigma < 0.0 ) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	if ( sigma === 0.0 ) {
-		__degenerate_856( mu );
+		__degenerate_878( mu );
 	}
 	A = mu;
 	B = sigma * _$sqrt_505( 2.0 );
@@ -64871,7 +64871,7 @@ function __factory_856( mu, sigma ) {
 
 // EXPORTS //
 
-var _$factory_856 = __factory_856;
+var _$factory_878 = __factory_878;
 
 /**
 * @license Apache-2.0
@@ -64911,19 +64911,19 @@ var _$factory_856 = __factory_856;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_858 = require( './quantile.js' ); */;
-/* removed: var _$factory_856 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_880 = require( './quantile.js' ); */;
+/* removed: var _$factory_878 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$quantile_858, 'factory', _$factory_856 );
+_$setNonEnumerableReadOnly_986( _$quantile_880, 'factory', _$factory_878 );
 
 
 // EXPORTS //
 
-var _$quantile_857 = _$quantile_858;
+var _$quantile_879 = _$quantile_880;
 
 /**
 * @license Apache-2.0
@@ -64947,7 +64947,7 @@ var _$quantile_857 = _$quantile_858;
 
 // MODULES //
 
-/* removed: var _$quantile_857 = require( '@stdlib/stats/base/dists/normal/quantile' ); */;
+/* removed: var _$quantile_879 = require( '@stdlib/stats/base/dists/normal/quantile' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$exp_314 = require( '@stdlib/math/base/special/exp' ); */;
 
@@ -64995,7 +64995,7 @@ var _$quantile_857 = _$quantile_858;
 * var y = quantile( 0.5, 0.0, -1.0 );
 * // returns NaN
 */
-function __quantile_833( p, mu, sigma ) {
+function __quantile_855( p, mu, sigma ) {
 	if (
 		_$isnan_231( mu ) ||
 		_$isnan_231( sigma ) ||
@@ -65006,13 +65006,13 @@ function __quantile_833( p, mu, sigma ) {
 	) {
 		return NaN;
 	}
-	return _$exp_314( mu + (sigma * _$quantile_857( p, 0.0, 1.0 )) );
+	return _$exp_314( mu + (sigma * _$quantile_879( p, 0.0, 1.0 )) );
 }
 
 
 // EXPORTS //
 
-var _$quantile_833 = __quantile_833;
+var _$quantile_855 = __quantile_855;
 
 /**
 * @license Apache-2.0
@@ -65036,8 +65036,8 @@ var _$quantile_833 = __quantile_833;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$quantile_857 = require( '@stdlib/stats/base/dists/normal/quantile' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$quantile_879 = require( '@stdlib/stats/base/dists/normal/quantile' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$exp_314 = require( '@stdlib/math/base/special/exp' ); */;
 
@@ -65059,13 +65059,13 @@ var _$quantile_833 = __quantile_833;
 * y = quantile( 0.8 );
 * // returns ~293.901
 */
-function __factory_831( mu, sigma ) {
+function __factory_853( mu, sigma ) {
 	if (
 		_$isnan_231( mu ) ||
 		_$isnan_231( sigma ) ||
 		sigma <= 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return quantile;
 
@@ -65084,14 +65084,14 @@ function __factory_831( mu, sigma ) {
 		if ( _$isnan_231( p ) || p < 0.0 || p > 1.0 ) {
 			return NaN;
 		}
-		return _$exp_314( mu + (sigma * _$quantile_857( p, 0.0, 1.0 )) );
+		return _$exp_314( mu + (sigma * _$quantile_879( p, 0.0, 1.0 )) );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_831 = __factory_831;
+var _$factory_853 = __factory_853;
 
 /**
 * @license Apache-2.0
@@ -65138,19 +65138,19 @@ var _$factory_831 = __factory_831;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_833 = require( './quantile.js' ); */;
-/* removed: var _$factory_831 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_855 = require( './quantile.js' ); */;
+/* removed: var _$factory_853 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$quantile_833, 'factory', _$factory_831 );
+_$setNonEnumerableReadOnly_986( _$quantile_855, 'factory', _$factory_853 );
 
 
 // EXPORTS //
 
-var _$quantile_832 = _$quantile_833;
+var _$quantile_854 = _$quantile_855;
 
 /**
 * @license Apache-2.0
@@ -65207,7 +65207,7 @@ var _$quantile_832 = _$quantile_833;
 * var y = mean( 0.0, 0.0 );
 * // returns NaN
 */
-function __mean_823( mu, sigma ) {
+function __mean_845( mu, sigma ) {
 	if (
 		_$isnan_231( mu ) ||
 		_$isnan_231( sigma ) ||
@@ -65221,7 +65221,7 @@ function __mean_823( mu, sigma ) {
 
 // EXPORTS //
 
-var _$mean_823 = __mean_823;
+var _$mean_845 = __mean_845;
 
 /**
 * @license Apache-2.0
@@ -65260,12 +65260,12 @@ var _$mean_823 = __mean_823;
 
 // MODULES //
 
-/* removed: var _$mean_823 = require( './mean.js' ); */;
+/* removed: var _$mean_845 = require( './mean.js' ); */;
 
 
 // EXPORTS //
 
-var _$mean_822 = _$mean_823;
+var _$mean_844 = _$mean_845;
 
 /**
 * @license Apache-2.0
@@ -65322,7 +65322,7 @@ var _$mean_822 = _$mean_823;
 * var y = median( 0.0, 0.0 );
 * // returns NaN
 */
-function __median_825( mu, sigma ) {
+function __median_847( mu, sigma ) {
 	if (
 		_$isnan_231( mu ) ||
 		_$isnan_231( sigma ) ||
@@ -65336,7 +65336,7 @@ function __median_825( mu, sigma ) {
 
 // EXPORTS //
 
-var _$median_825 = __median_825;
+var _$median_847 = __median_847;
 
 /**
 * @license Apache-2.0
@@ -65375,12 +65375,12 @@ var _$median_825 = __median_825;
 
 // MODULES //
 
-/* removed: var _$median_825 = require( './median.js' ); */;
+/* removed: var _$median_847 = require( './median.js' ); */;
 
 
 // EXPORTS //
 
-var _$median_824 = _$median_825;
+var _$median_846 = _$median_847;
 
 /**
 * @license Apache-2.0
@@ -65437,7 +65437,7 @@ var _$median_824 = _$median_825;
 * var y = mode( 0.0, 0.0 );
 * // returns NaN
 */
-function __mode_827( mu, sigma ) {
+function __mode_849( mu, sigma ) {
 	if (
 		_$isnan_231( mu ) ||
 		_$isnan_231( sigma ) ||
@@ -65451,7 +65451,7 @@ function __mode_827( mu, sigma ) {
 
 // EXPORTS //
 
-var _$mode_827 = __mode_827;
+var _$mode_849 = __mode_849;
 
 /**
 * @license Apache-2.0
@@ -65490,12 +65490,12 @@ var _$mode_827 = __mode_827;
 
 // MODULES //
 
-/* removed: var _$mode_827 = require( './mode.js' ); */;
+/* removed: var _$mode_849 = require( './mode.js' ); */;
 
 
 // EXPORTS //
 
-var _$mode_826 = _$mode_827;
+var _$mode_848 = _$mode_849;
 
 /**
 * @license Apache-2.0
@@ -65519,8 +65519,8 @@ var _$mode_826 = _$mode_827;
 
 // MODULES //
 
-var __isNumber_610 = _$isNumber_134.isPrimitive;
-var __isPositive_610 = _$isPositiveNumber_150.isPrimitive;
+var __isNumber_615 = _$isNumber_134.isPrimitive;
+var __isPositive_615 = _$isPositiveNumber_150.isPrimitive;
 /* removed: var _$isnan_126 = require( '@stdlib/assert/is-nan' ); */;
 
 
@@ -65540,11 +65540,11 @@ var __isPositive_610 = _$isPositiveNumber_150.isPrimitive;
 *     throw err;
 * }
 */
-function __validate_610( mu, sigma ) {
-	if ( !__isNumber_610( mu ) || _$isnan_126( mu ) ) {
+function __validate_615( mu, sigma ) {
+	if ( !__isNumber_615( mu ) || _$isnan_126( mu ) ) {
 		return new TypeError( 'invalid argument. `mu` must be a number primitive and not `NaN`. Value: `' + mu + '`.' );
 	}
-	if ( !__isPositive_610( sigma ) ) {
+	if ( !__isPositive_615( sigma ) ) {
 		return new TypeError( 'invalid argument. `sigma` must be a positive number. Value: `' + sigma + '`.' );
 	}
 	return null;
@@ -65553,7 +65553,7 @@ function __validate_610( mu, sigma ) {
 
 // EXPORTS //
 
-var _$validate_610 = __validate_610;
+var _$validate_615 = __validate_615;
 
 /**
 * @license Apache-2.0
@@ -65598,7 +65598,7 @@ function lognormal( randn, mu, sigma ) {
 
 // EXPORTS //
 
-var _$lognormal_608 = lognormal;
+var _$lognormal_613 = lognormal;
 
 /**
 * @license Apache-2.0
@@ -65622,19 +65622,19 @@ var _$lognormal_608 = lognormal;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_962 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_966 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_984 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_988 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_1009 = require( '@stdlib/utils/noop' ); */;
-var __randn_606 = _$randn_598.factory;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_1031 = require( '@stdlib/utils/noop' ); */;
+var __randn_611 = _$randn_598.factory;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
-/* removed: var _$validate_610 = require( './validate.js' ); */;
-/* removed: var _$lognormal_608 = require( './lognormal.js' ); */;
+/* removed: var _$validate_615 = require( './validate.js' ); */;
+/* removed: var _$lognormal_613 = require( './lognormal.js' ); */;
 
 
 // MAIN //
@@ -65669,7 +65669,7 @@ var __randn_606 = _$randn_598.factory;
 * var v = lognormal();
 * // returns <number>
 */
-function __factory_606() {
+function __factory_611() {
 	var sigma;
 	var rnorm;
 	var opts;
@@ -65679,7 +65679,7 @@ function __factory_606() {
 	var mu;
 
 	if ( arguments.length === 0 ) {
-		rnorm = __randn_606();
+		rnorm = __randn_611();
 	} else if ( arguments.length === 1 ) {
 		opts = arguments[ 0 ];
 		if ( !_$isPlainObject_144( opts ) ) {
@@ -65689,16 +65689,16 @@ function __factory_606() {
 			if ( !_$isFunction_110( opts.prng ) ) {
 				throw new TypeError( 'invalid option. `prng` option must be a pseudorandom number generator function. Option: `' + opts.prng + '`.' );
 			}
-			rnorm = __randn_606({
+			rnorm = __randn_611({
 				'prng': opts.prng
 			});
 		} else {
-			rnorm = __randn_606( opts );
+			rnorm = __randn_611( opts );
 		}
 	} else {
 		mu = arguments[ 0 ];
 		sigma = arguments[ 1 ];
-		err = _$validate_610( mu, sigma );
+		err = _$validate_615( mu, sigma );
 		if ( err ) {
 			throw err;
 		}
@@ -65711,14 +65711,14 @@ function __factory_606() {
 				if ( !_$isFunction_110( opts.prng ) ) {
 					throw new TypeError( 'invalid option. `prng` option must be a pseudorandom number generator function. Option: `' + opts.prng + '`.' );
 				}
-				rnorm = __randn_606({
+				rnorm = __randn_611({
 					'prng': opts.prng
 				});
 			} else {
-				rnorm = __randn_606( opts );
+				rnorm = __randn_611( opts );
 			}
 		} else {
-			rnorm = __randn_606();
+			rnorm = __randn_611();
 		}
 	}
 	if ( mu === void 0 ) {
@@ -65728,25 +65728,25 @@ function __factory_606() {
 	}
 	rand = rnorm.PRNG;
 
-	_$setNonEnumerableReadOnly_964( prng, 'NAME', 'lognormal' );
+	_$setNonEnumerableReadOnly_986( prng, 'NAME', 'lognormal' );
 
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( opts && opts.prng ) {
-		_$setNonEnumerableReadOnly_964( prng, 'seed', null );
-		_$setNonEnumerableReadOnly_964( prng, 'seedLength', null );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', _$constantFunction_955( null ), _$noop_1009 );
-		_$setNonEnumerableReadOnly_964( prng, 'stateLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'byteLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', _$constantFunction_955( null ) );
+		_$setNonEnumerableReadOnly_986( prng, 'seed', null );
+		_$setNonEnumerableReadOnly_986( prng, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', _$constantFunction_977( null ), _$noop_1031 );
+		_$setNonEnumerableReadOnly_986( prng, 'stateLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'byteLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', _$constantFunction_977( null ) );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seedLength', getSeedLength );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', toJSON );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', toJSON );
 	}
-	_$setNonEnumerableReadOnly_964( prng, 'PRNG', rand );
+	_$setNonEnumerableReadOnly_986( prng, 'PRNG', rand );
 	return prng;
 
 	/**
@@ -65844,7 +65844,7 @@ function __factory_606() {
 	* // returns <number>
 	*/
 	function lognormal1() {
-		return _$lognormal_608( rnorm, mu, sigma );
+		return _$lognormal_613( rnorm, mu, sigma );
 	}
 
 	/**
@@ -65871,14 +65871,14 @@ function __factory_606() {
 		) {
 			return NaN;
 		}
-		return _$lognormal_608( rnorm, mu, sigma );
+		return _$lognormal_613( rnorm, mu, sigma );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_606 = __factory_606;
+var _$factory_611 = __factory_611;
 
 /**
 * @license Apache-2.0
@@ -65902,7 +65902,7 @@ var _$factory_606 = __factory_606;
 
 // MODULES //
 
-/* removed: var _$factory_606 = require( './factory.js' ); */;
+/* removed: var _$factory_611 = require( './factory.js' ); */;
 
 
 // MAIN //
@@ -65924,12 +65924,12 @@ var _$factory_606 = __factory_606;
 * var v = lognormal( 0.0, -1.0 );
 * // returns NaN
 */
-var __lognormal_609 = _$factory_606();
+var __lognormal_614 = _$factory_611();
 
 
 // EXPORTS //
 
-var _$lognormal_609 = __lognormal_609;
+var _$lognormal_614 = __lognormal_614;
 
 /**
 * @license Apache-2.0
@@ -65983,19 +65983,19 @@ var _$lognormal_609 = __lognormal_609;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$lognormal_609 = require( './main.js' ); */;
-/* removed: var _$factory_606 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$lognormal_614 = require( './main.js' ); */;
+/* removed: var _$factory_611 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$lognormal_609, 'factory', _$factory_606 );
+_$setNonEnumerableReadOnly_986( _$lognormal_614, 'factory', _$factory_611 );
 
 
 // EXPORTS //
 
-var _$lognormal_607 = _$lognormal_609;
+var _$lognormal_612 = _$lognormal_614;
 
 /**
 * @license Apache-2.0
@@ -66052,7 +66052,7 @@ var _$lognormal_607 = _$lognormal_609;
 * var y = variance( 0.0, 0.0 );
 * // returns NaN
 */
-function __variance_835( mu, sigma ) {
+function __variance_857( mu, sigma ) {
 	var s2;
 	if (
 		_$isnan_231( mu ) ||
@@ -66068,7 +66068,7 @@ function __variance_835( mu, sigma ) {
 
 // EXPORTS //
 
-var _$variance_835 = __variance_835;
+var _$variance_857 = __variance_857;
 
 /**
 * @license Apache-2.0
@@ -66107,12 +66107,12 @@ var _$variance_835 = __variance_835;
 
 // MODULES //
 
-/* removed: var _$variance_835 = require( './variance.js' ); */;
+/* removed: var _$variance_857 = require( './variance.js' ); */;
 
 
 // EXPORTS //
 
-var _$variance_834 = _$variance_835;
+var _$variance_856 = _$variance_857;
 
 /**
 * @license Apache-2.0
@@ -66187,7 +66187,7 @@ var _$variance_834 = _$variance_835;
 * var y = pdf( 8.0, 8.0, 0.0 );
 * // returns Infinity
 */
-function __pdf_855( x, mu, sigma ) {
+function __pdf_877( x, mu, sigma ) {
 	var s2;
 	var A;
 	var B;
@@ -66211,7 +66211,7 @@ function __pdf_855( x, mu, sigma ) {
 
 // EXPORTS //
 
-var _$pdf_855 = __pdf_855;
+var _$pdf_877 = __pdf_877;
 
 /**
 * @license Apache-2.0
@@ -66235,8 +66235,8 @@ var _$pdf_855 = __pdf_855;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-var __degenerate_853 = _$pdf_721.factory;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+var __degenerate_875 = _$pdf_726.factory;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$sqrt_505 = require( '@stdlib/math/base/special/sqrt' ); */;
 /* removed: var _$exp_314 = require( '@stdlib/math/base/special/exp' ); */;
@@ -66261,7 +66261,7 @@ var __degenerate_853 = _$pdf_721.factory;
 * y = pdf( 5.0 );
 * // returns ~0.009
 */
-function __factory_853( mu, sigma ) {
+function __factory_875( mu, sigma ) {
 	var s2;
 	var A;
 	var B;
@@ -66270,10 +66270,10 @@ function __factory_853( mu, sigma ) {
 		_$isnan_231( sigma ) ||
 		sigma < 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	if ( sigma === 0.0 ) {
-		return __degenerate_853( mu );
+		return __degenerate_875( mu );
 	}
 	s2 = _$pow_480( sigma, 2.0 );
 	A = 1.0 / _$sqrt_505( s2*_$TWO_PI_213 );
@@ -66302,7 +66302,7 @@ function __factory_853( mu, sigma ) {
 
 // EXPORTS //
 
-var _$factory_853 = __factory_853;
+var _$factory_875 = __factory_875;
 
 /**
 * @license Apache-2.0
@@ -66342,19 +66342,19 @@ var _$factory_853 = __factory_853;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_855 = require( './pdf.js' ); */;
-/* removed: var _$factory_853 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_877 = require( './pdf.js' ); */;
+/* removed: var _$factory_875 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$pdf_855, 'factory', _$factory_853 );
+_$setNonEnumerableReadOnly_986( _$pdf_877, 'factory', _$factory_875 );
 
 
 // EXPORTS //
 
-var _$pdf_854 = _$pdf_855;
+var _$pdf_876 = _$pdf_877;
 
 /**
 * @license Apache-2.0
@@ -66410,7 +66410,7 @@ var _$pdf_854 = _$pdf_855;
 * var y = mean( 0.0, 0.0 );
 * // returns NaN
 */
-function __mean_848( mu, sigma ) {
+function __mean_870( mu, sigma ) {
 	if (
 		_$isnan_231( mu ) ||
 		_$isnan_231( sigma ) ||
@@ -66424,7 +66424,7 @@ function __mean_848( mu, sigma ) {
 
 // EXPORTS //
 
-var _$mean_848 = __mean_848;
+var _$mean_870 = __mean_870;
 
 /**
 * @license Apache-2.0
@@ -66463,12 +66463,12 @@ var _$mean_848 = __mean_848;
 
 // MODULES //
 
-/* removed: var _$mean_848 = require( './mean.js' ); */;
+/* removed: var _$mean_870 = require( './mean.js' ); */;
 
 
 // EXPORTS //
 
-var _$mean_847 = _$mean_848;
+var _$mean_869 = _$mean_870;
 
 /**
 * @license Apache-2.0
@@ -66524,7 +66524,7 @@ var _$mean_847 = _$mean_848;
 * var y = median( 0.0, 0.0 );
 * // returns NaN
 */
-function __median_850( mu, sigma ) {
+function __median_872( mu, sigma ) {
 	if (
 		_$isnan_231( mu ) ||
 		_$isnan_231( sigma ) ||
@@ -66538,7 +66538,7 @@ function __median_850( mu, sigma ) {
 
 // EXPORTS //
 
-var _$median_850 = __median_850;
+var _$median_872 = __median_872;
 
 /**
 * @license Apache-2.0
@@ -66577,12 +66577,12 @@ var _$median_850 = __median_850;
 
 // MODULES //
 
-/* removed: var _$median_850 = require( './median.js' ); */;
+/* removed: var _$median_872 = require( './median.js' ); */;
 
 
 // EXPORTS //
 
-var _$median_849 = _$median_850;
+var _$median_871 = _$median_872;
 
 /**
 * @license Apache-2.0
@@ -66638,7 +66638,7 @@ var _$median_849 = _$median_850;
 * var y = mode( 0.0, 0.0 );
 * // returns NaN
 */
-function __mode_852( mu, sigma ) {
+function __mode_874( mu, sigma ) {
 	if (
 		_$isnan_231( mu ) ||
 		_$isnan_231( sigma ) ||
@@ -66652,7 +66652,7 @@ function __mode_852( mu, sigma ) {
 
 // EXPORTS //
 
-var _$mode_852 = __mode_852;
+var _$mode_874 = __mode_874;
 
 /**
 * @license Apache-2.0
@@ -66691,12 +66691,12 @@ var _$mode_852 = __mode_852;
 
 // MODULES //
 
-/* removed: var _$mode_852 = require( './mode.js' ); */;
+/* removed: var _$mode_874 = require( './mode.js' ); */;
 
 
 // EXPORTS //
 
-var _$mode_851 = _$mode_852;
+var _$mode_873 = _$mode_874;
 
 /**
 * @license Apache-2.0
@@ -66720,8 +66720,8 @@ var _$mode_851 = _$mode_852;
 
 // MODULES //
 
-var __isNumber_619 = _$isNumber_134.isPrimitive;
-var __isPositive_619 = _$isPositiveNumber_150.isPrimitive;
+var __isNumber_624 = _$isNumber_134.isPrimitive;
+var __isPositive_624 = _$isPositiveNumber_150.isPrimitive;
 /* removed: var _$isnan_126 = require( '@stdlib/assert/is-nan' ); */;
 
 
@@ -66741,11 +66741,11 @@ var __isPositive_619 = _$isPositiveNumber_150.isPrimitive;
 *     throw err;
 * }
 */
-function __validate_619( mu, sigma ) {
-	if ( !__isNumber_619( mu ) || _$isnan_126( mu ) ) {
+function __validate_624( mu, sigma ) {
+	if ( !__isNumber_624( mu ) || _$isnan_126( mu ) ) {
 		return new TypeError( 'invalid argument. `mu` must be a number primitive and not `NaN`. Value: `' + mu + '`.' );
 	}
-	if ( !__isPositive_619( sigma ) ) {
+	if ( !__isPositive_624( sigma ) ) {
 		return new TypeError( 'invalid argument. `sigma` must be a positive number. Value: `' + sigma + '`.' );
 	}
 	return null;
@@ -66754,7 +66754,7 @@ function __validate_619( mu, sigma ) {
 
 // EXPORTS //
 
-var _$validate_619 = __validate_619;
+var _$validate_624 = __validate_624;
 
 /**
 * @license Apache-2.0
@@ -66785,14 +66785,14 @@ var _$validate_619 = __validate_619;
 * @param {PositiveNumber} sigma - standard deviation
 * @returns {number} pseudorandom number
 */
-function __normal_618( rand, mu, sigma ) {
+function __normal_623( rand, mu, sigma ) {
 	return mu + (sigma*rand());
 }
 
 
 // EXPORTS //
 
-var _$normal_618 = __normal_618;
+var _$normal_623 = __normal_623;
 
 /**
 * @license Apache-2.0
@@ -66816,19 +66816,19 @@ var _$normal_618 = __normal_618;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_962 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_966 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_984 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_988 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_1009 = require( '@stdlib/utils/noop' ); */;
-var __randn_615 = _$randn_598.factory;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_1031 = require( '@stdlib/utils/noop' ); */;
+var __randn_620 = _$randn_598.factory;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
-/* removed: var _$validate_619 = require( './validate.js' ); */;
-/* removed: var _$normal_618 = require( './normal.js' ); */;
+/* removed: var _$validate_624 = require( './validate.js' ); */;
+/* removed: var _$normal_623 = require( './normal.js' ); */;
 
 
 // MAIN //
@@ -66862,7 +66862,7 @@ var __randn_615 = _$randn_598.factory;
 * var v = normal();
 * // returns <number>
 */
-function __factory_615() {
+function __factory_620() {
 	var sigma;
 	var rnorm;
 	var opts;
@@ -66872,7 +66872,7 @@ function __factory_615() {
 	var mu;
 
 	if ( arguments.length === 0 ) {
-		rnorm = __randn_615();
+		rnorm = __randn_620();
 	} else if ( arguments.length === 1 ) {
 		opts = arguments[ 0 ];
 		if ( !_$isPlainObject_144( opts ) ) {
@@ -66882,16 +66882,16 @@ function __factory_615() {
 			if ( !_$isFunction_110( opts.prng ) ) {
 				throw new TypeError( 'invalid option. `prng` option must be a pseudorandom number generator function. Option: `' + opts.prng + '`.' );
 			}
-			rnorm = __randn_615({
+			rnorm = __randn_620({
 				'prng': opts.prng
 			});
 		} else {
-			rnorm = __randn_615( opts );
+			rnorm = __randn_620( opts );
 		}
 	} else {
 		mu = arguments[ 0 ];
 		sigma = arguments[ 1 ];
-		err = _$validate_619( mu, sigma );
+		err = _$validate_624( mu, sigma );
 		if ( err ) {
 			throw err;
 		}
@@ -66904,14 +66904,14 @@ function __factory_615() {
 				if ( !_$isFunction_110( opts.prng ) ) {
 					throw new TypeError( 'invalid option. `prng` option must be a pseudorandom number generator function. Option: `' + opts.prng + '`.' );
 				}
-				rnorm = __randn_615({
+				rnorm = __randn_620({
 					'prng': opts.prng
 				});
 			} else {
-				rnorm = __randn_615( opts );
+				rnorm = __randn_620( opts );
 			}
 		} else {
-			rnorm = __randn_615();
+			rnorm = __randn_620();
 		}
 	}
 	if ( mu === void 0 ) {
@@ -66921,25 +66921,25 @@ function __factory_615() {
 	}
 	rand = rnorm.PRNG;
 
-	_$setNonEnumerableReadOnly_964( prng, 'NAME', 'normal' );
+	_$setNonEnumerableReadOnly_986( prng, 'NAME', 'normal' );
 
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( opts && opts.prng ) {
-		_$setNonEnumerableReadOnly_964( prng, 'seed', null );
-		_$setNonEnumerableReadOnly_964( prng, 'seedLength', null );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', _$constantFunction_955( null ), _$noop_1009 );
-		_$setNonEnumerableReadOnly_964( prng, 'stateLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'byteLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', _$constantFunction_955( null ) );
+		_$setNonEnumerableReadOnly_986( prng, 'seed', null );
+		_$setNonEnumerableReadOnly_986( prng, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', _$constantFunction_977( null ), _$noop_1031 );
+		_$setNonEnumerableReadOnly_986( prng, 'stateLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'byteLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', _$constantFunction_977( null ) );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seedLength', getSeedLength );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', toJSON );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', toJSON );
 	}
-	_$setNonEnumerableReadOnly_964( prng, 'PRNG', rand );
+	_$setNonEnumerableReadOnly_986( prng, 'PRNG', rand );
 	return prng;
 
 	/**
@@ -67037,7 +67037,7 @@ function __factory_615() {
 	* // returns <number>
 	*/
 	function normal1() {
-		return _$normal_618( rnorm, mu, sigma );
+		return _$normal_623( rnorm, mu, sigma );
 	}
 
 	/**
@@ -67064,14 +67064,14 @@ function __factory_615() {
 		) {
 			return NaN;
 		}
-		return _$normal_618( rnorm, mu, sigma );
+		return _$normal_623( rnorm, mu, sigma );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_615 = __factory_615;
+var _$factory_620 = __factory_620;
 
 /**
 * @license Apache-2.0
@@ -67095,7 +67095,7 @@ var _$factory_615 = __factory_615;
 
 // MODULES //
 
-/* removed: var _$factory_615 = require( './factory.js' ); */;
+/* removed: var _$factory_620 = require( './factory.js' ); */;
 
 
 // MAIN //
@@ -67117,12 +67117,12 @@ var _$factory_615 = __factory_615;
 * var v = normal( 0.0, -1.0 );
 * // returns NaN
 */
-var __normal_617 = _$factory_615();
+var __normal_622 = _$factory_620();
 
 
 // EXPORTS //
 
-var _$normal_617 = __normal_617;
+var _$normal_622 = __normal_622;
 
 /**
 * @license Apache-2.0
@@ -67176,19 +67176,19 @@ var _$normal_617 = __normal_617;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$normal_617 = require( './main.js' ); */;
-/* removed: var _$factory_615 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$normal_622 = require( './main.js' ); */;
+/* removed: var _$factory_620 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$normal_617, 'factory', _$factory_615 );
+_$setNonEnumerableReadOnly_986( _$normal_622, 'factory', _$factory_620 );
 
 
 // EXPORTS //
 
-var _$normal_616 = _$normal_617;
+var _$normal_621 = _$normal_622;
 
 /**
 * @license Apache-2.0
@@ -67244,7 +67244,7 @@ var _$normal_616 = _$normal_617;
 * var y = variance( 0.0, 0.0 );
 * // returns NaN
 */
-function __variance_860( mu, sigma ) {
+function __variance_882( mu, sigma ) {
 	if (
 		_$isnan_231( mu ) ||
 		_$isnan_231( sigma ) ||
@@ -67258,7 +67258,7 @@ function __variance_860( mu, sigma ) {
 
 // EXPORTS //
 
-var _$variance_860 = __variance_860;
+var _$variance_882 = __variance_882;
 
 /**
 * @license Apache-2.0
@@ -67297,12 +67297,12 @@ var _$variance_860 = __variance_860;
 
 // MODULES //
 
-/* removed: var _$variance_860 = require( './variance.js' ); */;
+/* removed: var _$variance_882 = require( './variance.js' ); */;
 
 
 // EXPORTS //
 
-var _$variance_859 = _$variance_860;
+var _$variance_881 = _$variance_882;
 
 /**
 * @license Apache-2.0
@@ -67384,7 +67384,7 @@ var _$variance_859 = _$variance_860;
 * var y = pdf( 0.5, 1.0, NaN );
 * // returns NaN
 */
-function __pdf_872( x, alpha, beta ) {
+function __pdf_894( x, alpha, beta ) {
 	var denom;
 	var num;
 	if (
@@ -67407,7 +67407,7 @@ function __pdf_872( x, alpha, beta ) {
 
 // EXPORTS //
 
-var _$pdf_872 = __pdf_872;
+var _$pdf_894 = __pdf_894;
 
 /**
 * @license Apache-2.0
@@ -67431,7 +67431,7 @@ var _$pdf_872 = __pdf_872;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$pow_480 = require( '@stdlib/math/base/special/pow' ); */;
 
@@ -67454,7 +67454,7 @@ var _$pdf_872 = __pdf_872;
 * y = mypdf( 2.0 );
 * // returns ~0.125
 */
-function __factory_870( alpha, beta ) {
+function __factory_892( alpha, beta ) {
 	var num;
 	if (
 		_$isnan_231( alpha ) ||
@@ -67462,7 +67462,7 @@ function __factory_870( alpha, beta ) {
 		alpha <= 0.0 ||
 		beta <= 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	num = alpha * _$pow_480( beta, alpha );
 	return pdf;
@@ -67494,7 +67494,7 @@ function __factory_870( alpha, beta ) {
 
 // EXPORTS //
 
-var _$factory_870 = __factory_870;
+var _$factory_892 = __factory_892;
 
 /**
 * @license Apache-2.0
@@ -67544,19 +67544,19 @@ var _$factory_870 = __factory_870;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_872 = require( './pdf.js' ); */;
-/* removed: var _$factory_870 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_894 = require( './pdf.js' ); */;
+/* removed: var _$factory_892 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$pdf_872, 'factory', _$factory_870 );
+_$setNonEnumerableReadOnly_986( _$pdf_894, 'factory', _$factory_892 );
 
 
 // EXPORTS //
 
-var _$pdf_871 = _$pdf_872;
+var _$pdf_893 = _$pdf_894;
 
 /**
 * @license Apache-2.0
@@ -67634,7 +67634,7 @@ var _$pdf_871 = _$pdf_872;
 * var y = cdf( 0.0, 1.0, NaN );
 * // returns NaN
 */
-function __cdf_861( x, alpha, beta ) {
+function __cdf_883( x, alpha, beta ) {
 	if (
 		_$isnan_231( x ) ||
 		_$isnan_231( alpha ) ||
@@ -67653,7 +67653,7 @@ function __cdf_861( x, alpha, beta ) {
 
 // EXPORTS //
 
-var _$cdf_861 = __cdf_861;
+var _$cdf_883 = __cdf_883;
 
 /**
 * @license Apache-2.0
@@ -67677,7 +67677,7 @@ var _$cdf_861 = __cdf_861;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$pow_480 = require( '@stdlib/math/base/special/pow' ); */;
 
@@ -67699,14 +67699,14 @@ var _$cdf_861 = __cdf_861;
 * y = cdf( 2.5 );
 * // returns ~0.893
 */
-function __factory_862( alpha, beta ) {
+function __factory_884( alpha, beta ) {
 	if (
 		_$isnan_231( alpha ) ||
 		_$isnan_231( beta ) ||
 		alpha <= 0.0 ||
 		beta <= 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return cdf;
 
@@ -67731,7 +67731,7 @@ function __factory_862( alpha, beta ) {
 
 // EXPORTS //
 
-var _$factory_862 = __factory_862;
+var _$factory_884 = __factory_884;
 
 /**
 * @license Apache-2.0
@@ -67786,19 +67786,19 @@ var _$factory_862 = __factory_862;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_861 = require( './cdf.js' ); */;
-/* removed: var _$factory_862 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_883 = require( './cdf.js' ); */;
+/* removed: var _$factory_884 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$cdf_861, 'factory', _$factory_862 );
+_$setNonEnumerableReadOnly_986( _$cdf_883, 'factory', _$factory_884 );
 
 
 // EXPORTS //
 
-var _$cdf_863 = _$cdf_861;
+var _$cdf_885 = _$cdf_883;
 
 /**
 * @license Apache-2.0
@@ -67876,7 +67876,7 @@ var _$cdf_863 = _$cdf_861;
 * var y = quantile( 0.5, 1.0, -1.0 );
 * // returns NaN
 */
-function __quantile_875( p, alpha, beta ) {
+function __quantile_897( p, alpha, beta ) {
 	if (
 		_$isnan_231( alpha ) ||
 		_$isnan_231( beta ) ||
@@ -67894,7 +67894,7 @@ function __quantile_875( p, alpha, beta ) {
 
 // EXPORTS //
 
-var _$quantile_875 = __quantile_875;
+var _$quantile_897 = __quantile_897;
 
 /**
 * @license Apache-2.0
@@ -67918,7 +67918,7 @@ var _$quantile_875 = __quantile_875;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$pow_480 = require( '@stdlib/math/base/special/pow' ); */;
 
@@ -67940,7 +67940,7 @@ var _$quantile_875 = __quantile_875;
 * y = quantile( 0.8 );
 * // returns ~0.952
 */
-function __factory_873( alpha, beta ) {
+function __factory_895( alpha, beta ) {
 	var alphaInv;
 	if (
 		_$isnan_231( alpha ) ||
@@ -67948,7 +67948,7 @@ function __factory_873( alpha, beta ) {
 		alpha <= 0.0 ||
 		beta <= 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	alphaInv = 1.0 / alpha;
 	return quantile;
@@ -67975,7 +67975,7 @@ function __factory_873( alpha, beta ) {
 
 // EXPORTS //
 
-var _$factory_873 = __factory_873;
+var _$factory_895 = __factory_895;
 
 /**
 * @license Apache-2.0
@@ -68024,19 +68024,19 @@ var _$factory_873 = __factory_873;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_875 = require( './quantile.js' ); */;
-/* removed: var _$factory_873 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_897 = require( './quantile.js' ); */;
+/* removed: var _$factory_895 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$quantile_875, 'factory', _$factory_873 );
+_$setNonEnumerableReadOnly_986( _$quantile_897, 'factory', _$factory_895 );
 
 
 // EXPORTS //
 
-var _$quantile_874 = _$quantile_875;
+var _$quantile_896 = _$quantile_897;
 
 /**
 * @license Apache-2.0
@@ -68100,7 +68100,7 @@ var _$quantile_874 = _$quantile_875;
 * var v = mean( NaN, 2.0 );
 * // returns NaN
 */
-function __mean_865( alpha, beta ) {
+function __mean_887( alpha, beta ) {
 	if ( alpha <= 0.0 || beta <= 0.0 ) {
 		return NaN;
 	}
@@ -68113,7 +68113,7 @@ function __mean_865( alpha, beta ) {
 
 // EXPORTS //
 
-var _$mean_865 = __mean_865;
+var _$mean_887 = __mean_887;
 
 /**
 * @license Apache-2.0
@@ -68155,12 +68155,12 @@ var _$mean_865 = __mean_865;
 
 // MODULES //
 
-/* removed: var _$mean_865 = require( './mean.js' ); */;
+/* removed: var _$mean_887 = require( './mean.js' ); */;
 
 
 // EXPORTS //
 
-var _$mean_864 = _$mean_865;
+var _$mean_886 = _$mean_887;
 
 /**
 * @license Apache-2.0
@@ -68224,7 +68224,7 @@ var _$mean_864 = _$mean_865;
 * var v = median( NaN, 2.0 );
 * // returns NaN
 */
-function __median_867( alpha, beta ) {
+function __median_889( alpha, beta ) {
 	if ( alpha <= 0.0 || beta <= 0.0 ) {
 		return NaN;
 	}
@@ -68234,7 +68234,7 @@ function __median_867( alpha, beta ) {
 
 // EXPORTS //
 
-var _$median_867 = __median_867;
+var _$median_889 = __median_889;
 
 /**
 * @license Apache-2.0
@@ -68276,12 +68276,12 @@ var _$median_867 = __median_867;
 
 // MODULES //
 
-/* removed: var _$median_867 = require( './median.js' ); */;
+/* removed: var _$median_889 = require( './median.js' ); */;
 
 
 // EXPORTS //
 
-var _$median_866 = _$median_867;
+var _$median_888 = _$median_889;
 
 /**
 * @license Apache-2.0
@@ -68345,7 +68345,7 @@ var _$median_866 = _$median_867;
 * var v = mode( NaN, 2.0 );
 * // returns NaN
 */
-function __mode_869( alpha, beta ) {
+function __mode_891( alpha, beta ) {
 	if (
 		_$isnan_231( alpha ) ||
 		alpha <= 0.0 ||
@@ -68360,7 +68360,7 @@ function __mode_869( alpha, beta ) {
 
 // EXPORTS //
 
-var _$mode_869 = __mode_869;
+var _$mode_891 = __mode_891;
 
 /**
 * @license Apache-2.0
@@ -68402,12 +68402,12 @@ var _$mode_869 = __mode_869;
 
 // MODULES //
 
-/* removed: var _$mode_869 = require( './mode.js' ); */;
+/* removed: var _$mode_891 = require( './mode.js' ); */;
 
 
 // EXPORTS //
 
-var _$mode_868 = _$mode_869;
+var _$mode_890 = _$mode_891;
 
 /**
 * @license Apache-2.0
@@ -68473,7 +68473,7 @@ var _$mode_868 = _$mode_869;
 * var v = variance( NaN, 2.0 );
 * // returns NaN
 */
-function __variance_877( alpha, beta ) {
+function __variance_899( alpha, beta ) {
 	if (
 		_$isnan_231( alpha ) ||
 		alpha <= 0.0 ||
@@ -68491,7 +68491,7 @@ function __variance_877( alpha, beta ) {
 
 // EXPORTS //
 
-var _$variance_877 = __variance_877;
+var _$variance_899 = __variance_899;
 
 /**
 * @license Apache-2.0
@@ -68533,12 +68533,12 @@ var _$variance_877 = __variance_877;
 
 // MODULES //
 
-/* removed: var _$variance_877 = require( './variance.js' ); */;
+/* removed: var _$variance_899 = require( './variance.js' ); */;
 
 
 // EXPORTS //
 
-var _$variance_876 = _$variance_877;
+var _$variance_898 = _$variance_899;
 
 /**
 * @license Apache-2.0
@@ -68601,7 +68601,7 @@ var _$variance_876 = _$variance_877;
 * var y = pdf( 2.0, -1.0 );
 * // returns NaN
 */
-function __pdf_899( x, v ) {
+function __pdf_921( x, v ) {
 	var betaTerm;
 	if (
 		_$isnan_231( x ) ||
@@ -68617,7 +68617,7 @@ function __pdf_899( x, v ) {
 
 // EXPORTS //
 
-var _$pdf_899 = __pdf_899;
+var _$pdf_921 = __pdf_921;
 
 /**
 * @license Apache-2.0
@@ -68641,7 +68641,7 @@ var _$pdf_899 = __pdf_899;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$beta_258 = require( '@stdlib/math/base/special/beta' ); */;
 /* removed: var _$sqrt_505 = require( '@stdlib/math/base/special/sqrt' ); */;
@@ -68664,12 +68664,12 @@ var _$pdf_899 = __pdf_899;
 * y = pdf( 1.0 );
 * // returns ~0.159
 */
-function __factory_897( v ) {
+function __factory_919( v ) {
 	var exponent;
 	var betaTerm;
 
 	if ( _$isnan_231( v ) || v <= 0 ) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	betaTerm = _$sqrt_505( v ) * _$beta_258( v/2.0, 0.5 );
 	exponent = ( 1.0 + v ) / 2.0;
@@ -68697,7 +68697,7 @@ function __factory_897( v ) {
 
 // EXPORTS //
 
-var _$factory_897 = __factory_897;
+var _$factory_919 = __factory_919;
 
 /**
 * @license Apache-2.0
@@ -68737,19 +68737,19 @@ var _$factory_897 = __factory_897;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_899 = require( './pdf.js' ); */;
-/* removed: var _$factory_897 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_921 = require( './pdf.js' ); */;
+/* removed: var _$factory_919 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$pdf_899, 'factory', _$factory_897 );
+_$setNonEnumerableReadOnly_986( _$pdf_921, 'factory', _$factory_919 );
 
 
 // EXPORTS //
 
-var _$pdf_898 = _$pdf_899;
+var _$pdf_920 = _$pdf_921;
 
 /**
 * @license Apache-2.0
@@ -68811,7 +68811,7 @@ var _$pdf_898 = _$pdf_899;
 * var y = cdf( 2.0, -1.0 );
 * // returns NaN
 */
-function __cdf_888( x, v ) {
+function __cdf_910( x, v ) {
 	var x2;
 	var p;
 	var z;
@@ -68839,7 +68839,7 @@ function __cdf_888( x, v ) {
 
 // EXPORTS //
 
-var _$cdf_888 = __cdf_888;
+var _$cdf_910 = __cdf_910;
 
 /**
 * @license Apache-2.0
@@ -68863,7 +68863,7 @@ var _$cdf_888 = __cdf_888;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$betainc_261 = require( '@stdlib/math/base/special/betainc' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$pow_480 = require( '@stdlib/math/base/special/pow' ); */;
@@ -68885,9 +68885,9 @@ var _$cdf_888 = __cdf_888;
 * y = cdf( 1.0 );
 * // returns ~0.699
 */
-function __factory_889( v ) {
+function __factory_911( v ) {
 	if ( _$isnan_231( v ) || v <= 0.0 ) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return cdf;
 
@@ -68927,7 +68927,7 @@ function __factory_889( v ) {
 
 // EXPORTS //
 
-var _$factory_889 = __factory_889;
+var _$factory_911 = __factory_911;
 
 /**
 * @license Apache-2.0
@@ -68976,19 +68976,19 @@ var _$factory_889 = __factory_889;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_888 = require( './cdf.js' ); */;
-/* removed: var _$factory_889 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_910 = require( './cdf.js' ); */;
+/* removed: var _$factory_911 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$cdf_888, 'factory', _$factory_889 );
+_$setNonEnumerableReadOnly_986( _$cdf_910, 'factory', _$factory_911 );
 
 
 // EXPORTS //
 
-var _$cdf_890 = _$cdf_888;
+var _$cdf_912 = _$cdf_910;
 
 /**
 * @license Apache-2.0
@@ -69055,7 +69055,7 @@ var _$cdf_890 = _$cdf_888;
 * var y = quantile( 0.5, -1.0 );
 * // returns NaN
 */
-function __quantile_902( p, v ) {
+function __quantile_924( p, v ) {
 	var prob;
 	var xs;
 	if (
@@ -69075,7 +69075,7 @@ function __quantile_902( p, v ) {
 
 // EXPORTS //
 
-var _$quantile_902 = __quantile_902;
+var _$quantile_924 = __quantile_924;
 
 /**
 * @license Apache-2.0
@@ -69099,7 +69099,7 @@ var _$quantile_902 = __quantile_902;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$kernelBetaincinv_420 = require( '@stdlib/math/base/special/kernel-betaincinv' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$signum_499 = require( '@stdlib/math/base/special/signum' ); */;
@@ -69125,9 +69125,9 @@ var _$quantile_902 = __quantile_902;
 * y = quantile( 1.0 );
 * // returns Infinity
 */
-function __factory_900( v ) {
+function __factory_922( v ) {
 	if ( _$isnan_231( v ) || v <= 0.0 ) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return quantile;
 
@@ -69158,7 +69158,7 @@ function __factory_900( v ) {
 
 // EXPORTS //
 
-var _$factory_900 = __factory_900;
+var _$factory_922 = __factory_922;
 
 /**
 * @license Apache-2.0
@@ -69208,19 +69208,19 @@ var _$factory_900 = __factory_900;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_902 = require( './quantile.js' ); */;
-/* removed: var _$factory_900 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_924 = require( './quantile.js' ); */;
+/* removed: var _$factory_922 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$quantile_902, 'factory', _$factory_900 );
+_$setNonEnumerableReadOnly_986( _$quantile_924, 'factory', _$factory_922 );
 
 
 // EXPORTS //
 
-var _$quantile_901 = _$quantile_902;
+var _$quantile_923 = _$quantile_924;
 
 /**
 * @license Apache-2.0
@@ -69275,7 +69275,7 @@ var _$quantile_901 = _$quantile_902;
 * var v = mean( NaN );
 * // returns NaN
 */
-function __mean_892( v ) {
+function __mean_914( v ) {
 	if ( _$isnan_231( v ) || v <= 1.0 ) {
 		return NaN;
 	}
@@ -69285,7 +69285,7 @@ function __mean_892( v ) {
 
 // EXPORTS //
 
-var _$mean_892 = __mean_892;
+var _$mean_914 = __mean_914;
 
 /**
 * @license Apache-2.0
@@ -69324,12 +69324,12 @@ var _$mean_892 = __mean_892;
 
 // MODULES //
 
-/* removed: var _$mean_892 = require( './mean.js' ); */;
+/* removed: var _$mean_914 = require( './mean.js' ); */;
 
 
 // EXPORTS //
 
-var _$mean_891 = _$mean_892;
+var _$mean_913 = _$mean_914;
 
 /**
 * @license Apache-2.0
@@ -69380,7 +69380,7 @@ var _$mean_891 = _$mean_892;
 * var v = median( NaN );
 * // returns NaN
 */
-function __median_894( v ) {
+function __median_916( v ) {
 	if ( _$isnan_231( v ) || v < 0.0 ) {
 		return NaN;
 	}
@@ -69390,7 +69390,7 @@ function __median_894( v ) {
 
 // EXPORTS //
 
-var _$median_894 = __median_894;
+var _$median_916 = __median_916;
 
 /**
 * @license Apache-2.0
@@ -69429,12 +69429,12 @@ var _$median_894 = __median_894;
 
 // MODULES //
 
-/* removed: var _$median_894 = require( './median.js' ); */;
+/* removed: var _$median_916 = require( './median.js' ); */;
 
 
 // EXPORTS //
 
-var _$median_893 = _$median_894;
+var _$median_915 = _$median_916;
 
 /**
 * @license Apache-2.0
@@ -69485,7 +69485,7 @@ var _$median_893 = _$median_894;
 * var v = mode( NaN );
 * // returns NaN
 */
-function __mode_896( v ) {
+function __mode_918( v ) {
 	if ( _$isnan_231( v ) || v < 0.0 ) {
 		return NaN;
 	}
@@ -69495,7 +69495,7 @@ function __mode_896( v ) {
 
 // EXPORTS //
 
-var _$mode_896 = __mode_896;
+var _$mode_918 = __mode_918;
 
 /**
 * @license Apache-2.0
@@ -69534,12 +69534,12 @@ var _$mode_896 = __mode_896;
 
 // MODULES //
 
-/* removed: var _$mode_896 = require( './mode.js' ); */;
+/* removed: var _$mode_918 = require( './mode.js' ); */;
 
 
 // EXPORTS //
 
-var _$mode_895 = _$mode_896;
+var _$mode_917 = _$mode_918;
 
 /**
 * @license Apache-2.0
@@ -69563,23 +69563,23 @@ var _$mode_895 = _$mode_896;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_962 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_966 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_984 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_988 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-var __isPositive_631 = _$isPositiveNumber_150.isPrimitive;
+var __isPositive_636 = _$isPositiveNumber_150.isPrimitive;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 /* removed: var _$isUint32Array_166 = require( '@stdlib/assert/is-uint32array' ); */;
-var __isBoolean_631 = _$isBoolean_86.isPrimitive;
+var __isBoolean_636 = _$isBoolean_86.isPrimitive;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_1009 = require( '@stdlib/utils/noop' ); */;
-var __chisquare_631 = _$chisquare_579.factory;
-var __randn_631 = _$randn_598.factory;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_1031 = require( '@stdlib/utils/noop' ); */;
+var __chisquare_636 = _$chisquare_579.factory;
+var __randn_636 = _$randn_598.factory;
 /* removed: var _$gcopy_174 = require( '@stdlib/blas/base/gcopy' ); */;
 /* removed: var _$ctor_23 = require( '@stdlib/array/uint32' ); */;
-/* removed: var _$copy_960 = require( '@stdlib/utils/copy' ); */;
+/* removed: var _$copy_982 = require( '@stdlib/utils/copy' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
 /* removed: var _$sqrt_505 = require( '@stdlib/math/base/special/sqrt' ); */;
 
@@ -69619,7 +69619,7 @@ var __randn_631 = _$randn_598.factory;
 * var v = t( 0.5 );
 * // returns <number>
 */
-function __factory_631() {
+function __factory_636() {
 	var rchisq;
 	var STATE;
 	var rnorm;
@@ -69634,83 +69634,83 @@ function __factory_631() {
 		opts = {
 			'copy': false
 		};
-		rnorm = __randn_631( opts );
+		rnorm = __randn_636( opts );
 	} else if ( arguments.length === 1 ) {
 		if ( _$isPlainObject_144( arguments[ 0 ] ) ) {
 			opts = arguments[ 0 ];
-			if ( _$hasOwnProp_58( opts, 'copy' ) && !__isBoolean_631( opts.copy ) ) {
+			if ( _$hasOwnProp_58( opts, 'copy' ) && !__isBoolean_636( opts.copy ) ) {
 				throw new TypeError( 'invalid option. `copy` option must be a boolean. Option: `' + opts.copy + '`.' );
 			}
 			if ( _$hasOwnProp_58( opts, 'prng' ) ) {
 				if ( !_$isFunction_110( opts.prng ) ) {
 					throw new TypeError( 'invalid option. `prng` option must be a pseudorandom number generator function. Option: `' + opts.prng + '`.' );
 				}
-				rnorm = __randn_631({
+				rnorm = __randn_636({
 					'prng': opts.prng
 				});
 			} else {
 				if ( _$hasOwnProp_58( opts, 'state' ) && !_$isUint32Array_166( opts.state ) ) {
 					throw new TypeError( 'invalid option. `state` option must be a Uint32Array. Option: `' + opts.state + '`.' );
 				}
-				opts = _$copy_960( opts, 1 );
+				opts = _$copy_982( opts, 1 );
 				if ( opts.copy === false ) {
 					FLG = false;
 				} else if ( opts.state ) {
 					opts.state = _$gcopy_174( opts.state.length, opts.state, 1, new _$ctor_23( opts.state.length ), 1 ); // eslint-disable-line max-len
 				}
 				opts.copy = false;
-				rnorm = __randn_631( opts );
+				rnorm = __randn_636( opts );
 			}
 		} else {
 			v = arguments[ 0 ];
-			if ( !__isPositive_631( v ) ) {
+			if ( !__isPositive_636( v ) ) {
 				throw new TypeError( 'invalid argument. First argument must be a positive number or an options object. Value: `' + v + '`.' );
 			}
 			opts = {
 				'copy': false
 			};
-			rnorm = __randn_631( opts );
+			rnorm = __randn_636( opts );
 		}
 	} else {
 		v = arguments[ 0 ];
-		if ( !__isPositive_631( v ) ) {
+		if ( !__isPositive_636( v ) ) {
 			throw new TypeError( 'invalid argument. First argument must be a positive number. Value: `' + v + '`.' );
 		}
 		opts = arguments[ 1 ];
 		if ( !_$isPlainObject_144( opts ) ) {
 			throw new TypeError( 'invalid argument. Options argument must be an object. Value: `' + opts + '`.' );
 		}
-		if ( _$hasOwnProp_58( opts, 'copy' ) && !__isBoolean_631( opts.copy ) ) {
+		if ( _$hasOwnProp_58( opts, 'copy' ) && !__isBoolean_636( opts.copy ) ) {
 			throw new TypeError( 'invalid option. `copy` option must be a boolean. Option: `' + opts.copy + '`.' );
 		}
 		if ( _$hasOwnProp_58( opts, 'prng' ) ) {
 			if ( !_$isFunction_110( opts.prng ) ) {
 				throw new TypeError( 'invalid option. `prng` option must be a pseudorandom number generator function. Option: `' + opts.prng + '`.' );
 			}
-			rnorm = __randn_631({
+			rnorm = __randn_636({
 				'prng': opts.prng
 			});
 		} else {
 			if ( _$hasOwnProp_58( opts, 'state' ) && !_$isUint32Array_166( opts.state ) ) {
 				throw new TypeError( 'invalid option. `state` option must be a Uint32Array. Option: `' + opts.state + '`.' );
 			}
-			opts = _$copy_960( opts, 1 );
+			opts = _$copy_982( opts, 1 );
 			if ( opts.copy === false ) {
 				FLG = false;
 			} else if ( opts.state ) {
 				opts.state = _$gcopy_174( opts.state.length, opts.state, 1, new _$ctor_23( opts.state.length ), 1 ); // eslint-disable-line max-len
 			}
 			opts.copy = false;
-			rnorm = __randn_631( opts );
+			rnorm = __randn_636( opts );
 		}
 	}
 	if ( opts && opts.prng ) {
 		if ( v === void 0 ) {
-			rchisq = __chisquare_631({
+			rchisq = __chisquare_636({
 				'prng': opts.prng
 			});
 		} else {
-			rchisq = __chisquare_631( v, {
+			rchisq = __chisquare_636( v, {
 				'prng': opts.prng
 			});
 		}
@@ -69722,12 +69722,12 @@ function __factory_631() {
 			rnorm.state = STATE; // updates the underlying PRNG to point to a shared state
 		}
 		if ( v === void 0 ) {
-			rchisq = __chisquare_631({
+			rchisq = __chisquare_636({
 				'state': STATE,
 				'copy': false
 			});
 		} else {
-			rchisq = __chisquare_631( v, {
+			rchisq = __chisquare_636( v, {
 				'state': STATE,
 				'copy': false
 			});
@@ -69740,25 +69740,25 @@ function __factory_631() {
 	}
 	rand = rnorm.PRNG;
 
-	_$setNonEnumerableReadOnly_964( prng, 'NAME', 't' );
+	_$setNonEnumerableReadOnly_986( prng, 'NAME', 't' );
 
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( opts && opts.prng ) {
-		_$setNonEnumerableReadOnly_964( prng, 'seed', null );
-		_$setNonEnumerableReadOnly_964( prng, 'seedLength', null );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', _$constantFunction_955( null ), _$noop_1009 );
-		_$setNonEnumerableReadOnly_964( prng, 'stateLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'byteLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', _$constantFunction_955( null ) );
+		_$setNonEnumerableReadOnly_986( prng, 'seed', null );
+		_$setNonEnumerableReadOnly_986( prng, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', _$constantFunction_977( null ), _$noop_1031 );
+		_$setNonEnumerableReadOnly_986( prng, 'stateLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'byteLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', _$constantFunction_977( null ) );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seedLength', getSeedLength );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', toJSON );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', toJSON );
 	}
-	_$setNonEnumerableReadOnly_964( prng, 'PRNG', rand );
+	_$setNonEnumerableReadOnly_986( prng, 'PRNG', rand );
 	return prng;
 
 	/**
@@ -69899,7 +69899,7 @@ function __factory_631() {
 
 // EXPORTS //
 
-var _$factory_631 = __factory_631;
+var _$factory_636 = __factory_636;
 
 /**
 * @license Apache-2.0
@@ -69923,7 +69923,7 @@ var _$factory_631 = __factory_631;
 
 // MODULES //
 
-/* removed: var _$factory_631 = require( './factory.js' ); */;
+/* removed: var _$factory_636 = require( './factory.js' ); */;
 
 
 // MAIN //
@@ -69948,12 +69948,12 @@ var _$factory_631 = __factory_631;
 * var v = t( NaN );
 * // returns NaN
 */
-var t = _$factory_631();
+var t = _$factory_636();
 
 
 // EXPORTS //
 
-var _$t_633 = t;
+var _$t_638 = t;
 
 /**
 * @license Apache-2.0
@@ -70007,19 +70007,19 @@ var _$t_633 = t;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$t_633 = require( './main.js' ); */;
-/* removed: var _$factory_631 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$t_638 = require( './main.js' ); */;
+/* removed: var _$factory_636 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$t_633, 'factory', _$factory_631 );
+_$setNonEnumerableReadOnly_986( _$t_638, 'factory', _$factory_636 );
 
 
 // EXPORTS //
 
-var _$t_632 = _$t_633;
+var _$t_637 = _$t_638;
 
 /**
 * @license Apache-2.0
@@ -70075,7 +70075,7 @@ var _$t_632 = _$t_633;
 * var v = variance( NaN );
 * // returns NaN
 */
-function __variance_904( v ) {
+function __variance_926( v ) {
 	if ( _$isnan_231( v ) || v <= 1.0 ) {
 		return NaN;
 	}
@@ -70088,7 +70088,7 @@ function __variance_904( v ) {
 
 // EXPORTS //
 
-var _$variance_904 = __variance_904;
+var _$variance_926 = __variance_926;
 
 /**
 * @license Apache-2.0
@@ -70127,12 +70127,12 @@ var _$variance_904 = __variance_904;
 
 // MODULES //
 
-/* removed: var _$variance_904 = require( './variance.js' ); */;
+/* removed: var _$variance_926 = require( './variance.js' ); */;
 
 
 // EXPORTS //
 
-var _$variance_903 = _$variance_904;
+var _$variance_925 = _$variance_926;
 
 /**
 * @license Apache-2.0
@@ -70201,7 +70201,7 @@ var _$variance_903 = _$variance_904;
 * var y = pdf( 2.0, 0.0, -1.0 );
 * // returns NaN
 */
-function __pdf_948( x, k, lambda ) {
+function __pdf_970( x, k, lambda ) {
 	var xol;
 	var z;
 	if (
@@ -70229,7 +70229,7 @@ function __pdf_948( x, k, lambda ) {
 
 // EXPORTS //
 
-var _$pdf_948 = __pdf_948;
+var _$pdf_970 = __pdf_970;
 
 /**
 * @license Apache-2.0
@@ -70253,7 +70253,7 @@ var _$pdf_948 = __pdf_948;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$pow_480 = require( '@stdlib/math/base/special/pow' ); */;
 /* removed: var _$exp_314 = require( '@stdlib/math/base/special/exp' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
@@ -70278,14 +70278,14 @@ var _$pdf_948 = __pdf_948;
 * y = pdf( 5.0 );
 * // returns ~0.296
 */
-function __factory_946( k, lambda ) {
+function __factory_968( k, lambda ) {
 	if (
 		_$isnan_231( k ) ||
 		_$isnan_231( lambda ) ||
 		k <= 0.0 ||
 		lambda <= 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return pdf;
 
@@ -70321,7 +70321,7 @@ function __factory_946( k, lambda ) {
 
 // EXPORTS //
 
-var _$factory_946 = __factory_946;
+var _$factory_968 = __factory_968;
 
 /**
 * @license Apache-2.0
@@ -70361,19 +70361,19 @@ var _$factory_946 = __factory_946;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_948 = require( './pdf.js' ); */;
-/* removed: var _$factory_946 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_970 = require( './pdf.js' ); */;
+/* removed: var _$factory_968 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$pdf_948, 'factory', _$factory_946 );
+_$setNonEnumerableReadOnly_986( _$pdf_970, 'factory', _$factory_968 );
 
 
 // EXPORTS //
 
-var _$pdf_947 = _$pdf_948;
+var _$pdf_969 = _$pdf_970;
 
 /**
 * @license Apache-2.0
@@ -70444,7 +70444,7 @@ var _$pdf_947 = _$pdf_948;
 * var y = cdf( 2.0, 0.0, -1.0 );
 * // returns NaN
 */
-function __cdf_937( x, k, lambda ) {
+function __cdf_959( x, k, lambda ) {
 	if (
 		_$isnan_231( x ) ||
 		_$isnan_231( k ) ||
@@ -70463,7 +70463,7 @@ function __cdf_937( x, k, lambda ) {
 
 // EXPORTS //
 
-var _$cdf_937 = __cdf_937;
+var _$cdf_959 = __cdf_959;
 
 /**
 * @license Apache-2.0
@@ -70487,7 +70487,7 @@ var _$cdf_937 = __cdf_937;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$expm1_317 = require( '@stdlib/math/base/special/expm1' ); */;
 /* removed: var _$pow_480 = require( '@stdlib/math/base/special/pow' ); */;
@@ -70510,14 +70510,14 @@ var _$cdf_937 = __cdf_937;
 * y = cdf( 8.0 );
 * // returns ~0.473
 */
-function __factory_938( k, lambda ) {
+function __factory_960( k, lambda ) {
 	if (
 		_$isnan_231( k ) ||
 		_$isnan_231( lambda ) ||
 		k <= 0.0 ||
 		lambda <= 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return cdf;
 
@@ -70546,7 +70546,7 @@ function __factory_938( k, lambda ) {
 
 // EXPORTS //
 
-var _$factory_938 = __factory_938;
+var _$factory_960 = __factory_960;
 
 /**
 * @license Apache-2.0
@@ -70586,19 +70586,19 @@ var _$factory_938 = __factory_938;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_937 = require( './cdf.js' ); */;
-/* removed: var _$factory_938 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_959 = require( './cdf.js' ); */;
+/* removed: var _$factory_960 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$cdf_937, 'factory', _$factory_938 );
+_$setNonEnumerableReadOnly_986( _$cdf_959, 'factory', _$factory_960 );
 
 
 // EXPORTS //
 
-var _$cdf_939 = _$cdf_937;
+var _$cdf_961 = _$cdf_959;
 
 /**
 * @license Apache-2.0
@@ -70669,7 +70669,7 @@ var _$cdf_939 = _$cdf_937;
 * var y = quantile( 0.5, 1.0, -1.0 );
 * // returns NaN
 */
-function __quantile_951( p, k, lambda ) {
+function __quantile_973( p, k, lambda ) {
 	if (
 		_$isnan_231( k ) ||
 		_$isnan_231( lambda ) ||
@@ -70687,7 +70687,7 @@ function __quantile_951( p, k, lambda ) {
 
 // EXPORTS //
 
-var _$quantile_951 = __quantile_951;
+var _$quantile_973 = __quantile_973;
 
 /**
 * @license Apache-2.0
@@ -70711,7 +70711,7 @@ var _$quantile_951 = __quantile_951;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$ln_465 = require( '@stdlib/math/base/special/ln' ); */;
 /* removed: var _$pow_480 = require( '@stdlib/math/base/special/pow' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
@@ -70734,14 +70734,14 @@ var _$quantile_951 = __quantile_951;
 * y = quantile( 0.8 );
 * // returns ~12.686
 */
-function __factory_949( k, lambda ) {
+function __factory_971( k, lambda ) {
 	if (
 		_$isnan_231( k ) ||
 		_$isnan_231( lambda ) ||
 		k <= 0.0 ||
 		lambda <= 0.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return quantile;
 
@@ -70767,7 +70767,7 @@ function __factory_949( k, lambda ) {
 
 // EXPORTS //
 
-var _$factory_949 = __factory_949;
+var _$factory_971 = __factory_971;
 
 /**
 * @license Apache-2.0
@@ -70807,19 +70807,19 @@ var _$factory_949 = __factory_949;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_951 = require( './quantile.js' ); */;
-/* removed: var _$factory_949 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_973 = require( './quantile.js' ); */;
+/* removed: var _$factory_971 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$quantile_951, 'factory', _$factory_949 );
+_$setNonEnumerableReadOnly_986( _$quantile_973, 'factory', _$factory_971 );
 
 
 // EXPORTS //
 
-var _$quantile_950 = _$quantile_951;
+var _$quantile_972 = _$quantile_973;
 
 /**
 * @license Apache-2.0
@@ -70884,7 +70884,7 @@ var _$quantile_950 = _$quantile_951;
 * var v = mean( NaN, 2.0 );
 * // returns NaN
 */
-function __mean_941( k, lambda ) {
+function __mean_963( k, lambda ) {
 	if (
 		_$isnan_231( k ) ||
 		_$isnan_231( lambda ) ||
@@ -70899,7 +70899,7 @@ function __mean_941( k, lambda ) {
 
 // EXPORTS //
 
-var _$mean_941 = __mean_941;
+var _$mean_963 = __mean_963;
 
 /**
 * @license Apache-2.0
@@ -70941,12 +70941,12 @@ var _$mean_941 = __mean_941;
 
 // MODULES //
 
-/* removed: var _$mean_941 = require( './mean.js' ); */;
+/* removed: var _$mean_963 = require( './mean.js' ); */;
 
 
 // EXPORTS //
 
-var _$mean_940 = _$mean_941;
+var _$mean_962 = _$mean_963;
 
 /**
 * @license Apache-2.0
@@ -71012,7 +71012,7 @@ var _$mean_940 = _$mean_941;
 * var v = median( NaN, 2.0 );
 * // returns NaN
 */
-function __median_943( k, lambda ) {
+function __median_965( k, lambda ) {
 	if (
 		_$isnan_231( k ) ||
 		_$isnan_231( lambda ) ||
@@ -71027,7 +71027,7 @@ function __median_943( k, lambda ) {
 
 // EXPORTS //
 
-var _$median_943 = __median_943;
+var _$median_965 = __median_965;
 
 /**
 * @license Apache-2.0
@@ -71069,12 +71069,12 @@ var _$median_943 = __median_943;
 
 // MODULES //
 
-/* removed: var _$median_943 = require( './median.js' ); */;
+/* removed: var _$median_965 = require( './median.js' ); */;
 
 
 // EXPORTS //
 
-var _$median_942 = _$median_943;
+var _$median_964 = _$median_965;
 
 /**
 * @license Apache-2.0
@@ -71139,7 +71139,7 @@ var _$median_942 = _$median_943;
 * var v = mode( NaN, 2.0 );
 * // returns NaN
 */
-function __mode_945( k, lambda ) {
+function __mode_967( k, lambda ) {
 	if (
 		_$isnan_231( k ) ||
 		_$isnan_231( lambda ) ||
@@ -71157,7 +71157,7 @@ function __mode_945( k, lambda ) {
 
 // EXPORTS //
 
-var _$mode_945 = __mode_945;
+var _$mode_967 = __mode_967;
 
 /**
 * @license Apache-2.0
@@ -71199,12 +71199,12 @@ var _$mode_945 = __mode_945;
 
 // MODULES //
 
-/* removed: var _$mode_945 = require( './mode.js' ); */;
+/* removed: var _$mode_967 = require( './mode.js' ); */;
 
 
 // EXPORTS //
 
-var _$mode_944 = _$mode_945;
+var _$mode_966 = _$mode_967;
 
 /**
 * @license Apache-2.0
@@ -71228,7 +71228,7 @@ var _$mode_944 = _$mode_945;
 
 // MODULES //
 
-var __isPositive_647 = _$isPositiveNumber_150.isPrimitive;
+var __isPositive_652 = _$isPositiveNumber_150.isPrimitive;
 
 
 // MAIN //
@@ -71247,11 +71247,11 @@ var __isPositive_647 = _$isPositiveNumber_150.isPrimitive;
 *     throw err;
 * }
 */
-function __validate_647( k, lambda ) {
-	if ( !__isPositive_647( k ) ) {
+function __validate_652( k, lambda ) {
+	if ( !__isPositive_652( k ) ) {
 		return new TypeError( 'invalid argument. Scale parameter must be a positive number. Value: `' + k + '`.' );
 	}
-	if ( !__isPositive_647( lambda ) ) {
+	if ( !__isPositive_652( lambda ) ) {
 		return new TypeError( 'invalid argument. Shape parameter must be a positive number. Value: `' + lambda + '`.' );
 	}
 	return null;
@@ -71260,7 +71260,7 @@ function __validate_647( k, lambda ) {
 
 // EXPORTS //
 
-var _$validate_647 = __validate_647;
+var _$validate_652 = __validate_652;
 
 /**
 * @license Apache-2.0
@@ -71306,7 +71306,7 @@ function weibull( rand, k, lambda ) {
 
 // EXPORTS //
 
-var _$weibull_648 = weibull;
+var _$weibull_653 = weibull;
 
 /**
 * @license Apache-2.0
@@ -71330,19 +71330,19 @@ var _$weibull_648 = weibull;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_962 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_966 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_984 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_988 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_1009 = require( '@stdlib/utils/noop' ); */;
-var __randu_644 = _$mt19937_612.factory;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_1031 = require( '@stdlib/utils/noop' ); */;
+var __randu_649 = _$mt19937_617.factory;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
-/* removed: var _$validate_647 = require( './validate.js' ); */;
-/* removed: var _$weibull_648 = require( './weibull.js' ); */;
+/* removed: var _$validate_652 = require( './validate.js' ); */;
+/* removed: var _$weibull_653 = require( './weibull.js' ); */;
 
 
 // MAIN //
@@ -71377,7 +71377,7 @@ var __randu_644 = _$mt19937_612.factory;
 * var v = weibull();
 * // returns <number>
 */
-function __factory_644() {
+function __factory_649() {
 	var lambda;
 	var opts;
 	var rand;
@@ -71386,7 +71386,7 @@ function __factory_644() {
 	var k;
 
 	if ( arguments.length === 0 ) {
-		rand = __randu_644();
+		rand = __randu_649();
 	} else if ( arguments.length === 1 ) {
 		opts = arguments[ 0 ];
 		if ( !_$isPlainObject_144( opts ) ) {
@@ -71398,12 +71398,12 @@ function __factory_644() {
 			}
 			rand = opts.prng;
 		} else {
-			rand = __randu_644( opts );
+			rand = __randu_649( opts );
 		}
 	} else {
 		k = arguments[ 0 ];
 		lambda = arguments[ 1 ];
-		err = _$validate_647( lambda, k );
+		err = _$validate_652( lambda, k );
 		if ( err ) {
 			throw err;
 		}
@@ -71418,10 +71418,10 @@ function __factory_644() {
 				}
 				rand = opts.prng;
 			} else {
-				rand = __randu_644( opts );
+				rand = __randu_649( opts );
 			}
 		} else {
-			rand = __randu_644();
+			rand = __randu_649();
 		}
 	}
 	if ( lambda === void 0 ) {
@@ -71429,25 +71429,25 @@ function __factory_644() {
 	} else {
 		prng = weibull1;
 	}
-	_$setNonEnumerableReadOnly_964( prng, 'NAME', 'weibull' );
+	_$setNonEnumerableReadOnly_986( prng, 'NAME', 'weibull' );
 
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( opts && opts.prng ) {
-		_$setNonEnumerableReadOnly_964( prng, 'seed', null );
-		_$setNonEnumerableReadOnly_964( prng, 'seedLength', null );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', _$constantFunction_955( null ), _$noop_1009 );
-		_$setNonEnumerableReadOnly_964( prng, 'stateLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'byteLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', _$constantFunction_955( null ) );
-		_$setNonEnumerableReadOnly_964( prng, 'PRNG', rand );
+		_$setNonEnumerableReadOnly_986( prng, 'seed', null );
+		_$setNonEnumerableReadOnly_986( prng, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', _$constantFunction_977( null ), _$noop_1031 );
+		_$setNonEnumerableReadOnly_986( prng, 'stateLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'byteLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', _$constantFunction_977( null ) );
+		_$setNonEnumerableReadOnly_986( prng, 'PRNG', rand );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seedLength', getSeedLength );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', toJSON );
-		_$setNonEnumerableReadOnly_964( prng, 'PRNG', rand );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', toJSON );
+		_$setNonEnumerableReadOnly_986( prng, 'PRNG', rand );
 		rand = rand.normalized;
 	}
 	return prng;
@@ -71547,7 +71547,7 @@ function __factory_644() {
 	* // returns <number>
 	*/
 	function weibull1() {
-		return _$weibull_648( rand, k, lambda );
+		return _$weibull_653( rand, k, lambda );
 	}
 
 	/**
@@ -71583,14 +71583,14 @@ function __factory_644() {
 		) {
 			return NaN;
 		}
-		return _$weibull_648( rand, k, lambda );
+		return _$weibull_653( rand, k, lambda );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_644 = __factory_644;
+var _$factory_649 = __factory_649;
 
 /**
 * @license Apache-2.0
@@ -71614,7 +71614,7 @@ var _$factory_644 = __factory_644;
 
 // MODULES //
 
-/* removed: var _$factory_644 = require( './factory.js' ); */;
+/* removed: var _$factory_649 = require( './factory.js' ); */;
 
 
 // MAIN //
@@ -71636,12 +71636,12 @@ var _$factory_644 = __factory_644;
 * var v = weibull( -2.0, 3.0 );
 * // returns NaN
 */
-var __weibull_646 = _$factory_644();
+var __weibull_651 = _$factory_649();
 
 
 // EXPORTS //
 
-var _$weibull_646 = __weibull_646;
+var _$weibull_651 = __weibull_651;
 
 /**
 * @license Apache-2.0
@@ -71695,19 +71695,19 @@ var _$weibull_646 = __weibull_646;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$weibull_646 = require( './main.js' ); */;
-/* removed: var _$factory_644 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$weibull_651 = require( './main.js' ); */;
+/* removed: var _$factory_649 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$weibull_646, 'factory', _$factory_644 );
+_$setNonEnumerableReadOnly_986( _$weibull_651, 'factory', _$factory_649 );
 
 
 // EXPORTS //
 
-var _$weibull_645 = _$weibull_646;
+var _$weibull_650 = _$weibull_651;
 
 /**
 * @license Apache-2.0
@@ -71733,7 +71733,7 @@ var _$weibull_645 = _$weibull_646;
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$gamma_336 = require( '@stdlib/math/base/special/gamma' ); */;
-/* removed: var _$mean_940 = require( '@stdlib/stats/base/dists/weibull/mean' ); */;
+/* removed: var _$mean_962 = require( '@stdlib/stats/base/dists/weibull/mean' ); */;
 
 
 // MAIN //
@@ -71773,7 +71773,7 @@ var _$weibull_645 = _$weibull_646;
 * var v = variance( NaN, 2.0 );
 * // returns NaN
 */
-function __variance_953( k, lambda ) {
+function __variance_975( k, lambda ) {
 	var mu;
 	if (
 		_$isnan_231( k ) ||
@@ -71783,14 +71783,14 @@ function __variance_953( k, lambda ) {
 	) {
 		return NaN;
 	}
-	mu = _$mean_940( k, lambda );
+	mu = _$mean_962( k, lambda );
 	return ( lambda*lambda * ( _$gamma_336( 1.0 + (2.0/k) ) ) ) - ( mu*mu );
 }
 
 
 // EXPORTS //
 
-var _$variance_953 = __variance_953;
+var _$variance_975 = __variance_975;
 
 /**
 * @license Apache-2.0
@@ -71832,12 +71832,12 @@ var _$variance_953 = __variance_953;
 
 // MODULES //
 
-/* removed: var _$variance_953 = require( './variance.js' ); */;
+/* removed: var _$variance_975 = require( './variance.js' ); */;
 
 
 // EXPORTS //
 
-var _$variance_952 = _$variance_953;
+var _$variance_974 = _$variance_975;
 
 /**
 * @license Apache-2.0
@@ -71902,7 +71902,7 @@ var _$variance_952 = _$variance_953;
 * var y = pdf( 2.0, 3.0, 1.0 );
 * // returns NaN
 */
-function __pdf_931( x, a, b ) {
+function __pdf_953( x, a, b ) {
 	if (
 		_$isnan_231( x ) ||
 		_$isnan_231( a ) ||
@@ -71920,7 +71920,7 @@ function __pdf_931( x, a, b ) {
 
 // EXPORTS //
 
-var _$pdf_931 = __pdf_931;
+var _$pdf_953 = __pdf_953;
 
 /**
 * @license Apache-2.0
@@ -71944,7 +71944,7 @@ var _$pdf_931 = __pdf_931;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
 
@@ -71965,13 +71965,13 @@ var _$pdf_931 = __pdf_931;
 * y = pdf( 12.0 );
 * // returns 0.0
 */
-function __factory_929( a, b ) {
+function __factory_951( a, b ) {
 	if (
 		_$isnan_231( a ) ||
 		_$isnan_231( b ) ||
 		a >= b
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return pdf;
 
@@ -72000,7 +72000,7 @@ function __factory_929( a, b ) {
 
 // EXPORTS //
 
-var _$factory_929 = __factory_929;
+var _$factory_951 = __factory_951;
 
 /**
 * @license Apache-2.0
@@ -72043,19 +72043,19 @@ var _$factory_929 = __factory_929;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_931 = require( './pdf.js' ); */;
-/* removed: var _$factory_929 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_953 = require( './pdf.js' ); */;
+/* removed: var _$factory_951 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$pdf_931, 'factory', _$factory_929 );
+_$setNonEnumerableReadOnly_986( _$pdf_953, 'factory', _$factory_951 );
 
 
 // EXPORTS //
 
-var _$pdf_930 = _$pdf_931;
+var _$pdf_952 = _$pdf_953;
 
 /**
 * @license Apache-2.0
@@ -72124,7 +72124,7 @@ var _$pdf_930 = _$pdf_931;
 * var y = cdf( 2.0, 1.0, 0.0 );
 * // returns NaN
 */
-function __cdf_922( x, a, b ) {
+function __cdf_944( x, a, b ) {
 	if (
 		_$isnan_231( x ) ||
 		_$isnan_231( a ) ||
@@ -72145,7 +72145,7 @@ function __cdf_922( x, a, b ) {
 
 // EXPORTS //
 
-var _$cdf_922 = __cdf_922;
+var _$cdf_944 = __cdf_944;
 
 /**
 * @license Apache-2.0
@@ -72169,7 +72169,7 @@ var _$cdf_922 = __cdf_922;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
 
@@ -72190,13 +72190,13 @@ var _$cdf_922 = __cdf_922;
 * y = cdf( 8.0 );
 * // returns 0.8
 */
-function __factory_923( a, b ) {
+function __factory_945( a, b ) {
 	if (
 		_$isnan_231( a ) ||
 		_$isnan_231( b ) ||
 		a >= b
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return cdf;
 
@@ -72228,7 +72228,7 @@ function __factory_923( a, b ) {
 
 // EXPORTS //
 
-var _$factory_923 = __factory_923;
+var _$factory_945 = __factory_945;
 
 /**
 * @license Apache-2.0
@@ -72271,19 +72271,19 @@ var _$factory_923 = __factory_923;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_922 = require( './cdf.js' ); */;
-/* removed: var _$factory_923 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_944 = require( './cdf.js' ); */;
+/* removed: var _$factory_945 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$cdf_922, 'factory', _$factory_923 );
+_$setNonEnumerableReadOnly_986( _$cdf_944, 'factory', _$factory_945 );
 
 
 // EXPORTS //
 
-var _$cdf_924 = _$cdf_922;
+var _$cdf_946 = _$cdf_944;
 
 /**
 * @license Apache-2.0
@@ -72352,7 +72352,7 @@ var _$cdf_924 = _$cdf_922;
 * var y = quantile( 0.5, 2.0, 1.0 );
 * // returns NaN
 */
-function __quantile_934( p, a, b ) {
+function __quantile_956( p, a, b ) {
 	if (
 		_$isnan_231( a ) ||
 		_$isnan_231( b ) ||
@@ -72369,7 +72369,7 @@ function __quantile_934( p, a, b ) {
 
 // EXPORTS //
 
-var _$quantile_934 = __quantile_934;
+var _$quantile_956 = __quantile_956;
 
 /**
 * @license Apache-2.0
@@ -72393,7 +72393,7 @@ var _$quantile_934 = __quantile_934;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
 
@@ -72414,13 +72414,13 @@ var _$quantile_934 = __quantile_934;
 * y = quantile( 0.8 );
 * // returns 3.6
 */
-function __factory_932( a, b ) {
+function __factory_954( a, b ) {
 	if (
 		_$isnan_231( a ) ||
 		_$isnan_231( b ) ||
 		a >= b
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return quantile;
 
@@ -72446,7 +72446,7 @@ function __factory_932( a, b ) {
 
 // EXPORTS //
 
-var _$factory_932 = __factory_932;
+var _$factory_954 = __factory_954;
 
 /**
 * @license Apache-2.0
@@ -72489,19 +72489,19 @@ var _$factory_932 = __factory_932;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_934 = require( './quantile.js' ); */;
-/* removed: var _$factory_932 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_956 = require( './quantile.js' ); */;
+/* removed: var _$factory_954 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$quantile_934, 'factory', _$factory_932 );
+_$setNonEnumerableReadOnly_986( _$quantile_956, 'factory', _$factory_954 );
 
 
 // EXPORTS //
 
-var _$quantile_933 = _$quantile_934;
+var _$quantile_955 = _$quantile_956;
 
 /**
 * @license Apache-2.0
@@ -72556,7 +72556,7 @@ var _$quantile_933 = _$quantile_934;
 * var v = mean( NaN, 2.0 );
 * // returns NaN
 */
-function __mean_926( a, b ) {
+function __mean_948( a, b ) {
 	if (
 		a >= b
 	) {
@@ -72568,7 +72568,7 @@ function __mean_926( a, b ) {
 
 // EXPORTS //
 
-var _$mean_926 = __mean_926;
+var _$mean_948 = __mean_948;
 
 /**
 * @license Apache-2.0
@@ -72610,12 +72610,12 @@ var _$mean_926 = __mean_926;
 
 // MODULES //
 
-/* removed: var _$mean_926 = require( './mean.js' ); */;
+/* removed: var _$mean_948 = require( './mean.js' ); */;
 
 
 // EXPORTS //
 
-var _$mean_925 = _$mean_926;
+var _$mean_947 = _$mean_948;
 
 /**
 * @license Apache-2.0
@@ -72670,7 +72670,7 @@ var _$mean_925 = _$mean_926;
 * var v = median( NaN, 2.0 );
 * // returns NaN
 */
-function __median_928( a, b ) {
+function __median_950( a, b ) {
 	if (
 		a >= b
 	) {
@@ -72682,7 +72682,7 @@ function __median_928( a, b ) {
 
 // EXPORTS //
 
-var _$median_928 = __median_928;
+var _$median_950 = __median_950;
 
 /**
 * @license Apache-2.0
@@ -72724,12 +72724,12 @@ var _$median_928 = __median_928;
 
 // MODULES //
 
-/* removed: var _$median_928 = require( './median.js' ); */;
+/* removed: var _$median_950 = require( './median.js' ); */;
 
 
 // EXPORTS //
 
-var _$median_927 = _$median_928;
+var _$median_949 = _$median_950;
 
 /**
 * @license Apache-2.0
@@ -72813,7 +72813,7 @@ var _$validate_558 = __validate_558;
 
 // MODULES //
 
-var __isNumber_643 = _$isNumber_134.isPrimitive;
+var __isNumber_648 = _$isNumber_134.isPrimitive;
 /* removed: var _$isnan_126 = require( '@stdlib/assert/is-nan' ); */;
 
 
@@ -72833,11 +72833,11 @@ var __isNumber_643 = _$isNumber_134.isPrimitive;
 *     throw err;
 * }
 */
-function __validate_643( a, b ) {
-	if ( !__isNumber_643( a ) || _$isnan_126( a ) ) {
+function __validate_648( a, b ) {
+	if ( !__isNumber_648( a ) || _$isnan_126( a ) ) {
 		return new TypeError( 'invalid argument. First argument must be a number primitive and not `NaN`. Value: `'+a+'`.' );
 	}
-	if ( !__isNumber_643( b ) || _$isnan_126( b ) ) {
+	if ( !__isNumber_648( b ) || _$isnan_126( b ) ) {
 		return new TypeError( 'invalid argument. Second argument must be a number primitive and not `NaN`. Value: `'+b+'`.' );
 	}
 	if ( a >= b ) {
@@ -72849,7 +72849,7 @@ function __validate_643( a, b ) {
 
 // EXPORTS //
 
-var _$validate_643 = __validate_643;
+var _$validate_648 = __validate_648;
 
 /**
 * @license Apache-2.0
@@ -72888,7 +72888,7 @@ function uniform( rand, a, b ) {
 
 // EXPORTS //
 
-var _$uniform_642 = uniform;
+var _$uniform_647 = uniform;
 
 /**
 * @license Apache-2.0
@@ -72912,19 +72912,19 @@ var _$uniform_642 = uniform;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_962 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_966 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_984 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_988 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_1009 = require( '@stdlib/utils/noop' ); */;
-var __randu_639 = _$mt19937_612.factory;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_1031 = require( '@stdlib/utils/noop' ); */;
+var __randu_644 = _$mt19937_617.factory;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
-/* removed: var _$validate_643 = require( './validate.js' ); */;
-/* removed: var _$uniform_642 = require( './uniform.js' ); */;
+/* removed: var _$validate_648 = require( './validate.js' ); */;
+/* removed: var _$uniform_647 = require( './uniform.js' ); */;
 
 
 // MAIN //
@@ -72960,7 +72960,7 @@ var __randu_639 = _$mt19937_612.factory;
 * var v = uniform();
 * // returns <number>
 */
-function __factory_639() {
+function __factory_644() {
 	var opts;
 	var rand;
 	var prng;
@@ -72969,7 +72969,7 @@ function __factory_639() {
 	var b;
 
 	if ( arguments.length === 0 ) {
-		rand = __randu_639();
+		rand = __randu_644();
 	} else if ( arguments.length === 1 ) {
 		opts = arguments[ 0 ];
 		if ( !_$isPlainObject_144( opts ) ) {
@@ -72981,12 +72981,12 @@ function __factory_639() {
 			}
 			rand = opts.prng;
 		} else {
-			rand = __randu_639( opts );
+			rand = __randu_644( opts );
 		}
 	} else {
 		a = arguments[ 0 ];
 		b = arguments[ 1 ];
-		err = _$validate_643( a, b );
+		err = _$validate_648( a, b );
 		if ( err ) {
 			throw err;
 		}
@@ -73001,10 +73001,10 @@ function __factory_639() {
 				}
 				rand = opts.prng;
 			} else {
-				rand = __randu_639( opts );
+				rand = __randu_644( opts );
 			}
 		} else {
-			rand = __randu_639();
+			rand = __randu_644();
 		}
 	}
 	if ( a === void 0 ) {
@@ -73012,25 +73012,25 @@ function __factory_639() {
 	} else {
 		prng = uniform1;
 	}
-	_$setNonEnumerableReadOnly_964( prng, 'NAME', 'uniform' );
+	_$setNonEnumerableReadOnly_986( prng, 'NAME', 'uniform' );
 
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( opts && opts.prng ) {
-		_$setNonEnumerableReadOnly_964( prng, 'seed', null );
-		_$setNonEnumerableReadOnly_964( prng, 'seedLength', null );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', _$constantFunction_955( null ), _$noop_1009 );
-		_$setNonEnumerableReadOnly_964( prng, 'stateLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'byteLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', _$constantFunction_955( null ) );
-		_$setNonEnumerableReadOnly_964( prng, 'PRNG', rand );
+		_$setNonEnumerableReadOnly_986( prng, 'seed', null );
+		_$setNonEnumerableReadOnly_986( prng, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', _$constantFunction_977( null ), _$noop_1031 );
+		_$setNonEnumerableReadOnly_986( prng, 'stateLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'byteLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', _$constantFunction_977( null ) );
+		_$setNonEnumerableReadOnly_986( prng, 'PRNG', rand );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seedLength', getSeedLength );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', toJSON );
-		_$setNonEnumerableReadOnly_964( prng, 'PRNG', rand );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', toJSON );
+		_$setNonEnumerableReadOnly_986( prng, 'PRNG', rand );
 		rand = rand.normalized;
 	}
 	return prng;
@@ -73130,7 +73130,7 @@ function __factory_639() {
 	* // returns <number>
 	*/
 	function uniform1() {
-		return _$uniform_642( rand, a, b );
+		return _$uniform_647( rand, a, b );
 	}
 
 	/**
@@ -73157,14 +73157,14 @@ function __factory_639() {
 		) {
 			return NaN;
 		}
-		return _$uniform_642( rand, a, b );
+		return _$uniform_647( rand, a, b );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_639 = __factory_639;
+var _$factory_644 = __factory_644;
 
 /**
 * @license Apache-2.0
@@ -73188,7 +73188,7 @@ var _$factory_639 = __factory_639;
 
 // MODULES //
 
-/* removed: var _$factory_639 = require( './factory.js' ); */;
+/* removed: var _$factory_644 = require( './factory.js' ); */;
 
 
 // MAIN //
@@ -73206,12 +73206,12 @@ var _$factory_639 = __factory_639;
 * var v = uniform( 0.0, 1.0 );
 * // returns <number>
 */
-var __uniform_641 = _$factory_639();
+var __uniform_646 = _$factory_644();
 
 
 // EXPORTS //
 
-var _$uniform_641 = __uniform_641;
+var _$uniform_646 = __uniform_646;
 
 /**
 * @license Apache-2.0
@@ -73265,19 +73265,19 @@ var _$uniform_641 = __uniform_641;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$uniform_641 = require( './main.js' ); */;
-/* removed: var _$factory_639 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$uniform_646 = require( './main.js' ); */;
+/* removed: var _$factory_644 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$uniform_641, 'factory', _$factory_639 );
+_$setNonEnumerableReadOnly_986( _$uniform_646, 'factory', _$factory_644 );
 
 
 // EXPORTS //
 
-var _$uniform_640 = _$uniform_641;
+var _$uniform_645 = _$uniform_646;
 
 /**
 * @license Apache-2.0
@@ -73337,7 +73337,7 @@ var _$uniform_640 = _$uniform_641;
 * var v = variance( NaN, 2.0 );
 * // returns NaN
 */
-function __variance_936( a, b ) {
+function __variance_958( a, b ) {
 	if (
 		a >= b
 	) {
@@ -73349,7 +73349,7 @@ function __variance_936( a, b ) {
 
 // EXPORTS //
 
-var _$variance_936 = __variance_936;
+var _$variance_958 = __variance_958;
 
 /**
 * @license Apache-2.0
@@ -73391,12 +73391,12 @@ var _$variance_936 = __variance_936;
 
 // MODULES //
 
-/* removed: var _$variance_936 = require( './variance.js' ); */;
+/* removed: var _$variance_958 = require( './variance.js' ); */;
 
 
 // EXPORTS //
 
-var _$variance_935 = _$variance_936;
+var _$variance_957 = _$variance_958;
 
 /**
 * @license Apache-2.0
@@ -73777,7 +73777,7 @@ function pmf( x, n, p ) {
 
 // EXPORTS //
 
-var _$pmf_688 = pmf;
+var _$pmf_693 = pmf;
 
 /**
 * @license Apache-2.0
@@ -73829,7 +73829,7 @@ var _$pmf_688 = pmf;
 * var y = pmf( 0.0, NaN );
 * // returns NaN
 */
-function __pmf_725( x, mu ) {
+function __pmf_730( x, mu ) {
 	if ( _$isnan_231( x ) || _$isnan_231( mu ) ) {
 		return NaN;
 	}
@@ -73839,7 +73839,7 @@ function __pmf_725( x, mu ) {
 
 // EXPORTS //
 
-var _$pmf_725 = __pmf_725;
+var _$pmf_730 = __pmf_730;
 
 /**
 * @license Apache-2.0
@@ -73863,7 +73863,7 @@ var _$pmf_725 = __pmf_725;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
 
@@ -73884,9 +73884,9 @@ var _$pmf_725 = __pmf_725;
 * y = pmf( 5.0 );
 * // returns 1.0
 */
-function __factory_723( mu ) {
+function __factory_728( mu ) {
 	if ( _$isnan_231( mu ) ) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return pmf;
 
@@ -73912,7 +73912,7 @@ function __factory_723( mu ) {
 
 // EXPORTS //
 
-var _$factory_723 = __factory_723;
+var _$factory_728 = __factory_728;
 
 /**
 * @license Apache-2.0
@@ -73956,19 +73956,19 @@ var _$factory_723 = __factory_723;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pmf_725 = require( './pmf.js' ); */;
-/* removed: var _$factory_723 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pmf_730 = require( './pmf.js' ); */;
+/* removed: var _$factory_728 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$pmf_725, 'factory', _$factory_723 );
+_$setNonEnumerableReadOnly_986( _$pmf_730, 'factory', _$factory_728 );
 
 
 // EXPORTS //
 
-var _$pmf_724 = _$pmf_725;
+var _$pmf_729 = _$pmf_730;
 
 /**
 * @license Apache-2.0
@@ -73993,9 +73993,9 @@ var _$pmf_724 = _$pmf_725;
 // MODULES //
 
 /* removed: var _$isNonNegativeInteger_237 = require( '@stdlib/math/base/assert/is-nonnegative-integer' ); */;
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$binomcoefln_271 = require( '@stdlib/math/base/special/binomcoefln' ); */;
-var __degenerate_686 = _$pmf_724.factory;
+var __degenerate_691 = _$pmf_729.factory;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$log1p_469 = require( '@stdlib/math/base/special/log1p' ); */;
 /* removed: var _$exp_314 = require( '@stdlib/math/base/special/exp' ); */;
@@ -74020,7 +74020,7 @@ var __degenerate_686 = _$pmf_724.factory;
 * y = pmf( 5.0 );
 * // returns ~0.246
 */
-function __factory_686( n, p ) {
+function __factory_691( n, p ) {
 	if (
 		_$isnan_231( n ) ||
 		_$isnan_231( p ) ||
@@ -74029,13 +74029,13 @@ function __factory_686( n, p ) {
 		p < 0.0 ||
 		p > 1.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	if ( p === 0.0 || n === 0 ) {
-		return __degenerate_686( 0.0 );
+		return __degenerate_691( 0.0 );
 	}
 	if ( p === 1.0 ) {
-		return __degenerate_686( n );
+		return __degenerate_691( n );
 	}
 	return pmf;
 
@@ -74070,7 +74070,7 @@ function __factory_686( n, p ) {
 
 // EXPORTS //
 
-var _$factory_686 = __factory_686;
+var _$factory_691 = __factory_691;
 
 /**
 * @license Apache-2.0
@@ -74126,19 +74126,19 @@ var _$factory_686 = __factory_686;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pmf_688 = require( './pmf.js' ); */;
-/* removed: var _$factory_686 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pmf_693 = require( './pmf.js' ); */;
+/* removed: var _$factory_691 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$pmf_688, 'factory', _$factory_686 );
+_$setNonEnumerableReadOnly_986( _$pmf_693, 'factory', _$factory_691 );
 
 
 // EXPORTS //
 
-var _$pmf_687 = _$pmf_688;
+var _$pmf_692 = _$pmf_693;
 
 /**
 * @license Apache-2.0
@@ -74223,7 +74223,7 @@ var _$pmf_687 = _$pmf_688;
 * var y = cdf( 2.0, 20, 1.5 );
 * // returns NaN
 */
-function __cdf_683( x, n, p ) {
+function __cdf_688( x, n, p ) {
 	if (
 		_$isnan_231( x ) ||
 		_$isnan_231( n ) ||
@@ -74248,7 +74248,7 @@ function __cdf_683( x, n, p ) {
 
 // EXPORTS //
 
-var _$cdf_683 = __cdf_683;
+var _$cdf_688 = __cdf_688;
 
 /**
 * @license Apache-2.0
@@ -74273,7 +74273,7 @@ var _$cdf_683 = __cdf_683;
 // MODULES //
 
 /* removed: var _$isNonNegativeInteger_237 = require( '@stdlib/math/base/assert/is-nonnegative-integer' ); */;
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$betainc_261 = require( '@stdlib/math/base/special/betainc' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$floor_325 = require( '@stdlib/math/base/special/floor' ); */;
@@ -74297,7 +74297,7 @@ var _$cdf_683 = __cdf_683;
 * y = cdf( 1.0 );
 * // returns ~0.011
 */
-function __factory_684( n, p ) {
+function __factory_689( n, p ) {
 	if (
 		_$isnan_231( n ) ||
 		_$isnan_231( p ) ||
@@ -74306,7 +74306,7 @@ function __factory_684( n, p ) {
 		!_$isNonNegativeInteger_237( n ) ||
 		n === _$FLOAT64_PINF_207
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return cdf;
 
@@ -74340,7 +74340,7 @@ function __factory_684( n, p ) {
 
 // EXPORTS //
 
-var _$factory_684 = __factory_684;
+var _$factory_689 = __factory_689;
 
 /**
 * @license Apache-2.0
@@ -74396,19 +74396,19 @@ var _$factory_684 = __factory_684;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_683 = require( './cdf.js' ); */;
-/* removed: var _$factory_684 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_688 = require( './cdf.js' ); */;
+/* removed: var _$factory_689 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$cdf_683, 'factory', _$factory_684 );
+_$setNonEnumerableReadOnly_986( _$cdf_688, 'factory', _$factory_689 );
 
 
 // EXPORTS //
 
-var _$cdf_685 = _$cdf_683;
+var _$cdf_690 = _$cdf_688;
 
 /**
 * @license Apache-2.0
@@ -74509,7 +74509,7 @@ var _$cdf_685 = _$cdf_683;
 * @param {boolean} normalized - boolean indicating whether to evaluate the power terms of the regularized or non-regularized incomplete beta function
 * @returns {number} power terms
 */
-function __ibetaPowerTerms_841( a, b, x, y, normalized ) {
+function __ibetaPowerTerms_863( a, b, x, y, normalized ) {
 	var result;
 	var smallA;
 	var ratio;
@@ -74656,7 +74656,7 @@ function __ibetaPowerTerms_841( a, b, x, y, normalized ) {
 
 // EXPORTS //
 
-var _$ibetaPowerTerms_841 = __ibetaPowerTerms_841;
+var _$ibetaPowerTerms_863 = __ibetaPowerTerms_863;
 
 /**
 * @license Apache-2.0
@@ -74680,7 +74680,7 @@ var _$ibetaPowerTerms_841 = __ibetaPowerTerms_841;
 
 // MODULES //
 
-/* removed: var _$ibetaPowerTerms_841 = require( './ibeta_power_terms.js' ); */;
+/* removed: var _$ibetaPowerTerms_863 = require( './ibeta_power_terms.js' ); */;
 
 
 // MAIN //
@@ -74694,14 +74694,14 @@ var _$ibetaPowerTerms_841 = __ibetaPowerTerms_841;
 * @param {PositiveNumber} b - second parameter (must be greater than 1)
 * @returns {number} value of the partial derivative
 */
-function __ibetaDerivative_840( x, a, b ) {
+function __ibetaDerivative_862( x, a, b ) {
 	var f1;
 	var y;
 	if ( x === 1.0 ) {
 		return 0.0;
 	}
 	// Regular cases:
-	f1 = _$ibetaPowerTerms_841( a, b, x, 1.0 - x, true );
+	f1 = _$ibetaPowerTerms_863( a, b, x, 1.0 - x, true );
 	y = ( 1.0 - x ) * x;
 	f1 /= y;
 	return f1;
@@ -74710,7 +74710,7 @@ function __ibetaDerivative_840( x, a, b ) {
 
 // EXPORTS //
 
-var _$ibetaDerivative_840 = __ibetaDerivative_840;
+var _$ibetaDerivative_862 = __ibetaDerivative_862;
 
 /**
 * @license Apache-2.0
@@ -74736,7 +74736,7 @@ var _$ibetaDerivative_840 = __ibetaDerivative_840;
 
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$isNonNegativeInteger_237 = require( '@stdlib/math/base/assert/is-nonnegative-integer' ); */;
-/* removed: var _$ibetaDerivative_840 = require( './ibeta_derivative.js' ); */;
+/* removed: var _$ibetaDerivative_862 = require( './ibeta_derivative.js' ); */;
 
 
 // MAIN //
@@ -74801,7 +74801,7 @@ var _$ibetaDerivative_840 = __ibetaDerivative_840;
 * var y = pmf( 0.0, 20.0, NaN );
 * // returns NaN
 */
-function __pmf_843( x, r, p ) {
+function __pmf_865( x, r, p ) {
 	if (
 		_$isnan_231( x ) ||
 		_$isnan_231( r ) ||
@@ -74815,13 +74815,13 @@ function __pmf_843( x, r, p ) {
 	if ( !_$isNonNegativeInteger_237( x ) || p === 0.0 ) {
 		return 0.0;
 	}
-	return ( p / ( r + x ) ) * _$ibetaDerivative_840( p, r, x + 1.0 );
+	return ( p / ( r + x ) ) * _$ibetaDerivative_862( p, r, x + 1.0 );
 }
 
 
 // EXPORTS //
 
-var _$pmf_843 = __pmf_843;
+var _$pmf_865 = __pmf_865;
 
 /**
 * @license Apache-2.0
@@ -74846,9 +74846,9 @@ var _$pmf_843 = __pmf_843;
 // MODULES //
 
 /* removed: var _$isNonNegativeInteger_237 = require( '@stdlib/math/base/assert/is-nonnegative-integer' ); */;
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$ibetaDerivative_840 = require( './ibeta_derivative.js' ); */;
+/* removed: var _$ibetaDerivative_862 = require( './ibeta_derivative.js' ); */;
 
 
 // MAIN //
@@ -74868,7 +74868,7 @@ var _$pmf_843 = __pmf_843;
 * y = pmf( 5.0 );
 * // returns ~0.061
 */
-function __factory_839( r, p ) {
+function __factory_861( r, p ) {
 	if (
 		_$isnan_231( r ) ||
 		_$isnan_231( p ) ||
@@ -74876,7 +74876,7 @@ function __factory_839( r, p ) {
 		p <= 0.0 ||
 		p > 1.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return pmf;
 
@@ -74898,14 +74898,14 @@ function __factory_839( r, p ) {
 		if ( !_$isNonNegativeInteger_237( x ) ) {
 			return 0.0;
 		}
-		return ( p / ( r + x ) ) * _$ibetaDerivative_840( p, r, x + 1.0 );
+		return ( p / ( r + x ) ) * _$ibetaDerivative_862( p, r, x + 1.0 );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_839 = __factory_839;
+var _$factory_861 = __factory_861;
 
 /**
 * @license Apache-2.0
@@ -74963,19 +74963,19 @@ var _$factory_839 = __factory_839;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pmf_843 = require( './pmf.js' ); */;
-/* removed: var _$factory_839 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pmf_865 = require( './pmf.js' ); */;
+/* removed: var _$factory_861 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$pmf_843, 'factory', _$factory_839 );
+_$setNonEnumerableReadOnly_986( _$pmf_865, 'factory', _$factory_861 );
 
 
 // EXPORTS //
 
-var _$pmf_842 = _$pmf_843;
+var _$pmf_864 = _$pmf_865;
 
 /**
 * @license Apache-2.0
@@ -75067,7 +75067,7 @@ var _$pmf_842 = _$pmf_843;
 * var y = cdf( 2.0, 20, 1.5 );
 * // returns NaN
 */
-function __cdf_836( x, r, p ) {
+function __cdf_858( x, r, p ) {
 	var xint;
 	if (
 		_$isnan_231( x ) ||
@@ -75093,7 +75093,7 @@ function __cdf_836( x, r, p ) {
 
 // EXPORTS //
 
-var _$cdf_836 = __cdf_836;
+var _$cdf_858 = __cdf_858;
 
 /**
 * @license Apache-2.0
@@ -75117,7 +75117,7 @@ var _$cdf_836 = __cdf_836;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$betainc_261 = require( '@stdlib/math/base/special/betainc' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$floor_325 = require( '@stdlib/math/base/special/floor' ); */;
@@ -75141,7 +75141,7 @@ var _$cdf_836 = __cdf_836;
 * y = cdf( 11.0 );
 * // returns ~0.668
 */
-function __factory_837( r, p ) {
+function __factory_859( r, p ) {
 	if (
 		_$isnan_231( r ) ||
 		_$isnan_231( p ) ||
@@ -75149,7 +75149,7 @@ function __factory_837( r, p ) {
 		p < 0.0 ||
 		p > 1.0
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return cdf;
 
@@ -75180,7 +75180,7 @@ function __factory_837( r, p ) {
 
 // EXPORTS //
 
-var _$factory_837 = __factory_837;
+var _$factory_859 = __factory_859;
 
 /**
 * @license Apache-2.0
@@ -75238,19 +75238,19 @@ var _$factory_837 = __factory_837;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_836 = require( './cdf.js' ); */;
-/* removed: var _$factory_837 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_858 = require( './cdf.js' ); */;
+/* removed: var _$factory_859 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$cdf_836, 'factory', _$factory_837 );
+_$setNonEnumerableReadOnly_986( _$cdf_858, 'factory', _$factory_859 );
 
 
 // EXPORTS //
 
-var _$cdf_838 = _$cdf_836;
+var _$cdf_860 = _$cdf_858;
 
 /**
 * @license Apache-2.0
@@ -75346,7 +75346,7 @@ var _$cdf_838 = _$cdf_836;
 * var y = pmf( 2.0, 8, 3, 9 );
 * // returns NaN
 */
-function __pmf_786( x, N, K, n ) {
+function __pmf_791( x, N, K, n ) {
 	var ldenom;
 	var lnum;
 	var lpmf;
@@ -75387,7 +75387,7 @@ function __pmf_786( x, N, K, n ) {
 
 // EXPORTS //
 
-var _$pmf_786 = __pmf_786;
+var _$pmf_791 = __pmf_791;
 
 /**
 * @license Apache-2.0
@@ -75413,7 +75413,7 @@ var _$pmf_786 = __pmf_786;
 
 /* removed: var _$isNonNegativeInteger_237 = require( '@stdlib/math/base/assert/is-nonnegative-integer' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$exp_314 = require( '@stdlib/math/base/special/exp' ); */;
 /* removed: var _$factorialln_323 = require( '@stdlib/math/base/special/factorialln' ); */;
 /* removed: var _$max_472 = require( '@stdlib/math/base/special/max' ); */;
@@ -75439,7 +75439,7 @@ var _$pmf_786 = __pmf_786;
 * y = mypmf( 1.0 );
 * // returns ~0.029
 */
-function __factory_784( N, K, n ) {
+function __factory_789( N, K, n ) {
 	var maxs;
 	var mins;
 	if (
@@ -75454,7 +75454,7 @@ function __factory_784( N, K, n ) {
 		K > N ||
 		n > N
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 
 	mins = _$max_472( 0, n + K - N );
@@ -75493,7 +75493,7 @@ function __factory_784( N, K, n ) {
 
 // EXPORTS //
 
-var _$factory_784 = __factory_784;
+var _$factory_789 = __factory_789;
 
 /**
 * @license Apache-2.0
@@ -75545,19 +75545,19 @@ var _$factory_784 = __factory_784;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pmf_786 = require( './pmf.js' ); */;
-/* removed: var _$factory_784 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pmf_791 = require( './pmf.js' ); */;
+/* removed: var _$factory_789 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$pmf_786, 'factory', _$factory_784 );
+_$setNonEnumerableReadOnly_986( _$pmf_791, 'factory', _$factory_789 );
 
 
 // EXPORTS //
 
-var _$pmf_785 = _$pmf_786;
+var _$pmf_790 = _$pmf_791;
 
 /**
 * @license Apache-2.0
@@ -75601,7 +75601,7 @@ function sum( arr ) {
 
 // EXPORTS //
 
-var _$sum_783 = sum;
+var _$sum_788 = sum;
 
 /**
 * @license Apache-2.0
@@ -75630,9 +75630,9 @@ var _$sum_783 = sum;
 /* removed: var _$trunc_509 = require( '@stdlib/math/base/special/trunc' ); */;
 /* removed: var _$max_472 = require( '@stdlib/math/base/special/max' ); */;
 /* removed: var _$min_476 = require( '@stdlib/math/base/special/min' ); */;
-/* removed: var _$pmf_785 = require( '@stdlib/stats/base/dists/hypergeometric/pmf' ); */;
+/* removed: var _$pmf_790 = require( '@stdlib/stats/base/dists/hypergeometric/pmf' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
-/* removed: var _$sum_783 = require( './sum.js' ); */;
+/* removed: var _$sum_788 = require( './sum.js' ); */;
 
 
 // MAIN //
@@ -75698,7 +75698,7 @@ var _$sum_783 = sum;
 * var y = cdf( 2.0, 8, 3, 9 );
 * // returns NaN
 */
-function __cdf_780( x, N, K, n ) {
+function __cdf_785( x, N, K, n ) {
 	var denom;
 	var probs;
 	var num;
@@ -75729,7 +75729,7 @@ function __cdf_780( x, N, K, n ) {
 	}
 
 	probs = new Array( x + 1 );
-	probs[ x ] = _$pmf_785( x, N, K, n );
+	probs[ x ] = _$pmf_790( x, N, K, n );
 
 	/*
 	* Use recurrence relation:
@@ -75740,14 +75740,14 @@ function __cdf_780( x, N, K, n ) {
 		denom = ( K - i ) * ( n - i );
 		probs[ i ] = ( num / denom ) * probs[ i + 1 ];
 	}
-	ret = _$sum_783( probs );
+	ret = _$sum_788( probs );
 	return _$min_476( ret, 1.0 );
 }
 
 
 // EXPORTS //
 
-var _$cdf_780 = __cdf_780;
+var _$cdf_785 = __cdf_785;
 
 /**
 * @license Apache-2.0
@@ -75773,13 +75773,13 @@ var _$cdf_780 = __cdf_780;
 
 /* removed: var _$isNonNegativeInteger_237 = require( '@stdlib/math/base/assert/is-nonnegative-integer' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$trunc_509 = require( '@stdlib/math/base/special/trunc' ); */;
 /* removed: var _$max_472 = require( '@stdlib/math/base/special/max' ); */;
 /* removed: var _$min_476 = require( '@stdlib/math/base/special/min' ); */;
-/* removed: var _$pmf_785 = require( '@stdlib/stats/base/dists/hypergeometric/pmf' ); */;
+/* removed: var _$pmf_790 = require( '@stdlib/stats/base/dists/hypergeometric/pmf' ); */;
 /* removed: var _$FLOAT64_PINF_207 = require( '@stdlib/constants/math/float64-pinf' ); */;
-/* removed: var _$sum_783 = require( './sum.js' ); */;
+/* removed: var _$sum_788 = require( './sum.js' ); */;
 
 
 // MAIN //
@@ -75800,7 +75800,7 @@ var _$cdf_780 = __cdf_780;
 * y = mycdf( 1.0 );
 * // returns ~0.031
 */
-function __factory_781( N, K, n ) {
+function __factory_786( N, K, n ) {
 	if (
 		_$isnan_231( N ) ||
 		_$isnan_231( K ) ||
@@ -75813,7 +75813,7 @@ function __factory_781( N, K, n ) {
 		K > N ||
 		n > N
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return cdf;
 
@@ -75847,7 +75847,7 @@ function __factory_781( N, K, n ) {
 		}
 
 		probs = new Array( x + 1 );
-		probs[ x ] = _$pmf_785( x, N, K, n );
+		probs[ x ] = _$pmf_790( x, N, K, n );
 
 		/*
 		* Use recurrence relation:
@@ -75858,7 +75858,7 @@ function __factory_781( N, K, n ) {
 			denom = ( K - i ) * ( n - i );
 			probs[ i ] = ( num / denom ) * probs[ i + 1 ];
 		}
-		ret = _$sum_783( probs );
+		ret = _$sum_788( probs );
 		return _$min_476( ret, 1.0 );
 	}
 }
@@ -75866,7 +75866,7 @@ function __factory_781( N, K, n ) {
 
 // EXPORTS //
 
-var _$factory_781 = __factory_781;
+var _$factory_786 = __factory_786;
 
 /**
 * @license Apache-2.0
@@ -75918,19 +75918,19 @@ var _$factory_781 = __factory_781;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_780 = require( './cdf.js' ); */;
-/* removed: var _$factory_781 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_785 = require( './cdf.js' ); */;
+/* removed: var _$factory_786 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$cdf_780, 'factory', _$factory_781 );
+_$setNonEnumerableReadOnly_986( _$cdf_785, 'factory', _$factory_786 );
 
 
 // EXPORTS //
 
-var _$cdf_782 = _$cdf_780;
+var _$cdf_787 = _$cdf_785;
 
 /**
 * @license Apache-2.0
@@ -75996,7 +75996,7 @@ var _$cdf_782 = _$cdf_780;
 * var y = pmf( 2.0, -0.5 );
 * // returns NaN
 */
-function __pmf_885( x, lambda ) {
+function __pmf_907( x, lambda ) {
 	var lnl;
 	if ( _$isnan_231( x ) || _$isnan_231( lambda ) || lambda < 0.0 ) {
 		return NaN;
@@ -76014,7 +76014,7 @@ function __pmf_885( x, lambda ) {
 
 // EXPORTS //
 
-var _$pmf_885 = __pmf_885;
+var _$pmf_907 = __pmf_907;
 
 /**
 * @license Apache-2.0
@@ -76039,9 +76039,9 @@ var _$pmf_885 = __pmf_885;
 // MODULES //
 
 /* removed: var _$isNonNegativeInteger_237 = require( '@stdlib/math/base/assert/is-nonnegative-integer' ); */;
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$factorialln_323 = require( '@stdlib/math/base/special/factorialln' ); */;
-var __degenerate_883 = _$pmf_724.factory;
+var __degenerate_905 = _$pmf_729.factory;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$exp_314 = require( '@stdlib/math/base/special/exp' ); */;
 /* removed: var _$ln_465 = require( '@stdlib/math/base/special/ln' ); */;
@@ -76064,12 +76064,12 @@ var __degenerate_883 = _$pmf_724.factory;
 * y = pmf( 1.0 );
 * // returns ~0.368
 */
-function __factory_883( lambda ) {
+function __factory_905( lambda ) {
 	if ( _$isnan_231( lambda ) || lambda < 0.0 ) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	if ( lambda === 0.0 ) {
-		return __degenerate_883( 0.0 );
+		return __degenerate_905( 0.0 );
 	}
 	return pmf;
 
@@ -76100,7 +76100,7 @@ function __factory_883( lambda ) {
 
 // EXPORTS //
 
-var _$factory_883 = __factory_883;
+var _$factory_905 = __factory_905;
 
 /**
 * @license Apache-2.0
@@ -76149,19 +76149,19 @@ var _$factory_883 = __factory_883;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pmf_885 = require( './pmf.js' ); */;
-/* removed: var _$factory_883 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pmf_907 = require( './pmf.js' ); */;
+/* removed: var _$factory_905 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$pmf_885, 'factory', _$factory_883 );
+_$setNonEnumerableReadOnly_986( _$pmf_907, 'factory', _$factory_905 );
 
 
 // EXPORTS //
 
-var _$pmf_884 = _$pmf_885;
+var _$pmf_906 = _$pmf_907;
 
 /**
 * @license Apache-2.0
@@ -76225,7 +76225,7 @@ var _$pmf_884 = _$pmf_885;
 * var y = cdf( 2.0, -1.0 );
 * // returns NaN
 */
-function __cdf_878( x, lambda ) {
+function __cdf_900( x, lambda ) {
 	if ( _$isnan_231( x ) || _$isnan_231( lambda ) || lambda < 0.0 ) {
 		return NaN;
 	}
@@ -76244,7 +76244,7 @@ function __cdf_878( x, lambda ) {
 
 // EXPORTS //
 
-var _$cdf_878 = __cdf_878;
+var _$cdf_900 = __cdf_900;
 
 /**
 * @license Apache-2.0
@@ -76268,8 +76268,8 @@ var _$cdf_878 = __cdf_878;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-var __degenerate_879 = _$cdf_719.factory;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+var __degenerate_901 = _$cdf_724.factory;
 /* removed: var _$gammainc_352 = require( '@stdlib/math/base/special/gammainc' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$floor_325 = require( '@stdlib/math/base/special/floor' ); */;
@@ -76292,12 +76292,12 @@ var __degenerate_879 = _$cdf_719.factory;
 * y = cdf( 8.0 );
 * // returns ~0.932
 */
-function __factory_879( lambda ) {
+function __factory_901( lambda ) {
 	if ( _$isnan_231( lambda ) || lambda < 0.0 ) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	if ( lambda === 0.0 ) {
-		return __degenerate_879( 0.0 );
+		return __degenerate_901( 0.0 );
 	}
 	return cdf;
 
@@ -76329,7 +76329,7 @@ function __factory_879( lambda ) {
 
 // EXPORTS //
 
-var _$factory_879 = __factory_879;
+var _$factory_901 = __factory_901;
 
 /**
 * @license Apache-2.0
@@ -76378,19 +76378,19 @@ var _$factory_879 = __factory_879;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_878 = require( './cdf.js' ); */;
-/* removed: var _$factory_879 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_900 = require( './cdf.js' ); */;
+/* removed: var _$factory_901 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$cdf_878, 'factory', _$factory_879 );
+_$setNonEnumerableReadOnly_986( _$cdf_900, 'factory', _$factory_901 );
 
 
 // EXPORTS //
 
-var _$cdf_880 = _$cdf_878;
+var _$cdf_902 = _$cdf_900;
 
 /**
 * @license Apache-2.0
@@ -76441,7 +76441,7 @@ var _$cdf_880 = _$cdf_878;
 * var v = mean( NaN );
 * // returns NaN
 */
-function __mean_882( lambda ) {
+function __mean_904( lambda ) {
 	if ( _$isnan_231( lambda ) || lambda < 0.0 ) {
 		return NaN;
 	}
@@ -76451,7 +76451,7 @@ function __mean_882( lambda ) {
 
 // EXPORTS //
 
-var _$mean_882 = __mean_882;
+var _$mean_904 = __mean_904;
 
 /**
 * @license Apache-2.0
@@ -76490,12 +76490,12 @@ var _$mean_882 = __mean_882;
 
 // MODULES //
 
-/* removed: var _$mean_882 = require( './mean.js' ); */;
+/* removed: var _$mean_904 = require( './mean.js' ); */;
 
 
 // EXPORTS //
 
-var _$mean_881 = _$mean_882;
+var _$mean_903 = _$mean_904;
 
 /**
 * @license Apache-2.0
@@ -76546,7 +76546,7 @@ var _$mean_881 = _$mean_882;
 * var v = variance( NaN );
 * // returns NaN
 */
-function __variance_887( lambda ) {
+function __variance_909( lambda ) {
 	if ( _$isnan_231( lambda ) || lambda < 0.0 ) {
 		return NaN;
 	}
@@ -76556,7 +76556,7 @@ function __variance_887( lambda ) {
 
 // EXPORTS //
 
-var _$variance_887 = __variance_887;
+var _$variance_909 = __variance_909;
 
 /**
 * @license Apache-2.0
@@ -76595,12 +76595,12 @@ var _$variance_887 = __variance_887;
 
 // MODULES //
 
-/* removed: var _$variance_887 = require( './variance.js' ); */;
+/* removed: var _$variance_909 = require( './variance.js' ); */;
 
 
 // EXPORTS //
 
-var _$variance_886 = _$variance_887;
+var _$variance_908 = _$variance_909;
 
 /**
 * @license Apache-2.0
@@ -76660,7 +76660,7 @@ function poisson( rand, lambda ) {
 
 // EXPORTS //
 
-var _$poisson_622 = poisson;
+var _$poisson_627 = poisson;
 
 /**
 * @license Apache-2.0
@@ -76716,7 +76716,7 @@ var ONE_360 = 1.0 / 360.0;
 * @param {PositiveNumber} lambda - mean
 * @returns {NonNegativeInteger} pseudorandom number
 */
-function __poisson_625( rand, lambda ) {
+function __poisson_630( rand, lambda ) {
 	var slambda;
 	var ainv;
 	var urvr;
@@ -76783,7 +76783,7 @@ function __poisson_625( rand, lambda ) {
 
 // EXPORTS //
 
-var _$poisson_625 = __poisson_625;
+var _$poisson_630 = __poisson_630;
 
 /**
 * @license Apache-2.0
@@ -76807,8 +76807,8 @@ var _$poisson_625 = __poisson_625;
 
 // MODULES //
 
-/* removed: var _$poisson_622 = require( './knuth.js' ); */;
-/* removed: var _$poisson_625 = require( './rejection.js' ); */;
+/* removed: var _$poisson_627 = require( './knuth.js' ); */;
+/* removed: var _$poisson_630 = require( './rejection.js' ); */;
 
 
 // MAIN //
@@ -76821,17 +76821,17 @@ var _$poisson_625 = __poisson_625;
 * @param {PositiveNumber} lambda - mean
 * @returns {NonNegativeInteger} pseudorandom number
 */
-function __poisson_624( rand, lambda ) {
+function __poisson_629( rand, lambda ) {
 	if ( lambda < 30.0 ) {
-		return _$poisson_622( rand, lambda );
+		return _$poisson_627( rand, lambda );
 	}
-	return _$poisson_625( rand, lambda );
+	return _$poisson_630( rand, lambda );
 }
 
 
 // EXPORTS //
 
-var _$poisson_624 = __poisson_624;
+var _$poisson_629 = __poisson_629;
 
 /**
 * @license Apache-2.0
@@ -76855,19 +76855,19 @@ var _$poisson_624 = __poisson_624;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_962 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_966 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
-var __isPositive_620 = _$isPositiveNumber_150.isPrimitive;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_984 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_988 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+var __isPositive_625 = _$isPositiveNumber_150.isPrimitive;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_1009 = require( '@stdlib/utils/noop' ); */;
-var __randu_620 = _$mt19937_612.factory;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_1031 = require( '@stdlib/utils/noop' ); */;
+var __randu_625 = _$mt19937_617.factory;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
-/* removed: var _$poisson_624 = require( './poisson.js' ); */;
+/* removed: var _$poisson_629 = require( './poisson.js' ); */;
 
 
 // MAIN //
@@ -76904,14 +76904,14 @@ var __randu_620 = _$mt19937_612.factory;
 * var v = poisson( 0.5 );
 * // returns <number>
 */
-function __factory_620() {
+function __factory_625() {
 	var lambda;
 	var opts;
 	var rand;
 	var prng;
 
 	if ( arguments.length === 0 ) {
-		rand = __randu_620();
+		rand = __randu_625();
 	} else if (
 		arguments.length === 1 &&
 		_$isPlainObject_144( arguments[ 0 ] )
@@ -76923,11 +76923,11 @@ function __factory_620() {
 			}
 			rand = opts.prng;
 		} else {
-			rand = __randu_620( opts );
+			rand = __randu_625( opts );
 		}
 	} else {
 		lambda = arguments[ 0 ];
-		if ( !__isPositive_620( lambda ) ) {
+		if ( !__isPositive_625( lambda ) ) {
 			throw new TypeError( 'invalid argument. First argument must be a positive number. Value: `' + lambda + '`.' );
 		}
 		if ( arguments.length > 1 ) {
@@ -76941,10 +76941,10 @@ function __factory_620() {
 				}
 				rand = opts.prng;
 			} else {
-				rand = __randu_620( opts );
+				rand = __randu_625( opts );
 			}
 		} else {
-			rand = __randu_620();
+			rand = __randu_625();
 		}
 	}
 	if ( lambda === void 0 ) {
@@ -76952,25 +76952,25 @@ function __factory_620() {
 	} else {
 		prng = poisson1;
 	}
-	_$setNonEnumerableReadOnly_964( prng, 'NAME', 'poisson' );
+	_$setNonEnumerableReadOnly_986( prng, 'NAME', 'poisson' );
 
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( opts && opts.prng ) {
-		_$setNonEnumerableReadOnly_964( prng, 'seed', null );
-		_$setNonEnumerableReadOnly_964( prng, 'seedLength', null );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', _$constantFunction_955( null ), _$noop_1009 );
-		_$setNonEnumerableReadOnly_964( prng, 'stateLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'byteLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', _$constantFunction_955( null ) );
-		_$setNonEnumerableReadOnly_964( prng, 'PRNG', rand );
+		_$setNonEnumerableReadOnly_986( prng, 'seed', null );
+		_$setNonEnumerableReadOnly_986( prng, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', _$constantFunction_977( null ), _$noop_1031 );
+		_$setNonEnumerableReadOnly_986( prng, 'stateLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'byteLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', _$constantFunction_977( null ) );
+		_$setNonEnumerableReadOnly_986( prng, 'PRNG', rand );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seedLength', getSeedLength );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', toJSON );
-		_$setNonEnumerableReadOnly_964( prng, 'PRNG', rand );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', toJSON );
+		_$setNonEnumerableReadOnly_986( prng, 'PRNG', rand );
 		rand = rand.normalized;
 	}
 	return prng;
@@ -77070,7 +77070,7 @@ function __factory_620() {
 	* // returns <number>
 	*/
 	function poisson1() {
-		return _$poisson_624( rand, lambda );
+		return _$poisson_629( rand, lambda );
 	}
 
 	/**
@@ -77099,14 +77099,14 @@ function __factory_620() {
 		) {
 			return NaN;
 		}
-		return _$poisson_624( rand, lambda );
+		return _$poisson_629( rand, lambda );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_620 = __factory_620;
+var _$factory_625 = __factory_625;
 
 /**
 * @license Apache-2.0
@@ -77130,7 +77130,7 @@ var _$factory_620 = __factory_620;
 
 // MODULES //
 
-/* removed: var _$factory_620 = require( './factory.js' ); */;
+/* removed: var _$factory_625 = require( './factory.js' ); */;
 
 
 // MAIN //
@@ -77168,12 +77168,12 @@ var _$factory_620 = __factory_620;
 * var v = poisson( NaN );
 * // returns NaN
 */
-var __poisson_623 = _$factory_620();
+var __poisson_628 = _$factory_625();
 
 
 // EXPORTS //
 
-var _$poisson_623 = __poisson_623;
+var _$poisson_628 = __poisson_628;
 
 /**
 * @license Apache-2.0
@@ -77227,19 +77227,19 @@ var _$poisson_623 = __poisson_623;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$poisson_623 = require( './main.js' ); */;
-/* removed: var _$factory_620 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$poisson_628 = require( './main.js' ); */;
+/* removed: var _$factory_625 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$poisson_623, 'factory', _$factory_620 );
+_$setNonEnumerableReadOnly_986( _$poisson_628, 'factory', _$factory_625 );
 
 
 // EXPORTS //
 
-var _$poisson_621 = _$poisson_623;
+var _$poisson_626 = _$poisson_628;
 
 /**
 * @license Apache-2.0
@@ -77313,7 +77313,7 @@ var _$poisson_621 = _$poisson_623;
 * var y = pdf( 2.0, 1.0, 0.0, 1.5 );
 * // returns NaN
 */
-function __pdf_916( x, a, b, c ) {
+function __pdf_938( x, a, b, c ) {
 	var denom1;
 	var denom2;
 	var denom3;
@@ -77353,7 +77353,7 @@ function __pdf_916( x, a, b, c ) {
 
 // EXPORTS //
 
-var _$pdf_916 = __pdf_916;
+var _$pdf_938 = __pdf_938;
 
 /**
 * @license Apache-2.0
@@ -77377,7 +77377,7 @@ var _$pdf_916 = __pdf_916;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 
 
@@ -77399,7 +77399,7 @@ var _$pdf_916 = __pdf_916;
 * y = pdf( 12.0 );
 * // returns 0.0
 */
-function __factory_914( a, b, c ) {
+function __factory_936( a, b, c ) {
 	var denom1;
 	var denom2;
 	var denom3;
@@ -77411,7 +77411,7 @@ function __factory_914( a, b, c ) {
 		a > c ||
 		c > b
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 
 	denom1 = ( b - a ) * ( c - a );
@@ -77456,7 +77456,7 @@ function __factory_914( a, b, c ) {
 
 // EXPORTS //
 
-var _$factory_914 = __factory_914;
+var _$factory_936 = __factory_936;
 
 /**
 * @license Apache-2.0
@@ -77505,19 +77505,19 @@ var _$factory_914 = __factory_914;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_916 = require( './pdf.js' ); */;
-/* removed: var _$factory_914 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_938 = require( './pdf.js' ); */;
+/* removed: var _$factory_936 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$pdf_916, 'factory', _$factory_914 );
+_$setNonEnumerableReadOnly_986( _$pdf_938, 'factory', _$factory_936 );
 
 
 // EXPORTS //
 
-var _$pdf_915 = _$pdf_916;
+var _$pdf_937 = _$pdf_938;
 
 /**
 * @license Apache-2.0
@@ -77592,7 +77592,7 @@ var _$pdf_915 = _$pdf_916;
 * var y = cdf( 2.0, 1.0, 0.0, 1.5 );
 * // returns NaN
 */
-function __cdf_905( x, a, b, c ) {
+function __cdf_927( x, a, b, c ) {
 	var denom1;
 	var denom2;
 
@@ -77627,7 +77627,7 @@ function __cdf_905( x, a, b, c ) {
 
 // EXPORTS //
 
-var _$cdf_905 = __cdf_905;
+var _$cdf_927 = __cdf_927;
 
 /**
 * @license Apache-2.0
@@ -77651,7 +77651,7 @@ var _$cdf_905 = __cdf_905;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$pow_480 = require( '@stdlib/math/base/special/pow' ); */;
 
@@ -77674,7 +77674,7 @@ var _$cdf_905 = __cdf_905;
 * y = cdf( 8.0 );
 * // returns 0.95
 */
-function __factory_906( a, b, c ) {
+function __factory_928( a, b, c ) {
 	var denom1;
 	var denom2;
 
@@ -77683,10 +77683,10 @@ function __factory_906( a, b, c ) {
 		_$isnan_231( b ) ||
 		_$isnan_231( c )
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	if ( !( a <= c && c <= b ) ) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 
 	denom1 = ( b - a ) * ( c - a );
@@ -77727,7 +77727,7 @@ function __factory_906( a, b, c ) {
 
 // EXPORTS //
 
-var _$factory_906 = __factory_906;
+var _$factory_928 = __factory_928;
 
 /**
 * @license Apache-2.0
@@ -77779,19 +77779,19 @@ var _$factory_906 = __factory_906;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_905 = require( './cdf.js' ); */;
-/* removed: var _$factory_906 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_927 = require( './cdf.js' ); */;
+/* removed: var _$factory_928 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$cdf_905, 'factory', _$factory_906 );
+_$setNonEnumerableReadOnly_986( _$cdf_927, 'factory', _$factory_928 );
 
 
 // EXPORTS //
 
-var _$cdf_907 = _$cdf_905;
+var _$cdf_929 = _$cdf_927;
 
 /**
 * @license Apache-2.0
@@ -77874,7 +77874,7 @@ var _$cdf_907 = _$cdf_905;
 * var y = quantile( 0.3, 1.0, 0.0, 1.5 );
 * // returns NaN
 */
-function __quantile_919( p, a, b, c ) {
+function __quantile_941( p, a, b, c ) {
 	var pInflection;
 	var fact1;
 	var fact2;
@@ -77907,7 +77907,7 @@ function __quantile_919( p, a, b, c ) {
 
 // EXPORTS //
 
-var _$quantile_919 = __quantile_919;
+var _$quantile_941 = __quantile_941;
 
 /**
 * @license Apache-2.0
@@ -77931,7 +77931,7 @@ var _$quantile_919 = __quantile_919;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$sqrt_505 = require( '@stdlib/math/base/special/sqrt' ); */;
 
@@ -77954,7 +77954,7 @@ var _$quantile_919 = __quantile_919;
 * y = quantile( 0.8 );
 * // returns ~3.225
 */
-function __factory_917( a, b, c ) {
+function __factory_939( a, b, c ) {
 	var pInflection;
 	var fact1;
 	var fact2;
@@ -77966,7 +77966,7 @@ function __factory_917( a, b, c ) {
 		a > c ||
 		c > b
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 
 	pInflection = ( c - a ) / ( b - a );
@@ -78003,7 +78003,7 @@ function __factory_917( a, b, c ) {
 
 // EXPORTS //
 
-var _$factory_917 = __factory_917;
+var _$factory_939 = __factory_939;
 
 /**
 * @license Apache-2.0
@@ -78055,19 +78055,19 @@ var _$factory_917 = __factory_917;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_919 = require( './quantile.js' ); */;
-/* removed: var _$factory_917 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_941 = require( './quantile.js' ); */;
+/* removed: var _$factory_939 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$quantile_919, 'factory', _$factory_917 );
+_$setNonEnumerableReadOnly_986( _$quantile_941, 'factory', _$factory_939 );
 
 
 // EXPORTS //
 
-var _$quantile_918 = _$quantile_919;
+var _$quantile_940 = _$quantile_941;
 
 /**
 * @license Apache-2.0
@@ -78136,7 +78136,7 @@ var _$quantile_918 = _$quantile_919;
 * var v = mean( 0.0, 4.0, NaN );
 * // returns NaN
 */
-function __mean_909( a, b, c ) {
+function __mean_931( a, b, c ) {
 	if (
 		_$isnan_231( a ) ||
 		_$isnan_231( b ) ||
@@ -78151,7 +78151,7 @@ function __mean_909( a, b, c ) {
 
 // EXPORTS //
 
-var _$mean_909 = __mean_909;
+var _$mean_931 = __mean_931;
 
 /**
 * @license Apache-2.0
@@ -78193,12 +78193,12 @@ var _$mean_909 = __mean_909;
 
 // MODULES //
 
-/* removed: var _$mean_909 = require( './mean.js' ); */;
+/* removed: var _$mean_931 = require( './mean.js' ); */;
 
 
 // EXPORTS //
 
-var _$mean_908 = _$mean_909;
+var _$mean_930 = _$mean_931;
 
 /**
 * @license Apache-2.0
@@ -78268,7 +78268,7 @@ var _$mean_908 = _$mean_909;
 * var v = median( 0.0, 4.0, NaN );
 * // returns NaN
 */
-function __median_911( a, b, c ) {
+function __median_933( a, b, c ) {
 	if (
 		_$isnan_231( a ) ||
 		_$isnan_231( b ) ||
@@ -78286,7 +78286,7 @@ function __median_911( a, b, c ) {
 
 // EXPORTS //
 
-var _$median_911 = __median_911;
+var _$median_933 = __median_933;
 
 /**
 * @license Apache-2.0
@@ -78328,12 +78328,12 @@ var _$median_911 = __median_911;
 
 // MODULES //
 
-/* removed: var _$median_911 = require( './median.js' ); */;
+/* removed: var _$median_933 = require( './median.js' ); */;
 
 
 // EXPORTS //
 
-var _$median_910 = _$median_911;
+var _$median_932 = _$median_933;
 
 /**
 * @license Apache-2.0
@@ -78402,7 +78402,7 @@ var _$median_910 = _$median_911;
 * var v = mode( 0.0, 4.0, NaN );
 * // returns NaN
 */
-function __mode_913( a, b, c ) {
+function __mode_935( a, b, c ) {
 	if (
 		_$isnan_231( a ) ||
 		_$isnan_231( b ) ||
@@ -78417,7 +78417,7 @@ function __mode_913( a, b, c ) {
 
 // EXPORTS //
 
-var _$mode_913 = __mode_913;
+var _$mode_935 = __mode_935;
 
 /**
 * @license Apache-2.0
@@ -78459,12 +78459,12 @@ var _$mode_913 = __mode_913;
 
 // MODULES //
 
-/* removed: var _$mode_913 = require( './mode.js' ); */;
+/* removed: var _$mode_935 = require( './mode.js' ); */;
 
 
 // EXPORTS //
 
-var _$mode_912 = _$mode_913;
+var _$mode_934 = _$mode_935;
 
 /**
 * @license Apache-2.0
@@ -78488,7 +78488,7 @@ var _$mode_912 = _$mode_913;
 
 // MODULES //
 
-var __isNumber_638 = _$isNumber_134.isPrimitive;
+var __isNumber_643 = _$isNumber_134.isPrimitive;
 /* removed: var _$isnan_126 = require( '@stdlib/assert/is-nan' ); */;
 
 
@@ -78509,14 +78509,14 @@ var __isNumber_638 = _$isNumber_134.isPrimitive;
 *     throw err;
 * }
 */
-function __validate_638( a, b, c ) {
-	if ( !__isNumber_638( a ) || _$isnan_126( a ) ) {
+function __validate_643( a, b, c ) {
+	if ( !__isNumber_643( a ) || _$isnan_126( a ) ) {
 		return new TypeError( 'invalid argument. First argument must be a number primitive and not `NaN`. Value: `'+a+'`.' );
 	}
-	if ( !__isNumber_638( b ) || _$isnan_126( b ) ) {
+	if ( !__isNumber_643( b ) || _$isnan_126( b ) ) {
 		return new TypeError( 'invalid argument. Second argument must be a number primitive and not `NaN`. Value: `'+b+'`.' );
 	}
-	if ( !__isNumber_638( c ) || _$isnan_126( c ) ) {
+	if ( !__isNumber_643( c ) || _$isnan_126( c ) ) {
 		return new TypeError( 'invalid argument. Third argument must be a number primitive and not `NaN`. Value: `'+c+'`.' );
 	}
 	if ( !(a <= c && c <= b) ) {
@@ -78528,7 +78528,7 @@ function __validate_638( a, b, c ) {
 
 // EXPORTS //
 
-var _$validate_638 = __validate_638;
+var _$validate_643 = __validate_643;
 
 /**
 * @license Apache-2.0
@@ -78584,7 +78584,7 @@ function triangular( rand, a, b, c ) {
 
 // EXPORTS //
 
-var _$triangular_637 = triangular;
+var _$triangular_642 = triangular;
 
 /**
 * @license Apache-2.0
@@ -78608,19 +78608,19 @@ var _$triangular_637 = triangular;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_962 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_966 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_984 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_988 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_1009 = require( '@stdlib/utils/noop' ); */;
-var __randu_634 = _$mt19937_612.factory;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_1031 = require( '@stdlib/utils/noop' ); */;
+var __randu_639 = _$mt19937_617.factory;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
-/* removed: var _$validate_638 = require( './validate.js' ); */;
-/* removed: var _$triangular_637 = require( './triangular.js' ); */;
+/* removed: var _$validate_643 = require( './validate.js' ); */;
+/* removed: var _$triangular_642 = require( './triangular.js' ); */;
 
 
 // MAIN //
@@ -78658,7 +78658,7 @@ var __randu_634 = _$mt19937_612.factory;
 * var v = triangular();
 * // returns <number>
 */
-function __factory_634() {
+function __factory_639() {
 	var opts;
 	var rand;
 	var prng;
@@ -78668,7 +78668,7 @@ function __factory_634() {
 	var c;
 
 	if ( arguments.length === 0 ) {
-		rand = __randu_634();
+		rand = __randu_639();
 	} else if ( arguments.length === 1 ) {
 		opts = arguments[ 0 ];
 		if ( !_$isPlainObject_144( opts ) ) {
@@ -78680,13 +78680,13 @@ function __factory_634() {
 			}
 			rand = opts.prng;
 		} else {
-			rand = __randu_634( opts );
+			rand = __randu_639( opts );
 		}
 	} else {
 		a = arguments[ 0 ];
 		b = arguments[ 1 ];
 		c = arguments[ 2 ];
-		err = _$validate_638( a, b, c );
+		err = _$validate_643( a, b, c );
 		if ( err ) {
 			throw err;
 		}
@@ -78701,10 +78701,10 @@ function __factory_634() {
 				}
 				rand = opts.prng;
 			} else {
-				rand = __randu_634( opts );
+				rand = __randu_639( opts );
 			}
 		} else {
-			rand = __randu_634();
+			rand = __randu_639();
 		}
 	}
 	if ( a === void 0 ) {
@@ -78712,25 +78712,25 @@ function __factory_634() {
 	} else {
 		prng = triangular1;
 	}
-	_$setNonEnumerableReadOnly_964( prng, 'NAME', 'triangular' );
+	_$setNonEnumerableReadOnly_986( prng, 'NAME', 'triangular' );
 
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( opts && opts.prng ) {
-		_$setNonEnumerableReadOnly_964( prng, 'seed', null );
-		_$setNonEnumerableReadOnly_964( prng, 'seedLength', null );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', _$constantFunction_955( null ), _$noop_1009 );
-		_$setNonEnumerableReadOnly_964( prng, 'stateLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'byteLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', _$constantFunction_955( null ) );
-		_$setNonEnumerableReadOnly_964( prng, 'PRNG', rand );
+		_$setNonEnumerableReadOnly_986( prng, 'seed', null );
+		_$setNonEnumerableReadOnly_986( prng, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', _$constantFunction_977( null ), _$noop_1031 );
+		_$setNonEnumerableReadOnly_986( prng, 'stateLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'byteLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', _$constantFunction_977( null ) );
+		_$setNonEnumerableReadOnly_986( prng, 'PRNG', rand );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seedLength', getSeedLength );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', toJSON );
-		_$setNonEnumerableReadOnly_964( prng, 'PRNG', rand );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', toJSON );
+		_$setNonEnumerableReadOnly_986( prng, 'PRNG', rand );
 		rand = rand.normalized;
 	}
 	return prng;
@@ -78830,7 +78830,7 @@ function __factory_634() {
 	* // returns <number>
 	*/
 	function triangular1() {
-		return _$triangular_637( rand, a, b, c );
+		return _$triangular_642( rand, a, b, c );
 	}
 
 	/**
@@ -78863,14 +78863,14 @@ function __factory_634() {
 		) {
 			return NaN;
 		}
-		return _$triangular_637( rand, a, b, c );
+		return _$triangular_642( rand, a, b, c );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_634 = __factory_634;
+var _$factory_639 = __factory_639;
 
 /**
 * @license Apache-2.0
@@ -78894,7 +78894,7 @@ var _$factory_634 = __factory_634;
 
 // MODULES //
 
-/* removed: var _$factory_634 = require( './factory.js' ); */;
+/* removed: var _$factory_639 = require( './factory.js' ); */;
 
 
 // MAIN //
@@ -78913,12 +78913,12 @@ var _$factory_634 = __factory_634;
 * var v = triangular( 0.0, 1.0, 0.5 );
 * // returns <number>
 */
-var __triangular_636 = _$factory_634();
+var __triangular_641 = _$factory_639();
 
 
 // EXPORTS //
 
-var _$triangular_636 = __triangular_636;
+var _$triangular_641 = __triangular_641;
 
 /**
 * @license Apache-2.0
@@ -78972,19 +78972,19 @@ var _$triangular_636 = __triangular_636;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$triangular_636 = require( './main.js' ); */;
-/* removed: var _$factory_634 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$triangular_641 = require( './main.js' ); */;
+/* removed: var _$factory_639 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$triangular_636, 'factory', _$factory_634 );
+_$setNonEnumerableReadOnly_986( _$triangular_641, 'factory', _$factory_639 );
 
 
 // EXPORTS //
 
-var _$triangular_635 = _$triangular_636;
+var _$triangular_640 = _$triangular_641;
 
 /**
 * @license Apache-2.0
@@ -79053,7 +79053,7 @@ var _$triangular_635 = _$triangular_636;
 * var v = variance( 0.0, 4.0, NaN );
 * // returns NaN
 */
-function __variance_921( a, b, c ) {
+function __variance_943( a, b, c ) {
 	if (
 		_$isnan_231( a ) ||
 		_$isnan_231( b ) ||
@@ -79068,7 +79068,7 @@ function __variance_921( a, b, c ) {
 
 // EXPORTS //
 
-var _$variance_921 = __variance_921;
+var _$variance_943 = __variance_943;
 
 /**
 * @license Apache-2.0
@@ -79110,12 +79110,12 @@ var _$variance_921 = __variance_921;
 
 // MODULES //
 
-/* removed: var _$variance_921 = require( './variance.js' ); */;
+/* removed: var _$variance_943 = require( './variance.js' ); */;
 
 
 // EXPORTS //
 
-var _$variance_920 = _$variance_921;
+var _$variance_942 = _$variance_943;
 
 /**
 * @license Apache-2.0
@@ -79182,7 +79182,7 @@ var _$variance_920 = _$variance_921;
 * var y = pdf( 2.0, 3.0, 1.0 );
 * // returns NaN
 */
-function __pdf_660( x, a, b ) {
+function __pdf_665( x, a, b ) {
 	if (
 		_$isnan_231( x ) ||
 		_$isnan_231( a ) ||
@@ -79200,7 +79200,7 @@ function __pdf_660( x, a, b ) {
 
 // EXPORTS //
 
-var _$pdf_660 = __pdf_660;
+var _$pdf_665 = __pdf_665;
 
 /**
 * @license Apache-2.0
@@ -79224,7 +79224,7 @@ var _$pdf_660 = __pdf_660;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$sqrt_505 = require( '@stdlib/math/base/special/sqrt' ); */;
 /* removed: var _$PI_206 = require( '@stdlib/constants/math/float64-pi' ); */;
@@ -79247,13 +79247,13 @@ var _$pdf_660 = __pdf_660;
 * y = pdf( 12.0 );
 * // returns 0.0
 */
-function __factory_658( a, b ) {
+function __factory_663( a, b ) {
 	if (
 		_$isnan_231( a ) ||
 		_$isnan_231( b ) ||
 		a >= b
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return pdf;
 
@@ -79282,7 +79282,7 @@ function __factory_658( a, b ) {
 
 // EXPORTS //
 
-var _$factory_658 = __factory_658;
+var _$factory_663 = __factory_663;
 
 /**
 * @license Apache-2.0
@@ -79325,19 +79325,19 @@ var _$factory_658 = __factory_658;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$pdf_660 = require( './pdf.js' ); */;
-/* removed: var _$factory_658 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_665 = require( './pdf.js' ); */;
+/* removed: var _$factory_663 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$pdf_660, 'factory', _$factory_658 );
+_$setNonEnumerableReadOnly_986( _$pdf_665, 'factory', _$factory_663 );
 
 
 // EXPORTS //
 
-var _$pdf_659 = _$pdf_660;
+var _$pdf_664 = _$pdf_665;
 
 /**
 * @license Apache-2.0
@@ -79414,7 +79414,7 @@ var TWO_OVER_PI = 2.0 / _$PI_206; // TODO: consider moving to pkg
 * var y = cdf( 2.0, 1.0, 0.0 );
 * // returns NaN
 */
-function __cdf_653( x, a, b ) {
+function __cdf_658( x, a, b ) {
 	if (
 		_$isnan_231( x ) ||
 		_$isnan_231( a ) ||
@@ -79435,7 +79435,7 @@ function __cdf_653( x, a, b ) {
 
 // EXPORTS //
 
-var _$cdf_653 = __cdf_653;
+var _$cdf_658 = __cdf_658;
 
 /**
 * @license Apache-2.0
@@ -79459,7 +79459,7 @@ var _$cdf_653 = __cdf_653;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$asin_248 = require( '@stdlib/math/base/special/asin' ); */;
 /* removed: var _$sqrt_505 = require( '@stdlib/math/base/special/sqrt' ); */;
@@ -79468,7 +79468,7 @@ var _$cdf_653 = __cdf_653;
 
 // VARIABLES //
 
-var __TWO_OVER_PI_651 = 2.0 / _$PI_206;
+var __TWO_OVER_PI_656 = 2.0 / _$PI_206;
 
 
 // MAIN //
@@ -79488,13 +79488,13 @@ var __TWO_OVER_PI_651 = 2.0 / _$PI_206;
 * y = cdf( 8.0 );
 * // returns ~0.705
 */
-function __factory_651( a, b ) {
+function __factory_656( a, b ) {
 	if (
 		_$isnan_231( a ) ||
 		_$isnan_231( b ) ||
 		a >= b
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return cdf;
 
@@ -79519,14 +79519,14 @@ function __factory_651( a, b ) {
 		if ( x >= b ) {
 			return 1.0;
 		}
-		return __TWO_OVER_PI_651 * _$asin_248( _$sqrt_505( ( x-a ) / ( b-a ) ) );
+		return __TWO_OVER_PI_656 * _$asin_248( _$sqrt_505( ( x-a ) / ( b-a ) ) );
 	}
 }
 
 
 // EXPORTS //
 
-var _$factory_651 = __factory_651;
+var _$factory_656 = __factory_656;
 
 /**
 * @license Apache-2.0
@@ -79569,19 +79569,19 @@ var _$factory_651 = __factory_651;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$cdf_653 = require( './main.js' ); */;
-/* removed: var _$factory_651 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_658 = require( './main.js' ); */;
+/* removed: var _$factory_656 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$cdf_653, 'factory', _$factory_651 );
+_$setNonEnumerableReadOnly_986( _$cdf_658, 'factory', _$factory_656 );
 
 
 // EXPORTS //
 
-var _$cdf_652 = _$cdf_653;
+var _$cdf_657 = _$cdf_658;
 
 /**
 * @license Apache-2.0
@@ -79653,7 +79653,7 @@ var _$cdf_652 = _$cdf_653;
 * var y = quantile( 0.5, 2.0, 1.0 );
 * // returns NaN
 */
-function __quantile_663( p, a, b ) {
+function __quantile_668( p, a, b ) {
 	if (
 		_$isnan_231( a ) ||
 		_$isnan_231( b ) ||
@@ -79670,7 +79670,7 @@ function __quantile_663( p, a, b ) {
 
 // EXPORTS //
 
-var _$quantile_663 = __quantile_663;
+var _$quantile_668 = __quantile_668;
 
 /**
 * @license Apache-2.0
@@ -79694,7 +79694,7 @@ var _$quantile_663 = __quantile_663;
 
 // MODULES //
 
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$pow_480 = require( '@stdlib/math/base/special/pow' ); */;
 /* removed: var _$sin_501 = require( '@stdlib/math/base/special/sin' ); */;
@@ -79718,13 +79718,13 @@ var _$quantile_663 = __quantile_663;
 * y = quantile( 0.8 );
 * // returns ~3.809
 */
-function __factory_661( a, b ) {
+function __factory_666( a, b ) {
 	if (
 		_$isnan_231( a ) ||
 		_$isnan_231( b ) ||
 		a >= b
 	) {
-		return _$constantFunction_955( NaN );
+		return _$constantFunction_977( NaN );
 	}
 	return quantile;
 
@@ -79750,7 +79750,7 @@ function __factory_661( a, b ) {
 
 // EXPORTS //
 
-var _$factory_661 = __factory_661;
+var _$factory_666 = __factory_666;
 
 /**
 * @license Apache-2.0
@@ -79790,19 +79790,19 @@ var _$factory_661 = __factory_661;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$quantile_663 = require( './quantile.js' ); */;
-/* removed: var _$factory_661 = require( './factory.js' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_668 = require( './quantile.js' ); */;
+/* removed: var _$factory_666 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$quantile_663, 'factory', _$factory_661 );
+_$setNonEnumerableReadOnly_986( _$quantile_668, 'factory', _$factory_666 );
 
 
 // EXPORTS //
 
-var _$quantile_662 = _$quantile_663;
+var _$quantile_667 = _$quantile_668;
 
 /**
 * @license Apache-2.0
@@ -79857,7 +79857,7 @@ var _$quantile_662 = _$quantile_663;
 * var v = mean( NaN, 2.0 );
 * // returns NaN
 */
-function __mean_655( a, b ) {
+function __mean_660( a, b ) {
 	if (
 		a >= b
 	) {
@@ -79869,7 +79869,7 @@ function __mean_655( a, b ) {
 
 // EXPORTS //
 
-var _$mean_655 = __mean_655;
+var _$mean_660 = __mean_660;
 
 /**
 * @license Apache-2.0
@@ -79911,12 +79911,12 @@ var _$mean_655 = __mean_655;
 
 // MODULES //
 
-/* removed: var _$mean_655 = require( './mean.js' ); */;
+/* removed: var _$mean_660 = require( './mean.js' ); */;
 
 
 // EXPORTS //
 
-var _$mean_654 = _$mean_655;
+var _$mean_659 = _$mean_660;
 
 /**
 * @license Apache-2.0
@@ -79971,7 +79971,7 @@ var _$mean_654 = _$mean_655;
 * var v = median( NaN, 2.0 );
 * // returns NaN
 */
-function __median_657( a, b ) {
+function __median_662( a, b ) {
 	if (
 		a >= b
 	) {
@@ -79983,7 +79983,7 @@ function __median_657( a, b ) {
 
 // EXPORTS //
 
-var _$median_657 = __median_657;
+var _$median_662 = __median_662;
 
 /**
 * @license Apache-2.0
@@ -80025,12 +80025,12 @@ var _$median_657 = __median_657;
 
 // MODULES //
 
-/* removed: var _$median_657 = require( './median.js' ); */;
+/* removed: var _$median_662 = require( './median.js' ); */;
 
 
 // EXPORTS //
 
-var _$median_656 = _$median_657;
+var _$median_661 = _$median_662;
 
 /**
 * @license Apache-2.0
@@ -80101,15 +80101,15 @@ var _$arcsine_554 = arcsine;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
-/* removed: var _$setNonEnumerableReadOnlyAccessor_962 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
-/* removed: var _$setNonEnumerableReadWriteAccessor_966 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_984 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_988 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
 /* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
 /* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
 /* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
-/* removed: var _$constantFunction_955 = require( '@stdlib/utils/constant-function' ); */;
-/* removed: var _$noop_1009 = require( '@stdlib/utils/noop' ); */;
-var __randu_555 = _$mt19937_612.factory;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_1031 = require( '@stdlib/utils/noop' ); */;
+var __randu_555 = _$mt19937_617.factory;
 /* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
 /* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
 /* removed: var _$validate_558 = require( './validate.js' ); */;
@@ -80201,25 +80201,25 @@ function __factory_555() {
 	} else {
 		prng = arcsine1;
 	}
-	_$setNonEnumerableReadOnly_964( prng, 'NAME', 'arcsine' );
+	_$setNonEnumerableReadOnly_986( prng, 'NAME', 'arcsine' );
 
 	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
 	if ( opts && opts.prng ) {
-		_$setNonEnumerableReadOnly_964( prng, 'seed', null );
-		_$setNonEnumerableReadOnly_964( prng, 'seedLength', null );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', _$constantFunction_955( null ), _$noop_1009 );
-		_$setNonEnumerableReadOnly_964( prng, 'stateLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'byteLength', null );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', _$constantFunction_955( null ) );
-		_$setNonEnumerableReadOnly_964( prng, 'PRNG', rand );
+		_$setNonEnumerableReadOnly_986( prng, 'seed', null );
+		_$setNonEnumerableReadOnly_986( prng, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', _$constantFunction_977( null ), _$noop_1031 );
+		_$setNonEnumerableReadOnly_986( prng, 'stateLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'byteLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', _$constantFunction_977( null ) );
+		_$setNonEnumerableReadOnly_986( prng, 'PRNG', rand );
 	} else {
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seed', getSeed );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'seedLength', getSeedLength );
-		_$setNonEnumerableReadWriteAccessor_966( prng, 'state', getState, setState );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'stateLength', getStateLength );
-		_$setNonEnumerableReadOnlyAccessor_962( prng, 'byteLength', getStateSize );
-		_$setNonEnumerableReadOnly_964( prng, 'toJSON', toJSON );
-		_$setNonEnumerableReadOnly_964( prng, 'PRNG', rand );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', toJSON );
+		_$setNonEnumerableReadOnly_986( prng, 'PRNG', rand );
 		rand = rand.normalized;
 	}
 	return prng;
@@ -80446,14 +80446,14 @@ var _$arcsine_557 = __arcsine_557;
 
 // MODULES //
 
-/* removed: var _$setNonEnumerableReadOnly_964 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
 /* removed: var _$arcsine_557 = require( './main.js' ); */;
 /* removed: var _$factory_555 = require( './factory.js' ); */;
 
 
 // MAIN //
 
-_$setNonEnumerableReadOnly_964( _$arcsine_557, 'factory', _$factory_555 );
+_$setNonEnumerableReadOnly_986( _$arcsine_557, 'factory', _$factory_555 );
 
 
 // EXPORTS //
@@ -80518,7 +80518,7 @@ var _$arcsine_556 = _$arcsine_557;
 * var v = variance( NaN, 2.0 );
 * // returns NaN
 */
-function __variance_665( a, b ) {
+function __variance_670( a, b ) {
 	if ( a >= b ) {
 		return NaN;
 	}
@@ -80528,7 +80528,7 @@ function __variance_665( a, b ) {
 
 // EXPORTS //
 
-var _$variance_665 = __variance_665;
+var _$variance_670 = __variance_670;
 
 /**
 * @license Apache-2.0
@@ -80570,21 +80570,1645 @@ var _$variance_665 = __variance_665;
 
 // MODULES //
 
-/* removed: var _$variance_665 = require( './variance.js' ); */;
+/* removed: var _$variance_670 = require( './variance.js' ); */;
 
 
 // EXPORTS //
 
-var _$variance_664 = _$variance_665;
+var _$variance_669 = _$variance_670;
 
-var _$distribution_1036 = {};
-/* removed: var _$jStat_1035 = require( './core.js' ); */;
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$abs_244 = require( '@stdlib/math/base/special/abs' ); */;
+/* removed: var _$exp_314 = require( '@stdlib/math/base/special/exp' ); */;
+
+
+// MAIN //
+
+/**
+* Evaluates the probability density function (PDF) for a Laplace distribution with location parameter `mu` and scale parameter `b` at a value `x`.
+*
+* @param {number} x - input value
+* @param {number} mu - location parameter
+* @param {PositiveNumber} b - scale parameter
+* @returns {number} evaluated PDF
+*
+* @example
+* var y = pdf( 2.0, 0.0, 1.0 );
+* // returns ~0.068
+*
+* @example
+* var y = pdf( -1.0, 2.0, 3.0 );
+* // returns ~0.061
+*
+* @example
+* var y = pdf( 2.5, 2.0, 3.0 );
+* // returns ~0.141
+*
+* @example
+* var y = pdf( NaN, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = pdf( 0.0, NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = pdf( 0.0, 0.0, NaN );
+* // returns NaN
+*
+* @example
+* // Negative scale parameter:
+* var y = pdf( 2.0, 0.0, -1.0 );
+* // returns NaN
+*/
+function __pdf_835( x, mu, b ) {
+	var z;
+	if (
+		_$isnan_231( x ) ||
+		_$isnan_231( mu ) ||
+		_$isnan_231( b ) ||
+		b <= 0.0
+	) {
+		return NaN;
+	}
+	z = ( x - mu ) / b;
+	return 0.5 * _$exp_314( -_$abs_244( z ) ) / b;
+}
+
+
+// EXPORTS //
+
+var _$pdf_835 = __pdf_835;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$abs_244 = require( '@stdlib/math/base/special/abs' ); */;
+/* removed: var _$exp_314 = require( '@stdlib/math/base/special/exp' ); */;
+
+
+// MAIN //
+
+/**
+* Returns a function for evaluating the probability density function (PDF) for a Laplace distribution with location parameter `mu` and scale parameter `b`.
+*
+* @param {number} mu - location parameter
+* @param {PositiveNumber} b - scale parameter
+* @returns {Function} PDF
+*
+* @example
+* var pdf = factory( 10.0, 2.0 );
+*
+* var y = pdf( 10.0 );
+* // returns 0.25
+*
+* y = pdf( 5.0 );
+* // returns ~0.021
+*
+* y = pdf( 12.0 );
+* // returns ~0.092
+*/
+function __factory_833( mu, b ) {
+	if (
+		_$isnan_231( mu ) ||
+		_$isnan_231( b ) ||
+		b <= 0.0
+	) {
+		return _$constantFunction_977( NaN );
+	}
+	return pdf;
+
+	/**
+	* Evaluates the probability density function (PDF) for a Laplace distribution.
+	*
+	* @private
+	* @param {number} x - input value
+	* @returns {number} evaluated PDF
+	*
+	* var y = pdf( -3.14 );
+	* // returns <number>
+	*/
+	function pdf( x ) {
+		var z;
+		if ( _$isnan_231( x ) ) {
+			return NaN;
+		}
+		z = ( x - mu ) / b;
+		return 0.5 * _$exp_314( -_$abs_244( z ) ) / b;
+	}
+}
+
+
+// EXPORTS //
+
+var _$factory_833 = __factory_833;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Laplace distribution probability density function (PDF).
+*
+* @module @stdlib/stats/base/dists/laplace/pdf
+*
+* @example
+* var pdf = require( '@stdlib/stats/base/dists/laplace/pdf' );
+*
+* var y = pdf( 2.0, 0.0, 1.0 );
+* // returns ~0.068
+*
+* var myPDF = pdf.factory( 10.0, 2.0 );
+* y = myPDF( 10.0 );
+* // returns 0.25
+*/
+
+// MODULES //
+
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$pdf_835 = require( './pdf.js' ); */;
+/* removed: var _$factory_833 = require( './factory.js' ); */;
+
+
+// MAIN //
+
+_$setNonEnumerableReadOnly_986( _$pdf_835, 'factory', _$factory_833 );
+
+
+// EXPORTS //
+
+var _$pdf_834 = _$pdf_835;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$exp_314 = require( '@stdlib/math/base/special/exp' ); */;
+
+
+// MAIN //
+
+/**
+* Evaluates the cumulative distribution function (CDF) for a Laplace distribution with location parameter `mu` and scale parameter `b` at value `x`.
+*
+* @param {number} x - input value
+* @param {number} mu - location parameter
+* @param {PositiveNumber} b - scale parameter
+* @returns {Probability} evaluated CDF
+*
+* @example
+* var y = cdf( 2.0, 0.0, 1.0 );
+* // returns ~0.932
+*
+* @example
+* var y = cdf( 5.0, 10.0, 3.0 );
+* // returns ~0.094
+*
+* @example
+* var y = cdf( NaN, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = cdf( 2, NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = cdf( 2.0, 0.0, NaN );
+* // returns NaN
+*
+* @example
+* // Negative scale parameter:
+* var y = cdf( 2.0, 0.0, -1.0 );
+* // returns NaN
+*/
+function __cdf_824( x, mu, b ) {
+	var z;
+	if (
+		_$isnan_231( x ) ||
+		_$isnan_231( mu ) ||
+		_$isnan_231( b ) ||
+		b <= 0.0
+	) {
+		return NaN;
+	}
+	z = ( x - mu ) / b;
+	if ( x < mu ) {
+		return 0.5 * _$exp_314( z );
+	}
+	return 1.0 - ( 0.5 * _$exp_314( -z ) );
+}
+
+
+// EXPORTS //
+
+var _$cdf_824 = __cdf_824;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$exp_314 = require( '@stdlib/math/base/special/exp' ); */;
+
+
+// MAIN //
+
+/**
+* Returns a function for evaluating the cumulative distribution function (CDF) for a Laplace distribution with location parameter `mu` and scale parameter `b`.
+*
+* @param {number} mu - location parameter
+* @param {PositiveNumber} b - scale parameter
+* @returns {Function} CDF
+*
+* @example
+* var cdf = factory( 3.0, 1.5 );
+*
+* var y = cdf( 1.0 );
+* // returns ~0.132
+*
+* y = cdf( 4.0 );
+* // returns ~0.743
+*/
+function __factory_825( mu, b ) {
+	if (
+		_$isnan_231( mu ) ||
+		_$isnan_231( b ) ||
+		b <= 0.0
+	) {
+		return _$constantFunction_977( NaN );
+	}
+	return cdf;
+
+	/**
+	* Evaluates the cumulative distribution function (CDF) for a Laplace distribution.
+	*
+	* @private
+	* @param {number} x - input value
+	* @returns {Probability} evaluated CDF
+	*
+	* @example
+	* var y = cdf( 2.0 );
+	* // returns <number>
+	*/
+	function cdf( x ) {
+		var z;
+		if ( _$isnan_231( x ) ) {
+			return NaN;
+		}
+		z = ( x - mu ) / b;
+		if ( x < mu ) {
+			return 0.5 * _$exp_314( z );
+		}
+		return 1.0 - (0.5 * _$exp_314( -z ));
+	}
+}
+
+
+// EXPORTS //
+
+var _$factory_825 = __factory_825;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Laplace distribution cumulative distribution function (CDF).
+*
+* @module @stdlib/stats/base/dists/laplace/cdf
+*
+* @example
+* var cdf = require( '@stdlib/stats/base/dists/laplace/cdf' );
+*
+* var y = cdf( 10.0, 0.0, 3.0 );
+* // returns ~0.982
+*
+* y = cdf( 0.0, 0.0, 3.0 );
+* // returns 0.5
+*
+* var myCDF = cdf.factory( 2.0, 3.0 );
+* y = myCDF( 10.0 );
+* // returns ~0.965
+*
+* y = myCDF( 2.0 );
+* // returns 0.5
+*/
+
+// MODULES //
+
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$cdf_824 = require( './cdf.js' ); */;
+/* removed: var _$factory_825 = require( './factory.js' ); */;
+
+
+// MAIN //
+
+_$setNonEnumerableReadOnly_986( _$cdf_824, 'factory', _$factory_825 );
+
+
+// EXPORTS //
+
+var _$cdf_826 = _$cdf_824;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$signum_499 = require( '@stdlib/math/base/special/signum' ); */;
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$abs_244 = require( '@stdlib/math/base/special/abs' ); */;
+/* removed: var _$ln_465 = require( '@stdlib/math/base/special/ln' ); */;
+
+
+// MAIN //
+
+/**
+* Evaluates the quantile function for a Laplace distribution with location parameter `mu` and scale parameter `b` at a probability `p`.
+*
+* @param {Probability} p - input value
+* @param {number} mu - location parameter
+* @param {PositiveNumber} b - scale parameter
+* @returns {number} evaluated quantile function
+*
+* @example
+* var y = quantile( 0.8, 0.0, 1.0 );
+* // returns ~0.916
+*
+* @example
+* var y = quantile( 0.5, 4.0, 2.0 );
+* // returns 4.0
+*
+* @example
+* var y = quantile( 1.1, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = quantile( -0.2, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = quantile( NaN, 0.0, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = quantile( 0.0, NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = quantile( 0.0, 0.0, NaN );
+* // returns NaN
+*
+* @example
+* // Negative scale parameter:
+* var y = quantile( 0.5, 0.0, -1.0 );
+* // returns NaN
+*/
+function __quantile_838( p, mu, b ) {
+	if (
+		_$isnan_231( mu ) ||
+		_$isnan_231( b ) ||
+		_$isnan_231( p ) ||
+		b <= 0.0 ||
+		p < 0.0 ||
+		p > 1.0
+	) {
+		return NaN;
+	}
+	return mu - ( b * _$signum_499( p-0.5 ) * _$ln_465( 1.0 - ( 2.0 * _$abs_244( p-0.5 ) ) ) );
+}
+
+
+// EXPORTS //
+
+var _$quantile_838 = __quantile_838;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$signum_499 = require( '@stdlib/math/base/special/signum' ); */;
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$abs_244 = require( '@stdlib/math/base/special/abs' ); */;
+/* removed: var _$ln_465 = require( '@stdlib/math/base/special/ln' ); */;
+
+
+// MAIN //
+
+/**
+* Returns a function for evaluating the quantile function for a Laplace distribution with location parameter `mu` and scale parameter `b`.
+*
+* @param {number} mu - location parameter
+* @param {PositiveNumber} b - scale parameter
+* @returns {Function} quantile function
+*
+* @example
+* var quantile = factory( 10.0, 2.0 );
+* var y = quantile( 0.5 );
+* // returns 10.0
+*
+* y = quantile( 0.8 );
+* // returns ~11.833
+*/
+function __factory_836( mu, b ) {
+	if (
+		_$isnan_231( mu ) ||
+		_$isnan_231( b ) ||
+		b <= 0.0
+	) {
+		return _$constantFunction_977( NaN );
+	}
+	return quantile;
+
+	/**
+	* Evaluates the quantile function for a Laplace distribution.
+	*
+	* @private
+	* @param {Probability} p - input value
+	* @returns {number} evaluated quantile function
+	*
+	* @example
+	* var y = quantile( 0.3 );
+	* // returns <number>
+	*/
+	function quantile( p ) {
+		if ( _$isnan_231( p ) || p < 0.0 || p > 1.0 ) {
+			return NaN;
+		}
+		return mu - ( b * _$signum_499( p-0.5 ) * _$ln_465( 1.0 - (2.0 * _$abs_244( p-0.5 )) ) );
+	}
+}
+
+
+// EXPORTS //
+
+var _$factory_836 = __factory_836;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Laplace distribution quantile function.
+*
+* @module @stdlib/stats/base/dists/laplace/quantile
+*
+* @example
+* var quantile = require( '@stdlib/stats/base/dists/laplace/quantile' );
+*
+* var y = quantile( 0.8, 0.0, 1.0 );
+* // returns ~0.916
+*
+* var myQuantile = quantile.factory( 10.0, 2.0 );
+* y = myQuantile( 0.5 );
+* // returns 10.0
+*
+* y = myQuantile( 0.8 );
+* // returns ~11.833
+*/
+
+// MODULES //
+
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$quantile_838 = require( './quantile.js' ); */;
+/* removed: var _$factory_836 = require( './factory.js' ); */;
+
+
+// MAIN //
+
+_$setNonEnumerableReadOnly_986( _$quantile_838, 'factory', _$factory_836 );
+
+
+// EXPORTS //
+
+var _$quantile_837 = _$quantile_838;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+
+
+// MAIN //
+
+/**
+* Returns the expected value for a Laplace distribution with location `mu` and scale `b`.
+*
+* @param {number} mu - location parameter
+* @param {PositiveNumber} b - scale parameter
+* @returns {number} expected value
+*
+* @example
+* var y = mean( 0.0, 1.0 );
+* // returns 0.0
+*
+* @example
+* var y = mean( 5.0, 2.0 );
+* // returns 5.0
+*
+* @example
+* var y = mean( NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = mean( 0.0, NaN );
+* // returns NaN
+*
+* @example
+* var y = mean( 0.0, 0.0 );
+* // returns NaN
+*/
+function __mean_828( mu, b ) {
+	if (
+		_$isnan_231( mu ) ||
+		_$isnan_231( b ) ||
+		b <= 0.0
+	) {
+		return NaN;
+	}
+	return mu;
+}
+
+
+// EXPORTS //
+
+var _$mean_828 = __mean_828;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Laplace distribution expected value.
+*
+* @module @stdlib/stats/base/dists/laplace/mean
+*
+* @example
+* var mean = require( '@stdlib/stats/base/dists/laplace/mean' );
+*
+* var y = mean( 0.0, 1.0 );
+* // returns 0.0
+*
+* y = mean( 4.0, 2.0 );
+* // returns 4.0
+*/
+
+// MODULES //
+
+/* removed: var _$mean_828 = require( './mean.js' ); */;
+
+
+// EXPORTS //
+
+var _$mean_827 = _$mean_828;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+
+
+// MAIN //
+
+/**
+* Returns the median for a Laplace distribution with location `mu` and scale `b`.
+*
+* @param {number} mu - location parameter
+* @param {PositiveNumber} b - scale parameter
+* @returns {number} median
+*
+* @example
+* var y = median( 0.0, 1.0 );
+* // returns 0.0
+*
+* @example
+* var y = median( 5.0, 2.0 );
+* // returns 5.0
+*
+* @example
+* var y = median( NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = median( 0.0, NaN );
+* // returns NaN
+*
+* @example
+* var y = median( 0.0, 0.0 );
+* // returns NaN
+*/
+function __median_830( mu, b ) {
+	if (
+		_$isnan_231( mu ) ||
+		_$isnan_231( b ) ||
+		b <= 0.0
+	) {
+		return NaN;
+	}
+	return mu;
+}
+
+
+// EXPORTS //
+
+var _$median_830 = __median_830;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Laplace distribution median.
+*
+* @module @stdlib/stats/base/dists/laplace/median
+*
+* @example
+* var median = require( '@stdlib/stats/base/dists/laplace/median' );
+*
+* var y = median( 0.0, 1.0 );
+* // returns 0.0
+*
+* y = median( 4.0, 2.0 );
+* // returns 4.0
+*/
+
+// MODULES //
+
+/* removed: var _$median_830 = require( './median.js' ); */;
+
+
+// EXPORTS //
+
+var _$median_829 = _$median_830;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+
+
+// MAIN //
+
+/**
+* Returns the mode for a Laplace distribution with location `mu` and scale `b`.
+*
+* @param {number} mu - location parameter
+* @param {PositiveNumber} b - scale parameter
+* @returns {number} mode
+*
+* @example
+* var y = mode( 0.0, 1.0 );
+* // returns 0.0
+*
+* @example
+* var y = mode( 5.0, 2.0 );
+* // returns 5.0
+*
+* @example
+* var y = mode( NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = mode( 0.0, NaN );
+* // returns NaN
+*
+* @example
+* var y = mode( 0.0, 0.0 );
+* // returns NaN
+*/
+function __mode_832( mu, b ) {
+	if (
+		_$isnan_231( mu ) ||
+		_$isnan_231( b ) ||
+		b <= 0.0
+	) {
+		return NaN;
+	}
+	return mu;
+}
+
+
+// EXPORTS //
+
+var _$mode_832 = __mode_832;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Laplace distribution mode.
+*
+* @module @stdlib/stats/base/dists/laplace/mode
+*
+* @example
+* var mode = require( '@stdlib/stats/base/dists/laplace/mode' );
+*
+* var y = mode( 0.0, 1.0 );
+* // returns 0.0
+*
+* y = mode( 4.0, 2.0 );
+* // returns 4.0
+*/
+
+// MODULES //
+
+/* removed: var _$mode_832 = require( './mode.js' ); */;
+
+
+// EXPORTS //
+
+var _$mode_831 = _$mode_832;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var __isNumber_610 = _$isNumber_134.isPrimitive;
+var __isPositive_610 = _$isPositiveNumber_150.isPrimitive;
+/* removed: var _$isnan_126 = require( '@stdlib/assert/is-nan' ); */;
+
+
+// MAIN //
+
+/**
+* Validates parameters.
+*
+* @private
+* @param {number} mu - mean
+* @param {PositiveNumber} b - scale parameter
+* @returns {(Error|null)} error or null
+*
+* @example
+* var err = validate( 1.0, 2.0 );
+* if ( err ) {
+*     throw err;
+* }
+*/
+function __validate_610( mu, b ) {
+	if ( !__isNumber_610( mu ) || _$isnan_126( mu ) ) {
+		return new TypeError( 'invalid argument. `mu` must be a number primitive and not `NaN`. Value: `' + mu + '`.' );
+	}
+	if ( !__isPositive_610( b ) ) {
+		return new TypeError( 'invalid argument. `b` must be a positive number. Value: `' + b + '`.' );
+	}
+	return null;
+}
+
+
+// EXPORTS //
+
+var _$validate_610 = __validate_610;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$signum_499 = require( '@stdlib/math/base/special/signum' ); */;
+/* removed: var _$abs_244 = require( '@stdlib/math/base/special/abs' ); */;
+/* removed: var _$ln_465 = require( '@stdlib/math/base/special/ln' ); */;
+
+
+// MAIN //
+
+/**
+* Returns a pseudorandom number drawn from a Laplace (double exponential) distribution.
+*
+* @private
+* @param {PRNG} rand - PRNG for uniformly distributed numbers
+* @param {number} mu - mean
+* @param {PositiveNumber} b - scale parameter
+* @returns {number} pseudorandom number
+*/
+function laplace( rand, mu, b ) {
+	var u = rand() - 0.5;
+	return mu - ( b*_$signum_499( u )*_$ln_465( 1.0 - (2.0*_$abs_244(u)) ) );
+}
+
+
+// EXPORTS //
+
+var _$laplace_608 = laplace;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$setNonEnumerableReadOnlyAccessor_984 = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' ); */;
+/* removed: var _$setNonEnumerableReadWriteAccessor_988 = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' ); */;
+/* removed: var _$isPlainObject_144 = require( '@stdlib/assert/is-plain-object' ); */;
+/* removed: var _$isFunction_110 = require( '@stdlib/assert/is-function' ); */;
+/* removed: var _$hasOwnProp_58 = require( '@stdlib/assert/has-own-property' ); */;
+/* removed: var _$constantFunction_977 = require( '@stdlib/utils/constant-function' ); */;
+/* removed: var _$noop_1031 = require( '@stdlib/utils/noop' ); */;
+var __randu_606 = _$mt19937_617.factory;
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+/* removed: var _$toJSON_17 = require( '@stdlib/array/to-json' ); */;
+/* removed: var _$validate_610 = require( './validate.js' ); */;
+/* removed: var _$laplace_608 = require( './laplace.js' ); */;
+
+
+// MAIN //
+
+/**
+* Returns a pseudorandom number generator for generating random numbers from a Laplace (double exponential) distribution.
+*
+* @param {number} [mu] - mean
+* @param {PositiveNumber} [b] - scale parameter
+* @param {Options} [options] - function options
+* @param {PRNG} [options.prng] - pseudorandom number generator which generates uniformly distributed pseudorandom numbers
+* @param {PRNGSeedMT19937} [options.seed] - pseudorandom number generator seed
+* @param {PRNGStateMT19937} [options.state] - pseudorandom number generator state
+* @param {boolean} [options.copy=true] - boolean indicating whether to copy a provided pseudorandom number generator state
+* @throws {TypeError} `mu` must be a number
+* @throws {TypeError} `b` must be a positive number
+* @throws {TypeError} options argument must be an object
+* @throws {TypeError} must provide valid options
+* @throws {Error} must provide a valid state
+* @returns {PRNG} pseudorandom number generator
+*
+* @example
+* var laplace = factory( 0.0, 1.0 );
+* var v = laplace();
+* // returns <number>
+*
+* @example
+* var laplace = factory( -3.0, 0.5, {
+*     'seed': 297
+* });
+* var v = laplace();
+* // returns <number>
+*/
+function __factory_606() {
+	var opts;
+	var rand;
+	var prng;
+	var err;
+	var mu;
+	var b;
+
+	if ( arguments.length === 0 ) {
+		rand = __randu_606();
+	} else if ( arguments.length === 1 ) {
+		opts = arguments[ 0 ];
+		if ( !_$isPlainObject_144( opts ) ) {
+			throw new TypeError( 'invalid argument. Options argument must be an object. Value: `' + opts + '`.' );
+		}
+		if ( _$hasOwnProp_58( opts, 'prng' ) ) {
+			if ( !_$isFunction_110( opts.prng ) ) {
+				throw new TypeError( 'invalid option. `prng` option must be a pseudorandom number generator function. Option: `' + opts.prng + '`.' );
+			}
+			rand = opts.prng;
+		} else {
+			rand = __randu_606( opts );
+		}
+	} else {
+		mu = arguments[ 0 ];
+		b = arguments[ 1 ];
+		err = _$validate_610( mu, b );
+		if ( err ) {
+			throw err;
+		}
+		if ( arguments.length > 2 ) {
+			opts = arguments[ 2 ];
+			if ( !_$isPlainObject_144( opts ) ) {
+				throw new TypeError( 'invalid argument. Options argument must be an object. Value: `' + opts + '`.' );
+			}
+			if ( _$hasOwnProp_58( opts, 'prng' ) ) {
+				if ( !_$isFunction_110( opts.prng ) ) {
+					throw new TypeError( 'invalid option. `prng` option must be a pseudorandom number generator function. Option: `' + opts.prng + '`.' );
+				}
+				rand = opts.prng;
+			} else {
+				rand = __randu_606( opts );
+			}
+		} else {
+			rand = __randu_606();
+		}
+	}
+	if ( mu === void 0 ) {
+		prng = laplace2;
+	} else {
+		prng = laplace1;
+	}
+	_$setNonEnumerableReadOnly_986( prng, 'NAME', 'laplace' );
+
+	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
+	if ( opts && opts.prng ) {
+		_$setNonEnumerableReadOnly_986( prng, 'seed', null );
+		_$setNonEnumerableReadOnly_986( prng, 'seedLength', null );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', _$constantFunction_977( null ), _$noop_1031 );
+		_$setNonEnumerableReadOnly_986( prng, 'stateLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'byteLength', null );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', _$constantFunction_977( null ) );
+		_$setNonEnumerableReadOnly_986( prng, 'PRNG', rand );
+	} else {
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seed', getSeed );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'seedLength', getSeedLength );
+		_$setNonEnumerableReadWriteAccessor_988( prng, 'state', getState, setState );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'stateLength', getStateLength );
+		_$setNonEnumerableReadOnlyAccessor_984( prng, 'byteLength', getStateSize );
+		_$setNonEnumerableReadOnly_986( prng, 'toJSON', toJSON );
+		_$setNonEnumerableReadOnly_986( prng, 'PRNG', rand );
+		rand = rand.normalized;
+	}
+	return prng;
+
+	/**
+	* Returns the PRNG seed.
+	*
+	* @private
+	* @returns {PRNGSeedMT19937} seed
+	*/
+	function getSeed() {
+		return rand.seed;
+	}
+
+	/**
+	* Returns the PRNG seed length.
+	*
+	* @private
+	* @returns {PositiveInteger} seed length
+	*/
+	function getSeedLength() {
+		return rand.seedLength;
+	}
+
+	/**
+	* Returns the PRNG state length.
+	*
+	* @private
+	* @returns {PositiveInteger} state length
+	*/
+	function getStateLength() {
+		return rand.stateLength;
+	}
+
+	/**
+	* Returns the PRNG state size (in bytes).
+	*
+	* @private
+	* @returns {PositiveInteger} state size (in bytes)
+	*/
+	function getStateSize() {
+		return rand.byteLength;
+	}
+
+	/**
+	* Returns the current pseudorandom number generator state.
+	*
+	* @private
+	* @returns {PRNGStateMT19937} current state
+	*/
+	function getState() {
+		return rand.state;
+	}
+
+	/**
+	* Sets the pseudorandom number generator state.
+	*
+	* @private
+	* @param {PRNGStateMT19937} s - generator state
+	* @throws {Error} must provide a valid state
+	*/
+	function setState( s ) {
+		rand.state = s;
+	}
+
+	/**
+	* Serializes the pseudorandom number generator as a JSON object.
+	*
+	* ## Notes
+	*
+	* -   `JSON.stringify()` implicitly calls this method when stringifying a PRNG.
+	*
+	* @private
+	* @returns {Object} JSON representation
+	*/
+	function toJSON() {
+		var out = {};
+		out.type = 'PRNG';
+		out.name = prng.NAME;
+		out.state = _$toJSON_17( rand.state );
+		if ( mu === void 0 ) {
+			out.params = [];
+		} else {
+			out.params = [ mu, b ];
+		}
+		return out;
+	}
+
+	/**
+	* Returns a pseudorandom number drawn from a Laplace (double exponential) distribution with bound parameters.
+	*
+	* @private
+	* @returns {number} pseudorandom number
+	*
+	* @example
+	* var v = laplace1();
+	* // returns <number>
+	*/
+	function laplace1() {
+		return _$laplace_608( rand, mu, b );
+	}
+
+	/**
+	* Returns a pseudorandom number drawn from a Laplace (double exponential) distribution.
+	*
+	* @private
+	* @param {number} mu - mean
+	* @param {PositiveNumber} b - scale parameter
+	* @returns {number} pseudorandom number
+	*
+	* @example
+	* var v = laplace2( 0.0, 2.0 );
+	* // returns <number>
+	*
+	* @example
+	* var v = laplace2( 0.0, -1.0 );
+	* // returns NaN
+	*/
+	function laplace2( mu, b ) {
+		if (
+			_$isnan_231( mu ) ||
+			_$isnan_231( b ) ||
+			b <= 0.0
+		) {
+			return NaN;
+		}
+		return _$laplace_608( rand, mu, b );
+	}
+}
+
+
+// EXPORTS //
+
+var _$factory_606 = __factory_606;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$factory_606 = require( './factory.js' ); */;
+
+
+// MAIN //
+
+/**
+* Returns a pseudorandom number drawn from a Laplace (double exponential) distribution.
+*
+* @name laplace
+* @type {PRNG}
+* @param {number} mu - mean
+* @param {PositiveNumber} b - scale parameter
+* @returns {number} pseudorandom number
+*
+* @example
+* var v = laplace( 0.0, 2.0 );
+* // returns <number>
+*
+* @example
+* var v = laplace( 0.0, -1.0 );
+* // returns NaN
+*/
+var __laplace_609 = _$factory_606();
+
+
+// EXPORTS //
+
+var _$laplace_609 = __laplace_609;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Laplace (double exponential) distributed pseudorandom numbers.
+*
+* @module @stdlib/random/base/laplace
+*
+* @example
+* var laplace = require( '@stdlib/random/base/laplace' );
+*
+* var v = laplace( 0.5, 1.0 );
+* // returns <number>
+*
+* @example
+* var factory = require( '@stdlib/random/base/laplace' ).factory;
+* var laplace = factory( 3.0, 2.0, {
+*     'seed': 297
+* });
+*
+* var v = laplace();
+* // returns <number>
+*
+* @example
+* var factory = require( '@stdlib/random/base/laplace' ).factory;
+* var laplace = factory({
+*     'seed': 297
+* });
+*
+* var v = laplace( 3.0, 2.0 );
+* // returns <number>
+*/
+
+// MODULES //
+
+/* removed: var _$setNonEnumerableReadOnly_986 = require( '@stdlib/utils/define-nonenumerable-read-only-property' ); */;
+/* removed: var _$laplace_609 = require( './main.js' ); */;
+/* removed: var _$factory_606 = require( './factory.js' ); */;
+
+
+// MAIN //
+
+_$setNonEnumerableReadOnly_986( _$laplace_609, 'factory', _$factory_606 );
+
+
+// EXPORTS //
+
+var _$laplace_607 = _$laplace_609;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+/* removed: var _$isnan_231 = require( '@stdlib/math/base/assert/is-nan' ); */;
+
+
+// MAIN //
+
+/**
+* Returns the variance for a Laplace distribution with location `mu` and scale `b`.
+*
+* @param {number} mu - location parameter
+* @param {PositiveNumber} b - scale parameter
+* @returns {PositiveNumber} variance
+*
+* @example
+* var y = variance( 0.0, 1.0 );
+* // returns 2.0
+*
+* @example
+* var y = variance( 5.0, 2.0 );
+* // returns 8.0
+*
+* @example
+* var y = variance( NaN, 1.0 );
+* // returns NaN
+*
+* @example
+* var y = variance( 0.0, NaN );
+* // returns NaN
+*
+* @example
+* var y = variance( 0.0, 0.0 );
+* // returns NaN
+*/
+function __variance_840( mu, b ) {
+	if (
+		_$isnan_231( mu ) ||
+		_$isnan_231( b ) ||
+		b <= 0.0
+	) {
+		return NaN;
+	}
+	return 2.0 * b * b;
+}
+
+
+// EXPORTS //
+
+var _$variance_840 = __variance_840;
+
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Laplace distribution variance.
+*
+* @module @stdlib/stats/base/dists/laplace/variance
+*
+* @example
+* var variance = require( '@stdlib/stats/base/dists/laplace/variance' );
+*
+* var y = variance( 0.0, 1.0 );
+* // returns 2.0
+*
+* y = variance( 4.0, 2.0 );
+* // returns 8.0
+*/
+
+// MODULES //
+
+/* removed: var _$variance_840 = require( './variance.js' ); */;
+
+
+// EXPORTS //
+
+var _$variance_839 = _$variance_840;
+
+var _$distribution_1058 = {};
+/* removed: var _$jStat_1057 = require( './core.js' ); */;
 
 // generate all distribution instance methods
 (function(list) {
   for (var i = 0; i < list.length; i++) (function(func) {
     // distribution instance method
-    _$jStat_1035[func] = function(a, b, c) {
+    _$jStat_1057[func] = function(a, b, c) {
       if (!(this instanceof arguments.callee))
         return new arguments.callee(a, b, c);
       this._a = a;
@@ -80593,46 +82217,46 @@ var _$distribution_1036 = {};
       return this;
     };
     // distribution method to be used on a jStat instance
-    _$jStat_1035.fn[func] = function(a, b, c) {
-      var newthis = _$jStat_1035[func](a, b, c);
+    _$jStat_1057.fn[func] = function(a, b, c) {
+      var newthis = _$jStat_1057[func](a, b, c);
       newthis.data = this;
       return newthis;
     };
     // sample instance method
-    _$jStat_1035[func].prototype.sample = function(arr) {
+    _$jStat_1057[func].prototype.sample = function(arr) {
       var a = this._a;
       var b = this._b;
       var c = this._c;
       if (arr)
-        return _$jStat_1035.alter(arr, function() {
-          return _$jStat_1035[func].sample(a, b, c);
+        return _$jStat_1057.alter(arr, function() {
+          return _$jStat_1057[func].sample(a, b, c);
         });
       else
-        return _$jStat_1035[func].sample(a, b, c);
+        return _$jStat_1057[func].sample(a, b, c);
     };
     // generate the pdf, cdf and inv instance methods
     (function(vals) {
       for (var i = 0; i < vals.length; i++) (function(fnfunc) {
-        _$jStat_1035[func].prototype[fnfunc] = function(x) {
+        _$jStat_1057[func].prototype[fnfunc] = function(x) {
           var a = this._a;
           var b = this._b;
           var c = this._c;
           if (!x && x !== 0)
             x = this.data;
           if (typeof x !== 'number') {
-            return _$jStat_1035.fn.map.call(x, function(x) {
-              return _$jStat_1035[func][fnfunc](x, a, b, c);
+            return _$jStat_1057.fn.map.call(x, function(x) {
+              return _$jStat_1057[func][fnfunc](x, a, b, c);
             });
           }
-          return _$jStat_1035[func][fnfunc](x, a, b, c);
+          return _$jStat_1057[func][fnfunc](x, a, b, c);
         };
       })(vals[i]);
     })('pdf cdf inv'.split(' '));
     // generate the mean, median, mode and variance instance methods
     (function(vals) {
       for (var i = 0; i < vals.length; i++) (function(fnfunc) {
-        _$jStat_1035[func].prototype[fnfunc] = function() {
-          return _$jStat_1035[func][fnfunc](this._a, this._b, this._c);
+        _$jStat_1057[func].prototype[fnfunc] = function() {
+          return _$jStat_1057[func][fnfunc](this._a, this._b, this._c);
         };
       })(vals[i]);
     })('mean median mode variance'.split(' '));
@@ -80643,218 +82267,218 @@ var _$distribution_1036 = {};
   'binomial negbin hypgeom poisson triangular tukey arcsine'
 ).split(' '));
 
-/* removed: var _$pdf_676 = require( '@stdlib/stats/base/dists/beta/pdf' ); */;
-/* removed: var _$cdf_668 = require( '@stdlib/stats/base/dists/beta/cdf' ); */;
-/* removed: var _$quantile_679 = require( '@stdlib/stats/base/dists/beta/quantile' ); */;
-/* removed: var _$mean_669 = require( '@stdlib/stats/base/dists/beta/mean' ); */;
-/* removed: var _$median_671 = require( '@stdlib/stats/base/dists/beta/median' ); */;
-/* removed: var _$mode_673 = require( '@stdlib/stats/base/dists/beta/mode' ); */;
+/* removed: var _$pdf_681 = require( '@stdlib/stats/base/dists/beta/pdf' ); */;
+/* removed: var _$cdf_673 = require( '@stdlib/stats/base/dists/beta/cdf' ); */;
+/* removed: var _$quantile_684 = require( '@stdlib/stats/base/dists/beta/quantile' ); */;
+/* removed: var _$mean_674 = require( '@stdlib/stats/base/dists/beta/mean' ); */;
+/* removed: var _$median_676 = require( '@stdlib/stats/base/dists/beta/median' ); */;
+/* removed: var _$mode_678 = require( '@stdlib/stats/base/dists/beta/mode' ); */;
 /* removed: var _$beta_561 = require( '@stdlib/random/base/beta' ); */;
-/* removed: var _$variance_681 = require( '@stdlib/stats/base/dists/beta/variance' ); */;
+/* removed: var _$variance_686 = require( '@stdlib/stats/base/dists/beta/variance' ); */;
 
 // extend beta function with static methods
-_$jStat_1035.extend(_$jStat_1035.beta, {
-  pdf: _$pdf_676,
-  cdf: _$cdf_668,
-  inv: _$quantile_679,
-  mean: _$mean_669,
-  median: _$median_671,
-  mode: _$mode_673,
+_$jStat_1057.extend(_$jStat_1057.beta, {
+  pdf: _$pdf_681,
+  cdf: _$cdf_673,
+  inv: _$quantile_684,
+  mean: _$mean_674,
+  median: _$median_676,
+  mode: _$mode_678,
   sample: _$beta_561,
-  variance: _$variance_681
+  variance: _$variance_686
 });
 
-/* removed: var _$pdf_756 = require( '@stdlib/stats/base/dists/f/pdf' ); */;
-/* removed: var _$cdf_748 = require( '@stdlib/stats/base/dists/f/cdf' ); */;
-/* removed: var _$quantile_759 = require( '@stdlib/stats/base/dists/f/quantile' ); */;
-/* removed: var _$mean_749 = require( '@stdlib/stats/base/dists/f/mean' ); */;
-/* removed: var _$mode_751 = require( '@stdlib/stats/base/dists/f/mode' ); */;
+/* removed: var _$pdf_761 = require( '@stdlib/stats/base/dists/f/pdf' ); */;
+/* removed: var _$cdf_753 = require( '@stdlib/stats/base/dists/f/cdf' ); */;
+/* removed: var _$quantile_764 = require( '@stdlib/stats/base/dists/f/quantile' ); */;
+/* removed: var _$mean_754 = require( '@stdlib/stats/base/dists/f/mean' ); */;
+/* removed: var _$mode_756 = require( '@stdlib/stats/base/dists/f/mode' ); */;
 /* removed: var _$f_587 = require( '@stdlib/random/base/f' ); */;
-/* removed: var _$variance_761 = require( '@stdlib/stats/base/dists/f/variance' ); */;
+/* removed: var _$variance_766 = require( '@stdlib/stats/base/dists/f/variance' ); */;
 
 // extend F function with static methods
-_$jStat_1035.extend(_$jStat_1035.centralF, {
-  pdf: _$pdf_756,
-  cdf: _$cdf_748,
-  inv: _$quantile_759,
-  mean: _$mean_749,
-  mode: _$mode_751,
+_$jStat_1057.extend(_$jStat_1057.centralF, {
+  pdf: _$pdf_761,
+  cdf: _$cdf_753,
+  inv: _$quantile_764,
+  mean: _$mean_754,
+  mode: _$mode_756,
   sample: _$f_587,
-  variance: _$variance_761
+  variance: _$variance_766
 });
 
-/* removed: var _$pdf_697 = require( '@stdlib/stats/base/dists/cauchy/pdf' ); */;
-/* removed: var _$cdf_691 = require( '@stdlib/stats/base/dists/cauchy/cdf' ); */;
-/* removed: var _$quantile_700 = require( '@stdlib/stats/base/dists/cauchy/quantile' ); */;
-/* removed: var _$median_692 = require( '@stdlib/stats/base/dists/cauchy/median' ); */;
-/* removed: var _$mode_694 = require( '@stdlib/stats/base/dists/cauchy/mode' ); */;
+/* removed: var _$pdf_702 = require( '@stdlib/stats/base/dists/cauchy/pdf' ); */;
+/* removed: var _$cdf_696 = require( '@stdlib/stats/base/dists/cauchy/cdf' ); */;
+/* removed: var _$quantile_705 = require( '@stdlib/stats/base/dists/cauchy/quantile' ); */;
+/* removed: var _$median_697 = require( '@stdlib/stats/base/dists/cauchy/median' ); */;
+/* removed: var _$mode_699 = require( '@stdlib/stats/base/dists/cauchy/mode' ); */;
 /* removed: var _$cauchy_575 = require( '@stdlib/random/base/cauchy' ); */;
 
 // extend cauchy function with static methods
-_$jStat_1035.extend(_$jStat_1035.cauchy, {
-  pdf: _$pdf_697,
-  cdf: _$cdf_691,
-  inv: _$quantile_700,
-  median: _$median_692,
-  mode: _$mode_694,
+_$jStat_1057.extend(_$jStat_1057.cauchy, {
+  pdf: _$pdf_702,
+  cdf: _$cdf_696,
+  inv: _$quantile_705,
+  median: _$median_697,
+  mode: _$mode_699,
   sample: _$cauchy_575
 });
 
-/* removed: var _$pdf_710 = require( '@stdlib/stats/base/dists/chisquare/pdf' ); */;
-/* removed: var _$cdf_704 = require( '@stdlib/stats/base/dists/chisquare/cdf' ); */;
-/* removed: var _$quantile_713 = require( '@stdlib/stats/base/dists/chisquare/quantile' ); */;
-/* removed: var _$mean_705 = require( '@stdlib/stats/base/dists/chisquare/mean' ); */;
-/* removed: var _$mode_707 = require( '@stdlib/stats/base/dists/chisquare/mode' ); */;
+/* removed: var _$pdf_715 = require( '@stdlib/stats/base/dists/chisquare/pdf' ); */;
+/* removed: var _$cdf_709 = require( '@stdlib/stats/base/dists/chisquare/cdf' ); */;
+/* removed: var _$quantile_718 = require( '@stdlib/stats/base/dists/chisquare/quantile' ); */;
+/* removed: var _$mean_710 = require( '@stdlib/stats/base/dists/chisquare/mean' ); */;
+/* removed: var _$mode_712 = require( '@stdlib/stats/base/dists/chisquare/mode' ); */;
 /* removed: var _$chisquare_579 = require( '@stdlib/random/base/chisquare' ); */;
-/* removed: var _$variance_715 = require( '@stdlib/stats/base/dists/chisquare/variance' ); */;
+/* removed: var _$variance_720 = require( '@stdlib/stats/base/dists/chisquare/variance' ); */;
 
 // extend chisquare function with static methods
-_$jStat_1035.extend(_$jStat_1035.chisquare, {
-  pdf: _$pdf_710,
-  cdf: _$cdf_704,
-  inv: _$quantile_713,
-  mean : _$mean_705,
+_$jStat_1057.extend(_$jStat_1057.chisquare, {
+  pdf: _$pdf_715,
+  cdf: _$cdf_709,
+  inv: _$quantile_718,
+  mean : _$mean_710,
 
   // TODO: this is an approximation (is there a better way?)
   median: function median(dof) {
     return dof * Math.pow(1 - (2 / (9 * dof)), 3);
   },
 
-  mode: _$mode_707,
+  mode: _$mode_712,
   sample: _$chisquare_579,
-  variance: _$variance_715
+  variance: _$variance_720
 });
 
-/* removed: var _$pdf_739 = require( '@stdlib/stats/base/dists/exponential/pdf' ); */;
-/* removed: var _$cdf_731 = require( '@stdlib/stats/base/dists/exponential/cdf' ); */;
-/* removed: var _$quantile_742 = require( '@stdlib/stats/base/dists/exponential/quantile' ); */;
-/* removed: var _$mean_732 = require( '@stdlib/stats/base/dists/exponential/mean' ); */;
-/* removed: var _$median_734 = require( '@stdlib/stats/base/dists/exponential/median' ); */;
-/* removed: var _$mode_736 = require( '@stdlib/stats/base/dists/exponential/mode' ); */;
+/* removed: var _$pdf_744 = require( '@stdlib/stats/base/dists/exponential/pdf' ); */;
+/* removed: var _$cdf_736 = require( '@stdlib/stats/base/dists/exponential/cdf' ); */;
+/* removed: var _$quantile_747 = require( '@stdlib/stats/base/dists/exponential/quantile' ); */;
+/* removed: var _$mean_737 = require( '@stdlib/stats/base/dists/exponential/mean' ); */;
+/* removed: var _$median_739 = require( '@stdlib/stats/base/dists/exponential/median' ); */;
+/* removed: var _$mode_741 = require( '@stdlib/stats/base/dists/exponential/mode' ); */;
 /* removed: var _$exponential_583 = require( '@stdlib/random/base/exponential' ); */;
-/* removed: var _$variance_744 = require( '@stdlib/stats/base/dists/exponential/variance' ); */;
+/* removed: var _$variance_749 = require( '@stdlib/stats/base/dists/exponential/variance' ); */;
 
 // extend exponential function with static methods
-_$jStat_1035.extend(_$jStat_1035.exponential, {
-  pdf: _$pdf_739,
-  cdf: _$cdf_731,
-  inv: _$quantile_742,
-  mean : _$mean_732,
-  median: _$median_734,
-  mode: _$mode_736,
+_$jStat_1057.extend(_$jStat_1057.exponential, {
+  pdf: _$pdf_744,
+  cdf: _$cdf_736,
+  inv: _$quantile_747,
+  mean : _$mean_737,
+  median: _$median_739,
+  mode: _$mode_741,
   sample: _$exponential_583,
-  variance : _$variance_744
+  variance : _$variance_749
 });
 
-/* removed: var _$pdf_772 = require( '@stdlib/stats/base/dists/gamma/pdf' ); */;
-/* removed: var _$cdf_765 = require( '@stdlib/stats/base/dists/gamma/cdf' ); */;
-/* removed: var _$quantile_776 = require( '@stdlib/stats/base/dists/gamma/quantile' ); */;
-/* removed: var _$mean_766 = require( '@stdlib/stats/base/dists/gamma/mean' ); */;
-/* removed: var _$mode_768 = require( '@stdlib/stats/base/dists/gamma/mode' ); */;
+/* removed: var _$pdf_777 = require( '@stdlib/stats/base/dists/gamma/pdf' ); */;
+/* removed: var _$cdf_770 = require( '@stdlib/stats/base/dists/gamma/cdf' ); */;
+/* removed: var _$quantile_781 = require( '@stdlib/stats/base/dists/gamma/quantile' ); */;
+/* removed: var _$mean_771 = require( '@stdlib/stats/base/dists/gamma/mean' ); */;
+/* removed: var _$mode_773 = require( '@stdlib/stats/base/dists/gamma/mode' ); */;
 /* removed: var _$gamma_592 = require( '@stdlib/random/base/gamma' ); */;
-/* removed: var _$variance_778 = require( '@stdlib/stats/base/dists/gamma/variance' ); */;
+/* removed: var _$variance_783 = require( '@stdlib/stats/base/dists/gamma/variance' ); */;
 
 // extend gamma function with static methods
-_$jStat_1035.extend(_$jStat_1035.gamma, {
+_$jStat_1057.extend(_$jStat_1057.gamma, {
   pdf: function pdf(x, shape, scale) {
-    return _$pdf_772(x, shape, 1.0/scale);
+    return _$pdf_777(x, shape, 1.0/scale);
   },
   cdf: function cdf(x, shape, scale) {
-    return _$cdf_765(x, shape, 1.0/scale);
+    return _$cdf_770(x, shape, 1.0/scale);
   },
   inv: function inv(x, shape, scale) {
-    return _$quantile_776(x, shape, 1.0/scale);
+    return _$quantile_781(x, shape, 1.0/scale);
   },
   mean : function mean(x, shape, scale) {
-    return _$mean_766(x, shape, 1.0/scale);
+    return _$mean_771(x, shape, 1.0/scale);
   },
   mode: function mode(x, shape, scale) {
-    return _$mode_768(x, shape, 1.0/scale);
+    return _$mode_773(x, shape, 1.0/scale);
   },
   sample: function sample(x, shape, scale) {
     return _$gamma_592(x, shape, 1.0/scale);
   },
   variance: function variance(x, shape, scale) {
-    return _$variance_778(x, shape, 1.0/scale);
+    return _$variance_783(x, shape, 1.0/scale);
   }
 });
 
-/* removed: var _$pdf_795 = require( '@stdlib/stats/base/dists/invgamma/pdf' ); */;
-/* removed: var _$cdf_789 = require( '@stdlib/stats/base/dists/invgamma/cdf' ); */;
-/* removed: var _$quantile_798 = require( '@stdlib/stats/base/dists/invgamma/quantile' ); */;
-/* removed: var _$mean_790 = require( '@stdlib/stats/base/dists/invgamma/mean' ); */;
-/* removed: var _$mode_792 = require( '@stdlib/stats/base/dists/invgamma/mode' ); */;
+/* removed: var _$pdf_800 = require( '@stdlib/stats/base/dists/invgamma/pdf' ); */;
+/* removed: var _$cdf_794 = require( '@stdlib/stats/base/dists/invgamma/cdf' ); */;
+/* removed: var _$quantile_803 = require( '@stdlib/stats/base/dists/invgamma/quantile' ); */;
+/* removed: var _$mean_795 = require( '@stdlib/stats/base/dists/invgamma/mean' ); */;
+/* removed: var _$mode_797 = require( '@stdlib/stats/base/dists/invgamma/mode' ); */;
 /* removed: var _$invgamma_603 = require( '@stdlib/random/base/invgamma' ); */;
-/* removed: var _$variance_800 = require( '@stdlib/stats/base/dists/invgamma/variance' ); */;
+/* removed: var _$variance_805 = require( '@stdlib/stats/base/dists/invgamma/variance' ); */;
 
 // extend inverse gamma function with static methods
-_$jStat_1035.extend(_$jStat_1035.invgamma, {
-  pdf: _$pdf_795,
-  cdf: _$cdf_789,
-  inv: _$quantile_798,
-  mean: _$mean_790,
-  mode: _$mode_792,
+_$jStat_1057.extend(_$jStat_1057.invgamma, {
+  pdf: _$pdf_800,
+  cdf: _$cdf_794,
+  inv: _$quantile_803,
+  mean: _$mean_795,
+  mode: _$mode_797,
   sample: _$invgamma_603,
-  variance: _$variance_800
+  variance: _$variance_805
 });
 
-/* removed: var _$pdf_812 = require( '@stdlib/stats/base/dists/kumaraswamy/pdf' ); */;
-/* removed: var _$cdf_804 = require( '@stdlib/stats/base/dists/kumaraswamy/cdf' ); */;
-/* removed: var _$quantile_815 = require( '@stdlib/stats/base/dists/kumaraswamy/quantile' ); */;
-/* removed: var _$mean_805 = require( '@stdlib/stats/base/dists/kumaraswamy/mean' ); */;
-/* removed: var _$median_807 = require( '@stdlib/stats/base/dists/kumaraswamy/median' ); */;
-/* removed: var _$mode_809 = require( '@stdlib/stats/base/dists/kumaraswamy/mode' ); */;
-/* removed: var _$variance_817 = require( '@stdlib/stats/base/dists/kumaraswamy/variance' ); */;
+/* removed: var _$pdf_817 = require( '@stdlib/stats/base/dists/kumaraswamy/pdf' ); */;
+/* removed: var _$cdf_809 = require( '@stdlib/stats/base/dists/kumaraswamy/cdf' ); */;
+/* removed: var _$quantile_820 = require( '@stdlib/stats/base/dists/kumaraswamy/quantile' ); */;
+/* removed: var _$mean_810 = require( '@stdlib/stats/base/dists/kumaraswamy/mean' ); */;
+/* removed: var _$median_812 = require( '@stdlib/stats/base/dists/kumaraswamy/median' ); */;
+/* removed: var _$mode_814 = require( '@stdlib/stats/base/dists/kumaraswamy/mode' ); */;
+/* removed: var _$variance_822 = require( '@stdlib/stats/base/dists/kumaraswamy/variance' ); */;
 
 // extend kumaraswamy function with static methods
-_$jStat_1035.extend(_$jStat_1035.kumaraswamy, {
-  pdf: _$pdf_812,
-  cdf: _$cdf_804,
-  inv: _$quantile_815,
-  mean : _$mean_805,
-  median: _$median_807,
-  mode: _$mode_809,
-  variance: _$variance_817
+_$jStat_1057.extend(_$jStat_1057.kumaraswamy, {
+  pdf: _$pdf_817,
+  cdf: _$cdf_809,
+  inv: _$quantile_820,
+  mean : _$mean_810,
+  median: _$median_812,
+  mode: _$mode_814,
+  variance: _$variance_822
 });
 
-/* removed: var _$pdf_829 = require( '@stdlib/stats/base/dists/lognormal/pdf' ); */;
-/* removed: var _$cdf_821 = require( '@stdlib/stats/base/dists/lognormal/cdf' ); */;
-/* removed: var _$quantile_832 = require( '@stdlib/stats/base/dists/lognormal/quantile' ); */;
-/* removed: var _$mean_822 = require( '@stdlib/stats/base/dists/lognormal/mean' ); */;
-/* removed: var _$median_824 = require( '@stdlib/stats/base/dists/lognormal/median' ); */;
-/* removed: var _$mode_826 = require( '@stdlib/stats/base/dists/lognormal/mode' ); */;
-/* removed: var _$lognormal_607 = require( '@stdlib/random/base/lognormal' ); */;
-/* removed: var _$variance_834 = require( '@stdlib/stats/base/dists/lognormal/variance' ); */;
+/* removed: var _$pdf_851 = require( '@stdlib/stats/base/dists/lognormal/pdf' ); */;
+/* removed: var _$cdf_843 = require( '@stdlib/stats/base/dists/lognormal/cdf' ); */;
+/* removed: var _$quantile_854 = require( '@stdlib/stats/base/dists/lognormal/quantile' ); */;
+/* removed: var _$mean_844 = require( '@stdlib/stats/base/dists/lognormal/mean' ); */;
+/* removed: var _$median_846 = require( '@stdlib/stats/base/dists/lognormal/median' ); */;
+/* removed: var _$mode_848 = require( '@stdlib/stats/base/dists/lognormal/mode' ); */;
+/* removed: var _$lognormal_612 = require( '@stdlib/random/base/lognormal' ); */;
+/* removed: var _$variance_856 = require( '@stdlib/stats/base/dists/lognormal/variance' ); */;
 
 // extend lognormal function with static methods
-_$jStat_1035.extend(_$jStat_1035.lognormal, {
-  pdf: _$pdf_829,
-  cdf: _$cdf_821,
-  inv: _$quantile_832,
-  mean: _$mean_822,
-  median: _$median_824,
-  mode: _$mode_826,
-  sample: _$lognormal_607,
-  variance: _$variance_834
+_$jStat_1057.extend(_$jStat_1057.lognormal, {
+  pdf: _$pdf_851,
+  cdf: _$cdf_843,
+  inv: _$quantile_854,
+  mean: _$mean_844,
+  median: _$median_846,
+  mode: _$mode_848,
+  sample: _$lognormal_612,
+  variance: _$variance_856
 });
 
 
 // extend noncentralt function with static methods
-_$jStat_1035.extend(_$jStat_1035.noncentralt, {
+_$jStat_1057.extend(_$jStat_1057.noncentralt, {
   pdf: function pdf(x, dof, ncp) {
     var tol = 1e-14;
     if (Math.abs(ncp) < tol)  // ncp approx 0; use student-t
-      return _$jStat_1035.studentt.pdf(x, dof)
+      return _$jStat_1057.studentt.pdf(x, dof)
 
     if (Math.abs(x) < tol) {  // different formula for x == 0
-      return Math.exp(_$jStat_1035.gammaln((dof + 1) / 2) - ncp * ncp / 2 -
-                      0.5 * Math.log(Math.PI * dof) - _$jStat_1035.gammaln(dof / 2));
+      return Math.exp(_$jStat_1057.gammaln((dof + 1) / 2) - ncp * ncp / 2 -
+                      0.5 * Math.log(Math.PI * dof) - _$jStat_1057.gammaln(dof / 2));
     }
 
     // formula for x != 0
     return dof / x *
-        (_$jStat_1035.noncentralt.cdf(x * Math.sqrt(1 + 2 / dof), dof+2, ncp) -
-         _$jStat_1035.noncentralt.cdf(x, dof, ncp));
+        (_$jStat_1057.noncentralt.cdf(x * Math.sqrt(1 + 2 / dof), dof+2, ncp) -
+         _$jStat_1057.noncentralt.cdf(x, dof, ncp));
   },
 
   cdf: function cdf(x, dof, ncp) {
@@ -80862,7 +82486,7 @@ _$jStat_1035.extend(_$jStat_1035.noncentralt, {
     var min_iterations = 200;
 
     if (Math.abs(ncp) < tol)  // ncp approx 0; use student-t
-      return _$jStat_1035.studentt.cdf(x, dof);
+      return _$jStat_1057.studentt.cdf(x, dof);
 
     // turn negative x into positive and flip result afterwards
     var flip = false;
@@ -80871,7 +82495,7 @@ _$jStat_1035.extend(_$jStat_1035.noncentralt, {
       ncp = -ncp;
     }
 
-    var prob = _$jStat_1035.normal.cdf(-ncp, 0, 1);
+    var prob = _$jStat_1057.normal.cdf(-ncp, 0, 1);
     var value = tol + 1;
     // use value at last two steps to determine convergence
     var lastvalue = value;
@@ -80879,15 +82503,15 @@ _$jStat_1035.extend(_$jStat_1035.noncentralt, {
     var j = 0;
     var p = Math.exp(-ncp * ncp / 2);
     var q = Math.exp(-ncp * ncp / 2 - 0.5 * Math.log(2) -
-                     _$jStat_1035.gammaln(3 / 2)) * ncp;
+                     _$jStat_1057.gammaln(3 / 2)) * ncp;
     while (j < min_iterations || lastvalue > tol || value > tol) {
       lastvalue = value;
       if (j > 0) {
         p *= (ncp * ncp) / (2 * j);
         q *= (ncp * ncp) / (2 * (j + 1 / 2));
       }
-      value = p * _$jStat_1035.beta.cdf(y, j + 0.5, dof / 2) +
-          q * _$jStat_1035.beta.cdf(y, j+1, dof/2);
+      value = p * _$jStat_1057.beta.cdf(y, j + 0.5, dof / 2) +
+          q * _$jStat_1057.beta.cdf(y, j+1, dof/2);
       prob += 0.5 * value;
       j++;
     }
@@ -80896,283 +82520,261 @@ _$jStat_1035.extend(_$jStat_1035.noncentralt, {
   }
 });
 
-/* removed: var _$pdf_854 = require( '@stdlib/stats/base/dists/normal/pdf' ); */;
-/* removed: var _$cdf_846 = require( '@stdlib/stats/base/dists/normal/cdf' ); */;
-/* removed: var _$quantile_857 = require( '@stdlib/stats/base/dists/normal/quantile' ); */;
-/* removed: var _$mean_847 = require( '@stdlib/stats/base/dists/normal/mean' ); */;
-/* removed: var _$median_849 = require( '@stdlib/stats/base/dists/normal/median' ); */;
-/* removed: var _$mode_851 = require( '@stdlib/stats/base/dists/normal/mode' ); */;
-/* removed: var _$normal_616 = require( '@stdlib/random/base/normal' ); */;
-/* removed: var _$variance_859 = require( '@stdlib/stats/base/dists/normal/variance' ); */;
+/* removed: var _$pdf_876 = require( '@stdlib/stats/base/dists/normal/pdf' ); */;
+/* removed: var _$cdf_868 = require( '@stdlib/stats/base/dists/normal/cdf' ); */;
+/* removed: var _$quantile_879 = require( '@stdlib/stats/base/dists/normal/quantile' ); */;
+/* removed: var _$mean_869 = require( '@stdlib/stats/base/dists/normal/mean' ); */;
+/* removed: var _$median_871 = require( '@stdlib/stats/base/dists/normal/median' ); */;
+/* removed: var _$mode_873 = require( '@stdlib/stats/base/dists/normal/mode' ); */;
+/* removed: var _$normal_621 = require( '@stdlib/random/base/normal' ); */;
+/* removed: var _$variance_881 = require( '@stdlib/stats/base/dists/normal/variance' ); */;
 
 // extend normal function with static methods
-_$jStat_1035.extend(_$jStat_1035.normal, {
-  pdf: _$pdf_854,
-  cdf: _$cdf_846,
-  inv: _$quantile_857,
-  mean : _$mean_847,
-  median: _$median_849,
-  mode: _$mode_851,
-  sample: _$normal_616,
-  variance : _$variance_859
+_$jStat_1057.extend(_$jStat_1057.normal, {
+  pdf: _$pdf_876,
+  cdf: _$cdf_868,
+  inv: _$quantile_879,
+  mean : _$mean_869,
+  median: _$median_871,
+  mode: _$mode_873,
+  sample: _$normal_621,
+  variance : _$variance_881
 });
 
-/* removed: var _$pdf_871 = require( '@stdlib/stats/base/dists/pareto-type1/pdf' ); */;
-/* removed: var _$cdf_863 = require( '@stdlib/stats/base/dists/pareto-type1/cdf' ); */;
-/* removed: var _$quantile_874 = require( '@stdlib/stats/base/dists/pareto-type1/quantile' ); */;
-/* removed: var _$mean_864 = require( '@stdlib/stats/base/dists/pareto-type1/mean' ); */;
-/* removed: var _$median_866 = require( '@stdlib/stats/base/dists/pareto-type1/median' ); */;
-/* removed: var _$mode_868 = require( '@stdlib/stats/base/dists/pareto-type1/mode' ); */;
-/* removed: var _$variance_876 = require( '@stdlib/stats/base/dists/pareto-type1/variance' ); */;
+/* removed: var _$pdf_893 = require( '@stdlib/stats/base/dists/pareto-type1/pdf' ); */;
+/* removed: var _$cdf_885 = require( '@stdlib/stats/base/dists/pareto-type1/cdf' ); */;
+/* removed: var _$quantile_896 = require( '@stdlib/stats/base/dists/pareto-type1/quantile' ); */;
+/* removed: var _$mean_886 = require( '@stdlib/stats/base/dists/pareto-type1/mean' ); */;
+/* removed: var _$median_888 = require( '@stdlib/stats/base/dists/pareto-type1/median' ); */;
+/* removed: var _$mode_890 = require( '@stdlib/stats/base/dists/pareto-type1/mode' ); */;
+/* removed: var _$variance_898 = require( '@stdlib/stats/base/dists/pareto-type1/variance' ); */;
 
 // extend pareto function with static methods
-_$jStat_1035.extend(_$jStat_1035.pareto, {
+_$jStat_1057.extend(_$jStat_1057.pareto, {
   pdf: function pdf(x, scale, shape) {
-    return _$pdf_871(x, shape, scale);
+    return _$pdf_893(x, shape, scale);
   },
 
   cdf: function cdf(x, scale, shape) {
-    return _$cdf_863(x, shape, scale);
+    return _$cdf_885(x, shape, scale);
   },
 
   inv: function inv(p, scale, shape) {
-    return _$quantile_874(p, shape, scale);
+    return _$quantile_896(p, shape, scale);
   },
 
   mean: function mean(scale, shape) {
-    return _$mean_864(shape, scale);
+    return _$mean_886(shape, scale);
   },
 
   median: function median(scale, shape) {
-    return _$median_866(shape, scale);
+    return _$median_888(shape, scale);
   },
 
   mode: function mode(scale, shape) {
-    return _$mode_868(shape, scale);
+    return _$mode_890(shape, scale);
   },
 
   variance: function variance(scale, shape) {
-    return _$variance_876(shape, scale);
+    return _$variance_898(shape, scale);
   }
 });
 
-/* removed: var _$pdf_898 = require( '@stdlib/stats/base/dists/t/pdf' ); */;
-/* removed: var _$cdf_890 = require( '@stdlib/stats/base/dists/t/cdf' ); */;
-/* removed: var _$quantile_901 = require( '@stdlib/stats/base/dists/t/quantile' ); */;
-/* removed: var _$mean_891 = require( '@stdlib/stats/base/dists/t/mean' ); */;
-/* removed: var _$median_893 = require( '@stdlib/stats/base/dists/t/median' ); */;
-/* removed: var _$mode_895 = require( '@stdlib/stats/base/dists/t/mode' ); */;
-/* removed: var _$t_632 = require( '@stdlib/random/base/t' ); */;
-/* removed: var _$variance_903 = require( '@stdlib/stats/base/dists/t/variance' ); */;
+/* removed: var _$pdf_920 = require( '@stdlib/stats/base/dists/t/pdf' ); */;
+/* removed: var _$cdf_912 = require( '@stdlib/stats/base/dists/t/cdf' ); */;
+/* removed: var _$quantile_923 = require( '@stdlib/stats/base/dists/t/quantile' ); */;
+/* removed: var _$mean_913 = require( '@stdlib/stats/base/dists/t/mean' ); */;
+/* removed: var _$median_915 = require( '@stdlib/stats/base/dists/t/median' ); */;
+/* removed: var _$mode_917 = require( '@stdlib/stats/base/dists/t/mode' ); */;
+/* removed: var _$t_637 = require( '@stdlib/random/base/t' ); */;
+/* removed: var _$variance_925 = require( '@stdlib/stats/base/dists/t/variance' ); */;
 
 // extend studentt function with static methods
-_$jStat_1035.extend(_$jStat_1035.studentt, {
-  pdf: _$pdf_898,
-  cdf: _$cdf_890,
-  inv: _$quantile_901,
-  mean: _$mean_891,
-  median: _$median_893,
-  mode: _$mode_895,
-  sample: _$t_632,
-  variance: _$variance_903
+_$jStat_1057.extend(_$jStat_1057.studentt, {
+  pdf: _$pdf_920,
+  cdf: _$cdf_912,
+  inv: _$quantile_923,
+  mean: _$mean_913,
+  median: _$median_915,
+  mode: _$mode_917,
+  sample: _$t_637,
+  variance: _$variance_925
 });
 
-/* removed: var _$pdf_947 = require( '@stdlib/stats/base/dists/weibull/pdf' ); */;
-/* removed: var _$cdf_939 = require( '@stdlib/stats/base/dists/weibull/cdf' ); */;
-/* removed: var _$quantile_950 = require( '@stdlib/stats/base/dists/weibull/quantile' ); */;
-/* removed: var _$mean_940 = require( '@stdlib/stats/base/dists/weibull/mean' ); */;
-/* removed: var _$median_942 = require( '@stdlib/stats/base/dists/weibull/median' ); */;
-/* removed: var _$mode_944 = require( '@stdlib/stats/base/dists/weibull/mode' ); */;
-/* removed: var _$weibull_645 = require( '@stdlib/random/base/weibull' ); */;
-/* removed: var _$variance_952 = require( '@stdlib/stats/base/dists/weibull/variance' ); */;
+/* removed: var _$pdf_969 = require( '@stdlib/stats/base/dists/weibull/pdf' ); */;
+/* removed: var _$cdf_961 = require( '@stdlib/stats/base/dists/weibull/cdf' ); */;
+/* removed: var _$quantile_972 = require( '@stdlib/stats/base/dists/weibull/quantile' ); */;
+/* removed: var _$mean_962 = require( '@stdlib/stats/base/dists/weibull/mean' ); */;
+/* removed: var _$median_964 = require( '@stdlib/stats/base/dists/weibull/median' ); */;
+/* removed: var _$mode_966 = require( '@stdlib/stats/base/dists/weibull/mode' ); */;
+/* removed: var _$weibull_650 = require( '@stdlib/random/base/weibull' ); */;
+/* removed: var _$variance_974 = require( '@stdlib/stats/base/dists/weibull/variance' ); */;
 
 // extend weibull function with static methods
-_$jStat_1035.extend(_$jStat_1035.weibull, {
+_$jStat_1057.extend(_$jStat_1057.weibull, {
   pdf: function pdf(x, scale, shape) {
-    return _$pdf_947(x, shape, scale);
+    return _$pdf_969(x, shape, scale);
   },
 
   cdf: function cdf(x, scale, shape) {
-    return _$cdf_939(x, shape, scale);
+    return _$cdf_961(x, shape, scale);
   },
 
   inv: function(p, scale, shape) {
-    return _$quantile_950(p, shape, scale);
+    return _$quantile_972(p, shape, scale);
   },
 
   mean : function(scale, shape) {
-    return _$mean_940(shape, scale);
+    return _$mean_962(shape, scale);
   },
 
   median: function median(scale, shape) {
-    return _$median_942(shape, scale);
+    return _$median_964(shape, scale);
   },
 
   mode: function mode(scale, shape) {
-    return _$mode_944(shape, scale);
+    return _$mode_966(shape, scale);
   },
 
   sample: function sample(scale, shape) {
-    return _$weibull_645(shape, scale);
+    return _$weibull_650(shape, scale);
   },
 
   variance: function variance(scale, shape) {
-    return _$variance_952(shape, scale);
+    return _$variance_974(shape, scale);
   }
 });
 
-/* removed: var _$pdf_930 = require( '@stdlib/stats/base/dists/uniform/pdf' ); */;
-/* removed: var _$cdf_924 = require( '@stdlib/stats/base/dists/uniform/cdf' ); */;
-/* removed: var _$quantile_933 = require( '@stdlib/stats/base/dists/uniform/quantile' ); */;
-/* removed: var _$mean_925 = require( '@stdlib/stats/base/dists/uniform/mean' ); */;
-/* removed: var _$median_927 = require( '@stdlib/stats/base/dists/uniform/median' ); */;
-/* removed: var _$uniform_640 = require( '@stdlib/random/base/uniform' ); */;
-/* removed: var _$variance_935 = require( '@stdlib/stats/base/dists/uniform/variance' ); */;
+/* removed: var _$pdf_952 = require( '@stdlib/stats/base/dists/uniform/pdf' ); */;
+/* removed: var _$cdf_946 = require( '@stdlib/stats/base/dists/uniform/cdf' ); */;
+/* removed: var _$quantile_955 = require( '@stdlib/stats/base/dists/uniform/quantile' ); */;
+/* removed: var _$mean_947 = require( '@stdlib/stats/base/dists/uniform/mean' ); */;
+/* removed: var _$median_949 = require( '@stdlib/stats/base/dists/uniform/median' ); */;
+/* removed: var _$uniform_645 = require( '@stdlib/random/base/uniform' ); */;
+/* removed: var _$variance_957 = require( '@stdlib/stats/base/dists/uniform/variance' ); */;
 
 // extend uniform function with static methods
-_$jStat_1035.extend(_$jStat_1035.uniform, {
-  pdf: _$pdf_930,
-  cdf: _$cdf_924,
-  inv: _$quantile_933,
-  mean: _$mean_925,
-  median: _$median_927,
+_$jStat_1057.extend(_$jStat_1057.uniform, {
+  pdf: _$pdf_952,
+  cdf: _$cdf_946,
+  inv: _$quantile_955,
+  mean: _$mean_947,
+  median: _$median_949,
 
   mode: function mode(/*a, b*/) {
     throw new Error('mode is not implemented');
   },
 
-  sample: _$uniform_640,
-  variance: _$variance_935
+  sample: _$uniform_645,
+  variance: _$variance_957
 });
 
-/* removed: var _$pmf_687 = require( '@stdlib/stats/base/dists/binomial/pmf' ); */;
-/* removed: var _$cdf_685 = require( '@stdlib/stats/base/dists/binomial/cdf' ); */;
+/* removed: var _$pmf_692 = require( '@stdlib/stats/base/dists/binomial/pmf' ); */;
+/* removed: var _$cdf_690 = require( '@stdlib/stats/base/dists/binomial/cdf' ); */;
 
 // extend binomial function with static methods
-_$jStat_1035.extend(_$jStat_1035.binomial, {
-  pdf: _$pmf_687,
-  cdf: _$cdf_685
+_$jStat_1057.extend(_$jStat_1057.binomial, {
+  pdf: _$pmf_692,
+  cdf: _$cdf_690
 });
 
-/* removed: var _$pmf_842 = require( '@stdlib/stats/base/dists/negative-binomial/pmf' ); */;
-/* removed: var _$cdf_838 = require( '@stdlib/stats/base/dists/negative-binomial/cdf' ); */;
+/* removed: var _$pmf_864 = require( '@stdlib/stats/base/dists/negative-binomial/pmf' ); */;
+/* removed: var _$cdf_860 = require( '@stdlib/stats/base/dists/negative-binomial/cdf' ); */;
 
 // extend negbin function with static methods
-_$jStat_1035.extend(_$jStat_1035.negbin, {
-  pdf: _$pmf_842,
-  cdf: _$cdf_838
+_$jStat_1057.extend(_$jStat_1057.negbin, {
+  pdf: _$pmf_864,
+  cdf: _$cdf_860
 });
 
-/* removed: var _$pmf_785 = require( '@stdlib/stats/base/dists/hypergeometric/pmf' ); */;
-/* removed: var _$cdf_782 = require( '@stdlib/stats/base/dists/hypergeometric/cdf' ); */;
+/* removed: var _$pmf_790 = require( '@stdlib/stats/base/dists/hypergeometric/pmf' ); */;
+/* removed: var _$cdf_787 = require( '@stdlib/stats/base/dists/hypergeometric/cdf' ); */;
 
 // extend uniform function with static methods
-_$jStat_1035.extend(_$jStat_1035.hypgeom, {
-  pdf: _$pmf_785,
-  cdf: _$cdf_782
+_$jStat_1057.extend(_$jStat_1057.hypgeom, {
+  pdf: _$pmf_790,
+  cdf: _$cdf_787
 });
 
-/* removed: var _$pmf_884 = require( '@stdlib/stats/base/dists/poisson/pmf' ); */;
-/* removed: var _$cdf_880 = require( '@stdlib/stats/base/dists/poisson/cdf' ); */;
-/* removed: var _$mean_881 = require( '@stdlib/stats/base/dists/poisson/mean' ); */;
-/* removed: var _$variance_886 = require( '@stdlib/stats/base/dists/poisson/variance' ); */;
-/* removed: var _$poisson_621 = require( '@stdlib/random/base/poisson' ); */;
+/* removed: var _$pmf_906 = require( '@stdlib/stats/base/dists/poisson/pmf' ); */;
+/* removed: var _$cdf_902 = require( '@stdlib/stats/base/dists/poisson/cdf' ); */;
+/* removed: var _$mean_903 = require( '@stdlib/stats/base/dists/poisson/mean' ); */;
+/* removed: var _$variance_908 = require( '@stdlib/stats/base/dists/poisson/variance' ); */;
+/* removed: var _$poisson_626 = require( '@stdlib/random/base/poisson' ); */;
 
 // extend uniform function with static methods
-_$jStat_1035.extend(_$jStat_1035.poisson, {
-  pdf: _$pmf_884,
-  cdf: _$cdf_880,
-  mean : _$mean_881,
-  variance: _$variance_886,
-  sampleSmall: _$poisson_621,
-  sampleLarge: _$poisson_621,
-  sample: _$poisson_621
+_$jStat_1057.extend(_$jStat_1057.poisson, {
+  pdf: _$pmf_906,
+  cdf: _$cdf_902,
+  mean : _$mean_903,
+  variance: _$variance_908,
+  sampleSmall: _$poisson_626,
+  sampleLarge: _$poisson_626,
+  sample: _$poisson_626
 });
 
-/* removed: var _$pdf_915 = require( '@stdlib/stats/base/dists/triangular/pdf' ); */;
-/* removed: var _$cdf_907 = require( '@stdlib/stats/base/dists/triangular/cdf' ); */;
-/* removed: var _$quantile_918 = require( '@stdlib/stats/base/dists/triangular/quantile' ); */;
-/* removed: var _$mean_908 = require( '@stdlib/stats/base/dists/triangular/mean' ); */;
-/* removed: var _$median_910 = require( '@stdlib/stats/base/dists/triangular/median' ); */;
-/* removed: var _$mode_912 = require( '@stdlib/stats/base/dists/triangular/mode' ); */;
-/* removed: var _$triangular_635 = require( '@stdlib/random/base/triangular' ); */;
-/* removed: var _$variance_920 = require( '@stdlib/stats/base/dists/triangular/variance' ); */;
+/* removed: var _$pdf_937 = require( '@stdlib/stats/base/dists/triangular/pdf' ); */;
+/* removed: var _$cdf_929 = require( '@stdlib/stats/base/dists/triangular/cdf' ); */;
+/* removed: var _$quantile_940 = require( '@stdlib/stats/base/dists/triangular/quantile' ); */;
+/* removed: var _$mean_930 = require( '@stdlib/stats/base/dists/triangular/mean' ); */;
+/* removed: var _$median_932 = require( '@stdlib/stats/base/dists/triangular/median' ); */;
+/* removed: var _$mode_934 = require( '@stdlib/stats/base/dists/triangular/mode' ); */;
+/* removed: var _$triangular_640 = require( '@stdlib/random/base/triangular' ); */;
+/* removed: var _$variance_942 = require( '@stdlib/stats/base/dists/triangular/variance' ); */;
 
 // extend triangular function with static methods
-_$jStat_1035.extend(_$jStat_1035.triangular, {
-  pdf: _$pdf_915,
-  cdf: _$cdf_907,
-  inv: _$quantile_918,
-  mean: _$mean_908,
-  median: _$median_910,
-  mode: _$mode_912,
-  sample: _$triangular_635,
-  variance: _$variance_920
+_$jStat_1057.extend(_$jStat_1057.triangular, {
+  pdf: _$pdf_937,
+  cdf: _$cdf_929,
+  inv: _$quantile_940,
+  mean: _$mean_930,
+  median: _$median_932,
+  mode: _$mode_934,
+  sample: _$triangular_640,
+  variance: _$variance_942
 });
 
-/* removed: var _$pdf_659 = require( '@stdlib/stats/base/dists/arcsine/pdf' ); */;
-/* removed: var _$cdf_652 = require( '@stdlib/stats/base/dists/arcsine/cdf' ); */;
-/* removed: var _$quantile_662 = require( '@stdlib/stats/base/dists/arcsine/quantile' ); */;
-/* removed: var _$mean_654 = require( '@stdlib/stats/base/dists/arcsine/mean' ); */;
-/* removed: var _$median_656 = require( '@stdlib/stats/base/dists/arcsine/median' ); */;
+/* removed: var _$pdf_664 = require( '@stdlib/stats/base/dists/arcsine/pdf' ); */;
+/* removed: var _$cdf_657 = require( '@stdlib/stats/base/dists/arcsine/cdf' ); */;
+/* removed: var _$quantile_667 = require( '@stdlib/stats/base/dists/arcsine/quantile' ); */;
+/* removed: var _$mean_659 = require( '@stdlib/stats/base/dists/arcsine/mean' ); */;
+/* removed: var _$median_661 = require( '@stdlib/stats/base/dists/arcsine/median' ); */;
 /* removed: var _$arcsine_556 = require( '@stdlib/random/base/arcsine' ); */;
-/* removed: var _$variance_664 = require( '@stdlib/stats/base/dists/arcsine/variance' ); */;
+/* removed: var _$variance_669 = require( '@stdlib/stats/base/dists/arcsine/variance' ); */;
 
 // extend arcsine function with static methods
-_$jStat_1035.extend(_$jStat_1035.arcsine, {
-  pdf: _$pdf_659,
-  cdf: _$cdf_652,
-  inv: _$quantile_662,
-  mean: _$mean_654,
-  median: _$median_656,
+_$jStat_1057.extend(_$jStat_1057.arcsine, {
+  pdf: _$pdf_664,
+  cdf: _$cdf_657,
+  inv: _$quantile_667,
+  mean: _$mean_659,
+  median: _$median_661,
 
   mode: function mode(/*a, b*/) {
     throw new Error('mode is not yet implemented');
   },
 
   sample: _$arcsine_556,
-  variance: _$variance_664
+  variance: _$variance_669
 });
 
+/* removed: var _$pdf_834 = require( '@stdlib/stats/base/dists/laplace/pdf' ); */;
+/* removed: var _$cdf_826 = require( '@stdlib/stats/base/dists/laplace/cdf' ); */;
+/* removed: var _$quantile_837 = require( '@stdlib/stats/base/dists/laplace/quantile' ); */;
+/* removed: var _$mean_827 = require( '@stdlib/stats/base/dists/laplace/mean' ); */;
+/* removed: var _$median_829 = require( '@stdlib/stats/base/dists/laplace/median' ); */;
+/* removed: var _$mode_831 = require( '@stdlib/stats/base/dists/laplace/mode' ); */;
+/* removed: var _$laplace_607 = require( '@stdlib/random/base/laplace' ); */;
+/* removed: var _$variance_839 = require( '@stdlib/stats/base/dists/laplace/variance' ); */;
 
-function laplaceSign(x) { return x / Math.abs(x); }
-
-_$jStat_1035.extend(_$jStat_1035.laplace, {
-  pdf: function pdf(x, mu, b) {
-    return (b <= 0) ? 0 : (Math.exp(-Math.abs(x - mu) / b)) / (2 * b);
-  },
-
-  cdf: function cdf(x, mu, b) {
-    if (b <= 0) { return 0; }
-
-    if(x < mu) {
-      return 0.5 * Math.exp((x - mu) / b);
-    } else {
-      return 1 - 0.5 * Math.exp(- (x - mu) / b);
-    }
-  },
-
-  mean: function(mu/*, b*/) {
-    return mu;
-  },
-
-  median: function(mu/*, b*/) {
-    return mu;
-  },
-
-  mode: function(mu/*, b*/) {
-    return mu;
-  },
-
-  variance: function(mu, b) {
-    return 2 * b * b;
-  },
-
-  sample: function sample(mu, b) {
-    var u = _$jStat_1035._random_fn() - 0.5;
-
-    return mu - (b * laplaceSign(u) * Math.log(1 - (2 * Math.abs(u))));
-  }
+_$jStat_1057.extend(_$jStat_1057.laplace, {
+  pdf: _$pdf_834,
+  cdf: _$cdf_826,
+  mean: _$mean_827,
+  median: _$median_829,
+  mode: _$mode_831,
+  variance: _$variance_839,
+  sample: _$laplace_607
 });
 
 function tukeyWprob(w, rr, cc) {
@@ -81214,7 +82816,7 @@ function tukeyWprob(w, rr, cc) {
   // find (f(w/2) - 1) ^ cc
   // (first term in integral of hartley's form).
 
-  var pr_w = 2 * _$jStat_1035.normal.cdf(qsqz, 0, 1, 1, 0) - 1; // erf(qsqz / M_SQRT2)
+  var pr_w = 2 * _$jStat_1057.normal.cdf(qsqz, 0, 1, 1, 0) - 1; // erf(qsqz / M_SQRT2)
   // if pr_w ^ cc < 2e-22 then set pr_w = 0
   if (pr_w >= Math.exp(C2 / cc))
     pr_w = Math.pow(pr_w, cc);
@@ -81273,8 +82875,8 @@ function tukeyWprob(w, rr, cc) {
       if (qexpo > C3)
         break;
 
-      var pplus = 2 * _$jStat_1035.normal.cdf(ac, 0, 1, 1, 0);
-      var pminus= 2 * _$jStat_1035.normal.cdf(ac, w, 1, 1, 0);
+      var pplus = 2 * _$jStat_1057.normal.cdf(ac, 0, 1, 1, 0);
+      var pminus= 2 * _$jStat_1057.normal.cdf(ac, w, 1, 1, 0);
 
       // if rinsum ^ (cc-1) < 9e-14,
       // then doesn't contribute to integral
@@ -81330,7 +82932,7 @@ function tukeyQinv(p, c, v) {
   return t * (q * Math.log(c - 1.0) + c5);
 }
 
-_$jStat_1035.extend(_$jStat_1035.tukey, {
+_$jStat_1057.extend(_$jStat_1057.tukey, {
   cdf: function cdf(q, nmeans, df) {
     // Identical implementation as the R ptukey() function as of commit 68947
     var rr = 1;
@@ -81387,7 +82989,7 @@ _$jStat_1035.extend(_$jStat_1035.tukey, {
     // calculate leading constant
 
     var f2 = df * 0.5;
-    var f2lf = ((f2 * Math.log(df)) - (df * Math.log(2))) - _$jStat_1035.gammaln(f2);
+    var f2lf = ((f2 * Math.log(df)) - (df * Math.log(2))) - _$jStat_1057.gammaln(f2);
     var f21 = f2 - 1.0;
 
     // integral is divided into unit, half-unit, quarter-unit, or
@@ -81487,7 +83089,7 @@ _$jStat_1035.extend(_$jStat_1035.tukey, {
 
     // Find prob(value < x0)
 
-    var valx0 = _$jStat_1035.tukey.cdf(x0, nmeans, df) - p;
+    var valx0 = _$jStat_1057.tukey.cdf(x0, nmeans, df) - p;
 
     // Find the second iterate and prob(value < x1).
     // If the first iterate has probability value
@@ -81499,7 +83101,7 @@ _$jStat_1035.extend(_$jStat_1035.tukey, {
       x1 = Math.max(0.0, x0 - 1.0);
     else
       x1 = x0 + 1.0;
-    var valx1 = _$jStat_1035.tukey.cdf(x1, nmeans, df) - p;
+    var valx1 = _$jStat_1057.tukey.cdf(x1, nmeans, df) - p;
 
     // Find new iterate
 
@@ -81517,7 +83119,7 @@ _$jStat_1035.extend(_$jStat_1035.tukey, {
       }
       // Find prob(value < new iterate)
 
-      valx1 = _$jStat_1035.tukey.cdf(ans, nmeans, df) - p;
+      valx1 = _$jStat_1057.tukey.cdf(ans, nmeans, df) - p;
       x1 = ans;
 
       // If the difference between two successive
@@ -81532,30 +83134,30 @@ _$jStat_1035.extend(_$jStat_1035.tukey, {
   }
 });
 
-var _$linearalgebra_1037 = {};
+var _$linearalgebra_1059 = {};
 /* Provides functions for the solution of linear system of equations, integration, extrapolation,
  * interpolation, eigenvalue problems, differential equations and PCA analysis. */
-/* removed: var _$jStat_1035 = require( './core.js' ); */;
+/* removed: var _$jStat_1057 = require( './core.js' ); */;
 
 var push = Array.prototype.push;
-var __isArray_1037 = _$jStat_1035.utils.isArray;
+var __isArray_1059 = _$jStat_1057.utils.isArray;
 
 function isUsable(arg) {
-  return __isArray_1037(arg) || arg instanceof _$jStat_1035;
+  return __isArray_1059(arg) || arg instanceof _$jStat_1057;
 }
 
-_$jStat_1035.extend({
+_$jStat_1057.extend({
 
   // add a vector/matrix to a vector/matrix or scalar
   add: function add(arr, arg) {
     // check if arg is a vector or scalar
     if (isUsable(arg)) {
       if (!isUsable(arg[0])) arg = [ arg ];
-      return _$jStat_1035.map(arr, function(value, row, col) {
+      return _$jStat_1057.map(arr, function(value, row, col) {
         return value + arg[row][col];
       });
     }
-    return _$jStat_1035.map(arr, function(value) { return value + arg; });
+    return _$jStat_1057.map(arr, function(value) { return value + arg; });
   },
 
   // subtract a vector or scalar from the vector
@@ -81563,20 +83165,20 @@ _$jStat_1035.extend({
     // check if arg is a vector or scalar
     if (isUsable(arg)) {
       if (!isUsable(arg[0])) arg = [ arg ];
-      return _$jStat_1035.map(arr, function(value, row, col) {
+      return _$jStat_1057.map(arr, function(value, row, col) {
         return value - arg[row][col] || 0;
       });
     }
-    return _$jStat_1035.map(arr, function(value) { return value - arg; });
+    return _$jStat_1057.map(arr, function(value) { return value - arg; });
   },
 
   // matrix division
   divide: function divide(arr, arg) {
     if (isUsable(arg)) {
       if (!isUsable(arg[0])) arg = [ arg ];
-      return _$jStat_1035.multiply(arr, _$jStat_1035.inv(arg));
+      return _$jStat_1057.multiply(arr, _$jStat_1057.inv(arg));
     }
-    return _$jStat_1035.map(arr, function(value) { return value / arg; });
+    return _$jStat_1057.map(arr, function(value) { return value / arg; });
   },
 
   // matrix multiplication
@@ -81588,7 +83190,7 @@ _$jStat_1035.extend({
     }
     nrow = arr.length,
     ncol = arr[0].length,
-    res = _$jStat_1035.zeros(nrow, nrescols = (isUsable(arg)) ? arg[0].length : ncol),
+    res = _$jStat_1057.zeros(nrow, nrescols = (isUsable(arg)) ? arg[0].length : ncol),
     rescols = 0;
     if (isUsable(arg)) {
       for (; rescols < nrescols; rescols++) {
@@ -81601,7 +83203,7 @@ _$jStat_1035.extend({
       }
       return (nrow === 1 && rescols === 1) ? res[0][0] : res;
     }
-    return _$jStat_1035.map(arr, function(value) { return value * arg; });
+    return _$jStat_1057.map(arr, function(value) { return value * arg; });
   },
 
   // outer([1,2,3],[4,5,6])
@@ -81610,7 +83212,7 @@ _$jStat_1035.extend({
   // ->
   // [[4,5,6],[8,10,12],[12,15,18]]
   outer:function outer(A, B) {
-    return _$jStat_1035.multiply(A.map(function(t){ return [t] }), [B]);
+    return _$jStat_1057.multiply(A.map(function(t){ return [t] }), [B]);
   },
 
 
@@ -81619,8 +83221,8 @@ _$jStat_1035.extend({
     if (!isUsable(arr[0])) arr = [ arr ];
     if (!isUsable(arg[0])) arg = [ arg ];
     // convert column to row vector
-    var left = (arr[0].length === 1 && arr.length !== 1) ? _$jStat_1035.transpose(arr) : arr,
-    right = (arg[0].length === 1 && arg.length !== 1) ? _$jStat_1035.transpose(arg) : arg,
+    var left = (arr[0].length === 1 && arr.length !== 1) ? _$jStat_1057.transpose(arr) : arr,
+    right = (arg[0].length === 1 && arg.length !== 1) ? _$jStat_1057.transpose(arg) : arg,
     res = [],
     row = 0,
     nrow = left.length,
@@ -81638,22 +83240,22 @@ _$jStat_1035.extend({
 
   // raise every element by a scalar
   pow: function pow(arr, arg) {
-    return _$jStat_1035.map(arr, function(value) { return Math.pow(value, arg); });
+    return _$jStat_1057.map(arr, function(value) { return Math.pow(value, arg); });
   },
 
   // exponentiate every element
   exp: function exp(arr) {
-    return _$jStat_1035.map(arr, function(value) { return Math.exp(value); });
+    return _$jStat_1057.map(arr, function(value) { return Math.exp(value); });
   },
 
   // generate the natural log of every element
   log: function exp(arr) {
-    return _$jStat_1035.map(arr, function(value) { return Math.log(value); });
+    return _$jStat_1057.map(arr, function(value) { return Math.log(value); });
   },
 
   // generate the absolute values of the vector
   abs: function abs(arr) {
-    return _$jStat_1035.map(arr, function(value) { return Math.abs(value); });
+    return _$jStat_1057.map(arr, function(value) { return Math.abs(value); });
   },
 
   // computes the p-norm of the vector
@@ -81675,7 +83277,7 @@ _$jStat_1035.extend({
   // computes the angle between two vectors in rads
   // In case a matrix is passed, this uses the first row as the vector
   angle: function angle(arr, arg) {
-    return Math.acos(_$jStat_1035.dot(arr, arg) / (_$jStat_1035.norm(arr) * _$jStat_1035.norm(arg)));
+    return Math.acos(_$jStat_1057.dot(arr, arg) / (_$jStat_1057.norm(arr) * _$jStat_1057.norm(arg)));
   },
 
   // augment one matrix by another
@@ -81698,8 +83300,8 @@ _$jStat_1035.extend({
   inv: function inv(a) {
     var rows = a.length;
     var cols = a[0].length;
-    var b = _$jStat_1035.identity(rows, cols);
-    var c = _$jStat_1035.gauss_jordan(a, b);
+    var b = _$jStat_1057.identity(rows, cols);
+    var c = _$jStat_1057.gauss_jordan(a, b);
     var result = [];
     var i = 0;
     var j;
@@ -81760,7 +83362,7 @@ _$jStat_1035.extend({
     sum = 0,
     x = [],
     maug, pivot, temp, k;
-    a = _$jStat_1035.aug(a, b);
+    a = _$jStat_1057.aug(a, b);
     maug = a[0].length;
     for(i = 0; i < n; i++) {
       pivot = a[i][i];
@@ -81796,7 +83398,7 @@ _$jStat_1035.extend({
   },
 
   gauss_jordan: function gauss_jordan(a, b) {
-    var m = _$jStat_1035.aug(a, b);
+    var m = _$jStat_1057.aug(a, b);
     var h = m.length;
     var w = m[0].length;
     var c = 0;
@@ -81846,7 +83448,7 @@ _$jStat_1035.extend({
   // will return [[2.666],[0.1666],[1.666]]
   triaUpSolve: function triaUpSolve(A, b) {
     var size = A[0].length;
-    var x = _$jStat_1035.zeros(1, size)[0];
+    var x = _$jStat_1057.zeros(1, size)[0];
     var parts;
     var matrix_mode = false;
 
@@ -81855,11 +83457,11 @@ _$jStat_1035.extend({
       matrix_mode = true;
     }
 
-    _$jStat_1035.arange(size - 1, -1, -1).forEach(function(i) {
-      parts = _$jStat_1035.arange(i + 1, size).map(function(j) {
+    _$jStat_1057.arange(size - 1, -1, -1).forEach(function(i) {
+      parts = _$jStat_1057.arange(i + 1, size).map(function(j) {
         return x[j] * A[i][j];
       });
-      x[i] = (b[i] - _$jStat_1035.sum(parts)) / A[i][i];
+      x[i] = (b[i] - _$jStat_1057.sum(parts)) / A[i][i];
     });
 
     if (matrix_mode)
@@ -81870,7 +83472,7 @@ _$jStat_1035.extend({
   triaLowSolve: function triaLowSolve(A, b) {
     // like to triaUpSolve but A is lower triangular matrix
     var size = A[0].length;
-    var x = _$jStat_1035.zeros(1, size)[0];
+    var x = _$jStat_1057.zeros(1, size)[0];
     var parts;
 
     var matrix_mode=false;
@@ -81879,11 +83481,11 @@ _$jStat_1035.extend({
       matrix_mode = true;
     }
 
-    _$jStat_1035.arange(size).forEach(function(i) {
-      parts = _$jStat_1035.arange(i).map(function(j) {
+    _$jStat_1057.arange(size).forEach(function(i) {
+      parts = _$jStat_1057.arange(i).map(function(j) {
         return A[i][j] * x[j];
       });
-      x[i] = (b[i] - _$jStat_1035.sum(parts)) / A[i][i];
+      x[i] = (b[i] - _$jStat_1057.sum(parts)) / A[i][i];
     })
 
     if (matrix_mode)
@@ -81899,24 +83501,24 @@ _$jStat_1035.extend({
   lu: function lu(A) {
     var size = A.length;
     //var L=jStat.diagonal(jStat.ones(1,size)[0]);
-    var L = _$jStat_1035.identity(size);
-    var R = _$jStat_1035.zeros(A.length, A[0].length);
+    var L = _$jStat_1057.identity(size);
+    var R = _$jStat_1057.zeros(A.length, A[0].length);
     var parts;
-    _$jStat_1035.arange(size).forEach(function(t) {
+    _$jStat_1057.arange(size).forEach(function(t) {
       R[0][t] = A[0][t];
     });
-    _$jStat_1035.arange(1, size).forEach(function(l) {
-      _$jStat_1035.arange(l).forEach(function(i) {
-        parts = _$jStat_1035.arange(i).map(function(jj) {
+    _$jStat_1057.arange(1, size).forEach(function(l) {
+      _$jStat_1057.arange(l).forEach(function(i) {
+        parts = _$jStat_1057.arange(i).map(function(jj) {
           return L[l][jj] * R[jj][i];
         });
-        L[l][i] = (A[l][i] - _$jStat_1035.sum(parts)) / R[i][i];
+        L[l][i] = (A[l][i] - _$jStat_1057.sum(parts)) / R[i][i];
       });
-      _$jStat_1035.arange(l, size).forEach(function(j) {
-        parts = _$jStat_1035.arange(l).map(function(jj) {
+      _$jStat_1057.arange(l, size).forEach(function(j) {
+        parts = _$jStat_1057.arange(l).map(function(jj) {
           return L[l][jj] * R[jj][j];
         });
-        R[l][j] = A[parts.length][j] - _$jStat_1035.sum(parts);
+        R[l][j] = A[parts.length][j] - _$jStat_1057.sum(parts);
       });
     });
     return [L, R];
@@ -81927,18 +83529,18 @@ _$jStat_1035.extend({
   // T is lower triangular matrix
   cholesky: function cholesky(A) {
     var size = A.length;
-    var T = _$jStat_1035.zeros(A.length, A[0].length);
+    var T = _$jStat_1057.zeros(A.length, A[0].length);
     var parts;
-    _$jStat_1035.arange(size).forEach(function(i) {
-      parts = _$jStat_1035.arange(i).map(function(t) {
+    _$jStat_1057.arange(size).forEach(function(i) {
+      parts = _$jStat_1057.arange(i).map(function(t) {
         return Math.pow(T[i][t],2);
       });
-      T[i][i] = Math.sqrt(A[i][i] - _$jStat_1035.sum(parts));
-      _$jStat_1035.arange(i + 1, size).forEach(function(j) {
-        parts = _$jStat_1035.arange(i).map(function(t) {
+      T[i][i] = Math.sqrt(A[i][i] - _$jStat_1057.sum(parts));
+      _$jStat_1057.arange(i + 1, size).forEach(function(j) {
+        parts = _$jStat_1057.arange(i).map(function(t) {
           return T[i][t] * T[j][t];
         });
-        T[j][i] = (A[i][j] - _$jStat_1035.sum(parts)) / T[i][i];
+        T[j][i] = (A[i][j] - _$jStat_1057.sum(parts)) / T[i][i];
       });
     });
     return T;
@@ -81970,14 +83572,14 @@ _$jStat_1035.extend({
         }
       }
     }
-    h = _$jStat_1035.multiply(_$jStat_1035.multiply(_$jStat_1035.inv(d), _$jStat_1035.add(l, u)), -1);
-    c = _$jStat_1035.multiply(_$jStat_1035.inv(d), b);
+    h = _$jStat_1057.multiply(_$jStat_1057.multiply(_$jStat_1057.inv(d), _$jStat_1057.add(l, u)), -1);
+    c = _$jStat_1057.multiply(_$jStat_1057.inv(d), b);
     xv = x;
-    xk = _$jStat_1035.add(_$jStat_1035.multiply(h, x), c);
+    xk = _$jStat_1057.add(_$jStat_1057.multiply(h, x), c);
     i = 2;
-    while (Math.abs(_$jStat_1035.norm(_$jStat_1035.subtract(xk,xv))) > r) {
+    while (Math.abs(_$jStat_1057.norm(_$jStat_1057.subtract(xk,xv))) > r) {
       xv = xk;
-      xk = _$jStat_1035.add(_$jStat_1035.multiply(h, xv), c);
+      xk = _$jStat_1057.add(_$jStat_1057.multiply(h, xv), c);
       i++;
     }
     return xk;
@@ -82007,14 +83609,14 @@ _$jStat_1035.extend({
         }
       }
     }
-    h = _$jStat_1035.multiply(_$jStat_1035.multiply(_$jStat_1035.inv(_$jStat_1035.add(d, l)), u), -1);
-    c = _$jStat_1035.multiply(_$jStat_1035.inv(_$jStat_1035.add(d, l)), b);
+    h = _$jStat_1057.multiply(_$jStat_1057.multiply(_$jStat_1057.inv(_$jStat_1057.add(d, l)), u), -1);
+    c = _$jStat_1057.multiply(_$jStat_1057.inv(_$jStat_1057.add(d, l)), b);
     xv = x;
-    xk = _$jStat_1035.add(_$jStat_1035.multiply(h, x), c);
+    xk = _$jStat_1057.add(_$jStat_1057.multiply(h, x), c);
     i = 2;
-    while (Math.abs(_$jStat_1035.norm(_$jStat_1035.subtract(xk, xv))) > r) {
+    while (Math.abs(_$jStat_1057.norm(_$jStat_1057.subtract(xk, xv))) > r) {
       xv = xk;
-      xk = _$jStat_1035.add(_$jStat_1035.multiply(h, xv), c);
+      xk = _$jStat_1057.add(_$jStat_1057.multiply(h, xv), c);
       i = i + 1;
     }
     return xk;
@@ -82044,17 +83646,17 @@ _$jStat_1035.extend({
         }
       }
     }
-    h = _$jStat_1035.multiply(_$jStat_1035.inv(_$jStat_1035.add(d, _$jStat_1035.multiply(l, w))),
-                       _$jStat_1035.subtract(_$jStat_1035.multiply(d, 1 - w),
-                                      _$jStat_1035.multiply(u, w)));
-    c = _$jStat_1035.multiply(_$jStat_1035.multiply(_$jStat_1035.inv(_$jStat_1035.add(d,
-        _$jStat_1035.multiply(l, w))), b), w);
+    h = _$jStat_1057.multiply(_$jStat_1057.inv(_$jStat_1057.add(d, _$jStat_1057.multiply(l, w))),
+                       _$jStat_1057.subtract(_$jStat_1057.multiply(d, 1 - w),
+                                      _$jStat_1057.multiply(u, w)));
+    c = _$jStat_1057.multiply(_$jStat_1057.multiply(_$jStat_1057.inv(_$jStat_1057.add(d,
+        _$jStat_1057.multiply(l, w))), b), w);
     xv = x;
-    xk = _$jStat_1035.add(_$jStat_1035.multiply(h, x), c);
+    xk = _$jStat_1057.add(_$jStat_1057.multiply(h, x), c);
     i = 2;
-    while (Math.abs(_$jStat_1035.norm(_$jStat_1035.subtract(xk, xv))) > r) {
+    while (Math.abs(_$jStat_1057.norm(_$jStat_1057.subtract(xk, xv))) > r) {
       xv = xk;
-      xk = _$jStat_1035.add(_$jStat_1035.multiply(h, xv), c);
+      xk = _$jStat_1057.add(_$jStat_1057.multiply(h, xv), c);
       i++;
     }
     return xk;
@@ -82074,12 +83676,12 @@ _$jStat_1035.extend({
       factor = (a[i + 1][i] > 0) ? -1 : 1;
       alpha = factor * Math.sqrt(alpha);
       r = Math.sqrt((((alpha * alpha) - a[i + 1][i] * alpha) / 2));
-      w = _$jStat_1035.zeros(m, 1);
+      w = _$jStat_1057.zeros(m, 1);
       w[i + 1][0] = (a[i + 1][i] - alpha) / (2 * r);
       for (k = i + 2; k < m; k++) w[k][0] = a[k][i] / (2 * r);
-      p = _$jStat_1035.subtract(_$jStat_1035.identity(m, n),
-          _$jStat_1035.multiply(_$jStat_1035.multiply(w, _$jStat_1035.transpose(w)), 2));
-      a = _$jStat_1035.multiply(p, _$jStat_1035.multiply(a, p));
+      p = _$jStat_1057.subtract(_$jStat_1057.identity(m, n),
+          _$jStat_1057.multiply(_$jStat_1057.multiply(w, _$jStat_1057.transpose(w)), 2));
+      a = _$jStat_1057.multiply(p, _$jStat_1057.multiply(a, p));
     }
     return a;
   },
@@ -82094,8 +83696,8 @@ _$jStat_1035.extend({
     // y is [||x||,0,0,...]
 
     // quick ref
-    var sum   = _$jStat_1035.sum;
-    var range = _$jStat_1035.arange;
+    var sum   = _$jStat_1057.sum;
+    var range = _$jStat_1057.arange;
 
     function qr2(x) {
       // quick impletation
@@ -82104,8 +83706,8 @@ _$jStat_1035.extend({
       var n = x.length;
       var p = x[0].length;
 
-      var r = _$jStat_1035.zeros(p, p);
-      x = _$jStat_1035.copy(x);
+      var r = _$jStat_1057.zeros(p, p);
+      x = _$jStat_1057.copy(x);
 
       var i,j,k;
       for(j = 0; j < p; j++){
@@ -82135,22 +83737,22 @@ _$jStat_1035.extend({
     // [[b1],[b2],[b3]] form will return [[x1],[x2],[x3]] array form solution
     // else b is [b1,b2,b3] form will return [x1,x2,x3] array form solution
     function R_I(A) {
-      A = _$jStat_1035.copy(A);
+      A = _$jStat_1057.copy(A);
       var size = A.length;
-      var I = _$jStat_1035.identity(size);
-      _$jStat_1035.arange(size - 1, -1, -1).forEach(function(i) {
-        _$jStat_1035.sliceAssign(
-            I, { row: i }, _$jStat_1035.divide(_$jStat_1035.slice(I, { row: i }), A[i][i]));
-        _$jStat_1035.sliceAssign(
-            A, { row: i }, _$jStat_1035.divide(_$jStat_1035.slice(A, { row: i }), A[i][i]));
-        _$jStat_1035.arange(i).forEach(function(j) {
-          var c = _$jStat_1035.multiply(A[j][i], -1);
-          var Aj = _$jStat_1035.slice(A, { row: j });
-          var cAi = _$jStat_1035.multiply(_$jStat_1035.slice(A, { row: i }), c);
-          _$jStat_1035.sliceAssign(A, { row: j }, _$jStat_1035.add(Aj, cAi));
-          var Ij = _$jStat_1035.slice(I, { row: j });
-          var cIi = _$jStat_1035.multiply(_$jStat_1035.slice(I, { row: i }), c);
-          _$jStat_1035.sliceAssign(I, { row: j }, _$jStat_1035.add(Ij, cIi));
+      var I = _$jStat_1057.identity(size);
+      _$jStat_1057.arange(size - 1, -1, -1).forEach(function(i) {
+        _$jStat_1057.sliceAssign(
+            I, { row: i }, _$jStat_1057.divide(_$jStat_1057.slice(I, { row: i }), A[i][i]));
+        _$jStat_1057.sliceAssign(
+            A, { row: i }, _$jStat_1057.divide(_$jStat_1057.slice(A, { row: i }), A[i][i]));
+        _$jStat_1057.arange(i).forEach(function(j) {
+          var c = _$jStat_1057.multiply(A[j][i], -1);
+          var Aj = _$jStat_1057.slice(A, { row: j });
+          var cAi = _$jStat_1057.multiply(_$jStat_1057.slice(A, { row: i }), c);
+          _$jStat_1057.sliceAssign(A, { row: j }, _$jStat_1057.add(Aj, cAi));
+          var Ij = _$jStat_1057.slice(I, { row: j });
+          var cIi = _$jStat_1057.multiply(_$jStat_1057.slice(I, { row: i }), c);
+          _$jStat_1057.sliceAssign(I, { row: j }, _$jStat_1057.add(Ij, cIi));
         })
       });
       return I;
@@ -82163,20 +83765,20 @@ _$jStat_1035.extend({
         b = b.map(function(x){ return [x] });
         array_mode = true;
       }
-      var QR = _$jStat_1035.QR(A);
+      var QR = _$jStat_1057.QR(A);
       var Q = QR[0];
       var R = QR[1];
       var attrs = A[0].length;
-      var Q1 = _$jStat_1035.slice(Q,{col:{end:attrs}});
-      var R1 = _$jStat_1035.slice(R,{row:{end:attrs}});
+      var Q1 = _$jStat_1057.slice(Q,{col:{end:attrs}});
+      var R1 = _$jStat_1057.slice(R,{row:{end:attrs}});
       var RI = R_I(R1);
-      var Q2 = _$jStat_1035.transpose(Q1);
+      var Q2 = _$jStat_1057.transpose(Q1);
 
       if(Q2[0].length === undefined){
         Q2 = [Q2]; // The confusing jStat.multifly implementation threat nature process again.
       }
 
-      var x = _$jStat_1035.multiply(_$jStat_1035.multiply(RI, Q2), b);
+      var x = _$jStat_1057.multiply(_$jStat_1057.multiply(RI, Q2), b);
 
       if(x.length === undefined){
         x = [[x]]; // The confusing jStat.multifly implementation threat nature process again.
@@ -82194,7 +83796,7 @@ _$jStat_1035.extend({
   jacobi: function jacobi(a) {
     var condition = 1;
     var n = a.length;
-    var e = _$jStat_1035.identity(n, n);
+    var e = _$jStat_1057.identity(n, n);
     var ev = [];
     var b, i, j, p, q, maxim, theta, s;
     // condition === 1 only if tolerance is not reached
@@ -82217,14 +83819,14 @@ _$jStat_1035.extend({
         theta = (a[p][q] > 0) ? Math.PI / 4 : -Math.PI / 4;
       else
         theta = Math.atan(2 * a[p][q] / (a[p][p] - a[q][q])) / 2;
-      s = _$jStat_1035.identity(n, n);
+      s = _$jStat_1057.identity(n, n);
       s[p][p] = Math.cos(theta);
       s[p][q] = -Math.sin(theta);
       s[q][p] = Math.sin(theta);
       s[q][q] = Math.cos(theta);
       // eigen vector matrix
-      e = _$jStat_1035.multiply(e, s);
-      b = _$jStat_1035.multiply(_$jStat_1035.multiply(_$jStat_1035.inv(s), a), s);
+      e = _$jStat_1057.multiply(e, s);
+      b = _$jStat_1057.multiply(_$jStat_1057.multiply(_$jStat_1057.inv(s), a), s);
       a = b;
       condition = 0;
       for (i = 1; i < n; i++) {
@@ -82415,7 +84017,7 @@ _$jStat_1035.extend({
       A[i][i+1] = h[i];
       B[i][0] = alpha[i];
     }
-    c = _$jStat_1035.multiply(_$jStat_1035.inv(A), B);
+    c = _$jStat_1057.multiply(_$jStat_1057.inv(A), B);
     for (j = 0; j < n - 1; j++) {
       b[j] = (F[j + 1] - F[j]) / h[j] - h[j] * (c[j + 1][0] + 2 * c[j][0]) / 3;
       d[j] = (c[j + 1][0] - c[j][0]) / (3 * h[j]);
@@ -82424,8 +84026,8 @@ _$jStat_1035.extend({
       if (X[j] > value) break;
     }
     j -= 1;
-    return F[j] + (value - X[j]) * b[j] + _$jStat_1035.sq(value-X[j]) *
-        c[j] + (value - X[j]) * _$jStat_1035.sq(value - X[j]) * d[j];
+    return F[j] + (value - X[j]) * b[j] + _$jStat_1057.sq(value-X[j]) *
+        c[j] + (value - X[j]) * _$jStat_1057.sq(value - X[j]) * d[j];
   },
 
   gauss_quadrature: function gauss_quadrature() {
@@ -82448,7 +84050,7 @@ _$jStat_1035.extend({
     var V = [];
     var Vt = [];
     for (i = 0; i < m; i++) {
-      u[i] = _$jStat_1035.sum(X[i]) / n;
+      u[i] = _$jStat_1057.sum(X[i]) / n;
     }
     for (i = 0; i < n; i++) {
       B[i] = [];
@@ -82456,17 +84058,17 @@ _$jStat_1035.extend({
         B[i][j] = X[j][i] - u[j];
       }
     }
-    B = _$jStat_1035.transpose(B);
+    B = _$jStat_1057.transpose(B);
     for (i = 0; i < m; i++) {
       C[i] = [];
       for (j = 0; j < m; j++) {
-        C[i][j] = (_$jStat_1035.dot([B[i]], [B[j]])) / (n - 1);
+        C[i][j] = (_$jStat_1057.dot([B[i]], [B[j]])) / (n - 1);
       }
     }
-    result = _$jStat_1035.jacobi(C);
+    result = _$jStat_1057.jacobi(C);
     V = result[0];
     D = result[1];
-    Vt = _$jStat_1035.transpose(V);
+    Vt = _$jStat_1057.transpose(V);
     for (i = 0; i < D.length; i++) {
       for (j = i; j < D.length; j++) {
         if(D[i] < D[j])  {
@@ -82479,11 +84081,11 @@ _$jStat_1035.extend({
         }
       }
     }
-    Bt = _$jStat_1035.transpose(B);
+    Bt = _$jStat_1057.transpose(B);
     for (i = 0; i < m; i++) {
       Y[i] = [];
       for (j = 0; j < Bt.length; j++) {
-        Y[i][j] = _$jStat_1035.dot([Vt[i]], [Bt[j]]);
+        Y[i][j] = _$jStat_1057.dot([Vt[i]], [Bt[j]]);
       }
     }
     return [X, D, Vt, Y];
@@ -82493,42 +84095,42 @@ _$jStat_1035.extend({
 // extend jStat.fn with methods that require one argument
 (function(funcs) {
   for (var i = 0; i < funcs.length; i++) (function(passfunc) {
-    _$jStat_1035.fn[passfunc] = function(arg, func) {
+    _$jStat_1057.fn[passfunc] = function(arg, func) {
       var tmpthis = this;
       // check for callback
       if (func) {
         setTimeout(function() {
-          func.call(tmpthis, _$jStat_1035.fn[passfunc].call(tmpthis, arg));
+          func.call(tmpthis, _$jStat_1057.fn[passfunc].call(tmpthis, arg));
         }, 15);
         return this;
       }
-      if (typeof _$jStat_1035[passfunc](this, arg) === 'number')
-        return _$jStat_1035[passfunc](this, arg);
+      if (typeof _$jStat_1057[passfunc](this, arg) === 'number')
+        return _$jStat_1057[passfunc](this, arg);
       else
-        return _$jStat_1035(_$jStat_1035[passfunc](this, arg));
+        return _$jStat_1057(_$jStat_1057[passfunc](this, arg));
     };
   }(funcs[i]));
 }('add divide multiply subtract dot pow exp log abs norm angle'.split(' ')));
 
-var _$test_1041 = {};
-/* removed: var _$jStat_1035 = require( './core.js' ); */;
+var _$test_1063 = {};
+/* removed: var _$jStat_1057 = require( './core.js' ); */;
 
-var __slice_1041 = [].slice;
-var __isNumber_1041 = _$jStat_1035.utils.isNumber;
-var __isArray_1041 = _$jStat_1035.utils.isArray;
+var __slice_1063 = [].slice;
+var __isNumber_1063 = _$jStat_1057.utils.isNumber;
+var __isArray_1063 = _$jStat_1057.utils.isArray;
 
 // flag==true denotes use of sample standard deviation
 // Z Statistics
-_$jStat_1035.extend({
+_$jStat_1057.extend({
   // 2 different parameter lists:
   // (value, mean, sd)
   // (value, array, flag)
   zscore: function zscore() {
-    var args = __slice_1041.call(arguments);
-    if (__isNumber_1041(args[1])) {
+    var args = __slice_1063.call(arguments);
+    if (__isNumber_1063(args[1])) {
       return (args[0] - args[1]) / args[2];
     }
-    return (args[0] - _$jStat_1035.mean(args[1])) / _$jStat_1035.stdev(args[1], args[2]);
+    return (args[0] - _$jStat_1057.mean(args[1])) / _$jStat_1057.stdev(args[1], args[2]);
   },
 
   // 3 different paramter lists:
@@ -82536,33 +84138,33 @@ _$jStat_1035.extend({
   // (zscore, sides)
   // (value, array, sides, flag)
   ztest: function ztest() {
-    var args = __slice_1041.call(arguments);
+    var args = __slice_1063.call(arguments);
     var z;
-    if (__isArray_1041(args[1])) {
+    if (__isArray_1063(args[1])) {
       // (value, array, sides, flag)
-      z = _$jStat_1035.zscore(args[0],args[1],args[3]);
+      z = _$jStat_1057.zscore(args[0],args[1],args[3]);
       return (args[2] === 1) ?
-        (_$jStat_1035.normal.cdf(-Math.abs(z), 0, 1)) :
-        (_$jStat_1035.normal.cdf(-Math.abs(z), 0, 1)*2);
+        (_$jStat_1057.normal.cdf(-Math.abs(z), 0, 1)) :
+        (_$jStat_1057.normal.cdf(-Math.abs(z), 0, 1)*2);
     } else {
       if (args.length > 2) {
         // (value, mean, sd, sides)
-        z = _$jStat_1035.zscore(args[0],args[1],args[2]);
+        z = _$jStat_1057.zscore(args[0],args[1],args[2]);
         return (args[3] === 1) ?
-          (_$jStat_1035.normal.cdf(-Math.abs(z),0,1)) :
-          (_$jStat_1035.normal.cdf(-Math.abs(z),0,1)* 2);
+          (_$jStat_1057.normal.cdf(-Math.abs(z),0,1)) :
+          (_$jStat_1057.normal.cdf(-Math.abs(z),0,1)* 2);
       } else {
         // (zscore, sides)
         z = args[0];
         return (args[1] === 1) ?
-          (_$jStat_1035.normal.cdf(-Math.abs(z),0,1)) :
-          (_$jStat_1035.normal.cdf(-Math.abs(z),0,1)*2);
+          (_$jStat_1057.normal.cdf(-Math.abs(z),0,1)) :
+          (_$jStat_1057.normal.cdf(-Math.abs(z),0,1)*2);
       }
     }
   }
 });
 
-_$jStat_1035.extend(_$jStat_1035.fn, {
+_$jStat_1057.extend(_$jStat_1057.fn, {
   zscore: function zscore(value, flag) {
     return (value - this.mean()) / this.stdev(flag);
   },
@@ -82570,22 +84172,22 @@ _$jStat_1035.extend(_$jStat_1035.fn, {
   ztest: function ztest(value, sides, flag) {
     var zscore = Math.abs(this.zscore(value, flag));
     return (sides === 1) ?
-      (_$jStat_1035.normal.cdf(-zscore, 0, 1)) :
-      (_$jStat_1035.normal.cdf(-zscore, 0, 1) * 2);
+      (_$jStat_1057.normal.cdf(-zscore, 0, 1)) :
+      (_$jStat_1057.normal.cdf(-zscore, 0, 1) * 2);
   }
 });
 
 // T Statistics
-_$jStat_1035.extend({
+_$jStat_1057.extend({
   // 2 parameter lists
   // (value, mean, sd, n)
   // (value, array)
   tscore: function tscore() {
-    var args = __slice_1041.call(arguments);
+    var args = __slice_1063.call(arguments);
     return (args.length === 4) ?
       ((args[0] - args[1]) / (args[2] / Math.sqrt(args[3]))) :
-      ((args[0] - _$jStat_1035.mean(args[1])) /
-       (_$jStat_1035.stdev(args[1], true) / Math.sqrt(args[1].length)));
+      ((args[0] - _$jStat_1057.mean(args[1])) /
+       (_$jStat_1057.stdev(args[1], true) / Math.sqrt(args[1].length)));
   },
 
   // 3 different paramter lists:
@@ -82593,47 +84195,47 @@ _$jStat_1035.extend({
   // (tscore, n, sides)
   // (value, array, sides)
   ttest: function ttest() {
-    var args = __slice_1041.call(arguments);
+    var args = __slice_1063.call(arguments);
     var tscore;
     if (args.length === 5) {
-      tscore = Math.abs(_$jStat_1035.tscore(args[0], args[1], args[2], args[3]));
+      tscore = Math.abs(_$jStat_1057.tscore(args[0], args[1], args[2], args[3]));
       return (args[4] === 1) ?
-        (_$jStat_1035.studentt.cdf(-tscore, args[3]-1)) :
-        (_$jStat_1035.studentt.cdf(-tscore, args[3]-1)*2);
+        (_$jStat_1057.studentt.cdf(-tscore, args[3]-1)) :
+        (_$jStat_1057.studentt.cdf(-tscore, args[3]-1)*2);
     }
-    if (__isNumber_1041(args[1])) {
+    if (__isNumber_1063(args[1])) {
       tscore = Math.abs(args[0])
       return (args[2] == 1) ?
-        (_$jStat_1035.studentt.cdf(-tscore, args[1]-1)) :
-        (_$jStat_1035.studentt.cdf(-tscore, args[1]-1) * 2);
+        (_$jStat_1057.studentt.cdf(-tscore, args[1]-1)) :
+        (_$jStat_1057.studentt.cdf(-tscore, args[1]-1) * 2);
     }
-    tscore = Math.abs(_$jStat_1035.tscore(args[0], args[1]))
+    tscore = Math.abs(_$jStat_1057.tscore(args[0], args[1]))
     return (args[2] == 1) ?
-      (_$jStat_1035.studentt.cdf(-tscore, args[1].length-1)) :
-      (_$jStat_1035.studentt.cdf(-tscore, args[1].length-1) * 2);
+      (_$jStat_1057.studentt.cdf(-tscore, args[1].length-1)) :
+      (_$jStat_1057.studentt.cdf(-tscore, args[1].length-1) * 2);
   }
 });
 
-_$jStat_1035.extend(_$jStat_1035.fn, {
+_$jStat_1057.extend(_$jStat_1057.fn, {
   tscore: function tscore(value) {
     return (value - this.mean()) / (this.stdev(true) / Math.sqrt(this.cols()));
   },
 
   ttest: function ttest(value, sides) {
     return (sides === 1) ?
-      (1 - _$jStat_1035.studentt.cdf(Math.abs(this.tscore(value)), this.cols()-1)) :
-      (_$jStat_1035.studentt.cdf(-Math.abs(this.tscore(value)), this.cols()-1)*2);
+      (1 - _$jStat_1057.studentt.cdf(Math.abs(this.tscore(value)), this.cols()-1)) :
+      (_$jStat_1057.studentt.cdf(-Math.abs(this.tscore(value)), this.cols()-1)*2);
   }
 });
 
 // F Statistics
-_$jStat_1035.extend({
+_$jStat_1057.extend({
   // Paramter list is as follows:
   // (array1, array2, array3, ...)
   // or it is an array of arrays
   // array of arrays conversion
   anovafscore: function anovafscore() {
-    var args = __slice_1041.call(arguments),
+    var args = __slice_1063.call(arguments),
     expVar, sample, sampMean, sampSampMean, tmpargs, unexpVar, i, j;
     if (args.length === 1) {
       tmpargs = new Array(args[0].length);
@@ -82647,17 +84249,17 @@ _$jStat_1035.extend({
     for (i = 0; i < args.length; i++) {
       sample = sample.concat(args[i]);
     }
-    sampMean = _$jStat_1035.mean(sample);
+    sampMean = _$jStat_1057.mean(sample);
     // Computes the explained variance
     expVar = 0;
     for (i = 0; i < args.length; i++) {
-      expVar = expVar + args[i].length * Math.pow(_$jStat_1035.mean(args[i]) - sampMean, 2);
+      expVar = expVar + args[i].length * Math.pow(_$jStat_1057.mean(args[i]) - sampMean, 2);
     }
     expVar /= (args.length - 1);
     // Computes unexplained variance
     unexpVar = 0;
     for (i = 0; i < args.length; i++) {
-      sampSampMean = _$jStat_1035.mean(args[i]);
+      sampSampMean = _$jStat_1057.mean(args[i]);
       for (j = 0; j < args[i].length; j++) {
         unexpVar += Math.pow(args[i][j] - sampSampMean, 2);
       }
@@ -82670,29 +84272,29 @@ _$jStat_1035.extend({
   // (array1, array2, array3, ...)
   // (anovafscore, df1, df2)
   anovaftest: function anovaftest() {
-    var args = __slice_1041.call(arguments),
+    var args = __slice_1063.call(arguments),
     df1, df2, n, i;
-    if (__isNumber_1041(args[0])) {
-      return 1 - _$jStat_1035.centralF.cdf(args[0], args[1], args[2]);
+    if (__isNumber_1063(args[0])) {
+      return 1 - _$jStat_1057.centralF.cdf(args[0], args[1], args[2]);
     }
-    var anovafscore = _$jStat_1035.anovafscore(args);
+    var anovafscore = _$jStat_1057.anovafscore(args);
     df1 = args.length - 1;
     n = 0;
     for (i = 0; i < args.length; i++) {
       n = n + args[i].length;
     }
     df2 = n - df1 - 1;
-    return 1 - _$jStat_1035.centralF.cdf(anovafscore, df1, df2);
+    return 1 - _$jStat_1057.centralF.cdf(anovafscore, df1, df2);
   },
 
   ftest: function ftest(fscore, df1, df2) {
-    return 1 - _$jStat_1035.centralF.cdf(fscore, df1, df2);
+    return 1 - _$jStat_1057.centralF.cdf(fscore, df1, df2);
   }
 });
 
-_$jStat_1035.extend(_$jStat_1035.fn, {
+_$jStat_1057.extend(_$jStat_1057.fn, {
   anovafscore: function anovafscore() {
-    return _$jStat_1035.anovafscore(this.toArray());
+    return _$jStat_1057.anovafscore(this.toArray());
   },
 
   anovaftes: function anovaftes() {
@@ -82701,27 +84303,27 @@ _$jStat_1035.extend(_$jStat_1035.fn, {
     for (i = 0; i < this.length; i++) {
       n = n + this[i].length;
     }
-    return _$jStat_1035.ftest(this.anovafscore(), this.length - 1, n - this.length);
+    return _$jStat_1057.ftest(this.anovafscore(), this.length - 1, n - this.length);
   }
 });
 
 // Tukey's range test
-_$jStat_1035.extend({
+_$jStat_1057.extend({
   // 2 parameter lists
   // (mean1, mean2, n1, n2, sd)
   // (array1, array2, sd)
   qscore: function qscore() {
-    var args = __slice_1041.call(arguments);
+    var args = __slice_1063.call(arguments);
     var mean1, mean2, n1, n2, sd;
-    if (__isNumber_1041(args[0])) {
+    if (__isNumber_1063(args[0])) {
         mean1 = args[0];
         mean2 = args[1];
         n1 = args[2];
         n2 = args[3];
         sd = args[4];
     } else {
-        mean1 = _$jStat_1035.mean(args[0]);
-        mean2 = _$jStat_1035.mean(args[1]);
+        mean1 = _$jStat_1057.mean(args[0]);
+        mean2 = _$jStat_1057.mean(args[1]);
         n1 = args[0].length;
         n2 = args[1].length;
         sd = args[2];
@@ -82734,35 +84336,35 @@ _$jStat_1035.extend({
   // (mean1, mean2, n1, n2, sd, n, k)
   // (array1, array2, sd, n, k)
   qtest: function qtest() {
-    var args = __slice_1041.call(arguments);
+    var args = __slice_1063.call(arguments);
 
     var qscore;
     if (args.length === 3) {
       qscore = args[0];
       args = args.slice(1);
     } else if (args.length === 7) {
-      qscore = _$jStat_1035.qscore(args[0], args[1], args[2], args[3], args[4]);
+      qscore = _$jStat_1057.qscore(args[0], args[1], args[2], args[3], args[4]);
       args = args.slice(5);
     } else {
-      qscore = _$jStat_1035.qscore(args[0], args[1], args[2]);
+      qscore = _$jStat_1057.qscore(args[0], args[1], args[2]);
       args = args.slice(3);
     }
 
     var n = args[0];
     var k = args[1];
 
-    return 1 - _$jStat_1035.tukey.cdf(qscore, k, n - k);
+    return 1 - _$jStat_1057.tukey.cdf(qscore, k, n - k);
   },
 
   tukeyhsd: function tukeyhsd(arrays) {
-    var sd = _$jStat_1035.pooledstdev(arrays);
-    var means = arrays.map(function (arr) {return _$jStat_1035.mean(arr);});
+    var sd = _$jStat_1057.pooledstdev(arrays);
+    var means = arrays.map(function (arr) {return _$jStat_1057.mean(arr);});
     var n = arrays.reduce(function (n, arr) {return n + arr.length;}, 0);
 
     var results = [];
     for (var i = 0; i < arrays.length; ++i) {
         for (var j = i + 1; j < arrays.length; ++j) {
-            var p = _$jStat_1035.qtest(means[i], means[j], arrays[i].length, arrays[j].length, sd, n, arrays.length);
+            var p = _$jStat_1057.qtest(means[i], means[j], arrays[i].length, arrays[j].length, sd, n, arrays.length);
             results.push([[i, j], p]);
         }
     }
@@ -82772,20 +84374,20 @@ _$jStat_1035.extend({
 });
 
 // Error Bounds
-_$jStat_1035.extend({
+_$jStat_1057.extend({
   // 2 different parameter setups
   // (value, alpha, sd, n)
   // (value, alpha, array)
   normalci: function normalci() {
-    var args = __slice_1041.call(arguments),
+    var args = __slice_1063.call(arguments),
     ans = new Array(2),
     change;
     if (args.length === 4) {
-      change = Math.abs(_$jStat_1035.normal.inv(args[1] / 2, 0, 1) *
+      change = Math.abs(_$jStat_1057.normal.inv(args[1] / 2, 0, 1) *
                         args[2] / Math.sqrt(args[3]));
     } else {
-      change = Math.abs(_$jStat_1035.normal.inv(args[1] / 2, 0, 1) *
-                        _$jStat_1035.stdev(args[2]) / Math.sqrt(args[2].length));
+      change = Math.abs(_$jStat_1057.normal.inv(args[1] / 2, 0, 1) *
+                        _$jStat_1057.stdev(args[2]) / Math.sqrt(args[2].length));
     }
     ans[0] = args[0] - change;
     ans[1] = args[0] + change;
@@ -82796,15 +84398,15 @@ _$jStat_1035.extend({
   // (value, alpha, sd, n)
   // (value, alpha, array)
   tci: function tci() {
-    var args = __slice_1041.call(arguments),
+    var args = __slice_1063.call(arguments),
     ans = new Array(2),
     change;
     if (args.length === 4) {
-      change = Math.abs(_$jStat_1035.studentt.inv(args[1] / 2, args[3] - 1) *
+      change = Math.abs(_$jStat_1057.studentt.inv(args[1] / 2, args[3] - 1) *
                         args[2] / Math.sqrt(args[3]));
     } else {
-      change = Math.abs(_$jStat_1035.studentt.inv(args[1] / 2, args[2].length - 1) *
-                        _$jStat_1035.stdev(args[2], true) / Math.sqrt(args[2].length));
+      change = Math.abs(_$jStat_1057.studentt.inv(args[1] / 2, args[2].length - 1) *
+                        _$jStat_1057.stdev(args[2], true) / Math.sqrt(args[2].length));
     }
     ans[0] = args[0] - change;
     ans[1] = args[0] + change;
@@ -82816,13 +84418,13 @@ _$jStat_1035.extend({
   }
 });
 
-_$jStat_1035.extend(_$jStat_1035.fn, {
+_$jStat_1057.extend(_$jStat_1057.fn, {
   normalci: function normalci(value, alpha) {
-    return _$jStat_1035.normalci(value, alpha, this.toArray());
+    return _$jStat_1057.normalci(value, alpha, this.toArray());
   },
 
   tci: function tci(value, alpha) {
-    return _$jStat_1035.tci(value, alpha, this.toArray());
+    return _$jStat_1057.tci(value, alpha, this.toArray());
   }
 });
 
@@ -82837,29 +84439,29 @@ function differenceOfProportions(p1, n1, p2, n2) {
 }
 
 // Difference of Proportions
-_$jStat_1035.extend(_$jStat_1035.fn, {
+_$jStat_1057.extend(_$jStat_1057.fn, {
   oneSidedDifferenceOfProportions: function oneSidedDifferenceOfProportions(p1, n1, p2, n2) {
     var z = differenceOfProportions(p1, n1, p2, n2);
-    return _$jStat_1035.ztest(z, 1);
+    return _$jStat_1057.ztest(z, 1);
   },
 
   twoSidedDifferenceOfProportions: function twoSidedDifferenceOfProportions(p1, n1, p2, n2) {
     var z = differenceOfProportions(p1, n1, p2, n2);
-    return _$jStat_1035.ztest(z, 2);
+    return _$jStat_1057.ztest(z, 2);
   }
 });
 
-var _$models_1038 = {};
-/* removed: var _$jStat_1035 = require( './core.js' ); */;
+var _$models_1060 = {};
+/* removed: var _$jStat_1057 = require( './core.js' ); */;
 
-_$jStat_1035.models = (function(){
+_$jStat_1057.models = (function(){
   function sub_regress(exog) {
     var var_count = exog[0].length;
-    var modelList = _$jStat_1035.arange(var_count).map(function(endog_index) {
+    var modelList = _$jStat_1057.arange(var_count).map(function(endog_index) {
       var exog_index =
-          _$jStat_1035.arange(var_count).filter(function(i){return i!==endog_index});
-      return ols(_$jStat_1035.col(exog, endog_index).map(function(x){ return x[0] }),
-                 _$jStat_1035.col(exog, exog_index))
+          _$jStat_1057.arange(var_count).filter(function(i){return i!==endog_index});
+      return ols(_$jStat_1057.col(exog, endog_index).map(function(x){ return x[0] }),
+                 _$jStat_1057.col(exog, exog_index))
     });
     return modelList;
   }
@@ -82872,20 +84474,20 @@ _$jStat_1035.models = (function(){
     var nobs = endog.length;
     var df_model = exog[0].length - 1;
     var df_resid = nobs-df_model - 1;
-    var coef = _$jStat_1035.lstsq(exog, endog);
+    var coef = _$jStat_1057.lstsq(exog, endog);
     var predict =
-        _$jStat_1035.multiply(exog, coef.map(function(x) { return [x] }))
+        _$jStat_1057.multiply(exog, coef.map(function(x) { return [x] }))
             .map(function(p) { return p[0] });
-    var resid = _$jStat_1035.subtract(endog, predict);
-    var ybar = _$jStat_1035.mean(endog);
+    var resid = _$jStat_1057.subtract(endog, predict);
+    var ybar = _$jStat_1057.mean(endog);
     // constant cause problem
     // var SST = jStat.sum(endog.map(function(y) {
     //   return Math.pow(y-ybar,2);
     // }));
-    var SSE = _$jStat_1035.sum(predict.map(function(f) {
+    var SSE = _$jStat_1057.sum(predict.map(function(f) {
       return Math.pow(f - ybar, 2);
     }));
-    var SSR = _$jStat_1035.sum(endog.map(function(y, i) {
+    var SSR = _$jStat_1057.sum(endog.map(function(y, i) {
       return Math.pow(y - predict[i], 2);
     }));
     var SST = SSE + SSR;
@@ -82922,10 +84524,10 @@ _$jStat_1035.models = (function(){
       return (coef - 0) / seBetaHat[i];
     });
     var pValue = tStatistic.map(function(t) {
-      var leftppf = _$jStat_1035.studentt.cdf(t, model.df_resid);
+      var leftppf = _$jStat_1057.studentt.cdf(t, model.df_resid);
       return (leftppf > 0.5 ? 1 - leftppf : leftppf) * 2;
     });
-    var c = _$jStat_1035.studentt.inv(0.975, model.df_resid);
+    var c = _$jStat_1057.studentt.inv(0.975, model.df_resid);
     var interval95 = model.coef.map(function(coef, i) {
       var d = c * seBetaHat[i];
       return [coef - d, coef + d];
@@ -82943,7 +84545,7 @@ _$jStat_1035.models = (function(){
     var F_statistic =
         (model.R2 / model.df_model) / ((1 - model.R2) / model.df_resid);
     var fcdf = function(x, n1, n2) {
-      return _$jStat_1035.beta.cdf(x / (n2 / n1 + x), n1 / 2, n2 / 2)
+      return _$jStat_1057.beta.cdf(x / (n2 / n1 + x), n1 / 2, n2 / 2)
     }
     var pvalue = 1 - fcdf(F_statistic, model.df_model, model.df_resid);
     return { F_statistic: F_statistic, pvalue: pvalue };
@@ -82966,7 +84568,7 @@ _$jStat_1035.models = (function(){
   return { ols: ols_wrap };
 })();
 
-var _$regression_1039 = {};
+var _$regression_1061 = {};
 //To regress, simply build X matrix
 //(append column of 1's) using
 //buildxmatrix and build the Y
@@ -82974,11 +84576,11 @@ var _$regression_1039 = {};
 //(simply the transpose)
 //and run regress.
 
-/* removed: var _$jStat_1035 = require( './core.js' ); */;
+/* removed: var _$jStat_1057 = require( './core.js' ); */;
 
 //Regressions
 
-_$jStat_1035.extend({
+_$jStat_1057.extend({
   buildxmatrix: function buildxmatrix(){
     //Parameters will be passed in as such
     //(array1,array2,array3,...)
@@ -82989,7 +84591,7 @@ _$jStat_1035.extend({
       var array = [1];
       matrixRows[i]= array.concat(arguments[i]);
     }
-    return _$jStat_1035(matrixRows);
+    return _$jStat_1057(matrixRows);
 
   },
 
@@ -83001,7 +84603,7 @@ _$jStat_1035.extend({
       var array = [1]
       matrixRows[i]= array.concat(arguments[0][i]);
     }
-    return _$jStat_1035(matrixRows);
+    return _$jStat_1057(matrixRows);
 
   },
 
@@ -83011,12 +84613,12 @@ _$jStat_1035.extend({
     for(var i=0;i<jMat.length;i++){
       pass[i] = jMat[i];
     }
-    return _$jStat_1035.builddxmatrix(pass);
+    return _$jStat_1057.builddxmatrix(pass);
 
   },
 
   buildymatrix: function buildymatrix(array){
-    return _$jStat_1035(array).transpose();
+    return _$jStat_1057(array).transpose();
   },
 
   buildjymatrix: function buildjymatrix(jMat){
@@ -83038,7 +84640,7 @@ _$jStat_1035.extend({
             result[i][j] = sum;
           }
         }
-        return _$jStat_1035(result);
+        return _$jStat_1057(result);
       }
       result = [];
       for (i = 0; i < A.rows(); i++) {
@@ -83051,7 +84653,7 @@ _$jStat_1035.extend({
           result[i][j] = sum;
         }
       }
-      return _$jStat_1035(result);
+      return _$jStat_1057(result);
     }
   },
 
@@ -83060,32 +84662,32 @@ _$jStat_1035.extend({
   regress: function regress(jMatX,jMatY){
     //print("regressin!");
     //print(jMatX.toArray());
-    var innerinv = _$jStat_1035.xtranspxinv(jMatX);
+    var innerinv = _$jStat_1057.xtranspxinv(jMatX);
     //print(innerinv);
     var xtransp = jMatX.transpose();
-    var next = _$jStat_1035.matrixmult(_$jStat_1035(innerinv),xtransp);
-    return _$jStat_1035.matrixmult(next,jMatY);
+    var next = _$jStat_1057.matrixmult(_$jStat_1057(innerinv),xtransp);
+    return _$jStat_1057.matrixmult(next,jMatY);
 
   },
 
   regresst: function regresst(jMatX,jMatY,sides){
-    var beta = _$jStat_1035.regress(jMatX,jMatY);
+    var beta = _$jStat_1057.regress(jMatX,jMatY);
 
     var compile = {};
     compile.anova = {};
-    var jMatYBar = _$jStat_1035.jMatYBar(jMatX, beta);
+    var jMatYBar = _$jStat_1057.jMatYBar(jMatX, beta);
     compile.yBar = jMatYBar;
     var yAverage = jMatY.mean();
-    compile.anova.residuals = _$jStat_1035.residuals(jMatY, jMatYBar);
+    compile.anova.residuals = _$jStat_1057.residuals(jMatY, jMatYBar);
 
-    compile.anova.ssr = _$jStat_1035.ssr(jMatYBar, yAverage);
+    compile.anova.ssr = _$jStat_1057.ssr(jMatYBar, yAverage);
     compile.anova.msr = compile.anova.ssr / (jMatX[0].length - 1);
 
-    compile.anova.sse = _$jStat_1035.sse(jMatY, jMatYBar);
+    compile.anova.sse = _$jStat_1057.sse(jMatY, jMatYBar);
     compile.anova.mse =
         compile.anova.sse / (jMatY.length - (jMatX[0].length - 1) - 1);
 
-    compile.anova.sst = _$jStat_1035.sst(jMatY, yAverage);
+    compile.anova.sst = _$jStat_1057.sst(jMatY, yAverage);
     compile.anova.mst = compile.anova.sst / (jMatY.length - 1);
 
     compile.anova.r2 = 1 - (compile.anova.sse / compile.anova.sst);
@@ -83093,7 +84695,7 @@ _$jStat_1035.extend({
 
     compile.anova.fratio = compile.anova.msr / compile.anova.mse;
     compile.anova.pvalue =
-        _$jStat_1035.anovaftest(compile.anova.fratio,
+        _$jStat_1057.anovaftest(compile.anova.fratio,
                          jMatX[0].length - 1,
                          jMatY.length - (jMatX[0].length - 1) - 1);
 
@@ -83103,13 +84705,13 @@ _$jStat_1035.extend({
     if (compile.anova.r2adj < 0) compile.anova.r2adj = 0;
 
     compile.stats = new Array(jMatX[0].length);
-    var covar = _$jStat_1035.xtranspxinv(jMatX);
+    var covar = _$jStat_1057.xtranspxinv(jMatX);
     var sds, ts, ps;
 
     for(var i=0; i<beta.length;i++){
       sds=Math.sqrt(compile.anova.mse * Math.abs(covar[i][i]));
       ts= Math.abs(beta[i] / sds);
-      ps= _$jStat_1035.ttest(ts, jMatY.length - jMatX[0].length - 1, sides);
+      ps= _$jStat_1057.ttest(ts, jMatY.length - jMatX[0].length - 1, sides);
 
       compile.stats[i]=[beta[i], sds, ts, ps];
     }
@@ -83119,23 +84721,23 @@ _$jStat_1035.extend({
   },
 
   xtranspx: function xtranspx(jMatX){
-    return _$jStat_1035.matrixmult(jMatX.transpose(),jMatX);
+    return _$jStat_1057.matrixmult(jMatX.transpose(),jMatX);
   },
 
 
   xtranspxinv: function xtranspxinv(jMatX){
-    var inner = _$jStat_1035.matrixmult(jMatX.transpose(),jMatX);
-    var innerinv = _$jStat_1035.inv(inner);
+    var inner = _$jStat_1057.matrixmult(jMatX.transpose(),jMatX);
+    var innerinv = _$jStat_1057.inv(inner);
     return innerinv;
   },
 
   jMatYBar: function jMatYBar(jMatX, beta) {
-    var yBar = _$jStat_1035.matrixmult(jMatX, beta);
-    return new _$jStat_1035(yBar);
+    var yBar = _$jStat_1057.matrixmult(jMatX, beta);
+    return new _$jStat_1057(yBar);
   },
 
   residuals: function residuals(jMatY, jMatYBar) {
-    return _$jStat_1035.matrixsubtract(jMatY, jMatYBar);
+    return _$jStat_1057.matrixsubtract(jMatY, jMatYBar);
   },
 
   ssr: function ssr(jMatYBar, yAverage) {
@@ -83170,11 +84772,11 @@ _$jStat_1035.extend({
         ans[i][j]=A[i][j]-B[i][j];
       }
     }
-    return _$jStat_1035(ans);
+    return _$jStat_1057(ans);
   }
 });
 
-return _$jStat_1035;
+return _$jStat_1057;
 
 });
 
