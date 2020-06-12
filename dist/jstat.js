@@ -68898,24 +68898,24 @@ _$jStat_887.extend(_$jStat_887.pareto, {
     return _$cdf_791(x, shape, scale);
   },
 
-  inv: function inv(x, scale, shape) {
-    return _$quantile_802(x, shape, scale);
+  inv: function inv(p, scale, shape) {
+    return _$quantile_802(p, shape, scale);
   },
 
-  mean: function mean(x, scale, shape) {
-    return _$mean_792(x, shape, scale);
+  mean: function mean(scale, shape) {
+    return _$mean_792(shape, scale);
   },
 
-  median: function median(x, scale, shape) {
-    return _$median_794(x, shape, scale);
+  median: function median(scale, shape) {
+    return _$median_794(shape, scale);
   },
 
-  mode: function mode(x, scale, shape) {
-    return _$mode_796(x, shape, scale);
+  mode: function mode(scale, shape) {
+    return _$mode_796(shape, scale);
   },
 
-  variance: function variance(x, scale, shape) {
-    return _$variance_804(x, shape, scale);
+  variance: function variance(scale, shape) {
+    return _$variance_804(shape, scale);
   }
 });
 

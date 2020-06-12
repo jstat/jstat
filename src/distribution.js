@@ -355,24 +355,24 @@ jStat.extend(jStat.pareto, {
     return paretoCDF(x, shape, scale);
   },
 
-  inv: function inv(x, scale, shape) {
-    return paretoQuantile(x, shape, scale);
+  inv: function inv(p, scale, shape) {
+    return paretoQuantile(p, shape, scale);
   },
 
-  mean: function mean(x, scale, shape) {
-    return paretoMean(x, shape, scale);
+  mean: function mean(scale, shape) {
+    return paretoMean(shape, scale);
   },
 
-  median: function median(x, scale, shape) {
-    return paretoMedian(x, shape, scale);
+  median: function median(scale, shape) {
+    return paretoMedian(shape, scale);
   },
 
-  mode: function mode(x, scale, shape) {
-    return paretoMode(x, shape, scale);
+  mode: function mode(scale, shape) {
+    return paretoMode(shape, scale);
   },
 
-  variance: function variance(x, scale, shape) {
-    return paretoVariance(x, shape, scale);
+  variance: function variance(scale, shape) {
+    return paretoVariance(shape, scale);
   }
 });
 
