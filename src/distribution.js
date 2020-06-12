@@ -145,41 +145,25 @@ jStat.extend(jStat.chisquare, {
   variance: chisquareVariance
 });
 
-
+var expPDF = require( '@stdlib/stats/base/dists/exponential/pdf' );
+var expCDF = require( '@stdlib/stats/base/dists/exponential/cdf' );
+var expQuantile = require( '@stdlib/stats/base/dists/exponential/quantile' );
+var expMean = require( '@stdlib/stats/base/dists/exponential/mean' );
+var expMedian = require( '@stdlib/stats/base/dists/exponential/median' );
+var expMode = require( '@stdlib/stats/base/dists/exponential/mode' );
+var expSample = require( '@stdlib/random/base/exponential' );
+var expVariance = require( '@stdlib/stats/base/dists/exponential/variance' );
 
 // extend exponential function with static methods
 jStat.extend(jStat.exponential, {
-  pdf: function pdf(x, rate) {
-    return x < 0 ? 0 : rate * Math.exp(-rate * x);
-  },
-
-  cdf: function cdf(x, rate) {
-    return x < 0 ? 0 : 1 - Math.exp(-rate * x);
-  },
-
-  inv: function(p, rate) {
-    return -Math.log(1 - p) / rate;
-  },
-
-  mean : function(rate) {
-    return 1 / rate;
-  },
-
-  median: function (rate) {
-    return (1 / rate) * Math.log(2);
-  },
-
-  mode: function mode(/*rate*/) {
-    return 0;
-  },
-
-  sample: function sample(rate) {
-    return -1 / rate * Math.log(jStat._random_fn());
-  },
-
-  variance : function(rate) {
-    return Math.pow(rate, -2);
-  }
+  pdf: expPDF,
+  cdf: expCDF,
+  inv: expQuantile,
+  mean : expMean,
+  median: expMedian,
+  mode: expMode,
+  sample: expSample,
+  variance : expVariance
 });
 
 var gammaPDF = require( '@stdlib/stats/base/dists/gamma/pdf' );
