@@ -114,7 +114,7 @@ suite.addBatch({
     },
     'check cdf calculation, when a = b': function(jStat) {
       var tol = 0.0000001;
-      assert.isNaN(jStat.triangular.cdf(-10, -10, -10, -10));
+      assert.epsilon(tol, jStat.triangular.cdf(-10, -10, -10, -10), 0);
     }
   },
   'triangular inv': {

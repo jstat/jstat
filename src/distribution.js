@@ -403,7 +403,7 @@ var weibullQuantile = require( '@stdlib/stats/base/dists/weibull/quantile' );
 var weibullMean = require( '@stdlib/stats/base/dists/weibull/mean' );
 var weibullMedian = require( '@stdlib/stats/base/dists/weibull/median' );
 var weibullMode = require( '@stdlib/stats/base/dists/weibull/mode' );
-var weibullSample = require( '@stdlib/random/base/t' );
+var weibullSample = require( '@stdlib/random/base/weibull' );
 var weibullVariance = require( '@stdlib/stats/base/dists/weibull/variance' );
 
 // extend weibull function with static methods
@@ -446,7 +446,7 @@ var uniformCDF = require( '@stdlib/stats/base/dists/uniform/cdf' );
 var uniformQuantile = require( '@stdlib/stats/base/dists/uniform/quantile' );
 var uniformMean = require( '@stdlib/stats/base/dists/uniform/mean' );
 var uniformMedian = require( '@stdlib/stats/base/dists/uniform/median' );
-var uniformSample = require( '@stdlib/random/base/t' );
+var uniformSample = require( '@stdlib/random/base/uniform' );
 var uniformVariance = require( '@stdlib/stats/base/dists/uniform/variance' );
 
 // extend uniform function with static methods
@@ -509,124 +509,49 @@ jStat.extend(jStat.poisson, {
   sample: poissonSample
 });
 
+var triangularPDF = require( '@stdlib/stats/base/dists/triangular/pdf' );
+var triangularCDF = require( '@stdlib/stats/base/dists/triangular/cdf' );
+var triangularQuantile = require( '@stdlib/stats/base/dists/triangular/quantile' );
+var triangularMean = require( '@stdlib/stats/base/dists/triangular/mean' );
+var triangularMedian = require( '@stdlib/stats/base/dists/triangular/median' );
+var triangularMode = require( '@stdlib/stats/base/dists/triangular/mode' );
+var triangularSample = require( '@stdlib/random/base/triangular' );
+var triangularVariance = require( '@stdlib/stats/base/dists/triangular/variance' );
+
 // extend triangular function with static methods
 jStat.extend(jStat.triangular, {
-  pdf: function pdf(x, a, b, c) {
-    if (b <= a || c < a || c > b) {
-      return NaN;
-    } else {
-      if (x < a || x > b) {
-        return 0;
-      } else if (x < c) {
-          return (2 * (x - a)) / ((b - a) * (c - a));
-      } else if (x === c) {
-          return (2 / (b - a));
-      } else { // x > c
-          return (2 * (b - x)) / ((b - a) * (b - c));
-      }
-    }
-  },
-
-  cdf: function cdf(x, a, b, c) {
-    if (b <= a || c < a || c > b)
-      return NaN;
-    if (x <= a)
-      return 0;
-    else if (x >= b)
-      return 1;
-    if (x <= c)
-      return Math.pow(x - a, 2) / ((b - a) * (c - a));
-    else // x > c
-      return 1 - Math.pow(b - x, 2) / ((b - a) * (b - c));
-  },
-
-  inv: function inv(p, a, b, c) {
-    if (b <= a || c < a || c > b) {
-      return NaN;
-    } else {
-      if (p <= ((c - a) / (b - a))) {
-        return a + (b - a) * Math.sqrt(p * ((c - a) / (b - a)));
-      } else { // p > ((c - a) / (b - a))
-        return a + (b - a) * (1 - Math.sqrt((1 - p) * (1 - ((c - a) / (b - a)))));
-      }
-    }
-  },
-
-  mean: function mean(a, b, c) {
-    return (a + b + c) / 3;
-  },
-
-  median: function median(a, b, c) {
-    if (c <= (a + b) / 2) {
-      return b - Math.sqrt((b - a) * (b - c)) / Math.sqrt(2);
-    } else if (c > (a + b) / 2) {
-      return a + Math.sqrt((b - a) * (c - a)) / Math.sqrt(2);
-    }
-  },
-
-  mode: function mode(a, b, c) {
-    return c;
-  },
-
-  sample: function sample(a, b, c) {
-    var u = jStat._random_fn();
-    if (u < ((c - a) / (b - a)))
-      return a + Math.sqrt(u * (b - a) * (c - a))
-    return b - Math.sqrt((1 - u) * (b - a) * (b - c));
-  },
-
-  variance: function variance(a, b, c) {
-    return (a * a + b * b + c * c - a * b - a * c - b * c) / 18;
-  }
+  pdf: triangularPDF,
+  cdf: triangularCDF,
+  inv: triangularQuantile,
+  mean: triangularMean,
+  median: triangularMedian,
+  mode: triangularMode,
+  sample: triangularSample,
+  variance: triangularVariance
 });
 
+var arcsinePDF = require( '@stdlib/stats/base/dists/arcsine/pdf' );
+var arcsineCDF = require( '@stdlib/stats/base/dists/arcsine/cdf' );
+var arcsineQuantile = require( '@stdlib/stats/base/dists/arcsine/quantile' );
+var arcsineMean = require( '@stdlib/stats/base/dists/arcsine/mean' );
+var arcsineMedian = require( '@stdlib/stats/base/dists/arcsine/median' );
+var arcsineSample = require( '@stdlib/random/base/arcsine' );
+var arcsineVariance = require( '@stdlib/stats/base/dists/arcsine/variance' );
 
 // extend arcsine function with static methods
 jStat.extend(jStat.arcsine, {
-  pdf: function pdf(x, a, b) {
-    if (b <= a) return NaN;
-
-    return (x <= a || x >= b) ? 0 :
-      (2 / Math.PI) *
-        Math.pow(Math.pow(b - a, 2) -
-                  Math.pow(2 * x - a - b, 2), -0.5);
-  },
-
-  cdf: function cdf(x, a, b) {
-    if (x < a)
-      return 0;
-    else if (x < b)
-      return (2 / Math.PI) * Math.asin(Math.sqrt((x - a)/(b - a)));
-    return 1;
-  },
-
-  inv: function(p, a, b) {
-    return a + (0.5 - 0.5 * Math.cos(Math.PI * p)) * (b - a);
-  },
-
-  mean: function mean(a, b) {
-    if (b <= a) return NaN;
-    return (a + b) / 2;
-  },
-
-  median: function median(a, b) {
-    if (b <= a) return NaN;
-    return (a + b) / 2;
-  },
+  pdf: arcsinePDF,
+  cdf: arcsineCDF,
+  inv: arcsineQuantile,
+  mean: arcsineMean,
+  median: arcsineMedian,
 
   mode: function mode(/*a, b*/) {
     throw new Error('mode is not yet implemented');
   },
 
-  sample: function sample(a, b) {
-    return ((a + b) / 2) + ((b - a) / 2) *
-      Math.sin(2 * Math.PI * jStat.uniform.sample(0, 1));
-  },
-
-  variance: function variance(a, b) {
-    if (b <= a) return NaN;
-    return Math.pow(b - a, 2) / 8;
-  }
+  sample: arcsineSample,
+  variance: arcsineVariance
 });
 
 
