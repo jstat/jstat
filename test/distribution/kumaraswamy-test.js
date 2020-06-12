@@ -103,42 +103,42 @@ suite.addBatch({
     'check pdf calculation': function(jStat) {
       var tol = 0.0000001;
       // 'U'-shaped distribution
-      assert.equal(jStat.kumaraswamy.pdf(0, 0.5, 0.5), Infinity);
+      assert.equal(jStat.kumaraswamy.pdf(0, 0.5, 0.5), 0);
       assert.epsilon(tol, jStat.kumaraswamy.pdf(0.5, 0.5, 0.5), 0.6532814824);
-      assert.equal(jStat.kumaraswamy.pdf(1, 0.5, 0.5), Infinity);
+      assert.equal(jStat.kumaraswamy.pdf(1, 0.5, 0.5), 0);
 
       // 'L'-shaped distribution
-      assert.equal(jStat.kumaraswamy.pdf(0, 0.8, 1), Infinity);
+      assert.equal(jStat.kumaraswamy.pdf(0, 0.8, 1), 0);
       assert.epsilon(tol, jStat.kumaraswamy.pdf(0.5, 0.8, 1), 0.918958684);
-      assert.epsilon(tol, jStat.kumaraswamy.pdf(1, 0.8, 1), 0.8);
+      assert.epsilon(tol, jStat.kumaraswamy.pdf(1, 0.8, 1), 0);
 
       // reversed-'L'-shaped distribution
-      assert.epsilon(tol, jStat.kumaraswamy.pdf(0, 1, 0.4), 0.4);
+      assert.epsilon(tol, jStat.kumaraswamy.pdf(0, 1, 0.4), 0);
       assert.epsilon(tol, jStat.kumaraswamy.pdf(0.5, 1, 0.4), 0.6062866266);
-      assert.equal(jStat.kumaraswamy.pdf(1, 1, 0.4), Infinity);
+      assert.equal(jStat.kumaraswamy.pdf(1, 1, 0.4), 0);
 
       // sideways-'S'-shaped distribution
-      assert.equal(jStat.kumaraswamy.pdf(0, 0.6, 1.2), Infinity);
+      assert.equal(jStat.kumaraswamy.pdf(0, 0.6, 1.2), 0);
       assert.epsilon(tol, jStat.kumaraswamy.pdf(0.5, 0.6, 1.2), 0.7657783992);
       assert.epsilon(tol, jStat.kumaraswamy.pdf(1, 0.6, 1.2), 0);
 
       // sideways-'Z'-shaped distribution
       assert.epsilon(tol, jStat.kumaraswamy.pdf(0, 1.3, 0.5), 0);
       assert.epsilon(tol, jStat.kumaraswamy.pdf(0.5, 1.3, 0.5), 0.6851052165);
-      assert.equal(jStat.kumaraswamy.pdf(1, 1.3, 0.5), Infinity);
+      assert.equal(jStat.kumaraswamy.pdf(1, 1.3, 0.5), 0);
 
       // flat distribution
-      assert.epsilon(tol, jStat.kumaraswamy.pdf(0, 1, 1), 1);
+      assert.epsilon(tol, jStat.kumaraswamy.pdf(0, 1, 1), 0);
       assert.epsilon(tol, jStat.kumaraswamy.pdf(0.5, 1, 1), 1);
-      assert.epsilon(tol, jStat.kumaraswamy.pdf(1, 1, 1), 1);
+      assert.epsilon(tol, jStat.kumaraswamy.pdf(1, 1, 1), 0);
 
       // '/'-shaped distribution
       assert.epsilon(tol, jStat.kumaraswamy.pdf(0, 2, 1), 0);
       assert.epsilon(tol, jStat.kumaraswamy.pdf(0.5, 2, 1), 1);
-      assert.epsilon(tol, jStat.kumaraswamy.pdf(1, 2, 1), 2);
+      assert.epsilon(tol, jStat.kumaraswamy.pdf(1, 2, 1), 0);
 
       // '\'-shaped distribution
-      assert.epsilon(tol, jStat.kumaraswamy.pdf(0, 1, 1.5), 1.5);
+      assert.epsilon(tol, jStat.kumaraswamy.pdf(0, 1, 1.5), 0);
       assert.epsilon(tol, jStat.kumaraswamy.pdf(0.5, 1, 1.5), 1.060660172);
       assert.epsilon(tol, jStat.kumaraswamy.pdf(1, 1, 1.5), 0);
 

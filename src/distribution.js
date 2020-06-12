@@ -218,50 +218,23 @@ jStat.extend(jStat.invgamma, {
   variance: invgammaVariance
 });
 
+var kumaraswamyPDF = require( '@stdlib/stats/base/dists/kumaraswamy/pdf' );
+var kumaraswamyCDF = require( '@stdlib/stats/base/dists/kumaraswamy/cdf' );
+var kumaraswamyQuantile = require( '@stdlib/stats/base/dists/kumaraswamy/quantile' );
+var kumaraswamyMean = require( '@stdlib/stats/base/dists/kumaraswamy/mean' );
+var kumaraswamyMedian = require( '@stdlib/stats/base/dists/kumaraswamy/median' );
+var kumaraswamyMode = require( '@stdlib/stats/base/dists/kumaraswamy/mode' );
+var kumaraswamyVariance = require( '@stdlib/stats/base/dists/kumaraswamy/variance' );
 
 // extend kumaraswamy function with static methods
 jStat.extend(jStat.kumaraswamy, {
-  pdf: function pdf(x, alpha, beta) {
-    if (x === 0 && alpha === 1)
-      return beta;
-    else if (x === 1 && beta === 1)
-      return alpha;
-    return Math.exp(Math.log(alpha) + Math.log(beta) + (alpha - 1) *
-                    Math.log(x) + (beta - 1) *
-                    Math.log(1 - Math.pow(x, alpha)));
-  },
-
-  cdf: function cdf(x, alpha, beta) {
-    if (x < 0)
-      return 0;
-    else if (x > 1)
-      return 1;
-    return (1 - Math.pow(1 - Math.pow(x, alpha), beta));
-  },
-
-  inv: function inv(p, alpha, beta) {
-    return Math.pow(1 - Math.pow(1 - p, 1 / beta), 1 / alpha);
-  },
-
-  mean : function(alpha, beta) {
-    return (beta * jStat.gammafn(1 + 1 / alpha) *
-            jStat.gammafn(beta)) / (jStat.gammafn(1 + 1 / alpha + beta));
-  },
-
-  median: function median(alpha, beta) {
-    return Math.pow(1 - Math.pow(2, -1 / beta), 1 / alpha);
-  },
-
-  mode: function mode(alpha, beta) {
-    if (!(alpha >= 1 && beta >= 1 && (alpha !== 1 && beta !== 1)))
-      return undefined;
-    return Math.pow((alpha - 1) / (alpha * beta - 1), 1 / alpha);
-  },
-
-  variance: function variance(/*alpha, beta*/) {
-    throw new Error('variance not yet implemented');
-    // TODO: complete this
-  }
+  pdf: kumaraswamyPDF,
+  cdf: kumaraswamyCDF,
+  inv: kumaraswamyQuantile,
+  mean : kumaraswamyMean,
+  median: kumaraswamyMedian,
+  mode: kumaraswamyMode,
+  variance: kumaraswamyVariance
 });
 
 
