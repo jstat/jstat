@@ -193,7 +193,7 @@ the standard deviation `sd` and the sample size `n`.
 Returns a 1-alpha confidence interval for `value` given
 the data from `array`.
 
-### jStat.oneSidedDifferenceOfProportions( p1, n1, p2, n2 )
+### jStat.fn.oneSidedDifferenceOfProportions( p1, n1, p2, n2 )
 
 Returns the p-value for a 1-sided test for the difference
 between two proportions. `p1` is the sample proportion for
@@ -201,7 +201,7 @@ the first sample, whereas `p2` is the sample proportion for
 the second sample. Similiarly, `n1` is the sample size of the
 first sample and `n2` is the sample size for the second sample.
 
-### jStat.twoSidedDifferenceOfProportions( p1, n1, p2, n2 )
+### jStat.fn.twoSidedDifferenceOfProportions( p1, n1, p2, n2 )
 
 Returns the p-value for a 2-sided test for the difference
 between two proportions. `p1` is the sample proportion for
