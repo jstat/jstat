@@ -228,7 +228,7 @@ Returns the mean of the `array` vector.
 
 **fn.max( [bool,][callback] )**
 
-Returns the mean of a vector or matrix columns.
+Returns the max of a vector or matrix columns.
 
     jStat( 1, 5, 5 ).mean() === 3
     jStat([[1,2],[3,4]]).mean() === [ 2, 3 ]
