@@ -20,7 +20,7 @@
     "url": "http://github.com/jstat/jstat.git"
   },
   "devDependencies": {
-    "@stdlib/stdlib": "0.0.91",
+    "@stdlib/stdlib": "0.0.92",
     "browser-pack-flat": "^3.4.2",
     "browserify": "^16.5.1",
     "uglify-es": "^3.3.9",
