@@ -1,8 +1,8 @@
 /* Provides functions for the solution of linear system of equations, integration, extrapolation,
  * interpolation, eigenvalue problems, differential equations and PCA analysis. */
 var jStat = require( './core.js' );
-// var gdot = require( '@stdlib/blas/base/gdot' ); // FIXME
-// var gnrm2 = require( '@stdlib/blas/base/gnrm2' ); // FIXME
+var gdot = require( '@stdlib/blas/base/gdot' );
+var gnrm2 = require( '@stdlib/blas/base/gnrm2' );
 
 var push = Array.prototype.push;
 var isArray = jStat.utils.isArray;
@@ -82,35 +82,17 @@ jStat.extend({
 
 
   // Returns the dot product of two matrices
-  dot: function dot(arr, arg) { // FIXME
-    // if (!isUsable(arr[0])) arr = [ arr ];
-    // if (!isUsable(arg[0])) arg = [ arg ];
-    // // convert column to row vector
-    // var left = (arr[0].length === 1 && arr.length !== 1) ? jStat.transpose(arr) : arr,
-    // right = (arg[0].length === 1 && arg.length !== 1) ? jStat.transpose(arg) : arg,
-    // res = [],
-    // nrow = left.length,
-    // ncol = left[0].length;
-    // for (row = 0; row < nrow; row++) {
-    //   res.push(gdot(ncol, left[row], 1, right[row], 1));
-    // }
-    // return (res.length === 1) ? res[0] : res;
+  dot: function dot(arr, arg) {
     if (!isUsable(arr[0])) arr = [ arr ];
     if (!isUsable(arg[0])) arg = [ arg ];
     // convert column to row vector
     var left = (arr[0].length === 1 && arr.length !== 1) ? jStat.transpose(arr) : arr,
     right = (arg[0].length === 1 && arg.length !== 1) ? jStat.transpose(arg) : arg,
     res = [],
-    row = 0,
     nrow = left.length,
-    ncol = left[0].length,
-    sum, col;
-    for (; row < nrow; row++) {
-      res[row] = [];
-      sum = 0;
-      for (col = 0; col < ncol; col++)
-      sum += left[row][col] * right[row][col];
-      res[row] = sum;
+    ncol = left[0].length;
+    for (row = 0; row < nrow; row++) {
+      res.push(gdot(ncol, left[row], 1, right[row], 1));
     }
     return (res.length === 1) ? res[0] : res;
   },
@@ -145,12 +127,13 @@ jStat.extend({
     // check if multi-dimensional array, and make vector correction
     if (isUsable(arr[0])) arr = arr[0];
     // vector norm
+    if (p === 2) {
+      return gnrm2(arr.length, arr, 1);
+    }
     for (; i < arr.length; i++) {
       nnorm += Math.pow(Math.abs(arr[i]), p);
     }
     return Math.pow(nnorm, 1 / p);
-
-    // FIXME: use gnrm2 for L2-norm
   },
 
   // computes the angle between two vectors in rads
