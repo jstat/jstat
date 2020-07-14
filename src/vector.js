@@ -1,3 +1,5 @@
+var clip = require( '@stdlib/math/base/special/clamp' );
+var gsumors = require( '@stdlib/blas/ext/base/gsumors' );
 var jStat = require( './core.js' );
 
 var isFunction = jStat.utils.isFunction;
@@ -5,25 +7,15 @@ var isFunction = jStat.utils.isFunction;
 // Ascending functions for sort
 function ascNum(a, b) { return a - b; }
 
-function clip(arg, min, max) {
-  return Math.max(min, Math.min(arg, max));
-}
-
-// var gsumors = require( '@stdlib/blas/ext/base/gsumors' ); // FIXME
 
 // sum of an array
 jStat.sum = function sum(arr) {
-  // return gsumors(arr.length, arr, 1); // FIXME
-  var sum = 0;
-  var i = arr.length;
-  while (--i >= 0)
-    sum += arr[i];
-  return sum;
+  return gsumors(arr.length, arr, 1);
 };
 
 
 // sum squared
-jStat.sumsqrd = function sumsqrd(arr) {
+jStat.sumsqrd = function sumsqrd(arr) { // FIXME: replace with @stdlib/blas/ext/base/gsumabs2ors
   var sum = 0;
   var i = arr.length;
   while (--i >= 0)
@@ -33,7 +25,7 @@ jStat.sumsqrd = function sumsqrd(arr) {
 
 
 // sum of squared errors of prediction (SSE)
-jStat.sumsqerr = function sumsqerr(arr) {
+jStat.sumsqerr = function sumsqerr(arr) { // FIXME: replace with stdlib equivalent
   var mean = jStat.mean(arr);
   var sum = 0;
   var i = arr.length;
@@ -47,16 +39,11 @@ jStat.sumsqerr = function sumsqerr(arr) {
 
 // sum of an array in each row
 jStat.sumrow = function sumrow(arr) {
-  // return gsumors(arr.length, arr, 1); // FIXME
-  var sum = 0;
-  var i = arr.length;
-  while (--i >= 0)
-    sum += arr[i];
-  return sum;
+  return gsumors(arr.length, arr, 1);
 };
 
 // product of an array
-jStat.product = function product(arr) {
+jStat.product = function product(arr) { // FIXME: replace with stdlib equivalent
   var prod = 1;
   var i = arr.length;
   while (--i >= 0)
@@ -64,30 +51,18 @@ jStat.product = function product(arr) {
   return prod;
 };
 
-// var gmin = require( '@stdlib/stats/base/min' ); // FIXME
+var gmin = require( '@stdlib/stats/base/min' );
 
 // minimum value of an array
 jStat.min = function min(arr) {
-  // return gmin(arr.length, arr, 1); // FIXME
-  var low = arr[0];
-  var i = 0;
-  while (++i < arr.length)
-    if (arr[i] < low)
-      low = arr[i];
-  return low;
+  return gmin(arr.length, arr, 1);
 };
 
-// var gmax = require( '@stdlib/stats/base/max' ); // FIXME
+var gmax = require( '@stdlib/stats/base/max' );
 
 // maximum value of an array
 jStat.max = function max(arr) {
-  // return gmax(arr.length, arr, 1); // FIXME
-  var high = arr[0];
-  var i = 0;
-  while (++i < arr.length)
-    if (arr[i] > high)
-      high = arr[i];
-  return high;
+  return gmax(arr.length, arr, 1);
 };
 
 
@@ -103,48 +78,44 @@ jStat.unique = function unique(arr) {
   return _arr;
 };
 
-// var gmeanors = require( '@stdlib/stats/base/meanors' ); // FIXME
+var gmeanors = require( '@stdlib/stats/base/meanors' );
 
 // mean value of an array
 jStat.mean = function mean(arr) {
-  // return gmeanors(arr.length, arr, 1); // FIXME
-  return jStat.sum(arr) / arr.length;
+  return gmeanors(arr.length, arr, 1);
 };
 
 
 // mean squared error (MSE)
-jStat.meansqerr = function meansqerr(arr) {
+jStat.meansqerr = function meansqerr(arr) { // FIXME: replace with stdlib equivalent
   return jStat.sumsqerr(arr) / arr.length;
 };
 
 
 // geometric mean of an array
-jStat.geomean = function geomean(arr) {
+jStat.geomean = function geomean(arr) { // FIXME: replace with stdlib equivalent
   return Math.pow(jStat.product(arr), 1 / arr.length);
 };
 
+var gmediansorted = require( '@stdlib/stats/base/mediansorted' );
 
 // median of an array
 jStat.median = function median(arr) {
-  var arrlen = arr.length;
   var _arr = arr.slice().sort(ascNum);
-  // check if array is even or odd, then return the appropriate
-  return !(arrlen & 1)
-    ? (_arr[(arrlen / 2) - 1 ] + _arr[(arrlen / 2)]) / 2
-    : _arr[(arrlen / 2) | 0 ];
+  return gmediansorted(arr.length, _arr, 1);
 };
 
 // var gcusumors = require( '@stdlib/blas/ext/base/cusumors' ); // FIXME
 
 // cumulative sum of an array
 jStat.cumsum = function cumsum(arr) {
-  // return gcusumors(arr.length, arr, 1); // FIXME
   return jStat.cumreduce(arr, function (a, b) { return a + b; });
+  // return gcusumors(arr.length, arr, 1); // FIXME
 };
 
 
 // cumulative product of an array
-jStat.cumprod = function cumprod(arr) {
+jStat.cumprod = function cumprod(arr) { // FIXME: replace with stdlib equivalent
   return jStat.cumreduce(arr, function (a, b) { return a * b; });
 };
 
@@ -161,7 +132,7 @@ jStat.diff = function diff(arr) {
 
 
 // ranks of an array
-jStat.rank = function (arr) {
+jStat.rank = function (arr) { // FIXME: use stdlib stats equivalent
   var i;
   var distinctNumbers = [];
   var numberCounts = {};
@@ -228,21 +199,19 @@ jStat.mode = function mode(arr) {
   return numMaxCount === 0 ? mode_arr[0] : mode_arr;
 };
 
-// var grange = require( '@stdlib/stats/base/range' ); // FIXME
+var grange = require( '@stdlib/stats/base/range' );
 
 // range of an array
 jStat.range = function range(arr) {
-  // return grange(arr.length, arr, 1); // FIXME
-  return jStat.max(arr) - jStat.min(arr);
+  return grange(arr.length, arr, 1);
 };
 
-// var gvariance = require( '@stdlib/stats/base/variance' ); // FIXME
+var gvariance = require( '@stdlib/stats/base/variance' );
 
 // variance of an array
 // flag = true indicates sample instead of population
 jStat.variance = function variance(arr, flag) {
-  // return gvariance(arr.length, flag ? 1 : 0, arr, 1); // FIXME
-  return jStat.sumsqerr(arr) / (arr.length - (flag ? 1 : 0));
+  return gvariance(arr.length, flag ? 1 : 0, arr, 1);
 };
 
 // pooled variance of an array of arrays
