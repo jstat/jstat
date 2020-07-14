@@ -124,6 +124,7 @@ var chisquarePDF = require( '@stdlib/stats/base/dists/chisquare/pdf' );
 var chisquareCDF = require( '@stdlib/stats/base/dists/chisquare/cdf' );
 var chisquareQuantile = require( '@stdlib/stats/base/dists/chisquare/quantile' );
 var chisquareMean = require( '@stdlib/stats/base/dists/chisquare/mean' );
+var chisquareMedian = require( '@stdlib/stats/base/dists/chisquare/median' );
 var chisquareMode = require( '@stdlib/stats/base/dists/chisquare/mode' );
 var chisquareSample = require( '@stdlib/random/base/chisquare' );
 var chisquareVariance = require( '@stdlib/stats/base/dists/chisquare/variance' );
@@ -133,13 +134,8 @@ jStat.extend(jStat.chisquare, {
   pdf: chisquarePDF,
   cdf: chisquareCDF,
   inv: chisquareQuantile,
-  mean : chisquareMean,
-
-  // TODO: this is an approximation (is there a better way?)
-  median: function median(dof) {
-    return dof * Math.pow(1 - (2 / (9 * dof)), 3);
-  },
-
+  mean: chisquareMean,
+  median: chisquareMedian,
   mode: chisquareMode,
   sample: chisquareSample,
   variance: chisquareVariance
