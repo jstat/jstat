@@ -1,4 +1,4 @@
-(function(jStat, Math) {
+var jStat = require( './core.js' );
 
 // generate all distribution instance methods
 (function(list) {
@@ -63,402 +63,196 @@
   'binomial negbin hypgeom poisson triangular tukey arcsine'
 ).split(' '));
 
-
+var betaPDF = require( '@stdlib/stats/base/dists/beta/pdf' );
+var betaCDF = require( '@stdlib/stats/base/dists/beta/cdf' );
+var betaQuantile = require( '@stdlib/stats/base/dists/beta/quantile' );
+var betaMean = require( '@stdlib/stats/base/dists/beta/mean' );
+var betaMedian = require( '@stdlib/stats/base/dists/beta/median' );
+var betaMode = require( '@stdlib/stats/base/dists/beta/mode' );
+var betaSample = require( '@stdlib/random/base/beta' );
+var betaVariance = require( '@stdlib/stats/base/dists/beta/variance' );
 
 // extend beta function with static methods
 jStat.extend(jStat.beta, {
-  pdf: function pdf(x, alpha, beta) {
-    // PDF is zero outside the support
-    if (x > 1 || x < 0)
-      return 0;
-    // PDF is one for the uniform case
-    if (alpha == 1 && beta == 1)
-      return 1;
-
-    if (alpha < 512 && beta < 512) {
-      return (Math.pow(x, alpha - 1) * Math.pow(1 - x, beta - 1)) /
-          jStat.betafn(alpha, beta);
-    } else {
-      return Math.exp((alpha - 1) * Math.log(x) +
-                      (beta - 1) * Math.log(1 - x) -
-                      jStat.betaln(alpha, beta));
-    }
-  },
-
-  cdf: function cdf(x, alpha, beta) {
-    return (x > 1 || x < 0) ? (x > 1) * 1 : jStat.ibeta(x, alpha, beta);
-  },
-
-  inv: function inv(x, alpha, beta) {
-    return jStat.ibetainv(x, alpha, beta);
-  },
-
-  mean: function mean(alpha, beta) {
-    return alpha / (alpha + beta);
-  },
-
-  median: function median(alpha, beta) {
-    return jStat.ibetainv(0.5, alpha, beta);
-  },
-
-  mode: function mode(alpha, beta) {
-    return (alpha - 1 ) / ( alpha + beta - 2);
-  },
-
-  // return a random sample
-  sample: function sample(alpha, beta) {
-    var u = jStat.randg(alpha);
-    return u / (u + jStat.randg(beta));
-  },
-
-  variance: function variance(alpha, beta) {
-    return (alpha * beta) / (Math.pow(alpha + beta, 2) * (alpha + beta + 1));
-  }
+  pdf: betaPDF,
+  cdf: betaCDF,
+  inv: betaQuantile,
+  mean: betaMean,
+  median: betaMedian,
+  mode: betaMode,
+  sample: betaSample,
+  variance: betaVariance
 });
+
+var fPDF = require( '@stdlib/stats/base/dists/f/pdf' );
+var fCDF = require( '@stdlib/stats/base/dists/f/cdf' );
+var fQuantile = require( '@stdlib/stats/base/dists/f/quantile' );
+var fMean = require( '@stdlib/stats/base/dists/f/mean' );
+var fMode = require( '@stdlib/stats/base/dists/f/mode' );
+var fSample = require( '@stdlib/random/base/f' );
+var fVariance = require( '@stdlib/stats/base/dists/f/variance' );
 
 // extend F function with static methods
 jStat.extend(jStat.centralF, {
-  // This implementation of the pdf function avoids float overflow
-  // See the way that R calculates this value:
-  // https://svn.r-project.org/R/trunk/src/nmath/df.c
-  pdf: function pdf(x, df1, df2) {
-    var p, q, f;
-
-    if (x < 0)
-      return 0;
-
-    if (df1 <= 2) {
-      if (x === 0 && df1 < 2) {
-        return Infinity;
-      }
-      if (x === 0 && df1 === 2) {
-        return 1;
-      }
-      return (1 / jStat.betafn(df1 / 2, df2 / 2)) *
-              Math.pow(df1 / df2, df1 / 2) *
-              Math.pow(x, (df1/2) - 1) *
-              Math.pow((1 + (df1 / df2) * x), -(df1 + df2) / 2);
-    }
-
-    p = (df1 * x) / (df2 + x * df1);
-    q = df2 / (df2 + x * df1);
-    f = df1 * q / 2.0;
-    return f * jStat.binomial.pdf((df1 - 2) / 2, (df1 + df2 - 2) / 2, p);
-  },
-
-  cdf: function cdf(x, df1, df2) {
-    if (x < 0)
-      return 0;
-    return jStat.ibeta((df1 * x) / (df1 * x + df2), df1 / 2, df2 / 2);
-  },
-
-  inv: function inv(x, df1, df2) {
-    return df2 / (df1 * (1 / jStat.ibetainv(x, df1 / 2, df2 / 2) - 1));
-  },
-
-  mean: function mean(df1, df2) {
-    return (df2 > 2) ? df2 / (df2 - 2) : undefined;
-  },
-
-  mode: function mode(df1, df2) {
-    return (df1 > 2) ? (df2 * (df1 - 2)) / (df1 * (df2 + 2)) : undefined;
-  },
-
-  // return a random sample
-  sample: function sample(df1, df2) {
-    var x1 = jStat.randg(df1 / 2) * 2;
-    var x2 = jStat.randg(df2 / 2) * 2;
-    return (x1 / df1) / (x2 / df2);
-  },
-
-  variance: function variance(df1, df2) {
-    if (df2 <= 4)
-      return undefined;
-    return 2 * df2 * df2 * (df1 + df2 - 2) /
-        (df1 * (df2 - 2) * (df2 - 2) * (df2 - 4));
-  }
+  pdf: fPDF,
+  cdf: fCDF,
+  inv: fQuantile,
+  mean: fMean,
+  mode: fMode,
+  sample: fSample,
+  variance: fVariance
 });
 
+var cauchyPDF = require( '@stdlib/stats/base/dists/cauchy/pdf' );
+var cauchyCDF = require( '@stdlib/stats/base/dists/cauchy/cdf' );
+var cauchyQuantile = require( '@stdlib/stats/base/dists/cauchy/quantile' );
+var cauchyMedian = require( '@stdlib/stats/base/dists/cauchy/median' );
+var cauchyMode = require( '@stdlib/stats/base/dists/cauchy/mode' );
+var cauchySample = require( '@stdlib/random/base/cauchy' );
 
 // extend cauchy function with static methods
 jStat.extend(jStat.cauchy, {
-  pdf: function pdf(x, local, scale) {
-    if (scale < 0) { return 0; }
-
-    return (scale / (Math.pow(x - local, 2) + Math.pow(scale, 2))) / Math.PI;
-  },
-
-  cdf: function cdf(x, local, scale) {
-    return Math.atan((x - local) / scale) / Math.PI + 0.5;
-  },
-
-  inv: function(p, local, scale) {
-    return local + scale * Math.tan(Math.PI * (p - 0.5));
-  },
-
-  median: function median(local/*, scale*/) {
-    return local;
-  },
-
-  mode: function mode(local/*, scale*/) {
-    return local;
-  },
-
-  sample: function sample(local, scale) {
-    return jStat.randn() *
-        Math.sqrt(1 / (2 * jStat.randg(0.5))) * scale + local;
-  }
+  pdf: cauchyPDF,
+  cdf: cauchyCDF,
+  inv: cauchyQuantile,
+  median: cauchyMedian,
+  mode: cauchyMode,
+  sample: cauchySample
 });
 
-
+var chisquarePDF = require( '@stdlib/stats/base/dists/chisquare/pdf' );
+var chisquareCDF = require( '@stdlib/stats/base/dists/chisquare/cdf' );
+var chisquareQuantile = require( '@stdlib/stats/base/dists/chisquare/quantile' );
+var chisquareMean = require( '@stdlib/stats/base/dists/chisquare/mean' );
+var chisquareMedian = require( '@stdlib/stats/base/dists/chisquare/median' );
+var chisquareMode = require( '@stdlib/stats/base/dists/chisquare/mode' );
+var chisquareSample = require( '@stdlib/random/base/chisquare' );
+var chisquareVariance = require( '@stdlib/stats/base/dists/chisquare/variance' );
 
 // extend chisquare function with static methods
 jStat.extend(jStat.chisquare, {
-  pdf: function pdf(x, dof) {
-    if (x < 0)
-      return 0;
-    return (x === 0 && dof === 2) ? 0.5 :
-        Math.exp((dof / 2 - 1) * Math.log(x) - x / 2 - (dof / 2) *
-                 Math.log(2) - jStat.gammaln(dof / 2));
-  },
-
-  cdf: function cdf(x, dof) {
-    if (x < 0)
-      return 0;
-    return jStat.lowRegGamma(dof / 2, x / 2);
-  },
-
-  inv: function(p, dof) {
-    return 2 * jStat.gammapinv(p, 0.5 * dof);
-  },
-
-  mean : function(dof) {
-    return dof;
-  },
-
-  // TODO: this is an approximation (is there a better way?)
-  median: function median(dof) {
-    return dof * Math.pow(1 - (2 / (9 * dof)), 3);
-  },
-
-  mode: function mode(dof) {
-    return (dof - 2 > 0) ? dof - 2 : 0;
-  },
-
-  sample: function sample(dof) {
-    return jStat.randg(dof / 2) * 2;
-  },
-
-  variance: function variance(dof) {
-    return 2 * dof;
-  }
+  pdf: chisquarePDF,
+  cdf: chisquareCDF,
+  inv: chisquareQuantile,
+  mean: chisquareMean,
+  median: chisquareMedian,
+  mode: chisquareMode,
+  sample: chisquareSample,
+  variance: chisquareVariance
 });
 
-
+var expPDF = require( '@stdlib/stats/base/dists/exponential/pdf' );
+var expCDF = require( '@stdlib/stats/base/dists/exponential/cdf' );
+var expQuantile = require( '@stdlib/stats/base/dists/exponential/quantile' );
+var expMean = require( '@stdlib/stats/base/dists/exponential/mean' );
+var expMedian = require( '@stdlib/stats/base/dists/exponential/median' );
+var expMode = require( '@stdlib/stats/base/dists/exponential/mode' );
+var expSample = require( '@stdlib/random/base/exponential' );
+var expVariance = require( '@stdlib/stats/base/dists/exponential/variance' );
 
 // extend exponential function with static methods
 jStat.extend(jStat.exponential, {
-  pdf: function pdf(x, rate) {
-    return x < 0 ? 0 : rate * Math.exp(-rate * x);
-  },
-
-  cdf: function cdf(x, rate) {
-    return x < 0 ? 0 : 1 - Math.exp(-rate * x);
-  },
-
-  inv: function(p, rate) {
-    return -Math.log(1 - p) / rate;
-  },
-
-  mean : function(rate) {
-    return 1 / rate;
-  },
-
-  median: function (rate) {
-    return (1 / rate) * Math.log(2);
-  },
-
-  mode: function mode(/*rate*/) {
-    return 0;
-  },
-
-  sample: function sample(rate) {
-    return -1 / rate * Math.log(jStat._random_fn());
-  },
-
-  variance : function(rate) {
-    return Math.pow(rate, -2);
-  }
+  pdf: expPDF,
+  cdf: expCDF,
+  inv: expQuantile,
+  mean : expMean,
+  median: expMedian,
+  mode: expMode,
+  sample: expSample,
+  variance : expVariance
 });
 
-
+var gammaPDF = require( '@stdlib/stats/base/dists/gamma/pdf' );
+var gammaCDF = require( '@stdlib/stats/base/dists/gamma/cdf' );
+var gammaQuantile = require( '@stdlib/stats/base/dists/gamma/quantile' );
+var gammaMean = require( '@stdlib/stats/base/dists/gamma/mean' );
+var gammaMode = require( '@stdlib/stats/base/dists/gamma/mode' );
+var gammaSample = require( '@stdlib/random/base/gamma' );
+var gammaVariance = require( '@stdlib/stats/base/dists/gamma/variance' );
 
 // extend gamma function with static methods
 jStat.extend(jStat.gamma, {
   pdf: function pdf(x, shape, scale) {
-    if (x < 0)
-      return 0;
-    return (x === 0 && shape === 1) ? 1 / scale :
-            Math.exp((shape - 1) * Math.log(x) - x / scale -
-                    jStat.gammaln(shape) - shape * Math.log(scale));
+    return gammaPDF(x, shape, 1.0/scale);
   },
-
   cdf: function cdf(x, shape, scale) {
-    if (x < 0)
-      return 0;
-    return jStat.lowRegGamma(shape, x / scale);
+    return gammaCDF(x, shape, 1.0/scale);
   },
-
-  inv: function(p, shape, scale) {
-    return jStat.gammapinv(p, shape) * scale;
+  inv: function inv(x, shape, scale) {
+    return gammaQuantile(x, shape, 1.0/scale);
   },
-
-  mean : function(shape, scale) {
-    return shape * scale;
+  mean : function mean(x, shape, scale) {
+    return gammaMean(x, shape, 1.0/scale);
   },
-
-  mode: function mode(shape, scale) {
-    if(shape > 1) return (shape - 1) * scale;
-    return undefined;
+  mode: function mode(x, shape, scale) {
+    return gammaMode(x, shape, 1.0/scale);
   },
-
-  sample: function sample(shape, scale) {
-    return jStat.randg(shape) * scale;
+  sample: function sample(x, shape, scale) {
+    return gammaSample(x, shape, 1.0/scale);
   },
-
-  variance: function variance(shape, scale) {
-    return shape * scale * scale;
+  variance: function variance(x, shape, scale) {
+    return gammaVariance(x, shape, 1.0/scale);
   }
 });
+
+var invgammaPDF = require( '@stdlib/stats/base/dists/invgamma/pdf' );
+var invgammaCDF = require( '@stdlib/stats/base/dists/invgamma/cdf' );
+var invgammaQuantile = require( '@stdlib/stats/base/dists/invgamma/quantile' );
+var invgammaMean = require( '@stdlib/stats/base/dists/invgamma/mean' );
+var invgammaMode = require( '@stdlib/stats/base/dists/invgamma/mode' );
+var invgammaSample = require( '@stdlib/random/base/invgamma' );
+var invgammaVariance = require( '@stdlib/stats/base/dists/invgamma/variance' );
 
 // extend inverse gamma function with static methods
 jStat.extend(jStat.invgamma, {
-  pdf: function pdf(x, shape, scale) {
-    if (x <= 0)
-      return 0;
-    return Math.exp(-(shape + 1) * Math.log(x) - scale / x -
-                    jStat.gammaln(shape) + shape * Math.log(scale));
-  },
-
-  cdf: function cdf(x, shape, scale) {
-    if (x <= 0)
-      return 0;
-    return 1 - jStat.lowRegGamma(shape, scale / x);
-  },
-
-  inv: function(p, shape, scale) {
-    return scale / jStat.gammapinv(1 - p, shape);
-  },
-
-  mean : function(shape, scale) {
-    return (shape > 1) ? scale / (shape - 1) : undefined;
-  },
-
-  mode: function mode(shape, scale) {
-    return scale / (shape + 1);
-  },
-
-  sample: function sample(shape, scale) {
-    return scale / jStat.randg(shape);
-  },
-
-  variance: function variance(shape, scale) {
-    if (shape <= 2)
-      return undefined;
-    return scale * scale / ((shape - 1) * (shape - 1) * (shape - 2));
-  }
+  pdf: invgammaPDF,
+  cdf: invgammaCDF,
+  inv: invgammaQuantile,
+  mean: invgammaMean,
+  mode: invgammaMode,
+  sample: invgammaSample,
+  variance: invgammaVariance
 });
 
+var kumaraswamyPDF = require( '@stdlib/stats/base/dists/kumaraswamy/pdf' );
+var kumaraswamyCDF = require( '@stdlib/stats/base/dists/kumaraswamy/cdf' );
+var kumaraswamyQuantile = require( '@stdlib/stats/base/dists/kumaraswamy/quantile' );
+var kumaraswamyMean = require( '@stdlib/stats/base/dists/kumaraswamy/mean' );
+var kumaraswamyMedian = require( '@stdlib/stats/base/dists/kumaraswamy/median' );
+var kumaraswamyMode = require( '@stdlib/stats/base/dists/kumaraswamy/mode' );
+var kumaraswamyVariance = require( '@stdlib/stats/base/dists/kumaraswamy/variance' );
 
 // extend kumaraswamy function with static methods
 jStat.extend(jStat.kumaraswamy, {
-  pdf: function pdf(x, alpha, beta) {
-    if (x === 0 && alpha === 1)
-      return beta;
-    else if (x === 1 && beta === 1)
-      return alpha;
-    return Math.exp(Math.log(alpha) + Math.log(beta) + (alpha - 1) *
-                    Math.log(x) + (beta - 1) *
-                    Math.log(1 - Math.pow(x, alpha)));
-  },
-
-  cdf: function cdf(x, alpha, beta) {
-    if (x < 0)
-      return 0;
-    else if (x > 1)
-      return 1;
-    return (1 - Math.pow(1 - Math.pow(x, alpha), beta));
-  },
-
-  inv: function inv(p, alpha, beta) {
-    return Math.pow(1 - Math.pow(1 - p, 1 / beta), 1 / alpha);
-  },
-
-  mean : function(alpha, beta) {
-    return (beta * jStat.gammafn(1 + 1 / alpha) *
-            jStat.gammafn(beta)) / (jStat.gammafn(1 + 1 / alpha + beta));
-  },
-
-  median: function median(alpha, beta) {
-    return Math.pow(1 - Math.pow(2, -1 / beta), 1 / alpha);
-  },
-
-  mode: function mode(alpha, beta) {
-    if (!(alpha >= 1 && beta >= 1 && (alpha !== 1 && beta !== 1)))
-      return undefined;
-    return Math.pow((alpha - 1) / (alpha * beta - 1), 1 / alpha);
-  },
-
-  variance: function variance(/*alpha, beta*/) {
-    throw new Error('variance not yet implemented');
-    // TODO: complete this
-  }
+  pdf: kumaraswamyPDF,
+  cdf: kumaraswamyCDF,
+  inv: kumaraswamyQuantile,
+  mean : kumaraswamyMean,
+  median: kumaraswamyMedian,
+  mode: kumaraswamyMode,
+  variance: kumaraswamyVariance
 });
 
-
+var lognormalPDF = require( '@stdlib/stats/base/dists/lognormal/pdf' );
+var lognormalCDF = require( '@stdlib/stats/base/dists/lognormal/cdf' );
+var lognormalQuantile = require( '@stdlib/stats/base/dists/lognormal/quantile' );
+var lognormalMean = require( '@stdlib/stats/base/dists/lognormal/mean' );
+var lognormalMedian = require( '@stdlib/stats/base/dists/lognormal/median' );
+var lognormalMode = require( '@stdlib/stats/base/dists/lognormal/mode' );
+var lognormalSample = require( '@stdlib/random/base/lognormal' );
+var lognormalVariance = require( '@stdlib/stats/base/dists/lognormal/variance' );
 
 // extend lognormal function with static methods
 jStat.extend(jStat.lognormal, {
-  pdf: function pdf(x, mu, sigma) {
-    if (x <= 0)
-      return 0;
-    return Math.exp(-Math.log(x) - 0.5 * Math.log(2 * Math.PI) -
-                    Math.log(sigma) - Math.pow(Math.log(x) - mu, 2) /
-                    (2 * sigma * sigma));
-  },
-
-  cdf: function cdf(x, mu, sigma) {
-    if (x < 0)
-      return 0;
-    return 0.5 +
-        (0.5 * jStat.erf((Math.log(x) - mu) / Math.sqrt(2 * sigma * sigma)));
-  },
-
-  inv: function(p, mu, sigma) {
-    return Math.exp(-1.41421356237309505 * sigma * jStat.erfcinv(2 * p) + mu);
-  },
-
-  mean: function mean(mu, sigma) {
-    return Math.exp(mu + sigma * sigma / 2);
-  },
-
-  median: function median(mu/*, sigma*/) {
-    return Math.exp(mu);
-  },
-
-  mode: function mode(mu, sigma) {
-    return Math.exp(mu - sigma * sigma);
-  },
-
-  sample: function sample(mu, sigma) {
-    return Math.exp(jStat.randn() * sigma + mu);
-  },
-
-  variance: function variance(mu, sigma) {
-    return (Math.exp(sigma * sigma) - 1) * Math.exp(2 * mu + sigma * sigma);
-  }
+  pdf: lognormalPDF,
+  cdf: lognormalCDF,
+  inv: lognormalQuantile,
+  mean: lognormalMean,
+  median: lognormalMedian,
+  mode: lognormalMode,
+  sample: lognormalSample,
+  variance: lognormalVariance
 });
-
 
 
 // extend noncentralt function with static methods
@@ -518,722 +312,258 @@ jStat.extend(jStat.noncentralt, {
   }
 });
 
+var normalPDF = require( '@stdlib/stats/base/dists/normal/pdf' );
+var normalCDF = require( '@stdlib/stats/base/dists/normal/cdf' );
+var normalQuantile = require( '@stdlib/stats/base/dists/normal/quantile' );
+var normalMean = require( '@stdlib/stats/base/dists/normal/mean' );
+var normalMedian = require( '@stdlib/stats/base/dists/normal/median' );
+var normalMode = require( '@stdlib/stats/base/dists/normal/mode' );
+var normalSample = require( '@stdlib/random/base/normal' );
+var normalVariance = require( '@stdlib/stats/base/dists/normal/variance' );
 
 // extend normal function with static methods
 jStat.extend(jStat.normal, {
-  pdf: function pdf(x, mean, std) {
-    return Math.exp(-0.5 * Math.log(2 * Math.PI) -
-                    Math.log(std) - Math.pow(x - mean, 2) / (2 * std * std));
-  },
-
-  cdf: function cdf(x, mean, std) {
-    return 0.5 * (1 + jStat.erf((x - mean) / Math.sqrt(2 * std * std)));
-  },
-
-  inv: function(p, mean, std) {
-    return -1.41421356237309505 * std * jStat.erfcinv(2 * p) + mean;
-  },
-
-  mean : function(mean/*, std*/) {
-    return mean;
-  },
-
-  median: function median(mean/*, std*/) {
-    return mean;
-  },
-
-  mode: function (mean/*, std*/) {
-    return mean;
-  },
-
-  sample: function sample(mean, std) {
-    return jStat.randn() * std + mean;
-  },
-
-  variance : function(mean, std) {
-    return std * std;
-  }
+  pdf: normalPDF,
+  cdf: normalCDF,
+  inv: normalQuantile,
+  mean : normalMean,
+  median: normalMedian,
+  mode: normalMode,
+  sample: normalSample,
+  variance : normalVariance
 });
 
-
+var paretoPDF = require( '@stdlib/stats/base/dists/pareto-type1/pdf' );
+var paretoCDF = require( '@stdlib/stats/base/dists/pareto-type1/cdf' );
+var paretoQuantile = require( '@stdlib/stats/base/dists/pareto-type1/quantile' );
+var paretoMean = require( '@stdlib/stats/base/dists/pareto-type1/mean' );
+var paretoMedian = require( '@stdlib/stats/base/dists/pareto-type1/median' );
+var paretoMode = require( '@stdlib/stats/base/dists/pareto-type1/mode' );
+var paretoVariance = require( '@stdlib/stats/base/dists/pareto-type1/variance' );
 
 // extend pareto function with static methods
 jStat.extend(jStat.pareto, {
   pdf: function pdf(x, scale, shape) {
-    if (x < scale)
-      return 0;
-    return (shape * Math.pow(scale, shape)) / Math.pow(x, shape + 1);
+    return paretoPDF(x, shape, scale);
   },
 
   cdf: function cdf(x, scale, shape) {
-    if (x < scale)
-      return 0;
-    return 1 - Math.pow(scale / x, shape);
+    return paretoCDF(x, shape, scale);
   },
 
   inv: function inv(p, scale, shape) {
-    return scale / Math.pow(1 - p, 1 / shape);
+    return paretoQuantile(p, shape, scale);
   },
 
   mean: function mean(scale, shape) {
-    if (shape <= 1)
-      return undefined;
-    return (shape * Math.pow(scale, shape)) / (shape - 1);
+    return paretoMean(shape, scale);
   },
 
   median: function median(scale, shape) {
-    return scale * (shape * Math.SQRT2);
+    return paretoMedian(shape, scale);
   },
 
-  mode: function mode(scale/*, shape*/) {
-    return scale;
+  mode: function mode(scale, shape) {
+    return paretoMode(shape, scale);
   },
 
-  variance : function(scale, shape) {
-    if (shape <= 2)
-      return undefined;
-    return (scale*scale * shape) / (Math.pow(shape - 1, 2) * (shape - 2));
+  variance: function variance(scale, shape) {
+    return paretoVariance(shape, scale);
   }
 });
 
-
+var tPDF = require( '@stdlib/stats/base/dists/t/pdf' );
+var tCDF = require( '@stdlib/stats/base/dists/t/cdf' );
+var tQuantile = require( '@stdlib/stats/base/dists/t/quantile' );
+var tMean = require( '@stdlib/stats/base/dists/t/mean' );
+var tMedian = require( '@stdlib/stats/base/dists/t/median' );
+var tMode = require( '@stdlib/stats/base/dists/t/mode' );
+var tSample = require( '@stdlib/random/base/t' );
+var tVariance = require( '@stdlib/stats/base/dists/t/variance' );
 
 // extend studentt function with static methods
 jStat.extend(jStat.studentt, {
-  pdf: function pdf(x, dof) {
-    dof = dof > 1e100 ? 1e100 : dof;
-    return (1/(Math.sqrt(dof) * jStat.betafn(0.5, dof/2))) *
-        Math.pow(1 + ((x * x) / dof), -((dof + 1) / 2));
-  },
-
-  cdf: function cdf(x, dof) {
-    var dof2 = dof / 2;
-    return jStat.ibeta((x + Math.sqrt(x * x + dof)) /
-                       (2 * Math.sqrt(x * x + dof)), dof2, dof2);
-  },
-
-  inv: function(p, dof) {
-    var x = jStat.ibetainv(2 * Math.min(p, 1 - p), 0.5 * dof, 0.5);
-    x = Math.sqrt(dof * (1 - x) / x);
-    return (p > 0.5) ? x : -x;
-  },
-
-  mean: function mean(dof) {
-    return (dof > 1) ? 0 : undefined;
-  },
-
-  median: function median(/*dof*/) {
-    return 0;
-  },
-
-  mode: function mode(/*dof*/) {
-    return 0;
-  },
-
-  sample: function sample(dof) {
-    return jStat.randn() * Math.sqrt(dof / (2 * jStat.randg(dof / 2)));
-  },
-
-  variance: function variance(dof) {
-    return (dof  > 2) ? dof / (dof - 2) : (dof > 1) ? Infinity : undefined;
-  }
+  pdf: tPDF,
+  cdf: tCDF,
+  inv: tQuantile,
+  mean: tMean,
+  median: tMedian,
+  mode: tMode,
+  sample: tSample,
+  variance: tVariance
 });
 
-
+var weibullPDF = require( '@stdlib/stats/base/dists/weibull/pdf' );
+var weibullCDF = require( '@stdlib/stats/base/dists/weibull/cdf' );
+var weibullQuantile = require( '@stdlib/stats/base/dists/weibull/quantile' );
+var weibullMean = require( '@stdlib/stats/base/dists/weibull/mean' );
+var weibullMedian = require( '@stdlib/stats/base/dists/weibull/median' );
+var weibullMode = require( '@stdlib/stats/base/dists/weibull/mode' );
+var weibullSample = require( '@stdlib/random/base/weibull' );
+var weibullVariance = require( '@stdlib/stats/base/dists/weibull/variance' );
 
 // extend weibull function with static methods
 jStat.extend(jStat.weibull, {
   pdf: function pdf(x, scale, shape) {
-    if (x < 0 || scale < 0 || shape < 0)
-      return 0;
-    return (shape / scale) * Math.pow((x / scale), (shape - 1)) *
-        Math.exp(-(Math.pow((x / scale), shape)));
+    return weibullPDF(x, shape, scale);
   },
 
   cdf: function cdf(x, scale, shape) {
-    return x < 0 ? 0 : 1 - Math.exp(-Math.pow((x / scale), shape));
+    return weibullCDF(x, shape, scale);
   },
 
   inv: function(p, scale, shape) {
-    return scale * Math.pow(-Math.log(1 - p), 1 / shape);
+    return weibullQuantile(p, shape, scale);
   },
 
   mean : function(scale, shape) {
-    return scale * jStat.gammafn(1 + 1 / shape);
+    return weibullMean(shape, scale);
   },
 
   median: function median(scale, shape) {
-    return scale * Math.pow(Math.log(2), 1 / shape);
+    return weibullMedian(shape, scale);
   },
 
   mode: function mode(scale, shape) {
-    if (shape <= 1)
-      return 0;
-    return scale * Math.pow((shape - 1) / shape, 1 / shape);
+    return weibullMode(shape, scale);
   },
 
   sample: function sample(scale, shape) {
-    return scale * Math.pow(-Math.log(jStat._random_fn()), 1 / shape);
+    return weibullSample(shape, scale);
   },
 
   variance: function variance(scale, shape) {
-    return scale * scale * jStat.gammafn(1 + 2 / shape) -
-        Math.pow(jStat.weibull.mean(scale, shape), 2);
+    return weibullVariance(shape, scale);
   }
 });
 
-
+var uniformPDF = require( '@stdlib/stats/base/dists/uniform/pdf' );
+var uniformCDF = require( '@stdlib/stats/base/dists/uniform/cdf' );
+var uniformQuantile = require( '@stdlib/stats/base/dists/uniform/quantile' );
+var uniformMean = require( '@stdlib/stats/base/dists/uniform/mean' );
+var uniformMedian = require( '@stdlib/stats/base/dists/uniform/median' );
+var uniformSample = require( '@stdlib/random/base/uniform' );
+var uniformVariance = require( '@stdlib/stats/base/dists/uniform/variance' );
 
 // extend uniform function with static methods
 jStat.extend(jStat.uniform, {
-  pdf: function pdf(x, a, b) {
-    return (x < a || x > b) ? 0 : 1 / (b - a);
-  },
-
-  cdf: function cdf(x, a, b) {
-    if (x < a)
-      return 0;
-    else if (x < b)
-      return (x - a) / (b - a);
-    return 1;
-  },
-
-  inv: function(p, a, b) {
-    return a + (p * (b - a));
-  },
-
-  mean: function mean(a, b) {
-    return 0.5 * (a + b);
-  },
-
-  median: function median(a, b) {
-    return jStat.mean(a, b);
-  },
+  pdf: uniformPDF,
+  cdf: uniformCDF,
+  inv: uniformQuantile,
+  mean: uniformMean,
+  median: uniformMedian,
 
   mode: function mode(/*a, b*/) {
-    throw new Error('mode is not yet implemented');
+    throw new Error('mode is not implemented');
   },
 
-  sample: function sample(a, b) {
-    return (a / 2 + b / 2) + (b / 2 - a / 2) * (2 * jStat._random_fn() - 1);
-  },
-
-  variance: function variance(a, b) {
-    return Math.pow(b - a, 2) / 12;
-  }
+  sample: uniformSample,
+  variance: uniformVariance
 });
 
+var binomialPMF = require( '@stdlib/stats/base/dists/binomial/pmf' );
+var binomialCDF = require( '@stdlib/stats/base/dists/binomial/cdf' );
 
-// Got this from http://www.math.ucla.edu/~tom/distributions/binomial.html
-function betinc(x, a, b, eps) {
-  var a0 = 0;
-  var b0 = 1;
-  var a1 = 1;
-  var b1 = 1;
-  var m9 = 0;
-  var a2 = 0;
-  var c9;
-
-  while (Math.abs((a1 - a2) / a1) > eps) {
-    a2 = a1;
-    c9 = -(a + m9) * (a + b + m9) * x / (a + 2 * m9) / (a + 2 * m9 + 1);
-    a0 = a1 + c9 * a0;
-    b0 = b1 + c9 * b0;
-    m9 = m9 + 1;
-    c9 = m9 * (b - m9) * x / (a + 2 * m9 - 1) / (a + 2 * m9);
-    a1 = a0 + c9 * a1;
-    b1 = b0 + c9 * b1;
-    a0 = a0 / b1;
-    b0 = b0 / b1;
-    a1 = a1 / b1;
-    b1 = 1;
-  }
-
-  return a1 / a;
-}
-
-
-// extend uniform function with static methods
+// extend binomial function with static methods
 jStat.extend(jStat.binomial, {
-  pdf: function pdf(k, n, p) {
-    return (p === 0 || p === 1) ?
-      ((n * p) === k ? 1 : 0) :
-      jStat.combination(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k);
-  },
-
-  cdf: function cdf(x, n, p) {
-    var betacdf;
-    var eps = 1e-10;
-
-    if (x < 0)
-      return 0;
-    if (x >= n)
-      return 1;
-    if (p < 0 || p > 1 || n <= 0)
-      return NaN;
-
-    x = Math.floor(x);
-    var z = p;
-    var a = x + 1;
-    var b = n - x;
-    var s = a + b;
-    var bt = Math.exp(jStat.gammaln(s) - jStat.gammaln(b) -
-                      jStat.gammaln(a) + a * Math.log(z) + b * Math.log(1 - z));
-
-    if (z < (a + 1) / (s + 2))
-      betacdf = bt * betinc(z, a, b, eps);
-    else
-      betacdf = 1 - bt * betinc(1 - z, b, a, eps);
-
-    return Math.round((1 - betacdf) * (1 / eps)) / (1 / eps);
-  }
+  pdf: binomialPMF,
+  cdf: binomialCDF
 });
 
+var negativeBinomialPMF = require( '@stdlib/stats/base/dists/negative-binomial/pmf' );
+var negativeBinomialCDF = require( '@stdlib/stats/base/dists/negative-binomial/cdf' );
 
-
-// extend uniform function with static methods
+// extend negbin function with static methods
 jStat.extend(jStat.negbin, {
-  pdf: function pdf(k, r, p) {
-    if (k !== k >>> 0)
-      return false;
-    if (k < 0)
-      return 0;
-    return jStat.combination(k + r - 1, r - 1) *
-        Math.pow(1 - p, k) * Math.pow(p, r);
-  },
-
-  cdf: function cdf(x, r, p) {
-    var sum = 0,
-    k = 0;
-    if (x < 0) return 0;
-    for (; k <= x; k++) {
-      sum += jStat.negbin.pdf(k, r, p);
-    }
-    return sum;
-  }
+  pdf: negativeBinomialPMF,
+  cdf: negativeBinomialCDF
 });
 
-
+var hypergeometricPMF = require( '@stdlib/stats/base/dists/hypergeometric/pmf' );
+var hypergeometricCDF = require( '@stdlib/stats/base/dists/hypergeometric/cdf' );
 
 // extend uniform function with static methods
 jStat.extend(jStat.hypgeom, {
-  pdf: function pdf(k, N, m, n) {
-    // Hypergeometric PDF.
-
-    // A simplification of the CDF algorithm below.
-
-    // k = number of successes drawn
-    // N = population size
-    // m = number of successes in population
-    // n = number of items drawn from population
-
-    if(k !== k | 0) {
-      return false;
-    } else if(k < 0 || k < m - (N - n)) {
-      // It's impossible to have this few successes drawn.
-      return 0;
-    } else if(k > n || k > m) {
-      // It's impossible to have this many successes drawn.
-      return 0;
-    } else if (m * 2 > N) {
-      // More than half the population is successes.
-
-      if(n * 2 > N) {
-        // More than half the population is sampled.
-
-        return jStat.hypgeom.pdf(N - m - n + k, N, N - m, N - n)
-      } else {
-        // Half or less of the population is sampled.
-
-        return jStat.hypgeom.pdf(n - k, N, N - m, n);
-      }
-
-    } else if(n * 2 > N) {
-      // Half or less is successes.
-
-      return jStat.hypgeom.pdf(m - k, N, m, N - n);
-
-    } else if(m < n) {
-      // We want to have the number of things sampled to be less than the
-      // successes available. So swap the definitions of successful and sampled.
-      return jStat.hypgeom.pdf(k, N, n, m);
-    } else {
-      // If we get here, half or less of the population was sampled, half or
-      // less of it was successes, and we had fewer sampled things than
-      // successes. Now we can do this complicated iterative algorithm in an
-      // efficient way.
-
-      // The basic premise of the algorithm is that we partially normalize our
-      // intermediate product to keep it in a numerically good region, and then
-      // finish the normalization at the end.
-
-      // This variable holds the scaled probability of the current number of
-      // successes.
-      var scaledPDF = 1;
-
-      // This keeps track of how much we have normalized.
-      var samplesDone = 0;
-
-      for(var i = 0; i < k; i++) {
-        // For every possible number of successes up to that observed...
-
-        while(scaledPDF > 1 && samplesDone < n) {
-          // Intermediate result is growing too big. Apply some of the
-          // normalization to shrink everything.
-
-          scaledPDF *= 1 - (m / (N - samplesDone));
-
-          // Say we've normalized by this sample already.
-          samplesDone++;
-        }
-
-        // Work out the partially-normalized hypergeometric PDF for the next
-        // number of successes
-        scaledPDF *= (n - i) * (m - i) / ((i + 1) * (N - m - n + i + 1));
-      }
-
-      for(; samplesDone < n; samplesDone++) {
-        // Apply all the rest of the normalization
-        scaledPDF *= 1 - (m / (N - samplesDone));
-      }
-
-      // Bound answer sanely before returning.
-      return Math.min(1, Math.max(0, scaledPDF));
-    }
-  },
-
-  cdf: function cdf(x, N, m, n) {
-    // Hypergeometric CDF.
-
-    // This algorithm is due to Prof. Thomas S. Ferguson, <tom@math.ucla.edu>,
-    // and comes from his hypergeometric test calculator at
-    // <http://www.math.ucla.edu/~tom/distributions/Hypergeometric.html>.
-
-    // x = number of successes drawn
-    // N = population size
-    // m = number of successes in population
-    // n = number of items drawn from population
-
-    if(x < 0 || x < m - (N - n)) {
-      // It's impossible to have this few successes drawn or fewer.
-      return 0;
-    } else if(x >= n || x >= m) {
-      // We will always have this many successes or fewer.
-      return 1;
-    } else if (m * 2 > N) {
-      // More than half the population is successes.
-
-      if(n * 2 > N) {
-        // More than half the population is sampled.
-
-        return jStat.hypgeom.cdf(N - m - n + x, N, N - m, N - n)
-      } else {
-        // Half or less of the population is sampled.
-
-        return 1 - jStat.hypgeom.cdf(n - x - 1, N, N - m, n);
-      }
-
-    } else if(n * 2 > N) {
-      // Half or less is successes.
-
-      return 1 - jStat.hypgeom.cdf(m - x - 1, N, m, N - n);
-
-    } else if(m < n) {
-      // We want to have the number of things sampled to be less than the
-      // successes available. So swap the definitions of successful and sampled.
-      return jStat.hypgeom.cdf(x, N, n, m);
-    } else {
-      // If we get here, half or less of the population was sampled, half or
-      // less of it was successes, and we had fewer sampled things than
-      // successes. Now we can do this complicated iterative algorithm in an
-      // efficient way.
-
-      // The basic premise of the algorithm is that we partially normalize our
-      // intermediate sum to keep it in a numerically good region, and then
-      // finish the normalization at the end.
-
-      // Holds the intermediate, scaled total CDF.
-      var scaledCDF = 1;
-
-      // This variable holds the scaled probability of the current number of
-      // successes.
-      var scaledPDF = 1;
-
-      // This keeps track of how much we have normalized.
-      var samplesDone = 0;
-
-      for(var i = 0; i < x; i++) {
-        // For every possible number of successes up to that observed...
-
-        while(scaledCDF > 1 && samplesDone < n) {
-          // Intermediate result is growing too big. Apply some of the
-          // normalization to shrink everything.
-
-          var factor = 1 - (m / (N - samplesDone));
-
-          scaledPDF *= factor;
-          scaledCDF *= factor;
-
-          // Say we've normalized by this sample already.
-          samplesDone++;
-        }
-
-        // Work out the partially-normalized hypergeometric PDF for the next
-        // number of successes
-        scaledPDF *= (n - i) * (m - i) / ((i + 1) * (N - m - n + i + 1));
-
-        // Add to the CDF answer.
-        scaledCDF += scaledPDF;
-      }
-
-      for(; samplesDone < n; samplesDone++) {
-        // Apply all the rest of the normalization
-        scaledCDF *= 1 - (m / (N - samplesDone));
-      }
-
-      // Bound answer sanely before returning.
-      return Math.min(1, Math.max(0, scaledCDF));
-    }
-  }
+  pdf: hypergeometricPMF,
+  cdf: hypergeometricCDF
 });
 
-
+var poissonPMF = require( '@stdlib/stats/base/dists/poisson/pmf' );
+var poissonCDF = require( '@stdlib/stats/base/dists/poisson/cdf' );
+var poissonMean = require( '@stdlib/stats/base/dists/poisson/mean' );
+var poissonVariance = require( '@stdlib/stats/base/dists/poisson/variance' );
+var poissonSample = require( '@stdlib/random/base/poisson' );
 
 // extend uniform function with static methods
 jStat.extend(jStat.poisson, {
-  pdf: function pdf(k, l) {
-    if (l < 0 || (k % 1) !== 0 || k < 0) {
-      return 0;
-    }
-
-    return Math.pow(l, k) * Math.exp(-l) / jStat.factorial(k);
-  },
-
-  cdf: function cdf(x, l) {
-    var sumarr = [],
-    k = 0;
-    if (x < 0) return 0;
-    for (; k <= x; k++) {
-      sumarr.push(jStat.poisson.pdf(k, l));
-    }
-    return jStat.sum(sumarr);
-  },
-
-  mean : function(l) {
-    return l;
-  },
-
-  variance : function(l) {
-    return l;
-  },
-
-  sampleSmall: function sampleSmall(l) {
-    var p = 1, k = 0, L = Math.exp(-l);
-    do {
-      k++;
-      p *= jStat._random_fn();
-    } while (p > L);
-    return k - 1;
-  },
-
-  sampleLarge: function sampleLarge(l) {
-    var lam = l;
-    var k;
-    var U, V, slam, loglam, a, b, invalpha, vr, us;
-
-    slam = Math.sqrt(lam);
-    loglam = Math.log(lam);
-    b = 0.931 + 2.53 * slam;
-    a = -0.059 + 0.02483 * b;
-    invalpha = 1.1239 + 1.1328 / (b - 3.4);
-    vr = 0.9277 - 3.6224 / (b - 2);
-
-    while (1) {
-      U = Math.random() - 0.5;
-      V = Math.random();
-      us = 0.5 - Math.abs(U);
-      k = Math.floor((2 * a / us + b) * U + lam + 0.43);
-      if ((us >= 0.07) && (V <= vr)) {
-          return k;
-      }
-      if ((k < 0) || ((us < 0.013) && (V > us))) {
-          continue;
-      }
-      /* log(V) == log(0.0) ok here */
-      /* if U==0.0 so that us==0.0, log is ok since always returns */
-      if ((Math.log(V) + Math.log(invalpha) - Math.log(a / (us * us) + b)) <= (-lam + k * loglam - jStat.loggam(k + 1))) {
-          return k;
-      }
-    }
-  },
-
-  sample: function sample(l) {
-    if (l < 10)
-      return this.sampleSmall(l);
-    else
-      return this.sampleLarge(l);
-  }
+  pdf: poissonPMF,
+  cdf: poissonCDF,
+  mean : poissonMean,
+  variance: poissonVariance,
+  sampleSmall: poissonSample,
+  sampleLarge: poissonSample,
+  sample: poissonSample
 });
+
+var triangularPDF = require( '@stdlib/stats/base/dists/triangular/pdf' );
+var triangularCDF = require( '@stdlib/stats/base/dists/triangular/cdf' );
+var triangularQuantile = require( '@stdlib/stats/base/dists/triangular/quantile' );
+var triangularMean = require( '@stdlib/stats/base/dists/triangular/mean' );
+var triangularMedian = require( '@stdlib/stats/base/dists/triangular/median' );
+var triangularMode = require( '@stdlib/stats/base/dists/triangular/mode' );
+var triangularSample = require( '@stdlib/random/base/triangular' );
+var triangularVariance = require( '@stdlib/stats/base/dists/triangular/variance' );
 
 // extend triangular function with static methods
 jStat.extend(jStat.triangular, {
-  pdf: function pdf(x, a, b, c) {
-    if (b <= a || c < a || c > b) {
-      return NaN;
-    } else {
-      if (x < a || x > b) {
-        return 0;
-      } else if (x < c) {
-          return (2 * (x - a)) / ((b - a) * (c - a));
-      } else if (x === c) {
-          return (2 / (b - a));
-      } else { // x > c
-          return (2 * (b - x)) / ((b - a) * (b - c));
-      }
-    }
-  },
-
-  cdf: function cdf(x, a, b, c) {
-    if (b <= a || c < a || c > b)
-      return NaN;
-    if (x <= a)
-      return 0;
-    else if (x >= b)
-      return 1;
-    if (x <= c)
-      return Math.pow(x - a, 2) / ((b - a) * (c - a));
-    else // x > c
-      return 1 - Math.pow(b - x, 2) / ((b - a) * (b - c));
-  },
-
-  inv: function inv(p, a, b, c) {
-    if (b <= a || c < a || c > b) {
-      return NaN;
-    } else {
-      if (p <= ((c - a) / (b - a))) {
-        return a + (b - a) * Math.sqrt(p * ((c - a) / (b - a)));
-      } else { // p > ((c - a) / (b - a))
-        return a + (b - a) * (1 - Math.sqrt((1 - p) * (1 - ((c - a) / (b - a)))));
-      }
-    }
-  },
-
-  mean: function mean(a, b, c) {
-    return (a + b + c) / 3;
-  },
-
-  median: function median(a, b, c) {
-    if (c <= (a + b) / 2) {
-      return b - Math.sqrt((b - a) * (b - c)) / Math.sqrt(2);
-    } else if (c > (a + b) / 2) {
-      return a + Math.sqrt((b - a) * (c - a)) / Math.sqrt(2);
-    }
-  },
-
-  mode: function mode(a, b, c) {
-    return c;
-  },
-
-  sample: function sample(a, b, c) {
-    var u = jStat._random_fn();
-    if (u < ((c - a) / (b - a)))
-      return a + Math.sqrt(u * (b - a) * (c - a))
-    return b - Math.sqrt((1 - u) * (b - a) * (b - c));
-  },
-
-  variance: function variance(a, b, c) {
-    return (a * a + b * b + c * c - a * b - a * c - b * c) / 18;
-  }
+  pdf: triangularPDF,
+  cdf: triangularCDF,
+  inv: triangularQuantile,
+  mean: triangularMean,
+  median: triangularMedian,
+  mode: triangularMode,
+  sample: triangularSample,
+  variance: triangularVariance
 });
 
+var arcsinePDF = require( '@stdlib/stats/base/dists/arcsine/pdf' );
+var arcsineCDF = require( '@stdlib/stats/base/dists/arcsine/cdf' );
+var arcsineQuantile = require( '@stdlib/stats/base/dists/arcsine/quantile' );
+var arcsineMean = require( '@stdlib/stats/base/dists/arcsine/mean' );
+var arcsineMedian = require( '@stdlib/stats/base/dists/arcsine/median' );
+var arcsineMode = require( '@stdlib/stats/base/dists/arcsine/mode' );
+var arcsineSample = require( '@stdlib/random/base/arcsine' );
+var arcsineVariance = require( '@stdlib/stats/base/dists/arcsine/variance' );
 
 // extend arcsine function with static methods
 jStat.extend(jStat.arcsine, {
-  pdf: function pdf(x, a, b) {
-    if (b <= a) return NaN;
-
-    return (x <= a || x >= b) ? 0 :
-      (2 / Math.PI) *
-        Math.pow(Math.pow(b - a, 2) -
-                  Math.pow(2 * x - a - b, 2), -0.5);
-  },
-
-  cdf: function cdf(x, a, b) {
-    if (x < a)
-      return 0;
-    else if (x < b)
-      return (2 / Math.PI) * Math.asin(Math.sqrt((x - a)/(b - a)));
-    return 1;
-  },
-
-  inv: function(p, a, b) {
-    return a + (0.5 - 0.5 * Math.cos(Math.PI * p)) * (b - a);
-  },
-
-  mean: function mean(a, b) {
-    if (b <= a) return NaN;
-    return (a + b) / 2;
-  },
-
-  median: function median(a, b) {
-    if (b <= a) return NaN;
-    return (a + b) / 2;
-  },
-
-  mode: function mode(/*a, b*/) {
-    throw new Error('mode is not yet implemented');
-  },
-
-  sample: function sample(a, b) {
-    return ((a + b) / 2) + ((b - a) / 2) *
-      Math.sin(2 * Math.PI * jStat.uniform.sample(0, 1));
-  },
-
-  variance: function variance(a, b) {
-    if (b <= a) return NaN;
-    return Math.pow(b - a, 2) / 8;
-  }
+  pdf: arcsinePDF,
+  cdf: arcsineCDF,
+  inv: arcsineQuantile,
+  mean: arcsineMean,
+  median: arcsineMedian,
+  mode: arcsineMode,
+  sample: arcsineSample,
+  variance: arcsineVariance
 });
 
-
-function laplaceSign(x) { return x / Math.abs(x); }
+var laplacePDF = require( '@stdlib/stats/base/dists/laplace/pdf' );
+var laplaceCDF = require( '@stdlib/stats/base/dists/laplace/cdf' );
+var laplaceQuantile = require( '@stdlib/stats/base/dists/laplace/quantile' );
+var laplaceMean = require( '@stdlib/stats/base/dists/laplace/mean' );
+var laplaceMedian = require( '@stdlib/stats/base/dists/laplace/median' );
+var laplaceMode = require( '@stdlib/stats/base/dists/laplace/mode' );
+var laplaceSample = require( '@stdlib/random/base/laplace' );
+var laplaceVariance = require( '@stdlib/stats/base/dists/laplace/variance' );
 
 jStat.extend(jStat.laplace, {
-  pdf: function pdf(x, mu, b) {
-    return (b <= 0) ? 0 : (Math.exp(-Math.abs(x - mu) / b)) / (2 * b);
-  },
-
-  cdf: function cdf(x, mu, b) {
-    if (b <= 0) { return 0; }
-
-    if(x < mu) {
-      return 0.5 * Math.exp((x - mu) / b);
-    } else {
-      return 1 - 0.5 * Math.exp(- (x - mu) / b);
-    }
-  },
-
-  mean: function(mu/*, b*/) {
-    return mu;
-  },
-
-  median: function(mu/*, b*/) {
-    return mu;
-  },
-
-  mode: function(mu/*, b*/) {
-    return mu;
-  },
-
-  variance: function(mu, b) {
-    return 2 * b * b;
-  },
-
-  sample: function sample(mu, b) {
-    var u = jStat._random_fn() - 0.5;
-
-    return mu - (b * laplaceSign(u) * Math.log(1 - (2 * Math.abs(u))));
-  }
+  pdf: laplacePDF,
+  cdf: laplaceCDF,
+  mean: laplaceMean,
+  median: laplaceMedian,
+  mode: laplaceMode,
+  variance: laplaceVariance,
+  sample: laplaceSample
 });
 
 function tukeyWprob(w, rr, cc) {
@@ -1592,5 +922,3 @@ jStat.extend(jStat.tukey, {
     throw new Error('tukey.inv failed to converge');
   }
 });
-
-}(jStat, Math));

@@ -22,7 +22,7 @@ suite.addBatch({
 
             //Negative test cases outside of support
             assert.epsilon(tol, pdf(1.4, 1), 0);
-            assert.epsilon(tol, pdf(1, -2), 0);
+            assert.ok(Number.isNaN(pdf(1, -2)));
         },
         'check cdf calculation': function(jStat) {
             var curriedCdf = function(k) { return jStat.poisson.cdf(k, 1); };

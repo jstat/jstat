@@ -1,4 +1,6 @@
-var jStat = (function(Math, undefined) {
+var isArray = require( '@stdlib/assert/is-array' );
+var isFunction = require( '@stdlib/assert/is-function' );
+var isNumber = require( '@stdlib/assert/is-finite' ).isPrimitive;
 
 // For quick reference.
 var concat = Array.prototype.concat;
@@ -11,21 +13,6 @@ function calcRdx(n, m) {
   var val = n > m ? n : m;
   return Math.pow(10,
                   17 - ~~(Math.log(((val > 0) ? val : -val)) * Math.LOG10E));
-}
-
-
-var isArray = Array.isArray || function isArray(arg) {
-  return toString.call(arg) === '[object Array]';
-};
-
-
-function isFunction(arg) {
-  return toString.call(arg) === '[object Function]';
-}
-
-
-function isNumber(num) {
-  return (typeof num === 'number') ? num - num === 0 : false;
 }
 
 
@@ -100,7 +87,7 @@ jStat.utils = {
   toVector: toVector
 };
 
-
+// FIXME: remove; not a publicly documented API
 jStat._random_fn = Math.random;
 jStat.setRandom = function setRandom(fn) {
   if (typeof fn !== 'function')
@@ -400,15 +387,14 @@ jStat.seq = function seq(min, max, length, func) {
   return arr;
 };
 
+var incrspace = require( '@stdlib/math/utils/incrspace' );
 
 // arange(5) -> [0,1,2,3,4]
 // arange(1,5) -> [1,2,3,4]
 // arange(5,1,-1) -> [5,4,3,2]
 jStat.arange = function arange(start, end, step) {
-  var rl = [];
-  var i;
   step = step || 1;
-  if (end === undefined) {
+  if (end === void 0) {
     end = start;
     start = 0;
   }
@@ -421,16 +407,7 @@ jStat.arange = function arange(start, end, step) {
   if (start > end && step > 0) {
     return [];
   }
-  if (step > 0) {
-    for (i = start; i < end; i += step) {
-      rl.push(i);
-    }
-  } else {
-    for (i = start; i > end; i += step) {
-      rl.push(i);
-    }
-  }
-  return rl;
+  return incrspace( start, end, step );
 };
 
 
@@ -678,8 +655,8 @@ jProto.alter = function alter(func) {
   })(funcs[i]);
 })('create zeros ones rand identity'.split(' '));
 
+// Make it compatible with previous version.
+jStat.jStat = jStat;
 
 // Exposing jStat.
-return jStat;
-
-}(Math));
+module.exports = jStat;

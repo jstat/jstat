@@ -27,7 +27,7 @@ suite.addBatch({
             assert.epsilon(tol, pdf(0, 1, 0.5), 1 / (2.5 * Math.PI));
 
             //Negative test cases
-            assert.epsilon(tol, pdf(0, 0, -3), 0);
+            assert(isNaN(pdf(0, 0, -3)));
         },
         'check cdf calculations': function(jStat) {
             var cdf = jStat.cauchy.cdf;

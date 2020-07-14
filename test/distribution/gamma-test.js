@@ -5,7 +5,7 @@ var suite = vows.describe('jStat.distribution');
 require('../env.js');
 
 suite.addBatch({
-  'gamma pdf': {
+  'gamma': {
     'topic': function() {
       return jStat;
     },

@@ -10,62 +10,35 @@ suite.addBatch({
       return jStat;
     },
     'check pdf calculation': function(jStat) {
-      // Checked against python scipy.stats.arcsine
-      //>>> from scipy.stats import arcsine
       var tol = 0.0000001;
-      //>>> arcsine.pdf(0, loc=0, scale=1)
-      assert.epsilon(tol, jStat.arcsine.pdf(0, 0, 1), 0.0);
-      //>>> arcsine.pdf(1, loc=0, scale=1)
-      assert.epsilon(tol, jStat.arcsine.pdf(1, 0, 1), 0.0);
-      //>>> arcsine.pdf(0.001, loc=0, scale=1)
+      assert.epsilon(tol, jStat.arcsine.pdf(0, 0, 1), Infinity);
+      assert.epsilon(tol, jStat.arcsine.pdf(1, 0, 1), Infinity);
       assert.epsilon(tol, jStat.arcsine.pdf(0.001, 0, 1), 10.070879119947094);
-      //>>> arcsine.pdf(1 - 0.001, loc=0, scale=1)
       assert.epsilon(tol, jStat.arcsine.pdf(1 - 0.001, 0, 1), 10.07087911994709);
-      //>>> arcsine.pdf(3, loc=2, scale=4)
       assert.epsilon(tol, jStat.arcsine.pdf(3, 2, 6), 0.1837762984739307);
-      //>>> arcsine.pdf(4, loc=2, scale=4)
       assert.epsilon(tol, jStat.arcsine.pdf(4, 2, 6), 0.15915494309189535);
-      //>>> arcsine.pdf(6, loc=2, scale=4)
-      assert.epsilon(tol, jStat.arcsine.pdf(6, 2, 6), 0.0);
-      //>>> arcsine.pdf(10, loc=2, scale=4)
+      assert.epsilon(tol, jStat.arcsine.pdf(6, 2, 6), Infinity);
       assert.epsilon(tol, jStat.arcsine.pdf(10, 2, 6), 0.0);
-      //>>> arcsine.pdf(-10, loc=2, scale=4)
       assert.epsilon(tol, jStat.arcsine.pdf(-10, 2, 6), 0.0);
-      //>>> arcsine.pdf(-2, loc=-2, scale=2)
-      assert.epsilon(tol, jStat.arcsine.pdf(-2, -2, 0), 0.0);
-      //>>> arcsine.pdf(-1, loc=-2, scale=2)
+      assert.epsilon(tol, jStat.arcsine.pdf(-2, -2, 0), Infinity);
       assert.epsilon(tol, jStat.arcsine.pdf(-1, -2, 0), 0.31830988618379069);
-      //>>> arcsine.pdf(0, loc=-2,scale=0)
       assert(isNaN(jStat.arcsine.pdf(0, -2, -2)));
-      //>>> arcsine.pdf(0, loc=1,scale=0)
       assert(isNaN(jStat.arcsine.pdf(0, 1, 0)));
-      //>>> arcsine.pdf(0, loc=2,scale=-2)
       assert(isNaN(jStat.arcsine.pdf(0, 2, 0)));
     },
 
     'check cdf calculation': function(jStat) {
       var tol = 0.0000001;
-      //>>> arcsine.cdf(1, loc=0, scale=2)
       assert.epsilon(tol, jStat.arcsine.cdf(1, 0, 2), 0.50000000000000011);
-      //>>> arcsine.cdf(2, loc=0, scale=2)
       assert.epsilon(tol, jStat.arcsine.cdf(2, 0, 2), 1.0);
-      //>>> arcsine.cdf(0, loc=0, scale=2)
       assert.epsilon(tol, jStat.arcsine.cdf(0, 0, 2), 0.0);
-      //>>> arcsine.cdf(0, loc=-1, scale=1)
       assert.epsilon(tol, jStat.arcsine.cdf(0, -1, 0), 1.0);
-      //>>> arcsine.cdf(-3, loc=-1, scale=1)
       assert.epsilon(tol, jStat.arcsine.cdf(-3, -1, 0), 0.0);
-      //>>> arcsine.cdf(3, loc=-1, scale=1)
       assert.epsilon(tol, jStat.arcsine.cdf(3, -1, 0), 1.0);
-      //>>> arcsine.cdf(7, loc=5, scale=4)
       assert.epsilon(tol, jStat.arcsine.cdf(7, 5, 9), 0.50000000000000011);
-      //>>> arcsine.cdf(8, loc=5, scale=4)
       assert.epsilon(tol, jStat.arcsine.cdf(8, 5, 9), 0.66666666666666663);
-      //>>> arcsine.cdf(6, loc=5, scale=4)
       assert.epsilon(tol, jStat.arcsine.cdf(6, 5, 9), 0.33333333333333337);
-      //>>> arcsine.cdf(5.1, loc=5, scale=4)
       assert.epsilon(tol, jStat.arcsine.cdf(5.1, 5, 9), 0.10108262410425969);
-      //>>> arcsine.cdf(5.01, loc=5, scale=4)
       assert.epsilon(tol, jStat.arcsine.cdf(5.01, 5, 9), 0.031844266473320351);
     },
 

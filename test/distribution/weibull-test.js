@@ -29,8 +29,8 @@ suite.addBatch({
 
             //Negative test cases for invalid parameters
             assert.epsilon(tol, pdf(-1, 1, 1), 0);
-            assert.epsilon(tol, pdf(1, -1, 1), 0);
-            assert.epsilon(tol, pdf(1, 1, -1), 0);
+            assert(isNaN(pdf(1, -1, 1)));
+            assert(isNaN(pdf(1, 1, -1)));
         },
         'check cdf calculation': function(jStat) {
             var cdf = jStat.weibull.cdf;
