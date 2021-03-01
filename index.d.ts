@@ -32,10 +32,69 @@ declare module "jstat" {
    */
   export function variance(arr: number[], flag?: boolean): number;
 
+  class Normal {
+    /**
+     * Returns the value of x in the pdf of the Normal distribution with
+     * preset `mean` and `std` (standard deviation).
+     * @param x Random variable
+     */
+    pdf: (x: number) => number;
+
+    /**
+     * Returns the value of x in the cdf of the Normal distribution with
+     * preset `mean` and `std` (standard deviation).
+     * @param x Random variable
+     */
+    cdf: (x: number) => number;
+
+    /**
+     * Returns the value of p in the inverse cdf for the Normal distribution with
+     * preset `mean` and `std` (standard deviation).
+     * @param p P-value
+     */
+    inv: (p: number) => number;
+
+    /**
+     * Returns the value of the mean for the Normal distribution with
+     * preset `mean` and `std` (standard deviation).
+     */
+    mean: () => number;
+
+    /**
+     * Returns the value of the median for the Normal distribution with
+     * preset `mean` and `std` (standard deviation).
+     */
+    median: () => number;
+
+    /**
+     * Returns the value of the median for the Normal distribution with
+     * preset `mean` and `std` (standard deviation).
+     */
+    mode: () => number;
+
+    /**
+     * Returns a random number whose distribution is the Normal distribution
+     * with preset `mean` and `std` (standard deviation).
+     */
+    sample: () => number;
+
+    /**
+     * Returns the value of the variance for the Normal distribution with
+     * preset `mean` and `std` (standard deviation).
+     */
+    variance: () => number;
+  }
+  /**
+   * Return a jStat normal distribution instance preset with mean and std
+   * @param mean Normal distribution's mean
+   * @param std standard deviation
+   */
+  export function normal(mean: number, std: number): Normal;
+
   namespace normal {
     /**
      * Returns the value of x in the pdf of the Normal distribution with
-     * parameters mean and std (standard deviation).
+     * parameters `mean` and `std` (standard deviation).
      * @param x Random variable
      * @param mean Normal distribution's mean
      * @param std standard deviation
