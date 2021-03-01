@@ -1,4 +1,116 @@
+/// <reference path="./types/core.d.ts" />
+/// <reference path="./types/normal.d.ts" />
+/// <reference path="./types/studentt.d.ts" />
+
 declare module "jstat" {
+  // The core JStat class
+  class JStat {
+    // Matrix row count
+    length: number;
+
+    /**
+     * Returns the count of rows in a matrix.
+     * @example
+     * import * as jStat from "jstat"
+     *
+     * var stat = jStat([[1,2,3],[4,5,6]]);
+     * stat.rows() === 2;
+     */
+    rows(callback?: (count: number) => void): number;
+
+    /**
+     * Returns the count of cols in a matrix.
+     * @example
+     * import * as jStat from "jstat"
+     *
+     * var stat = jStat([[1,2,3],[4,5,6]]);
+     * stat.cols() === 2;
+     */
+    cols(callback?: (count: number) => void): number;
+
+    /**
+     * Returns an object with the dimensions of a matrix.
+     * @param matrix
+     */
+    dimensions(
+      callback?: (dimensions: MatrixDimension) => void
+    ): MatrixDimension;
+
+    /**
+     * Returns a new jStat instance initialized with the selected rows
+     * from the current jStat instance.
+     * @param matrix
+     * @param index a row number or an array of row numbers
+     */
+    row: <T extends number | number[]>(
+      index: T,
+      callback?: (rows: this) => void
+    ) => this;
+
+    /**
+     * Returns the specified column as a column vector.
+     * @param index a col number or an array of col numbers
+     */
+    col: (index: number | number[], callback?: (rows: this) => void) => this;
+  }
+
+  function jStat(): JStat;
+  function jStat(matrix: number[][]): JStat;
+  function jStat(
+    start: number,
+    stop: number,
+    count: number,
+    transformFn?: (x: number) => number
+  ): JStat;
+
+  /**
+   * Returns the count of rows in a matrix.
+   * @param matrix a number matrix
+   * @example
+   * import * as jStat from "jstat"
+   *
+   * var matrix = [[1,2,3],[4,5,6]];
+   * jStat.rows( matrix ) === 2;
+   */
+  export function rows(matrix: number[][]): number;
+
+  /**
+   * Returns the count of cols in a matrix.
+   * @example
+   * import * as jStat from "jstat"
+   *
+   * var stat = jStat([[1,2,3],[4,5,6]]);
+   * stat.cols() === 2;
+   */
+  export function cols(matrix: number[][]): number;
+
+  /**
+   * Returns a specified row or set of rows of a matrix.
+   * @param matrix
+   * @param index a row number or an array of row numbers
+   */
+  export function row<T extends number | number[]>(
+    matrix: number[][],
+    index: T
+  ): T extends number ? number[] : number[][];
+
+  /**
+   * Returns the specified column as a column vector.
+   * @param matrix
+   * @param index a col number or an array of col numbers
+   */
+  export function col(matrix: number[][], index: number | number[]): number[][];
+
+  interface MatrixDimension {
+    cols: number;
+    rows: number;
+  }
+  /**
+   * Returns an object with the dimensions of a matrix.
+   * @param matrix
+   */
+  export function dimensions(matrix: number[][]): MatrixDimension;
+
   /**
    * Performs the full Tukey's range test returning p-values for every
    * pairwise combination of the arrays in the format of
@@ -32,130 +144,13 @@ declare module "jstat" {
    */
   export function variance(arr: number[], flag?: boolean): number;
 
-  class Normal {
-    /**
-     * Returns the value of x in the pdf of the Normal distribution with
-     * preset `mean` and `std` (standard deviation).
-     * @param x Random variable
-     */
-    pdf: (x: number) => number;
+  export function spearmancoeff(arr1: number[], arr2: number[]): number;
+  export function corrcoeff(arr1: number[], arr2: number[]): number;
+  export function stdev(arr: number[], isSample?: boolean): number;
 
-    /**
-     * Returns the value of x in the cdf of the Normal distribution with
-     * preset `mean` and `std` (standard deviation).
-     * @param x Random variable
-     */
-    cdf: (x: number) => number;
+  export function anovaftest(...args: number[][]): number;
+  export function anovafscore(...args: number[][]): number;
+  export function anovafscore(args: number[][]): number;
 
-    /**
-     * Returns the value of p in the inverse cdf for the Normal distribution with
-     * preset `mean` and `std` (standard deviation).
-     * @param p P-value
-     */
-    inv: (p: number) => number;
-
-    /**
-     * Returns the value of the mean for the Normal distribution with
-     * preset `mean` and `std` (standard deviation).
-     */
-    mean: () => number;
-
-    /**
-     * Returns the value of the median for the Normal distribution with
-     * preset `mean` and `std` (standard deviation).
-     */
-    median: () => number;
-
-    /**
-     * Returns the value of the median for the Normal distribution with
-     * preset `mean` and `std` (standard deviation).
-     */
-    mode: () => number;
-
-    /**
-     * Returns a random number whose distribution is the Normal distribution
-     * with preset `mean` and `std` (standard deviation).
-     */
-    sample: () => number;
-
-    /**
-     * Returns the value of the variance for the Normal distribution with
-     * preset `mean` and `std` (standard deviation).
-     */
-    variance: () => number;
-  }
-  /**
-   * Return a jStat normal distribution instance preset with mean and std
-   * @param mean Normal distribution's mean
-   * @param std standard deviation
-   */
-  export function normal(mean: number, std: number): Normal;
-
-  namespace normal {
-    /**
-     * Returns the value of x in the pdf of the Normal distribution with
-     * parameters `mean` and `std` (standard deviation).
-     * @param x Random variable
-     * @param mean Normal distribution's mean
-     * @param std standard deviation
-     */
-    export function pdf(x: number, mean: number, std: number): number;
-
-    /**
-     * Returns the value of x in the cdf of the Normal distribution with
-     * parameters `mean` and `std` (standard deviation).
-     * @param x Random variable
-     * @param mean Normal distribution's mean
-     * @param std Standard deviation
-     */
-    export function cdf(x: number, mean: number, std: number): number;
-
-    /**
-     * Returns the value of p in the inverse cdf for the Normal distribution with
-     * parameters mean and std (standard deviation).
-     * @param p P-value
-     * @param mean Normal distribution's mean
-     * @param std Standard deviation
-     */
-    export function inv(p: number, mean: number, std: number): number;
-
-    /**
-     * Returns the value of the mean for the Normal distribution with
-     * parameters mean and std (standard deviation).
-     * @param mean Normal distribution's mean
-     * @param std Standard deviation
-     */
-    export function mean(mean: number, std: number): number;
-
-    /**
-     * Returns the value of the median for the Normal distribution with
-     * parameters mean and std (standard deviation).
-     * @param mean Normal distribution's mean
-     * @param std Standard deviation
-     */
-    export function median(mean: number, std: number): number;
-
-    /**
-     * Returns the value of the median for the Normal distribution with
-     * parameters mean and std (standard deviation).
-     * @param mean Normal distribution's mean
-     * @param std Standard deviation
-     */
-    export function mode(mean: number, std: number): number;
-
-    /**
-     * Returns a random number whose distribution is the Normal distribution
-     * with parameters `mean` and `std` (standard deviation).
-     * @param mean Normal distribution's mean
-     * @param std Standard deviation
-     */
-    export function sample(mean: number, std: number): number;
-
-    /**
-     * Returns the value of the variance for the Normal distribution with parameters mean and std (standard deviation).
-     * @param mean Normal distribution's mean
-     * @param std Standard deviation
-     */
-    export function variance(mean: number, std: number): number;
-  }
+  export default jStat;
 }
