@@ -152,6 +152,22 @@ expectType<InstanceType<JStat>>(
   })
 );
 
+// jStat(...).zeros()
+expectType<InstanceType<JStat>>(stat.zeros(2));
+expectType<InstanceType<JStat>>(stat.zeros(2, 4));
+
+// jStat(...).ones()
+expectType<InstanceType<JStat>>(stat.ones(2));
+expectType<InstanceType<JStat>>(stat.ones(2, 4));
+
+// jStat(...).rand()
+expectType<InstanceType<JStat>>(stat.rand(2));
+expectType<InstanceType<JStat>>(stat.rand(2, 4));
+
+// jStat(...).identity()
+expectType<InstanceType<JStat>>(stat.identity(2));
+expectType<InstanceType<JStat>>(stat.identity(2, 4));
+
 /**
  * jStat functions
  */
@@ -257,3 +273,31 @@ expectType<number[][]>(
     return row + col;
   })
 );
+
+// jStat.zeros()
+expectType<number[][]>(jStatCtx.zeros(2));
+expectType<number[][]>(jStatCtx.zeros(2, 4));
+
+// jStat.ones()
+expectType<number[][]>(jStatCtx.ones(2));
+expectType<number[][]>(jStatCtx.ones(2, 4));
+
+// jStat.rand()
+expectType<number[][]>(jStatCtx.rand(2));
+expectType<number[][]>(jStatCtx.rand(2, 4));
+
+// jStat.copy()
+expectType<number[]>(jStatCtx.copy(sampleVector));
+expectType<number[][]>(jStatCtx.copy(sampleMatrix));
+
+// jStat.identity()
+expectType<number[][]>(jStatCtx.identity(2));
+expectType<number[][]>(jStatCtx.identity(2, 4));
+
+// jStat.seq
+expectType<number[]>(jStatCtx.seq(1, 2, 10));
+
+// jStat.arange
+expectType<number[]>(jStatCtx.arange(10));
+expectType<number[]>(jStatCtx.arange(1, 5));
+expectType<number[]>(jStatCtx.arange(5, 1, -1));

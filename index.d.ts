@@ -136,13 +136,64 @@ declare module "jstat" {
      * @example
      * import jStat from "jstat";
      *
-     * jStat().create(2, 3, (row, col) => row + col); // [[0,1,3],[1,2,3]]
+     * jStat().create(2, 3, (row, col) => row + col); // [[0,1,2],[1,2,3]]
      */
     create(
       row: number,
       col: number,
       valueFn: (row: number, col: number) => number
     ): JStat;
+
+    /**
+     * Creates a size x size square matrix of all 0
+     * @param size
+     */
+    zeros(size: number): JStat;
+    /**
+     * Creates a row by col matrix of all 0
+     * @param row
+     * @param col
+     */
+    zeros(row: number, col: number): JStat;
+
+    /**
+     * Creates a size x size square matrix of all 1
+     * @param size
+     */
+    ones(size: number): JStat;
+    /**
+     * Creates a row by col matrix of all 1
+     * @param row
+     * @param col
+     */
+    ones(row: number, col: number): JStat;
+
+    /**
+     * Creates a size x size square matrix of normally distributed random
+     * numbers
+     * @param size
+     */
+    rand(size: number): JStat;
+
+    /**
+     * Creates a row by col matrix of normally distributed random numbers
+     * @param row
+     * @param col
+     */
+    rand(row: number, col: number): JStat;
+
+    /**
+     * Creates an identity size x size square matrix
+     * @param size
+     */
+    identity(size: number): JStat;
+
+    /**
+     * Creates an identity matrix of row by col
+     * @param row
+     * @param col
+     */
+    identity(row: number, col: number): JStat;
   }
 
   function jStat(): JStat;
@@ -328,13 +379,109 @@ declare module "jstat" {
    * @example
    * import * as jStat from "jstat";
    *
-   * jStat.create(2, 3, (row, col) => row + col); // [[0,1,3],[1,2,3]]
+   * jStat.create(2, 3, (row, col) => row + col); // [[0,1,2],[1,2,3]]
    */
   export function create(
     row: number,
     col: number,
     valueFn: (row: number, col: number) => number
   ): number[][];
+
+  /**
+   * Creates a size x size square matrix of all 0
+   * @param size
+   */
+  export function zeros(size: number): number[][];
+
+  /**
+   * Creates a row by col matrix of all 0
+   * @param row
+   * @param col
+   */
+  export function zeros(row: number, col: number): number[][];
+
+  /**
+   * Creates a size x size square matrix of all 1
+   * @param size
+   */
+  export function ones(size: number): number[][];
+
+  /**
+   * Creates a row by col matrix of all 1
+   * @param row
+   * @param col
+   */
+  export function ones(row: number, col: number): number[][];
+
+  /**
+   * Creates a size x size square matrix of normally distributed random
+   * numbers
+   * @param size
+   */
+  export function rand(size: number): number[][];
+
+  /**
+   * Creates a row by col matrix of normally distributed random numbers
+   * @param row
+   * @param col
+   */
+  export function rand(row: number, col: number): number[][];
+
+  /**
+   * Returns a copy of given matrix.
+   *
+   * @param matrix
+   */
+  export function copy<T extends number[] | number[][]>(matrix: T): T;
+
+  /**
+   * Creates an identity size x size square matrix
+   * @param size
+   */
+  export function identity(size: number): number[][];
+
+  /**
+   * Creates an identity matrix of row by col
+   * @param row
+   * @param col
+   */
+  export function identity(row: number, col: number): number[][];
+
+  /**
+   * Creates an arithmetic sequence by given length.
+   * @param start
+   * @param stop
+   * @param length
+   * @example
+   * import * as jStat from "jstat";
+   *
+   * jStat.seq(1,5,9); // [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
+   */
+  export function seq(start: number, stop: number, length: number): number[];
+
+  /**
+   * Creates an arithmetic sequence of a given length starting at 0.
+   * @param length
+   * @example
+   * import * as jStat from "jstat";
+   *
+   * jStat.arange(5); // [0,1,2,3,4]
+   */
+  export function arange(length: number): number[];
+
+  /**
+   * Creates an arithmetic sequence from start to stop (excluded) with
+   * a given step (step defaults to `1` if not provided)
+   * @param start
+   * @param stop
+   * @param step
+   * @example
+   * import * as jStat from "jstat";
+   *
+   * jStat.arange(1, 5); // [1,2,3,4]
+   * jStat.arange(5,1,-1); // [5,4,3,2]
+   */
+  export function arange(start: number, stop: number, step?: number): number[];
 
   /**
    * Performs the full Tukey's range test returning p-values for every
