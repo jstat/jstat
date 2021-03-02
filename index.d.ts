@@ -14,7 +14,7 @@ declare module "jstat" {
     /**
      * Returns the count of rows in a matrix.
      * @example
-     * import * as jStat from "jstat"
+     * import jStat from "jstat";
      *
      * var stat = jStat([[1,2,3],[4,5,6]]);
      * stat.rows() === 2;
@@ -24,7 +24,7 @@ declare module "jstat" {
     /**
      * Returns the count of cols in a matrix.
      * @example
-     * import * as jStat from "jstat"
+     * import jStat from "jstat";
      *
      * var stat = jStat([[1,2,3],[4,5,6]]);
      * stat.cols() === 2;
@@ -55,6 +55,36 @@ declare module "jstat" {
      * @param index a col number or an array of col numbers
      */
     col: (index: number | number[], callback?: (rows: JStat) => void) => JStat;
+
+    /**
+     * Returns the diagonal of a matrix.
+     * @example
+     * import jStat from "jstat";
+     *
+     * var matrix = [[1,2,3],[4,5,6],[7,8,9]];
+     * jStat( matrix ).diag() // jStat([[1],[5],[9]])
+     */
+    diag: (callback?: (diagonal: JStat) => void) => JStat;
+
+    /**
+     * Returns the anti-diagonal of the matrix.
+     * @example
+     * import jStat from "jstat";
+     *
+     * const matrix = [[1,2,3],[4,5,6],[7,8,9]];
+     * jStat( matrix ).antidiag() // jStat([[3],[5],[7]])
+     */
+    antidiag: (callback?: (diagonal: JStat) => void) => JStat;
+
+    /**
+     * Transposes a matrix.
+     * @example
+     * import jStat from "jstat";
+     *
+     * const matrix = [[1,2],[3,4]];
+     * jStat( matrix ).transpose() === [[1,3],[2,4]];
+     */
+    transpose: (callback?: (diagonal: JStat) => void) => JStat;
   }
 
   function jStat(): JStat;
@@ -129,6 +159,49 @@ declare module "jstat" {
    * @param matrix
    */
   export function dimensions(matrix: number[][] | number[]): MatrixDimension;
+
+  /**
+   * Returns the anti-diagonal of the matrix.
+   * @param matrix
+   * @example
+   * import * as jStat from "jstat";
+   *
+   * const matrix = [[1,2,3],[4,5,6],[7,8,9]];
+   * jStat.antidiag( matrix ) // [[1],[5],[9]];
+   */
+  export function diag(matrix: number[][]): number[];
+
+  /**
+   * Returns the diagonal of a matrix.
+   * @param matrix
+   * @example
+   * import * as jStat from "jstat";
+   *
+   * const matrix = [[1,2,3],[4,5,6],[7,8,9]];
+   * jStat.diag( matrix ) // [[1],[5],[9]]
+   */
+  export function antidiag(matrix: number[][]): number[];
+
+  /**
+   * Creates a new diagonal matrix by given 1d diag array.
+   * @param vector
+   * @example
+   * import * as jStat from "jstat";
+   *
+   * jStat.diagonal([1,2,3]); // [[1,0,0],[0,2,0],[0,0,3]]
+   */
+  export function diagonal(vector: number[]): number[][];
+
+  /**
+   * Transposes a matrix.
+   * @param matrix
+   * @example
+   * import * as jStat from "jstat";
+   *
+   * const matrix = [[1,2],[3,4]];
+   * jStat.transpose( matrix ) === [[1,3],[2,4]];
+   */
+  export function transpose(matrix: number[][]): number[][];
 
   /**
    * Performs the full Tukey's range test returning p-values for every

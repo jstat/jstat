@@ -78,39 +78,86 @@ expectType<number>(stat.length);
 // array index access
 expectType<number | number[]>(stat[0]);
 
+// jStat(...).rows()
 expectType<number>(stat.rows());
 expectType<number>(stat.rows((count) => expectType<number>(count)));
 
+// jStat(...).cols()
 expectType<number>(stat.cols());
 expectType<number>(stat.cols((count) => expectType<number>(count)));
 
+// jStat(...).dimensions()
 expectType<jStatCtx.MatrixDimension>(stat.dimensions());
 
+// jStat(...).col()
 expectType<InstanceType<JStat>>(stat.col(0));
 expectType<InstanceType<JStat>>(
   stat.col(0, (inst) => expectType<InstanceType<JStat>>(inst))
 );
 
+// jStat(...).row()
 expectType<InstanceType<JStat>>(stat.row(0));
 expectType<InstanceType<JStat>>(
   stat.row(0, (inst) => expectType<InstanceType<JStat>>(inst))
 );
 
+// jStat(...).diag()
+expectType<InstanceType<JStat>>(stat.diag());
+expectType<InstanceType<JStat>>(
+  stat.diag((diagonal) => expectType<InstanceType<JStat>>(diagonal))
+);
+
+// jStat(...).antidiag()
+expectType<InstanceType<JStat>>(stat.antidiag());
+expectType<InstanceType<JStat>>(
+  stat.antidiag((diagonal) => expectType<InstanceType<JStat>>(diagonal))
+);
+
+// jStat(...).transpose()
+expectType<InstanceType<JStat>>(stat.transpose());
+expectType<InstanceType<JStat>>(
+  stat.transpose((matrix) => expectType<InstanceType<JStat>>(matrix))
+);
+
 /**
  * jStat functions
  */
+
+// jStat.rows()
 expectType<number>(jStatCtx.rows(aMatrix));
 expectType<number>(jStatCtx.rows(aVector));
+
+// jStat.cols()
 expectType<number>(jStatCtx.cols(aMatrix));
 expectType<number>(jStatCtx.cols(aVector));
+
+// jStat.dimensions()
 expectType<jStatCtx.MatrixDimension>(jStatCtx.dimensions(aMatrix));
 expectType<jStatCtx.MatrixDimension>(jStatCtx.dimensions(aVector));
+
+// jStat.row()
 expectType<number | undefined>(jStatCtx.row(aVector, 1));
 expectType<Array<number | undefined>>(jStatCtx.row(aVector, [0, 2]));
 expectType<Array<number | undefined>>(jStatCtx.row(aMatrix, 1));
 expectType<Array<Array<number | undefined>>>(jStatCtx.row(aMatrix, [0, 2]));
 
+// jStat.col()
 expectError(jStatCtx.col(aVector, 1));
 expectError(jStatCtx.col(aVector, [0, 2]));
 expectType<number[][]>(jStatCtx.col(aMatrix, 1));
 expectType<number[][]>(jStatCtx.col(aMatrix, [0, 2]));
+
+// jStat.diag()
+expectError(jStatCtx.diag(aVector));
+expectType<number[]>(jStatCtx.diag(aMatrix));
+
+// jStat.antidiag()
+expectError(jStatCtx.antidiag(aVector));
+expectType<number[]>(jStatCtx.antidiag(aMatrix));
+
+// jStat.diagonal()
+expectType<number[][]>(jStatCtx.diagonal(aVector));
+
+// jStat.transpose()
+expectError(jStatCtx.transpose(aVector));
+expectType<number[][]>(jStatCtx.transpose(aMatrix));
