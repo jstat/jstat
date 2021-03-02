@@ -168,6 +168,22 @@ expectType<InstanceType<JStat>>(stat.rand(2, 4));
 expectType<InstanceType<JStat>>(stat.identity(2));
 expectType<InstanceType<JStat>>(stat.identity(2, 4));
 
+// jStat(...).clear
+expectType<InstanceType<JStat>>(stat.clear());
+expectType<InstanceType<JStat>>(
+  stat.clear((matrix) => {
+    expectType<InstanceType<JStat>>(matrix);
+  })
+);
+
+// jStat(...).symmetric
+expectType<boolean>(stat.symmetric());
+expectType<InstanceType<JStat>>(
+  stat.symmetric((isSymmetric) => {
+    expectType<boolean>(isSymmetric);
+  })
+);
+
 /**
  * jStat functions
  */
@@ -301,3 +317,11 @@ expectType<number[]>(jStatCtx.seq(1, 2, 10));
 expectType<number[]>(jStatCtx.arange(10));
 expectType<number[]>(jStatCtx.arange(1, 5));
 expectType<number[]>(jStatCtx.arange(5, 1, -1));
+
+// jStat.clear
+expectType<number[]>(jStatCtx.clear(sampleVector));
+expectType<number[][]>(jStatCtx.clear(sampleMatrix));
+
+// jStat.symmetric
+expectError(jStatCtx.symmetric(sampleVector));
+expectType<boolean>(jStatCtx.symmetric(sampleMatrix));

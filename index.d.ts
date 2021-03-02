@@ -194,17 +194,73 @@ declare module "jstat" {
      * @param col
      */
     identity(row: number, col: number): JStat;
+
+    /**
+     * Sets all values in the vector or matrix to zero.
+     *
+     * If a callback is passed then the original object is not altered.
+     * @param callback
+     */
+    clear(callback?: (matrix: JStat) => void): JStat;
+
+    /**
+     * Tests if a matrix is symmetric. This method returns
+     * a boolean unless provided with a callback.
+     *
+     * @example
+     * import jStat from "jstat";
+     *
+     * jStat([[1,2],[2,1]]).symmetric() // true
+     */
+    symmetric(): boolean;
+
+    /**
+     * Tests if a matrix is symmetric. This method returns
+     * a jStat instance for chaining when a callback is
+     * provided.
+     * @param callback
+     * @example
+     * import jStat from "jstat";
+     *
+     * const stat = jStat([[1,2],[2,1]])
+     * jStat.symmetric((isSymmetric) => console.log(isSymmetric))
+     * // returns stat object but displays `isSymmetric` value
+     */
+    symmetric(callback?: (isSemmetric: boolean) => void): JStat;
   }
 
+  /**
+   * Create an empty JStat object
+   */
   function jStat(): JStat;
+
+  /**
+   * Create a JStat from a matrix object
+   * @param matrix
+   * @param transformFn
+   */
   function jStat(
     matrix: number[][],
     transformFn?: (x: number, count: number) => number
   ): JStat;
+
+  /**
+   * create a new jStat from a vector object
+   * @param vector
+   * @param transformFn
+   */
   function jStat(
     vector: number[],
     transformFn?: (x: number, count: number) => number
   ): JStat;
+
+  /**
+   * Creates a new jStat object from a sequence (same form jStat.seq())
+   * @param start
+   * @param stop
+   * @param count
+   * @param transformFn
+   */
   function jStat(
     start: number,
     stop: number,
@@ -482,6 +538,28 @@ declare module "jstat" {
    * jStat.arange(5,1,-1); // [5,4,3,2]
    */
   export function arange(start: number, stop: number, step?: number): number[];
+
+  /**
+   * Sets all values in the vector or matrix to zero. (mutates the argument)
+   * @param vector
+   * @example
+   * import * as jStat from "jstat";
+   *
+   * const vector = [1,2,3];
+   * jStat.clear(vector);
+   * // vector === [0,0,0]
+   */
+  export function clear<T extends number[] | number[][]>(vector: T): T;
+
+  /**
+   * Tests if a matrix is symmetric.
+   * @param matrix
+   * @example
+   * import * as jStat from "jstat";
+   *
+   * jStat.symmetric([[1,2],[2,1]]); // true
+   */
+  export function symmetric(matrix: number[][]): boolean;
 
   /**
    * Performs the full Tukey's range test returning p-values for every
