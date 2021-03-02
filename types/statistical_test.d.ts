@@ -2,6 +2,27 @@ import { JStat } from "jstat";
 
 declare module "jstat" {
   /**
+   * Returns the z-score of value given a sample.
+   * isSample = true denotes use of sample standard deviation.
+   * @param x
+   * @param sample
+   * @param isSample
+   */
+  export function zscore(
+    x: number,
+    sample: number[],
+    isSample?: boolean
+  ): number;
+
+  /**
+   * Returns the z-score of value given the mean and a standard deviation.
+   * @param x
+   * @param mean
+   * @param std
+   */
+  export function zscore(x: number, mean: number, std: number): number;
+
+  /**
    * Performs the full Tukey's range test returning p-values for every
    * pairwise combination of the arrays in the format of
    * `[[[index1, index2], pvalue], ...]`
@@ -18,5 +39,9 @@ declare module "jstat" {
    *   [ [ 2, 3 ], 0.5528665999257486 ] ]
    */
   export function tukeyhsd(arrays: number[][]): TukeyHSD[];
-  type TukeyHSD = [[number, number], number];
+  export type TukeyHSD = [[number, number], number];
+
+  export function anovaftest(...args: number[][]): number;
+  export function anovafscore(...args: number[][]): number;
+  export function anovafscore(args: number[][]): number;
 }

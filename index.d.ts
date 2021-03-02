@@ -6,6 +6,46 @@
 
 declare module "jstat" {
   export type JStat = typeof JStat;
+
+  /**
+   * Create an empty JStat object
+   */
+  function jStat(): JStat;
+
+  /**
+   * Create a JStat from a matrix object
+   * @param matrix
+   * @param transformFn
+   */
+  function jStat(
+    matrix: number[][],
+    transformFn?: (x: number, count: number) => number
+  ): JStat;
+
+  /**
+   * create a new jStat from a vector object
+   * @param vector
+   * @param transformFn
+   */
+  function jStat(
+    vector: number[],
+    transformFn?: (x: number, count: number) => number
+  ): JStat;
+
+  /**
+   * Creates a new jStat object from a sequence (same form jStat.seq())
+   * @param start
+   * @param stop
+   * @param count
+   * @param transformFn
+   */
+  function jStat(
+    start: number,
+    stop: number,
+    count: number,
+    transformFn?: (x: number, count: number) => number
+  ): JStat;
+
   // The core JStat class
   class JStat {
     // Matrix row count
@@ -229,54 +269,22 @@ declare module "jstat" {
      * // returns stat object but displays `isSymmetric` value
      */
     symmetric(callback?: (isSemmetric: boolean) => void): JStat;
+
+    /**
+     * Returns the z-score of value taking the jStat object as the
+     * observed values. isSample = true denotes use of sample
+     * standard deviation.
+     *
+     * @param x
+     * @param isSample
+     * @example
+     * import jStat from "jstat";
+     *
+     * const stat = jStat(0, 1)
+     * jStat.symmetric((isSymmetric) => console.log(isSymmetric))
+     */
+    zscore(x: number, isSample?: boolean): number;
   }
-
-  /**
-   * Create an empty JStat object
-   */
-  function jStat(): JStat;
-
-  /**
-   * Create a JStat from a matrix object
-   * @param matrix
-   * @param transformFn
-   */
-  function jStat(
-    matrix: number[][],
-    transformFn?: (x: number, count: number) => number
-  ): JStat;
-
-  /**
-   * create a new jStat from a vector object
-   * @param vector
-   * @param transformFn
-   */
-  function jStat(
-    vector: number[],
-    transformFn?: (x: number, count: number) => number
-  ): JStat;
-
-  /**
-   * Creates a new jStat object from a sequence (same form jStat.seq())
-   * @param start
-   * @param stop
-   * @param count
-   * @param transformFn
-   */
-  function jStat(
-    start: number,
-    stop: number,
-    count: number,
-    transformFn?: (x: number, count: number) => number
-  ): JStat;
-
-  export function spearmancoeff(arr1: number[], arr2: number[]): number;
-  export function corrcoeff(arr1: number[], arr2: number[]): number;
-  export function stdev(arr: number[], isSample?: boolean): number;
-
-  export function anovaftest(...args: number[][]): number;
-  export function anovafscore(...args: number[][]): number;
-  export function anovafscore(args: number[][]): number;
 
   export default jStat;
 }

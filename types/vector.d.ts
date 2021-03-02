@@ -12,4 +12,8 @@ declare module "jstat" {
    * jStat.variance([1,2,3,4],true) === 1.66666...
    */
   export function variance(arr: number[], flag?: boolean): number;
+
+  export function stdev(arr: number[], isSample?: boolean): number;
+  export function spearmancoeff(arr1: number[], arr2: number[]): number;
+  export function corrcoeff(arr1: number[], arr2: number[]): number;
 }
