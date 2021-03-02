@@ -109,7 +109,7 @@ expectType<InstanceType<JStat>>(
 );
 
 // jStat(...).map()
-expectError<InstanceType<JStat>>(stat.map());
+expectError(stat.map());
 expectType<InstanceType<JStat>>(
   stat.map((x) => {
     expectType<number>(x);
@@ -118,12 +118,37 @@ expectType<InstanceType<JStat>>(
 );
 
 // jStat(...).cumreduce()
-expectError<InstanceType<JStat>>(stat.cumreduce());
+expectError(stat.cumreduce());
 expectType<InstanceType<JStat>>(
   stat.cumreduce((a, b) => {
     expectType<number>(a);
     expectType<number>(b);
     return a + b;
+  })
+);
+
+// jStat(...).alter()
+expectError(stat.alter());
+expectType<InstanceType<JStat>>(
+  stat.alter((x) => {
+    expectType<number>(x);
+    return x;
+  })
+);
+
+// jStat(...).create()
+expectType<InstanceType<JStat>>(
+  stat.create(2, (row, col) => {
+    expectType<number>(row);
+    expectType<number>(col);
+    return row + col;
+  })
+);
+expectType<InstanceType<JStat>>(
+  stat.create(2, 4, (row, col) => {
+    expectType<number>(row);
+    expectType<number>(col);
+    return row + col;
   })
 );
 
@@ -199,5 +224,36 @@ expectType<number[][]>(
     expectType<number>(a);
     expectType<number>(b);
     return a + b;
+  })
+);
+
+// jStat.alter()
+expectType<number[]>(
+  jStatCtx.alter(sampleVector, (x) => {
+    expectType<number>(x);
+    return x;
+  })
+);
+expectType<number[][]>(
+  jStatCtx.alter(sampleMatrix, (x) => {
+    expectType<number>(x);
+    return x;
+  })
+);
+
+// jStat.create()
+expectType<number[][]>(
+  jStatCtx.create(2, (row, col) => {
+    expectType<number>(row);
+    expectType<number>(col);
+    return row + col;
+  })
+);
+
+expectType<number[][]>(
+  jStatCtx.create(2, 4, (row, col) => {
+    expectType<number>(row);
+    expectType<number>(col);
+    return row + col;
   })
 );

@@ -45,16 +45,16 @@ declare module "jstat" {
      * @param matrix
      * @param index a row number or an array of row numbers
      */
-    row: <T extends number | number[]>(
+    row<T extends number | number[]>(
       index: T,
       callback?: (rows: JStat) => void
-    ) => JStat;
+    ): JStat;
 
     /**
      * Returns the specified column as a column vector.
      * @param index a col number or an array of col numbers
      */
-    col: (index: number | number[], callback?: (rows: JStat) => void) => JStat;
+    col(index: number | number[], callback?: (rows: JStat) => void): JStat;
 
     /**
      * Returns the diagonal of a matrix.
@@ -64,7 +64,7 @@ declare module "jstat" {
      * var matrix = [[1,2,3],[4,5,6],[7,8,9]];
      * jStat( matrix ).diag() // jStat([[1],[5],[9]])
      */
-    diag: (callback?: (diagonal: JStat) => void) => JStat;
+    diag(callback?: (diagonal: JStat) => void): JStat;
 
     /**
      * Returns the anti-diagonal of the matrix.
@@ -74,7 +74,7 @@ declare module "jstat" {
      * const matrix = [[1,2,3],[4,5,6],[7,8,9]];
      * jStat( matrix ).antidiag() // jStat([[3],[5],[7]])
      */
-    antidiag: (callback?: (diagonal: JStat) => void) => JStat;
+    antidiag(callback?: (diagonal: JStat) => void): JStat;
 
     /**
      * Transposes a matrix.
@@ -84,7 +84,7 @@ declare module "jstat" {
      * const matrix = [[1,2],[3,4]];
      * jStat( matrix ).transpose(); // [[1,3],[2,4]]
      */
-    transpose: (callback?: (diagonal: JStat) => void) => JStat;
+    transpose(callback?: (diagonal: JStat) => void): JStat;
 
     /**
      * Maps a function to all values and return a new object.
@@ -94,7 +94,7 @@ declare module "jstat" {
      * const matrix = [[1,2],[3,4]];
      * jStat( matrix ).map((x) => x * 2); // [[2,4],[6,8]];
      */
-    map: (transformFn: (x: number) => number) => JStat;
+    map(transformFn: (x: number) => number): JStat;
 
     /**
      * Cumulatively reduces values using a function and return a new object.
@@ -104,7 +104,45 @@ declare module "jstat" {
      * const matrix = [[1,2],[3,4]];
      * jStat( matrix ).cumreduce((x) => x * 2); // [[2,4],[6,8]];
      */
-    cumreduce: (transformFn: (a: number, b: number) => number) => JStat;
+    cumreduce(transformFn: (a: number, b: number) => number): JStat;
+
+    /**
+     * Destructively maps to an array (mutates the instance)
+     * @example
+     * import jStat from "jstat";
+     *
+     * const matrix = jStat([[1,2],[3,4]]);
+     * matrix.alter((x) => x * 2);
+     * // matrix === jStat([[2,4],[6,8]]);
+     */
+    alter(transformFn: (x: number) => number): JStat;
+
+    /**
+     * Creates a size x size square matrix using the supplied function.
+     * @param size
+     * @param valueFn
+     * @example
+     * import jStat from "jstat";
+     *
+     * jStat().create(2, (row, col) => row + col); // jStat([[0,1],[1,2]])
+     */
+    create(size: number, valueFn: (row: number, col: number) => number): JStat;
+
+    /**
+     * Creates a row by col matrix using the supplied function.
+     * @param row
+     * @param col
+     * @param valueFn
+     * @example
+     * import jStat from "jstat";
+     *
+     * jStat().create(2, 3, (row, col) => row + col); // [[0,1,3],[1,2,3]]
+     */
+    create(
+      row: number,
+      col: number,
+      valueFn: (row: number, col: number) => number
+    ): JStat;
   }
 
   function jStat(): JStat;
@@ -250,6 +288,53 @@ declare module "jstat" {
     matrix: T,
     transformFn: (a: number, b: number) => number
   ): T;
+
+  /**
+   * Destructively maps to an array (mutates the matrix).
+   * @param matrix
+   * @param transformFn
+   * @example
+   * import * as jStat from "jstat";
+   *
+   * const matrix = [[1,2],[3,4]];
+   * jStat.alter(matrix, (x) => x * 2); // matrix === [[2,4],[6,8]];
+   */
+  export function alter<T extends number[] | number[][]>(
+    matrix: T,
+    transformFn: (x: number) => number
+  ): T;
+
+  /**
+   * Creates a size x size square matrix using the supplied function.
+   *
+   * @param size
+   * @param valueFn
+   * @example
+   * import * as jStat from "jstat";
+   *
+   * jStat.create(2, (row, col) => row + col); // [[0,1],[1,2]]
+   */
+  export function create(
+    size: number,
+    valueFn: (row: number, col: number) => number
+  ): number[][];
+
+  /**
+   * Creates a row by col matrix using the supplied function.
+   *
+   * @param row
+   * @param col
+   * @param valueFn
+   * @example
+   * import * as jStat from "jstat";
+   *
+   * jStat.create(2, 3, (row, col) => row + col); // [[0,1,3],[1,2,3]]
+   */
+  export function create(
+    row: number,
+    col: number,
+    valueFn: (row: number, col: number) => number
+  ): number[][];
 
   /**
    * Performs the full Tukey's range test returning p-values for every

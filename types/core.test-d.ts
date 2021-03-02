@@ -30,7 +30,7 @@ expectType<number[][]>(
 expectType<number[][]>(jStat.slice(sampleMatrix, { row: { end: 2 } }));
 expectType<number[][]>(jStat.slice(sampleMatrix, { col: { start: 1 } }));
 expectType<number[][]>(jStat.slice(sampleMatrix, {}));
-expectError<number[][]>(jStat.slice(sampleMatrix));
+expectError(jStat.slice(sampleMatrix));
 
 /**
  * jStat.sliceAssign(...)

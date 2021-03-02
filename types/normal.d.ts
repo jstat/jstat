@@ -7,51 +7,51 @@ declare module "jstat" {
      * preset `mean` and `std` (standard deviation).
      * @param x Random variable
      */
-    pdf: (x: number) => number;
+    pdf(x: number): number;
 
     /**
      * Returns the value of x in the cdf of the Normal distribution with
      * preset `mean` and `std` (standard deviation).
      * @param x Random variable
      */
-    cdf: (x: number) => number;
+    cdf(x: number): number;
 
     /**
      * Returns the value of p in the inverse cdf for the Normal distribution with
      * preset `mean` and `std` (standard deviation).
      * @param p P-value
      */
-    inv: (p: number) => number;
+    inv(p: number): number;
 
     /**
      * Returns the value of the mean for the Normal distribution with
      * preset `mean` and `std` (standard deviation).
      */
-    mean: () => number;
+    mean(): number;
 
     /**
      * Returns the value of the median for the Normal distribution with
      * preset `mean` and `std` (standard deviation).
      */
-    median: () => number;
+    median(): number;
 
     /**
      * Returns the value of the median for the Normal distribution with
      * preset `mean` and `std` (standard deviation).
      */
-    mode: () => number;
+    mode(): number;
 
     /**
      * Returns a random number whose distribution is the Normal distribution
      * with preset `mean` and `std` (standard deviation).
      */
-    sample: () => number;
+    sample(): number;
 
     /**
      * Returns the value of the variance for the Normal distribution with
      * preset `mean` and `std` (standard deviation).
      */
-    variance: () => number;
+    variance(): number;
   }
 
   export namespace normal {

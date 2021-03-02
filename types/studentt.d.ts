@@ -7,51 +7,51 @@ declare module "jstat" {
      * preset dof degrees of freedom.
      * @param x Random variable
      */
-    pdf: (x: number) => number;
+    pdf(x: number): number;
 
     /**
      * Returns the value of x in the cdf of the Student's T distribution with
      * dof degrees of freedom.
      * @param x Random variable
      */
-    cdf: (x: number) => number;
+    cdf(x: number): number;
 
     /**
      * Returns the value of p in the inverse of the cdf for the Student's
      * T distribution with dof degrees of freedom.
      * @param p P-value
      */
-    inv: (p: number) => number;
+    inv(p: number): number;
 
     /**
      * Returns the value of the mean of the Student's T distribution
      * with dof degrees of freedom.
      */
-    mean: () => number;
+    mean(): number;
 
     /**
      * Returns the value of the median of the Student's T distribution
      * with dof degrees of freedom.
      */
-    median: () => number;
+    median(): number;
 
     /**
      * Returns the value of the mode of the Student's T distribution with
      * dof degrees of freedom.
      */
-    mode: () => number;
+    mode(): number;
 
     /**
      * Returns a random number whose distribution is the Student's
      * T distribution with dof degrees of freedom.
      */
-    sample: () => number;
+    sample(): number;
 
     /**
      * Returns the value of the variance for the Student's T distribution
      * with dof degrees of freedom.
      */
-    variance: () => number;
+    variance(): number;
   }
 
   export namespace studentt {
