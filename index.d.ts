@@ -82,9 +82,29 @@ declare module "jstat" {
      * import jStat from "jstat";
      *
      * const matrix = [[1,2],[3,4]];
-     * jStat( matrix ).transpose() === [[1,3],[2,4]];
+     * jStat( matrix ).transpose(); // [[1,3],[2,4]]
      */
     transpose: (callback?: (diagonal: JStat) => void) => JStat;
+
+    /**
+     * Maps a function to all values and return a new object.
+     * @example
+     * import jStat from "jstat";
+     *
+     * const matrix = [[1,2],[3,4]];
+     * jStat( matrix ).map((x) => x * 2); // [[2,4],[6,8]];
+     */
+    map: (transformFn: (x: number) => number) => JStat;
+
+    /**
+     * Cumulatively reduces values using a function and return a new object.
+     * @example
+     * import jStat from "jstat";
+     *
+     * const matrix = [[1,2],[3,4]];
+     * jStat( matrix ).cumreduce((x) => x * 2); // [[2,4],[6,8]];
+     */
+    cumreduce: (transformFn: (a: number, b: number) => number) => JStat;
   }
 
   function jStat(): JStat;
@@ -199,9 +219,37 @@ declare module "jstat" {
    * import * as jStat from "jstat";
    *
    * const matrix = [[1,2],[3,4]];
-   * jStat.transpose( matrix ) === [[1,3],[2,4]];
+   * jStat.transpose(matrix); // [[1,3],[2,4]];
    */
   export function transpose(matrix: number[][]): number[][];
+
+  /**
+   * Maps a function to all values and return a new object.
+   * @param matrix
+   * @param transformFn
+   * @example
+   * import * as jStat from "jstat";
+   *
+   * const matrix = [[1,2],[3,4]];
+   * jStat.map(matrix, (x) => x * 2); // [[2,4],[6,8]];
+   */
+  export function map<T extends number[] | number[][]>(
+    matrix: T,
+    transformFn: (x: number) => number
+  ): T;
+
+  /**
+   * Cumulatively reduces values using a function and return a new object.
+   * @example
+   * import * as jStat from "jstat";
+   *
+   * const matrix = [[1,2],[3,4]];
+   * jStat.cumreduce(matrix, (x) => x * 2); // [[1,3],[3,7]];
+   */
+  export function cumreduce<T extends number[] | number[][]>(
+    matrix: T,
+    transformFn: (a: number, b: number) => number
+  ): T;
 
   /**
    * Performs the full Tukey's range test returning p-values for every

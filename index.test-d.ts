@@ -8,8 +8,8 @@ import "./types/studentt.test-d";
 import jStat, * as jStatCtx from "jstat";
 import { expectType, expectError } from "tsd";
 
-const aVector = [0, 1, 2];
-const aMatrix = [aVector, aVector];
+const sampleVector = [0, 1, 2];
+const sampleMatrix = [sampleVector, sampleVector, sampleVector];
 
 // shortcut to the JStat type as we need the jStatCtx
 // for static functional tests
@@ -19,34 +19,23 @@ type JStat = jStatCtx.JStat;
 expectType<InstanceType<JStat>>(jStat());
 
 // Vector initialization
-expectType<InstanceType<JStat>>(jStat([0, 1, 2]));
+expectType<InstanceType<JStat>>(jStat(sampleVector));
 // Vector initialization with transform callback
 expectType<InstanceType<JStat>>(
-  jStat([0, 1, 2], (x) => {
+  jStat(sampleVector, (x) => {
     expectType<number>(x);
     return x * 2; // to prevent editor warning we respect return requirements
   })
 );
 
 // Matrix initialization
-expectType<InstanceType<JStat>>(
-  jStat([
-    [0, 1],
-    [0, 1],
-  ])
-);
+expectType<InstanceType<JStat>>(jStat(sampleMatrix));
 // Matrix initialization with transform callback
 expectType<InstanceType<JStat>>(
-  jStat(
-    [
-      [0, 1],
-      [0, 1],
-    ],
-    (x) => {
-      expectType<number>(x);
-      return x * 2; // to prevent editor warning we respect return requirements
-    }
-  )
+  jStat(sampleMatrix, (x) => {
+    expectType<number>(x);
+    return x * 2; // to prevent editor warning we respect return requirements
+  })
 );
 
 // start-stop initialization
@@ -119,45 +108,96 @@ expectType<InstanceType<JStat>>(
   stat.transpose((matrix) => expectType<InstanceType<JStat>>(matrix))
 );
 
+// jStat(...).map()
+expectError<InstanceType<JStat>>(stat.map());
+expectType<InstanceType<JStat>>(
+  stat.map((x) => {
+    expectType<number>(x);
+    return x;
+  })
+);
+
+// jStat(...).cumreduce()
+expectError<InstanceType<JStat>>(stat.cumreduce());
+expectType<InstanceType<JStat>>(
+  stat.cumreduce((a, b) => {
+    expectType<number>(a);
+    expectType<number>(b);
+    return a + b;
+  })
+);
+
 /**
  * jStat functions
  */
 
 // jStat.rows()
-expectType<number>(jStatCtx.rows(aMatrix));
-expectType<number>(jStatCtx.rows(aVector));
+expectType<number>(jStatCtx.rows(sampleMatrix));
+expectType<number>(jStatCtx.rows(sampleVector));
 
 // jStat.cols()
-expectType<number>(jStatCtx.cols(aMatrix));
-expectType<number>(jStatCtx.cols(aVector));
+expectType<number>(jStatCtx.cols(sampleMatrix));
+expectType<number>(jStatCtx.cols(sampleVector));
 
 // jStat.dimensions()
-expectType<jStatCtx.MatrixDimension>(jStatCtx.dimensions(aMatrix));
-expectType<jStatCtx.MatrixDimension>(jStatCtx.dimensions(aVector));
+expectType<jStatCtx.MatrixDimension>(jStatCtx.dimensions(sampleMatrix));
+expectType<jStatCtx.MatrixDimension>(jStatCtx.dimensions(sampleVector));
 
 // jStat.row()
-expectType<number | undefined>(jStatCtx.row(aVector, 1));
-expectType<Array<number | undefined>>(jStatCtx.row(aVector, [0, 2]));
-expectType<Array<number | undefined>>(jStatCtx.row(aMatrix, 1));
-expectType<Array<Array<number | undefined>>>(jStatCtx.row(aMatrix, [0, 2]));
+expectType<number | undefined>(jStatCtx.row(sampleVector, 1));
+expectType<Array<number | undefined>>(jStatCtx.row(sampleVector, [0, 2]));
+expectType<Array<number | undefined>>(jStatCtx.row(sampleMatrix, 1));
+expectType<Array<Array<number | undefined>>>(
+  jStatCtx.row(sampleMatrix, [0, 2])
+);
 
 // jStat.col()
-expectError(jStatCtx.col(aVector, 1));
-expectError(jStatCtx.col(aVector, [0, 2]));
-expectType<number[][]>(jStatCtx.col(aMatrix, 1));
-expectType<number[][]>(jStatCtx.col(aMatrix, [0, 2]));
+expectError(jStatCtx.col(sampleVector, 1));
+expectError(jStatCtx.col(sampleVector, [0, 2]));
+expectType<number[][]>(jStatCtx.col(sampleMatrix, 1));
+expectType<number[][]>(jStatCtx.col(sampleMatrix, [0, 2]));
 
 // jStat.diag()
-expectError(jStatCtx.diag(aVector));
-expectType<number[]>(jStatCtx.diag(aMatrix));
+expectError(jStatCtx.diag(sampleVector));
+expectType<number[]>(jStatCtx.diag(sampleMatrix));
 
 // jStat.antidiag()
-expectError(jStatCtx.antidiag(aVector));
-expectType<number[]>(jStatCtx.antidiag(aMatrix));
+expectError(jStatCtx.antidiag(sampleVector));
+expectType<number[]>(jStatCtx.antidiag(sampleMatrix));
 
 // jStat.diagonal()
-expectType<number[][]>(jStatCtx.diagonal(aVector));
+expectType<number[][]>(jStatCtx.diagonal(sampleVector));
 
 // jStat.transpose()
-expectError(jStatCtx.transpose(aVector));
-expectType<number[][]>(jStatCtx.transpose(aMatrix));
+expectError(jStatCtx.transpose(sampleVector));
+expectType<number[][]>(jStatCtx.transpose(sampleMatrix));
+
+// jStat.map()
+expectType<number[]>(
+  jStatCtx.map(sampleVector, (x) => {
+    expectType<number>(x);
+    return x;
+  })
+);
+expectType<number[][]>(
+  jStatCtx.map(sampleMatrix, (x) => {
+    expectType<number>(x);
+    return x;
+  })
+);
+
+// jStat.cumreduce()
+expectType<number[]>(
+  jStatCtx.cumreduce(sampleVector, (a, b) => {
+    expectType<number>(a);
+    expectType<number>(b);
+    return a + b;
+  })
+);
+expectType<number[][]>(
+  jStatCtx.cumreduce(sampleMatrix, (a, b) => {
+    expectType<number>(a);
+    expectType<number>(b);
+    return a + b;
+  })
+);
