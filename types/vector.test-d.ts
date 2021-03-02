@@ -1,7 +1,7 @@
 /// <reference path="../index.d.ts" />
 /// <reference path="./statistical_test.d.ts" />
 
-import * as jStat from "jstat";
+import { jStat } from "jstat";
 import { expectType } from "tsd";
 
 const sampleVector = [0, 1, 2];

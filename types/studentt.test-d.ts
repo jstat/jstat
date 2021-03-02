@@ -1,7 +1,7 @@
 /// <reference path="../index.d.ts" />
 /// <reference path="./studentt.d.ts" />
 
-import * as jStat from "jstat";
+import { jStat } from "jstat";
 import { expectType, expectError } from "tsd";
 
 const aVector = [0, 1, 2];

@@ -1,8 +1,8 @@
 /// <reference path="../index.d.ts" />
 /// <reference path="./statistical_test.d.ts" />
 
-import jStat, * as jStatCtx from "jstat";
 import { expectType } from "tsd";
+import { jStat } from "jstat";
 
 const sampleVector = [0, 1, 2];
 const sampleMatrix = [sampleVector, sampleVector, sampleVector];
