@@ -1,4 +1,6 @@
 declare module "jstat" {
+  export type StudenttDistribution = typeof Studentt;
+
   class Studentt {
     /**
      * Returns the value of x in the pdf of the Student's T distribution with

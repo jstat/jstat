@@ -3,10 +3,13 @@
 /// <reference path="./types/studentt.d.ts" />
 
 declare module "jstat" {
+  export type JStat = typeof JStat;
   // The core JStat class
   class JStat {
     // Matrix row count
     length: number;
+
+    [index: number]: number | number[];
 
     /**
      * Returns the count of rows in a matrix.
@@ -44,23 +47,30 @@ declare module "jstat" {
      */
     row: <T extends number | number[]>(
       index: T,
-      callback?: (rows: this) => void
-    ) => this;
+      callback?: (rows: JStat) => void
+    ) => JStat;
 
     /**
      * Returns the specified column as a column vector.
      * @param index a col number or an array of col numbers
      */
-    col: (index: number | number[], callback?: (rows: this) => void) => this;
+    col: (index: number | number[], callback?: (rows: JStat) => void) => JStat;
   }
 
   function jStat(): JStat;
-  function jStat(matrix: number[][]): JStat;
+  function jStat(
+    matrix: number[][],
+    transformFn?: (x: number, count: number) => number
+  ): JStat;
+  function jStat(
+    vector: number[],
+    transformFn?: (x: number, count: number) => number
+  ): JStat;
   function jStat(
     start: number,
     stop: number,
     count: number,
-    transformFn?: (x: number) => number
+    transformFn?: (x: number, count: number) => number
   ): JStat;
 
   /**
@@ -72,7 +82,7 @@ declare module "jstat" {
    * var matrix = [[1,2,3],[4,5,6]];
    * jStat.rows( matrix ) === 2;
    */
-  export function rows(matrix: number[][]): number;
+  export function rows(matrix: number[][] | number[]): number;
 
   /**
    * Returns the count of cols in a matrix.
@@ -82,17 +92,26 @@ declare module "jstat" {
    * var stat = jStat([[1,2,3],[4,5,6]]);
    * stat.cols() === 2;
    */
-  export function cols(matrix: number[][]): number;
+  export function cols(matrix: number[][] | number[]): number;
 
   /**
    * Returns a specified row or set of rows of a matrix.
    * @param matrix
    * @param index a row number or an array of row numbers
    */
-  export function row<T extends number | number[]>(
-    matrix: number[][],
+  export function row<
+    T extends number | number[],
+    U extends number[][] | number[]
+  >(
+    matrix: U,
     index: T
-  ): T extends number ? number[] : number[][];
+  ): T extends number
+    ? U extends number[] // if we are working on a vector
+      ? number | undefined
+      : Array<number | undefined>
+    : U extends number[] // if we are working on a matrix
+    ? Array<number | undefined>
+    : Array<Array<number | undefined>>;
 
   /**
    * Returns the specified column as a column vector.
@@ -101,7 +120,7 @@ declare module "jstat" {
    */
   export function col(matrix: number[][], index: number | number[]): number[][];
 
-  interface MatrixDimension {
+  export interface MatrixDimension {
     cols: number;
     rows: number;
   }
@@ -109,7 +128,7 @@ declare module "jstat" {
    * Returns an object with the dimensions of a matrix.
    * @param matrix
    */
-  export function dimensions(matrix: number[][]): MatrixDimension;
+  export function dimensions(matrix: number[][] | number[]): MatrixDimension;
 
   /**
    * Performs the full Tukey's range test returning p-values for every

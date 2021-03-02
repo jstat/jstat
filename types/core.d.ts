@@ -1,12 +1,11 @@
-import { de } from "date-fns/locale";
-
 declare module "jstat" {
   /**
    * Returns a array from matrix row.
    * @param matrix number matrix
    * @param row column index
    */
-  export function rowa(matrix: number[][], row: number): number[];
+  export function rowa(matrix: number[][], row: number): number[] | undefined;
+  export function rowa(matrix: number[], row: number): number | undefined;
 
   /**
    * Returns an array from matrix column (col() will return a matrix
@@ -14,7 +13,7 @@ declare module "jstat" {
    * @param matrix number matrix
    * @param col column index
    */
-  export function cola(matrix: number[][], col: number): number[];
+  export function cola(matrix: number[][], col: number): number[] | undefined;
 
   export interface JStatSliceConfig {
     row?: { end?: number; start?: number };

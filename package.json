@@ -24,6 +24,10 @@
     "vows": "^0.8.3"
   },
   "scripts": {
-    "test": "./node_modules/vows/bin/vows --spec --isolate"
+    "test": "vows --spec --isolate",
+    "type-test": "tsd"
+  },
+  "dependencies": {
+    "tsd": "^0.14.0"
   }
 }

@@ -1,4 +1,6 @@
 declare module "jstat" {
+  export type NormalDistribution = typeof Normal;
+
   class Normal {
     /**
      * Returns the value of x in the pdf of the Normal distribution with
