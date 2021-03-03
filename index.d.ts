@@ -250,6 +250,17 @@ declare class JStatObject {
    * jStat.symmetric((isSymmetric) => console.log(isSymmetric))
    */
   zscore(x: number, isSample?: boolean): number;
+
+  /**
+   *
+   * @param value
+   * @example
+   * jStat([1,2,3]).add(2);
+   * // => jStat([3, 4, 5])
+   * jStat([[1, 2], [3, 4]]).add(2);
+   * // => jStat([[3, 4], [5, 6]])
+   */
+  add(value: number): JStatObject;
 }
 
 declare module "jstat" {
