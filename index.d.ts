@@ -1,5 +1,6 @@
 /// <reference path="./types/parameters.d.ts" />
 /// <reference path="./types/core.d.ts" />
+/// <reference path="./types/beta.d.ts" />
 /// <reference path="./types/normal.d.ts" />
 /// <reference path="./types/studentt.d.ts" />
 /// <reference path="./types/statistical_test.d.ts" />

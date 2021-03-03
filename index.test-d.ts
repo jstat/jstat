@@ -3,8 +3,11 @@
 
 // import the other tests
 import "./types/core.test-d";
+import "./types/beta.test-d";
 import "./types/normal.test-d";
 import "./types/studentt.test-d";
+import "./types/vector.test-d";
+import "./types/statistical_test.test-d";
 
 import { jStat } from "jstat";
 import { expectType, expectError } from "tsd";
