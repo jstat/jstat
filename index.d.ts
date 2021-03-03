@@ -316,7 +316,6 @@ declare class JStatObject {
   /**
    * Raises all entries by value.
    *
-   * @param matrix
    * @param value
    * @example
    * jStat([1, 2, 3]).pow(2);
@@ -328,7 +327,7 @@ declare class JStatObject {
 
   /**
    * Exponentiates all entries.
-   * @param matrix
+   *
    * @example
    * jStat([0, 1]).exp();
    * // => jStat([1, 2.718281828459045])
@@ -339,7 +338,7 @@ declare class JStatObject {
 
   /**
    * Returns the natural logarithm of all entries.
-   * @param matrix
+   *
    * @example
    * jStat([1, 2.718281828459045]).log();
    * // => jStat([0, 1])
@@ -351,8 +350,6 @@ declare class JStatObject {
   /**
    * Returns the absolute values of all entries.
    *
-   * @param matrix
-   * @param value
    * @example
    * jStat([1,-2,-3]).abs();
    * // => jStat([1, 2, 3])
@@ -360,6 +357,32 @@ declare class JStatObject {
    * // => jStat([[1, 1], [2, 2]])
    */
   abs(): JStatObject;
+
+  /**
+   * Computes the norm of a vector. Note that if a matrix is passed,
+   * then the first row of the matrix will be used as a vector
+   * for `norm()`.
+   *
+   * @example
+   * jStat([1,2,3]).norm()
+   * // => 3.7416573867739413
+   * jStat([[1,2,3], [4,5,6]]).norm()
+   * // => 3.7416573867739413
+   */
+  norm(): number;
+
+  /**
+   * Computes the angle between two vectors. Note that if a matrix
+   * is passed, then the first row of the matrix will be used as
+   * the vector for `angle()`.
+   *
+   * @example
+   * jStat([1,2,3]).angle([2,3,4])
+   * // => 0.12186756768575456
+   * jStat([1,2,3]).angle([[2,3,4], [1,2,3]])
+   * // => 0.12186756768575456
+   */
+  angle(vector: number[]): number;
 }
 
 declare module "jstat" {

@@ -47,6 +47,14 @@ expectType<number[][]>(jStat.log(sampleMatrix));
 expectType<number[]>(jStat.abs(sampleVector));
 expectType<number[][]>(jStat.abs(sampleMatrix));
 
+// jStat.norm(...)
+expectType<number>(jStat.norm(sampleVector));
+expectType<number>(jStat.norm(sampleMatrix));
+
+// jStat.angle(...)
+expectType<number>(jStat.angle(sampleVector, sampleVector));
+expectError(jStat.angle(sampleMatrix, sampleMatrix));
+
 /**
  * jStat core linear algebra methods
  */
@@ -86,3 +94,11 @@ expectType<JStatObject>(jStat(sampleMatrix).log());
 // jStat(...).abs(...)
 expectType<JStatObject>(jStat(sampleVector).abs());
 expectType<JStatObject>(jStat(sampleMatrix).abs());
+
+// jStat(...).norm(...)
+expectType<number>(jStat(sampleVector).norm());
+expectType<number>(jStat(sampleMatrix).norm());
+
+// jStat(...).angle(...)
+expectType<number>(jStat(sampleVector).angle(sampleVector));
+expectError(jStat(sampleVector).angle(sampleMatrix));

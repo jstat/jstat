@@ -96,6 +96,7 @@ declare module "jstat" {
 
     /**
      * Exponentiates all entries.
+     *
      * @param matrix
      * @example
      * jStat.exp([0, 1]);
@@ -107,6 +108,7 @@ declare module "jstat" {
 
     /**
      * Returns the natural logarithm of all entries.
+     *
      * @param matrix
      * @example
      * jStat.log([1, 2.718281828459045]);
@@ -120,7 +122,6 @@ declare module "jstat" {
      * Returns the absolute values of all entries.
      *
      * @param matrix
-     * @param value
      * @example
      * jStat.abs([1,-2,-3]);
      * // => [1, 2, 3]
@@ -128,5 +129,29 @@ declare module "jstat" {
      * // => [[1, 1], [2, 2]]
      */
     export function abs<T extends number[] | number[][]>(matrix: T): T;
+
+    /**
+     * Computes the norm of a vector. Note that if a matrix is passed,
+     * then the first row of the matrix will be used as a vector for
+     * norm().
+     *
+     * @param matrix
+     * @example
+     * jStat.norm([1,2,3])
+     * // => 3.7416573867739413
+     * jStat.norm([[1,2,3], [4,5,6]])
+     * // => 3.7416573867739413
+     */
+    export function norm(matrix: number[] | number[][]): number;
+
+    /**
+     * Computes the angle between two vectors. Note that if a
+     * matrix is passed, then the first row of the matrix will be
+     * used as the vector for angle().
+     * @example
+     * jStat.angle([1, 2, 3], [2, 3, 4])
+     * // => 0.12186756768575456
+     */
+    export function angle(vectorA: number[], vectorB: number[]): number;
   }
 }
