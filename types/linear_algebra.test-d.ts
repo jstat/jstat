@@ -27,6 +27,26 @@ expectType<number[][]>(jStat.divide(sampleMatrix, 2));
 expectType<number[]>(jStat.multiply(sampleVector, 2));
 expectType<number[][]>(jStat.multiply(sampleMatrix, 2));
 
+// jStat.dot(...)
+expectType<number>(jStat.dot(sampleVector, sampleVector));
+expectType<number[]>(jStat.dot(sampleMatrix, sampleMatrix));
+
+// jStat.pow(...)
+expectType<number[]>(jStat.pow(sampleVector, 2));
+expectType<number[][]>(jStat.pow(sampleMatrix, 2));
+
+// jStat.exp(...)
+expectType<number[]>(jStat.exp(sampleVector));
+expectType<number[][]>(jStat.exp(sampleMatrix));
+
+// jStat.log(...)
+expectType<number[]>(jStat.log(sampleVector));
+expectType<number[][]>(jStat.log(sampleMatrix));
+
+// jStat.abs(...)
+expectType<number[]>(jStat.abs(sampleVector));
+expectType<number[][]>(jStat.abs(sampleMatrix));
+
 /**
  * jStat core linear algebra methods
  */
@@ -46,3 +66,23 @@ expectType<JStatObject>(jStat(sampleMatrix).divide(2));
 // jStat(...).multiply(...)
 expectType<JStatObject>(jStat(sampleVector).multiply(2));
 expectType<JStatObject>(jStat(sampleMatrix).multiply(2));
+
+// jStat(...).dot(...)
+expectType<number>(jStat(sampleVector).dot(sampleVector));
+expectType<JStatObject>(jStat(sampleMatrix).dot(sampleMatrix));
+
+// jStat(...).pow(...)
+expectType<JStatObject>(jStat(sampleVector).pow(2));
+expectType<JStatObject>(jStat(sampleMatrix).pow(2));
+
+// jStat(...).exp(...)
+expectType<JStatObject>(jStat(sampleVector).exp());
+expectType<JStatObject>(jStat(sampleMatrix).exp());
+
+// jStat(...).log(...)
+expectType<JStatObject>(jStat(sampleVector).log());
+expectType<JStatObject>(jStat(sampleMatrix).log());
+
+// jStat(...).abs(...)
+expectType<JStatObject>(jStat(sampleVector).abs());
+expectType<JStatObject>(jStat(sampleMatrix).abs());

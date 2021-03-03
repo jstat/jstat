@@ -298,6 +298,68 @@ declare class JStatObject {
    * // => jStat([[2, 4], [6, 8]])
    */
   multiply(value: number): JStatObject;
+
+  /**
+   * Takes dot product.
+   *
+   * @param value
+   * @example
+   * jStat([1, 3, -5]).dot([4, -2, -1]);
+   * // => 3
+   * jStat([[2, 4], [6, 8]]).dot([[1, 1], [1, 1]]);
+   * // => jStat([6, 14])
+   */
+  dot<T extends number[] | number[][]>(
+    value: T
+  ): T extends number[][] ? JStatObject : number;
+
+  /**
+   * Raises all entries by value.
+   *
+   * @param matrix
+   * @param value
+   * @example
+   * jStat([1, 2, 3]).pow(2);
+   * // => jStat([1, 4, 9])
+   * jStat([[1, 2], [3, 4]]).pow(2);
+   * // => jStat([[1, 4], [9, 16]])
+   */
+  pow(value: number): JStatObject;
+
+  /**
+   * Exponentiates all entries.
+   * @param matrix
+   * @example
+   * jStat([0, 1]).exp();
+   * // => jStat([1, 2.718281828459045])
+   * jStat([[0, 1], [1, 0]]).exp();
+   * // => jStat([[1, 2.718281828459045], [2.718281828459045, 1]])
+   */
+  exp(): JStatObject;
+
+  /**
+   * Returns the natural logarithm of all entries.
+   * @param matrix
+   * @example
+   * jStat([1, 2.718281828459045]).log();
+   * // => jStat([0, 1])
+   * jStat([[1, 2.718281828459045], [2.718281828459045, 1]]).log();
+   * // => jStat([[0, 1], [1, 0]])
+   */
+  log(): JStatObject;
+
+  /**
+   * Returns the absolute values of all entries.
+   *
+   * @param matrix
+   * @param value
+   * @example
+   * jStat([1,-2,-3]).abs();
+   * // => jStat([1, 2, 3])
+   * jStat([[-1, 1], [2, -2]]).abs();
+   * // => jStat([[1, 1], [2, 2]])
+   */
+  abs(): JStatObject;
 }
 
 declare module "jstat" {
