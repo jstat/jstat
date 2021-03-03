@@ -4,6 +4,7 @@
   "description": "Statistical Library for JavaScript",
   "homepage": "http://github.com/jstat/jstat",
   "main": "./dist/jstat.js",
+  "types": "types/index.d.ts",
   "author": {
     "name": "Trevor Norris",
     "email": "trev.norris@gmail.com",

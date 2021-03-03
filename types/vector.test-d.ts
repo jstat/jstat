@@ -1,4 +1,4 @@
-/// <reference path="../index.d.ts" />
+/// <reference path="./index.d.ts" />
 /// <reference path="./statistical_test.d.ts" />
 
 import { jStat } from "jstat";
