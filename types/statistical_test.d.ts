@@ -27,7 +27,7 @@ declare module "jstat" {
      * `[[[index1, index2], pvalue], ...]`
      * @param arrays population samples
      * @example
-     * import * as jStat from "jstat";
+     * import { jStat } from "jstat";
      *
      * jStat.tukeyhsd([[1, 2], [3, 4, 5], [6], [7, 8]])
      * [ [ [ 0, 1 ], 0.10745283896120883 ],

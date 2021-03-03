@@ -11,12 +11,12 @@ declare class JStatObject {
   // Matrix row count
   length: number;
 
-  [index: number]: number | number[];
+  [index: number]: number[];
 
   /**
    * Returns the count of rows in a matrix.
    * @example
-   * import jStat from "jstat";
+   * import { jStat } from "jstat";
    *
    * var stat = jStat([[1,2,3],[4,5,6]]);
    * stat.rows() === 2;
@@ -26,7 +26,7 @@ declare class JStatObject {
   /**
    * Returns the count of cols in a matrix.
    * @example
-   * import jStat from "jstat";
+   * import { jStat } from "jstat";
    *
    * var stat = jStat([[1,2,3],[4,5,6]]);
    * stat.cols() === 2;
@@ -64,7 +64,7 @@ declare class JStatObject {
   /**
    * Returns the diagonal of a matrix.
    * @example
-   * import jStat from "jstat";
+   * import { jStat } from "jstat";
    *
    * var matrix = [[1,2,3],[4,5,6],[7,8,9]];
    * jStat( matrix ).diag() // jStat([[1],[5],[9]])
@@ -74,7 +74,7 @@ declare class JStatObject {
   /**
    * Returns the anti-diagonal of the matrix.
    * @example
-   * import jStat from "jstat";
+   * import { jStat } from "jstat";
    *
    * const matrix = [[1,2,3],[4,5,6],[7,8,9]];
    * jStat( matrix ).antidiag() // jStat([[3],[5],[7]])
@@ -84,7 +84,7 @@ declare class JStatObject {
   /**
    * Transposes a matrix.
    * @example
-   * import jStat from "jstat";
+   * import { jStat } from "jstat";
    *
    * const matrix = [[1,2],[3,4]];
    * jStat( matrix ).transpose(); // [[1,3],[2,4]]
@@ -94,7 +94,7 @@ declare class JStatObject {
   /**
    * Maps a function to all values and return a new object.
    * @example
-   * import jStat from "jstat";
+   * import { jStat } from "jstat";
    *
    * const matrix = [[1,2],[3,4]];
    * jStat( matrix ).map((x) => x * 2); // [[2,4],[6,8]];
@@ -104,7 +104,7 @@ declare class JStatObject {
   /**
    * Cumulatively reduces values using a function and return a new object.
    * @example
-   * import jStat from "jstat";
+   * import { jStat } from "jstat";
    *
    * const matrix = [[1,2],[3,4]];
    * jStat( matrix ).cumreduce((x) => x * 2); // [[2,4],[6,8]];
@@ -114,7 +114,7 @@ declare class JStatObject {
   /**
    * Destructively maps to an array (mutates the instance)
    * @example
-   * import jStat from "jstat";
+   * import { jStat } from "jstat";
    *
    * const matrix = jStat([[1,2],[3,4]]);
    * matrix.alter((x) => x * 2);
@@ -127,7 +127,7 @@ declare class JStatObject {
    * @param size
    * @param valueFn
    * @example
-   * import jStat from "jstat";
+   * import { jStat } from "jstat";
    *
    * jStat().create(2, (row, col) => row + col); // jStat([[0,1],[1,2]])
    */
@@ -142,7 +142,7 @@ declare class JStatObject {
    * @param col
    * @param valueFn
    * @example
-   * import jStat from "jstat";
+   * import { jStat } from "jstat";
    *
    * jStat().create(2, 3, (row, col) => row + col); // [[0,1,2],[1,2,3]]
    */
@@ -216,7 +216,7 @@ declare class JStatObject {
    * a boolean unless provided with a callback.
    *
    * @example
-   * import jStat from "jstat";
+   * import { jStat } from "jstat";
    *
    * jStat([[1,2],[2,1]]).symmetric() // true
    */
@@ -228,7 +228,7 @@ declare class JStatObject {
    * provided.
    * @param callback
    * @example
-   * import jStat from "jstat";
+   * import { jStat } from "jstat";
    *
    * const stat = jStat([[1,2],[2,1]])
    * jStat.symmetric((isSymmetric) => console.log(isSymmetric))
@@ -244,7 +244,7 @@ declare class JStatObject {
    * @param x
    * @param isSample
    * @example
-   * import jStat from "jstat";
+   * import { jStat } from "jstat";
    *
    * const stat = jStat(0, 1)
    * jStat.symmetric((isSymmetric) => console.log(isSymmetric))

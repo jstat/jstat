@@ -7,7 +7,7 @@ declare module "jstat" {
      * @param arr
      * @param flag
      * @example
-     * import * as jStat from "jstat";
+     * import { jStat } from "jstat";
      *
      * jStat.variance([1,2,3,4]) === 1.25
      * jStat.variance([1,2,3,4],true) === 1.66666...

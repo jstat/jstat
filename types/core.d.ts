@@ -25,7 +25,7 @@ declare module "jstat" {
      * @param matrix
      * @param config
      * @example
-     * import * as jStat from "jstat";
+     * import { jStat } from "jstat";
      *
      * A=[[1,2,3],[4,5,6],[7,8,9]];
      * slice(A,{row:{end:2},col:{start:1}}); // [[2,3],[5,6]];
@@ -42,7 +42,7 @@ declare module "jstat" {
      * @param config
      * @param content
      * @example
-     * import * as jStat from "jstat";
+     * import { jStat } from "jstat";
      *
      * const A = [[1,2,3],[4,5,6],[7,8,9]];
      * jStat.sliceAssign(A,{row : {start : 1}, col : {start : 1}},[[0,0],[0,0]]);
@@ -116,7 +116,7 @@ declare module "jstat" {
      * Returns the anti-diagonal of the matrix.
      * @param matrix
      * @example
-     * import * as jStat from "jstat";
+     * import { jStat } from "jstat";
      *
      * const matrix = [[1,2,3],[4,5,6],[7,8,9]];
      * jStat.antidiag( matrix ) // [[1],[5],[9]];
@@ -127,7 +127,7 @@ declare module "jstat" {
      * Returns the diagonal of a matrix.
      * @param matrix
      * @example
-     * import * as jStat from "jstat";
+     * import { jStat } from "jstat";
      *
      * const matrix = [[1,2,3],[4,5,6],[7,8,9]];
      * jStat.diag( matrix ) // [[1],[5],[9]]
@@ -138,7 +138,7 @@ declare module "jstat" {
      * Creates a new diagonal matrix by given 1d diag array.
      * @param vector
      * @example
-     * import * as jStat from "jstat";
+     * import { jStat } from "jstat";
      *
      * jStat.diagonal([1,2,3]); // [[1,0,0],[0,2,0],[0,0,3]]
      */
@@ -148,7 +148,7 @@ declare module "jstat" {
      * Transposes a matrix.
      * @param matrix
      * @example
-     * import * as jStat from "jstat";
+     * import { jStat } from "jstat";
      *
      * const matrix = [[1,2],[3,4]];
      * jStat.transpose(matrix); // [[1,3],[2,4]];
@@ -160,7 +160,7 @@ declare module "jstat" {
      * @param matrix
      * @param transformFn
      * @example
-     * import * as jStat from "jstat";
+     * import { jStat } from "jstat";
      *
      * const matrix = [[1,2],[3,4]];
      * jStat.map(matrix, (x) => x * 2); // [[2,4],[6,8]];
@@ -173,7 +173,7 @@ declare module "jstat" {
     /**
      * Cumulatively reduces values using a function and return a new object.
      * @example
-     * import * as jStat from "jstat";
+     * import { jStat } from "jstat";
      *
      * const matrix = [[1,2],[3,4]];
      * jStat.cumreduce(matrix, (x) => x * 2); // [[1,3],[3,7]];
@@ -188,7 +188,7 @@ declare module "jstat" {
      * @param matrix
      * @param transformFn
      * @example
-     * import * as jStat from "jstat";
+     * import { jStat } from "jstat";
      *
      * const matrix = [[1,2],[3,4]];
      * jStat.alter(matrix, (x) => x * 2); // matrix === [[2,4],[6,8]];
@@ -204,7 +204,7 @@ declare module "jstat" {
      * @param size
      * @param valueFn
      * @example
-     * import * as jStat from "jstat";
+     * import { jStat } from "jstat";
      *
      * jStat.create(2, (row, col) => row + col); // [[0,1],[1,2]]
      */
@@ -220,7 +220,7 @@ declare module "jstat" {
      * @param col
      * @param valueFn
      * @example
-     * import * as jStat from "jstat";
+     * import { jStat } from "jstat";
      *
      * jStat.create(2, 3, (row, col) => row + col); // [[0,1,2],[1,2,3]]
      */
@@ -296,7 +296,7 @@ declare module "jstat" {
      * @param stop
      * @param length
      * @example
-     * import * as jStat from "jstat";
+     * import { jStat } from "jstat";
      *
      * jStat.seq(1,5,9); // [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
      */
@@ -306,7 +306,7 @@ declare module "jstat" {
      * Creates an arithmetic sequence of a given length starting at 0.
      * @param length
      * @example
-     * import * as jStat from "jstat";
+     * import { jStat } from "jstat";
      *
      * jStat.arange(5); // [0,1,2,3,4]
      */
@@ -319,7 +319,7 @@ declare module "jstat" {
      * @param stop
      * @param step
      * @example
-     * import * as jStat from "jstat";
+     * import { jStat } from "jstat";
      *
      * jStat.arange(1, 5); // [1,2,3,4]
      * jStat.arange(5,1,-1); // [5,4,3,2]
@@ -334,7 +334,7 @@ declare module "jstat" {
      * Sets all values in the vector or matrix to zero. (mutates the argument)
      * @param vector
      * @example
-     * import * as jStat from "jstat";
+     * import { jStat } from "jstat";
      *
      * const vector = [1,2,3];
      * jStat.clear(vector);
@@ -346,7 +346,7 @@ declare module "jstat" {
      * Tests if a matrix is symmetric.
      * @param matrix
      * @example
-     * import * as jStat from "jstat";
+     * import { jStat } from "jstat";
      *
      * jStat.symmetric([[1,2],[2,1]]); // true
      */
