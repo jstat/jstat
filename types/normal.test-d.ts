@@ -2,10 +2,7 @@
 /// <reference path="./normal.d.ts" />
 
 import { jStat } from "jstat";
-import { expectType, expectError } from "tsd";
-
-const aVector = [0, 1, 2];
-const aMatrix = [aVector, aVector];
+import { expectType } from "tsd";
 
 /**
  * jStat Normal distribution instance
