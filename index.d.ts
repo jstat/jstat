@@ -252,6 +252,7 @@ declare class JStatObject {
   zscore(x: number, isSample?: boolean): number;
 
   /**
+   * Adds value to all entries.
    *
    * @param value
    * @example
@@ -261,6 +262,42 @@ declare class JStatObject {
    * // => jStat([[3, 4], [5, 6]])
    */
   add(value: number): JStatObject;
+
+  /**
+   * Subtracts all entries by value.
+   *
+   * @param value
+   * @example
+   * jStat([1,2,3]).subtract(2);
+   * // => jStat([-1, 0, 1])
+   * jStat([[1, 2], [3, 4]]).subtract(2);
+   * // => jStat([[-1, 0], [1, 2]])
+   */
+  subtract(value: number): JStatObject;
+
+  /**
+   * Divides all entries by value.
+   *
+   * @param value
+   * @example
+   * jStat([2, 4, 6]).divide(2);
+   * // => jStat([1, 2, 3])
+   * jStat([[2, 4], [6, 8]]).divide(2);
+   * // => jStat([[1, 2], [3, 4]])
+   */
+  divide(value: number): JStatObject;
+
+  /**
+   * Multiplies all entries by value.
+   *
+   * @param value
+   * @example
+   * jStat([1,2,3]).multiply(2);
+   * // => jStat([2, 4, 6])
+   * jStat([[1, 2], [3, 4]]).multiply(2);
+   * // => jStat([[2, 4], [6, 8]])
+   */
+  multiply(value: number): JStatObject;
 }
 
 declare module "jstat" {
