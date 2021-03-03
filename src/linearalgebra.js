@@ -185,13 +185,13 @@ jStat.extend({
       return a[0][0] * a[1][1] - a[0][1] * a[1][0];
     }
 
-    const dets = [];
-    for (let i = 0; i < a.length; i++) {
-      // build a sub matrix without column `a`
-      const submatrix = [];
-      for (let row = 1; row < a.length; row++) {
+    var dets = [];
+    for (var i = 0; i < a.length; i++) {
+      // build a sub matrix without column `i`
+      var submatrix = [];
+      for (var row = 1; row < a.length; row++) {
         submatrix[row - 1] = [];
-        for (let col = 0; col < a.length; col++) {
+        for (var col = 0; col < a.length; col++) {
           if (col < i) {
             submatrix[row - 1][col] = a[row][col];
           } else if (col > i) {
@@ -200,6 +200,7 @@ jStat.extend({
         }
       }
 
+      // alternate between + and - between determinants
       var sign = i % 2 ? -1 : 1;
       dets.push(det(submatrix) * a[0][i] * sign);
     }
