@@ -185,7 +185,7 @@ jStat.extend({
       return a[0][0] * a[1][1] - a[0][1] * a[1][0];
     }
 
-    var dets = [];
+    var determinant = 0;
     for (var i = 0; i < a.length; i++) {
       // build a sub matrix without column `i`
       var submatrix = [];
@@ -202,12 +202,10 @@ jStat.extend({
 
       // alternate between + and - between determinants
       var sign = i % 2 ? -1 : 1;
-      dets.push(det(submatrix) * a[0][i] * sign);
+      determinant += det(submatrix) * a[0][i] * sign;
     }
 
-    return dets.reduce(function (acc, v) {
-      return acc + v;
-    }, 0);
+    return determinant
   },
 
   gauss_elimination: function gauss_elimination(a, b) {
