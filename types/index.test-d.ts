@@ -5,6 +5,7 @@
 import "./core.test-d";
 import "./beta.test-d";
 import "./normal.test-d";
+import "./lognormal.test-d";
 import "./studentt.test-d";
 import "./vector.test-d";
 import "./statistical_test.test-d";

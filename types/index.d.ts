@@ -2,6 +2,7 @@
 /// <reference path="./core.d.ts" />
 /// <reference path="./beta.d.ts" />
 /// <reference path="./normal.d.ts" />
+/// <reference path="./lognormal.d.ts" />
 /// <reference path="./studentt.d.ts" />
 /// <reference path="./statistical_test.d.ts" />
 /// <reference path="./vector.d.ts" />
