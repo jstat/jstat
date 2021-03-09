@@ -384,6 +384,85 @@ declare class JStatObject {
    * // => 0.12186756768575456
    */
   angle(vector: number[]): number;
+
+  /**
+   * Returns the quartiles for a vector or matrix columns.
+   * @example
+   * jStat(1,100,100).quartiles()
+   * // => [25, 50, 75]
+   */
+  quartiles(): number[] | number[][];
+
+  /**
+   * Pass the quartiles for a vector or matrix columns to the given callback.
+   * Returns an instance of the jStat object for chaining
+   * @param callback receives the calculated quartile array
+   * @example
+   * jStat(1,100,100).quartiles((x) => console.log("quartiles: ", x))
+   * // => jStatObject
+   */
+  quartiles(callback: (results?: number[]) => void): JStatObject;
+
+  /**
+   * Like quartiles, but calculate and return arbitrary quantiles of
+   * the dataArray vector or matrix (column-by-column).
+   *
+   * Optional parameters alphap and betap govern the quantile
+   * estimation method. For more details see the Wikipedia page
+   * on quantiles or scipy.stats.mstats.mquantiles documentation.
+   *
+   * The default values for `alphap` and `betap` are 3/8, the resulting
+   * quantile estimates are approximately unbiased if x is normally
+   * distributed.
+   * @param quartiles
+   * @param alphap
+   * @param betap
+   * @example
+   * jStat([1,2,3,4,5,6,7,8,9,10]).quantiles([0.25, 0.5, 0.75])
+   * // => [2.9375, 5.5, 8.0625]
+   */
+  quantiles(quartiles: number[], alphap?: number, betap?: number): number[];
+
+  /**
+   * Returns the median of the array vector or collection of vector
+   * (matrix).
+   * @example
+   * jStat( 1, 5, 5 ).median();
+   * // => 3
+   * jStat([[1,2],[3,4]]).median()
+   * // => [2, 3]
+   */
+  median(): number | number[];
+
+  /**
+   * Returns the median of the array vector or collection of vector
+   * (matrix).
+   * @param callback callback receives the median
+   * @example
+   * jStat( 1, 5, 5 ).median(
+   *   (median) => console.log("median: %s", median)
+   * );
+   * // => jStatObject
+   */
+  median(callback: (median: number | number[]) => void): JStatObject;
+
+  /**
+   * Returns the p-value of value of the vector in the jStatObject.
+   * sides is an integer value 1 or 2 denoting a one or two
+   * sided z-test. If sides is not specified the test defaults
+   * to a two sided z-test.
+   *
+   * flag===true denotes the use of the sample standard deviation.
+   * @param x
+   * @param sides
+   * @param flag
+   * @example
+   * jStat([1,2,3,4,5,6]).ztest(5)
+   * // => 0.379775474840949
+   * jStat([1,2,3,4,5,6]).ztest(5, 1, true)
+   * // => 0.21133903708531765
+   */
+  ztest(x: number, sides?: 1 | 2, flag?: boolean): number;
 }
 
 declare module "jstat" {
