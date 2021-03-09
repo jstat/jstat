@@ -401,7 +401,7 @@ declare class JStatObject {
    * jStat(1,100,100).quartiles((x) => console.log("quartiles: ", x))
    * // => jStatObject
    */
-  quartiles(callback: (results?: number[]) => void): JStatObject;
+  quartiles(callback: (results: number[] | number[][]) => void): JStatObject;
 
   /**
    * Like quartiles, but calculate and return arbitrary quantiles of
