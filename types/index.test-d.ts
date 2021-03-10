@@ -10,6 +10,7 @@ import "./studentt.test-d";
 import "./vector.test-d";
 import "./statistical_test.test-d";
 import "./linear_algebra.test-d";
+import "./centralF.test-d";
 
 import { jStat } from "jstat";
 import { expectType, expectError } from "tsd";
