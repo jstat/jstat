@@ -10,6 +10,15 @@ declare module "jstat" {
     export function sum(vector: number[]): number;
 
     /**
+     * Returns the sum squared of the array vector.
+     * @param vector
+     * @example
+     * jStat.sumsqrd([1,2,3]);
+     * // => 14
+     */
+    export function sumsqrd(vector: number[]): number;
+
+    /**
      * Returns the variance of the array vector. By default, the population
      * variance is calculated. Passing true to flag indicates to compute the
      * sample variance instead.

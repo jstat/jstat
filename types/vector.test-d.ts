@@ -10,7 +10,11 @@ const sampleMatrix = [sampleVector, sampleVector, sampleVector];
 /**
  * jStat static vector functions
  */
+// jStat.sum(...)
 expectType<number>(jStat.sum(sampleVector));
+
+// jStat.sumsqrd(...)
+expectType<number>(jStat.sumsqrd(sampleVector));
 
 // jStat.variance(...)
 expectType<number>(jStat.variance(sampleVector));
@@ -49,6 +53,26 @@ expectType<JStatObject>(
 );
 expectType<JStatObject>(
   jStat(sampleVector).sum(false, (r) => {
+    expectType<number | number[]>(r);
+  })
+);
+
+// jStat(...).sumsqrd(...)
+expectType<number | number[]>(jStat(sampleVector).sumsqrd());
+expectType<number>(jStat(sampleMatrix).sumsqrd(true));
+expectType<number | number[]>(jStat(sampleVector).sumsqrd(false));
+expectType<JStatObject>(
+  jStat(sampleVector).sumsqrd((r) => {
+    expectType<number | number[]>(r);
+  })
+);
+expectType<JStatObject>(
+  jStat(sampleVector).sumsqrd(true, (r) => {
+    expectType<number>(r);
+  })
+);
+expectType<JStatObject>(
+  jStat(sampleVector).sumsqrd(false, (r) => {
     expectType<number | number[]>(r);
   })
 );

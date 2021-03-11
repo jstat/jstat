@@ -415,16 +415,62 @@ declare class JStatObject {
   sum(callback: (r: number | number[]) => void): JStatObject;
 
   /**
-   * return sum of entire matrix
+   * return the sum of entire matrix
    * @param all compute the sum of entire matrix when true
    * @param callback
    * @example
-   * jStat(true, [[1,2],[3,4]]).sum((x)=> {
+   * jStat([[1,2],[3,4]]).sum(true, (x)=> {
    *   console.log(x);
    *   // => 10
    * });
    */
   sum<T extends boolean>(
+    all: T,
+    callback: (r: T extends true ? number : number | number[]) => void
+  ): JStatObject;
+
+  /**
+   * Returns the sum squared of a vector or matrix columns.
+   * @param all compute the um squared of entire matrix when true
+   * @example
+   * jStat(1, 5, 5).sumsqrd();
+   * // => 55
+   * jStat([[1,2],[3,4]]).sumsqrd();
+   * // => [10, 20]
+   * jStat([[1,2],[3,4]]).sumsqrd(true);
+   * // => 650
+   */
+  sumsqrd<T extends boolean>(
+    all?: T
+  ): T extends true ? number : number | number[];
+
+  /**
+   * Compute the sum squared of a vector or matrix columns and pass it to
+   * the callback. Returns the jStat instance for chaining.
+   * @param callback
+   * @example
+   * jStat(1, 5, 5).sumsqrd((x) => {
+   *   console.log(x);
+   *   // => 55
+   * });
+   * jStat([[1,2],[3,4]]).sumsqrd((x)=> {
+   *   console.log(x);
+   *   // => [10, 20]
+   * });
+   */
+  sumsqrd(callback: (r: number | number[]) => void): JStatObject;
+
+  /**
+   * return the sum squared of entire matrix
+   * @param all compute the um squared of entire matrix when true
+   * @param callback
+   * @example
+   * jStat([[1,2],[3,4]]).sumsqrd(true, (x)=> {
+   *   console.log(x);
+   *   // => 650
+   * });
+   */
+  sumsqrd<T extends boolean>(
     all: T,
     callback: (r: T extends true ? number : number | number[]) => void
   ): JStatObject;
