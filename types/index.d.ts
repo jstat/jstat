@@ -386,6 +386,52 @@ declare class JStatObject {
   angle(vector: number[]): number;
 
   /**
+   * Returns the sum of a vector or matrix columns.
+   * @param all
+   * @param callback
+   * @example
+   * jStat([[1,2],[3,4]]).sum(true);
+   * // => 10
+   */
+  sum(all: true): number;
+
+  /**
+   * Returns the sum of a vector or matrix columns.
+   * @param all
+   * @param callback
+   * @example
+   * jStat( 1, 5, 5 ).sum();
+   * // => 15
+   * jStat([[1,2],[3,4]]).sum(true);
+   * // => [4, 6]
+   */
+  sum(all?: boolean): number | number[];
+
+  /**
+   * Compute the sum of a vector or matrix columns and pass it to
+   * the callback. Returns the jStat instance for chaining.
+   * @param all
+   * @param callback
+   * @example
+   * jStat( 1, 5, 5 ).sum( (x) => {
+   *   console.log(x);
+   *   // => 15
+   * });
+   * jStat([[1,2],[3,4]]).sum( (x)=> {
+   *   console.log(x);
+   *   // => [ 4, 6 ]
+   * });
+   */
+  sum(callback: (r: number | number[]) => void): JStatObject;
+
+  /**
+   * return sum of entire matrix
+   * @param all
+   * @param callback
+   */
+  sum(all: boolean, callback: (r: number) => void): JStatObject;
+
+  /**
    * Returns the quartiles for a vector or matrix columns.
    * @example
    * jStat(1,100,100).quartiles()

@@ -1,6 +1,15 @@
 declare module "jstat" {
   namespace jStat {
     /**
+     * Returns the sum of the array vector.
+     * @param vector
+     * @example
+     * jStat.sum([1,2,3]);
+     * // => 6
+     */
+    export function sum(vector: number[]): number;
+
+    /**
      * Returns the variance of the array vector. By default, the population
      * variance is calculated. Passing true to flag indicates to compute the
      * sample variance instead.

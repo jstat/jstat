@@ -10,6 +10,7 @@ const sampleMatrix = [sampleVector, sampleVector, sampleVector];
 /**
  * jStat static vector functions
  */
+expectType<number>(jStat.sum(sampleVector));
 
 // jStat.variance(...)
 expectType<number>(jStat.variance(sampleVector));
@@ -32,6 +33,21 @@ expectError(jStat.median(sampleMatrix));
 /**
  * jStat vector methods
  */
+// jStat(...).sum(...)
+expectType<number | number[]>(jStat(sampleVector).sum());
+expectType<number>(jStat(sampleMatrix).sum(true));
+expectType<number | number[]>(jStat(sampleVector).sum(false));
+expectType<JStatObject>(
+  jStat(sampleVector).sum((r) => {
+    expectType<number | number[]>(r);
+  })
+);
+expectType<JStatObject>(
+  jStat(sampleVector).sum(true, (r) => {
+    expectType<number>(r);
+  })
+);
+
 // jStat(...).median(...)
 expectType<number | number[]>(jStat(sampleVector).median());
 expectType<JStatObject>(
