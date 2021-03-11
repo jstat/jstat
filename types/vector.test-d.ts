@@ -16,6 +16,21 @@ expectType<number>(jStat.sum(sampleVector));
 // jStat.sumsqrd(...)
 expectType<number>(jStat.sumsqrd(sampleVector));
 
+// jStat.sumsqerr(...)
+expectType<number>(jStat.sumsqerr(sampleVector));
+
+// jStat.sumrow(...)
+expectType<number>(jStat.sumrow(sampleVector));
+
+// jStat.product(...)
+expectType<number>(jStat.product(sampleVector));
+
+// jStat.min(...)
+expectType<number>(jStat.min(sampleVector));
+
+// jStat.max(...)
+expectType<number>(jStat.max(sampleVector));
+
 // jStat.variance(...)
 expectType<number>(jStat.variance(sampleVector));
 expectType<number>(jStat.variance(sampleVector, true));
@@ -73,6 +88,106 @@ expectType<JStatObject>(
 );
 expectType<JStatObject>(
   jStat(sampleVector).sumsqrd(false, (r) => {
+    expectType<number | number[]>(r);
+  })
+);
+
+// jStat(...).sumsqerr(...)
+expectType<number | number[]>(jStat(sampleVector).sumsqerr());
+expectType<number>(jStat(sampleMatrix).sumsqerr(true));
+expectType<number | number[]>(jStat(sampleVector).sumsqerr(false));
+expectType<JStatObject>(
+  jStat(sampleVector).sumsqerr((r) => {
+    expectType<number | number[]>(r);
+  })
+);
+expectType<JStatObject>(
+  jStat(sampleVector).sumsqerr(true, (r) => {
+    expectType<number>(r);
+  })
+);
+expectType<JStatObject>(
+  jStat(sampleVector).sumsqerr(false, (r) => {
+    expectType<number | number[]>(r);
+  })
+);
+
+// jStat(...).sumrow(...)
+expectType<number | number[]>(jStat(sampleVector).sumrow());
+expectType<number>(jStat(sampleMatrix).sumrow(true));
+expectType<number | number[]>(jStat(sampleVector).sumrow(false));
+expectType<JStatObject>(
+  jStat(sampleVector).sumrow((r) => {
+    expectType<number | number[]>(r);
+  })
+);
+expectType<JStatObject>(
+  jStat(sampleVector).sumrow(true, (r) => {
+    expectType<number>(r);
+  })
+);
+expectType<JStatObject>(
+  jStat(sampleVector).sumrow(false, (r) => {
+    expectType<number | number[]>(r);
+  })
+);
+
+// jStat(...).product(...)
+expectType<number | number[]>(jStat(sampleVector).product());
+expectType<number>(jStat(sampleMatrix).product(true));
+expectType<number | number[]>(jStat(sampleVector).product(false));
+expectType<JStatObject>(
+  jStat(sampleVector).product((r) => {
+    expectType<number | number[]>(r);
+  })
+);
+expectType<JStatObject>(
+  jStat(sampleVector).product(true, (r) => {
+    expectType<number>(r);
+  })
+);
+expectType<JStatObject>(
+  jStat(sampleVector).product(false, (r) => {
+    expectType<number | number[]>(r);
+  })
+);
+
+// jStat(...).min(...)
+expectType<number | number[]>(jStat(sampleVector).min());
+expectType<number>(jStat(sampleMatrix).min(true));
+expectType<number | number[]>(jStat(sampleVector).min(false));
+expectType<JStatObject>(
+  jStat(sampleVector).min((r) => {
+    expectType<number | number[]>(r);
+  })
+);
+expectType<JStatObject>(
+  jStat(sampleVector).min(true, (r) => {
+    expectType<number>(r);
+  })
+);
+expectType<JStatObject>(
+  jStat(sampleVector).min(false, (r) => {
+    expectType<number | number[]>(r);
+  })
+);
+
+// jStat(...).max(...)
+expectType<number | number[]>(jStat(sampleVector).max());
+expectType<number>(jStat(sampleMatrix).max(true));
+expectType<number | number[]>(jStat(sampleVector).max(false));
+expectType<JStatObject>(
+  jStat(sampleVector).max((r) => {
+    expectType<number | number[]>(r);
+  })
+);
+expectType<JStatObject>(
+  jStat(sampleVector).max(true, (r) => {
+    expectType<number>(r);
+  })
+);
+expectType<JStatObject>(
+  jStat(sampleVector).max(false, (r) => {
     expectType<number | number[]>(r);
   })
 );

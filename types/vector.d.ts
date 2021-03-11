@@ -19,6 +19,51 @@ declare module "jstat" {
     export function sumsqrd(vector: number[]): number;
 
     /**
+     * Returns the sum of squared errors of the array vector.
+     * @param vector
+     * @example
+     * jStat.sumsqerr([1,2,3]);
+     * // => 2
+     */
+    export function sumsqerr(vector: number[]): number;
+
+    /**
+     * Returns the sum of the array vector in row-based order.
+     * @param vector
+     * @example
+     * jStat.sumrow([1, 2, 3, 4]);
+     * // => 10
+     */
+    export function sumrow(vector: number[]): number;
+
+    /**
+     * Returns the product of the array vector.
+     * @param vector
+     * @example
+     * jStat.product([1, 2, 3, 4]);
+     * // => 24
+     */
+    export function product(vector: number[]): number;
+
+    /**
+     * Returns the minimum value of the array vector.
+     * @param vector
+     * @example
+     * jStat.min([1,2,3]);
+     * // => 1
+     */
+    export function min(vector: number[]): number;
+
+    /**
+     * Returns the maximum value of the array vector.
+     * @param vector
+     * @example
+     * jStat.max([1,2,3]);
+     * // => 3
+     */
+    export function max(vector: number[]): number;
+
+    /**
      * Returns the variance of the array vector. By default, the population
      * variance is calculated. Passing true to flag indicates to compute the
      * sample variance instead.

@@ -431,7 +431,7 @@ declare class JStatObject {
 
   /**
    * Returns the sum squared of a vector or matrix columns.
-   * @param all compute the um squared of entire matrix when true
+   * @param all compute the sum squared of entire matrix when true
    * @example
    * jStat(1, 5, 5).sumsqrd();
    * // => 55
@@ -462,7 +462,7 @@ declare class JStatObject {
 
   /**
    * return the sum squared of entire matrix
-   * @param all compute the um squared of entire matrix when true
+   * @param all compute the sum squared of entire matrix when true
    * @param callback
    * @example
    * jStat([[1,2],[3,4]]).sumsqrd(true, (x)=> {
@@ -471,6 +471,208 @@ declare class JStatObject {
    * });
    */
   sumsqrd<T extends boolean>(
+    all: T,
+    callback: (r: T extends true ? number : number | number[]) => void
+  ): JStatObject;
+
+  /**
+   * Returns the sum of squared errors of a vector or matrix columns.
+   * @param all compute the sum of squared errors of entire matrix when true
+   * @example
+   * jStat(1, 5, 5).sumsqerr();
+   * // => 10
+   * jStat([[1,2],[3,4]]).sumsqerr();
+   * // => [2, 2]
+   * jStat([[1,2],[3,4]]).sumsqerr(true);
+   * // => 0
+   */
+  sumsqerr<T extends boolean>(
+    all?: T
+  ): T extends true ? number : number | number[];
+
+  /**
+   * Compute the sum of squared errors of a vector or matrix columns and
+   * pass it to the callback. Returns the jStat instance for chaining.
+   * @param callback
+   * @example
+   * jStat(1, 5, 5).sumsqerr((x) => {
+   *   console.log(x);
+   *   // => 10
+   * });
+   * jStat([[1,2],[3,4]]).sumsqerr((x)=> {
+   *   console.log(x);
+   *   // => [2, 2]
+   * });
+   */
+  sumsqerr(callback: (r: number | number[]) => void): JStatObject;
+
+  /**
+   * return the sum of squared errors of entire matrix
+   * @param all compute the sum of squared errors of entire matrix when true
+   * @param callback
+   * @example
+   * jStat([[1,2],[3,4]]).sumsqerr(true, (x)=> {
+   *   console.log(x);
+   *   // => 0
+   * });
+   */
+  sumsqerr<T extends boolean>(
+    all: T,
+    callback: (r: T extends true ? number : number | number[]) => void
+  ): JStatObject;
+
+  /**
+   * Returns the sum of the array vector in row-based order.
+   * @param all compute the sum of the entire matrix when true
+   * @example
+   * jStat(1, 5, 5).sumrow();
+   * // => 15
+   * jStat([[1,2],[3,4]]).sumrow();
+   * // => [3, 7]
+   * jStat([[1,2],[3,4]]).sumrow(true);
+   * // => 10
+   */
+  sumrow<T extends boolean>(
+    all?: T
+  ): T extends true ? number : number | number[];
+
+  /**
+   * Compute the sum of a vector or matrix rows and pass it to
+   * the callback. Returns the jStat instance for chaining.
+   * @param callback
+   * @example
+   * jStat(1, 5, 5).sumrow((x) => console.log(x))
+   * // => 15
+   * jStat([[1,2],[3,4]]).sumrow((x)=> console.log(x))
+   * // => [3, 7]
+   */
+  sumrow(callback: (r: number | number[]) => void): JStatObject;
+
+  /**
+   * Returns the sum of a vector or matrix rows.
+   * @param all compute the sum of the entire matrix when true
+   * @param callback
+   * @example
+   * jStat([[1,2],[3,4]]).sumrow(true, (x)=> console.log(x));
+   * // => 10
+   */
+  sumrow<T extends boolean>(
+    all: T,
+    callback: (r: T extends true ? number : number | number[]) => void
+  ): JStatObject;
+
+  /**
+   * Returns the product of the array vector.
+   * @param all compute the sum of the entire matrix when true
+   * @example
+   * jStat(1, 5, 5).product();
+   * // => 120
+   * jStat([[1,2],[3,4]]).product();
+   * // => [3, 8]
+   * jStat([[1,2],[3,4]]).product(true);
+   * // => 24
+   */
+  product<T extends boolean>(
+    all?: T
+  ): T extends true ? number : number | number[];
+
+  /**
+   * Compute the product of the array vector and pass it to
+   * the callback. Returns the jStat instance for chaining.
+   * @param callback
+   * @example
+   * jStat(1, 5, 5).product((x) => console.log(x))
+   * // => 120
+   * jStat([[1,2],[3,4]]).product((x)=> console.log(x))
+   * // => [3, 8]
+   */
+  product(callback: (r: number | number[]) => void): JStatObject;
+
+  /**
+   * Returns the product of the array vector.
+   * @param all compute the product of the entire matrix when true
+   * @param callback
+   * @example
+   * jStat([[1,2],[3,4]]).product(true, (x)=> console.log(x));
+   * // => 24
+   */
+  product<T extends boolean>(
+    all: T,
+    callback: (r: T extends true ? number : number | number[]) => void
+  ): JStatObject;
+
+  /**
+   * Returns the minimum value of the array vector.
+   * @param all compute the minimum value of the entire matrix when true
+   * @example
+   * jStat(1, 5, 5).min();
+   * // => 1
+   * jStat([[1,2],[3,4]]).min();
+   * // => [1, 2]
+   * jStat([[1,2],[3,4]]).min(true);
+   * // => 1
+   */
+  min<T extends boolean>(all?: T): T extends true ? number : number | number[];
+
+  /**
+   * Compute the minimum value of the array vector and pass it to
+   * the callback. Returns the jStat instance for chaining.
+   * @param callback
+   * @example
+   * jStat(1, 5, 5).min((x) => console.log(x))
+   * // => 1
+   * jStat([[1,2],[3,4]]).min((x)=> console.log(x))
+   * // => [1, 2]
+   */
+  min(callback: (r: number | number[]) => void): JStatObject;
+
+  /**
+   * Returns the minimum value of the array vector.
+   * @param all compute the minimum value of the entire matrix when true
+   * @param callback
+   * @example
+   * jStat([[1,2],[3,4]]).min(true, (x)=> console.log(x));
+   * // => 1
+   */
+  min<T extends boolean>(
+    all: T,
+    callback: (r: T extends true ? number : number | number[]) => void
+  ): JStatObject;
+
+  /**
+   * Returns the maximum value of the array vector.
+   * @param all compute the maximum value of the entire matrix when true
+   * @example
+   * jStat(1, 5, 5).max();
+   * // => 1
+   * jStat([[1,2],[3,4]]).max();
+   * // => [1, 2]
+   * jStat([[1,2],[3,4]]).max(true);
+   * // => 1
+   */
+  max<T extends boolean>(all?: T): T extends true ? number : number | number[];
+
+  /**
+   * Compute the maximum value of the array vector and pass it to
+   * the callback. Returns the jStat instance for chaining.
+   * @param callback
+   * @example
+   * jStat(1, 5, 5).max((x) => console.log(x))
+   * // => 1
+   * jStat([[1,2],[3,4]]).max((x)=> console.log(x))
+   * // => [1, 2]
+   */
+  max(callback: (r: number | number[]) => void): JStatObject;
+
+  /**
+   * Returns the maximum value of the array vector.
+   * @param all compute the maximum value of the entire matrix when true
+   * @param callback
+   * @example
+   * jStat([[1,2],[3,4]]).max(true, (x)=> console.log(x));
+   * // => 1
+   */
+  max<T extends boolean>(
     all: T,
     callback: (r: T extends true ? number : number | number[]) => void
   ): JStatObject;
