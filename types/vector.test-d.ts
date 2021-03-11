@@ -47,6 +47,11 @@ expectType<JStatObject>(
     expectType<number>(r);
   })
 );
+expectType<JStatObject>(
+  jStat(sampleVector).sum(false, (r) => {
+    expectType<number | number[]>(r);
+  })
+);
 
 // jStat(...).median(...)
 expectType<number | number[]>(jStat(sampleVector).median());

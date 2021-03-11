@@ -387,49 +387,47 @@ declare class JStatObject {
 
   /**
    * Returns the sum of a vector or matrix columns.
-   * @param all
-   * @param callback
+   * @param all compute the sum of entire matrix when true
    * @example
+   * jStat(1, 5, 5).sum();
+   * // => 15
+   * jStat([[1,2],[3,4]]).sum();
+   * // => [4, 6]
    * jStat([[1,2],[3,4]]).sum(true);
    * // => 10
    */
-  sum(all: true): number;
-
-  /**
-   * Returns the sum of a vector or matrix columns.
-   * @param all
-   * @param callback
-   * @example
-   * jStat( 1, 5, 5 ).sum();
-   * // => 15
-   * jStat([[1,2],[3,4]]).sum(true);
-   * // => [4, 6]
-   */
-  sum(all?: boolean): number | number[];
+  sum<T extends boolean>(all?: T): T extends true ? number : number | number[];
 
   /**
    * Compute the sum of a vector or matrix columns and pass it to
    * the callback. Returns the jStat instance for chaining.
-   * @param all
    * @param callback
    * @example
-   * jStat( 1, 5, 5 ).sum( (x) => {
+   * jStat(1, 5, 5).sum((x) => {
    *   console.log(x);
    *   // => 15
    * });
-   * jStat([[1,2],[3,4]]).sum( (x)=> {
+   * jStat([[1,2],[3,4]]).sum((x)=> {
    *   console.log(x);
-   *   // => [ 4, 6 ]
+   *   // => [4, 6]
    * });
    */
   sum(callback: (r: number | number[]) => void): JStatObject;
 
   /**
    * return sum of entire matrix
-   * @param all
+   * @param all compute the sum of entire matrix when true
    * @param callback
+   * @example
+   * jStat(true, [[1,2],[3,4]]).sum((x)=> {
+   *   console.log(x);
+   *   // => 10
+   * });
    */
-  sum(all: boolean, callback: (r: number) => void): JStatObject;
+  sum<T extends boolean>(
+    all: T,
+    callback: (r: T extends true ? number : number | number[]) => void
+  ): JStatObject;
 
   /**
    * Returns the quartiles for a vector or matrix columns.
