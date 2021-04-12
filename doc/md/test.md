@@ -104,6 +104,13 @@ Returns the p-value of `value` given the data in `array`.
 t-test. If `sides` is not specified the test defaults to a two
 sided t-test.
 
+### jStat.ttest( array1, array2, equal_variance, sides )
+Returns the p-value for means of *two independent* samples of scores.
+`equal_variance` is a bool, pass `true` for equal-variance, `false` for unequal-variance. If not specified, default to unequal variance.
+`sides` is an integer value 1 or 2 denoting a one- or two-tailed
+t-test. If `sides` is not specified the test defaults to a two
+sided t-test.
+
 ## F Statistics
 
 ### jStat.anovafscore( array1, array2, ..., arrayn )
