@@ -23,6 +23,8 @@ suite.addBatch({
 
       assert.ok(Number.isNaN(jStat.binomial.cdf(10, 12, -1)));
       assert.ok(Number.isNaN(jStat.binomial.cdf(10, 12, 2)));
+      assert.ok(Number.isNaN(jStat.binomial.cdf(10, -1, 0.5)));
+      assert.ok(Number.isNaN(jStat.binomial.cdf(-10, -1, 0.5)));
       assert.equal(jStat.binomial.cdf(12, 10, 0.5), 1);
       assert.equal(jStat.binomial.cdf(12, -1, 0.5), 1);
       assert.epsilon(tol,
