@@ -765,12 +765,12 @@ jStat.extend(jStat.binomial, {
     var betacdf;
     var eps = 1e-10;
 
+    if (p < 0 || p > 1 || n < 0)
+      return NaN;
     if (x < 0)
       return 0;
     if (x >= n)
       return 1;
-    if (p < 0 || p > 1 || n <= 0)
-      return NaN;
 
     x = Math.floor(x);
     var z = p;
