@@ -75,10 +75,11 @@ jStat.extend({
        (jStat.stdev(args[1], true) / Math.sqrt(args[1].length)));
   },
 
-  // 3 different paramter lists:
+  // 4 different parameter lists:
   // (value, mean, sd, n, sides)
   // (tscore, n, sides)
   // (value, array, sides)
+  // (array1, array2, equal_variance, sides)
   ttest: function ttest() {
     var args = slice.call(arguments);
     var tscore;
@@ -88,12 +89,49 @@ jStat.extend({
         (jStat.studentt.cdf(-tscore, args[3]-1)) :
         (jStat.studentt.cdf(-tscore, args[3]-1)*2);
     }
+    // calculate independent two-sample t-test of either equal or unequal variances
+    // see also: https://en.wikipedia.org/wiki/T-test#Independent_two-sample_t-test
+    if (args.length === 4) {
+      // this function was translated from scipy: https://github.com/scipy/scipy/blob/55cf5c301e58f24092639c01e48c2bd139807906/scipy/stats/stats.py#L5477
+      // calculate the degrees of freedom and denominator for an equal variance ttest
+      function _equal_var_ttest_denom(v1, n1, v2, n2){
+        var df = n1 + n2 - 2.0
+        var svar = ((n1 - 1) * v1 + (n2 - 1) * v2) / df
+        var denom = Math.sqrt(svar * (1.0 / n1 + 1.0 / n2))
+        return  [df, denom]
+      }
+
+      // this function was translated from scipy: https://github.com/scipy/scipy/blob/55cf5c301e58f24092639c01e48c2bd139807906/scipy/stats/stats.py#L5464
+      // calculate the degrees of freedom and denominator for an unequal variance ttest
+      function _unequal_var_ttest_denom(v1, n1, v2, n2){
+          var vn1 = v1 / n1;
+          var vn2 = v2 / n2;
+          var df = Number.NaN;
+          try {
+              df = Math.pow((vn1 + vn2), 2) / (Math.pow(vn1, 2) / (n1 - 1) + Math.pow(vn2, 2) / (n2 - 1));
+          }
+          catch{
+              // do nothing
+          }
+          // If df is undefined, variances are zero (assumes n1 > 0 & n2 > 0).
+          // Hence it doesn't matter what df is as long as it's not NaN.
+          df = Number.isNaN(df) ? 1 : df;
+          var denom = Math.sqrt(vn1 + vn2);
+          return [df, denom];
+      }
+
+      // call the equal/unequal denominator function with the sample variance of each array and their lengths
+      var denom = ((args[2] == 1) ? _equal_var_ttest_denom : _unequal_var_ttest_denom)(jStat.variance(args[0], true), args[0].length, jStat.variance(args[1], true), args[1].length);
+
+      return jStat.studentt.cdf(-Math.abs((jStat.mean(args[0]) - jStat.mean(args[1])) / denom[1]), denom[0]) * ((args[3] == 1) ? 1 : 2);
+    }
     if (isNumber(args[1])) {
       tscore = Math.abs(args[0])
       return (args[2] == 1) ?
         (jStat.studentt.cdf(-tscore, args[1]-1)) :
         (jStat.studentt.cdf(-tscore, args[1]-1) * 2);
     }
+
     tscore = Math.abs(jStat.tscore(args[0], args[1]))
     return (args[2] == 1) ?
       (jStat.studentt.cdf(-tscore, args[1].length-1)) :
