@@ -111,7 +111,9 @@ jStat.meansqerr = function meansqerr(arr) {
 
 // geometric mean of an array
 jStat.geomean = function geomean(arr) {
-  return Math.pow(jStat.product(arr), 1 / arr.length);
+  var logs = arr.map(Math.log)
+  var meanOfLogs = jStat.mean(logs)
+  return Math.exp(meanOfLogs)
 };
 
 

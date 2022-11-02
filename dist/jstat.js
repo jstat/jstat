@@ -805,7 +805,9 @@ jStat.meansqerr = function meansqerr(arr) {
 
 // geometric mean of an array
 jStat.geomean = function geomean(arr) {
-  return Math.pow(jStat.product(arr), 1 / arr.length);
+  var logs = arr.map(Math.log)
+  var meanOfLogs = jStat.mean(logs)
+  return Math.exp(meanOfLogs)
 };
 
 
@@ -3545,40 +3547,31 @@ jStat.extend({
 
   // calculate the determinant of a matrix
   det: function det(a) {
-    var alen = a.length,
-    alend = alen * 2,
-    vals = new Array(alend),
-    rowshift = alen - 1,
-    colshift = alend - 1,
-    mrow = rowshift - alen + 1,
-    mcol = colshift,
-    i = 0,
-    result = 0,
-    j;
-    // check for special 2x2 case
-    if (alen === 2) {
+    if (a.length === 2) {
       return a[0][0] * a[1][1] - a[0][1] * a[1][0];
     }
-    for (; i < alend; i++) {
-      vals[i] = 1;
-    }
-    for (i = 0; i < alen; i++) {
-      for (j = 0; j < alen; j++) {
-        vals[(mrow < 0) ? mrow + alen : mrow ] *= a[i][j];
-        vals[(mcol < alen) ? mcol + alen : mcol ] *= a[i][j];
-        mrow++;
-        mcol--;
+
+    var determinant = 0;
+    for (var i = 0; i < a.length; i++) {
+      // build a sub matrix without column `i`
+      var submatrix = [];
+      for (var row = 1; row < a.length; row++) {
+        submatrix[row - 1] = [];
+        for (var col = 0; col < a.length; col++) {
+          if (col < i) {
+            submatrix[row - 1][col] = a[row][col];
+          } else if (col > i) {
+            submatrix[row - 1][col - 1] = a[row][col];
+          }
+        }
       }
-      mrow = --rowshift - alen + 1;
-      mcol = --colshift;
+
+      // alternate between + and - between determinants
+      var sign = i % 2 ? -1 : 1;
+      determinant += det(submatrix) * a[0][i] * sign;
     }
-    for (i = 0; i < alen; i++) {
-      result += vals[i];
-    }
-    for (; i < alend; i++) {
-      result -= vals[i];
-    }
-    return result;
+
+    return determinant
   },
 
   gauss_elimination: function gauss_elimination(a, b) {
