@@ -1,4 +1,4 @@
-[jStat](http://www.jstat.org/) - JavaScript Statistical Library
+[jStat](https://jstat.github.io/all.html) - JavaScript Statistical Library
 ===============================================================
 
 [![npm version](https://badge.fury.io/js/jstat.svg)](https://badge.fury.io/js/jstat)
