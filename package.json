@@ -4,6 +4,7 @@
   "description": "Statistical Library for JavaScript",
   "homepage": "http://github.com/jstat/jstat",
   "main": "./dist/jstat.js",
+  "types": "./types/index.d.ts",
   "author": {
     "name": "Trevor Norris",
     "email": "trev.norris@gmail.com",
@@ -21,9 +22,11 @@
   },
   "devDependencies": {
     "uglify-js": "^3.6.7",
-    "vows": "^0.8.3"
+    "vows": "^0.8.3",
+    "tsd": "^0.14.0"
   },
   "scripts": {
-    "test": "./node_modules/vows/bin/vows --spec --isolate"
+    "test": "vows --spec --isolate",
+    "type-test": "tsd"
   }
 }
