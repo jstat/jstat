@@ -51,6 +51,15 @@ suite.addBatch({
             assert.epsilon(tol, cdf(1, 1, 0), 0);
             assert.epsilon(tol, cdf(1, 1, -2), 0);
         },
+        'check inv calculation': function(jStat) {
+            var inv = jStat.laplace.inv;
+            assert.epsilon(tol, inv(0.01, 0, 1.0), -3.91202);
+            assert.epsilon(tol, inv(0.05, 0, 1.0), -2.30258);
+
+            assert.epsilon(tol, inv(0.95, -1, 2.0), 3.60517);
+            assert.epsilon(tol, inv(0.99, -1, 3.0), 10.7360);
+
+        },
         'mean': function(jStat) {
             var mean = jStat.laplace.mean;
 
