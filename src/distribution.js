@@ -1213,6 +1213,10 @@ jStat.extend(jStat.laplace, {
     }
   },
 
+  inv: function(x, mu, b) {
+    return mu - (b * laplaceSign(x) * Math.log(1 - (2 * Math.abs(x))));
+  },
+
   mean: function(mu/*, b*/) {
     return mu;
   },
