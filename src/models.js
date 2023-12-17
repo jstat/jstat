@@ -1,6 +1,9 @@
 jStat.models = (function(){
   function sub_regress(exog) {
     var var_count = exog[0].length;
+    if (var_count === 1) {
+      return [];
+    }
     var modelList = jStat.arange(var_count).map(function(endog_index) {
       var exog_index =
           jStat.arange(var_count).filter(function(i){return i!==endog_index});
@@ -98,6 +101,17 @@ jStat.models = (function(){
   function ols_wrap(endog, exog) {
     var model = ols(endog,exog);
     var ttest = t_test(model);
+    if (exog[0].length === 1 && ttest.se.length === 0) {
+      // No t-test in the univariate no-intercept case.
+      // Make up for that by computing coefficient standard error directly.
+      var sumsq = jStat.sumsqrd(
+        exog.map(function (r) {
+          return r[0];
+        }),
+      );
+      var resvar = model.SSR / model.df_resid;
+      ttest.se = [ Math.sqrt(resvar / sumsq) ];
+    }
     var ftest = F_test(model);
     // Provide the Wherry / Ezekiel / McNemar / Cohen Adjusted R^2
     // Which matches the 'adjusted R^2' provided by R's lm package
