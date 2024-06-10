@@ -13,10 +13,11 @@ function clip(arg, min, max) {
 // sum of an array
 jStat.sum = function sum(arr) {
   var sum = 0;
-  var i = arr.length;
-  while (--i >= 0)
-    sum += arr[i];
-  return sum;
+  var i = 0
+  var j = arr.length - 1;
+  while (i < j)
+    sum += arr[i++] + arr[j--];
+  return arr.length & 1 ?  sum + arr[i] : sum;
 };
 
 
@@ -187,36 +188,29 @@ jStat.rank = function (arr) {
 
 // mode of an array
 // if there are multiple modes of an array, return all of them
-// is this the appropriate way of handling it?
 jStat.mode = function mode(arr) {
   var arrLen = arr.length;
-  var _arr = arr.slice().sort(ascNum);
-  var count = 1;
-  var maxCount = 0;
-  var numMaxCount = 0;
+  var _arr = arr.slice().sort(ascNum);  
+  var count    = 1;
+  var maxCount = 1;
   var mode_arr = [];
   var i;
-
+  
   for (i = 0; i < arrLen; i++) {
-    if (_arr[i] === _arr[i + 1]) {
+	if (_arr[i] === _arr[i + 1]) {
       count++;
     } else {
       if (count > maxCount) {
-        mode_arr = [_arr[i]];
+	    mode_arr = [_arr[i]];
         maxCount = count;
-        numMaxCount = 0;
-      }
-      // are there multiple max counts
-      else if (count === maxCount) {
-        mode_arr.push(_arr[i]);
-        numMaxCount++;
-      }
-      // resetting count for new value in array
-      count = 1;
+      } else if (count == maxCount) {
+		mode_arr.push(_arr[i]);
+	  }
+	  count = 1;
     }
   }
-
-  return numMaxCount === 0 ? mode_arr[0] : mode_arr;
+   
+  return mode_arr;
 };
 
 
