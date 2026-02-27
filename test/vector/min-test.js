@@ -1,51 +1,45 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.min');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'min': {
-    'topic': function() {
-      return jStat;
-    },
-    'return basic min': function(jStat) {
-      assert.equal(jStat.min([1, 2, 3]), 1);
-    },
-    'min from instance': function(jStat) {
-      assert.equal(jStat([1, 2, 3]).min(), 1);
-    },
-    'min matrix cols': function(jStat) {
-      assert.deepEqual(jStat([[1, 2], [3, 4]]).min(), [1, 2]);
-    },
-    'min full matrix': function(jStat) {
-      assert.equal(jStat([[1, 2], [3, 4]]).min(true), 1);
-    }
-  },
-  '#min vector': {
-    'topic': function() {
-      jStat([1, 2, 3]).min(this.callback);
-    },
-    'min callback': function(val, stat) {
-      assert.equal(val, 1);
-    }
-  },
-  '#min matrix cols': {
-    'topic': function() {
-      jStat([[1, 2], [3, 4]]).min(this.callback);
-    },
-    'min matrix cols callback': function(val, stat) {
-      assert.deepEqual(val, [1, 2]);
-    }
-  },
-  '#min full matrix': {
-    'topic': function() {
-      jStat([[1, 2], [3, 4]]).min(true, this.callback);
-    },
-    'min full matrix callback': function(val, stat) {
-      assert.equal(val, 1);
-    }
-  }
+describe('min', function() {
+    it('return basic min', function() {
+        assert.strictEqual(jStat.min([1, 2, 3]), 1);
+    });
+    it('min from instance', function() {
+        assert.strictEqual(jStat([1, 2, 3]).min(), 1);
+    });
+    it('min matrix cols', function() {
+        assert.deepStrictEqual(jStat([[1, 2], [3, 4]]).min(), [1, 2]);
+    });
+    it('min full matrix', function() {
+        assert.strictEqual(jStat([[1, 2], [3, 4]]).min(true), 1);
+    });
 });
 
-suite.export(module);
+describe('#min vector', function() {
+    it('min callback', function(t, done) {
+        jStat([1, 2, 3]).min(function(val) {
+            assert.strictEqual(val, 1);
+            done();
+        });
+    });
+});
+
+describe('#min matrix cols', function() {
+    it('min matrix cols callback', function(t, done) {
+        jStat([[1, 2], [3, 4]]).min(function(val) {
+            assert.deepStrictEqual(val, [1, 2]);
+            done();
+        });
+    });
+});
+
+describe('#min full matrix', function() {
+    it('min full matrix callback', function(t, done) {
+        jStat([[1, 2], [3, 4]]).min(true, function(val) {
+            assert.strictEqual(val, 1);
+            done();
+        });
+    });
+});

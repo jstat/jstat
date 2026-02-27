@@ -1,21 +1,12 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.extend');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'jStat': {
-    'topic': function() {
-      return jStat.extend;
-    },
-    'extending': function(extend) {
-      assert.deepEqual(extend({ happy: 'sad' }, { here: 'there' }),
-                       { happy: 'sad', here: 'there' });
-      assert.deepEqual(extend({ one: 'two' }, { one: 'more' }),
-                       { one: 'more' });
-    }
-  }
+describe('jStat', function() {
+    it('extending', function() {
+        assert.deepStrictEqual(jStat.extend({ happy: 'sad' }, { here: 'there' }),
+                               { happy: 'sad', here: 'there' });
+        assert.deepStrictEqual(jStat.extend({ one: 'two' }, { one: 'more' }),
+                               { one: 'more' });
+    });
 });
-
-suite.export(module);

@@ -1,15 +1,9 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.distribution');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat, assertEpsilon } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'hypergeometric pdf': {
-    'topic': function() {
-      return jStat;
-    },
-    'check pdf calculation': function(jStat) {
+describe('hypergeometric pdf', function() {
+    it('check pdf calculation', function() {
       var tol = 0.0000001;
       // How many 1s were obtained by sampling?
       var successes = [10, 16];
@@ -30,13 +24,10 @@ suite.addBatch({
                                            population[i],
                                            available[i],
                                            draws[i]);
-        // None of the answers should be NaN
-        assert(!isNaN(calculated));
+        // None of the answers should be NaN
+        assert.ok(!isNaN(calculated));
         // And they should all match
-        assert.epsilon(tol, calculated, answers[i]);
+        assertEpsilon(tol, calculated, answers[i]);
       }
-    }
-  }
+    });
 });
-
-suite.export(module);

@@ -1,19 +1,10 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.covariance');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat, assertEpsilon } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'covariance': {
-    'topic': function() {
-      return jStat;
-    },
-    'return basic covariance': function(jStat) {
-      assert.equal(jStat.covariance([1, 2, 3, 4], [4, 5, 6, 7]),
-                   1.6666666666666667);
-    }
-  }
+describe('covariance', function() {
+    it('return basic covariance', function() {
+        assertEpsilon(0.0000001, jStat.covariance([1, 2, 3, 4], [4, 5, 6, 7]),
+                      1.6666666666666667);
+    });
 });
-
-suite.export(module);

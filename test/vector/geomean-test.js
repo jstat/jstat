@@ -1,52 +1,46 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.geomean');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'geomean': {
-    'topic': function() {
-      return jStat;
-    },
-    'return basic geomean': function(jStat) {
-      assert.equal(jStat.geomean([1, 2, 3]), 1.8171205928321397);
-    },
-    'geomean from instance': function(jStat) {
-      assert.equal(jStat([1, 2, 3]).geomean(), 1.8171205928321397);
-    },
-    'geomean matrix cols': function(jStat) {
-      assert.deepEqual(jStat([[1, 2], [3, 4]]).geomean(),
-                       [1.7320508075688772, 2.8284271247461903]);
-    },
-    'geomean full matrix': function(jStat) {
-      assert.equal(jStat([[1, 2], [3, 4]]).geomean(true), 2.2133638394006434);
-    }
-  },
-  '#geomean vector': {
-    'topic': function() {
-      jStat([1, 2, 3]).geomean(this.callback);
-    },
-    'geomean callback': function(val, stat) {
-      assert.equal(val, 1.8171205928321397);
-    }
-  },
-  '#geomean matrix cols': {
-    'topic': function() {
-      jStat([[1, 2], [3, 4]]).geomean(this.callback);
-    },
-    'geomean matrix cols callback': function(val, stat) {
-      assert.deepEqual(val, [1.7320508075688772, 2.8284271247461903]);
-    }
-  },
-  '#geomean full matrix': {
-    'topic': function() {
-      jStat([[1, 2], [3, 4]]).geomean(true, this.callback);
-    },
-    'geomean full matrix callback': function(val, stat) {
-      assert.equal(val, 2.2133638394006434);
-    }
-  }
+describe('geomean', function() {
+    it('return basic geomean', function() {
+        assert.strictEqual(jStat.geomean([1, 2, 3]), 1.8171205928321397);
+    });
+    it('geomean from instance', function() {
+        assert.strictEqual(jStat([1, 2, 3]).geomean(), 1.8171205928321397);
+    });
+    it('geomean matrix cols', function() {
+        assert.deepStrictEqual(jStat([[1, 2], [3, 4]]).geomean(),
+                               [1.7320508075688772, 2.8284271247461903]);
+    });
+    it('geomean full matrix', function() {
+        assert.strictEqual(jStat([[1, 2], [3, 4]]).geomean(true), 2.2133638394006434);
+    });
 });
 
-suite.export(module);
+describe('#geomean vector', function() {
+    it('geomean callback', function(t, done) {
+        jStat([1, 2, 3]).geomean(function(val) {
+            assert.strictEqual(val, 1.8171205928321397);
+            done();
+        });
+    });
+});
+
+describe('#geomean matrix cols', function() {
+    it('geomean matrix cols callback', function(t, done) {
+        jStat([[1, 2], [3, 4]]).geomean(function(val) {
+            assert.deepStrictEqual(val, [1.7320508075688772, 2.8284271247461903]);
+            done();
+        });
+    });
+});
+
+describe('#geomean full matrix', function() {
+    it('geomean full matrix callback', function(t, done) {
+        jStat([[1, 2], [3, 4]]).geomean(true, function(val) {
+            assert.strictEqual(val, 2.2133638394006434);
+            done();
+        });
+    });
+});

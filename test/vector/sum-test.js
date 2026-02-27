@@ -1,51 +1,45 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.sum');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'sum': {
-    'topic': function() {
-      return jStat;
-    },
-    'return basic sum': function(jStat) {
-      assert.equal(jStat.sum([1, 2, 3]), 6);
-    },
-    'sum from instance': function(jStat) {
-      assert.equal(jStat([1, 2, 3]).sum(), 6);
-    },
-    'sum matrix cols': function(jStat) {
-      assert.deepEqual(jStat([[1, 2], [3, 4]]).sum(), [4, 6]);
-    },
-    'sum full matrix': function(jStat) {
-      assert.equal(jStat([[1, 2], [3, 4]]).sum(true), 10);
-    }
-  },
-  '#sum vector': {
-    'topic': function() {
-      jStat([1, 2, 3]).sum(this.callback);
-    },
-    'sum callback': function(val, stat) {
-      assert.equal(val, 6);
-    }
-  },
-  '#sum matrix cols': {
-    'topic': function() {
-      jStat([[1, 2], [3, 4]]).sum(this.callback);
-    },
-    'sum matrix cols callback': function(val, stat) {
-      assert.deepEqual(val, [4, 6]);
-    }
-  },
-  '#sum full matrix': {
-    'topic': function() {
-      jStat([[1, 2], [3, 4]]).sum(true, this.callback);
-    },
-    'sum full matrix callback': function(val, stat) {
-      assert.equal(val, 10);
-    }
-  }
+describe('sum', function() {
+    it('return basic sum', function() {
+        assert.strictEqual(jStat.sum([1, 2, 3]), 6);
+    });
+    it('sum from instance', function() {
+        assert.strictEqual(jStat([1, 2, 3]).sum(), 6);
+    });
+    it('sum matrix cols', function() {
+        assert.deepStrictEqual(jStat([[1, 2], [3, 4]]).sum(), [4, 6]);
+    });
+    it('sum full matrix', function() {
+        assert.strictEqual(jStat([[1, 2], [3, 4]]).sum(true), 10);
+    });
 });
 
-suite.export(module);
+describe('#sum vector', function() {
+    it('sum callback', function(t, done) {
+        jStat([1, 2, 3]).sum(function(val) {
+            assert.strictEqual(val, 6);
+            done();
+        });
+    });
+});
+
+describe('#sum matrix cols', function() {
+    it('sum matrix cols callback', function(t, done) {
+        jStat([[1, 2], [3, 4]]).sum(function(val) {
+            assert.deepStrictEqual(val, [4, 6]);
+            done();
+        });
+    });
+});
+
+describe('#sum full matrix', function() {
+    it('sum full matrix callback', function(t, done) {
+        jStat([[1, 2], [3, 4]]).sum(true, function(val) {
+            assert.strictEqual(val, 10);
+            done();
+        });
+    });
+});

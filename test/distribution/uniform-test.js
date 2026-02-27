@@ -1,30 +1,21 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.distribution');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat, assertEpsilon } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'uniform pdf': {
-    'topic': function() {
-      return jStat;
-    },
-    'check pdf calculation': function(jStat) {
+describe('uniform pdf', function() {
+    it('check pdf calculation', function() {
       var tol = 0.0000001;
-      assert.epsilon(tol, jStat.uniform.pdf(10.5, 10, 11), 1.0);
-      assert.epsilon(tol, jStat.uniform.pdf(6, 0, 10), 0.1);
-    },
-    'check cdf calculation': function(jStat) {
+      assertEpsilon(tol, jStat.uniform.pdf(10.5, 10, 11), 1.0);
+      assertEpsilon(tol, jStat.uniform.pdf(6, 0, 10), 0.1);
+    });
+    it('check cdf calculation', function() {
       var tol = 0.0000001;
-      assert.epsilon(tol, jStat.uniform.cdf(7, 0, 10), 0.7);
-      assert.epsilon(tol, jStat.uniform.cdf(10.5, 10, 11), 0.5);
-    },
-    'check inv calculation': function(jStat) {
+      assertEpsilon(tol, jStat.uniform.cdf(7, 0, 10), 0.7);
+      assertEpsilon(tol, jStat.uniform.cdf(10.5, 10, 11), 0.5);
+    });
+    it('check inv calculation', function() {
       var tol = 0.0000001;
-      assert.epsilon(tol, jStat.uniform.inv(0.5, 10, 11), 10.5);
-      assert.epsilon(tol, jStat.uniform.inv(0.7, 0, 10), 7.0);
-    }
-  },
+      assertEpsilon(tol, jStat.uniform.inv(0.5, 10, 11), 10.5);
+      assertEpsilon(tol, jStat.uniform.inv(0.7, 0, 10), 7.0);
+    });
 });
-
-suite.export(module);

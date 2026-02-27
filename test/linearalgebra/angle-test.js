@@ -1,22 +1,13 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat, assertEpsilon } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'linearalgebra': {
-    'topic': function() {
-      return jStat;
-    },
-    'angle works for a vector': function(jStat) {
-      var piOverFour = 0.7853981633974484;
-      var tol = 0.00000001;
-      var A = jStat([[0, 1]]);
-      var B = [[2, 2]];
-      assert.epsilon(tol, A.angle(B), piOverFour);
-    }
-  }
+describe('linearalgebra', function() {
+    it('angle works for a vector', function() {
+        var piOverFour = 0.7853981633974484;
+        var tol = 0.00000001;
+        var A = jStat([[0, 1]]);
+        var B = [[2, 2]];
+        assertEpsilon(tol, A.angle(B), piOverFour);
+    });
 });
-
-suite.export(module);

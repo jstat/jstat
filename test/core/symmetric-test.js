@@ -1,23 +1,14 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.symmetric');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'symmetric': {
-    'topic': function() {
-      return jStat;
-    },
-    'return symmetric': function(jStat) {
-      assert.isTrue(jStat.symmetric([[1, 2], [2, 1]]));
-      assert.isFalse(jStat.symmetric([[1, 2], [1, 2]]));
-    },
-    'symmetric from jStat object': function(jStat) {
-      assert.isTrue(jStat([[1, 2], [2, 1]]).symmetric());
-      assert.isFalse(jStat([[1, 2], [1, 2]]).symmetric());
-    }
-  }
+describe('symmetric', function() {
+    it('return symmetric', function() {
+        assert.strictEqual(jStat.symmetric([[1, 2], [2, 1]]), true);
+        assert.strictEqual(jStat.symmetric([[1, 2], [1, 2]]), false);
+    });
+    it('symmetric from jStat object', function() {
+        assert.strictEqual(jStat([[1, 2], [2, 1]]).symmetric(), true);
+        assert.strictEqual(jStat([[1, 2], [1, 2]]).symmetric(), false);
+    });
 });
-
-suite.export(module);

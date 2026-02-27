@@ -1,51 +1,45 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.product');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'product': {
-    'topic': function() {
-      return jStat;
-    },
-    'return basic product': function(jStat) {
-      assert.equal(jStat.product([1, 2, 3]), 6);
-    },
-    'product from instance': function(jStat) {
-      assert.equal(jStat([1, 2, 3]).product(), 6);
-    },
-    'product matrix cols': function(jStat) {
-      assert.deepEqual(jStat([[1, 2], [3, 4]]).product(), [3, 8]);
-    },
-    'product full matrix': function(jStat) {
-      assert.equal(jStat([[1, 2], [3, 4]]).product(true), 24);
-    }
-  },
-  '#product vector': {
-    'topic': function() {
-      jStat([1, 2, 3]).product(this.callback);
-    },
-    'product callback': function(val, stat) {
-      assert.equal(val, 6);
-    }
-  },
-  '#product matrix cols': {
-    'topic': function() {
-      jStat([[1, 2], [3, 4]]).product(this.callback);
-    },
-    'product matrix cols callback': function(val, stat) {
-      assert.deepEqual(val, [3, 8]);
-    }
-  },
-  '#product full matrix': {
-    'topic': function() {
-      jStat([[1, 2], [3, 4]]).product(true, this.callback);
-    },
-    'product full matrix callback': function(val, stat) {
-      assert.equal(val, 24);
-    }
-  }
+describe('product', function() {
+    it('return basic product', function() {
+        assert.strictEqual(jStat.product([1, 2, 3]), 6);
+    });
+    it('product from instance', function() {
+        assert.strictEqual(jStat([1, 2, 3]).product(), 6);
+    });
+    it('product matrix cols', function() {
+        assert.deepStrictEqual(jStat([[1, 2], [3, 4]]).product(), [3, 8]);
+    });
+    it('product full matrix', function() {
+        assert.strictEqual(jStat([[1, 2], [3, 4]]).product(true), 24);
+    });
 });
 
-suite.export(module);
+describe('#product vector', function() {
+    it('product callback', function(t, done) {
+        jStat([1, 2, 3]).product(function(val) {
+            assert.strictEqual(val, 6);
+            done();
+        });
+    });
+});
+
+describe('#product matrix cols', function() {
+    it('product matrix cols callback', function(t, done) {
+        jStat([[1, 2], [3, 4]]).product(function(val) {
+            assert.deepStrictEqual(val, [3, 8]);
+            done();
+        });
+    });
+});
+
+describe('#product full matrix', function() {
+    it('product full matrix callback', function(t, done) {
+        jStat([[1, 2], [3, 4]]).product(true, function(val) {
+            assert.strictEqual(val, 24);
+            done();
+        });
+    });
+});

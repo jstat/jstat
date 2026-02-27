@@ -1,24 +1,14 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.gammafn');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat, assertEpsilon } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'gammafn': {
-    'topic': function() {
-      return jStat;
-    },
-
-    // Checked against Mathematica Gamma[a]
-    'check gammafn': function(jStat) {
-      var tol = 0.000001;
-      assert.epsilon(tol, jStat.gammafn(0.00001), 99999.422794);
-      assert.epsilon(tol, jStat.gammafn(0.2), 4.590843);
-      assert.equal(jStat.gammafn(10), 362880);
-      assert.equal(jStat.gammafn(171.6243769536076), Infinity);
-    }
-  }
+describe('gammafn', function() {
+  // Checked against Mathematica Gamma[a]
+  it('check gammafn', function() {
+    var tol = 0.000001;
+    assertEpsilon(tol, jStat.gammafn(0.00001), 99999.422794);
+    assertEpsilon(tol, jStat.gammafn(0.2), 4.590843);
+    assert.strictEqual(jStat.gammafn(10), 362880);
+    assert.strictEqual(jStat.gammafn(171.6243769536076), Infinity);
+  });
 });
-
-suite.export(module);

@@ -24,6 +24,6 @@
     "vows": "^0.8.3"
   },
   "scripts": {
-    "test": "./node_modules/vows/bin/vows --spec --isolate"
+    "test": "make clean core && node --test \"test/**/*-test.js\""
   }
 }

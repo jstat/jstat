@@ -1,40 +1,33 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.diff');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'diff': {
-    'topic': function() {
-      return jStat;
-    },
-    'return basic diff': function(jStat) {
-      assert.deepEqual(jStat.diff([1, 2, 3]), [1, 1]);
-    },
-    'diff from instance': function(jStat) {
-      assert.deepEqual(jStat([1, 2, 3]).diff(), [1, 1]);
-    },
-    'diff matrix cols': function(jStat) {
-      assert.deepEqual(jStat([[1, 2], [3, 4]]).diff(), [[2], [2]]);
-    }
-  },
-  '#diff vector': {
-    'topic': function() {
-      jStat([1, 2, 3]).diff(this.callback);
-    },
-    'diff callback': function(val, stat) {
-      assert.deepEqual(val, [1, 1]);
-    }
-  },
-  '#diff matrix cols': {
-    'topic': function() {
-      jStat([[1, 2], [3, 4]]).diff(this.callback);
-    },
-    'diff matrix cols callback': function(val, stat) {
-      assert.deepEqual(val, [[2], [2]]);
-    }
-  }
+describe('diff', function() {
+    it('return basic diff', function() {
+        assert.deepStrictEqual(jStat.diff([1, 2, 3]), [1, 1]);
+    });
+    it('diff from instance', function() {
+        assert.deepStrictEqual(jStat([1, 2, 3]).diff(), [1, 1]);
+    });
+    it('diff matrix cols', function() {
+        assert.deepStrictEqual(jStat([[1, 2], [3, 4]]).diff(), [[2], [2]]);
+    });
 });
 
-suite.export(module);
+describe('#diff vector', function() {
+    it('diff callback', function(t, done) {
+        jStat([1, 2, 3]).diff(function(val) {
+            assert.deepStrictEqual(val, [1, 1]);
+            done();
+        });
+    });
+});
+
+describe('#diff matrix cols', function() {
+    it('diff matrix cols callback', function(t, done) {
+        jStat([[1, 2], [3, 4]]).diff(function(val) {
+            assert.deepStrictEqual(val, [[2], [2]]);
+            done();
+        });
+    });
+});

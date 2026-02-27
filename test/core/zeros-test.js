@@ -1,23 +1,14 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.zeros');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'zeros': {
-    'topic': function() {
-      return jStat;
-    },
-    'return zeros': function(jStat) {
-      assert.deepEqual(jStat.zeros(2, 3), [[0, 0, 0], [0, 0, 0]]);
-      assert.deepEqual(jStat.zeros(2), [[0, 0], [0, 0]]);
-    },
-    'zeros from empty jStat object': function (jStat) {
-      assert.isTrue(jStat().zeros(2) instanceof jStat);
-      assert.deepEqual(jStat().zeros(2, 3).toArray(), [[0, 0, 0], [0, 0, 0]]);
-    }
-  }
+describe('zeros', function() {
+    it('return zeros', function() {
+        assert.deepStrictEqual(jStat.zeros(2, 3), [[0, 0, 0], [0, 0, 0]]);
+        assert.deepStrictEqual(jStat.zeros(2), [[0, 0], [0, 0]]);
+    });
+    it('zeros from empty jStat object', function() {
+        assert.strictEqual(jStat().zeros(2) instanceof jStat, true);
+        assert.deepStrictEqual(jStat().zeros(2, 3).toArray(), [[0, 0, 0], [0, 0, 0]]);
+    });
 });
-
-suite.export(module);

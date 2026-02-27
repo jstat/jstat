@@ -1,33 +1,24 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.spearmancoeff');
-
-require('../env.js');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat, assertEpsilon } = require('../helpers.js');
 
 var tol = 0.0000001;
 
-suite.addBatch({
-  'spearman': {
-    'topic': function() {
-      return jStat;
-    },
-    'return basic spearmancoeff': function(jStat) {
-      assert.epsilon(tol, jStat.spearmancoeff([1, 2, 3, 4], [5, 6, 9, 7]), 0.8);
-    },
-    'return spearmancoeff with ties': function(jStat) {
-      assert.epsilon(tol,
-                     jStat.spearmancoeff([1, 2, 3, 4], [5, 5, 9, 7]),
-                     0.7378647873726218);
-    },
-    'return spearmancoeff all ties': function(jStat) {
-      assert.equal(isNaN(jStat.spearmancoeff([1, 2, 3, 4], [5, 5, 5, 5])),
-                   true);
-    },
-    'return spearmancoeff unequal arrays': function(jStat) {
-      assert.equal(isNaN(jStat.spearmancoeff([1, 2, 3, 4], [5, 6, 7])),
-                   true);
-    }
-  }
+describe('spearman', function() {
+    it('return basic spearmancoeff', function() {
+        assertEpsilon(tol, jStat.spearmancoeff([1, 2, 3, 4], [5, 6, 9, 7]), 0.8);
+    });
+    it('return spearmancoeff with ties', function() {
+        assertEpsilon(tol,
+                      jStat.spearmancoeff([1, 2, 3, 4], [5, 5, 9, 7]),
+                      0.7378647873726218);
+    });
+    it('return spearmancoeff all ties', function() {
+        assert.strictEqual(isNaN(jStat.spearmancoeff([1, 2, 3, 4], [5, 5, 5, 5])),
+                           true);
+    });
+    it('return spearmancoeff unequal arrays', function() {
+        assert.strictEqual(isNaN(jStat.spearmancoeff([1, 2, 3, 4], [5, 6, 7])),
+                           true);
+    });
 });
-
-suite.export(module);

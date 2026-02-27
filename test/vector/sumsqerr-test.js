@@ -1,40 +1,33 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.sumsqerr');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat, assertEpsilon } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'sumsqerr': {
-    'topic': function() {
-      return jStat;
-    },
-    'return basic sumsqerr': function(jStat) {
-      assert.equal(jStat.sumsqerr([1, 2, 3]), 2);
-    },
-    'sumsqerr from instance': function(jStat) {
-      assert.equal(jStat([1, 2, 3]).sumsqerr(), 2);
-    },
-    'sumsqerr matrix cols': function(jStat) {
-      assert.deepEqual(jStat([[1, 2], [3, 4]]).sumsqerr(), [2, 2]);
-    }
-  },
-  '#sumsqerr vector': {
-    'topic': function() {
-      jStat([1, 2, 3]).sumsqerr(this.callback);
-    },
-    'sumsqerr callback': function(val, stat) {
-      assert.equal(val, 2);
-    }
-  },
-  '#sumsqerr matrix cols': {
-    'topic': function() {
-      jStat([[1, 2], [3, 4]]).sumsqerr(this.callback);
-    },
-    'sumsqerr matrix cols callback': function(val, stat) {
-      assert.deepEqual(val, [2, 2]);
-    }
-  }
+describe('sumsqerr', function() {
+    it('return basic sumsqerr', function() {
+        assertEpsilon(0.0000001, jStat.sumsqerr([1, 2, 3]), 2);
+    });
+    it('sumsqerr from instance', function() {
+        assertEpsilon(0.0000001, jStat([1, 2, 3]).sumsqerr(), 2);
+    });
+    it('sumsqerr matrix cols', function() {
+        assert.deepStrictEqual(jStat([[1, 2], [3, 4]]).sumsqerr(), [2, 2]);
+    });
 });
 
-suite.export(module);
+describe('#sumsqerr vector', function() {
+    it('sumsqerr callback', function(t, done) {
+        jStat([1, 2, 3]).sumsqerr(function(val) {
+            assertEpsilon(0.0000001, val, 2);
+            done();
+        });
+    });
+});
+
+describe('#sumsqerr matrix cols', function() {
+    it('sumsqerr matrix cols callback', function(t, done) {
+        jStat([[1, 2], [3, 4]]).sumsqerr(function(val) {
+            assert.deepStrictEqual(val, [2, 2]);
+            done();
+        });
+    });
+});

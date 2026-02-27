@@ -1,27 +1,20 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.commonjs');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var jStat = require('../../dist/jstat.js');
 
-suite.addBatch({
-  'jStat': {
-    'topic': function() {
-      return require('./../../dist/jstat.js');
-    },
-    'should be defined': function(jStat) {
-      assert.equal(typeof jStat, 'function');
+describe('jStat', function() {
+  it('should be defined', function() {
+    assert.strictEqual(typeof jStat, 'function');
 
-      // Check some random functions
-      assert.equal(typeof jStat.rows, 'function');
-      assert.equal(typeof jStat.min, 'function');
-      assert.equal(typeof jStat.betafn, 'function');
-      assert.equal(typeof jStat.beta.pdf, 'function');
-      assert.equal(typeof jStat.add, 'function');
-      assert.equal(typeof jStat.zscore, 'function');
-    },
-    'should export jStat object under the "jStat" property for compatibility reasons': function(jStat) {
-      assert.equal(jStat.jStat, jStat);
-    },
-  }
+    // Check some random functions
+    assert.strictEqual(typeof jStat.rows, 'function');
+    assert.strictEqual(typeof jStat.min, 'function');
+    assert.strictEqual(typeof jStat.betafn, 'function');
+    assert.strictEqual(typeof jStat.beta.pdf, 'function');
+    assert.strictEqual(typeof jStat.add, 'function');
+    assert.strictEqual(typeof jStat.zscore, 'function');
+  });
+  it('should export jStat object under the "jStat" property for compatibility reasons', function() {
+    assert.strictEqual(jStat.jStat, jStat);
+  });
 });
-
-suite.export(module);

@@ -1,40 +1,33 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.coeffvar');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat, assertEpsilon } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'coeffvar': {
-    'topic': function() {
-      return jStat;
-    },
-    'return basic coeffvar': function(jStat) {
-      assert.equal(jStat.coeffvar([1, 2, 3, 4]), 0.447213595499958);
-    },
-    'coeffvar from instance': function(jStat) {
-      assert.equal(jStat([1, 2, 3, 4]).coeffvar(), 0.447213595499958);
-    },
-    'coeffvar matrix cols': function(jStat) {
-      assert.deepEqual(jStat([[1, 2], [4, 6]]).coeffvar(), [0.6, 0.5]);
-    }
-  },
-  '#coeffvar vector': {
-    'topic': function() {
-      jStat([1, 2, 3, 4]).coeffvar(this.callback);
-    },
-    'coeffvar callback': function(val, stat) {
-      assert.equal(val, 0.447213595499958);
-    }
-  },
-  '#coeffvar matrix cols': {
-    'topic': function() {
-      jStat([[1, 2], [4, 6]]).coeffvar(this.callback);
-    },
-    'coeffvar matrix cols callback': function(val, stat) {
-      assert.deepEqual(val, [0.6, 0.5]);
-    }
-  }
+describe('coeffvar', function() {
+    it('return basic coeffvar', function() {
+        assertEpsilon(0.0000001, jStat.coeffvar([1, 2, 3, 4]), 0.447213595499958);
+    });
+    it('coeffvar from instance', function() {
+        assertEpsilon(0.0000001, jStat([1, 2, 3, 4]).coeffvar(), 0.447213595499958);
+    });
+    it('coeffvar matrix cols', function() {
+        assert.deepStrictEqual(jStat([[1, 2], [4, 6]]).coeffvar(), [0.6, 0.5]);
+    });
 });
 
-suite.export(module);
+describe('#coeffvar vector', function() {
+    it('coeffvar callback', function(t, done) {
+        jStat([1, 2, 3, 4]).coeffvar(function(val) {
+            assertEpsilon(0.0000001, val, 0.447213595499958);
+            done();
+        });
+    });
+});
+
+describe('#coeffvar matrix cols', function() {
+    it('coeffvar matrix cols callback', function(t, done) {
+        jStat([[1, 2], [4, 6]]).coeffvar(function(val) {
+            assert.deepStrictEqual(val, [0.6, 0.5]);
+            done();
+        });
+    });
+});

@@ -1,19 +1,10 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.corrcoeff');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat, assertEpsilon } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'corrcoeff': {
-    'topic': function() {
-      return jStat;
-    },
-    'return basic corrcoeff': function(jStat) {
-      assert.equal(jStat.corrcoeff([1, 2, 3, 4], [4, 5, 6, 7]),
-                   1.0000000000000002);
-    }
-  }
+describe('corrcoeff', function() {
+    it('return basic corrcoeff', function() {
+        assertEpsilon(0.0000001, jStat.corrcoeff([1, 2, 3, 4], [4, 5, 6, 7]),
+                      1.0000000000000002);
+    });
 });
-
-suite.export(module);

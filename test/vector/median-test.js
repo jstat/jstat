@@ -1,51 +1,45 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.median');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat, assertEpsilon } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'median': {
-    'topic': function() {
-      return jStat;
-    },
-    'return basic median': function(jStat) {
-      assert.equal(jStat.median([1, 2, 3]), 2);
-    },
-    'median from instance': function(jStat) {
-      assert.equal(jStat([1, 2, 3]).median(), 2);
-    },
-    'median matrix cols': function(jStat) {
-      assert.deepEqual(jStat([[1, 2], [3, 4]]).median(), [2, 3]);
-    },
-    'median full matrix': function(jStat) {
-      assert.equal(jStat([[1, 2], [3, 4]]).median(true), 2.5);
-    }
-  },
-  '#median vector': {
-    'topic': function() {
-      jStat([1, 2, 3]).median(this.callback);
-    },
-    'median callback': function(val, stat) {
-      assert.equal(val, 2);
-    }
-  },
-  '#median matrix cols': {
-    'topic': function() {
-      jStat([[1, 2], [3, 4]]).median(this.callback);
-    },
-    'median matrix cols callback': function(val, stat) {
-      assert.deepEqual(val, [2, 3]);
-    }
-  },
-  '#median full matrix': {
-    'topic': function() {
-      jStat([[1, 2], [3, 4]]).median(true, this.callback);
-    },
-    'median full matrix callback': function(val, stat) {
-      assert.equal(val, 2.5);
-    }
-  }
+describe('median', function() {
+    it('return basic median', function() {
+        assert.strictEqual(jStat.median([1, 2, 3]), 2);
+    });
+    it('median from instance', function() {
+        assert.strictEqual(jStat([1, 2, 3]).median(), 2);
+    });
+    it('median matrix cols', function() {
+        assert.deepStrictEqual(jStat([[1, 2], [3, 4]]).median(), [2, 3]);
+    });
+    it('median full matrix', function() {
+        assertEpsilon(0.0000001, jStat([[1, 2], [3, 4]]).median(true), 2.5);
+    });
 });
 
-suite.export(module);
+describe('#median vector', function() {
+    it('median callback', function(t, done) {
+        jStat([1, 2, 3]).median(function(val) {
+            assert.strictEqual(val, 2);
+            done();
+        });
+    });
+});
+
+describe('#median matrix cols', function() {
+    it('median matrix cols callback', function(t, done) {
+        jStat([[1, 2], [3, 4]]).median(function(val) {
+            assert.deepStrictEqual(val, [2, 3]);
+            done();
+        });
+    });
+});
+
+describe('#median full matrix', function() {
+    it('median full matrix callback', function(t, done) {
+        jStat([[1, 2], [3, 4]]).median(true, function(val) {
+            assert.strictEqual(val, 2.5);
+            done();
+        });
+    });
+});

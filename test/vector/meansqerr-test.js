@@ -1,40 +1,33 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.meansqerr');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat, assertEpsilon } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'meansqerr': {
-    'topic': function() {
-      return jStat;
-    },
-    'return basic meansqerr': function(jStat) {
-      assert.equal(jStat.meansqerr([1, 2, 3, 4]), 1.25);
-    },
-    'meansqerr from instance': function(jStat) {
-      assert.equal(jStat([1, 2, 3, 4]).meansqerr(), 1.25);
-    },
-    'meansqerr matrix cols': function(jStat) {
-      assert.deepEqual(jStat([[1, 2], [3, 4]]).meansqerr(), [1, 1]);
-    }
-  },
-  '#meansqerr vector': {
-    'topic': function() {
-      jStat([1, 2, 3, 4]).meansqerr(this.callback);
-    },
-    'meansqerr callback': function(val, stat) {
-      assert.equal(val, 1.25);
-    }
-  },
-  '#meansqerr matrix cols': {
-    'topic': function() {
-      jStat([[1, 2], [3, 4]]).meansqerr(this.callback);
-    },
-    'meansqerr matrix cols callback': function(val, stat) {
-      assert.deepEqual(val, [1, 1]);
-    }
-  }
+describe('meansqerr', function() {
+    it('return basic meansqerr', function() {
+        assertEpsilon(0.0000001, jStat.meansqerr([1, 2, 3, 4]), 1.25);
+    });
+    it('meansqerr from instance', function() {
+        assertEpsilon(0.0000001, jStat([1, 2, 3, 4]).meansqerr(), 1.25);
+    });
+    it('meansqerr matrix cols', function() {
+        assert.deepStrictEqual(jStat([[1, 2], [3, 4]]).meansqerr(), [1, 1]);
+    });
 });
 
-suite.export(module);
+describe('#meansqerr vector', function() {
+    it('meansqerr callback', function(t, done) {
+        jStat([1, 2, 3, 4]).meansqerr(function(val) {
+            assertEpsilon(0.0000001, val, 1.25);
+            done();
+        });
+    });
+});
+
+describe('#meansqerr matrix cols', function() {
+    it('meansqerr matrix cols callback', function(t, done) {
+        jStat([[1, 2], [3, 4]]).meansqerr(function(val) {
+            assert.deepStrictEqual(val, [1, 1]);
+            done();
+        });
+    });
+});

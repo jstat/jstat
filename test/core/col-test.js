@@ -1,33 +1,25 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.col');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'col': {
-    'topic': function() {
-      return jStat;
-    },
-    'return col at index': function(jStat) {
-      assert.deepEqual(jStat.col([[1, 2], [3, 4]], 1), [[2], [4]]);
-      assert.deepEqual(jStat([[1, 2], [3, 4]]).col(1).toArray(), [[2], [4]]);
-    },
-	'return sub matrix at index list':function(jStat) {
-	  var A=[[1,2,3],[4,5,6],[7,8,9]];
-	  var B=jStat.col(A,[1,2]);
-	  assert.deepEqual(B,[[2,3],[5,6],[8,9]]);
-    }
-  },
-  '#col': {
-    'topic': function() {
-      jStat([[1, 2], [3, 4]]).col(0, this.callback);
-    },
-    'col callback': function(val, stat) {
-      assert.deepEqual(val.toArray(), [[1], [3]]);
-      assert.isTrue(this instanceof jStat);
-    }
-  }
+describe('col', function() {
+    it('return col at index', function() {
+        assert.deepStrictEqual(jStat.col([[1, 2], [3, 4]], 1), [[2], [4]]);
+        assert.deepStrictEqual(jStat([[1, 2], [3, 4]]).col(1).toArray(), [[2], [4]]);
+    });
+    it('return sub matrix at index list', function() {
+        var A=[[1,2,3],[4,5,6],[7,8,9]];
+        var B=jStat.col(A,[1,2]);
+        assert.deepStrictEqual(B,[[2,3],[5,6],[8,9]]);
+    });
 });
 
-suite.export(module);
+describe('#col', function() {
+    it('col callback', function(t, done) {
+        jStat([[1, 2], [3, 4]]).col(0, function(val) {
+            assert.deepStrictEqual(val.toArray(), [[1], [3]]);
+            assert.strictEqual(this instanceof jStat, true);
+            done();
+        });
+    });
+});

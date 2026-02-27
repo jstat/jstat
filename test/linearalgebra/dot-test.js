@@ -1,21 +1,12 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'linearalgebra': {
-    'topic': function() {
-      return jStat;
-    },
-    'dot product works': function(jStat) {
-      var A = jStat([1,2,3]);
-      var B = [5, -2, 10];
-      assert.equal(jStat.dot(A,B), 31);
-      assert.equal(A.dot(B), 31);
-    }
-  }
+describe('linearalgebra', function() {
+    it('dot product works', function() {
+        var A = jStat([1, 2, 3]);
+        var B = [5, -2, 10];
+        assert.strictEqual(jStat.dot(A, B), 31);
+        assert.strictEqual(A.dot(B), 31);
+    });
 });
-
-suite.export(module);

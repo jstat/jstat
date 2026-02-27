@@ -1,15 +1,9 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat, assertEpsilon } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'model test': {
-    'topic': function() {
-      return jStat;
-    },
-    'array call': function(jStat) {
+describe('model test', function() {
+  it('array call', function() {
 	  // The result is reviewed by R.
 	  var exog = [[1, 0.9],
 				  [1, 2.1],
@@ -28,20 +22,17 @@ suite.addBatch({
       var tol   = 0.01;
 
       // coff estimate
-      assert.epsilon(tol, model.coef[0], 10.0395 );
-      assert.epsilon(tol, model.coef[1], 0.9928 );
+      assertEpsilon(tol, model.coef[0], 10.0395 );
+      assertEpsilon(tol, model.coef[1], 0.9928 );
 	  /*
-      assert.epsilon(tol, model.coef[2], -0.0033);
-      assert.epsilon(tol, model.coef[3], 0.1608);
-      assert.epsilon(tol, model.coef[4], 0.0520);
-      assert.epsilon(tol, model.coef[5], -2.6639);
+      assertEpsilon(tol, model.coef[2], -0.0033);
+      assertEpsilon(tol, model.coef[3], 0.1608);
+      assertEpsilon(tol, model.coef[4], 0.0520);
+      assertEpsilon(tol, model.coef[5], -2.6639);
 	  */
       //R2
-      assert.epsilon(tol, model.R2, 0.9988);
+      assertEpsilon(tol, model.R2, 0.9988);
       // f test
-      assert.epsilon(tol, model.f.pvalue, 0.0000);
-    }
-  }
+      assertEpsilon(tol, model.f.pvalue, 0.0000);
+  });
 });
-
-suite.export(module);

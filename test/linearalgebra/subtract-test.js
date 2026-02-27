@@ -1,24 +1,15 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'linearalgebra': {
-    'topic': function() {
-      return jStat;
-    },
-    'subtracting a matrix works': function(jStat) {
-      var A = jStat([[1, 2, 3]]);
-      var B = [[4, 5, -6]];
-      assert.deepEqual(A.subtract(B), jStat([[-3, -3, 9]]));
-    },
-    'subtracting a scalar works': function(jStat) {
-      var A = jStat([[1, 2, 3]]);
-      assert.deepEqual(A.subtract(100), jStat([[-99, -98, -97]]));
-    }
-  }
+describe('linearalgebra', function() {
+    it('subtracting a matrix works', function() {
+        var A = jStat([[1, 2, 3]]);
+        var B = [[4, 5, -6]];
+        assert.deepStrictEqual(A.subtract(B), jStat([[-3, -3, 9]]));
+    });
+    it('subtracting a scalar works', function() {
+        var A = jStat([[1, 2, 3]]);
+        assert.deepStrictEqual(A.subtract(100), jStat([[-99, -98, -97]]));
+    });
 });
-
-suite.export(module);

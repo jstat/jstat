@@ -1,19 +1,10 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'linearalgebra': {
-    'topic': function() {
-      return jStat;
-    },
-    'exp function works': function(jStat) {
-      var A = jStat([[-1, 0], [1, 2]]);
-      assert.deepEqual(A.exp(), jStat([[Math.exp(-1), 1], [Math.E, Math.exp(2)]]));
-    }
-  }
+describe('linearalgebra', function() {
+    it('exp function works', function() {
+        var A = jStat([[-1, 0], [1, 2]]);
+        assert.deepStrictEqual(A.exp(), jStat([[Math.exp(-1), 1], [Math.E, Math.exp(2)]]));
+    });
 });
-
-suite.export(module);

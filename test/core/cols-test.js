@@ -1,28 +1,20 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.cols');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'cols': {
-    'topic': function() {
-      return jStat;
-    },
-    'number of columns': function(jStat) {
-      assert.equal(jStat.cols([[1], [4], [5]]), 1);
-      assert.equal(jStat([[1], [4], [5]]).cols(), 1);
-      assert.isTrue(jStat([[1, 3]]).cols(function() {}) instanceof jStat);
-    }
-  },
-  '#cols': {
-    'topic': function() {
-      jStat([[1, 2, 3], [4, 5, 6]]).cols(this.callback);
-    },
-    'cols sends value': function(val, stat) {
-      assert.equal(val, 3);
-    }
-  }
+describe('cols', function() {
+    it('number of columns', function() {
+        assert.strictEqual(jStat.cols([[1], [4], [5]]), 1);
+        assert.strictEqual(jStat([[1], [4], [5]]).cols(), 1);
+        assert.strictEqual(jStat([[1, 3]]).cols(function() {}) instanceof jStat, true);
+    });
 });
 
-suite.export(module);
+describe('#cols', function() {
+    it('cols sends value', function(t, done) {
+        jStat([[1, 2, 3], [4, 5, 6]]).cols(function(val) {
+            assert.strictEqual(val, 3);
+            done();
+        });
+    });
+});

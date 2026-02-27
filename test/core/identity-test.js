@@ -1,22 +1,13 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.identity');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'identity': {
-    'topic': function() {
-      return jStat;
-    },
-    'return identity': function(jStat) {
-      assert.deepEqual(jStat.identity(2), [[1, 0], [0, 1]]);
-    },
-    'identity from empty jStat object': function(jStat) {
-      assert.isTrue(jStat().identity(2) instanceof jStat);
-      assert.deepEqual(jStat().identity(2).toArray(), [[1, 0], [0, 1]]);
-    }
-  }
+describe('identity', function() {
+    it('return identity', function() {
+        assert.deepStrictEqual(jStat.identity(2), [[1, 0], [0, 1]]);
+    });
+    it('identity from empty jStat object', function() {
+        assert.strictEqual(jStat().identity(2) instanceof jStat, true);
+        assert.deepStrictEqual(jStat().identity(2).toArray(), [[1, 0], [0, 1]]);
+    });
 });
-
-suite.export(module);

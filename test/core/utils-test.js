@@ -1,71 +1,62 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.utils');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat } = require('../helpers.js');
 
-require('../env.js');
+describe('jStat', function() {
+    it('calcRdx', function() {
+        assert.strictEqual(jStat.utils.calcRdx(1e5, 1e10), 1e7);
+    });
+    it('isArray', function() {
+        assert.strictEqual(jStat.utils.isArray(true), false);
+        assert.strictEqual(jStat.utils.isArray({}), false);
+        assert.strictEqual(jStat.utils.isArray('123'), false);
+        assert.strictEqual(jStat.utils.isArray(/reg/), false);
+        assert.strictEqual(jStat.utils.isArray(1234), false);
+        assert.strictEqual(jStat.utils.isArray(function() {}), false);
+        assert.strictEqual(jStat.utils.isArray([]), true);
+    });
+    it('isFunction', function() {
+        assert.strictEqual(jStat.utils.isFunction(true), false);
+        assert.strictEqual(jStat.utils.isFunction([]), false);
+        assert.strictEqual(jStat.utils.isFunction({}), false);
+        assert.strictEqual(jStat.utils.isFunction('123'), false);
+        assert.strictEqual(jStat.utils.isFunction(/reg/), false);
+        assert.strictEqual(jStat.utils.isFunction(1234), false);
+        assert.strictEqual(jStat.utils.isFunction(function() {}), true);
+    });
+    it('isNumber', function() {
+        assert.strictEqual(jStat.utils.isNumber(5e3), true);
+        assert.strictEqual(jStat.utils.isNumber(0xff), true);
+        assert.strictEqual(jStat.utils.isNumber(-1.1), true);
+        assert.strictEqual(jStat.utils.isNumber(0), true);
+        assert.strictEqual(jStat.utils.isNumber(1), true);
+        assert.strictEqual(jStat.utils.isNumber(1.1), true);
+        assert.strictEqual(jStat.utils.isNumber(10), true);
+        assert.strictEqual(jStat.utils.isNumber(10.10), true);
+        assert.strictEqual(jStat.utils.isNumber(100), true);
+        assert.strictEqual(jStat.utils.isNumber(parseInt('012')), true);
+        assert.strictEqual(jStat.utils.isNumber(parseFloat('012')), true);
 
-suite.addBatch({
-  'jStat': {
-    'topic': function() {
-      return jStat.utils;
-    },
-    'calcRdx': function(utils) {
-      assert.equal(utils.calcRdx(1e5, 1e10), 1e7);
-    },
-    'isArray': function(utils) {
-      assert.isFalse(utils.isArray(true));
-      assert.isFalse(utils.isArray({}));
-      assert.isFalse(utils.isArray('123'));
-      assert.isFalse(utils.isArray(/reg/));
-      assert.isFalse(utils.isArray(1234));
-      assert.isFalse(utils.isArray(function() {}));
-      assert.isTrue(utils.isArray([]));
-    },
-    'isFunction': function(utils) {
-      assert.isFalse(utils.isFunction(true));
-      assert.isFalse(utils.isFunction([]));
-      assert.isFalse(utils.isFunction({}));
-      assert.isFalse(utils.isFunction('123'));
-      assert.isFalse(utils.isFunction(/reg/));
-      assert.isFalse(utils.isFunction(1234));
-      assert.isTrue(utils.isFunction(function() {}));
-    },
-    'isNumber': function(utils) {
-      assert.isTrue(utils.isNumber(5e3));
-      assert.isTrue(utils.isNumber(0xff));
-      assert.isTrue(utils.isNumber(-1.1));
-      assert.isTrue(utils.isNumber(0));
-      assert.isTrue(utils.isNumber(1));
-      assert.isTrue(utils.isNumber(1.1));
-      assert.isTrue(utils.isNumber(10));
-      assert.isTrue(utils.isNumber(10.10));
-      assert.isTrue(utils.isNumber(100));
-      assert.isTrue(utils.isNumber(parseInt('012')));
-      assert.isTrue(utils.isNumber(parseFloat('012')));
-
-      assert.isFalse(utils.isNumber('-1.1'));
-      assert.isFalse(utils.isNumber('0'));
-      assert.isFalse(utils.isNumber('012'));
-      assert.isFalse(utils.isNumber('0xff'));
-      assert.isFalse(utils.isNumber('1'));
-      assert.isFalse(utils.isNumber('1.1'));
-      assert.isFalse(utils.isNumber('10'));
-      assert.isFalse(utils.isNumber('10.10'));
-      assert.isFalse(utils.isNumber('100'));
-      assert.isFalse(utils.isNumber('5e3'));
-      assert.isFalse(utils.isNumber(Infinity));
-      assert.isFalse(utils.isNumber(NaN));
-      assert.isFalse(utils.isNumber(null));
-      assert.isFalse(utils.isNumber(undefined));
-      assert.isFalse(utils.isNumber(''));
-      assert.isFalse(utils.isNumber('   '));
-      assert.isFalse(utils.isNumber('foo'));
-      assert.isFalse(utils.isNumber([1]));
-      assert.isFalse(utils.isNumber([]));
-      assert.isFalse(utils.isNumber(function () {}));
-      assert.isFalse(utils.isNumber({}));
-    }
-  }
+        assert.strictEqual(jStat.utils.isNumber('-1.1'), false);
+        assert.strictEqual(jStat.utils.isNumber('0'), false);
+        assert.strictEqual(jStat.utils.isNumber('012'), false);
+        assert.strictEqual(jStat.utils.isNumber('0xff'), false);
+        assert.strictEqual(jStat.utils.isNumber('1'), false);
+        assert.strictEqual(jStat.utils.isNumber('1.1'), false);
+        assert.strictEqual(jStat.utils.isNumber('10'), false);
+        assert.strictEqual(jStat.utils.isNumber('10.10'), false);
+        assert.strictEqual(jStat.utils.isNumber('100'), false);
+        assert.strictEqual(jStat.utils.isNumber('5e3'), false);
+        assert.strictEqual(jStat.utils.isNumber(Infinity), false);
+        assert.strictEqual(jStat.utils.isNumber(NaN), false);
+        assert.strictEqual(jStat.utils.isNumber(null), false);
+        assert.strictEqual(jStat.utils.isNumber(undefined), false);
+        assert.strictEqual(jStat.utils.isNumber(''), false);
+        assert.strictEqual(jStat.utils.isNumber('   '), false);
+        assert.strictEqual(jStat.utils.isNumber('foo'), false);
+        assert.strictEqual(jStat.utils.isNumber([1]), false);
+        assert.strictEqual(jStat.utils.isNumber([]), false);
+        assert.strictEqual(jStat.utils.isNumber(function () {}), false);
+        assert.strictEqual(jStat.utils.isNumber({}), false);
+    });
 });
-
-suite.export(module);

@@ -1,28 +1,20 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.antidiag');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'antidiag': {
-    'topic': function() {
-      return jStat;
-    },
-    'return antidiag': function(jStat) {
-      assert.deepEqual(jStat.antidiag([[1, 2], [3, 4]]), [[2], [3]]);
-      assert.deepEqual(jStat([[1, 2], [3, 4]]).antidiag().toArray(),
-                       [[2], [3]]);
-    }
-  },
-  '#antidiag': {
-    'topic': function() {
-      jStat([[1, 2], [3, 4]]).antidiag(this.callback);
-    },
-    'antidiag callback': function(val, stat) {
-      assert.deepEqual(val.toArray(), [[2], [3]]);
-    }
-  }
+describe('antidiag', function() {
+    it('return antidiag', function() {
+        assert.deepStrictEqual(jStat.antidiag([[1, 2], [3, 4]]), [[2], [3]]);
+        assert.deepStrictEqual(jStat([[1, 2], [3, 4]]).antidiag().toArray(),
+                               [[2], [3]]);
+    });
 });
 
-suite.export(module);
+describe('#antidiag', function() {
+    it('antidiag callback', function(t, done) {
+        jStat([[1, 2], [3, 4]]).antidiag(function(val) {
+            assert.deepStrictEqual(val.toArray(), [[2], [3]]);
+            done();
+        });
+    });
+});

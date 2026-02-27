@@ -1,23 +1,14 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.ones');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'ones': {
-    'topic': function() {
-      return jStat;
-    },
-    'return ones': function(jStat) {
-      assert.deepEqual(jStat.ones(2, 3), [[1, 1, 1], [1, 1, 1]]);
-      assert.deepEqual(jStat.ones(2), [[1, 1], [1, 1]]);
-    },
-    'ones from empty jStat object': function (jStat) {
-      assert.isTrue(jStat().ones(2) instanceof jStat);
-      assert.deepEqual(jStat().ones(2, 3).toArray(), [[1, 1, 1], [1, 1, 1]]);
-    }
-  }
+describe('ones', function() {
+    it('return ones', function() {
+        assert.deepStrictEqual(jStat.ones(2, 3), [[1, 1, 1], [1, 1, 1]]);
+        assert.deepStrictEqual(jStat.ones(2), [[1, 1], [1, 1]]);
+    });
+    it('ones from empty jStat object', function() {
+        assert.strictEqual(jStat().ones(2) instanceof jStat, true);
+        assert.deepStrictEqual(jStat().ones(2, 3).toArray(), [[1, 1, 1], [1, 1, 1]]);
+    });
 });
-
-suite.export(module);

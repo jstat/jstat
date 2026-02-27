@@ -1,43 +1,36 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.variance');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat, assertEpsilon } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'variance': {
-    'topic': function() {
-      return jStat;
-    },
-    'return basic variance': function(jStat) {
-      assert.equal(jStat.variance([1, 2, 3, 4]), 1.25);
-    },
-    'return basic variance using sample': function(jStat) {
-      assert.equal(jStat.variance([1, 2, 3, 4, 5], true), 2.5);
-    },
-    'variance from instance': function(jStat) {
-      assert.equal(jStat([1, 2, 3, 4]).variance(), 1.25);
-    },
-    'variance matrix cols': function(jStat) {
-      assert.deepEqual(jStat([[1, 2], [3, 4]]).variance(), [1, 1]);
-    }
-  },
-  '#variance vector': {
-    'topic': function() {
-      jStat([1, 2, 3, 4]).variance(this.callback);
-    },
-    'variance callback': function(val, stat) {
-      assert.equal(val, 1.25);
-    }
-  },
-  '#variance matrix cols': {
-    'topic': function() {
-      jStat([[1, 2], [3, 4]]).variance(this.callback);
-    },
-    'variance matrix cols callback': function(val, stat) {
-      assert.deepEqual(val, [1, 1]);
-    }
-  }
+describe('variance', function() {
+    it('return basic variance', function() {
+        assertEpsilon(0.0000001, jStat.variance([1, 2, 3, 4]), 1.25);
+    });
+    it('return basic variance using sample', function() {
+        assertEpsilon(0.0000001, jStat.variance([1, 2, 3, 4, 5], true), 2.5);
+    });
+    it('variance from instance', function() {
+        assertEpsilon(0.0000001, jStat([1, 2, 3, 4]).variance(), 1.25);
+    });
+    it('variance matrix cols', function() {
+        assert.deepStrictEqual(jStat([[1, 2], [3, 4]]).variance(), [1, 1]);
+    });
 });
 
-suite.export(module);
+describe('#variance vector', function() {
+    it('variance callback', function(t, done) {
+        jStat([1, 2, 3, 4]).variance(function(val) {
+            assertEpsilon(0.0000001, val, 1.25);
+            done();
+        });
+    });
+});
+
+describe('#variance matrix cols', function() {
+    it('variance matrix cols callback', function(t, done) {
+        jStat([[1, 2], [3, 4]]).variance(function(val) {
+            assert.deepStrictEqual(val, [1, 1]);
+            done();
+        });
+    });
+});

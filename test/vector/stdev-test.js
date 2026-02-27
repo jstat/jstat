@@ -1,43 +1,36 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.stdev');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat, assertEpsilon } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'stdev': {
-    'topic': function() {
-      return jStat;
-    },
-    'return basic stdev': function(jStat) {
-      assert.equal(jStat.stdev([1, 2, 3, 4]), 1.118033988749895);
-    },
-    'return basic stdev using sample': function(jStat) {
-      assert.equal(jStat.stdev([1, 2, 3, 4, 5], true), 1.5811388300841898);
-    },
-    'stdev from instance': function(jStat) {
-      assert.equal(jStat([1, 2, 3, 4]).stdev(), 1.118033988749895);
-    },
-    'stdev matrix cols': function(jStat) {
-      assert.deepEqual(jStat([[1, 2], [3, 4]]).stdev(), [1, 1]);
-    }
-  },
-  '#stdev vector': {
-    'topic': function() {
-      jStat([1, 2, 3, 4]).stdev(this.callback);
-    },
-    'stdev callback': function(val, stat) {
-      assert.equal(val, 1.118033988749895);
-    }
-  },
-  '#stdev matrix cols': {
-    'topic': function() {
-      jStat([[1, 2], [3, 4]]).stdev(this.callback);
-    },
-    'stdev matrix cols callback': function(val, stat) {
-      assert.deepEqual(val, [1, 1]);
-    }
-  }
+describe('stdev', function() {
+    it('return basic stdev', function() {
+        assertEpsilon(0.0000001, jStat.stdev([1, 2, 3, 4]), 1.118033988749895);
+    });
+    it('return basic stdev using sample', function() {
+        assertEpsilon(0.0000001, jStat.stdev([1, 2, 3, 4, 5], true), 1.5811388300841898);
+    });
+    it('stdev from instance', function() {
+        assertEpsilon(0.0000001, jStat([1, 2, 3, 4]).stdev(), 1.118033988749895);
+    });
+    it('stdev matrix cols', function() {
+        assert.deepStrictEqual(jStat([[1, 2], [3, 4]]).stdev(), [1, 1]);
+    });
 });
 
-suite.export(module);
+describe('#stdev vector', function() {
+    it('stdev callback', function(t, done) {
+        jStat([1, 2, 3, 4]).stdev(function(val) {
+            assertEpsilon(0.0000001, val, 1.118033988749895);
+            done();
+        });
+    });
+});
+
+describe('#stdev matrix cols', function() {
+    it('stdev matrix cols callback', function(t, done) {
+        jStat([[1, 2], [3, 4]]).stdev(function(val) {
+            assert.deepStrictEqual(val, [1, 1]);
+            done();
+        });
+    });
+});

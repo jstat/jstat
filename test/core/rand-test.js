@@ -1,21 +1,12 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.rand');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'rand': {
-    'topic': function() {
-      return jStat;
-    },
-    'return rand': function(jStat) {
-      assert.isTrue(jStat.rand(2) instanceof Array);
-    },
-    'rand from empty jStat object': function (jStat) {
-      assert.isTrue(jStat().rand(2) instanceof jStat);
-    }
-  }
+describe('rand', function() {
+    it('return rand', function() {
+        assert.strictEqual(jStat.rand(2) instanceof Array, true);
+    });
+    it('rand from empty jStat object', function() {
+        assert.strictEqual(jStat().rand(2) instanceof jStat, true);
+    });
 });
-
-suite.export(module);

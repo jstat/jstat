@@ -1,27 +1,18 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'ztest ': {
-    'topic': function() {
-      return jStat;
-    },
-    '(value, mean, sd, sides) pattern works': function(jStat) {
-      var p = jStat.ztest(1.96, 0, 1, 2);
-      assert.equal(p < 0.05, true);
-    },
-    '(zscore, sides) pattern works': function(jStat) {
-      var p = jStat.ztest(1.96, 2);
-      assert.equal(p < 0.05, true);
-    },
-    '(value, array, sides, flag) pattern works': function(jStat) {
-      var p = jStat.ztest(1.96, [1, -1], 2);
-      assert.equal(p < 0.05, true);
-    }
-  }
+describe('ztest ', function() {
+  it('(value, mean, sd, sides) pattern works', function() {
+    var p = jStat.ztest(1.96, 0, 1, 2);
+    assert.strictEqual(p < 0.05, true);
+  });
+  it('(zscore, sides) pattern works', function() {
+    var p = jStat.ztest(1.96, 2);
+    assert.strictEqual(p < 0.05, true);
+  });
+  it('(value, array, sides, flag) pattern works', function() {
+    var p = jStat.ztest(1.96, [1, -1], 2);
+    assert.strictEqual(p < 0.05, true);
+  });
 });
-
-suite.export(module);

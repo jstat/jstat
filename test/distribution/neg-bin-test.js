@@ -1,33 +1,21 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat.distribution');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat, assertEpsilon } = require('../helpers.js');
 
-require('../env.js');
-
-suite.addBatch({
-  'negbin pdf': {
-    'topic': function() {
-      return jStat;
-    },
-    'check pdf calculation': function(jStat) {
+describe('negbin pdf', function() {
+    it('check pdf calculation', function() {
       var k = 10; // number of failures
       var r = 5; // threshold number of successes
       var p = 0.25; // probability of a success
-      assert(jStat.negbin.pdf(k, r, p), 0.05504866037517786);
-    }
-  },
-
-  'negbin cdf': {
-    'topic': function() {
-      return jStat;
-    },
-    'check pdf calculation': function(jStat) {
-      var k = 10; // number of failures
-      var r = 5; // threshold number of successes
-      var p = 0.25; // probability of a success
-      assert(jStat.negbin.cdf(k, r, p), 0.3135140584781766);
-    }
-  },
+      assert.ok(jStat.negbin.pdf(k, r, p), 0.05504866037517786);
+    });
 });
 
-suite.export(module);
+describe('negbin cdf', function() {
+    it('check pdf calculation', function() {
+      var k = 10; // number of failures
+      var r = 5; // threshold number of successes
+      var p = 0.25; // probability of a success
+      assert.ok(jStat.negbin.cdf(k, r, p), 0.3135140584781766);
+    });
+});

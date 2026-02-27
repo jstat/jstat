@@ -1,8 +1,6 @@
-var vows = require('vows');
-var assert = require('assert');
-var suite = vows.describe('jStat');
-
-require('../env.js');
+var { describe, it } = require('node:test');
+var assert = require('node:assert/strict');
+var { jStat, assertEpsilon } = require('../helpers.js');
 
 var data = [
   [31, 35, 35, 37, 37, 39, 40, 41, 41, 43, 44, 44, 44, 44, 44, 44, 46, 46, 46, 47, 49, 49, 49, 49, 50, 52, 54, 54, 54, 54, 55, 57, 57, 57, 59, 59, 60, 60, 62, 62, 62, 62, 65, 65, 65, 65, 65],
@@ -22,47 +20,38 @@ var pvalues = [
   [[1, 2], 0.0289035]
 ];
 
-suite.addBatch({
-  'qtest ': {
-    'topic': function() {
-      return jStat;
-    },
-    '(qscore, n, k) pattern works': function(jStat) {
-      for (var i = 0; i < pvalues.length; ++i) {
-        var pair = pvalues[i][0];
-        var p = jStat.qtest(jStat.qscore(data[pair[0]], data[pair[1]], sd), n, k);
-        assert.epsilon(tol, p, pvalues[i][1]);
-      }
-    },
-    '(mean1, mean2, n1, n2, sd, n, k) pattern works': function(jStat) {
-      for (var i = 0; i < pvalues.length; ++i) {
-        var pair = pvalues[i][0];
-        var mean1 = jStat.mean(data[pair[0]]);
-        var mean2 = jStat.mean(data[pair[1]]);
-        var p = jStat.qtest(mean1, mean2, data[pair[0]].length, data[pair[1]].length, sd, n, k);
-        assert.epsilon(tol, p, pvalues[i][1]);
-      }
-    },
-    '(array1, array2, sd, n, k) pattern works': function(jStat) {
-      for (var i = 0; i < pvalues.length; ++i) {
-        var pair = pvalues[i][0];
-        var p = jStat.qtest(data[pair[0]], data[pair[1]], sd, n, k);
-        assert.epsilon(tol, p, pvalues[i][1]);
-      }
+describe('qtest ', function() {
+  it('(qscore, n, k) pattern works', function() {
+    for (var i = 0; i < pvalues.length; ++i) {
+      var pair = pvalues[i][0];
+      var p = jStat.qtest(jStat.qscore(data[pair[0]], data[pair[1]], sd), n, k);
+      assertEpsilon(tol, p, pvalues[i][1]);
     }
-  },
-  'tukeyhsd ': {
-    'topic': function() {
-      return jStat;
-    },
-    'works': function(jStat) {
-      var results = jStat.tukeyhsd(data);
-      for (var i = 0; i < results.length; ++i) {
-        assert.deepEqual(results[i][0], pvalues[i][0]);
-        assert.epsilon(tol, results[i][1], pvalues[i][1]);
-      }
+  });
+  it('(mean1, mean2, n1, n2, sd, n, k) pattern works', function() {
+    for (var i = 0; i < pvalues.length; ++i) {
+      var pair = pvalues[i][0];
+      var mean1 = jStat.mean(data[pair[0]]);
+      var mean2 = jStat.mean(data[pair[1]]);
+      var p = jStat.qtest(mean1, mean2, data[pair[0]].length, data[pair[1]].length, sd, n, k);
+      assertEpsilon(tol, p, pvalues[i][1]);
     }
-  }
+  });
+  it('(array1, array2, sd, n, k) pattern works', function() {
+    for (var i = 0; i < pvalues.length; ++i) {
+      var pair = pvalues[i][0];
+      var p = jStat.qtest(data[pair[0]], data[pair[1]], sd, n, k);
+      assertEpsilon(tol, p, pvalues[i][1]);
+    }
+  });
 });
 
-suite.export(module);
+describe('tukeyhsd ', function() {
+  it('works', function() {
+    var results = jStat.tukeyhsd(data);
+    for (var i = 0; i < results.length; ++i) {
+      assert.deepStrictEqual(results[i][0], pvalues[i][0]);
+      assertEpsilon(tol, results[i][1], pvalues[i][1]);
+    }
+  });
+});
