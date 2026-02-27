@@ -1,67 +1,57 @@
 import jStat from './core.js';
 
 // generate all distribution instance methods
-(function(list) {
-  for (var i = 0; i < list.length; i++) (function(func) {
-    // distribution instance method
-    jStat[func] = function f(a, b, c) {
-      if (!(this instanceof f))
-        return new f(a, b, c);
-      this._a = a;
-      this._b = b;
-      this._c = c;
-      return this;
-    };
-    // distribution method to be used on a jStat instance
-    jStat.fn[func] = function(a, b, c) {
-      var newthis = jStat[func](a, b, c);
-      newthis.data = this;
-      return newthis;
-    };
-    // sample instance method
-    jStat[func].prototype.sample = function(arr) {
-      var a = this._a;
-      var b = this._b;
-      var c = this._c;
-      if (arr)
-        return jStat.alter(arr, function() {
-          return jStat[func].sample(a, b, c);
-        });
-      else
-        return jStat[func].sample(a, b, c);
-    };
-    // generate the pdf, cdf and inv instance methods
-    (function(vals) {
-      for (var i = 0; i < vals.length; i++) (function(fnfunc) {
-        jStat[func].prototype[fnfunc] = function(x) {
-          var a = this._a;
-          var b = this._b;
-          var c = this._c;
-          if (!x && x !== 0)
-            x = this.data;
-          if (typeof x !== 'number') {
-            return jStat.fn.map.call(x, function(x) {
-              return jStat[func][fnfunc](x, a, b, c);
-            });
-          }
-          return jStat[func][fnfunc](x, a, b, c);
-        };
-      })(vals[i]);
-    })('pdf cdf inv'.split(' '));
-    // generate the mean, median, mode and variance instance methods
-    (function(vals) {
-      for (var i = 0; i < vals.length; i++) (function(fnfunc) {
-        jStat[func].prototype[fnfunc] = function() {
-          return jStat[func][fnfunc](this._a, this._b, this._c);
-        };
-      })(vals[i]);
-    })('mean median mode variance'.split(' '));
-  })(list[i]);
-})((
+for (const func of (
   'beta centralF cauchy chisquare exponential gamma invgamma kumaraswamy ' +
   'laplace lognormal noncentralt normal pareto studentt weibull uniform ' +
   'binomial negbin hypgeom poisson triangular tukey arcsine'
-).split(' '));
+).split(' ')) {
+  // distribution instance method
+  jStat[func] = function f(a, b, c) {
+    if (!(this instanceof f))
+      return new f(a, b, c);
+    this._a = a;
+    this._b = b;
+    this._c = c;
+    return this;
+  };
+  // distribution method to be used on a jStat instance
+  jStat.fn[func] = function(a, b, c) {
+    const newthis = jStat[func](a, b, c);
+    newthis.data = this;
+    return newthis;
+  };
+  // sample instance method
+  jStat[func].prototype.sample = function(arr) {
+    const a = this._a;
+    const b = this._b;
+    const c = this._c;
+    if (arr)
+      return jStat.alter(arr, () => jStat[func].sample(a, b, c));
+    else
+      return jStat[func].sample(a, b, c);
+  };
+  // generate the pdf, cdf and inv instance methods
+  for (const fnfunc of 'pdf cdf inv'.split(' ')) {
+    jStat[func].prototype[fnfunc] = function(x) {
+      const a = this._a;
+      const b = this._b;
+      const c = this._c;
+      if (!x && x !== 0)
+        x = this.data;
+      if (typeof x !== 'number') {
+        return jStat.fn.map.call(x, (x) => jStat[func][fnfunc](x, a, b, c));
+      }
+      return jStat[func][fnfunc](x, a, b, c);
+    };
+  }
+  // generate the mean, median, mode and variance instance methods
+  for (const fnfunc of 'mean median mode variance'.split(' ')) {
+    jStat[func].prototype[fnfunc] = function() {
+      return jStat[func][fnfunc](this._a, this._b, this._c);
+    };
+  }
+}
 
 
 
@@ -107,7 +97,7 @@ jStat.extend(jStat.beta, {
 
   // return a random sample
   sample: function sample(alpha, beta) {
-    var u = jStat.randg(alpha);
+    const u = jStat.randg(alpha);
     return u / (u + jStat.randg(beta));
   },
 
@@ -122,7 +112,7 @@ jStat.extend(jStat.centralF, {
   // See the way that R calculates this value:
   // https://svn.r-project.org/R/trunk/src/nmath/df.c
   pdf: function pdf(x, df1, df2) {
-    var p, q, f;
+    let p, q, f;
 
     if (x < 0)
       return 0;
@@ -166,8 +156,8 @@ jStat.extend(jStat.centralF, {
 
   // return a random sample
   sample: function sample(df1, df2) {
-    var x1 = jStat.randg(df1 / 2) * 2;
-    var x2 = jStat.randg(df2 / 2) * 2;
+    const x1 = jStat.randg(df1 / 2) * 2;
+    const x2 = jStat.randg(df2 / 2) * 2;
     return (x1 / df1) / (x2 / df2);
   },
 
@@ -466,7 +456,7 @@ jStat.extend(jStat.lognormal, {
 // extend noncentralt function with static methods
 jStat.extend(jStat.noncentralt, {
   pdf: function pdf(x, dof, ncp) {
-    var tol = 1e-14;
+    const tol = 1e-14;
     if (Math.abs(ncp) < tol)  // ncp approx 0; use student-t
       return jStat.studentt.pdf(x, dof)
 
@@ -482,27 +472,27 @@ jStat.extend(jStat.noncentralt, {
   },
 
   cdf: function cdf(x, dof, ncp) {
-    var tol = 1e-14;
-    var min_iterations = 200;
+    const tol = 1e-14;
+    const min_iterations = 200;
 
     if (Math.abs(ncp) < tol)  // ncp approx 0; use student-t
       return jStat.studentt.cdf(x, dof);
 
     // turn negative x into positive and flip result afterwards
-    var flip = false;
+    let flip = false;
     if (x < 0) {
       flip = true;
       ncp = -ncp;
     }
 
-    var prob = jStat.normal.cdf(-ncp, 0, 1);
-    var value = tol + 1;
+    let prob = jStat.normal.cdf(-ncp, 0, 1);
+    let value = tol + 1;
     // use value at last two steps to determine convergence
-    var lastvalue = value;
-    var y = x * x / (x * x + dof);
-    var j = 0;
-    var p = Math.exp(-ncp * ncp / 2);
-    var q = Math.exp(-ncp * ncp / 2 - 0.5 * Math.log(2) -
+    let lastvalue = value;
+    const y = x * x / (x * x + dof);
+    let j = 0;
+    let p = Math.exp(-ncp * ncp / 2);
+    let q = Math.exp(-ncp * ncp / 2 - 0.5 * Math.log(2) -
                      jStat.gammaln(3 / 2)) * ncp;
     while (j < min_iterations || lastvalue > tol || value > tol) {
       lastvalue = value;
@@ -609,13 +599,13 @@ jStat.extend(jStat.studentt, {
   },
 
   cdf: function cdf(x, dof) {
-    var dof2 = dof / 2;
+    const dof2 = dof / 2;
     return jStat.ibeta((x + Math.sqrt(x * x + dof)) /
                        (2 * Math.sqrt(x * x + dof)), dof2, dof2);
   },
 
   inv: function(p, dof) {
-    var x = jStat.ibetainv(2 * Math.min(p, 1 - p), 0.5 * dof, 0.5);
+    let x = jStat.ibetainv(2 * Math.min(p, 1 - p), 0.5 * dof, 0.5);
     x = Math.sqrt(dof * (1 - x) / x);
     return (p > 0.5) ? x : -x;
   },
@@ -728,13 +718,13 @@ jStat.extend(jStat.uniform, {
 
 // Got this from http://www.math.ucla.edu/~tom/distributions/binomial.html
 function betinc(x, a, b, eps) {
-  var a0 = 0;
-  var b0 = 1;
-  var a1 = 1;
-  var b1 = 1;
-  var m9 = 0;
-  var a2 = 0;
-  var c9;
+  let a0 = 0;
+  let b0 = 1;
+  let a1 = 1;
+  let b1 = 1;
+  let m9 = 0;
+  let a2 = 0;
+  let c9;
 
   while (Math.abs((a1 - a2) / a1) > eps) {
     a2 = a1;
@@ -764,8 +754,8 @@ jStat.extend(jStat.binomial, {
   },
 
   cdf: function cdf(x, n, p) {
-    var betacdf;
-    var eps = 1e-10;
+    let betacdf;
+    const eps = 1e-10;
 
     if (x < 0)
       return 0;
@@ -775,11 +765,11 @@ jStat.extend(jStat.binomial, {
       return NaN;
 
     x = Math.floor(x);
-    var z = p;
-    var a = x + 1;
-    var b = n - x;
-    var s = a + b;
-    var bt = Math.exp(jStat.gammaln(s) - jStat.gammaln(b) -
+    const z = p;
+    const a = x + 1;
+    const b = n - x;
+    const s = a + b;
+    const bt = Math.exp(jStat.gammaln(s) - jStat.gammaln(b) -
                       jStat.gammaln(a) + a * Math.log(z) + b * Math.log(1 - z));
 
     if (z < (a + 1) / (s + 2))
@@ -805,8 +795,8 @@ jStat.extend(jStat.negbin, {
   },
 
   cdf: function cdf(x, r, p) {
-    var sum = 0,
-    k = 0;
+    let sum = 0;
+    let k = 0;
     if (x < 0) return 0;
     for (; k <= x; k++) {
       sum += jStat.negbin.pdf(k, r, p);
@@ -871,12 +861,12 @@ jStat.extend(jStat.hypgeom, {
 
       // This variable holds the scaled probability of the current number of
       // successes.
-      var scaledPDF = 1;
+      let scaledPDF = 1;
 
       // This keeps track of how much we have normalized.
-      var samplesDone = 0;
+      let samplesDone = 0;
 
-      for(var i = 0; i < k; i++) {
+      for(let i = 0; i < k; i++) {
         // For every possible number of successes up to that observed...
 
         while(scaledPDF > 1 && samplesDone < n) {
@@ -955,23 +945,23 @@ jStat.extend(jStat.hypgeom, {
       // finish the normalization at the end.
 
       // Holds the intermediate, scaled total CDF.
-      var scaledCDF = 1;
+      let scaledCDF = 1;
 
       // This variable holds the scaled probability of the current number of
       // successes.
-      var scaledPDF = 1;
+      let scaledPDF = 1;
 
       // This keeps track of how much we have normalized.
-      var samplesDone = 0;
+      let samplesDone = 0;
 
-      for(var i = 0; i < x; i++) {
+      for(let i = 0; i < x; i++) {
         // For every possible number of successes up to that observed...
 
         while(scaledCDF > 1 && samplesDone < n) {
           // Intermediate result is growing too big. Apply some of the
           // normalization to shrink everything.
 
-          var factor = 1 - (m / (N - samplesDone));
+          const factor = 1 - (m / (N - samplesDone));
 
           scaledPDF *= factor;
           scaledCDF *= factor;
@@ -1012,8 +1002,8 @@ jStat.extend(jStat.poisson, {
   },
 
   cdf: function cdf(x, l) {
-    var sumarr = [],
-    k = 0;
+    const sumarr = [];
+    let k = 0;
     if (x < 0) return 0;
     for (; k <= x; k++) {
       sumarr.push(jStat.poisson.pdf(k, l));
@@ -1030,7 +1020,7 @@ jStat.extend(jStat.poisson, {
   },
 
   sampleSmall: function sampleSmall(l) {
-    var p = 1, k = 0, L = Math.exp(-l);
+    let p = 1; let k = 0; const L = Math.exp(-l);
     do {
       k++;
       p *= jStat._random_fn();
@@ -1039,16 +1029,16 @@ jStat.extend(jStat.poisson, {
   },
 
   sampleLarge: function sampleLarge(l) {
-    var lam = l;
-    var k;
-    var U, V, slam, loglam, a, b, invalpha, vr, us;
+    const lam = l;
+    let k;
+    let U, V, us;
 
-    slam = Math.sqrt(lam);
-    loglam = Math.log(lam);
-    b = 0.931 + 2.53 * slam;
-    a = -0.059 + 0.02483 * b;
-    invalpha = 1.1239 + 1.1328 / (b - 3.4);
-    vr = 0.9277 - 3.6224 / (b - 2);
+    const slam = Math.sqrt(lam);
+    const loglam = Math.log(lam);
+    const b = 0.931 + 2.53 * slam;
+    const a = -0.059 + 0.02483 * b;
+    const invalpha = 1.1239 + 1.1328 / (b - 3.4);
+    const vr = 0.9277 - 3.6224 / (b - 2);
 
     while (1) {
       U = Math.random() - 0.5;
@@ -1137,7 +1127,7 @@ jStat.extend(jStat.triangular, {
   },
 
   sample: function sample(a, b, c) {
-    var u = jStat._random_fn();
+    const u = jStat._random_fn();
     if (u < ((c - a) / (b - a)))
       return a + Math.sqrt(u * (b - a) * (c - a))
     return b - Math.sqrt((1 - u) * (b - a) * (b - c));
@@ -1232,24 +1222,24 @@ jStat.extend(jStat.laplace, {
   },
 
   sample: function sample(mu, b) {
-    var u = jStat._random_fn() - 0.5;
+    const u = jStat._random_fn() - 0.5;
 
     return mu - (b * laplaceSign(u) * Math.log(1 - (2 * Math.abs(u))));
   }
 });
 
 function tukeyWprob(w, rr, cc) {
-  var nleg = 12;
-  var ihalf = 6;
+  const nleg = 12;
+  const ihalf = 6;
 
-  var C1 = -30;
-  var C2 = -50;
-  var C3 = 60;
-  var bb   = 8;
-  var wlar = 3;
-  var wincr1 = 2;
-  var wincr2 = 3;
-  var xleg = [
+  const C1 = -30;
+  const C2 = -50;
+  const C3 = 60;
+  const bb   = 8;
+  const wlar = 3;
+  const wincr1 = 2;
+  const wincr2 = 3;
+  const xleg = [
     0.981560634246719250690549090149,
     0.904117256370474856678465866119,
     0.769902674194304687036893833213,
@@ -1257,7 +1247,7 @@ function tukeyWprob(w, rr, cc) {
     0.367831498998180193752691536644,
     0.125233408511468915472441369464
   ];
-  var aleg = [
+  const aleg = [
     0.047175336386511827194615961485,
     0.106939325995318430960254718194,
     0.160078328543346226334652529543,
@@ -1266,7 +1256,7 @@ function tukeyWprob(w, rr, cc) {
     0.249147045813402785000562436043
   ];
 
-  var qsqz = w * 0.5;
+  const qsqz = w * 0.5;
 
   // if w >= 16 then the integral lower bound (occurs for c=20)
   // is 0.99999999999995 so return a value of 1.
@@ -1277,7 +1267,7 @@ function tukeyWprob(w, rr, cc) {
   // find (f(w/2) - 1) ^ cc
   // (first term in integral of hartley's form).
 
-  var pr_w = 2 * jStat.normal.cdf(qsqz, 0, 1, 1, 0) - 1; // erf(qsqz / M_SQRT2)
+  let pr_w = 2 * jStat.normal.cdf(qsqz, 0, 1, 1, 0) - 1; // erf(qsqz / M_SQRT2)
   // if pr_w ^ cc < 2e-22 then set pr_w = 0
   if (pr_w >= Math.exp(C2 / cc))
     pr_w = Math.pow(pr_w, cc);
@@ -1287,7 +1277,7 @@ function tukeyWprob(w, rr, cc) {
   // if w is large then the second component of the
   // integral is small, so fewer intervals are needed.
 
-  var wincr;
+  let wincr;
   if (w > wlar)
     wincr = wincr1;
   else
@@ -1301,24 +1291,24 @@ function tukeyWprob(w, rr, cc) {
 
   // blb and bub are lower and upper limits of integration.
 
-  var blb = qsqz;
-  var binc = (bb - qsqz) / wincr;
-  var bub = blb + binc;
-  var einsum = 0.0;
+  let blb = qsqz;
+  const binc = (bb - qsqz) / wincr;
+  let bub = blb + binc;
+  let einsum = 0.0;
 
   // integrate over each interval
 
-  var cc1 = cc - 1.0;
-  for (var wi = 1; wi <= wincr; wi++) {
-    var elsum = 0.0;
-    var a = 0.5 * (bub + blb);
+  const cc1 = cc - 1.0;
+  for (let wi = 1; wi <= wincr; wi++) {
+    let elsum = 0.0;
+    const a = 0.5 * (bub + blb);
 
     // legendre quadrature with order = nleg
 
-    var b = 0.5 * (bub - blb);
+    const b = 0.5 * (bub - blb);
 
-    for (var jj = 1; jj <= nleg; jj++) {
-      var j, xx;
+    for (let jj = 1; jj <= nleg; jj++) {
+      let j, xx;
       if (ihalf < jj) {
         j = (nleg - jj) + 1;
         xx = xleg[j-1];
@@ -1326,23 +1316,23 @@ function tukeyWprob(w, rr, cc) {
         j = jj;
         xx = -xleg[j-1];
       }
-      var c = b * xx;
-      var ac = a + c;
+      const c = b * xx;
+      const ac = a + c;
 
       // if exp(-qexpo/2) < 9e-14,
       // then doesn't contribute to integral
 
-      var qexpo = ac * ac;
+      const qexpo = ac * ac;
       if (qexpo > C3)
         break;
 
-      var pplus = 2 * jStat.normal.cdf(ac, 0, 1, 1, 0);
-      var pminus= 2 * jStat.normal.cdf(ac, w, 1, 1, 0);
+      const pplus = 2 * jStat.normal.cdf(ac, 0, 1, 1, 0);
+      const pminus= 2 * jStat.normal.cdf(ac, w, 1, 1, 0);
 
       // if rinsum ^ (cc-1) < 9e-14,
       // then doesn't contribute to integral
 
-      var rinsum = (pplus * 0.5) - (pminus * 0.5);
+      let rinsum = (pplus * 0.5) - (pminus * 0.5);
       if (rinsum >= Math.exp(C1 / cc1)) {
         rinsum = (aleg[j-1] * Math.exp(-(0.5 * qexpo))) * Math.pow(rinsum, cc1);
         elsum += rinsum;
@@ -1366,29 +1356,29 @@ function tukeyWprob(w, rr, cc) {
 }
 
 function tukeyQinv(p, c, v) {
-  var p0 = 0.322232421088;
-  var q0 = 0.993484626060e-01;
-  var p1 = -1.0;
-  var q1 = 0.588581570495;
-  var p2 = -0.342242088547;
-  var q2 = 0.531103462366;
-  var p3 = -0.204231210125;
-  var q3 = 0.103537752850;
-  var p4 = -0.453642210148e-04;
-  var q4 = 0.38560700634e-02;
-  var c1 = 0.8832;
-  var c2 = 0.2368;
-  var c3 = 1.214;
-  var c4 = 1.208;
-  var c5 = 1.4142;
-  var vmax = 120.0;
+  const p0 = 0.322232421088;
+  const q0 = 0.993484626060e-01;
+  const p1 = -1.0;
+  const q1 = 0.588581570495;
+  const p2 = -0.342242088547;
+  const q2 = 0.531103462366;
+  const p3 = -0.204231210125;
+  const q3 = 0.103537752850;
+  const p4 = -0.453642210148e-04;
+  const q4 = 0.38560700634e-02;
+  const c1 = 0.8832;
+  const c2 = 0.2368;
+  const c3 = 1.214;
+  const c4 = 1.208;
+  const c5 = 1.4142;
+  const vmax = 120.0;
 
-  var ps = 0.5 - 0.5 * p;
-  var yi = Math.sqrt(Math.log(1.0 / (ps * ps)));
-  var t = yi + (((( yi * p4 + p3) * yi + p2) * yi + p1) * yi + p0)
+  const ps = 0.5 - 0.5 * p;
+  const yi = Math.sqrt(Math.log(1.0 / (ps * ps)));
+  let t = yi + (((( yi * p4 + p3) * yi + p2) * yi + p1) * yi + p0)
      / (((( yi * q4 + q3) * yi + q2) * yi + q1) * yi + q0);
   if (v < vmax) t += (t * t * t + t) / v / 4.0;
-  var q = c1 - c2 * t;
+  let q = c1 - c2 * t;
   if (v < vmax) q += -c3 / v + c4 * t / v;
   return t * (q * Math.log(c - 1.0) + c5);
 }
@@ -1396,23 +1386,23 @@ function tukeyQinv(p, c, v) {
 jStat.extend(jStat.tukey, {
   cdf: function cdf(q, nmeans, df) {
     // Identical implementation as the R ptukey() function as of commit 68947
-    var rr = 1;
-    var cc = nmeans;
+    const rr = 1;
+    const cc = nmeans;
 
-    var nlegq = 16;
-    var ihalfq = 8;
+    const nlegq = 16;
+    const ihalfq = 8;
 
-    var eps1 = -30.0;
-    var eps2 = 1.0e-14;
-    var dhaf  = 100.0;
-    var dquar = 800.0;
-    var deigh = 5000.0;
-    var dlarg = 25000.0;
-    var ulen1 = 1.0;
-    var ulen2 = 0.5;
-    var ulen3 = 0.25;
-    var ulen4 = 0.125;
-    var xlegq = [
+    const eps1 = -30.0;
+    const eps2 = 1.0e-14;
+    const dhaf  = 100.0;
+    const dquar = 800.0;
+    const deigh = 5000.0;
+    const dlarg = 25000.0;
+    const ulen1 = 1.0;
+    const ulen2 = 0.5;
+    const ulen3 = 0.25;
+    const ulen4 = 0.125;
+    const xlegq = [
       0.989400934991649932596154173450,
       0.944575023073232576077988415535,
       0.865631202387831743880467897712,
@@ -1422,7 +1412,7 @@ jStat.extend(jStat.tukey, {
       0.281603550779258913230460501460,
       0.950125098376374401853193354250e-1
     ];
-    var alegq = [
+    const alegq = [
       0.271524594117540948517805724560e-1,
       0.622535239386478928628438369944e-1,
       0.951585116824927848099251076022e-1,
@@ -1449,16 +1439,16 @@ jStat.extend(jStat.tukey, {
 
     // calculate leading constant
 
-    var f2 = df * 0.5;
-    var f2lf = ((f2 * Math.log(df)) - (df * Math.log(2))) - jStat.gammaln(f2);
-    var f21 = f2 - 1.0;
+    const f2 = df * 0.5;
+    let f2lf = ((f2 * Math.log(df)) - (df * Math.log(2))) - jStat.gammaln(f2);
+    const f21 = f2 - 1.0;
 
     // integral is divided into unit, half-unit, quarter-unit, or
     // eighth-unit length intervals depending on the value of the
     // degrees of freedom.
 
-    var ff4 = df * 0.25;
-    var ulen;
+    const ff4 = df * 0.25;
+    let ulen;
     if      (df <= dhaf)  ulen = ulen1;
     else if (df <= dquar) ulen = ulen2;
     else if (df <= deigh) ulen = ulen3;
@@ -1468,18 +1458,19 @@ jStat.extend(jStat.tukey, {
 
     // integrate over each subinterval
 
-    var ans = 0.0;
+    let ans = 0.0;
+    let otsum = 0.0;
 
-    for (var i = 1; i <= 50; i++) {
-      var otsum = 0.0;
+    for (let i = 1; i <= 50; i++) {
+      otsum = 0.0;
 
       // legendre quadrature with order = nlegq
       // nodes (stored in xlegq) are symmetric around zero.
 
-      var twa1 = (2 * i - 1) * ulen;
+      const twa1 = (2 * i - 1) * ulen;
 
-      for (var jj = 1; jj <= nlegq; jj++) {
-        var j, t1;
+      for (let jj = 1; jj <= nlegq; jj++) {
+        let j, t1;
         if (ihalfq < jj) {
           j = jj - ihalfq - 1;
           t1 = (f2lf + (f21 * Math.log(twa1 + (xlegq[j] * ulen))))
@@ -1491,7 +1482,7 @@ jStat.extend(jStat.tukey, {
         }
 
         // if exp(t1) < 9e-14, then doesn't contribute to integral
-        var qsqz;
+        let qsqz;
         if (t1 >= eps1) {
           if (ihalfq < jj) {
             qsqz = q * Math.sqrt(((xlegq[j] * ulen) + twa1) * 0.5);
@@ -1501,8 +1492,8 @@ jStat.extend(jStat.tukey, {
 
           // call wprob to find integral of range portion
 
-          var wprb = tukeyWprob(qsqz, rr, cc);
-          var rotsum = (wprb * alegq[j]) * Math.exp(t1);
+          const wprb = tukeyWprob(qsqz, rr, cc);
+          const rotsum = (wprb * alegq[j]) * Math.exp(t1);
           otsum += rotsum;
         }
         // end legendre integral for interval i
@@ -1531,11 +1522,11 @@ jStat.extend(jStat.tukey, {
 
   inv: function(p, nmeans, df) {
     // Identical implementation as the R qtukey() function as of commit 68947
-    var rr = 1;
-    var cc = nmeans;
+    const rr = 1;
+    const cc = nmeans;
 
-    var eps = 0.0001;
-    var maxiter = 50;
+    const eps = 0.0001;
+    const maxiter = 50;
 
     // df must be > 1 ; there must be at least two values
     if (df < 2 || rr < 1 || cc < 2) return NaN;
@@ -1546,28 +1537,28 @@ jStat.extend(jStat.tukey, {
 
     // Initial value
 
-    var x0 = tukeyQinv(p, cc, df);
+    let x0 = tukeyQinv(p, cc, df);
 
     // Find prob(value < x0)
 
-    var valx0 = jStat.tukey.cdf(x0, nmeans, df) - p;
+    let valx0 = jStat.tukey.cdf(x0, nmeans, df) - p;
 
     // Find the second iterate and prob(value < x1).
     // If the first iterate has probability value
     // exceeding p then second iterate is 1 less than
     // first iterate; otherwise it is 1 greater.
 
-    var x1;
+    let x1;
     if (valx0 > 0.0)
       x1 = Math.max(0.0, x0 - 1.0);
     else
       x1 = x0 + 1.0;
-    var valx1 = jStat.tukey.cdf(x1, nmeans, df) - p;
+    let valx1 = jStat.tukey.cdf(x1, nmeans, df) - p;
 
     // Find new iterate
 
-    var ans;
-    for(var iter = 1; iter < maxiter; iter++) {
+    let ans;
+    for(let iter = 1; iter < maxiter; iter++) {
       ans = x1 - ((valx1 * (x1 - x0)) / (valx1 - valx0));
       valx0 = valx1;
 
@@ -1586,7 +1577,7 @@ jStat.extend(jStat.tukey, {
       // If the difference between two successive
       // iterates is less than eps, stop
 
-      var xabs = Math.abs(x1 - x0);
+      const xabs = Math.abs(x1 - x0);
       if (xabs < eps)
         return ans;
     }

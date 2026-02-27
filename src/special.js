@@ -3,13 +3,13 @@ import jStat from './core.js';
 
 // Log-gamma function
 jStat.gammaln = function gammaln(x) {
-  var j = 0;
-  var cof = [
+  let j = 0;
+  const cof = [
     76.18009172947146, -86.50532032941677, 24.01409824083091,
     -1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5
   ];
-  var ser = 1.000000000190015;
-  var xx, y, tmp;
+  let ser = 1.000000000190015;
+  let xx, y, tmp;
   tmp = (y = xx = x) + 5.5;
   tmp -= (xx + 0.5) * Math.log(tmp);
   for (; j < 6; j++)
@@ -23,10 +23,10 @@ jStat.gammaln = function gammaln(x) {
  * book "Computation of Special Functions", 1996, John Wiley & Sons, Inc.
  */
 jStat.loggam = function loggam(x) {
-  var x0, x2, xp, gl, gl0;
-  var k, n;
+  let x0, x2, xp, gl, gl0;
+  let k, n;
 
-  var a = [8.333333333333333e-02, -2.777777777777778e-03,
+  const a = [8.333333333333333e-02, -2.777777777777778e-03,
           7.936507936507937e-04, -5.952380952380952e-04,
           8.417508417508418e-04, -1.917526917526918e-03,
           6.410256410256410e-03, -2.955065359477124e-02,
@@ -59,19 +59,19 @@ jStat.loggam = function loggam(x) {
 
 // gamma of x
 jStat.gammafn = function gammafn(x) {
-  var p = [-1.716185138865495, 24.76565080557592, -379.80425647094563,
+  const p = [-1.716185138865495, 24.76565080557592, -379.80425647094563,
            629.3311553128184, 866.9662027904133, -31451.272968848367,
            -36144.413418691176, 66456.14382024054
   ];
-  var q = [-30.8402300119739, 315.35062697960416, -1015.1563674902192,
+  const q = [-30.8402300119739, 315.35062697960416, -1015.1563674902192,
            -3107.771671572311, 22538.118420980151, 4755.8462775278811,
            -134659.9598649693, -115132.2596755535];
-  var fact = false;
-  var n = 0;
-  var xden = 0;
-  var xnum = 0;
-  var y = x;
-  var i, z, yi, res;
+  let fact = false;
+  let n = 0;
+  let xden = 0;
+  let xnum = 0;
+  let y = x;
+  let i, z, yi, res;
   if (x > 171.6243769536076) {
     return Infinity;
   }
@@ -119,18 +119,18 @@ jStat.gammap = function gammap(a, x) {
 
 // The lower regularized incomplete gamma function, usually written P(a,x)
 jStat.lowRegGamma = function lowRegGamma(a, x) {
-  var aln = jStat.gammaln(a);
-  var ap = a;
-  var sum = 1 / a;
-  var del = sum;
-  var b = x + 1 - a;
-  var c = 1 / 1.0e-30;
-  var d = 1 / b;
-  var h = d;
-  var i = 1;
+  const aln = jStat.gammaln(a);
+  let ap = a;
+  let sum = 1 / a;
+  let del = sum;
+  let b = x + 1 - a;
+  let c = 1 / 1.0e-30;
+  let d = 1 / b;
+  let h = d;
+  let i = 1;
   // calculate maximum number of itterations required for a
-  var ITMAX = -~(Math.log((a >= 1) ? a : 1 / a) * 8.5 + a * 0.4 + 17);
-  var an;
+  const ITMAX = -~(Math.log((a >= 1) ? a : 1 / a) * 8.5 + a * 0.4 + 17);
+  let an;
 
   if (x < 0 || a <= 0) {
     return NaN;
@@ -204,14 +204,14 @@ jStat.betaln = function betaln(x, y) {
 // Evaluates the continued fraction for incomplete beta function by modified
 // Lentz's method.
 jStat.betacf = function betacf(x, a, b) {
-  var fpmin = 1e-30;
-  var m = 1;
-  var qab = a + b;
-  var qap = a + 1;
-  var qam = a - 1;
-  var c = 1;
-  var d = 1 - qab * x / qap;
-  var m2, aa, del, h;
+  const fpmin = 1e-30;
+  let m = 1;
+  const qab = a + b;
+  const qap = a + 1;
+  const qam = a - 1;
+  let c = 1;
+  let d = 1 - qab * x / qap;
+  let m2, aa, del, h;
 
   // These q's will be used in factors that occur in the coefficients
   if (Math.abs(d) < fpmin)
@@ -252,11 +252,11 @@ jStat.betacf = function betacf(x, a, b) {
 
 // Returns the inverse of the lower regularized inomplete gamma function
 jStat.gammapinv = function gammapinv(p, a) {
-  var j = 0;
-  var a1 = a - 1;
-  var EPS = 1e-8;
-  var gln = jStat.gammaln(a);
-  var x, err, t, u, pp, lna1, afac;
+  let j = 0;
+  const a1 = a - 1;
+  const EPS = 1e-8;
+  const gln = jStat.gammaln(a);
+  let x, err, t, u, pp, lna1, afac;
 
   if (p >= 1)
     return Math.max(100, a + 100 * Math.sqrt(a));
@@ -302,7 +302,7 @@ jStat.gammapinv = function gammapinv(p, a) {
 
 // Returns the error function erf(x)
 jStat.erf = function erf(x) {
-  var cof = [-1.3026537197817094, 6.4196979235649026e-1, 1.9476473204185836e-2,
+  const cof = [-1.3026537197817094, 6.4196979235649026e-1, 1.9476473204185836e-2,
              -9.561514786808631e-3, -9.46595344482036e-4, 3.66839497852761e-4,
              4.2523324806907e-5, -2.0278578112534e-5, -1.624290004647e-6,
              1.303655835580e-6, 1.5626441722e-8, -8.5238095915e-8,
@@ -312,11 +312,11 @@ jStat.erf = function erf(x) {
              -1.12708e-13, 3.81e-16, 7.106e-15,
              -1.523e-15, -9.4e-17, 1.21e-16,
              -2.8e-17];
-  var j = cof.length - 1;
-  var isneg = false;
-  var d = 0;
-  var dd = 0;
-  var t, ty, tmp, res;
+  let j = cof.length - 1;
+  let isneg = false;
+  let d = 0;
+  let dd = 0;
+  let t, ty, tmp, res;
 
   if (x < 0) {
     x = -x;
@@ -345,8 +345,8 @@ jStat.erfc = function erfc(x) {
 
 // Returns the inverse of the complementary error function
 jStat.erfcinv = function erfcinv(p) {
-  var j = 0;
-  var x, err, t, pp;
+  let j = 0;
+  let x, err, t, pp;
   if (p >= 2)
     return -100;
   if (p <= 0)
@@ -365,11 +365,11 @@ jStat.erfcinv = function erfcinv(p) {
 
 // Returns the inverse of the incomplete beta function
 jStat.ibetainv = function ibetainv(p, a, b) {
-  var EPS = 1e-8;
-  var a1 = a - 1;
-  var b1 = b - 1;
-  var j = 0;
-  var lna, lnb, pp, t, u, err, x, al, h, w, afac;
+  const EPS = 1e-8;
+  const a1 = a - 1;
+  const b1 = b - 1;
+  let j = 0;
+  let lna, lnb, pp, t, u, err, x, al, h, w, afac;
   if (p <= 0)
     return 0;
   if (p >= 1)
@@ -418,7 +418,7 @@ jStat.ibetainv = function ibetainv(p, a, b) {
 // Returns the incomplete beta function I_x(a,b)
 jStat.ibeta = function ibeta(x, a, b) {
   // Factors in front of the continued fraction.
-  var bt = (x === 0 || x === 1) ?  0 :
+  const bt = (x === 0 || x === 1) ?  0 :
     Math.exp(jStat.gammaln(a + b) - jStat.gammaln(a) -
              jStat.gammaln(b) + a * Math.log(x) + b *
              Math.log(1 - x));
@@ -435,7 +435,7 @@ jStat.ibeta = function ibeta(x, a, b) {
 // Returns a normal deviate (mu=0, sigma=1).
 // If n and m are specified it returns a object of normal deviates.
 jStat.randn = function randn(n, m) {
-  var u, v, x, y, q;
+  let u, v, x, y, q;
   if (!m)
     m = n;
   if (n)
@@ -453,8 +453,8 @@ jStat.randn = function randn(n, m) {
 
 // Returns a gamma deviate by the method of Marsaglia and Tsang.
 jStat.randg = function randg(shape, n, m) {
-  var oalph = shape;
-  var a1, a2, u, v, x, mat;
+  const oalph = shape;
+  let a1, a2, u, v, x, mat;
   if (!m)
     m = n;
   if (!shape)
@@ -489,21 +489,17 @@ jStat.randg = function randg(shape, n, m) {
 
 
 // making use of static methods on the instance
-(function(funcs) {
-  for (var i = 0; i < funcs.length; i++) (function(passfunc) {
-    jStat.fn[passfunc] = function() {
-      return jStat(
-          jStat.map(this, function(value) { return jStat[passfunc](value); }));
-    }
-  })(funcs[i]);
-})('gammaln gammafn factorial factorialln'.split(' '));
+for (const passfunc of 'gammaln gammafn factorial factorialln'.split(' ')) {
+  jStat.fn[passfunc] = function() {
+    return jStat(
+        jStat.map(this, (value) => jStat[passfunc](value)));
+  }
+}
 
 
-(function(funcs) {
-  for (var i = 0; i < funcs.length; i++) (function(passfunc) {
-    jStat.fn[passfunc] = function() {
-      return jStat(jStat[passfunc].apply(null, arguments));
-    };
-  })(funcs[i]);
-})('randn'.split(' '));
+for (const passfunc of 'randn'.split(' ')) {
+  jStat.fn[passfunc] = function(...args) {
+    return jStat(jStat[passfunc].apply(null, args));
+  };
+}
 

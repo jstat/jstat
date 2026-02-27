@@ -1,8 +1,7 @@
 import jStat from './core.js';
 
-var slice = [].slice;
-var isNumber = jStat.utils.isNumber;
-var isArray = jStat.utils.isArray;
+const isNumber = jStat.utils.isNumber;
+const isArray = jStat.utils.isArray;
 
 // flag==true denotes use of sample standard deviation
 // Z Statistics
@@ -10,8 +9,7 @@ jStat.extend({
   // 2 different parameter lists:
   // (value, mean, sd)
   // (value, array, flag)
-  zscore: function zscore() {
-    var args = slice.call(arguments);
+  zscore: function zscore(...args) {
     if (isNumber(args[1])) {
       return (args[0] - args[1]) / args[2];
     }
@@ -22,9 +20,8 @@ jStat.extend({
   // (value, mean, sd, sides)
   // (zscore, sides)
   // (value, array, sides, flag)
-  ztest: function ztest() {
-    var args = slice.call(arguments);
-    var z;
+  ztest: function ztest(...args) {
+    let z;
     if (isArray(args[1])) {
       // (value, array, sides, flag)
       z = jStat.zscore(args[0],args[1],args[3]);
@@ -55,7 +52,7 @@ jStat.extend(jStat.fn, {
   },
 
   ztest: function ztest(value, sides, flag) {
-    var zscore = Math.abs(this.zscore(value, flag));
+    const zscore = Math.abs(this.zscore(value, flag));
     return (sides === 1) ?
       (jStat.normal.cdf(-zscore, 0, 1)) :
       (jStat.normal.cdf(-zscore, 0, 1) * 2);
@@ -67,8 +64,7 @@ jStat.extend({
   // 2 parameter lists
   // (value, mean, sd, n)
   // (value, array)
-  tscore: function tscore() {
-    var args = slice.call(arguments);
+  tscore: function tscore(...args) {
     return (args.length === 4) ?
       ((args[0] - args[1]) / (args[2] / Math.sqrt(args[3]))) :
       ((args[0] - jStat.mean(args[1])) /
@@ -79,9 +75,8 @@ jStat.extend({
   // (value, mean, sd, n, sides)
   // (tscore, n, sides)
   // (value, array, sides)
-  ttest: function ttest() {
-    var args = slice.call(arguments);
-    var tscore;
+  ttest: function ttest(...args) {
+    let tscore;
     if (args.length === 5) {
       tscore = Math.abs(jStat.tscore(args[0], args[1], args[2], args[3]));
       return (args[4] === 1) ?
@@ -119,9 +114,8 @@ jStat.extend({
   // (array1, array2, array3, ...)
   // or it is an array of arrays
   // array of arrays conversion
-  anovafscore: function anovafscore() {
-    var args = slice.call(arguments),
-    expVar, sample, sampMean, sampSampMean, tmpargs, unexpVar, i, j;
+  anovafscore: function anovafscore(...args) {
+    let expVar, sample, sampMean, sampSampMean, tmpargs, unexpVar, i, j;
     if (args.length === 1) {
       tmpargs = new Array(args[0].length);
       for (i = 0; i < args[0].length; i++) {
@@ -156,13 +150,12 @@ jStat.extend({
   // 2 different paramter setups
   // (array1, array2, array3, ...)
   // (anovafscore, df1, df2)
-  anovaftest: function anovaftest() {
-    var args = slice.call(arguments),
-    df1, df2, n, i;
+  anovaftest: function anovaftest(...args) {
+    let df1, df2, n, i;
     if (isNumber(args[0])) {
       return 1 - jStat.centralF.cdf(args[0], args[1], args[2]);
     }
-    var anovafscore = jStat.anovafscore(args);
+    const anovafscore = jStat.anovafscore(args);
     df1 = args.length - 1;
     n = 0;
     for (i = 0; i < args.length; i++) {
@@ -183,8 +176,8 @@ jStat.extend(jStat.fn, {
   },
 
   anovaftes: function anovaftes() {
-    var n = 0;
-    var i;
+    let n = 0;
+    let i;
     for (i = 0; i < this.length; i++) {
       n = n + this[i].length;
     }
@@ -197,9 +190,8 @@ jStat.extend({
   // 2 parameter lists
   // (mean1, mean2, n1, n2, sd)
   // (array1, array2, sd)
-  qscore: function qscore() {
-    var args = slice.call(arguments);
-    var mean1, mean2, n1, n2, sd;
+  qscore: function qscore(...args) {
+    let mean1, mean2, n1, n2, sd;
     if (isNumber(args[0])) {
         mean1 = args[0];
         mean2 = args[1];
@@ -220,10 +212,9 @@ jStat.extend({
   // (qscore, n, k)
   // (mean1, mean2, n1, n2, sd, n, k)
   // (array1, array2, sd, n, k)
-  qtest: function qtest() {
-    var args = slice.call(arguments);
+  qtest: function qtest(...args) {
 
-    var qscore;
+    let qscore;
     if (args.length === 3) {
       qscore = args[0];
       args = args.slice(1);
@@ -235,21 +226,21 @@ jStat.extend({
       args = args.slice(3);
     }
 
-    var n = args[0];
-    var k = args[1];
+    const n = args[0];
+    const k = args[1];
 
     return 1 - jStat.tukey.cdf(qscore, k, n - k);
   },
 
   tukeyhsd: function tukeyhsd(arrays) {
-    var sd = jStat.pooledstdev(arrays);
-    var means = arrays.map(function (arr) {return jStat.mean(arr);});
-    var n = arrays.reduce(function (n, arr) {return n + arr.length;}, 0);
+    const sd = jStat.pooledstdev(arrays);
+    const means = arrays.map((arr) => jStat.mean(arr));
+    const n = arrays.reduce((n, arr) => n + arr.length, 0);
 
-    var results = [];
-    for (var i = 0; i < arrays.length; ++i) {
-        for (var j = i + 1; j < arrays.length; ++j) {
-            var p = jStat.qtest(means[i], means[j], arrays[i].length, arrays[j].length, sd, n, arrays.length);
+    const results = [];
+    for (let i = 0; i < arrays.length; ++i) {
+        for (let j = i + 1; j < arrays.length; ++j) {
+            const p = jStat.qtest(means[i], means[j], arrays[i].length, arrays[j].length, sd, n, arrays.length);
             results.push([[i, j], p]);
         }
     }
@@ -263,10 +254,9 @@ jStat.extend({
   // 2 different parameter setups
   // (value, alpha, sd, n)
   // (value, alpha, array)
-  normalci: function normalci() {
-    var args = slice.call(arguments),
-    ans = new Array(2),
-    change;
+  normalci: function normalci(...args) {
+    const ans = new Array(2);
+    let change;
     if (args.length === 4) {
       change = Math.abs(jStat.normal.inv(args[1] / 2, 0, 1) *
                         args[2] / Math.sqrt(args[3]));
@@ -282,10 +272,9 @@ jStat.extend({
   // 2 different parameter setups
   // (value, alpha, sd, n)
   // (value, alpha, array)
-  tci: function tci() {
-    var args = slice.call(arguments),
-    ans = new Array(2),
-    change;
+  tci: function tci(...args) {
+    const ans = new Array(2);
+    let change;
     if (args.length === 4) {
       change = Math.abs(jStat.studentt.inv(args[1] / 2, args[3] - 1) *
                         args[2] / Math.sqrt(args[3]));
@@ -318,20 +307,20 @@ function differenceOfProportions(p1, n1, p2, n2) {
   if (p1 > 1 || p2 > 1 || p1 <= 0 || p2 <= 0) {
     throw new Error("Proportions should be greater than 0 and less than 1")
   }
-  var pooled = (p1 * n1 + p2 * n2) / (n1 + n2);
-  var se = Math.sqrt(pooled * (1 - pooled) * ((1/n1) + (1/n2)));
+  const pooled = (p1 * n1 + p2 * n2) / (n1 + n2);
+  const se = Math.sqrt(pooled * (1 - pooled) * ((1/n1) + (1/n2)));
   return (p1 - p2) / se;
 }
 
 // Difference of Proportions
 jStat.extend(jStat.fn, {
   oneSidedDifferenceOfProportions: function oneSidedDifferenceOfProportions(p1, n1, p2, n2) {
-    var z = differenceOfProportions(p1, n1, p2, n2);
+    const z = differenceOfProportions(p1, n1, p2, n2);
     return jStat.ztest(z, 1);
   },
 
   twoSidedDifferenceOfProportions: function twoSidedDifferenceOfProportions(p1, n1, p2, n2) {
-    var z = differenceOfProportions(p1, n1, p2, n2);
+    const z = differenceOfProportions(p1, n1, p2, n2);
     return jStat.ztest(z, 2);
   }
 });

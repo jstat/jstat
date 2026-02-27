@@ -10,27 +10,27 @@ import jStat from './core.js';
 //Regressions
 
 jStat.extend({
-  buildxmatrix: function buildxmatrix(){
+  buildxmatrix: function buildxmatrix(...args){
     //Parameters will be passed in as such
     //(array1,array2,array3,...)
     //as (x1,x2,x3,...)
     //needs to be (1,x1,x2,x3,...)
-    var matrixRows = new Array(arguments.length);
-    for(var i=0;i<arguments.length;i++){
-      var array = [1];
-      matrixRows[i]= array.concat(arguments[i]);
+    const matrixRows = new Array(args.length);
+    for(let i=0;i<args.length;i++){
+      const array = [1];
+      matrixRows[i]= array.concat(args[i]);
     }
     return jStat(matrixRows);
 
   },
 
-  builddxmatrix: function builddxmatrix() {
+  builddxmatrix: function builddxmatrix(...args) {
     //Paramters will be passed in as such
     //([array1,array2,...]
-    var matrixRows = new Array(arguments[0].length);
-    for(var i=0;i<arguments[0].length;i++){
-      var array = [1]
-      matrixRows[i]= array.concat(arguments[0][i]);
+    const matrixRows = new Array(args[0].length);
+    for(let i=0;i<args[0].length;i++){
+      const array = [1]
+      matrixRows[i]= array.concat(args[0][i]);
     }
     return jStat(matrixRows);
 
@@ -38,8 +38,8 @@ jStat.extend({
 
   buildjxmatrix: function buildjxmatrix(jMat) {
     //Builds from jStat Matrix
-    var pass = new Array(jMat.length)
-    for(var i=0;i<jMat.length;i++){
+    const pass = new Array(jMat.length)
+    for(let i=0;i<jMat.length;i++){
       pass[i] = jMat[i];
     }
     return jStat.builddxmatrix(pass);
@@ -55,7 +55,7 @@ jStat.extend({
   },
 
   matrixmult: function matrixmult(A,B){
-    var i, j, k, result, sum;
+    let i, j, k, result, sum;
     if (A.cols() == B.rows()) {
       if(B.rows()>1){
         result = [];
@@ -91,22 +91,22 @@ jStat.extend({
   regress: function regress(jMatX,jMatY){
     //print("regressin!");
     //print(jMatX.toArray());
-    var innerinv = jStat.xtranspxinv(jMatX);
+    const innerinv = jStat.xtranspxinv(jMatX);
     //print(innerinv);
-    var xtransp = jMatX.transpose();
-    var next = jStat.matrixmult(jStat(innerinv),xtransp);
+    const xtransp = jMatX.transpose();
+    const next = jStat.matrixmult(jStat(innerinv),xtransp);
     return jStat.matrixmult(next,jMatY);
 
   },
 
   regresst: function regresst(jMatX,jMatY,sides){
-    var beta = jStat.regress(jMatX,jMatY);
+    const beta = jStat.regress(jMatX,jMatY);
 
-    var compile = {};
+    const compile = {};
     compile.anova = {};
-    var jMatYBar = jStat.jMatYBar(jMatX, beta);
+    const jMatYBar = jStat.jMatYBar(jMatX, beta);
     compile.yBar = jMatYBar;
-    var yAverage = jMatY.mean();
+    const yAverage = jMatY.mean();
     compile.anova.residuals = jStat.residuals(jMatY, jMatYBar);
 
     compile.anova.ssr = jStat.ssr(jMatYBar, yAverage);
@@ -134,10 +134,10 @@ jStat.extend({
     if (compile.anova.r2adj < 0) compile.anova.r2adj = 0;
 
     compile.stats = new Array(jMatX[0].length);
-    var covar = jStat.xtranspxinv(jMatX);
-    var sds, ts, ps;
+    const covar = jStat.xtranspxinv(jMatX);
+    let sds, ts, ps;
 
-    for(var i=0; i<beta.length;i++){
+    for(let i=0; i<beta.length;i++){
       sds=Math.sqrt(compile.anova.mse * Math.abs(covar[i][i]));
       ts= Math.abs(beta[i] / sds);
       ps= jStat.ttest(ts, jMatY.length - jMatX[0].length - 1, sides);
@@ -155,13 +155,13 @@ jStat.extend({
 
 
   xtranspxinv: function xtranspxinv(jMatX){
-    var inner = jStat.matrixmult(jMatX.transpose(),jMatX);
-    var innerinv = jStat.inv(inner);
+    const inner = jStat.matrixmult(jMatX.transpose(),jMatX);
+    const innerinv = jStat.inv(inner);
     return innerinv;
   },
 
   jMatYBar: function jMatYBar(jMatX, beta) {
-    var yBar = jStat.matrixmult(jMatX, beta);
+    const yBar = jStat.matrixmult(jMatX, beta);
     return new jStat(yBar);
   },
 
@@ -170,34 +170,34 @@ jStat.extend({
   },
 
   ssr: function ssr(jMatYBar, yAverage) {
-    var ssr = 0;
-    for(var i = 0; i < jMatYBar.length; i++) {
+    let ssr = 0;
+    for(let i = 0; i < jMatYBar.length; i++) {
       ssr += Math.pow(jMatYBar[i] - yAverage, 2);
     }
     return ssr;
   },
 
   sse: function sse(jMatY, jMatYBar) {
-    var sse = 0;
-    for(var i = 0; i < jMatY.length; i++) {
+    let sse = 0;
+    for(let i = 0; i < jMatY.length; i++) {
       sse += Math.pow(jMatY[i] - jMatYBar[i], 2);
     }
     return sse;
   },
 
   sst: function sst(jMatY, yAverage) {
-    var sst = 0;
-    for(var i = 0; i < jMatY.length; i++) {
+    let sst = 0;
+    for(let i = 0; i < jMatY.length; i++) {
       sst += Math.pow(jMatY[i] - yAverage, 2);
     }
     return sst;
   },
 
   matrixsubtract: function matrixsubtract(A,B){
-    var ans = new Array(A.length);
-    for(var i=0;i<A.length;i++){
+    const ans = new Array(A.length);
+    for(let i=0;i<A.length;i++){
       ans[i] = new Array(A[i].length);
-      for(var j=0;j<A[i].length;j++){
+      for(let j=0;j<A[i].length;j++){
         ans[i][j]=A[i][j]-B[i][j];
       }
     }

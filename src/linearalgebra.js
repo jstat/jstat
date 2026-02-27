@@ -3,11 +3,32 @@
 
 import jStat from './core.js';
 
-var push = Array.prototype.push;
-var isArray = jStat.utils.isArray;
+const push = Array.prototype.push;
+const isArray = jStat.utils.isArray;
 
-function isUsable(arg) {
-  return isArray(arg) || arg instanceof jStat;
+const isUsable = (arg) => isArray(arg) || arg instanceof jStat;
+
+// Helper for lstsq: compute the inverse of an upper triangular matrix R
+function _lstsq_R_I(A) {
+  A = jStat.copy(A);
+  const size = A.length;
+  const I = jStat.identity(size);
+  jStat.arange(size - 1, -1, -1).forEach((i) => {
+    jStat.sliceAssign(
+        I, { row: i }, jStat.divide(jStat.slice(I, { row: i }), A[i][i]));
+    jStat.sliceAssign(
+        A, { row: i }, jStat.divide(jStat.slice(A, { row: i }), A[i][i]));
+    jStat.arange(i).forEach((j) => {
+      const c = jStat.multiply(A[j][i], -1);
+      const Aj = jStat.slice(A, { row: j });
+      const cAi = jStat.multiply(jStat.slice(A, { row: i }), c);
+      jStat.sliceAssign(A, { row: j }, jStat.add(Aj, cAi));
+      const Ij = jStat.slice(I, { row: j });
+      const cIi = jStat.multiply(jStat.slice(I, { row: i }), c);
+      jStat.sliceAssign(I, { row: j }, jStat.add(Ij, cIi));
+    })
+  });
+  return I;
 }
 
 jStat.extend({
@@ -17,11 +38,9 @@ jStat.extend({
     // check if arg is a vector or scalar
     if (isUsable(arg)) {
       if (!isUsable(arg[0])) arg = [ arg ];
-      return jStat.map(arr, function(value, row, col) {
-        return value + arg[row][col];
-      });
+      return jStat.map(arr, (value, row, col) => value + arg[row][col]);
     }
-    return jStat.map(arr, function(value) { return value + arg; });
+    return jStat.map(arr, (value) => value + arg);
   },
 
   // subtract a vector or scalar from the vector
@@ -29,11 +48,9 @@ jStat.extend({
     // check if arg is a vector or scalar
     if (isUsable(arg)) {
       if (!isUsable(arg[0])) arg = [ arg ];
-      return jStat.map(arr, function(value, row, col) {
-        return value - arg[row][col] || 0;
-      });
+      return jStat.map(arr, (value, row, col) => value - arg[row][col] || 0);
     }
-    return jStat.map(arr, function(value) { return value - arg; });
+    return jStat.map(arr, (value) => value - arg);
   },
 
   // matrix division
@@ -42,12 +59,12 @@ jStat.extend({
       if (!isUsable(arg[0])) arg = [ arg ];
       return jStat.multiply(arr, jStat.inv(arg));
     }
-    return jStat.map(arr, function(value) { return value / arg; });
+    return jStat.map(arr, (value) => value / arg);
   },
 
   // matrix multiplication
   multiply: function multiply(arr, arg) {
-    var row, col, nrescols, sum, nrow, ncol, res, rescols;
+    let row, col, nrescols, sum, nrow, ncol, res, rescols;
     // eg: arr = 2 arg = 3 -> 6 for res[0][0] statement closure
     if (arr.length === undefined && arg.length === undefined) {
       return arr * arg;
@@ -67,7 +84,7 @@ jStat.extend({
       }
       return (nrow === 1 && rescols === 1) ? res[0][0] : res;
     }
-    return jStat.map(arr, function(value) { return value * arg; });
+    return jStat.map(arr, (value) => value * arg);
   },
 
   // outer([1,2,3],[4,5,6])
@@ -76,7 +93,7 @@ jStat.extend({
   // ->
   // [[4,5,6],[8,10,12],[12,15,18]]
   outer:function outer(A, B) {
-    return jStat.multiply(A.map(function(t){ return [t] }), [B]);
+    return jStat.multiply(A.map((t) => [t]), [B]);
   },
 
 
@@ -85,13 +102,13 @@ jStat.extend({
     if (!isUsable(arr[0])) arr = [ arr ];
     if (!isUsable(arg[0])) arg = [ arg ];
     // convert column to row vector
-    var left = (arr[0].length === 1 && arr.length !== 1) ? jStat.transpose(arr) : arr,
-    right = (arg[0].length === 1 && arg.length !== 1) ? jStat.transpose(arg) : arg,
-    res = [],
-    row = 0,
-    nrow = left.length,
-    ncol = left[0].length,
-    sum, col;
+    const left = (arr[0].length === 1 && arr.length !== 1) ? jStat.transpose(arr) : arr;
+    const right = (arg[0].length === 1 && arg.length !== 1) ? jStat.transpose(arg) : arg;
+    const res = [];
+    let row = 0;
+    const nrow = left.length;
+    const ncol = left[0].length;
+    let sum, col;
     for (; row < nrow; row++) {
       res[row] = [];
       sum = 0;
@@ -104,29 +121,29 @@ jStat.extend({
 
   // raise every element by a scalar
   pow: function pow(arr, arg) {
-    return jStat.map(arr, function(value) { return Math.pow(value, arg); });
+    return jStat.map(arr, (value) => Math.pow(value, arg));
   },
 
   // exponentiate every element
   exp: function exp(arr) {
-    return jStat.map(arr, function(value) { return Math.exp(value); });
+    return jStat.map(arr, (value) => Math.exp(value));
   },
 
   // generate the natural log of every element
   log: function exp(arr) {
-    return jStat.map(arr, function(value) { return Math.log(value); });
+    return jStat.map(arr, (value) => Math.log(value));
   },
 
   // generate the absolute values of the vector
   abs: function abs(arr) {
-    return jStat.map(arr, function(value) { return Math.abs(value); });
+    return jStat.map(arr, (value) => Math.abs(value));
   },
 
   // computes the p-norm of the vector
   // In the case that a matrix is passed, uses the first row as the vector
   norm: function norm(arr, p) {
-    var nnorm = 0,
-    i = 0;
+    let nnorm = 0;
+    let i = 0;
     // check the p-value of the norm, and set for most common case
     if (isNaN(p)) p = 2;
     // check if multi-dimensional array, and make vector correction
@@ -147,8 +164,8 @@ jStat.extend({
   // augment one matrix by another
   // Note: this function returns a matrix, not a jStat object
   aug: function aug(a, b) {
-    var newarr = [];
-    var i;
+    const newarr = [];
+    let i;
     for (i = 0; i < a.length; i++) {
       newarr.push(a[i].slice());
     }
@@ -162,13 +179,13 @@ jStat.extend({
   // Create the inverse by augmenting the matrix by the identity matrix of the
   // appropriate size, and then use G-J elimination on the augmented matrix.
   inv: function inv(a) {
-    var rows = a.length;
-    var cols = a[0].length;
-    var b = jStat.identity(rows, cols);
-    var c = jStat.gauss_jordan(a, b);
-    var result = [];
-    var i = 0;
-    var j;
+    const rows = a.length;
+    const cols = a[0].length;
+    const b = jStat.identity(rows, cols);
+    const c = jStat.gauss_jordan(a, b);
+    const result = [];
+    let i = 0;
+    let j;
 
     //We need to copy the inverse portion to a new matrix to rid G-J artifacts
     for (; i < rows; i++) {
@@ -185,13 +202,13 @@ jStat.extend({
       return a[0][0] * a[1][1] - a[0][1] * a[1][0];
     }
 
-    var determinant = 0;
-    for (var i = 0; i < a.length; i++) {
+    let determinant = 0;
+    for (let i = 0; i < a.length; i++) {
       // build a sub matrix without column `i`
-      var submatrix = [];
-      for (var row = 1; row < a.length; row++) {
+      const submatrix = [];
+      for (let row = 1; row < a.length; row++) {
         submatrix[row - 1] = [];
-        for (var col = 0; col < a.length; col++) {
+        for (let col = 0; col < a.length; col++) {
           if (col < i) {
             submatrix[row - 1][col] = a[row][col];
           } else if (col > i) {
@@ -201,7 +218,7 @@ jStat.extend({
       }
 
       // alternate between + and - between determinants
-      var sign = i % 2 ? -1 : 1;
+      const sign = i % 2 ? -1 : 1;
       determinant += det(submatrix) * a[0][i] * sign;
     }
 
@@ -209,14 +226,14 @@ jStat.extend({
   },
 
   gauss_elimination: function gauss_elimination(a, b) {
-    var i = 0,
-    j = 0,
-    n = a.length,
-    m = a[0].length,
-    factor = 1,
-    sum = 0,
-    x = [],
-    maug, pivot, temp, k;
+    let i = 0;
+    let j = 0;
+    const n = a.length;
+    const m = a[0].length;
+    let factor = 1;
+    let sum = 0;
+    const x = [];
+    let maug, pivot, temp, k;
     a = jStat.aug(a, b);
     maug = a[0].length;
     for(i = 0; i < n; i++) {
@@ -253,19 +270,19 @@ jStat.extend({
   },
 
   gauss_jordan: function gauss_jordan(a, b) {
-    var m = jStat.aug(a, b);
-    var h = m.length;
-    var w = m[0].length;
-    var c = 0;
-    var x, y, y2;
+    const m = jStat.aug(a, b);
+    const h = m.length;
+    const w = m[0].length;
+    let c = 0;
+    let x, y, y2;
     // find max pivot
     for (y = 0; y < h; y++) {
-      var maxrow = y;
+      let maxrow = y;
       for (y2 = y+1; y2 < h; y2++) {
         if (Math.abs(m[y2][y]) > Math.abs(m[maxrow][y]))
           maxrow = y2;
       }
-      var tmp = m[y];
+      const tmp = m[y];
       m[y] = m[maxrow];
       m[maxrow] = tmp
       for (y2 = y+1; y2 < h; y2++) {
@@ -302,49 +319,45 @@ jStat.extend({
   // b=[[1],[2],[3]]
   // will return [[2.666],[0.1666],[1.666]]
   triaUpSolve: function triaUpSolve(A, b) {
-    var size = A[0].length;
-    var x = jStat.zeros(1, size)[0];
-    var parts;
-    var matrix_mode = false;
+    const size = A[0].length;
+    const x = jStat.zeros(1, size)[0];
+    let parts;
+    let matrix_mode = false;
 
     if (b[0].length != undefined) {
-      b = b.map(function(i){ return i[0] });
+      b = b.map((i) => i[0]);
       matrix_mode = true;
     }
 
-    jStat.arange(size - 1, -1, -1).forEach(function(i) {
-      parts = jStat.arange(i + 1, size).map(function(j) {
-        return x[j] * A[i][j];
-      });
+    jStat.arange(size - 1, -1, -1).forEach((i) => {
+      parts = jStat.arange(i + 1, size).map((j) => x[j] * A[i][j]);
       x[i] = (b[i] - jStat.sum(parts)) / A[i][i];
     });
 
     if (matrix_mode)
-      return x.map(function(i){ return [i] });
+      return x.map((i) => [i]);
     return x;
   },
 
   triaLowSolve: function triaLowSolve(A, b) {
     // like to triaUpSolve but A is lower triangular matrix
-    var size = A[0].length;
-    var x = jStat.zeros(1, size)[0];
-    var parts;
+    const size = A[0].length;
+    const x = jStat.zeros(1, size)[0];
+    let parts;
 
-    var matrix_mode=false;
+    let matrix_mode=false;
     if (b[0].length != undefined) {
-      b = b.map(function(i){ return i[0] });
+      b = b.map((i) => i[0]);
       matrix_mode = true;
     }
 
-    jStat.arange(size).forEach(function(i) {
-      parts = jStat.arange(i).map(function(j) {
-        return A[i][j] * x[j];
-      });
+    jStat.arange(size).forEach((i) => {
+      parts = jStat.arange(i).map((j) => A[i][j] * x[j]);
       x[i] = (b[i] - jStat.sum(parts)) / A[i][i];
     })
 
     if (matrix_mode)
-      return x.map(function(i){ return [i] });
+      return x.map((i) => [i]);
     return x;
   },
 
@@ -354,25 +367,21 @@ jStat.extend({
   // L is lower triangular matrix
   // U is upper triangular matrix
   lu: function lu(A) {
-    var size = A.length;
+    const size = A.length;
     //var L=jStat.diagonal(jStat.ones(1,size)[0]);
-    var L = jStat.identity(size);
-    var R = jStat.zeros(A.length, A[0].length);
-    var parts;
-    jStat.arange(size).forEach(function(t) {
+    const L = jStat.identity(size);
+    const R = jStat.zeros(A.length, A[0].length);
+    let parts;
+    jStat.arange(size).forEach((t) => {
       R[0][t] = A[0][t];
     });
-    jStat.arange(1, size).forEach(function(l) {
-      jStat.arange(l).forEach(function(i) {
-        parts = jStat.arange(i).map(function(jj) {
-          return L[l][jj] * R[jj][i];
-        });
+    jStat.arange(1, size).forEach((l) => {
+      jStat.arange(l).forEach((i) => {
+        parts = jStat.arange(i).map((jj) => L[l][jj] * R[jj][i]);
         L[l][i] = (A[l][i] - jStat.sum(parts)) / R[i][i];
       });
-      jStat.arange(l, size).forEach(function(j) {
-        parts = jStat.arange(l).map(function(jj) {
-          return L[l][jj] * R[jj][j];
-        });
+      jStat.arange(l, size).forEach((j) => {
+        parts = jStat.arange(l).map((jj) => L[l][jj] * R[jj][j]);
         R[l][j] = A[parts.length][j] - jStat.sum(parts);
       });
     });
@@ -383,18 +392,14 @@ jStat.extend({
   // A=TT'
   // T is lower triangular matrix
   cholesky: function cholesky(A) {
-    var size = A.length;
-    var T = jStat.zeros(A.length, A[0].length);
-    var parts;
-    jStat.arange(size).forEach(function(i) {
-      parts = jStat.arange(i).map(function(t) {
-        return Math.pow(T[i][t],2);
-      });
+    const size = A.length;
+    const T = jStat.zeros(A.length, A[0].length);
+    let parts;
+    jStat.arange(size).forEach((i) => {
+      parts = jStat.arange(i).map((t) => Math.pow(T[i][t],2));
       T[i][i] = Math.sqrt(A[i][i] - jStat.sum(parts));
-      jStat.arange(i + 1, size).forEach(function(j) {
-        parts = jStat.arange(i).map(function(t) {
-          return T[i][t] * T[j][t];
-        });
+      jStat.arange(i + 1, size).forEach((j) => {
+        parts = jStat.arange(i).map((t) => T[i][t] * T[j][t]);
         T[j][i] = (A[i][j] - jStat.sum(parts)) / T[i][i];
       });
     });
@@ -403,13 +408,13 @@ jStat.extend({
 
 
   gauss_jacobi: function gauss_jacobi(a, b, x, r) {
-    var i = 0;
-    var j = 0;
-    var n = a.length;
-    var l = [];
-    var u = [];
-    var d = [];
-    var xv, c, h, xk;
+    let i = 0;
+    let j = 0;
+    const n = a.length;
+    const l = [];
+    const u = [];
+    const d = [];
+    let xv, xk;
     for (; i < n; i++) {
       l[i] = [];
       u[i] = [];
@@ -427,8 +432,8 @@ jStat.extend({
         }
       }
     }
-    h = jStat.multiply(jStat.multiply(jStat.inv(d), jStat.add(l, u)), -1);
-    c = jStat.multiply(jStat.inv(d), b);
+    const h = jStat.multiply(jStat.multiply(jStat.inv(d), jStat.add(l, u)), -1);
+    const c = jStat.multiply(jStat.inv(d), b);
     xv = x;
     xk = jStat.add(jStat.multiply(h, x), c);
     i = 2;
@@ -441,12 +446,12 @@ jStat.extend({
   },
 
   gauss_seidel: function gauss_seidel(a, b, x, r) {
-    var i = 0;
-    var n = a.length;
-    var l = [];
-    var u = [];
-    var d = [];
-    var j, xv, c, h, xk;
+    let i = 0;
+    const n = a.length;
+    const l = [];
+    const u = [];
+    const d = [];
+    let j, xv, xk;
     for (; i < n; i++) {
       l[i] = [];
       u[i] = [];
@@ -464,8 +469,8 @@ jStat.extend({
         }
       }
     }
-    h = jStat.multiply(jStat.multiply(jStat.inv(jStat.add(d, l)), u), -1);
-    c = jStat.multiply(jStat.inv(jStat.add(d, l)), b);
+    const h = jStat.multiply(jStat.multiply(jStat.inv(jStat.add(d, l)), u), -1);
+    const c = jStat.multiply(jStat.inv(jStat.add(d, l)), b);
     xv = x;
     xk = jStat.add(jStat.multiply(h, x), c);
     i = 2;
@@ -478,12 +483,12 @@ jStat.extend({
   },
 
   SOR: function SOR(a, b, x, r, w) {
-    var i = 0;
-    var n = a.length;
-    var l = [];
-    var u = [];
-    var d = [];
-    var j, xv, c, h, xk;
+    let i = 0;
+    const n = a.length;
+    const l = [];
+    const u = [];
+    const d = [];
+    let j, xv, xk;
     for (; i < n; i++) {
       l[i] = [];
       u[i] = [];
@@ -501,10 +506,10 @@ jStat.extend({
         }
       }
     }
-    h = jStat.multiply(jStat.inv(jStat.add(d, jStat.multiply(l, w))),
+    const h = jStat.multiply(jStat.inv(jStat.add(d, jStat.multiply(l, w))),
                        jStat.subtract(jStat.multiply(d, 1 - w),
                                       jStat.multiply(u, w)));
-    c = jStat.multiply(jStat.multiply(jStat.inv(jStat.add(d,
+    const c = jStat.multiply(jStat.multiply(jStat.inv(jStat.add(d,
         jStat.multiply(l, w))), b), w);
     xv = x;
     xk = jStat.add(jStat.multiply(h, x), c);
@@ -518,12 +523,12 @@ jStat.extend({
   },
 
   householder: function householder(a) {
-    var m = a.length;
-    var n = a[0].length;
-    var i = 0;
-    var w = [];
-    var p = [];
-    var alpha, r, k, j, factor;
+    const m = a.length;
+    const n = a[0].length;
+    let i = 0;
+    let w = [];
+    let p = [];
+    let alpha, r, k, j, factor;
     for (; i < m - 1; i++) {
       alpha = 0;
       for (j = i + 1; j < n; j++)
@@ -544,116 +549,82 @@ jStat.extend({
   // A -> [Q,R]
   // Q is orthogonal matrix
   // R is upper triangular
-  QR: (function() {
+  QR: function QR(x) {
     // x -> Q
     // find a orthogonal matrix Q st.
     // Qx=y
     // y is [||x||,0,0,...]
 
     // quick ref
-    var sum   = jStat.sum;
-    var range = jStat.arange;
+    const sum   = jStat.sum;
+    const range = jStat.arange;
 
-    function qr2(x) {
-      // quick impletation
-      // https://www.stat.wisc.edu/~larget/math496/qr.html
+    // quick impletation
+    // https://www.stat.wisc.edu/~larget/math496/qr.html
 
-      var n = x.length;
-      var p = x[0].length;
+    const n = x.length;
+    const p = x[0].length;
 
-      var r = jStat.zeros(p, p);
-      x = jStat.copy(x);
+    const r = jStat.zeros(p, p);
+    x = jStat.copy(x);
 
-      var i,j,k;
-      for(j = 0; j < p; j++){
-        r[j][j] = Math.sqrt(sum(range(n).map(function(i){
-          return x[i][j] * x[i][j];
-        })));
+    let i,j,k;
+    for(j = 0; j < p; j++){
+      r[j][j] = Math.sqrt(sum(range(n).map((i) => x[i][j] * x[i][j])));
+      for(i = 0; i < n; i++){
+        x[i][j] = x[i][j] / r[j][j];
+      }
+      for(k = j+1; k < p; k++){
+        r[j][k] = sum(range(n).map((i) => x[i][j] * x[i][k]));
         for(i = 0; i < n; i++){
-          x[i][j] = x[i][j] / r[j][j];
-        }
-        for(k = j+1; k < p; k++){
-          r[j][k] = sum(range(n).map(function(i){
-            return x[i][j] * x[i][k];
-          }));
-          for(i = 0; i < n; i++){
-            x[i][k] = x[i][k] - x[i][j]*r[j][k];
-          }
+          x[i][k] = x[i][k] - x[i][j]*r[j][k];
         }
       }
-      return [x, r];
     }
+    return [x, r];
+  },
 
-    return qr2;
-  }()),
-
-  lstsq: (function() {
+  lstsq: function lstsq(A, b) {
     // solve least squard problem for Ax=b as QR decomposition way if b is
     // [[b1],[b2],[b3]] form will return [[x1],[x2],[x3]] array form solution
     // else b is [b1,b2,b3] form will return [x1,x2,x3] array form solution
-    function R_I(A) {
-      A = jStat.copy(A);
-      var size = A.length;
-      var I = jStat.identity(size);
-      jStat.arange(size - 1, -1, -1).forEach(function(i) {
-        jStat.sliceAssign(
-            I, { row: i }, jStat.divide(jStat.slice(I, { row: i }), A[i][i]));
-        jStat.sliceAssign(
-            A, { row: i }, jStat.divide(jStat.slice(A, { row: i }), A[i][i]));
-        jStat.arange(i).forEach(function(j) {
-          var c = jStat.multiply(A[j][i], -1);
-          var Aj = jStat.slice(A, { row: j });
-          var cAi = jStat.multiply(jStat.slice(A, { row: i }), c);
-          jStat.sliceAssign(A, { row: j }, jStat.add(Aj, cAi));
-          var Ij = jStat.slice(I, { row: j });
-          var cIi = jStat.multiply(jStat.slice(I, { row: i }), c);
-          jStat.sliceAssign(I, { row: j }, jStat.add(Ij, cIi));
-        })
-      });
-      return I;
+    let array_mode = false;
+    if (b[0].length === undefined) {
+      // [c1,c2,c3] mode
+      b = b.map((x) => [x]);
+      array_mode = true;
+    }
+    const QR = jStat.QR(A);
+    const Q = QR[0];
+    const R = QR[1];
+    const attrs = A[0].length;
+    const Q1 = jStat.slice(Q,{col:{end:attrs}});
+    const R1 = jStat.slice(R,{row:{end:attrs}});
+    const RI = _lstsq_R_I(R1);
+    let Q2 = jStat.transpose(Q1);
+
+    if(Q2[0].length === undefined){
+      Q2 = [Q2]; // The confusing jStat.multifly implementation threat nature process again.
     }
 
-    function qr_solve(A, b){
-      var array_mode = false;
-      if (b[0].length === undefined) {
-        // [c1,c2,c3] mode
-        b = b.map(function(x){ return [x] });
-        array_mode = true;
-      }
-      var QR = jStat.QR(A);
-      var Q = QR[0];
-      var R = QR[1];
-      var attrs = A[0].length;
-      var Q1 = jStat.slice(Q,{col:{end:attrs}});
-      var R1 = jStat.slice(R,{row:{end:attrs}});
-      var RI = R_I(R1);
-      var Q2 = jStat.transpose(Q1);
+    let x = jStat.multiply(jStat.multiply(RI, Q2), b);
 
-      if(Q2[0].length === undefined){
-        Q2 = [Q2]; // The confusing jStat.multifly implementation threat nature process again.
-      }
-
-      var x = jStat.multiply(jStat.multiply(RI, Q2), b);
-
-      if(x.length === undefined){
-        x = [[x]]; // The confusing jStat.multifly implementation threat nature process again.
-      }
-
-
-      if (array_mode)
-        return x.map(function(i){ return i[0] });
-      return x;
+    if(x.length === undefined){
+      x = [[x]]; // The confusing jStat.multifly implementation threat nature process again.
     }
 
-    return qr_solve;
-  }()),
+
+    if (array_mode)
+      return x.map((i) => i[0]);
+    return x;
+  },
 
   jacobi: function jacobi(a) {
-    var condition = 1;
-    var n = a.length;
-    var e = jStat.identity(n, n);
-    var ev = [];
-    var b, i, j, p, q, maxim, theta, s;
+    let condition = 1;
+    const n = a.length;
+    let e = jStat.identity(n, n);
+    const ev = [];
+    let b, i, j, p, q, maxim, theta, s;
     // condition === 1 only if tolerance is not reached
     while (condition === 1) {
       maxim = a[0][1];
@@ -698,7 +669,7 @@ jStat.extend({
   },
 
   rungekutta: function rungekutta(f, h, p, t_j, u_j, order) {
-    var k1, k2, u_j1, k3, k4;
+    let k1, k2, u_j1, k3, k4;
     if (order === 2) {
       while (t_j <= p) {
         k1 = h * f(t_j, u_j);
@@ -723,12 +694,12 @@ jStat.extend({
   },
 
   romberg: function romberg(f, a, b, order) {
-    var i = 0;
-    var h = (b - a) / 2;
-    var x = [];
-    var h1 = [];
-    var g = [];
-    var m, a1, j, k, I;
+    let i = 0;
+    let h = (b - a) / 2;
+    const x = [];
+    let h1 = [];
+    let g = [];
+    let m, a1, j, k, I;
     while (i < order / 2) {
       I = f(a);
       for (j = a, k = 0; j <= b; j = j + h, k++) x[k] = j;
@@ -756,18 +727,18 @@ jStat.extend({
 
   richardson: function richardson(X, f, x, h) {
     function pos(X, x) {
-      var i = 0;
-      var n = X.length;
-      var p;
+      let i = 0;
+      const n = X.length;
+      let p;
       for (; i < n; i++)
         if (X[i] === x) p = i;
       return p;
     }
-    var h_min = Math.abs(x - X[pos(X, x) + 1]);
-    var i = 0;
-    var g = [];
-    var h1 = [];
-    var y1, y2, m, a, j;
+    const h_min = Math.abs(x - X[pos(X, x) + 1]);
+    let i = 0;
+    let g = [];
+    let h1 = [];
+    let y1, y2, m, a, j;
     while (h >= h_min) {
       y1 = pos(X, x + h);
       y2 = pos(X, x);
@@ -789,13 +760,13 @@ jStat.extend({
   },
 
   simpson: function simpson(f, a, b, n) {
-    var h = (b - a) / n;
-    var I = f(a);
-    var x = [];
-    var j = a;
-    var k = 0;
-    var i = 1;
-    var m;
+    const h = (b - a) / n;
+    let I = f(a);
+    const x = [];
+    let j = a;
+    let k = 0;
+    let i = 1;
+    let m;
     for (; j <= b; j = j + h, k++)
       x[k] = j;
     m = x.length;
@@ -806,14 +777,14 @@ jStat.extend({
   },
 
   hermite: function hermite(X, F, dF, value) {
-    var n = X.length;
-    var p = 0;
-    var i = 0;
-    var l = [];
-    var dl = [];
-    var A = [];
-    var B = [];
-    var j;
+    const n = X.length;
+    let p = 0;
+    let i = 0;
+    const l = [];
+    const dl = [];
+    const A = [];
+    const B = [];
+    let j;
     for (; i < n; i++) {
       l[i] = 1;
       for (j = 0; j < n; j++) {
@@ -831,10 +802,10 @@ jStat.extend({
   },
 
   lagrange: function lagrange(X, F, value) {
-    var p = 0;
-    var i = 0;
-    var j, l;
-    var n = X.length;
+    let p = 0;
+    let i = 0;
+    let j, l;
+    const n = X.length;
     for (; i < n; i++) {
       l = F[i];
       for (j = 0; j < n; j++) {
@@ -848,15 +819,15 @@ jStat.extend({
   },
 
   cubic_spline: function cubic_spline(X, F, value) {
-    var n = X.length;
-    var i = 0, j;
-    var A = [];
-    var B = [];
-    var alpha = [];
-    var c = [];
-    var h = [];
-    var b = [];
-    var d = [];
+    const n = X.length;
+    let i = 0, j;
+    const A = [];
+    const B = [];
+    const alpha = [];
+    let c = [];
+    const h = [];
+    const b = [];
+    const d = [];
     for (; i < n - 1; i++)
       h[i] = X[i + 1] - X[i];
     alpha[0] = 0;
@@ -890,20 +861,20 @@ jStat.extend({
   },
 
   PCA: function PCA(X) {
-    var m = X.length;
-    var n = X[0].length;
-    var i = 0;
-    var j, temp1;
-    var u = [];
-    var D = [];
-    var result = [];
-    var temp2 = [];
-    var Y = [];
-    var Bt = [];
-    var B = [];
-    var C = [];
-    var V = [];
-    var Vt = [];
+    const m = X.length;
+    const n = X[0].length;
+    let i = 0;
+    let j, temp1;
+    const u = [];
+    let D = [];
+    let result = [];
+    let temp2 = [];
+    const Y = [];
+    let Bt = [];
+    let B = [];
+    const C = [];
+    let V = [];
+    let Vt = [];
     for (i = 0; i < m; i++) {
       u[i] = jStat.sum(X[i]) / n;
     }
@@ -948,22 +919,20 @@ jStat.extend({
 });
 
 // extend jStat.fn with methods that require one argument
-(function(funcs) {
-  for (var i = 0; i < funcs.length; i++) (function(passfunc) {
-    jStat.fn[passfunc] = function(arg, func) {
-      var tmpthis = this;
-      // check for callback
-      if (func) {
-        setTimeout(function() {
-          func.call(tmpthis, jStat.fn[passfunc].call(tmpthis, arg));
-        }, 15);
-        return this;
-      }
-      if (typeof jStat[passfunc](this, arg) === 'number')
-        return jStat[passfunc](this, arg);
-      else
-        return jStat(jStat[passfunc](this, arg));
-    };
-  }(funcs[i]));
-}('add divide multiply subtract dot pow exp log abs norm angle'.split(' ')));
+for (const passfunc of 'add divide multiply subtract dot pow exp log abs norm angle'.split(' ')) {
+  jStat.fn[passfunc] = function(arg, func) {
+    const tmpthis = this;
+    // check for callback
+    if (func) {
+      setTimeout(() => {
+        func.call(tmpthis, jStat.fn[passfunc].call(tmpthis, arg));
+      }, 15);
+      return this;
+    }
+    if (typeof jStat[passfunc](this, arg) === 'number')
+      return jStat[passfunc](this, arg);
+    else
+      return jStat(jStat[passfunc](this, arg));
+  };
+}
 
