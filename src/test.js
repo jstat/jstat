@@ -1,4 +1,4 @@
-(function(jStat, Math) {
+import jStat from './core.js';
 
 var slice = [].slice;
 var isNumber = jStat.utils.isNumber;
@@ -336,4 +336,3 @@ jStat.extend(jStat.fn, {
   }
 });
 
-}(jStat, Math));

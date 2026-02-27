@@ -1,5 +1,5 @@
 // Special functions //
-(function(jStat, Math) {
+import jStat from './core.js';
 
 // Log-gamma function
 jStat.gammaln = function gammaln(x) {
@@ -507,4 +507,3 @@ jStat.randg = function randg(shape, n, m) {
   })(funcs[i]);
 })('randn'.split(' '));
 
-}(jStat, Math));

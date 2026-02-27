@@ -1,7 +1,4 @@
-NODE_PATH ?= ./node_modules
 DIST_DIR = ./dist
-JS_COMPILER = node_modules/.bin/uglifyjs
-JS_TESTER = node_modules/.bin/vows
 
 DOC_DIR = doc
 BUILD_DIR = build
@@ -14,26 +11,9 @@ clean:
 	@echo 'Cleaning up build files'
 	@rm -rf dist
 
-core: jstat.js jstat.min.js
-
-jstat.js: \
-	src/_header.js \
-	src/core.js \
-	src/vector.js \
-	src/special.js \
-	src/distribution.js \
-	src/linearalgebra.js \
-	src/test.js \
-	src/models.js \
-	src/regression.js \
-	src/_footer.js
+core:
 	@echo 'Building jStat'
-	@mkdir -p $(DIST_DIR)
-	@cat $^ > $(DIST_DIR)/$@
-
-jstat.min.js: jstat.js
-	@echo 'Minifying jStat'
-	@$(JS_COMPILER) < $(DIST_DIR)/$< > $(DIST_DIR)/$@
+	@npm run build
 
 doc:
 	@echo 'Generating documentation'
@@ -44,15 +24,15 @@ doc:
 		$(JS_ENGINE) $(BUILD_DIR)/doctool.js $(DOC_DIR)/assets/template.html $(DOC_DIR)/md/$${i} $(DIST_DIR)/docs/$${i%.*}.html; \
 	done
 
-jstat: jstat.js
-
 install:
 	@echo 'Downloading necessary libraries for build'
 	@mkdir -p node_modules
 	@npm install
 
+jstat: core
+
 test: clean core
 	@echo 'Running jStat unit tests'
 	@node --test "test/**/*-test.js"
 
-.PHONY: clean core doc install test
+.PHONY: clean core doc install test jstat

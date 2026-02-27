@@ -1,4 +1,4 @@
-(function(jStat, Math) {
+import jStat from './core.js';
 
 // generate all distribution instance methods
 (function(list) {
@@ -1595,4 +1595,3 @@ jStat.extend(jStat.tukey, {
   }
 });
 
-}(jStat, Math));

@@ -1,5 +1,3 @@
-var jStat = (function(Math, undefined) {
-
 // For quick reference.
 var concat = Array.prototype.concat;
 var slice = Array.prototype.slice;
@@ -680,6 +678,4 @@ jProto.alter = function alter(func) {
 
 
 // Exposing jStat.
-return jStat;
-
-}(Math));
+export default jStat;

@@ -5,7 +5,7 @@
 //(simply the transpose)
 //and run regress.
 
-
+import jStat from './core.js';
 
 //Regressions
 

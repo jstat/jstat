@@ -4,6 +4,17 @@
   "description": "Statistical Library for JavaScript",
   "homepage": "http://github.com/jstat/jstat",
   "main": "./dist/jstat.js",
+  "module": "./dist/jstat.esm.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/jstat.esm.mjs",
+      "require": "./dist/jstat.cjs.js",
+      "default": "./dist/jstat.js"
+    }
+  },
+  "files": [
+    "dist/"
+  ],
   "author": {
     "name": "Trevor Norris",
     "email": "trev.norris@gmail.com",
@@ -20,10 +31,11 @@
     "url": "http://github.com/jstat/jstat.git"
   },
   "devDependencies": {
-    "uglify-js": "^3.6.7",
-    "vows": "^0.8.3"
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^4.59.0"
   },
   "scripts": {
-    "test": "make clean core && node --test \"test/**/*-test.js\""
+    "build": "rollup -c",
+    "test": "npm run build && node --test \"test/**/*-test.js\""
   }
 }

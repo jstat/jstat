@@ -1,4 +1,7 @@
 dist/docs
+dist/*.map
+dist/*.mjs
+dist/*.cjs.js
 node_modules
 package-lock.json
 .idea
