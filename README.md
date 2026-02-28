@@ -1,12 +1,11 @@
-[jStat](https://jstat.github.io/all.html) - JavaScript Statistical Library
-===============================================================
+# [jStat](https://jstat.github.io/all.html) - JavaScript Statistical Library
 
 [![npm version](https://badge.fury.io/js/jstat.svg)](https://badge.fury.io/js/jstat)
 
 jStat provides native javascript implementations of statistical functions.
 Full details are available in the [docs](https://jstat.github.io/all.html).
 jStat provides more functions than most libraries, including the weibull,
-cauchy, poisson, hypergeometric, and beta distributions.  For most
+cauchy, poisson, hypergeometric, and beta distributions. For most
 distributions, jStat provides the pdf, cdf, inverse, mean, mode, variance, and
 a sample function, allowing for more complex calculations.
 
@@ -14,8 +13,7 @@ a sample function, allowing for more complex calculations.
 updated. Instead use the all lowercase `jstat` when doing an `npm install` or
 similar.
 
-Using jStat in a Browser
-------------------------
+## Using jStat in a Browser
 
 jStat can be used in the browser. The `jStat` object will be added to the
 window. For example:
@@ -33,25 +31,25 @@ data[i]['cum'] = jstat.normal(jstat.mean(), jstat.stdev()).cdf(data[i].x);
 
 ```
 
-CDN [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/jstat/badge?style=rounded)](https://www.jsdelivr.com/package/npm/jstat)
----
+## CDN [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/jstat/badge?style=rounded)](https://www.jsdelivr.com/package/npm/jstat)
 
 The library is hosted on [jsDelivr](http://www.jsdelivr.com/) using the following
 url:
+
 ```
 //cdn.jsdelivr.net/npm/jstat@latest/dist/jstat.min.js
 ```
+
 Note that `'latest'` can be replaced with any released verion of jStat.
 
-Module Loaders
---------------
+## Module Loaders
 
 Currently jStat is exposed as `j$` and `jStat` inside an object, rather than
 exported directly. This may confuse some module loaders, however should be
 easily remedied with the correct configuration.
 
-NodeJS & NPM
-------------
+## NodeJS & NPM
+
 To install via npm:
 
 ```
@@ -64,10 +62,10 @@ When loading under Node be sure to reference the child object.
 var { jStat } = require('jstat').
 ```
 
-RequireJS Shim
---------------
+## RequireJS Shim
 
 For RequireJS not only `exports` but also `init` function must be specified.
+
 ```
 requirejs.config({
   paths: {
@@ -87,11 +85,10 @@ requirejs.config({
 });
 ```
 
-Build Prerequisites
--------------------
+## Build Prerequisites
 
 In order to build jStat, you need to have GNU make 3.8 or later, Node.js 0.2 or
-later, and git 1.7 or later.  (Earlier versions might work OK, but are not
+later, and git 1.7 or later. (Earlier versions might work OK, but are not
 tested.)
 
 Windows users have two options:
@@ -112,9 +109,7 @@ and `brew install node` to install Node.js.
 Linux/BSD users should use their appropriate package managers to install make, git, and node, or build from source
 if you swing that way.
 
-
-Building jStat
---------------
+## Building jStat
 
 First, clone a copy of the jStat git repo by running `git clone git://github.com/jstat/jstat.git`.
 
@@ -132,24 +127,18 @@ placed in `dist/docs` by default.
 
 To remove all built files, run `make clean`.
 
-
-Running Tests
--------------
+## Running Tests
 
 Execute all tests by running `make test`.
 
 Or if you wish to run a specific test, `cd` to `test/<subdir>` and run `node <some_test>-test.js`.
 
-
-Get the Code
-------------
+## Get the Code
 
 Both the minified and unminified source are located in the `dist/` directory.
 For those who don't want to build it themselves.
 
-
-Contribute
-----------
+## Contribute
 
 jStat is now going to follow most of the v8
 [JavaScript](https://google.github.io/styleguide/jsguide.html)
@@ -163,10 +152,9 @@ standard.
 When submitting pull requests, no need to check in `dist/*.js`. They'll be
 recompiled for distribution anyway.
 
-Join the Community
-------------------
+## Join the Community
 
 We always like discussion of how to improve jStat.
 Join us at our [mailing list](http://groups.google.com/group/jstat-discuss/)
-and let us know what you'd like to see.  Also come ask questions in the #jstat
+and let us know what you'd like to see. Also come ask questions in the #jstat
 channel on irc.freenode.net.

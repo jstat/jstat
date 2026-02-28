@@ -1,11 +1,11 @@
-var { describe, it } = require('node:test');
-var assert = require('node:assert/strict');
-var { jStat, assertEpsilon } = require('../helpers.js');
+const { describe, it } = require('node:test');
+const assert = require('node:assert/strict');
+const { jStat, assertEpsilon } = require('../helpers.js');
 
-describe('gammafn', function() {
+describe('gammafn', function () {
   // Checked against Mathematica Gamma[a]
-  it('check gammafn', function() {
-    var tol = 0.000001;
+  it('check gammafn', function () {
+    const tol = 0.000001;
     assertEpsilon(tol, jStat.gammafn(0.00001), 99999.422794);
     assertEpsilon(tol, jStat.gammafn(0.2), 4.590843);
     assert.strictEqual(jStat.gammafn(10), 362880);

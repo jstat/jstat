@@ -7,26 +7,21 @@ const ascNum = (a, b) => a - b;
 
 const clip = (arg, min, max) => Math.max(min, Math.min(arg, max));
 
-
 // sum of an array
 jStat.sum = function sum(arr) {
-  let sum = 0;
+  let total = 0;
   let i = arr.length;
-  while (--i >= 0)
-    sum += arr[i];
-  return sum;
+  while (--i >= 0) total += arr[i];
+  return total;
 };
-
 
 // sum squared
 jStat.sumsqrd = function sumsqrd(arr) {
   let sum = 0;
   let i = arr.length;
-  while (--i >= 0)
-    sum += arr[i] * arr[i];
+  while (--i >= 0) sum += arr[i] * arr[i];
   return sum;
 };
-
 
 // sum of squared errors of prediction (SSE)
 jStat.sumsqerr = function sumsqerr(arr) {
@@ -45,8 +40,7 @@ jStat.sumsqerr = function sumsqerr(arr) {
 jStat.sumrow = function sumrow(arr) {
   let sum = 0;
   let i = arr.length;
-  while (--i >= 0)
-    sum += arr[i];
+  while (--i >= 0) sum += arr[i];
   return sum;
 };
 
@@ -54,33 +48,25 @@ jStat.sumrow = function sumrow(arr) {
 jStat.product = function product(arr) {
   let prod = 1;
   let i = arr.length;
-  while (--i >= 0)
-    prod *= arr[i];
+  while (--i >= 0) prod *= arr[i];
   return prod;
 };
-
 
 // minimum value of an array
 jStat.min = function min(arr) {
   let low = arr[0];
   let i = 0;
-  while (++i < arr.length)
-    if (arr[i] < low)
-      low = arr[i];
+  while (++i < arr.length) if (arr[i] < low) low = arr[i];
   return low;
 };
-
 
 // maximum value of an array
 jStat.max = function max(arr) {
   let high = arr[0];
   let i = 0;
-  while (++i < arr.length)
-    if (arr[i] > high)
-      high = arr[i];
+  while (++i < arr.length) if (arr[i] > high) high = arr[i];
   return high;
 };
-
 
 // unique values of an array
 jStat.unique = function unique(arr) {
@@ -95,60 +81,49 @@ jStat.unique = function unique(arr) {
   return _arr;
 };
 
-
 // mean value of an array
 jStat.mean = function mean(arr) {
   return jStat.sum(arr) / arr.length;
 };
-
 
 // mean squared error (MSE)
 jStat.meansqerr = function meansqerr(arr) {
   return jStat.sumsqerr(arr) / arr.length;
 };
 
-
 // geometric mean of an array
 jStat.geomean = function geomean(arr) {
-  const logs = arr.map(Math.log)
-  const meanOfLogs = jStat.mean(logs)
-  return Math.exp(meanOfLogs)
+  const logs = arr.map(Math.log);
+  const meanOfLogs = jStat.mean(logs);
+  return Math.exp(meanOfLogs);
 };
-
 
 // median of an array
 jStat.median = function median(arr) {
   const arrlen = arr.length;
   const _arr = arr.slice().sort(ascNum);
   // check if array is even or odd, then return the appropriate
-  return !(arrlen & 1)
-    ? (_arr[(arrlen / 2) - 1 ] + _arr[(arrlen / 2)]) / 2
-    : _arr[(arrlen / 2) | 0 ];
+  return !(arrlen & 1) ? (_arr[arrlen / 2 - 1] + _arr[arrlen / 2]) / 2 : _arr[(arrlen / 2) | 0];
 };
-
 
 // cumulative sum of an array
 jStat.cumsum = function cumsum(arr) {
   return jStat.cumreduce(arr, (a, b) => a + b);
 };
 
-
 // cumulative product of an array
 jStat.cumprod = function cumprod(arr) {
   return jStat.cumreduce(arr, (a, b) => a * b);
 };
-
 
 // successive differences of a sequence
 jStat.diff = function diff(arr) {
   const diffs = [];
   const arrLen = arr.length;
   let i;
-  for (i = 1; i < arrLen; i++)
-    diffs.push(arr[i] - arr[i - 1]);
+  for (i = 1; i < arrLen; i++) diffs.push(arr[i] - arr[i - 1]);
   return diffs;
 };
-
 
 // ranks of an array
 jStat.rank = function (arr) {
@@ -180,7 +155,6 @@ jStat.rank = function (arr) {
 
   return arr.map((number) => numberRanks[number]);
 };
-
 
 // mode of an array
 // if there are multiple modes of an array, return all of them
@@ -215,7 +189,6 @@ jStat.mode = function mode(arr) {
 
   return numMaxCount === 0 ? mode_arr[0] : mode_arr;
 };
-
 
 // range of an array
 jStat.range = function range(arr) {
@@ -267,7 +240,6 @@ jStat.meandev = function meandev(arr) {
   return jStat.mean(a);
 };
 
-
 // median deviation (median absolute deviation) of an array
 jStat.meddev = function meddev(arr) {
   const median = jStat.median(arr);
@@ -278,24 +250,21 @@ jStat.meddev = function meddev(arr) {
   return jStat.median(a);
 };
 
-
 // coefficient of variation
 jStat.coeffvar = function coeffvar(arr) {
   return jStat.stdev(arr) / jStat.mean(arr);
 };
-
 
 // quartiles of an array
 jStat.quartiles = function quartiles(arr) {
   const arrlen = arr.length;
   const _arr = arr.slice().sort(ascNum);
   return [
-    _arr[ Math.round((arrlen) / 4) - 1 ],
-    _arr[ Math.round((arrlen) / 2) - 1 ],
-    _arr[ Math.round((arrlen) * 3 / 4) - 1 ]
+    _arr[Math.round(arrlen / 4) - 1],
+    _arr[Math.round(arrlen / 2) - 1],
+    _arr[Math.round((arrlen * 3) / 4) - 1]
   ];
 };
-
 
 // Arbitary quantiles of an array. Direct port of the scipy.stats
 // implementation by Pierre GF Gerard-Marchant.
@@ -329,7 +298,7 @@ jStat.percentile = function percentile(arr, k, exclusive) {
   } else {
     return _arr[index - 1];
   }
-}
+};
 
 // The percentile rank of score in a given array. Returns the percentage
 // of all values in the input array that are less than (kind='strict') or
@@ -340,20 +309,17 @@ jStat.percentileOfScore = function percentileOfScore(arr, score, kind) {
   let strict = false;
   let value, i;
 
-  if (kind === 'strict')
-    strict = true;
+  if (kind === 'strict') strict = true;
 
   for (i = 0; i < len; i++) {
     value = arr[i];
-    if ((strict && value < score) ||
-        (!strict && value <= score)) {
+    if ((strict && value < score) || (!strict && value <= score)) {
       counter++;
     }
   }
 
   return counter / len;
 };
-
 
 // Histogram (bin count) data
 jStat.histogram = function histogram(arr, binCnt) {
@@ -364,14 +330,12 @@ jStat.histogram = function histogram(arr, binCnt) {
   const bins = [];
   let i;
 
-  for (i = 0; i < binCnt; i++)
-    bins[i] = 0;
+  for (i = 0; i < binCnt; i++) bins[i] = 0;
   for (i = 0; i < len; i++)
-    bins[Math.min(Math.floor(((arr[i] - first) / binWidth)), binCnt - 1)] += 1;
+    bins[Math.min(Math.floor((arr[i] - first) / binWidth), binCnt - 1)] += 1;
 
   return bins;
 };
-
 
 // covariance of two arrays
 jStat.covariance = function covariance(arr1, arr2) {
@@ -381,28 +345,23 @@ jStat.covariance = function covariance(arr1, arr2) {
   const sq_dev = new Array(arr1Len);
   let i;
 
-  for (i = 0; i < arr1Len; i++)
-    sq_dev[i] = (arr1[i] - u) * (arr2[i] - v);
+  for (i = 0; i < arr1Len; i++) sq_dev[i] = (arr1[i] - u) * (arr2[i] - v);
 
   return jStat.sum(sq_dev) / (arr1Len - 1);
 };
 
-
 // (pearson's) population correlation coefficient, rho
 jStat.corrcoeff = function corrcoeff(arr1, arr2) {
-  return jStat.covariance(arr1, arr2) /
-      jStat.stdev(arr1, 1) /
-      jStat.stdev(arr2, 1);
+  return jStat.covariance(arr1, arr2) / jStat.stdev(arr1, 1) / jStat.stdev(arr2, 1);
 };
 
-  // (spearman's) rank correlation coefficient, sp
-jStat.spearmancoeff =  function (arr1, arr2) {
+// (spearman's) rank correlation coefficient, sp
+jStat.spearmancoeff = function (arr1, arr2) {
   arr1 = jStat.rank(arr1);
   arr2 = jStat.rank(arr2);
   //return pearson's correlation of the ranks:
   return jStat.corrcoeff(arr1, arr2);
-}
-
+};
 
 // statistical standardized moments (general form of skew/kurt)
 jStat.stanMoment = function stanMoment(arr, n) {
@@ -411,8 +370,7 @@ jStat.stanMoment = function stanMoment(arr, n) {
   const len = arr.length;
   let skewSum = 0;
 
-  for (let i = 0; i < len; i++)
-    skewSum += Math.pow((arr[i] - mu) / sigma, n);
+  for (let i = 0; i < len; i++) skewSum += Math.pow((arr[i] - mu) / sigma, n);
 
   return skewSum / arr.length;
 };
@@ -427,19 +385,17 @@ jStat.kurtosis = function kurtosis(arr) {
   return jStat.stanMoment(arr, 4) - 3;
 };
 
-
 const jProto = jStat.prototype;
-
 
 // Extend jProto with method for calculating cumulative sums and products.
 // This differs from the similar extension below as cumsum and cumprod should
 // not be run again in the case fullbool === true.
 // If a matrix is passed, automatically assume operation should be done on the
 // columns.
-for (const passfunc of ('cumsum cumprod').split(' ')) {
+for (const passfunc of 'cumsum cumprod'.split(' ')) {
   // If a matrix is passed, automatically assume operation should be done on
   // the columns.
-  jProto[passfunc] = function(fullbool, func) {
+  jProto[passfunc] = function (fullbool, func) {
     const arr = [];
     let i = 0;
     let tmpthis = this;
@@ -458,8 +414,7 @@ for (const passfunc of ('cumsum cumprod').split(' ')) {
     // Check if matrix and run calculations.
     if (this.length > 1) {
       tmpthis = fullbool === true ? this : this.transpose();
-      for (; i < tmpthis.length; i++)
-        arr[i] = jStat[passfunc](tmpthis[i]);
+      for (; i < tmpthis.length; i++) arr[i] = jStat[passfunc](tmpthis[i]);
       return arr;
     }
     // Pass fullbool if only vector, not a matrix. for variance and stdev.
@@ -467,14 +422,15 @@ for (const passfunc of ('cumsum cumprod').split(' ')) {
   };
 }
 
-
 // Extend jProto with methods which don't require arguments and work on columns.
-for (const passfunc of ('sum sumsqrd sumsqerr sumrow product min max unique mean meansqerr ' +
-    'geomean median diff rank mode range variance deviation stdev meandev ' +
-    'meddev coeffvar quartiles histogram skewness kurtosis').split(' ')) {
+for (const passfunc of (
+  'sum sumsqrd sumsqerr sumrow product min max unique mean meansqerr ' +
+  'geomean median diff rank mode range variance deviation stdev meandev ' +
+  'meddev coeffvar quartiles histogram skewness kurtosis'
+).split(' ')) {
   // If a matrix is passed, automatically assume operation should be done on
   // the columns.
-  jProto[passfunc] = function(fullbool, func) {
+  jProto[passfunc] = function (fullbool, func) {
     const arr = [];
     let i = 0;
     let tmpthis = this;
@@ -492,24 +448,19 @@ for (const passfunc of ('sum sumsqrd sumsqerr sumrow product min max unique mean
     }
     // Check if matrix and run calculations.
     if (this.length > 1) {
-      if (passfunc !== 'sumrow')
-        tmpthis = fullbool === true ? this : this.transpose();
-      for (; i < tmpthis.length; i++)
-        arr[i] = jStat[passfunc](tmpthis[i]);
-      return fullbool === true
-          ? jStat[passfunc](jStat.utils.toVector(arr))
-          : arr;
+      if (passfunc !== 'sumrow') tmpthis = fullbool === true ? this : this.transpose();
+      for (; i < tmpthis.length; i++) arr[i] = jStat[passfunc](tmpthis[i]);
+      return fullbool === true ? jStat[passfunc](jStat.utils.toVector(arr)) : arr;
     }
     // Pass fullbool if only vector, not a matrix. for variance and stdev.
     return jStat[passfunc](this[0], fullbool);
   };
 }
 
-
 // Extend jProto with functions that take arguments. Operations on matrices are
 // done on columns.
 for (const passfunc of 'quantiles percentileOfScore'.split(' ')) {
-  jProto[passfunc] = function(...args) {
+  jProto[passfunc] = function (...args) {
     const arr = [];
     let i = 0;
     let tmpthis = this;
@@ -523,24 +474,22 @@ for (const passfunc of 'quantiles percentileOfScore'.split(' ')) {
       const argsToPass = args.slice(0, args.length - 1);
 
       setTimeout(() => {
-        callbackFunction.call(tmpthis,
-                              jProto[passfunc].apply(tmpthis, argsToPass));
+        callbackFunction.call(tmpthis, jProto[passfunc].apply(tmpthis, argsToPass));
       });
       return this;
 
-    // Otherwise we curry the function args and call normally.
+      // Otherwise we curry the function args and call normally.
     } else {
       callbackFunction = undefined;
       curriedFunction = function curriedFunction(vector) {
         return jStat[passfunc].apply(tmpthis, [vector].concat(args));
-      }
+      };
     }
 
     // If this is a matrix, run column-by-column.
     if (this.length > 1) {
       tmpthis = tmpthis.transpose();
-      for (; i < tmpthis.length; i++)
-        arr[i] = curriedFunction(tmpthis[i]);
+      for (; i < tmpthis.length; i++) arr[i] = curriedFunction(tmpthis[i]);
       return arr;
     }
 
@@ -548,4 +497,3 @@ for (const passfunc of 'quantiles percentileOfScore'.split(' ')) {
     return curriedFunction(this[0]);
   };
 }
-

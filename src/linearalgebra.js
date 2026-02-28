@@ -14,10 +14,8 @@ function _lstsq_R_I(A) {
   const size = A.length;
   const I = jStat.identity(size);
   jStat.arange(size - 1, -1, -1).forEach((i) => {
-    jStat.sliceAssign(
-        I, { row: i }, jStat.divide(jStat.slice(I, { row: i }), A[i][i]));
-    jStat.sliceAssign(
-        A, { row: i }, jStat.divide(jStat.slice(A, { row: i }), A[i][i]));
+    jStat.sliceAssign(I, { row: i }, jStat.divide(jStat.slice(I, { row: i }), A[i][i]));
+    jStat.sliceAssign(A, { row: i }, jStat.divide(jStat.slice(A, { row: i }), A[i][i]));
     jStat.arange(i).forEach((j) => {
       const c = jStat.multiply(A[j][i], -1);
       const Aj = jStat.slice(A, { row: j });
@@ -26,18 +24,17 @@ function _lstsq_R_I(A) {
       const Ij = jStat.slice(I, { row: j });
       const cIi = jStat.multiply(jStat.slice(I, { row: i }), c);
       jStat.sliceAssign(I, { row: j }, jStat.add(Ij, cIi));
-    })
+    });
   });
   return I;
 }
 
 jStat.extend({
-
   // add a vector/matrix to a vector/matrix or scalar
   add: function add(arr, arg) {
     // check if arg is a vector or scalar
     if (isUsable(arg)) {
-      if (!isUsable(arg[0])) arg = [ arg ];
+      if (!isUsable(arg[0])) arg = [arg];
       return jStat.map(arr, (value, row, col) => value + arg[row][col]);
     }
     return jStat.map(arr, (value) => value + arg);
@@ -47,7 +44,7 @@ jStat.extend({
   subtract: function subtract(arr, arg) {
     // check if arg is a vector or scalar
     if (isUsable(arg)) {
-      if (!isUsable(arg[0])) arg = [ arg ];
+      if (!isUsable(arg[0])) arg = [arg];
       return jStat.map(arr, (value, row, col) => value - arg[row][col] || 0);
     }
     return jStat.map(arr, (value) => value - arg);
@@ -56,7 +53,7 @@ jStat.extend({
   // matrix division
   divide: function divide(arr, arg) {
     if (isUsable(arg)) {
-      if (!isUsable(arg[0])) arg = [ arg ];
+      if (!isUsable(arg[0])) arg = [arg];
       return jStat.multiply(arr, jStat.inv(arg));
     }
     return jStat.map(arr, (value) => value / arg);
@@ -69,20 +66,19 @@ jStat.extend({
     if (arr.length === undefined && arg.length === undefined) {
       return arr * arg;
     }
-    nrow = arr.length,
-    ncol = arr[0].length,
-    res = jStat.zeros(nrow, nrescols = (isUsable(arg)) ? arg[0].length : ncol),
-    rescols = 0;
+    ((nrow = arr.length),
+      (ncol = arr[0].length),
+      (res = jStat.zeros(nrow, (nrescols = isUsable(arg) ? arg[0].length : ncol))),
+      (rescols = 0));
     if (isUsable(arg)) {
       for (; rescols < nrescols; rescols++) {
         for (row = 0; row < nrow; row++) {
           sum = 0;
-          for (col = 0; col < ncol; col++)
-          sum += arr[row][col] * arg[col][rescols];
+          for (col = 0; col < ncol; col++) sum += arr[row][col] * arg[col][rescols];
           res[row][rescols] = sum;
         }
       }
-      return (nrow === 1 && rescols === 1) ? res[0][0] : res;
+      return nrow === 1 && rescols === 1 ? res[0][0] : res;
     }
     return jStat.map(arr, (value) => value * arg);
   },
@@ -92,18 +88,20 @@ jStat.extend({
   // [[1],[2],[3]] times [[4,5,6]]
   // ->
   // [[4,5,6],[8,10,12],[12,15,18]]
-  outer:function outer(A, B) {
-    return jStat.multiply(A.map((t) => [t]), [B]);
+  outer: function outer(A, B) {
+    return jStat.multiply(
+      A.map((t) => [t]),
+      [B]
+    );
   },
-
 
   // Returns the dot product of two matricies
   dot: function dot(arr, arg) {
-    if (!isUsable(arr[0])) arr = [ arr ];
-    if (!isUsable(arg[0])) arg = [ arg ];
+    if (!isUsable(arr[0])) arr = [arr];
+    if (!isUsable(arg[0])) arg = [arg];
     // convert column to row vector
-    const left = (arr[0].length === 1 && arr.length !== 1) ? jStat.transpose(arr) : arr;
-    const right = (arg[0].length === 1 && arg.length !== 1) ? jStat.transpose(arg) : arg;
+    const left = arr[0].length === 1 && arr.length !== 1 ? jStat.transpose(arr) : arr;
+    const right = arg[0].length === 1 && arg.length !== 1 ? jStat.transpose(arg) : arg;
     const res = [];
     let row = 0;
     const nrow = left.length;
@@ -112,11 +110,10 @@ jStat.extend({
     for (; row < nrow; row++) {
       res[row] = [];
       sum = 0;
-      for (col = 0; col < ncol; col++)
-      sum += left[row][col] * right[row][col];
+      for (col = 0; col < ncol; col++) sum += left[row][col] * right[row][col];
       res[row] = sum;
     }
-    return (res.length === 1) ? res[0] : res;
+    return res.length === 1 ? res[0] : res;
   },
 
   // raise every element by a scalar
@@ -190,8 +187,7 @@ jStat.extend({
     //We need to copy the inverse portion to a new matrix to rid G-J artifacts
     for (; i < rows; i++) {
       result[i] = [];
-      for (j = cols; j < c[0].length; j++)
-        result[i][j - cols] = c[i][j];
+      for (j = cols; j < c[0].length; j++) result[i][j - cols] = c[i][j];
     }
     return result;
   },
@@ -222,7 +218,7 @@ jStat.extend({
       determinant += det(submatrix) * a[0][i] * sign;
     }
 
-    return determinant
+    return determinant;
   },
 
   gauss_elimination: function gauss_elimination(a, b) {
@@ -233,10 +229,10 @@ jStat.extend({
     let factor = 1;
     let sum = 0;
     const x = [];
-    let maug, pivot, temp, k;
+    let pivot, temp, k;
     a = jStat.aug(a, b);
-    maug = a[0].length;
-    for(i = 0; i < n; i++) {
+    const maug = a[0].length;
+    for (i = 0; i < n; i++) {
       pivot = a[i][i];
       j = i;
       for (k = i + 1; k < m; k++) {
@@ -245,8 +241,8 @@ jStat.extend({
           j = k;
         }
       }
-      if (j != i) {
-        for(k = 0; k < maug; k++) {
+      if (j !== i) {
+        for (k = 0; k < maug; k++) {
           temp = a[i][k];
           a[i][k] = a[j][k];
           a[j][k] = temp;
@@ -254,17 +250,17 @@ jStat.extend({
       }
       for (j = i + 1; j < n; j++) {
         factor = a[j][i] / a[i][i];
-        for(k = i; k < maug; k++) {
+        for (k = i; k < maug; k++) {
           a[j][k] = a[j][k] - factor * a[i][k];
         }
       }
     }
     for (i = n - 1; i >= 0; i--) {
       sum = 0;
-      for (j = i + 1; j<= n - 1; j++) {
+      for (j = i + 1; j <= n - 1; j++) {
         sum = sum + x[j] * a[i][j];
       }
-      x[i] =(a[i][maug - 1] - sum) / a[i][i];
+      x[i] = (a[i][maug - 1] - sum) / a[i][i];
     }
     return x;
   },
@@ -278,14 +274,13 @@ jStat.extend({
     // find max pivot
     for (y = 0; y < h; y++) {
       let maxrow = y;
-      for (y2 = y+1; y2 < h; y2++) {
-        if (Math.abs(m[y2][y]) > Math.abs(m[maxrow][y]))
-          maxrow = y2;
+      for (y2 = y + 1; y2 < h; y2++) {
+        if (Math.abs(m[y2][y]) > Math.abs(m[maxrow][y])) maxrow = y2;
       }
       const tmp = m[y];
       m[y] = m[maxrow];
-      m[maxrow] = tmp
-      for (y2 = y+1; y2 < h; y2++) {
+      m[maxrow] = tmp;
+      for (y2 = y + 1; y2 < h; y2++) {
         c = m[y2][y] / m[y][y];
         for (x = y; x < w; x++) {
           m[y2][x] -= m[y][x] * c;
@@ -293,11 +288,11 @@ jStat.extend({
       }
     }
     // backsubstitute
-    for (y = h-1; y >= 0; y--) {
+    for (y = h - 1; y >= 0; y--) {
       c = m[y][y];
       for (y2 = 0; y2 < y; y2++) {
-        for (x = w-1; x > y-1; x--) {
-          m[y2][x] -= m[y][x] * m[y2][y] / c;
+        for (x = w - 1; x > y - 1; x--) {
+          m[y2][x] -= (m[y][x] * m[y2][y]) / c;
         }
       }
       m[y][y] /= c;
@@ -324,7 +319,7 @@ jStat.extend({
     let parts;
     let matrix_mode = false;
 
-    if (b[0].length != undefined) {
+    if (b[0].length !== undefined) {
       b = b.map((i) => i[0]);
       matrix_mode = true;
     }
@@ -334,8 +329,7 @@ jStat.extend({
       x[i] = (b[i] - jStat.sum(parts)) / A[i][i];
     });
 
-    if (matrix_mode)
-      return x.map((i) => [i]);
+    if (matrix_mode) return x.map((i) => [i]);
     return x;
   },
 
@@ -345,8 +339,8 @@ jStat.extend({
     const x = jStat.zeros(1, size)[0];
     let parts;
 
-    let matrix_mode=false;
-    if (b[0].length != undefined) {
+    let matrix_mode = false;
+    if (b[0].length !== undefined) {
       b = b.map((i) => i[0]);
       matrix_mode = true;
     }
@@ -354,13 +348,11 @@ jStat.extend({
     jStat.arange(size).forEach((i) => {
       parts = jStat.arange(i).map((j) => A[i][j] * x[j]);
       x[i] = (b[i] - jStat.sum(parts)) / A[i][i];
-    })
+    });
 
-    if (matrix_mode)
-      return x.map((i) => [i]);
+    if (matrix_mode) return x.map((i) => [i]);
     return x;
   },
-
 
   // A -> [L,U]
   // A=LU
@@ -396,7 +388,7 @@ jStat.extend({
     const T = jStat.zeros(A.length, A[0].length);
     let parts;
     jStat.arange(size).forEach((i) => {
-      parts = jStat.arange(i).map((t) => Math.pow(T[i][t],2));
+      parts = jStat.arange(i).map((t) => Math.pow(T[i][t], 2));
       T[i][i] = Math.sqrt(A[i][i] - jStat.sum(parts));
       jStat.arange(i + 1, size).forEach((j) => {
         parts = jStat.arange(i).map((t) => T[i][t] * T[j][t]);
@@ -405,7 +397,6 @@ jStat.extend({
     });
     return T;
   },
-
 
   gauss_jacobi: function gauss_jacobi(a, b, x, r) {
     let i = 0;
@@ -437,7 +428,7 @@ jStat.extend({
     xv = x;
     xk = jStat.add(jStat.multiply(h, x), c);
     i = 2;
-    while (Math.abs(jStat.norm(jStat.subtract(xk,xv))) > r) {
+    while (Math.abs(jStat.norm(jStat.subtract(xk, xv))) > r) {
       xv = xk;
       xk = jStat.add(jStat.multiply(h, xv), c);
       i++;
@@ -506,11 +497,11 @@ jStat.extend({
         }
       }
     }
-    const h = jStat.multiply(jStat.inv(jStat.add(d, jStat.multiply(l, w))),
-                       jStat.subtract(jStat.multiply(d, 1 - w),
-                                      jStat.multiply(u, w)));
-    const c = jStat.multiply(jStat.multiply(jStat.inv(jStat.add(d,
-        jStat.multiply(l, w))), b), w);
+    const h = jStat.multiply(
+      jStat.inv(jStat.add(d, jStat.multiply(l, w))),
+      jStat.subtract(jStat.multiply(d, 1 - w), jStat.multiply(u, w))
+    );
+    const c = jStat.multiply(jStat.multiply(jStat.inv(jStat.add(d, jStat.multiply(l, w))), b), w);
     xv = x;
     xk = jStat.add(jStat.multiply(h, x), c);
     i = 2;
@@ -531,16 +522,17 @@ jStat.extend({
     let alpha, r, k, j, factor;
     for (; i < m - 1; i++) {
       alpha = 0;
-      for (j = i + 1; j < n; j++)
-      alpha += (a[j][i] * a[j][i]);
-      factor = (a[i + 1][i] > 0) ? -1 : 1;
+      for (j = i + 1; j < n; j++) alpha += a[j][i] * a[j][i];
+      factor = a[i + 1][i] > 0 ? -1 : 1;
       alpha = factor * Math.sqrt(alpha);
-      r = Math.sqrt((((alpha * alpha) - a[i + 1][i] * alpha) / 2));
+      r = Math.sqrt((alpha * alpha - a[i + 1][i] * alpha) / 2);
       w = jStat.zeros(m, 1);
       w[i + 1][0] = (a[i + 1][i] - alpha) / (2 * r);
       for (k = i + 2; k < m; k++) w[k][0] = a[k][i] / (2 * r);
-      p = jStat.subtract(jStat.identity(m, n),
-          jStat.multiply(jStat.multiply(w, jStat.transpose(w)), 2));
+      p = jStat.subtract(
+        jStat.identity(m, n),
+        jStat.multiply(jStat.multiply(w, jStat.transpose(w)), 2)
+      );
       a = jStat.multiply(p, jStat.multiply(a, p));
     }
     return a;
@@ -556,7 +548,7 @@ jStat.extend({
     // y is [||x||,0,0,...]
 
     // quick ref
-    const sum   = jStat.sum;
+    const sum = jStat.sum;
     const range = jStat.arange;
 
     // quick impletation
@@ -568,16 +560,16 @@ jStat.extend({
     const r = jStat.zeros(p, p);
     x = jStat.copy(x);
 
-    let i,j,k;
-    for(j = 0; j < p; j++){
+    let i, j, k;
+    for (j = 0; j < p; j++) {
       r[j][j] = Math.sqrt(sum(range(n).map((i) => x[i][j] * x[i][j])));
-      for(i = 0; i < n; i++){
+      for (i = 0; i < n; i++) {
         x[i][j] = x[i][j] / r[j][j];
       }
-      for(k = j+1; k < p; k++){
+      for (k = j + 1; k < p; k++) {
         r[j][k] = sum(range(n).map((i) => x[i][j] * x[i][k]));
-        for(i = 0; i < n; i++){
-          x[i][k] = x[i][k] - x[i][j]*r[j][k];
+        for (i = 0; i < n; i++) {
+          x[i][k] = x[i][k] - x[i][j] * r[j][k];
         }
       }
     }
@@ -598,24 +590,22 @@ jStat.extend({
     const Q = QR[0];
     const R = QR[1];
     const attrs = A[0].length;
-    const Q1 = jStat.slice(Q,{col:{end:attrs}});
-    const R1 = jStat.slice(R,{row:{end:attrs}});
+    const Q1 = jStat.slice(Q, { col: { end: attrs } });
+    const R1 = jStat.slice(R, { row: { end: attrs } });
     const RI = _lstsq_R_I(R1);
     let Q2 = jStat.transpose(Q1);
 
-    if(Q2[0].length === undefined){
+    if (Q2[0].length === undefined) {
       Q2 = [Q2]; // The confusing jStat.multifly implementation threat nature process again.
     }
 
     let x = jStat.multiply(jStat.multiply(RI, Q2), b);
 
-    if(x.length === undefined){
+    if (x.length === undefined) {
       x = [[x]]; // The confusing jStat.multifly implementation threat nature process again.
     }
 
-
-    if (array_mode)
-      return x.map((i) => i[0]);
+    if (array_mode) return x.map((i) => i[0]);
     return x;
   },
 
@@ -632,7 +622,7 @@ jStat.extend({
       q = 1;
       for (i = 0; i < n; i++) {
         for (j = 0; j < n; j++) {
-          if (i != j) {
+          if (i !== j) {
             if (maxim < Math.abs(a[i][j])) {
               maxim = Math.abs(a[i][j]);
               p = i;
@@ -641,10 +631,8 @@ jStat.extend({
           }
         }
       }
-      if (a[p][p] === a[q][q])
-        theta = (a[p][q] > 0) ? Math.PI / 4 : -Math.PI / 4;
-      else
-        theta = Math.atan(2 * a[p][q] / (a[p][p] - a[q][q])) / 2;
+      if (a[p][p] === a[q][q]) theta = a[p][q] > 0 ? Math.PI / 4 : -Math.PI / 4;
+      else theta = Math.atan((2 * a[p][q]) / (a[p][p] - a[q][q])) / 2;
       s = jStat.identity(n, n);
       s[p][p] = Math.cos(theta);
       s[p][q] = -Math.sin(theta);
@@ -657,7 +645,7 @@ jStat.extend({
       condition = 0;
       for (i = 1; i < n; i++) {
         for (j = 1; j < n; j++) {
-          if (i != j && Math.abs(a[i][j]) > 0.001) {
+          if (i !== j && Math.abs(a[i][j]) > 0.001) {
             condition = 1;
           }
         }
@@ -684,7 +672,7 @@ jStat.extend({
         k1 = h * f(t_j, u_j);
         k2 = h * f(t_j + h / 2, u_j + k1 / 2);
         k3 = h * f(t_j + h / 2, u_j + k2 / 2);
-        k4 = h * f(t_j +h, u_j + k3);
+        k4 = h * f(t_j + h, u_j + k3);
         u_j1 = u_j + (k1 + 2 * k2 + 2 * k3 + k4) / 6;
         u_j = u_j1;
         t_j = t_j + h;
@@ -705,7 +693,7 @@ jStat.extend({
       for (j = a, k = 0; j <= b; j = j + h, k++) x[k] = j;
       m = x.length;
       for (j = 1; j < m - 1; j++) {
-        I += (((j % 2) !== 0) ? 4 : 2) * f(x[j]);
+        I += (j % 2 !== 0 ? 4 : 2) * f(x[j]);
       }
       I = (h / 3) * (I + f(b));
       g[i] = I;
@@ -716,7 +704,7 @@ jStat.extend({
     m = 1;
     while (a1 !== 1) {
       for (j = 0; j < a1 - 1; j++)
-      h1[j] = ((Math.pow(4, m)) * g[j + 1] - g[j]) / (Math.pow(4, m) - 1);
+        h1[j] = (Math.pow(4, m) * g[j + 1] - g[j]) / (Math.pow(4, m) - 1);
       a1 = h1.length;
       g = h1;
       h1 = [];
@@ -730,8 +718,7 @@ jStat.extend({
       let i = 0;
       const n = X.length;
       let p;
-      for (; i < n; i++)
-        if (X[i] === x) p = i;
+      for (; i < n; i++) if (X[i] === x) p = i;
       return p;
     }
     const h_min = Math.abs(x - X[pos(X, x) + 1]);
@@ -748,9 +735,8 @@ jStat.extend({
     }
     a = g.length;
     m = 1;
-    while (a != 1) {
-      for (j = 0; j < a - 1; j++)
-        h1[j] = ((Math.pow(4, m)) * g[j + 1] - g[j]) / (Math.pow(4, m) - 1);
+    while (a !== 1) {
+      for (j = 0; j < a - 1; j++) h1[j] = (Math.pow(4, m) * g[j + 1] - g[j]) / (Math.pow(4, m) - 1);
       a = h1.length;
       g = h1;
       h1 = [];
@@ -766,12 +752,10 @@ jStat.extend({
     let j = a;
     let k = 0;
     let i = 1;
-    let m;
-    for (; j <= b; j = j + h, k++)
-      x[k] = j;
-    m = x.length;
+    for (; j <= b; j = j + h, k++) x[k] = j;
+    const m = x.length;
     for (; i < m - 1; i++) {
-      I += ((i % 2 !== 0) ? 4 : 2) * f(x[i]);
+      I += (i % 2 !== 0 ? 4 : 2) * f(x[i]);
     }
     return (h / 3) * (I + f(b));
   },
@@ -788,15 +772,15 @@ jStat.extend({
     for (; i < n; i++) {
       l[i] = 1;
       for (j = 0; j < n; j++) {
-        if (i != j) l[i] *= (value - X[j]) / (X[i] - X[j]);
+        if (i !== j) l[i] *= (value - X[j]) / (X[i] - X[j]);
       }
       dl[i] = 0;
       for (j = 0; j < n; j++) {
-        if (i != j) dl[i] += 1 / (X [i] - X[j]);
+        if (i !== j) dl[i] += 1 / (X[i] - X[j]);
       }
       A[i] = (1 - 2 * (value - X[i]) * dl[i]) * (l[i] * l[i]);
       B[i] = (value - X[i]) * (l[i] * l[i]);
-      p += (A[i] * F[i] + B[i] * dF[i]);
+      p += A[i] * F[i] + B[i] * dF[i];
     }
     return p;
   },
@@ -810,7 +794,7 @@ jStat.extend({
       l = F[i];
       for (j = 0; j < n; j++) {
         // calculating the lagrange polynomial L_i
-        if (i != j) l *= (value - X[j]) / (X[i] - X[j]);
+        if (i !== j) l *= (value - X[j]) / (X[i] - X[j]);
       }
       // adding the lagrange polynomials found above
       p += l;
@@ -820,7 +804,8 @@ jStat.extend({
 
   cubic_spline: function cubic_spline(X, F, value) {
     const n = X.length;
-    let i = 0, j;
+    let i = 0,
+      j;
     const A = [];
     const B = [];
     const alpha = [];
@@ -828,32 +813,34 @@ jStat.extend({
     const h = [];
     const b = [];
     const d = [];
-    for (; i < n - 1; i++)
-      h[i] = X[i + 1] - X[i];
+    for (; i < n - 1; i++) h[i] = X[i + 1] - X[i];
     alpha[0] = 0;
     for (i = 1; i < n - 1; i++) {
-      alpha[i] = (3 / h[i]) * (F[i + 1] - F[i]) -
-          (3 / h[i-1]) * (F[i] - F[i-1]);
+      alpha[i] = (3 / h[i]) * (F[i + 1] - F[i]) - (3 / h[i - 1]) * (F[i] - F[i - 1]);
     }
     for (i = 1; i < n - 1; i++) {
       A[i] = [];
       B[i] = [];
-      A[i][i-1] = h[i-1];
+      A[i][i - 1] = h[i - 1];
       A[i][i] = 2 * (h[i - 1] + h[i]);
-      A[i][i+1] = h[i];
+      A[i][i + 1] = h[i];
       B[i][0] = alpha[i];
     }
     c = jStat.multiply(jStat.inv(A), B);
     for (j = 0; j < n - 1; j++) {
-      b[j] = (F[j + 1] - F[j]) / h[j] - h[j] * (c[j + 1][0] + 2 * c[j][0]) / 3;
+      b[j] = (F[j + 1] - F[j]) / h[j] - (h[j] * (c[j + 1][0] + 2 * c[j][0])) / 3;
       d[j] = (c[j + 1][0] - c[j][0]) / (3 * h[j]);
     }
     for (j = 0; j < n; j++) {
       if (X[j] > value) break;
     }
     j -= 1;
-    return F[j] + (value - X[j]) * b[j] + jStat.sq(value-X[j]) *
-        c[j] + (value - X[j]) * jStat.sq(value - X[j]) * d[j];
+    return (
+      F[j] +
+      (value - X[j]) * b[j] +
+      jStat.sq(value - X[j]) * c[j] +
+      (value - X[j]) * jStat.sq(value - X[j]) * d[j]
+    );
   },
 
   gauss_quadrature: function gauss_quadrature() {
@@ -880,7 +867,7 @@ jStat.extend({
     }
     for (i = 0; i < n; i++) {
       B[i] = [];
-      for(j = 0; j < m; j++) {
+      for (j = 0; j < m; j++) {
         B[i][j] = X[j][i] - u[j];
       }
     }
@@ -888,7 +875,7 @@ jStat.extend({
     for (i = 0; i < m; i++) {
       C[i] = [];
       for (j = 0; j < m; j++) {
-        C[i][j] = (jStat.dot([B[i]], [B[j]])) / (n - 1);
+        C[i][j] = jStat.dot([B[i]], [B[j]]) / (n - 1);
       }
     }
     result = jStat.jacobi(C);
@@ -897,7 +884,7 @@ jStat.extend({
     Vt = jStat.transpose(V);
     for (i = 0; i < D.length; i++) {
       for (j = i; j < D.length; j++) {
-        if(D[i] < D[j])  {
+        if (D[i] < D[j]) {
           temp1 = D[i];
           D[i] = D[j];
           D[j] = temp1;
@@ -920,7 +907,7 @@ jStat.extend({
 
 // extend jStat.fn with methods that require one argument
 for (const passfunc of 'add divide multiply subtract dot pow exp log abs norm angle'.split(' ')) {
-  jStat.fn[passfunc] = function(arg, func) {
+  jStat.fn[passfunc] = function (arg, func) {
     const tmpthis = this;
     // check for callback
     if (func) {
@@ -929,10 +916,7 @@ for (const passfunc of 'add divide multiply subtract dot pow exp log abs norm an
       }, 15);
       return this;
     }
-    if (typeof jStat[passfunc](this, arg) === 'number')
-      return jStat[passfunc](this, arg);
-    else
-      return jStat(jStat[passfunc](this, arg));
+    if (typeof jStat[passfunc](this, arg) === 'number') return jStat[passfunc](this, arg);
+    else return jStat(jStat[passfunc](this, arg));
   };
 }
-

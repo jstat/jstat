@@ -6,11 +6,10 @@ require('../env.js');
 
 suite.addBatch({
   '': {
-    'topic': function() {
+    topic: function () {
       return jStat;
     },
-    '': function(jStat) {
-    }
+    '': function (jStat) {}
   }
 });
 

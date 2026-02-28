@@ -7,39 +7,31 @@ const toString = Object.prototype.toString;
 // TODO: This calculation can be improved.
 function calcRdx(n, m) {
   const val = n > m ? n : m;
-  return Math.pow(10,
-                  17 - ~~(Math.log(((val > 0) ? val : -val)) * Math.LOG10E));
+  return Math.pow(10, 17 - ~~(Math.log(val > 0 ? val : -val) * Math.LOG10E));
 }
 
-
 const isArray = Array.isArray;
-
 
 function isFunction(arg) {
   return toString.call(arg) === '[object Function]';
 }
 
-
 function isNumber(num) {
-  return (typeof num === 'number') ? num - num === 0 : false;
+  return typeof num === 'number' ? num - num === 0 : false;
 }
-
 
 // Converts the jStat matrix to vector.
 function toVector(arr) {
   return concat.apply([], arr);
 }
 
-
 // The one and only jStat constructor.
 function jStat(...args) {
   return new jStat._init(args);
 }
 
-
 // TODO: Remove after all references in src files have been removed.
 jStat.fn = jStat.prototype;
-
 
 // By separating the initializer from the constructor it's easier to handle
 // always returning a new instance whether "new" was used or not.
@@ -49,32 +41,30 @@ jStat._init = function _init(args) {
     // Check if matrix.
     if (isArray(args[0][0])) {
       // See if a mapping function was also passed.
-      if (isFunction(args[1]))
-        args[0] = jStat.map(args[0], args[1]);
+      if (isFunction(args[1])) args[0] = jStat.map(args[0], args[1]);
       // Iterate over each is faster than this.push.apply(this, args[0].
-      for (let i = 0; i < args[0].length; i++)
-        this[i] = args[0][i];
+      for (let i = 0; i < args[0].length; i++) this[i] = args[0][i];
       this.length = args[0].length;
 
-    // Otherwise must be a vector.
+      // Otherwise must be a vector.
     } else {
       this[0] = isFunction(args[1]) ? jStat.map(args[0], args[1]) : args[0];
       this.length = 1;
     }
 
-  // If first argument is number, assume creation of sequence.
+    // If first argument is number, assume creation of sequence.
   } else if (isNumber(args[0])) {
     this[0] = jStat.seq.apply(null, args);
     this.length = 1;
 
-  // Handle case when jStat object is passed to jStat.
+    // Handle case when jStat object is passed to jStat.
   } else if (args[0] instanceof jStat) {
     // Duplicate the object and pass it back.
     return jStat(args[0].toArray());
 
-  // Unexpected argument value, return empty jStat object.
-  // TODO: This is strange behavior. Shouldn't this throw or some such to let
-  // the user know they had bad arguments?
+    // Unexpected argument value, return empty jStat object.
+    // TODO: This is strange behavior. Shouldn't this throw or some such to let
+    // the user know they had bad arguments?
   } else {
     this[0] = [];
     this.length = 1;
@@ -84,7 +74,6 @@ jStat._init = function _init(args) {
 };
 jStat._init.prototype = jStat.prototype;
 jStat._init.constructor = jStat;
-
 
 // Utility functions.
 // TODO: for internal use only?
@@ -96,14 +85,11 @@ jStat.utils = {
   toVector: toVector
 };
 
-
 jStat._random_fn = Math.random;
 jStat.setRandom = function setRandom(fn) {
-  if (typeof fn !== 'function')
-    throw new TypeError('fn is not a function');
+  if (typeof fn !== 'function') throw new TypeError('fn is not a function');
   jStat._random_fn = fn;
 };
-
 
 // Easily extend the jStat object.
 // TODO: is this seriously necessary?
@@ -111,31 +97,26 @@ jStat.extend = function extend(obj, ...rest) {
   let i, j;
 
   if (rest.length === 0) {
-    for (j in obj)
-      jStat[j] = obj[j];
+    for (j in obj) jStat[j] = obj[j];
     return this;
   }
 
   for (i = 0; i < rest.length; i++) {
-    for (j in rest[i])
-      obj[j] = rest[i][j];
+    for (j in rest[i]) obj[j] = rest[i][j];
   }
 
   return obj;
 };
-
 
 // Returns the number of rows in the matrix.
 jStat.rows = function rows(arr) {
   return arr.length || 1;
 };
 
-
 // Returns the number of columns in the matrix.
 jStat.cols = function cols(arr) {
   return arr[0].length || 1;
 };
-
 
 // Returns the dimensions of the object { rows: i, cols: j }
 jStat.dimensions = function dimensions(arr) {
@@ -145,22 +126,19 @@ jStat.dimensions = function dimensions(arr) {
   };
 };
 
-
 // Returns a specified row as a vector or return a sub matrix by pick some rows
 jStat.row = function row(arr, index) {
   if (isArray(index)) {
-    return index.map((i) => jStat.row(arr, i))
+    return index.map((i) => jStat.row(arr, i));
   }
   return arr[index];
 };
-
 
 // return row as array
 // rowa([[1,2],[3,4]],0) -> [1,2]
 jStat.rowa = function rowa(arr, i) {
   return jStat.row(arr, i);
 };
-
 
 // Returns the specified column as a vector or return a sub matrix by pick some
 // columns
@@ -175,11 +153,9 @@ jStat.col = function col(arr, index) {
     return submat;
   }
   const column = new Array(arr.length);
-  for (let i = 0; i < arr.length; i++)
-    column[i] = [arr[i][index]];
+  for (let i = 0; i < arr.length; i++) column[i] = [arr[i][index]];
   return column;
 };
-
 
 // return column as array
 // cola([[1,2],[3,4]],0) -> [1,3]
@@ -187,42 +163,36 @@ jStat.cola = function cola(arr, i) {
   return jStat.col(arr, i).map((a) => a[0]);
 };
 
-
 // Returns the diagonal of the matrix
 jStat.diag = function diag(arr) {
   const nrow = jStat.rows(arr);
   const res = new Array(nrow);
-  for (let row = 0; row < nrow; row++)
-    res[row] = [arr[row][row]];
+  for (let row = 0; row < nrow; row++) res[row] = [arr[row][row]];
   return res;
 };
-
 
 // Returns the anti-diagonal of the matrix
 jStat.antidiag = function antidiag(arr) {
   let nrow = jStat.rows(arr) - 1;
   const res = new Array(nrow);
-  for (let i = 0; nrow >= 0; nrow--, i++)
-    res[i] = [arr[i][nrow]];
+  for (let i = 0; nrow >= 0; nrow--, i++) res[i] = [arr[i][nrow]];
   return res;
 };
 
 // Transpose a matrix or array.
 jStat.transpose = function transpose(arr) {
   const obj = [];
-  let objArr, rows, cols, j, i;
+  let objArr, j, i;
 
   // Make sure arr is in matrix format.
-  if (!isArray(arr[0]))
-    arr = [arr];
+  if (!isArray(arr[0])) arr = [arr];
 
-  rows = arr.length;
-  cols = arr[0].length;
+  const rows = arr.length;
+  const cols = arr[0].length;
 
   for (i = 0; i < cols; i++) {
     objArr = new Array(rows);
-    for (j = 0; j < rows; j++)
-      objArr[j] = arr[j][i];
+    for (j = 0; j < rows; j++) objArr[j] = arr[j][i];
     obj.push(objArr);
   }
 
@@ -230,63 +200,52 @@ jStat.transpose = function transpose(arr) {
   return obj.length === 1 ? obj[0] : obj;
 };
 
-
 // Map a function to an array or array of arrays.
 // "toAlter" is an internal variable.
 jStat.map = function map(arr, func, toAlter) {
-  let row, nrow, ncol, res, col;
+  let row, col;
 
-  if (!isArray(arr[0]))
-    arr = [arr];
+  if (!isArray(arr[0])) arr = [arr];
 
-  nrow = arr.length;
-  ncol = arr[0].length;
-  res = toAlter ? arr : new Array(nrow);
+  const nrow = arr.length;
+  const ncol = arr[0].length;
+  const res = toAlter ? arr : new Array(nrow);
 
   for (row = 0; row < nrow; row++) {
     // if the row doesn't exist, create it
-    if (!res[row])
-      res[row] = new Array(ncol);
-    for (col = 0; col < ncol; col++)
-      res[row][col] = func(arr[row][col], row, col);
+    if (!res[row]) res[row] = new Array(ncol);
+    for (col = 0; col < ncol; col++) res[row][col] = func(arr[row][col], row, col);
   }
 
   return res.length === 1 ? res[0] : res;
 };
-
 
 // Cumulatively combine the elements of an array or array of arrays using a function.
 jStat.cumreduce = function cumreduce(arr, func, toAlter) {
-  let row, nrow, ncol, res, col;
+  let row, col;
 
-  if (!isArray(arr[0]))
-    arr = [arr];
+  if (!isArray(arr[0])) arr = [arr];
 
-  nrow = arr.length;
-  ncol = arr[0].length;
-  res = toAlter ? arr : new Array(nrow);
+  const nrow = arr.length;
+  const ncol = arr[0].length;
+  const res = toAlter ? arr : new Array(nrow);
 
   for (row = 0; row < nrow; row++) {
     // if the row doesn't exist, create it
-    if (!res[row])
-      res[row] = new Array(ncol);
-    if (ncol > 0)
-      res[row][0] = arr[row][0];
-    for (col = 1; col < ncol; col++)
-      res[row][col] = func(res[row][col-1], arr[row][col]);
+    if (!res[row]) res[row] = new Array(ncol);
+    if (ncol > 0) res[row][0] = arr[row][0];
+    for (col = 1; col < ncol; col++) res[row][col] = func(res[row][col - 1], arr[row][col]);
   }
   return res.length === 1 ? res[0] : res;
 };
-
 
 // Destructively alter an array.
 jStat.alter = function alter(arr, func) {
   return jStat.map(arr, func, true);
 };
 
-
 // Generate a rows x cols matrix according to the supplied function.
-jStat.create = function  create(rows, cols, func) {
+jStat.create = function create(rows, cols, func) {
   const res = new Array(rows);
   let i, j;
 
@@ -297,83 +256,64 @@ jStat.create = function  create(rows, cols, func) {
 
   for (i = 0; i < rows; i++) {
     res[i] = new Array(cols);
-    for (j = 0; j < cols; j++)
-      res[i][j] = func(i, j);
+    for (j = 0; j < cols; j++) res[i][j] = func(i, j);
   }
 
   return res;
 };
 
-
 const retZero = () => 0;
-
 
 // Generate a rows x cols matrix of zeros.
 jStat.zeros = function zeros(rows, cols) {
-  if (!isNumber(cols))
-    cols = rows;
+  if (!isNumber(cols)) cols = rows;
   return jStat.create(rows, cols, retZero);
 };
 
-
 const retOne = () => 1;
-
 
 // Generate a rows x cols matrix of ones.
 jStat.ones = function ones(rows, cols) {
-  if (!isNumber(cols))
-    cols = rows;
+  if (!isNumber(cols)) cols = rows;
   return jStat.create(rows, cols, retOne);
 };
 
-
 // Generate a rows x cols matrix of uniformly random numbers.
 jStat.rand = function rand(rows, cols) {
-  if (!isNumber(cols))
-    cols = rows;
+  if (!isNumber(cols)) cols = rows;
   return jStat.create(rows, cols, jStat._random_fn);
 };
 
-
-const retIdent = (i, j) => i === j ? 1 : 0;
-
+const retIdent = (i, j) => (i === j ? 1 : 0);
 
 // Generate an identity matrix of size row x cols.
 jStat.identity = function identity(rows, cols) {
-  if (!isNumber(cols))
-    cols = rows;
+  if (!isNumber(cols)) cols = rows;
   return jStat.create(rows, cols, retIdent);
 };
-
 
 // Tests whether a matrix is symmetric
 jStat.symmetric = function symmetric(arr) {
   const size = arr.length;
   let row, col;
 
-  if (arr.length !== arr[0].length)
-    return false;
+  if (arr.length !== arr[0].length) return false;
 
   for (row = 0; row < size; row++) {
-    for (col = 0; col < size; col++)
-      if (arr[col][row] !== arr[row][col])
-        return false;
+    for (col = 0; col < size; col++) if (arr[col][row] !== arr[row][col]) return false;
   }
 
   return true;
 };
-
 
 // Set all values to zero.
 jStat.clear = function clear(arr) {
   return jStat.alter(arr, retZero);
 };
 
-
 // Generate sequence.
 jStat.seq = function seq(min, max, length, func) {
-  if (!isFunction(func))
-    func = false;
+  if (!isFunction(func)) func = false;
 
   const arr = [];
   const hival = calcRdx(min, max);
@@ -383,15 +323,16 @@ jStat.seq = function seq(min, max, length, func) {
 
   // Current is assigned using a technique to compensate for IEEE error.
   // TODO: Needs better implementation.
-  for (cnt = 0;
-       current <= max && cnt < length;
-       cnt++, current = (min * hival + step * hival * cnt) / hival) {
-    arr.push((func ? func(current, cnt) : current));
+  for (
+    cnt = 0;
+    current <= max && cnt < length;
+    cnt++, current = (min * hival + step * hival * cnt) / hival
+  ) {
+    arr.push(func ? func(current, cnt) : current);
   }
 
   return arr;
 };
-
 
 // arange(5) -> [0,1,2,3,4]
 // arange(1,5) -> [1,2,3,4]
@@ -425,7 +366,6 @@ jStat.arange = function arange(start, end, step) {
   return rl;
 };
 
-
 // A=[[1,2,3],[4,5,6],[7,8,9]]
 // slice(A,{row:{end:2},col:{start:1}}) -> [[2,3],[5,6]]
 // slice(A,1,{start:1}) -> [5,6]
@@ -458,7 +398,7 @@ function _slice(list, start, end, step) {
       rl.push(list[i]);
     }
   } else {
-    for (i = start; i > end;i += step) {
+    for (i = start; i > end; i += step) {
       rl.push(list[i]);
     }
   }
@@ -469,8 +409,7 @@ jStat.slice = function slice(list, rcSlice) {
   let colSlice, rowSlice;
   rcSlice = rcSlice || {};
   if (isNumber(rcSlice.row)) {
-    if (isNumber(rcSlice.col))
-      return list[rcSlice.row][rcSlice.col];
+    if (isNumber(rcSlice.col)) return list[rcSlice.row][rcSlice.col];
     const row = jStat.rowa(list, rcSlice.row);
     colSlice = rcSlice.col || {};
     return _slice(row, colSlice.start, colSlice.end, colSlice.step);
@@ -488,22 +427,18 @@ jStat.slice = function slice(list, rcSlice) {
   return rows.map((row) => _slice(row, colSlice.start, colSlice.end, colSlice.step));
 };
 
-
 // A=[[1,2,3],[4,5,6],[7,8,9]]
 // sliceAssign(A,{row:{start:1},col:{start:1}},[[0,0],[0,0]])
 // A=[[1,2,3],[4,0,0],[7,0,0]]
 jStat.sliceAssign = function sliceAssign(A, rcSlice, B) {
   let nl, ml;
   if (isNumber(rcSlice.row)) {
-    if (isNumber(rcSlice.col))
-      return A[rcSlice.row][rcSlice.col] = B;
+    if (isNumber(rcSlice.col)) return (A[rcSlice.row][rcSlice.col] = B);
     rcSlice.col = rcSlice.col || {};
     rcSlice.col.start = rcSlice.col.start || 0;
     rcSlice.col.end = rcSlice.col.end || A[0].length;
     rcSlice.col.step = rcSlice.col.step || 1;
-    nl = jStat.arange(rcSlice.col.start,
-                          Math.min(A.length, rcSlice.col.end),
-                          rcSlice.col.step);
+    nl = jStat.arange(rcSlice.col.start, Math.min(A.length, rcSlice.col.end), rcSlice.col.step);
     const m = rcSlice.row;
     nl.forEach((n, i) => {
       A[m][n] = B[i];
@@ -516,9 +451,7 @@ jStat.sliceAssign = function sliceAssign(A, rcSlice, B) {
     rcSlice.row.start = rcSlice.row.start || 0;
     rcSlice.row.end = rcSlice.row.end || A.length;
     rcSlice.row.step = rcSlice.row.step || 1;
-    ml = jStat.arange(rcSlice.row.start,
-                          Math.min(A[0].length, rcSlice.row.end),
-                          rcSlice.row.step);
+    ml = jStat.arange(rcSlice.row.start, Math.min(A[0].length, rcSlice.row.end), rcSlice.row.step);
     const n = rcSlice.col;
     ml.forEach((m, j) => {
       A[m][n] = B[j];
@@ -535,12 +468,8 @@ jStat.sliceAssign = function sliceAssign(A, rcSlice, B) {
   rcSlice.col.start = rcSlice.col.start || 0;
   rcSlice.col.end = rcSlice.col.end || A[0].length;
   rcSlice.col.step = rcSlice.col.step || 1;
-  ml = jStat.arange(rcSlice.row.start,
-                        Math.min(A.length, rcSlice.row.end),
-                        rcSlice.row.step);
-  nl = jStat.arange(rcSlice.col.start,
-                        Math.min(A[0].length, rcSlice.col.end),
-                        rcSlice.col.step);
+  ml = jStat.arange(rcSlice.row.start, Math.min(A.length, rcSlice.row.end), rcSlice.row.step);
+  nl = jStat.arange(rcSlice.col.start, Math.min(A[0].length, rcSlice.col.end), rcSlice.col.step);
   ml.forEach((m, i) => {
     nl.forEach((n, j) => {
       A[m][n] = B[i][j];
@@ -548,7 +477,6 @@ jStat.sliceAssign = function sliceAssign(A, rcSlice, B) {
   });
   return A;
 };
-
 
 // [1,2,3] ->
 // [[1,0,0],[0,2,0],[0,0,3]]
@@ -560,16 +488,13 @@ jStat.diagonal = function diagonal(diagArray) {
   return mat;
 };
 
-
 // return copy of A
 jStat.copy = function copy(A) {
   return A.map((row) => {
-    if (isNumber(row))
-      return row;
+    if (isNumber(row)) return row;
     return row.map((t) => t);
   });
 };
-
 
 // TODO: Go over this entire implementation. Seems a tragic waste of resources
 // doing all this work. Instead, and while ugly, use new Function() to generate
@@ -589,24 +514,20 @@ jProto.sort = Array.prototype.sort;
 jProto.splice = Array.prototype.splice;
 jProto.slice = Array.prototype.slice;
 
-
 // Return a clean array.
 jProto.toArray = function toArray() {
   return this.length > 1 ? slice.call(this) : slice.call(this)[0];
 };
-
 
 // Map a function to a matrix or vector.
 jProto.map = function map(func, toAlter) {
   return jStat(jStat.map(this, func, toAlter));
 };
 
-
 // Cumulatively combine the elements of a matrix or vector using a function.
 jProto.cumreduce = function cumreduce(func, toAlter) {
   return jStat(jStat.cumreduce(this, func, toAlter));
 };
-
 
 // Destructively alter an array.
 jProto.alter = function alter(func) {
@@ -614,12 +535,10 @@ jProto.alter = function alter(func) {
   return this;
 };
 
-
 // Extend prototype with methods that have no argument.
 for (const passfunc of 'transpose clear symmetric rows cols dimensions diag antidiag'.split(' ')) {
-  jProto[passfunc] = function(func) {
+  jProto[passfunc] = function (func) {
     const self = this;
-    let results;
     // Check for callback.
     if (func) {
       setTimeout(() => {
@@ -627,15 +546,14 @@ for (const passfunc of 'transpose clear symmetric rows cols dimensions diag anti
       });
       return this;
     }
-    results = jStat[passfunc](this);
+    const results = jStat[passfunc](this);
     return isArray(results) ? jStat(results) : results;
   };
 }
 
-
 // Extend prototype with methods that have one argument.
 for (const passfunc of 'row col'.split(' ')) {
-  jProto[passfunc] = function(index, func) {
+  jProto[passfunc] = function (index, func) {
     const self = this;
     // check for callback
     if (func) {
@@ -648,14 +566,12 @@ for (const passfunc of 'row col'.split(' ')) {
   };
 }
 
-
 // Extend prototype with simple shortcut methods.
 for (const passfunc of 'create zeros ones rand identity'.split(' ')) {
-  jProto[passfunc] = function(...args) {
+  jProto[passfunc] = function (...args) {
     return jStat(jStat[passfunc].apply(null, args));
   };
 }
-
 
 // Exposing jStat.
 export default jStat;
