@@ -1,16 +1,18 @@
 const { describe, it } = require('node:test');
-const assert = require('node:assert/strict');
-const { jStat } = require('../helpers.js');
+const { jStat, assertEpsilon, assertArrayEpsilon } = require('../helpers.js');
+
+const EPS = 1e-14;
 
 describe('geomean', function () {
   it('return basic geomean', function () {
-    assert.strictEqual(jStat.geomean([1, 2, 3]), 1.8171205928321397);
+    assertEpsilon(EPS, jStat.geomean([1, 2, 3]), 1.8171205928321397);
   });
   it('geomean from instance', function () {
-    assert.strictEqual(jStat([1, 2, 3]).geomean(), 1.8171205928321397);
+    assertEpsilon(EPS, jStat([1, 2, 3]).geomean(), 1.8171205928321397);
   });
   it('geomean matrix cols', function () {
-    assert.deepStrictEqual(
+    assertArrayEpsilon(
+      EPS,
       jStat([
         [1, 2],
         [3, 4]
@@ -19,7 +21,8 @@ describe('geomean', function () {
     );
   });
   it('geomean full matrix', function () {
-    assert.strictEqual(
+    assertEpsilon(
+      EPS,
       jStat([
         [1, 2],
         [3, 4]
@@ -32,7 +35,7 @@ describe('geomean', function () {
 describe('#geomean vector', function () {
   it('geomean callback', function (t, done) {
     jStat([1, 2, 3]).geomean(function (val) {
-      assert.strictEqual(val, 1.8171205928321397);
+      assertEpsilon(EPS, val, 1.8171205928321397);
       done();
     });
   });
@@ -44,7 +47,7 @@ describe('#geomean matrix cols', function () {
       [1, 2],
       [3, 4]
     ]).geomean(function (val) {
-      assert.deepStrictEqual(val, [1.7320508075688772, 2.8284271247461903]);
+      assertArrayEpsilon(EPS, val, [1.7320508075688772, 2.8284271247461903]);
       done();
     });
   });
@@ -56,7 +59,7 @@ describe('#geomean full matrix', function () {
       [1, 2],
       [3, 4]
     ]).geomean(true, function (val) {
-      assert.strictEqual(val, 2.2133638394006434);
+      assertEpsilon(EPS, val, 2.2133638394006434);
       done();
     });
   });

@@ -30,6 +30,9 @@
     "type": "git",
     "url": "http://github.com/jstat/jstat.git"
   },
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "devDependencies": {
     "@rollup/plugin-terser": "^0.4.4",
     "eslint": "^10.0.2",

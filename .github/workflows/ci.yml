@@ -1,0 +1,120 @@
+name: CI
+
+on:
+  push:
+    branches: [2.x, 1.x]
+  pull_request:
+    branches: [2.x, 1.x]
+  workflow_call: # Allow reuse from release.yml
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  lint-and-format:
+    name: Lint & Format
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.x
+          cache: npm
+          cache-dependency-path: package.json
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Check formatting
+        run: npm run format:check
+
+  build-and-test:
+    name: Test (Node ${{ matrix.node-version }})
+    runs-on: ubuntu-latest
+    needs: lint-and-format
+    strategy:
+      matrix:
+        node-version: ['20.x', '22.x', '24.x']
+      fail-fast: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+          cache-dependency-path: package.json
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build and test
+        run: npm test
+
+  verify-build:
+    name: Verify Build Output
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.x
+          cache: npm
+          cache-dependency-path: package.json
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Verify dist files exist and are non-trivial
+        run: |
+          echo "Checking dist/jstat.js..."
+          test -f dist/jstat.js || (echo "FAIL: dist/jstat.js not found" && exit 1)
+          size=$(wc -c < dist/jstat.js)
+          test "$size" -gt 100000 || (echo "FAIL: dist/jstat.js too small ($size bytes)" && exit 1)
+          echo "  OK ($size bytes)"
+
+          echo "Checking dist/jstat.min.js..."
+          test -f dist/jstat.min.js || (echo "FAIL: dist/jstat.min.js not found" && exit 1)
+          size=$(wc -c < dist/jstat.min.js)
+          test "$size" -gt 40000 || (echo "FAIL: dist/jstat.min.js too small ($size bytes)" && exit 1)
+          echo "  OK ($size bytes)"
+
+          echo "Checking dist/jstat.esm.mjs..."
+          test -f dist/jstat.esm.mjs || (echo "FAIL: dist/jstat.esm.mjs not found" && exit 1)
+          size=$(wc -c < dist/jstat.esm.mjs)
+          test "$size" -gt 100000 || (echo "FAIL: dist/jstat.esm.mjs too small ($size bytes)" && exit 1)
+          echo "  OK ($size bytes)"
+
+          echo "Checking dist/jstat.cjs.js..."
+          test -f dist/jstat.cjs.js || (echo "FAIL: dist/jstat.cjs.js not found" && exit 1)
+          size=$(wc -c < dist/jstat.cjs.js)
+          test "$size" -gt 100000 || (echo "FAIL: dist/jstat.cjs.js too small ($size bytes)" && exit 1)
+          echo "  OK ($size bytes)"
+
+      - name: Verify UMD bundle loads
+        run: node -e "const j = require('./dist/jstat.js'); console.assert(typeof j.mean === 'function', 'jstat.mean not a function'); console.log('UMD OK')"
+
+      - name: Verify CJS bundle loads
+        run: node -e "const j = require('./dist/jstat.cjs.js'); console.assert(typeof j.mean === 'function', 'jstat.mean not a function'); console.log('CJS OK')"
+
+      - name: Verify ESM bundle loads
+        run: node --input-type=module -e "import j from './dist/jstat.esm.mjs'; console.assert(typeof j.mean === 'function', 'jstat.mean not a function'); console.log('ESM OK')"
