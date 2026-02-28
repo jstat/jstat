@@ -5,8 +5,10 @@
   "homepage": "http://github.com/jstat/jstat",
   "main": "./dist/jstat.js",
   "module": "./dist/jstat.esm.mjs",
+  "types": "./dist/jstat.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/jstat.d.ts",
       "import": "./dist/jstat.esm.mjs",
       "require": "./dist/jstat.cjs.js",
       "default": "./dist/jstat.js"
@@ -38,7 +40,8 @@
     "eslint": "^10.0.2",
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.8.1",
-    "rollup": "^4.59.0"
+    "rollup": "^4.59.0",
+    "typescript": "^5.9.3"
   },
   "scripts": {
     "build": "rollup -c",
@@ -46,6 +49,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --project tsconfig.types.json"
   }
 }

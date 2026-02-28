@@ -38,6 +38,9 @@ jobs:
       - name: Check formatting
         run: npm run format:check
 
+      - name: Type-check definitions
+        run: npm run typecheck
+
   build-and-test:
     name: Test (Node ${{ matrix.node-version }})
     runs-on: ubuntu-latest

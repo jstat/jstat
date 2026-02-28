@@ -3,7 +3,7 @@ const eslintConfigPrettier = require('eslint-config-prettier/flat');
 module.exports = [
   {
     // Global ignores (equivalent to .eslintignore)
-    ignores: ['dist/**', 'node_modules/**', 'build/**', 'doc/**']
+    ignores: ['dist/**', 'node_modules/**', 'build/**', 'doc/**', 'test/types/**']
   },
   {
     // Source files
