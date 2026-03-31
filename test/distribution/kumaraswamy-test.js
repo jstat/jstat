@@ -229,6 +229,57 @@ suite.addBatch({
       assert.epsilon(tol, jStat.kumaraswamy.cdf(5, 2, 2), 1);
     }
   },
+  'kumaraswamy variance': {
+    'topic': function() {
+      return jStat;
+    },
+    // Checked against R's vkumar(shape1, shape2) in package VGAM
+    //   install.packages("VGAM")
+    //   library("VGAM")
+    //   options(digits=10)
+    //   vkumar(0.5, 0.5)
+    //   vkumar(0.8, 1)
+    //   vkumar(1, 0.4)
+    //   vkumar(0.6, 1.2)
+    //   vkumar(1.3, 0.5)
+    //   vkumar(1, 1)
+    //   vkumar(2, 1)
+    //   vkumar(1, 1.5)
+    //   vkumar(1.5, 1.5)
+    //   vkumar(7, 25)
+    'check variance calculation': function(jStat) {
+      var tol = 0.0000001;
+      // 'U'-shaped distribution
+      assert.epsilon(tol, jStat.kumaraswamy.variance(0.5, 0.5), 0.1219047619);
+
+      // 'L'-shaped distribution
+      assert.epsilon(tol, jStat.kumaraswamy.variance(0.8, 1), 0.0881834215);
+
+      // reversed-'L'-shaped distribution
+      assert.epsilon(tol, jStat.kumaraswamy.variance(1, 0.4), 0.0850340136);
+
+      // sideways-'S'-shaped distribution
+      assert.epsilon(tol, jStat.kumaraswamy.variance(0.6, 1.2), 0.0785527377);
+
+      // sideways-'Z'-shaped distribution
+      assert.epsilon(tol, jStat.kumaraswamy.variance(1.3, 0.5), 0.0737225341);
+
+      // flat distribution
+      assert.epsilon(tol, jStat.kumaraswamy.variance(1, 1), 0.0833333333);
+
+      // '/'-shaped distribution
+      assert.epsilon(tol, jStat.kumaraswamy.variance(2, 1), 0.0555555556);
+
+      // '\'-shaped distribution
+      assert.epsilon(tol, jStat.kumaraswamy.variance(1, 1.5), 0.0685714286);
+
+      // inverted-'U'-shaped distribution
+      assert.epsilon(tol, jStat.kumaraswamy.variance(1.5, 1.5), 0.0620528377);
+
+      // peaked distribution
+      assert.epsilon(tol, jStat.kumaraswamy.variance(7, 25), 0.0095010436);
+    }
+  },
 });
 
 suite.export(module);

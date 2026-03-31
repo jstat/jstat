@@ -409,9 +409,11 @@ jStat.extend(jStat.kumaraswamy, {
     return Math.pow((alpha - 1) / (alpha * beta - 1), 1 / alpha);
   },
 
-  variance: function variance(/*alpha, beta*/) {
-    throw new Error('variance not yet implemented');
-    // TODO: complete this
+  variance: function variance(alpha, beta) {
+    return (beta * jStat.gammafn(beta) * jStat.gammafn(1 + 2 / alpha)) /
+            jStat.gammafn(1 + 2 / alpha + beta) -
+            Math.pow((beta * jStat.gammafn(1 + 1 / alpha) *
+            jStat.gammafn(beta)) / jStat.gammafn(1 + 1 / alpha + beta), 2);
   }
 });
 
